@@ -1,0 +1,108 @@
+{"frames": [
+
+{
+	"filename": "Kalulu_Disparition_0000",
+	"frame": {"x":1455,"y":1,"w":482,"h":637},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":39,"y":314,"w":482,"h":637},
+	"sourceSize": {"w":563,"h":1125}
+},
+{
+	"filename": "Kalulu_Disparition_0001",
+	"frame": {"x":971,"y":1,"w":482,"h":645},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":39,"y":306,"w":482,"h":645},
+	"sourceSize": {"w":563,"h":1125}
+},
+{
+	"filename": "Kalulu_Disparition_0002",
+	"frame": {"x":485,"y":1,"w":484,"h":657},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":38,"y":294,"w":484,"h":657},
+	"sourceSize": {"w":563,"h":1125}
+},
+{
+	"filename": "Kalulu_Disparition_0003",
+	"frame": {"x":1,"y":1,"w":482,"h":697},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":39,"y":254,"w":482,"h":697},
+	"sourceSize": {"w":563,"h":1125}
+},
+{
+	"filename": "Kalulu_Disparition_0004",
+	"frame": {"x":1455,"y":640,"w":482,"h":637},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":39,"y":314,"w":482,"h":637},
+	"sourceSize": {"w":563,"h":1125}
+},
+{
+	"filename": "Kalulu_Disparition_0005",
+	"frame": {"x":1,"y":700,"w":482,"h":508},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":39,"y":443,"w":482,"h":508},
+	"sourceSize": {"w":563,"h":1125}
+},
+{
+	"filename": "Kalulu_Disparition_0006",
+	"frame": {"x":485,"y":660,"w":482,"h":350},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":39,"y":601,"w":482,"h":350},
+	"sourceSize": {"w":563,"h":1125}
+},
+{
+	"filename": "Kalulu_Disparition_0007",
+	"frame": {"x":485,"y":1012,"w":482,"h":183},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":39,"y":768,"w":482,"h":183},
+	"sourceSize": {"w":563,"h":1125}
+},
+{
+	"filename": "Kalulu_Disparition_0008",
+	"frame": {"x":971,"y":648,"w":482,"h":125},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":39,"y":812,"w":482,"h":125},
+	"sourceSize": {"w":563,"h":1125}
+},
+{
+	"filename": "Kalulu_Disparition_0009",
+	"frame": {"x":969,"y":775,"w":482,"h":125},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":39,"y":812,"w":482,"h":125},
+	"sourceSize": {"w":563,"h":1125}
+},
+{
+	"filename": "Kalulu_Disparition_0010",
+	"frame": {"x":969,"y":902,"w":482,"h":125},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":39,"y":812,"w":482,"h":125},
+	"sourceSize": {"w":563,"h":1125}
+},
+{
+	"filename": "Kalulu_Disparition_0011",
+	"frame": {"x":969,"y":1029,"w":482,"h":125},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":39,"y":812,"w":482,"h":125},
+	"sourceSize": {"w":563,"h":1125}
+}],
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "kaluluOutro.png",
+	"format": "RGBA8888",
+	"size": {"w":1938,"h":1278},
+	"scale": "0.9375",
+	"smartupdate": "$TexturePacker:SmartUpdate:056b7afcd1b6ec95bea8c6c72b4a385d:9cb3e60a208c8850988e47457c7eb1c7:acfbc665943c7ab98d6859b3dd412d26$"
+}
+}

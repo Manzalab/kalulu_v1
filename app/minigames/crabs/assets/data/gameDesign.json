@@ -1,0 +1,49 @@
+{
+  "difficulty": [
+    {
+      "holeNumber"                : 3,
+      "crabOnScreen"              : 1,
+      "correctResponsePercentage" : 0.9,
+      "respawnTime"               : 1,
+      "timeDisplayed"             : 2,
+      "durationApparition"        : 0.5,
+      "durationDisappearance"     : 0.5
+    },
+    {
+      "holeNumber"                : 3,
+      "crabOnScreen"              : 1,
+      "correctResponsePercentage" : 0.7,
+      "respawnTime"               : 1,
+      "timeDisplayed"             : 1.5,
+      "durationApparition"        : 0.5,
+      "durationDisappearance"     : 0.5
+    },
+    {
+      "holeNumber"                : 5,
+      "crabOnScreen"              : 2,
+      "correctResponsePercentage" : 0.5,
+      "respawnTime"               : 1,
+      "timeDisplayed"             : 1,
+      "durationApparition"        : 0.5,
+      "durationDisappearance"     : 0.5
+    },
+    {
+      "holeNumber"                : 7,
+      "crabOnScreen"              : 2,
+      "correctResponsePercentage" : 0.3,
+      "respawnTime"               : 0.75,
+      "timeDisplayed"             : 0.75,
+      "durationApparition"        : 0.5,
+      "durationDisappearance"     : 0.5
+    },
+    {
+      "holeNumber"                : 9,
+      "crabOnScreen"              : 3,
+      "correctResponsePercentage" : 0.2,
+      "respawnTime"               : 0.5,
+      "timeDisplayed"             : 0.5,
+      "durationApparition"        : 0.5,
+      "durationDisappearance"     : 0.5
+    }
+  ]
+}

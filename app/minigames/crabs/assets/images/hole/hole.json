@@ -1,0 +1,28 @@
+{"frames": {
+
+"hole_over":
+{
+	"frame": {"x":1,"y":180,"w":258,"h":89},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":127,"y":6,"w":258,"h":89},
+	"sourceSize": {"w":512,"h":512}
+},
+"hole_under":
+{
+	"frame": {"x":1,"y":1,"w":326,"h":177},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":93,"y":3,"w":326,"h":177},
+	"sourceSize": {"w":512,"h":512}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "hole.png",
+	"format": "RGBA8888",
+	"size": {"w":328,"h":270},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:c745e5a249408bcd921a9fbbe7bc4a1f:477ecf9c3c7f6b28428ae3a6e29aa2e9:9716fbb4a66cd43559ae24145a9197b8$"
+}
+}

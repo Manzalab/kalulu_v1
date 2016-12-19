@@ -1,0 +1,105 @@
+{
+"frames": {
+	"toucan_ON": {
+		"frame": {"x":723, "y":914, "w":240, "h":240},
+		"spriteSourceSize": {"x":0,"y":0,"w":240,"h":240},
+		"sourceSize": {"w":240,"h":240}
+	},
+	"conque-OFF": {
+		"frame": {"x":723, "y":1155, "w":184, "h":184},
+		"spriteSourceSize": {"x":0,"y":0,"w":184,"h":184},
+		"sourceSize": {"w":184,"h":184}
+	},
+	"conque-ON": {
+		"frame": {"x":1188, "y":673, "w":184, "h":184},
+		"spriteSourceSize": {"x":0,"y":0,"w":184,"h":184},
+		"sourceSize": {"w":184,"h":184}
+	},
+	"conque": {
+		"frame": {"x":0, "y":673, "w":520, "h":448},
+		"spriteSourceSize": {"x":0,"y":0,"w":520,"h":448},
+		"sourceSize": {"w":520,"h":448}
+	},
+	"fond_validation": {
+		"frame": {"x":0, "y":0, "w":1274, "h":672},
+		"spriteSourceSize": {"x":0,"y":0,"w":1274,"h":672},
+		"sourceSize": {"w":1274,"h":672}
+	},
+	"ile_OFF": {
+		"frame": {"x":521, "y":673, "w":240, "h":240},
+		"spriteSourceSize": {"x":0,"y":0,"w":240,"h":240},
+		"sourceSize": {"w":240,"h":240}
+	},
+	"ile_ON": {
+		"frame": {"x":762, "y":673, "w":240, "h":240},
+		"spriteSourceSize": {"x":0,"y":0,"w":240,"h":240},
+		"sourceSize": {"w":240,"h":240}
+	},
+	"pause_OFF": {
+		"frame": {"x":1003, "y":673, "w":184, "h":184},
+		"spriteSourceSize": {"x":0,"y":0,"w":184,"h":184},
+		"sourceSize": {"w":184,"h":184}
+	},
+	"pause_ON": {
+		"frame": {"x":964, "y":914, "w":184, "h":184},
+		"spriteSourceSize": {"x":0,"y":0,"w":184,"h":184},
+		"sourceSize": {"w":184,"h":184}
+	},
+	"replay_OFF": {
+		"frame": {"x":1093, "y":1099, "w":184, "h":184},
+		"spriteSourceSize": {"x":0,"y":0,"w":184,"h":184},
+		"sourceSize": {"w":184,"h":184}
+	},
+	"replay_ON": {
+		"frame": {"x":1149, "y":858, "w":184, "h":184},
+		"spriteSourceSize": {"x":0,"y":0,"w":184,"h":184},
+		"sourceSize": {"w":184,"h":184}
+	},
+	"retour_annuler": {
+		"frame": {"x":521, "y":914, "w":184, "h":184},
+		"spriteSourceSize": {"x":0,"y":0,"w":184,"h":184},
+		"sourceSize": {"w":184,"h":184}
+	},
+	"retour_valider": {
+		"frame": {"x":908, "y":1155, "w":184, "h":184},
+		"spriteSourceSize": {"x":0,"y":0,"w":184,"h":184},
+		"sourceSize": {"w":184,"h":184}
+	},
+	"singe_gagne": {
+		"frame": {"x":1275, "y":103, "w":102, "h":102},
+		"spriteSourceSize": {"x":0,"y":0,"w":102,"h":102},
+		"sourceSize": {"w":102,"h":102}
+	},
+	"singe_perdu": {
+		"frame": {"x":1275, "y":0, "w":102, "h":102},
+		"spriteSourceSize": {"x":0,"y":0,"w":102,"h":102},
+		"sourceSize": {"w":102,"h":102}
+	},
+	"singe_vide": {
+		"frame": {"x":1275, "y":206, "w":102, "h":102},
+		"spriteSourceSize": {"x":0,"y":0,"w":102,"h":102},
+		"sourceSize": {"w":102,"h":102}
+	},
+	"suite_OFF": {
+		"frame": {"x":241, "y":1122, "w":240, "h":240},
+		"spriteSourceSize": {"x":0,"y":0,"w":240,"h":240},
+		"sourceSize": {"w":240,"h":240}
+	},
+	"suite_ON": {
+		"frame": {"x":482, "y":1122, "w":240, "h":240},
+		"spriteSourceSize": {"x":0,"y":0,"w":240,"h":240},
+		"sourceSize": {"w":240,"h":240}
+	},
+	"toucan_OFF": {
+		"frame": {"x":0, "y":1122, "w":240, "h":240},
+		"spriteSourceSize": {"x":0,"y":0,"w":240,"h":240},
+		"sourceSize": {"w":240,"h":240}
+	}
+
+},
+"meta": {
+	"image": "stunStars",
+	"size": {"w": 1378, "h": 1363},
+	"scale": "1"
+}
+}

@@ -1,0 +1,108 @@
+{"frames": [
+
+{
+	"filename": "Kalulu_Parle02_0000",
+	"frame": {"x":485,"y":1311,"w":482,"h":637},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":39,"y":314,"w":482,"h":637},
+	"sourceSize": {"w":563,"h":1125}
+},
+{
+	"filename": "Kalulu_Parle02_0001",
+	"frame": {"x":1,"y":1309,"w":482,"h":639},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":39,"y":312,"w":482,"h":639},
+	"sourceSize": {"w":563,"h":1125}
+},
+{
+	"filename": "Kalulu_Parle02_0002",
+	"frame": {"x":1453,"y":1,"w":482,"h":642},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":39,"y":309,"w":482,"h":642},
+	"sourceSize": {"w":563,"h":1125}
+},
+{
+	"filename": "Kalulu_Parle02_0003",
+	"frame": {"x":969,"y":653,"w":482,"h":646},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":39,"y":305,"w":482,"h":646},
+	"sourceSize": {"w":563,"h":1125}
+},
+{
+	"filename": "Kalulu_Parle02_0004",
+	"frame": {"x":1,"y":657,"w":482,"h":650},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":39,"y":301,"w":482,"h":650},
+	"sourceSize": {"w":563,"h":1125}
+},
+{
+	"filename": "Kalulu_Parle02_0005",
+	"frame": {"x":485,"y":1,"w":482,"h":653},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":39,"y":298,"w":482,"h":653},
+	"sourceSize": {"w":563,"h":1125}
+},
+{
+	"filename": "Kalulu_Parle02_0006",
+	"frame": {"x":1,"y":1,"w":482,"h":654},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":39,"y":297,"w":482,"h":654},
+	"sourceSize": {"w":563,"h":1125}
+},
+{
+	"filename": "Kalulu_Parle02_0007",
+	"frame": {"x":485,"y":656,"w":482,"h":653},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":39,"y":298,"w":482,"h":653},
+	"sourceSize": {"w":563,"h":1125}
+},
+{
+	"filename": "Kalulu_Parle02_0008",
+	"frame": {"x":969,"y":1,"w":482,"h":650},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":39,"y":301,"w":482,"h":650},
+	"sourceSize": {"w":563,"h":1125}
+},
+{
+	"filename": "Kalulu_Parle02_0009",
+	"frame": {"x":969,"y":1301,"w":482,"h":646},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":39,"y":305,"w":482,"h":646},
+	"sourceSize": {"w":563,"h":1125}
+},
+{
+	"filename": "Kalulu_Parle02_0010",
+	"frame": {"x":1453,"y":645,"w":482,"h":642},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":39,"y":309,"w":482,"h":642},
+	"sourceSize": {"w":563,"h":1125}
+},
+{
+	"filename": "Kalulu_Parle02_0011",
+	"frame": {"x":1453,"y":1289,"w":482,"h":639},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":39,"y":312,"w":482,"h":639},
+	"sourceSize": {"w":563,"h":1125}
+}],
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "kaluluSpeaking2.png",
+	"format": "RGBA8888",
+	"size": {"w":1936,"h":1949},
+	"scale": "0.9375",
+	"smartupdate": "$TexturePacker:SmartUpdate:23949b9839f3ca339ee57f82a9fd3810:0174e8920377b4d623dbe5f01a8c5b47:70e5dbfefa80ada3cf669ef9732988cd$"
+}
+}

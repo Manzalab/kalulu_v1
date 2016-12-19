@@ -1,0 +1,10 @@
+{
+  "gameId": "crabs",
+  "discipline" : "maths",
+  "skipKalulu": true,
+  "skipKaluluIntro": false,
+  "skipKaluluHelp": false,
+  "skipKaluluFinal": false,
+  "debugPanel": true,
+  "globalVars": false
+}

@@ -1,0 +1,108 @@
+{"frames": [
+
+{
+	"filename": "Kalulu_Attente02_0000",
+	"frame": {"x":1453,"y":1,"w":482,"h":637},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":39,"y":314,"w":482,"h":637},
+	"sourceSize": {"w":563,"h":1125}
+},
+{
+	"filename": "Kalulu_Attente02_0001",
+	"frame": {"x":1,"y":636,"w":482,"h":637},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":39,"y":314,"w":482,"h":637},
+	"sourceSize": {"w":563,"h":1125}
+},
+{
+	"filename": "Kalulu_Attente02_0002",
+	"frame": {"x":485,"y":1,"w":482,"h":635},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":39,"y":316,"w":482,"h":635},
+	"sourceSize": {"w":563,"h":1125}
+},
+{
+	"filename": "Kalulu_Attente02_0003",
+	"frame": {"x":1,"y":1,"w":482,"h":633},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":39,"y":317,"w":482,"h":633},
+	"sourceSize": {"w":563,"h":1125}
+},
+{
+	"filename": "Kalulu_Attente02_0004",
+	"frame": {"x":969,"y":1,"w":482,"h":635},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":39,"y":316,"w":482,"h":635},
+	"sourceSize": {"w":563,"h":1125}
+},
+{
+	"filename": "Kalulu_Attente02_0005",
+	"frame": {"x":485,"y":638,"w":482,"h":637},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":39,"y":314,"w":482,"h":637},
+	"sourceSize": {"w":563,"h":1125}
+},
+{
+	"filename": "Kalulu_Attente02_0006",
+	"frame": {"x":969,"y":638,"w":482,"h":637},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":39,"y":313,"w":482,"h":637},
+	"sourceSize": {"w":563,"h":1125}
+},
+{
+	"filename": "Kalulu_Attente02_0007",
+	"frame": {"x":1,"y":1275,"w":482,"h":642},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":39,"y":309,"w":482,"h":642},
+	"sourceSize": {"w":563,"h":1125}
+},
+{
+	"filename": "Kalulu_Attente02_0008",
+	"frame": {"x":969,"y":1277,"w":482,"h":644},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":39,"y":306,"w":482,"h":644},
+	"sourceSize": {"w":563,"h":1125}
+},
+{
+	"filename": "Kalulu_Attente02_0009",
+	"frame": {"x":1453,"y":1281,"w":482,"h":645},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":39,"y":306,"w":482,"h":645},
+	"sourceSize": {"w":563,"h":1125}
+},
+{
+	"filename": "Kalulu_Attente02_0010",
+	"frame": {"x":485,"y":1277,"w":482,"h":643},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":39,"y":308,"w":482,"h":643},
+	"sourceSize": {"w":563,"h":1125}
+},
+{
+	"filename": "Kalulu_Attente02_0011",
+	"frame": {"x":1453,"y":640,"w":482,"h":639},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":39,"y":312,"w":482,"h":639},
+	"sourceSize": {"w":563,"h":1125}
+}],
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "kaluluIdle2.png",
+	"format": "RGBA8888",
+	"size": {"w":1936,"h":1927},
+	"scale": "0.9375",
+	"smartupdate": "$TexturePacker:SmartUpdate:598e978fdd08c8bd07ff77beeb50cf90:a70a60d71886638d0caea7abaec4a813:f1c3ecf9b653a2adb780525d94ae445f$"
+}
+}
