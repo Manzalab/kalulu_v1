@@ -6,8 +6,6 @@
 
     console.log('\n#### NPM GLOBAL TEST\n\n');
 
-
-
     var config = null;
 
     // Detect how npm is run and branch based on that

@@ -1,0 +1,39 @@
+{"frames": {
+
+"PathB_11.png":
+{
+	"frame": {"x":3,"y":3,"w":1424,"h":442},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":1424,"h":442},
+	"sourceSize": {"w":1424,"h":442},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"PathB_18.png":
+{
+	"frame": {"x":3,"y":1797,"w":1416,"h":232},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":1416,"h":232},
+	"sourceSize": {"w":1416,"h":232},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"SpriteGarden_010004.png":
+{
+	"frame": {"x":3,"y":449,"w":1372,"h":1344},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":1372,"h":1344},
+	"sourceSize": {"w":1372,"h":1344},
+	"pivot": {"x":0.5,"y":0.5}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "garden_screen_9.png",
+	"format": "RGBA8888",
+	"size": {"w":1430,"h":2032},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:11313c6e5695399b9abb73018f81771c:ed098483efbe75cc6b6d3f080203380d:397dc27b02c7dc39d8cf27927f2c39a5$"
+}
+}

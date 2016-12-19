@@ -42,13 +42,13 @@
             START_BOOT                    : { get: function () { return "startBoot"; } },
             START_PRELOAD                 : { get: function () { return "startPreload"; } },
         //     START_MENUS                   : { get: function () { return "startMenus"; } },
-        //     GOTO_TITLE_CARD               : { get: function () { return "goToTC"; } },
+            GOTO_TITLE_CARD               : { get: function () { return "goToTC"; } },
         //     GOTO_BRAIN_SCREEN             : { get: function () { return "goToBrainScreen"; } },
         //     GOTO_GARDEN_SCREEN            : { get: function () { return "goToGardenScreen"; } },
         //     GOTO_TOYCHEST_SCREEN          : { get: function () { return "goToToyChestScreen"; } },
         //     GOTO_TOYCHEST_ACTIVITY_SCREEN : { get: function () { return "goToToyChestActivityScreen"; } },
         //     GOTO_LESSON_SCREEN            : { get: function () { return "goToLessonScreen"; } },
-        //     GOTO_ACTIVITY                 : { get: function () { return "goToActivity"; } },
+            GOTO_ACTIVITY                 : { get: function () { return "goToActivity"; } },
         //     BACK_FROM_ACTIVITY            : { get: function () { return "backFromActivity"; } },
         //     KALULU_TOYCHEST_LOCKED        : { get: function () { return "kaluluToyChestLocked"; } }
         });

@@ -5,19 +5,19 @@ var WebpackMerge       = require('webpack-merge');
 var CleanWebpackPlugin = require('clean-webpack-plugin');
 var CopyWebpackPlugin  = require('copy-webpack-plugin');
 
-
-exports.mergeConfigs = function () {
+exports.mergeConfigs = WebpackMerge;
+/*function () {
     return WebpackMerge(function(target, source, key) {
         if(target instanceof Array) {
             return [].concat(target, source);
         }
         return source;
     });
-}();
+}();*/
 
 exports.extractBundle = function (options) {
     
-    const entry = {};
+    var entry = {};
 
     entry[options.name] = options.entries;
 
@@ -47,7 +47,7 @@ exports.minify = function() {
                 }
             })
         ]
-    }
+    };
 };
 
 exports.generateHtml = function() {
@@ -93,7 +93,7 @@ exports.getHMR = function () {
 
             })
         ]
-    }
+    };
 };
 
 exports.copyAssetsForMinigames = function (minigameFolderNames, language) {
@@ -116,7 +116,7 @@ exports.copyAssetsForMinigames = function (minigameFolderNames, language) {
             // Enable multi-pass compilation for enhanced performance in larger projects. Good default.
             new CopyWebpackPlugin(transfers)
         ]
-    }
+    };
 };
 
 

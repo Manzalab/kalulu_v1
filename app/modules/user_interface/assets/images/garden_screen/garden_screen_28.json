@@ -1,0 +1,21 @@
+{"frames": {
+
+"SpriteGarden_050004.png":
+{
+	"frame": {"x":3,"y":3,"w":1155,"h":1258},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":1155,"h":1258},
+	"sourceSize": {"w":1155,"h":1258},
+	"pivot": {"x":0.5,"y":0.5}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "garden_screen_28.png",
+	"format": "RGBA8888",
+	"size": {"w":1161,"h":1264},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:11313c6e5695399b9abb73018f81771c:ed098483efbe75cc6b6d3f080203380d:397dc27b02c7dc39d8cf27927f2c39a5$"
+}
+}

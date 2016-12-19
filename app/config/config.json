@@ -2,5 +2,5 @@
     "enableGlobalVars"        : true,
     "stats"                   : true,
     "logGameStates"           : true,
-    "authoritativeSystemInfo" : true
+    "authoritativeSystemInfo" : false
 }

@@ -24,7 +24,7 @@
 
         var app = new Application();
         app.initAndStart();
-    })
+    });
 })();
 
 

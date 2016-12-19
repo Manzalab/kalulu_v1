@@ -2,8 +2,8 @@ var path = require('path');
 var components = require('./components.webpack.config.js');
 
 var PATHS = {
-    www : path.resolve(__dirname, '../www')
-}
+    www : path.resolve(__dirname, '../www/')
+};
 
 module.exports = components.mergeConfigs(
     
@@ -21,11 +21,17 @@ module.exports = components.mergeConfigs(
         resolve : {
             root : path.resolve(__dirname, '../app'),
             modulesDirectories : ['node_modules', 'app/modules', 'app/libs', 'app/minigames', 'app/src']
+        },
+        module: {
+            loaders: [
+                { test: /\.json/, loader: 'json-loader' }
+            ]
         }
+
     },
     // If you want to preserve possible dotfiles within your www directory, you can use path.join(PATHS.www, '*') instead of PATHS.www
     components.clean(PATHS.www)
 );
 
-// console.log('\n Common :');
-// console.log(module.exports);
+console.log('\n Common :');
+console.log(module.exports);

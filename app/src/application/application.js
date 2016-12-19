@@ -3,11 +3,10 @@
     'use strict';
     var EventEmitter       = require ('eventemitter3');
     var Events             = require ('application/events');
-    var LoadingManager     = require ('application/loading_manager');
     // var LocalStorageModule = require ('application/local_storage_module');
     // var StorageManager     = require ('application/storage_manager');
     var GameManager        = require ('game_logic/game_manager');
-    // var InterfaceManager   = require ('interface/interface_manager');
+    var InterfaceManager   = require ('interface/interface_manager');
     var Stats              = require ('stats');
 
 
@@ -35,13 +34,6 @@
          * @private
         **/
         this._eventSystem = null;
-        
-        /**
-         * The LoadingManager Object is in charge of knowing what to load on specific events.
-         * @type {LoadingManager}
-         * @private
-        **/
-        this._loadingManager = null;
         
         /**
          * The StorageManager Object is in charge of storing and retrieving user data.
@@ -144,13 +136,11 @@
         this._eventSystem = new EventEmitter();
         this._eventSystem.name = "Kalulu App Event System";
 
-        this._loadingManager = new LoadingManager(this._eventSystem);
-
         // this._storageManager = new StorageManager(storage_strategy);
 
         this._gameManager = new GameManager(this._eventSystem);
 
-        // this._interfaceManager = new InterfaceManager(this._eventSystem);
+        this._interfaceManager = new InterfaceManager(this._eventSystem);
         
         this._frameId = 0;
         this._mainLoop = this._mainLoop.bind(this);

@@ -25,9 +25,9 @@ module.exports = components.mergeConfigs(
     components.minify(),
     components.extractBundle({
         name    : 'vendor',
-        entries : ['phaser-bundle', 'stats', 'eventemitter3']
+        entries : ['phaser-bundle', 'stats', 'eventemitter3', 'dat.gui']
     })
 );
 
-// console.log('\n Build :');
-// console.log(module.exports);
+console.log('\n Build :');
+console.log(module.exports);

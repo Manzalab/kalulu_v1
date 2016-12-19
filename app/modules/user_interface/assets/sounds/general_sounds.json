@@ -1,0 +1,30 @@
+{
+	"notice" : {
+		"1" 			: "The loader will try to load all the soundfiles declared in 'fxs' and 'musics' objects.",
+		"1 (continued)"	: "It will use the first format of the array 'extensions' that is accepted by Howler.",
+		"2"				: "Thus, all the sounds must be present for each of the formats declared in the array 'extensions'",
+		"3"				: "Note : for a CocoonJS encapsulation, ogg format is required"
+	},
+	
+	"extensions": [
+		"ogg"
+	],
+	
+	"fxs": {
+		"click":100,
+		"bird_1":100,
+		"bird_2":100,
+		"bird_3":100,
+		"bird_4":100,
+		"bird_5":100,
+		"bird_6":100,
+		"bird_7":100,
+		"bird_8":100,
+		"bird_9":100,
+		"kaluluLocked":100
+	},
+
+	"musics": {
+		
+	}
+}

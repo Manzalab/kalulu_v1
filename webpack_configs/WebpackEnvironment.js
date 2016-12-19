@@ -20,7 +20,7 @@ module.exports = {
 };
 
 function TestEnvironment (webpackSpecificConfig) {
-    
+    console.log(components);
     this.config = validate(components.mergeConfigs(webpackCommonConfig, webpackSpecificConfig));
     console.log('\n## Test Environment Final Config :');
     console.log(this.config);
@@ -32,7 +32,7 @@ function TestEnvironment (webpackSpecificConfig) {
     this.server = new WebpackDevServer(this.compiler, this.devServerConfig);
 
     this.server.listen(3000, 'localhost', function () {});
-};
+}
 
 
 function BuildEnvironment (webpackSpecificConfig) {
@@ -42,7 +42,7 @@ function BuildEnvironment (webpackSpecificConfig) {
     console.log(this.config);
     console.log('\n\n');
     this.compiler = webpack(this.config).run(onComplete);
-};
+}
 
 
 // ################### Completion Callback ################
@@ -51,7 +51,7 @@ function onComplete (error, stats) {
     
     if (error) {
         console.error('uncool');
-    };
+    }
 
     fs.writeFileSync('./stats.json', JSON.stringify(stats.toJson()));
     console.log(stats.toString());

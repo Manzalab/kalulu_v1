@@ -1,0 +1,57 @@
+{"frames": {
+
+"PlayButtonTC0001.png":
+{
+	"frame": {"x":0,"y":0,"w":650,"h":650},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":650,"h":650},
+	"sourceSize": {"w":650,"h":650},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"PlayButtonTC0002.png":
+{
+	"frame": {"x":650,"y":0,"w":650,"h":650},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":650,"h":650},
+	"sourceSize": {"w":650,"h":650},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"PlayButtonTC0003.png":
+{
+	"frame": {"x":1300,"y":0,"w":650,"h":650},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":650,"h":650},
+	"sourceSize": {"w":650,"h":650},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"PlayButtonTC0004.png":
+{
+	"frame": {"x":1950,"y":0,"w":650,"h":650},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":650,"h":650},
+	"sourceSize": {"w":650,"h":650},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"TitleCardBg.png":
+{
+	"frame": {"x":0,"y":650,"w":2430,"h":1536},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":2430,"h":1536},
+	"sourceSize": {"w":2430,"h":1536},
+	"pivot": {"x":0.5,"y":0.5}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "title_card.png",
+	"format": "RGBA8888",
+	"size": {"w":2600,"h":2186},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:6b7f296f2fc90e1df06a66c5894b2d9f:85b4cf25905efadfc84e7f9efea5333b:a0991e85ef348923f90559b51e89001f$"
+}
+}
