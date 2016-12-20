@@ -12,7 +12,11 @@ module.exports = components.mergeConfigs(
         },
         plugins : [
             new webpack.ProvidePlugin({ // the plugin is a wrapper for libraries and objects we need in all the modules, so we don't need to require them all the time
-                Config       : 'application/config'
+                Config       : 'application/config',
+                Events       : 'application/events',
+                PIXI3        : 'modules/user_interface/libs/pixi',
+                createjs     : 'modules/user_interface/libs/tweenjs-0.6.2.combined',
+                _            : 'underscore'
             }),
             new CopyWebpackPlugin([
                 { from: 'app/config', to: 'config' }
@@ -21,11 +25,12 @@ module.exports = components.mergeConfigs(
         ]
     },
     components.copyAssetsForMinigames(['common', 'crabs'], process.env.kaluluLanguage),
+    components.copyAssetsForModules(['user_interface']),
     components.generateHtml(),
     components.minify(),
     components.extractBundle({
         name    : 'vendor',
-        entries : ['phaser-bundle', 'stats', 'eventemitter3', 'dat.gui']
+        entries : ['phaser-bundle', 'stats', 'eventemitter3', 'dat.gui', 'modules/user_interface/libs/pixi']
     })
 );
 

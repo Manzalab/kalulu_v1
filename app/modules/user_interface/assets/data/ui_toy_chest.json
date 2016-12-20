@@ -1,0 +1,884 @@
+{
+	"mcBurrowVideoScreen": {
+		"rotation": 0,
+		"x": 0,
+		"components": {
+			"mcBurrowScreenBg": {
+				"rotation": 0,
+				"x": 0,
+				"scaleX": 1,
+				"y": 0,
+				"zIndex": 0,
+				"scaleY": 1,
+				"uiType": "UIAsset",
+				"classname": "BurrowScreenBg"
+			},
+			"mcBurrowTLHud": {
+				"rotation": 0,
+				"x": -1024,
+				"components": {
+					"mcBackButton": {
+						"rotation": 0,
+						"x": 150,
+						"scaleX": 1,
+						"y": 150,
+						"zIndex": 0,
+						"scaleY": 1,
+						"uiType": "Button",
+						"classname": "BackButton_btn"
+					}
+				},
+				"scaleX": 1,
+				"y": -683,
+				"zIndex": 5,
+				"scaleY": 1,
+				"uiType": "MovieClip",
+				"classname": "TL_BackButtonHud"
+			},
+			"mcActivitiesNext": {
+				"rotation": 180,
+				"x": 210,
+				"scaleX": 1,
+				"y": 608,
+				"zIndex": 4,
+				"scaleY": 1,
+				"uiType": "Button",
+				"classname": "BackButton_btn"
+			},
+			"mcVideoTHud": {
+				"rotation": 0,
+				"x": 0,
+				"components": {
+					"instance69": {
+						"rotation": 0,
+						"x": 0,
+						"scaleX": 1,
+						"y": 150,
+						"zIndex": 0,
+						"scaleY": 1,
+						"uiType": "UIAsset",
+						"classname": "ActivityIcon"
+					},
+					"instance71": {
+						"rotation": 0,
+						"x": 0,
+						"scaleX": 1,
+						"y": 150,
+						"zIndex": 1,
+						"scaleY": 1,
+						"uiType": "UIAsset",
+						"classname": "VideoIcon"
+					}
+				},
+				"scaleX": 1,
+				"y": -683,
+				"zIndex": 1,
+				"scaleY": 1,
+				"uiType": "MovieClip",
+				"classname": "VideoTHud"
+			},
+			"mcButtonsContainer": {
+				"rotation": 0,
+				"x": 0,
+				"components": {
+					"instance77": {
+						"rotation": 0,
+						"x": 0,
+						"scaleX": 1,
+						"y": -225,
+						"zIndex": 2,
+						"scaleY": 1,
+						"uiType": "Button",
+						"classname": "ActivitiesButton_btn"
+					},
+					"instance89": {
+						"rotation": 0,
+						"x": 425,
+						"scaleX": 1,
+						"y": 225,
+						"zIndex": 8,
+						"scaleY": 1,
+						"uiType": "Button",
+						"classname": "ActivitiesButton_btn"
+					},
+					"instance75": {
+						"rotation": 0,
+						"x": -425,
+						"scaleX": 1,
+						"y": -225,
+						"zIndex": 1,
+						"scaleY": 1,
+						"uiType": "Button",
+						"classname": "ActivitiesButton_btn"
+					},
+					"instance87": {
+						"rotation": 0,
+						"x": 0,
+						"scaleX": 1,
+						"y": 225,
+						"zIndex": 7,
+						"scaleY": 1,
+						"uiType": "Button",
+						"classname": "ActivitiesButton_btn"
+					},
+					"instance73": {
+						"rotation": 0,
+						"x": -850,
+						"scaleX": 1,
+						"y": -225,
+						"zIndex": 0,
+						"scaleY": 1,
+						"uiType": "Button",
+						"classname": "ActivitiesButton_btn"
+					},
+					"instance91": {
+						"rotation": 0,
+						"x": 850,
+						"scaleX": 1,
+						"y": 225,
+						"zIndex": 9,
+						"scaleY": 1,
+						"uiType": "Button",
+						"classname": "ActivitiesButton_btn"
+					},
+					"instance85": {
+						"rotation": 0,
+						"x": -425,
+						"scaleX": 1,
+						"y": 225,
+						"zIndex": 6,
+						"scaleY": 1,
+						"uiType": "Button",
+						"classname": "ActivitiesButton_btn"
+					},
+					"instance81": {
+						"rotation": 0,
+						"x": 850,
+						"scaleX": 1,
+						"y": -225,
+						"zIndex": 4,
+						"scaleY": 1,
+						"uiType": "Button",
+						"classname": "ActivitiesButton_btn"
+					},
+					"instance83": {
+						"rotation": 0,
+						"x": -850,
+						"scaleX": 1,
+						"y": 225,
+						"zIndex": 5,
+						"scaleY": 1,
+						"uiType": "Button",
+						"classname": "ActivitiesButton_btn"
+					},
+					"instance79": {
+						"rotation": 0,
+						"x": 425,
+						"scaleX": 1,
+						"y": -225,
+						"zIndex": 3,
+						"scaleY": 1,
+						"uiType": "Button",
+						"classname": "ActivitiesButton_btn"
+					}
+				},
+				"scaleX": 1,
+				"y": 150,
+				"zIndex": 2,
+				"scaleY": 1,
+				"uiType": "MovieClip",
+				"classname": "ActivitiesContainer"
+			},
+			"mcActivitiesPrev": {
+				"rotation": 0,
+				"x": -210,
+				"scaleX": 1,
+				"y": 608,
+				"zIndex": 3,
+				"scaleY": 1,
+				"uiType": "Button",
+				"classname": "BackButton_btn"
+			}
+		},
+		"scaleX": 1,
+		"y": 0,
+		"zIndex": 4,
+		"scaleY": 1,
+		"uiType": "MovieClip",
+		"classname": "BurrowVideoScreen"
+	},
+	"mcBurrowMiniGameScreen": {
+		"rotation": 0,
+		"x": 0,
+		"components": {
+			"mcMiniGameTHud": {
+				"rotation": 0,
+				"x": 0,
+				"components": {
+					"instance43": {
+						"rotation": 0,
+						"x": 0,
+						"scaleX": 1,
+						"y": 150,
+						"zIndex": 1,
+						"scaleY": 1,
+						"uiType": "UIAsset",
+						"classname": "MiniGameIcon"
+					},
+					"instance41": {
+						"rotation": 0,
+						"x": 0,
+						"scaleX": 1,
+						"y": 150,
+						"zIndex": 0,
+						"scaleY": 1,
+						"uiType": "UIAsset",
+						"classname": "ActivityIcon"
+					}
+				},
+				"scaleX": 1,
+				"y": -683,
+				"zIndex": 1,
+				"scaleY": 1,
+				"uiType": "MovieClip",
+				"classname": "MiniGameTHud"
+			},
+			"mcBurrowScreenBg": {
+				"rotation": 0,
+				"x": 0,
+				"scaleX": 1,
+				"y": 0,
+				"zIndex": 0,
+				"scaleY": 1,
+				"uiType": "UIAsset",
+				"classname": "BurrowScreenBg"
+			},
+			"mcBurrowTLHud": {
+				"rotation": 0,
+				"x": -1024,
+				"components": {
+					"mcBackButton": {
+						"rotation": 0,
+						"x": 150,
+						"scaleX": 1,
+						"y": 150,
+						"zIndex": 0,
+						"scaleY": 1,
+						"uiType": "Button",
+						"classname": "BackButton_btn"
+					}
+				},
+				"scaleX": 1,
+				"y": -683,
+				"zIndex": 5,
+				"scaleY": 1,
+				"uiType": "MovieClip",
+				"classname": "TL_BackButtonHud"
+			},
+			"mcActivitiesNext": {
+				"rotation": 180,
+				"x": 210,
+				"scaleX": 1,
+				"y": 608,
+				"zIndex": 4,
+				"scaleY": 1,
+				"uiType": "Button",
+				"classname": "BackButton_btn"
+			},
+			"mcButtonsContainer": {
+				"rotation": 0,
+				"x": 0,
+				"components": {
+					"instance51": {
+						"rotation": 0,
+						"x": 425,
+						"scaleX": 1,
+						"y": -225,
+						"zIndex": 3,
+						"scaleY": 1,
+						"uiType": "Button",
+						"classname": "ActivitiesButton_btn"
+					},
+					"instance61": {
+						"rotation": 0,
+						"x": 425,
+						"scaleX": 1,
+						"y": 225,
+						"zIndex": 8,
+						"scaleY": 1,
+						"uiType": "Button",
+						"classname": "ActivitiesButton_btn"
+					},
+					"instance49": {
+						"rotation": 0,
+						"x": 0,
+						"scaleX": 1,
+						"y": -225,
+						"zIndex": 2,
+						"scaleY": 1,
+						"uiType": "Button",
+						"classname": "ActivitiesButton_btn"
+					},
+					"instance59": {
+						"rotation": 0,
+						"x": 0,
+						"scaleX": 1,
+						"y": 225,
+						"zIndex": 7,
+						"scaleY": 1,
+						"uiType": "Button",
+						"classname": "ActivitiesButton_btn"
+					},
+					"instance47": {
+						"rotation": 0,
+						"x": -425,
+						"scaleX": 1,
+						"y": -225,
+						"zIndex": 1,
+						"scaleY": 1,
+						"uiType": "Button",
+						"classname": "ActivitiesButton_btn"
+					},
+					"instance45": {
+						"rotation": 0,
+						"x": -850,
+						"scaleX": 1,
+						"y": -225,
+						"zIndex": 0,
+						"scaleY": 1,
+						"uiType": "Button",
+						"classname": "ActivitiesButton_btn"
+					},
+					"instance55": {
+						"rotation": 0,
+						"x": -850,
+						"scaleX": 1,
+						"y": 225,
+						"zIndex": 5,
+						"scaleY": 1,
+						"uiType": "Button",
+						"classname": "ActivitiesButton_btn"
+					},
+					"instance53": {
+						"rotation": 0,
+						"x": 850,
+						"scaleX": 1,
+						"y": -225,
+						"zIndex": 4,
+						"scaleY": 1,
+						"uiType": "Button",
+						"classname": "ActivitiesButton_btn"
+					},
+					"instance63": {
+						"rotation": 0,
+						"x": 850,
+						"scaleX": 1,
+						"y": 225,
+						"zIndex": 9,
+						"scaleY": 1,
+						"uiType": "Button",
+						"classname": "ActivitiesButton_btn"
+					},
+					"instance57": {
+						"rotation": 0,
+						"x": -425,
+						"scaleX": 1,
+						"y": 225,
+						"zIndex": 6,
+						"scaleY": 1,
+						"uiType": "Button",
+						"classname": "ActivitiesButton_btn"
+					}
+				},
+				"scaleX": 1,
+				"y": 150,
+				"zIndex": 2,
+				"scaleY": 1,
+				"uiType": "MovieClip",
+				"classname": "ActivitiesContainer"
+			},
+			"mcActivitiesPrev": {
+				"rotation": 0,
+				"x": -210,
+				"scaleX": 1,
+				"y": 608,
+				"zIndex": 3,
+				"scaleY": 1,
+				"uiType": "Button",
+				"classname": "BackButton_btn"
+			}
+		},
+		"scaleX": 1,
+		"y": 0,
+		"zIndex": 3,
+		"scaleY": 1,
+		"uiType": "MovieClip",
+		"classname": "BurrowMiniGameScreen"
+	},
+	"mcStory": {
+		"rotation": 0,
+		"x": 0,
+		"components": {
+			"mcStoryRHud": {
+				"rotation": 0,
+				"x": 874,
+				"components": {
+					"mcButtonNext": {
+						"rotation": 180,
+						"x": 0,
+						"scaleX": 1,
+						"y": 0,
+						"zIndex": 0,
+						"scaleY": 1,
+						"uiType": "Button",
+						"classname": "BackButton_btn"
+					}
+				},
+				"scaleX": 1,
+				"y": 0,
+				"zIndex": 2,
+				"scaleY": 1,
+				"uiType": "MovieClip",
+				"classname": "R_NextButtonHud"
+			},
+			"mcStoryLHud": {
+				"rotation": 0,
+				"x": -874,
+				"components": {
+					"mcButtonPrev": {
+						"rotation": 0,
+						"x": 0,
+						"scaleX": 1,
+						"y": 0,
+						"zIndex": 0,
+						"scaleY": 1,
+						"uiType": "Button",
+						"classname": "BackButton_btn"
+					}
+				},
+				"scaleX": 1,
+				"y": 0,
+				"zIndex": 1,
+				"scaleY": 1,
+				"uiType": "MovieClip",
+				"classname": "L_PrevButtonHud"
+			},
+			"mcStoryContainer": {
+				"rotation": 0,
+				"x": 0,
+				"scaleX": 1,
+				"y": 0,
+				"zIndex": 0,
+				"scaleY": 1,
+				"uiType": "UIAsset",
+				"classname": "StoryContainer"
+			}
+		},
+		"scaleX": 1,
+		"y": 0,
+		"zIndex": 0,
+		"scaleY": 1,
+		"uiType": "MovieClip",
+		"classname": "Story"
+	},
+	"mcBurrowScreen": {
+		"rotation": 0,
+		"x": 0,
+		"components": {
+			"mcBurrowTLHud": {
+				"rotation": 0,
+				"x": -1024,
+				"components": {
+					"mcBackButton": {
+						"rotation": 0,
+						"x": 150,
+						"scaleX": 1,
+						"y": 150,
+						"zIndex": 0,
+						"scaleY": 1,
+						"uiType": "Button",
+						"classname": "BackButton_btn"
+					}
+				},
+				"scaleX": 1,
+				"y": -683,
+				"zIndex": 1,
+				"scaleY": 1,
+				"uiType": "MovieClip",
+				"classname": "TL_BackButtonHud"
+			},
+			"mcBurrowScreenBg": {
+				"rotation": 0,
+				"x": 0,
+				"scaleX": 1,
+				"y": 0,
+				"zIndex": 0,
+				"scaleY": 1,
+				"uiType": "UIAsset",
+				"classname": "BurrowScreenBg"
+			},
+			"mcButtonsContainer": {
+				"rotation": 0,
+				"x": 0,
+				"components": {
+					"mcMiniGameButton": {
+						"rotation": 0,
+						"x": 0,
+						"scaleX": 1,
+						"y": 0,
+						"zIndex": 2,
+						"scaleY": 1,
+						"uiType": "Button",
+						"classname": "MiniGameButton_btn"
+					},
+					"mcVideoButton": {
+						"rotation": 0,
+						"x": 450,
+						"scaleX": 1,
+						"y": 0,
+						"zIndex": 0,
+						"scaleY": 1,
+						"uiType": "Button",
+						"classname": "VideoButton_btn"
+					},
+					"mcStoryButton": {
+						"rotation": 0,
+						"x": -450,
+						"scaleX": 1,
+						"y": 0,
+						"zIndex": 1,
+						"scaleY": 1,
+						"uiType": "Button",
+						"classname": "StoryButton_btn"
+					}
+				},
+				"scaleX": 1,
+				"y": 0,
+				"zIndex": 2,
+				"scaleY": 1,
+				"uiType": "MovieClip",
+				"classname": "ButtonsContainer"
+			}
+		},
+		"scaleX": 1,
+		"y": 0,
+		"zIndex": 5,
+		"scaleY": 1,
+		"uiType": "MovieClip",
+		"classname": "BurrowScreen"
+	},
+	"mcVideoPlayer": {
+		"rotation": 0,
+		"x": 0,
+		"components": {
+			"mcTotalVideo": {
+				"rotation": 0,
+				"x": 0,
+				"components": {
+					"mcPlayBar": {
+						"rotation": 0,
+						"x": -610,
+						"scaleX": 1,
+						"y": 274,
+						"zIndex": 3,
+						"scaleY": 1,
+						"uiType": "UIAsset",
+						"classname": "PlayBar"
+					},
+					"mcPlayTimeBar": {
+						"rotation": 0,
+						"x": -610,
+						"scaleX": 1,
+						"y": 274,
+						"zIndex": 4,
+						"scaleY": 1,
+						"uiType": "UIAsset",
+						"classname": "PlayTimeBar"
+					},
+					"mcVideoContainer": {
+						"rotation": 0,
+						"x": 0,
+						"scaleX": 1,
+						"y": -53,
+						"zIndex": 0,
+						"scaleY": 1,
+						"uiType": "UIAsset",
+						"classname": "VideoContainer"
+					},
+					"mcPlayButton": {
+						"rotation": 0,
+						"x": 0,
+						"scaleX": 1,
+						"y": -52,
+						"zIndex": 1,
+						"scaleY": 1,
+						"uiType": "Button",
+						"classname": "PlayButton_btn"
+					},
+					"mcVideoBarGroup": {
+						"rotation": 0,
+						"x": 612,
+						"components": {
+							"mcFullScreenButton": {
+								"rotation": 0,
+								"x": -64,
+								"scaleX": 1,
+								"y": -50,
+								"zIndex": 2,
+								"scaleY": 1,
+								"uiType": "Button",
+								"classname": "FullScreenButton_btn"
+							},
+							"mcVideoBar": {
+								"rotation": 0,
+								"x": -612,
+								"scaleX": 1,
+								"y": -52,
+								"zIndex": 0,
+								"scaleY": 1,
+								"uiType": "UIAsset",
+								"classname": "VideoBar"
+							},
+							"mcMuteButton": {
+								"rotation": 0,
+								"x": -201,
+								"scaleX": 1,
+								"y": -50,
+								"zIndex": 1,
+								"scaleY": 1,
+								"uiType": "Button",
+								"classname": "MuteButton_btn"
+							}
+						},
+						"scaleX": 1,
+						"y": 393,
+						"zIndex": 2,
+						"scaleY": 1,
+						"uiType": "MovieClip",
+						"classname": "VideoBarGroup"
+					}
+				},
+				"scaleX": 1,
+				"y": 0,
+				"zIndex": 1,
+				"scaleY": 1,
+				"uiType": "MovieClip",
+				"classname": "TotalVideo"
+			}
+		},
+		"scaleX": 1,
+		"y": 0,
+		"zIndex": 1,
+		"scaleY": 1,
+		"uiType": "MovieClip",
+		"classname": "VideoPlayer"
+	},
+	"mcBurrowStoryScreen": {
+		"rotation": 0,
+		"x": 0,
+		"components": {
+			"mcBurrowScreenBg": {
+				"rotation": 0,
+				"x": 0,
+				"scaleX": 1,
+				"y": 0,
+				"zIndex": 0,
+				"scaleY": 1,
+				"uiType": "UIAsset",
+				"classname": "BurrowScreenBg"
+			},
+			"mcStoryTHud": {
+				"rotation": 0,
+				"x": 0,
+				"components": {
+					"instance14": {
+						"rotation": 0,
+						"x": 0,
+						"scaleX": 1,
+						"y": 150,
+						"zIndex": 0,
+						"scaleY": 1,
+						"uiType": "UIAsset",
+						"classname": "ActivityIcon"
+					},
+					"instance16": {
+						"rotation": 0,
+						"x": 0,
+						"scaleX": 1,
+						"y": 150,
+						"zIndex": 1,
+						"scaleY": 1,
+						"uiType": "UIAsset",
+						"classname": "StoryIcon"
+					}
+				},
+				"scaleX": 1,
+				"y": -683,
+				"zIndex": 2,
+				"scaleY": 1,
+				"uiType": "MovieClip",
+				"classname": "StoryTHud"
+			},
+			"mcBurrowTLHud": {
+				"rotation": 0,
+				"x": -1024,
+				"components": {
+					"mcBackButton": {
+						"rotation": 0,
+						"x": 150,
+						"scaleX": 1,
+						"y": 150,
+						"zIndex": 0,
+						"scaleY": 1,
+						"uiType": "Button",
+						"classname": "BackButton_btn"
+					}
+				},
+				"scaleX": 1,
+				"y": -683,
+				"zIndex": 1,
+				"scaleY": 1,
+				"uiType": "MovieClip",
+				"classname": "TL_BackButtonHud"
+			},
+			"mcActivitiesNext": {
+				"rotation": 180,
+				"x": 210,
+				"scaleX": 1,
+				"y": 608,
+				"zIndex": 5,
+				"scaleY": 1,
+				"uiType": "Button",
+				"classname": "BackButton_btn"
+			},
+			"mcButtonsContainer": {
+				"rotation": 0,
+				"x": 0,
+				"components": {
+					"instance28": {
+						"rotation": 0,
+						"x": -850,
+						"scaleX": 1,
+						"y": 225,
+						"zIndex": 5,
+						"scaleY": 1,
+						"uiType": "Button",
+						"classname": "ActivitiesButton_btn"
+					},
+					"instance26": {
+						"rotation": 0,
+						"x": 850,
+						"scaleX": 1,
+						"y": -225,
+						"zIndex": 4,
+						"scaleY": 1,
+						"uiType": "Button",
+						"classname": "ActivitiesButton_btn"
+					},
+					"instance24": {
+						"rotation": 0,
+						"x": 425,
+						"scaleX": 1,
+						"y": -225,
+						"zIndex": 3,
+						"scaleY": 1,
+						"uiType": "Button",
+						"classname": "ActivitiesButton_btn"
+					},
+					"instance36": {
+						"rotation": 0,
+						"x": 850,
+						"scaleX": 1,
+						"y": 225,
+						"zIndex": 9,
+						"scaleY": 1,
+						"uiType": "Button",
+						"classname": "ActivitiesButton_btn"
+					},
+					"instance22": {
+						"rotation": 0,
+						"x": 0,
+						"scaleX": 1,
+						"y": -225,
+						"zIndex": 2,
+						"scaleY": 1,
+						"uiType": "Button",
+						"classname": "ActivitiesButton_btn"
+					},
+					"instance18": {
+						"rotation": 0,
+						"x": -850,
+						"scaleX": 1,
+						"y": -225,
+						"zIndex": 0,
+						"scaleY": 1,
+						"uiType": "Button",
+						"classname": "ActivitiesButton_btn"
+					},
+					"instance34": {
+						"rotation": 0,
+						"x": 425,
+						"scaleX": 1,
+						"y": 225,
+						"zIndex": 8,
+						"scaleY": 1,
+						"uiType": "Button",
+						"classname": "ActivitiesButton_btn"
+					},
+					"instance20": {
+						"rotation": 0,
+						"x": -425,
+						"scaleX": 1,
+						"y": -225,
+						"zIndex": 1,
+						"scaleY": 1,
+						"uiType": "Button",
+						"classname": "ActivitiesButton_btn"
+					},
+					"instance30": {
+						"rotation": 0,
+						"x": -425,
+						"scaleX": 1,
+						"y": 225,
+						"zIndex": 6,
+						"scaleY": 1,
+						"uiType": "Button",
+						"classname": "ActivitiesButton_btn"
+					},
+					"instance32": {
+						"rotation": 0,
+						"x": 0,
+						"scaleX": 1,
+						"y": 225,
+						"zIndex": 7,
+						"scaleY": 1,
+						"uiType": "Button",
+						"classname": "ActivitiesButton_btn"
+					}
+				},
+				"scaleX": 1,
+				"y": 150,
+				"zIndex": 3,
+				"scaleY": 1,
+				"uiType": "MovieClip",
+				"classname": "ActivitiesContainer"
+			},
+			"mcActivitiesPrev": {
+				"rotation": 0,
+				"x": -210,
+				"scaleX": 1,
+				"y": 608,
+				"zIndex": 4,
+				"scaleY": 1,
+				"uiType": "Button",
+				"classname": "BackButton_btn"
+			}
+		},
+		"scaleX": 1,
+		"y": 0,
+		"zIndex": 2,
+		"scaleY": 1,
+		"uiType": "MovieClip",
+		"classname": "BurrowStoryScreen"
+	}
+}

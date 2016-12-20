@@ -44,7 +44,8 @@ exports.minify = function() {
             new webpack.optimize.UglifyJsPlugin({
                 compress: {
                     warnings: false
-                }
+                },
+                mangle : false
             })
         ]
     };
@@ -103,10 +104,10 @@ exports.copyAssetsForMinigames = function (minigameFolderNames, language) {
     for (var i = 0 ; i < count ; i++) {
         var folderName = minigameFolderNames[i];
 
-        attemptCopyRequest(transfers, folderName, 'data');
-        attemptCopyRequest(transfers, folderName, 'images');
-        attemptCopyRequest(transfers, folderName, 'audio/sfx');
-        attemptCopyRequest(transfers, folderName, 'audio/kalulu', language);
+        attemptCopyRequest('minigames', transfers, folderName, 'data');
+        attemptCopyRequest('minigames', transfers, folderName, 'images');
+        attemptCopyRequest('minigames', transfers, folderName, 'audio/sfx');
+        attemptCopyRequest('minigames', transfers, folderName, 'audio/kalulu', language);
     }
 
     // console.log(transfers);
@@ -119,17 +120,46 @@ exports.copyAssetsForMinigames = function (minigameFolderNames, language) {
     };
 };
 
+exports.copyAssetsForModules = function (moduleFolderNames, language) {
+    
+    var transfers = [];
+    var count = moduleFolderNames.length;
+    for (var i = 0 ; i < count ; i++) {
+        var folderName = moduleFolderNames[i];
+        console.log('copy logic for module : ' + folderName);
+        attemptCopyRequest('modules', transfers, folderName, 'data', language, true);
+        attemptCopyRequest('modules', transfers, folderName, 'images', language, true);
+        attemptCopyRequest('modules', transfers, folderName, 'sounds', language, true);
+    }
+
+    console.log(transfers);
+
+    return {
+        plugins: [
+            // Enable multi-pass compilation for enhanced performance in larger projects. Good default.
+            new CopyWebpackPlugin(transfers)
+        ]
+    };
+};
 
 
 
-
-function attemptCopyRequest (array, folderName, assetsSubPath, language) {
+function attemptCopyRequest (category, array, folderName, assetsSubPath, language, mergeAssets) {
     //console.log('testing ' + folderName + ' > ' + assetsSubPath + ' > ' + language);
     
     language = typeof language === 'undefined' ? '' : '/' + language;
-    var srcPath = 'app/minigames/' + folderName + '/assets/' + assetsSubPath + language;
-    var destPath = 'minigames/' + folderName + '/assets/' + assetsSubPath;
+    mergeAssets = typeof mergeAssets === 'undefined' ? false : mergeAssets;
+
+    var srcPath = 'app/' + category + '/' + folderName + '/assets/' + assetsSubPath + language;
+    var destPath = '';
     
+    if(mergeAssets) {
+        destPath = 'assets/' + assetsSubPath + '/' + folderName;
+    }
+    else {
+        destPath = category + '/' + folderName + '/assets/' + assetsSubPath;
+    }
+    console.log('\n\nTesting Path <' + srcPath + '> to copy to <' + destPath + '\n');
     if (testPathToFolder(srcPath)) array.push({ from: srcPath, to: destPath});
 }
 

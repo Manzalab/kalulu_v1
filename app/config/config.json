@@ -1,6 +1,17 @@
 {
-    "enableGlobalVars"        : true,
-    "stats"                   : true,
-    "logGameStates"           : true,
-    "authoritativeSystemInfo" : false
+    "debug" : {
+        "enableGlobalVars"        : true,
+        "stats"                   : true,
+        "logGameStates"           : true,
+        "authoritativeSystemInfo" : false,
+        "logLoading"              : true
+    },
+    "paths" : {
+        "imagesPath" : "assets/images/",
+        "soundsPath" : "assets/sounds/",
+        "videoPath"  : "assets/video/",
+        "pdfPath"    : "assets/pdf/",
+        "txtPath"    : "assets/data/",
+        "fontsPath"  : "assets/fonts/"
+    }
 }

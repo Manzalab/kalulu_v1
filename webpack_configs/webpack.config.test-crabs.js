@@ -18,7 +18,6 @@ module.exports = components.mergeConfigs(
                 { from: 'app/config', to: 'config' }
             ]),
             new webpack.DefinePlugin({
-              KALULU_LANGUAGE : JSON.stringify(process.env.kaluluLanguage),
               KALULU_MINIGAME : JSON.stringify(process.env.kaluluMinigame)
             })
         ]

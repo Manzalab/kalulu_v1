@@ -3,11 +3,11 @@
 
     var AuthoritativeSystem = require('application/authoritative_system');
     var Events              = require('application/events');
-    var GameStates          = require('game_logic/game_states');
-    // var MinigamesManager    = require('game_logic/minigames_manager');
-    // var Rafiki              = require('game_logic/rafiki');
-    // var Timer               = require('game_logic/timer');
-    // var UserProfile         = require('core/user_profile');
+    var GameStates          = require('./game_states');
+    var MinigamesManager    = require('./minigames_manager');
+    var Rafiki              = require('./rafiki');
+    var Timer               = require('./timer');
+    var UserProfile         = require('./core/user_profile');
 
     // ###############################################################################################################################################
     // ###  CONSTRUCTOR  #############################################################################################################################
@@ -50,8 +50,8 @@
         // STATES INIT FUNCTIONS
         this._states = {};
         this._states[GameStates.BOOT]       = this._initBootState.bind(this);
-        // this._states[GameStates.PRELOAD]    = this._initPreloadState.bind(this);
-        // this._states[GameStates.MENUS]      = this._initMenuState.bind(this);
+        this._states[GameStates.PRELOAD]    = this._initPreloadState.bind(this);
+        this._states[GameStates.MENUS]      = this._initMenuState.bind(this);
         // this._states[GameStates.ACTIVITY]   = this._initActivityState.bind(this);
         // this._states[GameStates.MATHS_DEBUG]= this._initMathsDebugState.bind(this);
 
@@ -181,7 +181,7 @@
 
     GameManager.prototype._onBootCompleted = function _onBootCompleted () {
         if (Config.logGameStates) console.log('[GameManager] BootState ending...');
-        // this.setState(GameStates.PRELOAD);
+        this.setState(GameStates.PRELOAD);
     };
 
 

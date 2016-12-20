@@ -1,7 +1,7 @@
 define([
-    'core/add_user_record'
+    //'core/add_user_record'
 ], function (
-    AddUserRecord
+    //AddUserRecord
 ) {
     
     'use strict';
@@ -41,7 +41,7 @@ define([
         if (Config.enableKaluluGlobalDebug) window.kalulu.userProfile = this;
     }
 
-    AddUserRecord(UserProfile);
+    //AddUserRecord(UserProfile);
 
     // ####################################################################################################################################
     // ###  GETTERS & SETTERS  ############################################################################################################

@@ -1,0 +1,21 @@
+{"frames": {
+
+"Leaf_1.png":
+{
+	"frame": {"x":0,"y":0,"w":2519,"h":2852},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":2519,"h":2852},
+	"sourceSize": {"w":2519,"h":2852},
+	"pivot": {"x":0.5,"y":0.5}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "garden_transition_2.png",
+	"format": "RGBA8888",
+	"size": {"w":2519,"h":2852},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:94520df56a0480e403558220ba366554:9e8ec58bb6d804d8b7bb6c977bed5127:235e193c17d0fbec123feab33c210be8$"
+}
+}

@@ -1,39 +1,40 @@
-(function () {
-
+define([
+    '../utils/ui/button',
+    './kalulu_character'
+], function (
+    Button,
+    KaluluCharacter
+) {
+    
     'use strict';
-
-    var AuthoritativeSystem = require ('application/authoritative_system');
-    var Events              = require ('application/events');
 
 
     // ###############################################################################################################################################
     // ###  CONSTRUCTOR  #############################################################################################################################
     // ###############################################################################################################################################
     
+
     /**
-     * The InterfaceManager class is responsible for the link between the chosen interface and the game.
+     * The PlayButtonTC class is ...
      * @class
-     * @extends AuthoritativeSystem
+     * @extends Button
      * @memberof Namespace (e.g. Kalulu.Remediation)
      * @param parameter {Object} Description of the parameter
     **/
-    function InterfaceManager (eventSystem) {
+    function PlayButtonTC (description) {
+        // console.log(description);
+        // console.log(arguments);
+        var kalulu = description.components.mcKalulu;
+        this._kaluluCharacter = new KaluluCharacter();
+        this._kaluluCharacter.position.set(kalulu.x, kalulu.y);
+        // this._kaluluCharacter.interactive = false;
         
-        AuthoritativeSystem.call(this, eventSystem, 'InterfaceManager');
-
-        this._interface = null;
-
-        require.ensure([], function () {
-            var interfaceModule = require('modules/user_interface/src');
-            console.log(Events);
-            this._interface = new interfaceModule(eventSystem, Events);
-            console.log('Interface Module Loaded');
-            this._eventSystem.emit(Events.APPLICATION.INTERFACE_MANAGER_READY);
-        }.bind(this));
+        Button.call(this);
+        // console.log(description);
     }
 
-    InterfaceManager.prototype = Object.create(AuthoritativeSystem.prototype);
-    InterfaceManager.prototype.constructor = InterfaceManager;
+    PlayButtonTC.prototype = Object.create(Button.prototype);
+    PlayButtonTC.prototype.constructor = PlayButtonTC;
 
 
 
@@ -42,21 +43,21 @@
     // ###############################################################################################################################################
 
 
-    Object.defineProperties(InterfaceManager.prototype, {
+    Object.defineProperties(PlayButtonTC.prototype, {
         
         /**
          * Description of the accessor
          * @type {boolean}
-         * @memberof Namespace.InterfaceManager#
+         * @memberof Namespace.PlayButtonTC#
         **/
-        // privateMemberAccessor: {
-        //     get: function () {
-        //         return this._privateMember;
-        //     },
-        //     set: function (value) {
-        //         return null;
-        //     }
-        // }
+        privateMemberAccessor: {
+            get: function () {
+                return this._privateMember;
+            },
+            set: function (value) {
+                return null;
+            }
+        }
     });
 
 
@@ -71,12 +72,13 @@
      * @param paramName {Type} description of the parameter
      * @return {Type} description of the returned object
     **/
-    InterfaceManager.prototype.init = function init (paramName) {
+    PlayButtonTC.prototype.start = function start () {
         
-        // code
-        return null;
+        Button.prototype.start.call(this);
+
+        this.addChild(this._kaluluCharacter);
+        this._kaluluCharacter.start();
     };
 
-    module.exports = InterfaceManager;
-
-})();
+    return PlayButtonTC;
+});

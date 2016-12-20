@@ -37,7 +37,7 @@
          * @memberof Kalulu.GameLogic.GameStates#
          * @readonly
         **/
-        // PRELOAD: { get: function () { return "PRELOAD"; } },
+        PRELOAD: { get: function () { return "PRELOAD"; } },
         
         /**
          * The string Id of the State Menus
@@ -45,7 +45,7 @@
          * @memberof Kalulu.GameLogic.GameStates#
          * @readonly
         **/
-        // MENUS: { get: function () { return "MENUS"; } },
+        MENUS: { get: function () { return "MENUS"; } },
         
         /**
          * The string Id of the State Activity

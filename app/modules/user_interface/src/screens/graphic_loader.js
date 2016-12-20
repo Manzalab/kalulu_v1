@@ -3,8 +3,10 @@
  * 
 **/
 define([
-	"utils/ui/screen"
+	'../../libs/pixi',
+	'../utils/ui/screen'
 ], function (
+	PIXI3,
 	Screen
 ) {
 

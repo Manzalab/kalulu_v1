@@ -20,9 +20,10 @@
              * @type {boolean}
              * @memberof Namespace.LoadingManager#
             **/
-            MAIN_LOOP       : { get: function () { return "mainLoop"; } },
-            LOAD_PROGRESS   : { get: function () { return "loadProgress"; } },
-            LOAD_COMPLETED  : { get: function () { return "loadCompleted"; } },
+            MAIN_LOOP               : { get: function () { return "mainLoop"; } },
+            LOAD_PROGRESS           : { get: function () { return "loadProgress"; } },
+            LOAD_COMPLETED          : { get: function () { return "loadCompleted"; } },
+            INTERFACE_MANAGER_READY : { get: function () { return "interfaceManagerReady"; } },
             // GET_SAVE        : { get: function () { return "getSave"; } },
             // SET_SAVE        : { get: function () { return "setSave"; } },
             // SAVED_DATA_SENT : { get: function () { return "savedDataSent"; } }

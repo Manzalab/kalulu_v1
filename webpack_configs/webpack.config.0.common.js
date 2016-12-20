@@ -1,5 +1,8 @@
 var path = require('path');
+var webpack = require('webpack');
+
 var components = require('./components.webpack.config.js');
+
 
 var PATHS = {
     www : path.resolve(__dirname, '../www/')
@@ -26,8 +29,13 @@ module.exports = components.mergeConfigs(
             loaders: [
                 { test: /\.json/, loader: 'json-loader' }
             ]
-        }
-
+        },
+        plugins : [
+            new webpack.DefinePlugin({
+              KALULU_VERSION  : JSON.stringify(process.env.npm_package_version),
+              KALULU_LANGUAGE : JSON.stringify(process.env.kaluluLanguage),
+            })
+        ]
     },
     // If you want to preserve possible dotfiles within your www directory, you can use path.join(PATHS.www, '*') instead of PATHS.www
     components.clean(PATHS.www)

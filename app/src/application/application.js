@@ -69,6 +69,13 @@
          * @private
         **/
         this._frameId = 0;
+
+        /**
+         * The current function called eachFrame
+         * @type {function}
+         * @private
+        **/
+        this._doAction = this._doActionVoid;
     }
 
 
@@ -99,7 +106,6 @@
     Application.prototype.initAndStart = function initAndStart () {
         Config.request('/config/config.json', function () {
             this._init();
-            this._start();
         }.bind(this));
     };
 
@@ -141,6 +147,9 @@
         this._gameManager = new GameManager(this._eventSystem);
 
         this._interfaceManager = new InterfaceManager(this._eventSystem);
+        this._eventSystem.once(Events.APPLICATION.INTERFACE_MANAGER_READY, function () {
+            this._interfaceManagerReady = true;
+        }, this);
         
         this._frameId = 0;
         this._mainLoop = this._mainLoop.bind(this);
@@ -151,16 +160,18 @@
             stats.showPanel(0); // 0: fps, 1: ms, 2: mb, 3+: custom
             document.body.appendChild( stats.dom );
         }
+
+        this._doAction = this._doActionWaitForSystems;
+        this.enableMainLoop();
+        window.requestAnimationFrame(this._mainLoop);
     };
 
     Application.prototype._start = function _start () {
         
         this._eventSystem.emit(Events.COMMANDS.BOOT_STATE_REQUEST);
-        this.enableMainLoop();
+        
         // this._eventSystem.on(Events.APPLICATION.GET_SAVE, this._onGetSave, this); //@ TODO removeListener
         // this._eventSystem.on(Events.APPLICATION.SET_SAVE, this._onSetSave, this); //@ TODO removeListener
-        
-        window.requestAnimationFrame(this._mainLoop);
     };
 
     /**
@@ -169,10 +180,14 @@
     **/
     Application.prototype._mainLoop = function _mainLoop () {
         if (Config.stats) this.statsModule.begin();
+
+        this._doAction();
+
         if(this._shouldFireMainLoopEvent) {
             this._eventSystem.emit(Events.APPLICATION.MAIN_LOOP, this._frameId);
         }
         this._frameId++;
+        
         if (Config.stats) this.statsModule.end();
         window.requestAnimationFrame(this._mainLoop);
     };
@@ -184,6 +199,23 @@
     Application.prototype._onSetSave = function _onSetSave (userData) {
         // this._eventSystem.emit(Events.APPLICATION.USER_DATA_SAVED, this._storageManager.saveUserData(userData));
     };
+
+    Application.prototype._onSetSave = function _onSetSave (userData) {
+        // this._eventSystem.emit(Events.APPLICATION.USER_DATA_SAVED, this._storageManager.saveUserData(userData));
+    };
+
+    Application.prototype._doActionVoid = function _doActionVoid () {};
+
+    Application.prototype._doActionWaitForSystems = function _doActionWaitForSystems () {
+        console.log("waiting");
+        var allManagersReady = (this._interfaceManagerReady);
+        
+        if (allManagersReady) {
+            this._start();
+            this._doAction = this._doActionVoid;
+        }
+    };
+
 
     module.exports = Application;
 })();

@@ -5,6 +5,7 @@
  * 
 **/
 define([
+    '../../../libs/pixi',
     '../game/game_object',
     '../events/event_type',
     '../events/mouse_event_type',
@@ -13,6 +14,7 @@ define([
     './ui_positions',
     './ui_builder'
 ], function (
+    PIXI3,
     GameObject,
     EventType,
     MouseEventType,

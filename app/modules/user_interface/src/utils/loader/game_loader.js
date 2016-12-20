@@ -72,7 +72,7 @@
 
     GameLoader.prototype.parseData = function parseData (pResource, pNext) {
         
-        // console.log(pResource.url + " loaded");
+        if (Config.logLoading) console.log(pResource.url + " loaded");
         
         var lUrl = pResource.url.split("?")[0];
         
@@ -184,7 +184,7 @@
         }
 
         else return false;
-    }
+    };
 
     GameLoader.prototype.manageCache = function manageCache (pResource, pNext) {
         if  (pResource.name != pResource.url) pResource.url = Config.url(pResource.url);
@@ -213,6 +213,7 @@
 
 
             var options = {
+                src     :[lUrl],
                 urls    :[lUrl],
                 volume  :pList[soundName] / 100,
                 loop    :pLoop
@@ -244,10 +245,10 @@
         for (var lId in this._soundsSpecs) {
             
             if (!this._soundsSpecs.hasOwnProperty(lId)) continue;
-            
+            //console.log(this._soundsSpecs[lId]);
             SoundManager.addSound(lId, new howler.Howl(this._soundsSpecs[lId]));
         }
     };
 
-    return GameLoader;
-});
+    module.exports = GameLoader;
+})();

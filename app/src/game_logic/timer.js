@@ -1,9 +1,6 @@
-(function () {
-
+define([], function () {
+    
     'use strict';
-
-    var AuthoritativeSystem = require ('application/authoritative_system');
-    var Events              = require ('application/events');
 
 
     // ###############################################################################################################################################
@@ -11,29 +8,20 @@
     // ###############################################################################################################################################
     
     /**
-     * The InterfaceManager class is responsible for the link between the chosen interface and the game.
+     * The Timer class is ...
      * @class
-     * @extends AuthoritativeSystem
+     * @extends MotherModule
      * @memberof Namespace (e.g. Kalulu.Remediation)
      * @param parameter {Object} Description of the parameter
     **/
-    function InterfaceManager (eventSystem) {
-        
-        AuthoritativeSystem.call(this, eventSystem, 'InterfaceManager');
+    function Timer () {
 
-        this._interface = null;
+        this._elapsedTime = 0;
 
-        require.ensure([], function () {
-            var interfaceModule = require('modules/user_interface/src');
-            console.log(Events);
-            this._interface = new interfaceModule(eventSystem, Events);
-            console.log('Interface Module Loaded');
-            this._eventSystem.emit(Events.APPLICATION.INTERFACE_MANAGER_READY);
-        }.bind(this));
+        this._startTime = null;
     }
 
-    InterfaceManager.prototype = Object.create(AuthoritativeSystem.prototype);
-    InterfaceManager.prototype.constructor = InterfaceManager;
+    Timer.prototype.constructor = Timer;
 
 
 
@@ -42,21 +30,18 @@
     // ###############################################################################################################################################
 
 
-    Object.defineProperties(InterfaceManager.prototype, {
+    Object.defineProperties(Timer.prototype, {
         
         /**
          * Description of the accessor
          * @type {boolean}
-         * @memberof Namespace.InterfaceManager#
+         * @memberof Namespace.Timer#
         **/
-        // privateMemberAccessor: {
-        //     get: function () {
-        //         return this._privateMember;
-        //     },
-        //     set: function (value) {
-        //         return null;
-        //     }
-        // }
+        elapsedTime: {
+            get: function () {
+                return this._elapsedTime/60000;
+            }
+        }
     });
 
 
@@ -66,17 +51,17 @@
     // ##############################################################################################################################################
 
 
-    /**
-     * Returns something
-     * @param paramName {Type} description of the parameter
-     * @return {Type} description of the returned object
-    **/
-    InterfaceManager.prototype.init = function init (paramName) {
-        
-        // code
-        return null;
+    Timer.prototype.start = function start () 
+    {
+        this._startTime = Date.now();
     };
 
-    module.exports = InterfaceManager;
+    Timer.prototype.stop = function stop () 
+    {
+        if (this._startTime === null) return;
+        var lTime = Date.now() - this._startTime;
+        this._elapsedTime += lTime;
+    };
 
-})();
+    return new Timer();
+});
