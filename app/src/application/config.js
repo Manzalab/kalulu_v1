@@ -14,6 +14,7 @@
         logGameStates           : { get : function () { return this._config.debug.logGameStates; }},
         authoritativeSystemInfo : { get : function () { return this._config.debug.authoritativeSystemInfo; }},
         logLoading              : { get : function () { return this._config.debug.logLoading; }},
+        screenManagerLog        : { get : function () { return this._config.debug.screenManagerLog; }},
         // paths
         paths                   : { get : function () { return this._config.paths; }},
         imagesPath              : { get : function () { return this._config.paths.imagesPath; }},

@@ -1,5 +1,5 @@
 define([
-	'progression/plan'
+	'../progression/plan'
 ], function (
 	Plan
 ) {

@@ -1,0 +1,810 @@
+LESSON;ORTHOGRAPHY;NB WORDS;AUDIOFILE NAME;WORD SWAP INDEX;PENGUIN WORDS;PENGUIN SENTENCES;SECTOR NUMBER
+8;Lili a lu.;3;Phrase_001;3;0;0;3
+8;Eli a lu.;3;Phrase_002;3;0;0;3
+9;Il a mal.;3;Phrase_003;3;0;0;3
+9;Milo a allumé.;3;Phrase_004;3;0;0;3
+10;Sami a le lama.;4;Phrase_005;4;0;0;3
+10;Léo a semé le lys.;5;Phrase_006;5;0;0;3
+10;Sami a le lasso.;4;Phrase_007;4;0;0;3
+10;Léo a le lasso.;4;-;4;0;0;3
+10;Il salua Mémé.;3;Phrase_008;3;0;0;3
+10;Il a salé le salami.;5;Phrase_009;5;0;0;3
+11;Maria a ramassé l'iris.;4;Phrase_013;4;0;0;3
+11;Lili a ri.;3;Phrase_014;3;0;0;3
+11;Rémi l'a sali !;4;Phrase_015;4;0;0;3
+11;Léo a semé l'iris.;4;Phrase_016;4;0;0;3
+11;Maria l'a ramassé.;3;-;3;0;0;3
+11;Rémi a sali le sol.;5;Phrase_012;5;0;0;3
+11;Il a salé le surimi.;5;-;5;0;0;3
+12;Milou a sali le sol.;5;-;5;0;0;4
+12;Rémi a roulé le salami.;5;Phrase_021;5;0;0;4
+12;Le salami a roulé sur le sol !;8;-;8;0;0;4
+12;Milou a ramassé le sou.;5;Phrase_019;5;0;0;4
+12;Milou a ramassé le salami.;5;Phrase_022;5;0;0;4
+12;Sami ou Mémé salua le lama.;6;-;6;0;0;4
+12;Maria l'a sali.;3;Phrase_010;3;0;0;4
+12;Il l'a ramassé.;3;-;3;0;0;4
+12;Il a roulé le sou.;5;-;4;0;0;4
+13;la mie;2;-;-;1;0;4
+13;le mot;2;-;-;1;0;4
+13;le rat;2;-;-;1;0;4
+13;la rue;2;-;-;1;0;4
+13;la rame;2;-;-;1;0;4
+13;le lilas;2;-;-;1;0;4
+13;le mulot;2;-;-;1;0;4
+13;la mousse;2;-;-;1;0;4
+13;le sourire;2;-;-;1;0;4
+13;le Sioux;2;-;-;1;0;4
+13;le lit;2;-;-;1;0;4
+13;Il sourit.;2;Phrase_023;-;0;1;4
+13;"Le lama a le lasso. Il a lié Mémé. Alarmée, Mémé a assommé le lama. Il a mal.";18;Phrase_018;-;0;1;4
+13;Léo a lu le mot.;5;Phrase_024;-;0;1;4
+13;Lili a lu le mot.;5;-;-1;0;1;4
+13;Salut le Sioux !;4;Phrase_025;-;0;1;4
+13;Le salami a roulé sous le lit.;7;Phrase_026;-;0;1;4
+13;Emilie a le rat roux.;5;Phrase_027;4;0;1;4
+13;Rio ramasse la mousse;4;Phrase_028;-;0;1;4
+13;Il ramasse la mousse.;4;-;-1;0;1;4
+14;Je suis Marie.;3;Phrase_029;-;0;0;4
+14;Jérémie joue.;2;Phrase_030;-;0;0;4
+14;Il se réjouit.;3;Phrase_031;-;0;0;4
+14;"Le jour, Julie lit.";4;Phrase_032;-;0;0;4
+15;"Fifi la fourmi, alertée, a fui l'ours.";7;Phrase_034;-;0;0;5
+15;Jules siffla.;2;Phrase_036;-;0;0;5
+15;La fourmi s'affole.;3;Phrase_038;-;0;0;5
+16;Vivi a vu la louve velue. ;6;Phrase_039;-;0;0;5
+16;"Je suis affamé, je vole l'olive, je l'avale.";8;Phrase_040;-;0;0;5
+16;La fée Lili survole la vallée.;6;Phrase_041;-;0;0;5
+16;Milo a lu le livre.;5;Phrase_042;-;0;0;5
+16;Il a lu le livre.;5;-;8;0;0;5
+16;Je me suis levée.;4;Phrase_043;-1;0;0;5
+16;Le vélo roule.;3;Phrase_044;-1;0;0;5
+17;Le voleur fuit.;3;Phrase_048;-1;0;0;5
+17;Marjorie savoure le fruit savoureux.;5;Phrase_049;-;0;0;5
+17;La fleur a fleuri.;4;Phrase_050;-;0;0;5
+17;Léo le sérieux lit le livre.;6;Phrase_051;-;0;0;5
+17;Réa l'amoureux a ramassé l'iris.;5;Phrase_052;-;0;0;5
+17;Il allume le feu.;4;Phrase_053;6;0;0;5
+17;L'affreux voleur a volé le jeu.;6;Phrase_054;-;0;0;5
+17;La lave fume.;3;Phrase_047;4;0;0;5
+17;Il va mieux.;3;Phrase_055;-;0;0;5
+17;Léo va mieux.;3;-;-1;0;0;5
+17;Il a eu mal.;4;Phrase_056;-;0;0;5
+17;Il siffle fort.;3;-;4;0;0;5
+18;Zorro a assomé le voleur.;5;Phrase_057;-;0;0;5
+18;"Zoé lave le lama, il a sali sa fourrure.";9;Phrase_058;-;0;0;5
+18;Mario a zéro fruit.;4;Phrase_059;-1;0;0;5
+18;Le zoo ouvre le jour.;5;Phrase_060;-1;0;0;5
+19;Le chat chasse le rat roux.;6;Phrase_061;-;0;0;6
+19;Le chat chasse.;3;-;-1;0;0;6
+19;La mouche vole.;3;Phrase_062;4;0;0;6
+19;Je marche sous l'arche.;4;Phrase_063;-;0;0;6
+19;Je suis sous l'arche.;4;-;-1;0;0;6
+19;Charlie a arraché le chou.;5;Phrase_064;8;0;0;6
+19;Le chariot roule.;3;Phrase_066;4;0;0;6
+20;Zorro a un voleur.;4;-;4;0;0;6
+20;Sofiane a soufflé fort sur la flamme.;7;Phrase_033;-;0;0;6
+20;Un chat a marché sur le chariot.;7;Phrase_067;-;0;0;6
+20;"Un ours a vu un cheval, il file.";8;Phrase_068;-;0;0;6
+20;"Momo a un lit, il y va la nuit.";9;Phrase_069;-;0;0;6
+20;Une vache rumine.;3;Phrase_070;-1;0;0;6
+20;Un vélo roule.;3;Phrase_071;-;0;0;6
+20;Un chariot roule.;3;-;4;0;0;6
+20;Un navire va sur le fleuve.;6;Phrase_072;-;0;0;6
+20;Un journal se lit.;4;Phrase_073;-;0;0;6
+20;Il lit le journal.;4;-;-1;0;0;6
+20;Un fruit se savoure.;4;Phrase_074;-;0;0;6
+20;Une cheminée fume.;3;Phrase_075;-;0;0;6
+20;Je lave le cheval.;4;-;6;0;0;6
+20;Zoé a marché le jour.;5;-;6;0;0;6
+21;Marine salue la foule.;4;-;-;0;0;6
+21;La tortue a reniflé une ortie.;6;Phrase_076;-;0;0;6
+21;"Tony a mal, il ne rit pas.";7;Phrase_077;-;0;0;6
+21;La marmite fume.;3;Phrase_084;-1;0;0;6
+21;Le matelot tire sur sa moustache.;6;Phrase_085;-;0;0;6
+21;Je me suis assis sur l'ortie.;6;Phrase_086;-;0;0;6
+21;La mule souffle fort.;4;Phrase_046;4;0;0;6
+22;Il tarde.;2;Phrase_087;-;0;0;6
+22;"Médor a mordu le chat. Le chat a mal, il fuit.";11;Phrase_088;-;0;0;6
+22;Élodie dort sur un lit. Médor a sa niche.;9;Phrase_089;-;0;0;6
+22;"Le jour, j'admire la nature. La nuit, j'admire la lune.";10;Phrase_090;-;0;0;6
+22;Madame Dumas se lave sous la douche.;7;Phrase_091;-;0;0;6
+22;Le dé roule.;3;Phrase_092;-;0;0;6
+22;Le malade tousse.;3;Phrase_093;-;0;0;6
+22;Le voleur a volé la trousse !;7;Phrase_094;-;0;0;6
+22;Nous sommes solides.;3;Phrase_095;-;0;0;6
+22;"Miam, j'avale la sardine.";4;Phrase_096;-;0;0;6
+23;Marine tire sur la corde.;5;Phrase_097;-;0;0;7
+23;Martine a tiré la corde.;5;-;-1;0;0;7
+23;Nicolas avale du café sucré.;5;Phrase_098;-;0;0;7
+23;J'avale du chocolat.;3;-;-;0;0;7
+23;Élodie avale du café.;4;-;-1;0;0;7
+23;Le rat savoure un radis cru.;6;Phrase_099;-;0;0;7
+23;"Je lis, je calcule.";4;Phrase_100;-;0;0;7
+23;J'écris un livre.;3;Phrase_101;4;0;0;7
+23;La marmotte cache le chocolat.;5;Phrase_102;-;0;0;7
+23;Le voleur a crocheté la serrure.;6;Phrase_103;-;0;0;7
+23;Eric a vu une cane sur le lac. Corinne a vu une marmotte sur la mare.;16;Phrase_104;-;0;0;7
+24;Le radis pousse.;3;;4;0;0;7
+24;"Tu as trouvé le salami sur le sol. Tu ne ramasses pas le salami, il est sale.";17;Phrase_080;-;0;0;7
+24;Le cheval court.;3;Phrase_065;-;0;0;7
+24;Cléo porte une cravate.;4;Phrase_106;-;0;0;7
+24;Il porte une cravate.;4;-;4;0;0;7
+24;La clé ouvre la porte.;5;Phrase_107;-;0;0;7
+24;La porte s'ouvre.;3;-;-1;0;0;7
+24;Papi papote. Il fume la pipe. Mami rit.;8;Phrase_108;-;0;0;7
+24;Paolo va coudre une cravate.;5;Phrase_109;-;0;0;7
+24;Pédro peut coudre la cravate.;5;-;-1;0;0;7
+24;Je roule sur le vélo. Je passe par un parc.;10;Phrase_110;-;0;0;7
+24;"Le samedi, papa court sur la route.";7;Phrase_111;-;0;0;7
+24;Papa court vite.;3;-;4;0;0;7
+24;Tu écris une carte postale.;5;Phrase_112;-;0;0;7
+24;Le canari picore la mie.;5;Phrase_113;8;0;0;7
+24;La canne picore.;3;-;-1;0;0;7
+24;"Médor a cassé un pot. Mami crie sur Médor. Médor se cache, il pleure.";14;Phrase_114;-;0;0;7
+24;Le voleur cache le chocolat.;5;-;4;0;0;7
+25;Qui a volé la quiche ? Médor l'a volé.  Il a tout dévoré.;13;Phrase_115;-;0;0;7
+25;Le moustique pique.;3;Phrase_116;-;0;0;7
+25;"Le pot se casse, le liquide coule.";7;Phrase_117;-;0;0;7
+25;Véronique a croqué quatre fruits : deux mûres puis deux nectarines. Miam !;13;Phrase_118;-;0;0;7
+25;Papa a remarqué que le vélo a été volé. Quel drame !;12;Phrase_119;-;0;0;7
+25;Je porte un masque pour le carnaval. ;7;Phrase_120;-;0;0;7
+25;Jacques quitte l'école.;3;Phrase_121;-;0;0;7
+25;Je lis un livre poétique.;5;Phrase_122;-;0;0;7
+25;Dominique taquine sa copine.;4;Phrase_123;-1;0;0;7
+26; Je te donne un bout de chocolat.;7;Phrase_125;-;0;0;7
+26;Le baobab pousse sur l'ile.;5;Phrase_126;-;0;0;7
+26;La balle roule sur le sol.;6;Phrase_127;-;0;0;7
+26;Une jolie bulle vole.;4;Phrase_128;6;0;0;7
+26;Barbara a cassé un bol bleu.;6;Phrase_129;-;0;0;7
+26;Tu as trébuché sur la route.;6;Phrase_130;-;0;0;7
+26;Tu as une petite bosse.;5;Phrase_131;-;0;0;7
+26;Le brave barbu nous fabrique une cabane pour la nuit.;10;Phrase_133;-;0;0;7
+26;Bravo tu lis !;4;Phrase_135;2;0;0;7
+26;Sabine savoure la brioche.;4;Phrase_137;-;0;0;7
+27;Le cheval galope.;3;Phrase_139;4;0;0;8
+27;Gustave lit un magazine de programme télé.;7;Phrase_141;-;0;0;8
+27;"Je ne dors pas, je suis fatiguée.";7;Phrase_142;-;0;0;8
+27;Le tigre sort de la grotte.;6;Phrase_143;-;0;0;8
+27;Il s'approche du fleuve puis chasse l'alligator.;7;Phrase_144;-;0;0;8
+27;Je regarde le film.;4;Phrase_145;4;0;0;8
+27;Tu glisses sur la vague.;5;;-1;0;0;8
+27;L'ours griffe.;2;Phrase_147;-1;0;0;8
+27;La bague préférée de mamie a un rubis dessus.;9;Phrase_148;-;0;0;8
+27;Un légume pousse.;3;Phrase_149;-1;0;0;8
+28;Le koala marche sur l'arbre.;5;Phrase_150;-;0;0;8
+28;Malika porte le képi de Papi.;6;Phrase_152;-;0;0;8
+28;Papi porte un képi.;4;-;-1;0;0;8
+28;Tu as un kimono pour le karaté.;7;Phrase_153;-;0;0;8
+28;Patrick a la coqueluche.;4;Phrase_154;-;0;0;8
+28;Un skieur l'a ramassé.;4;Phrase_157;-;0;0;8
+28;Le fakir charme le cobra.;5;Phrase_158;8;0;0;8
+28;Eli porte sa kippa.;4;Phrase_159;-;0;0;8
+28;Malika a tout dévoré.;4;-;-1;0;0;8
+29;Il a plusieurs trésors.;4;Phrase_161;4;0;0;8
+29;Rose apporte sa valise.;4;Phrase_162;-;0;0;8
+29;Le curé sort de l'église.;5;Phrase_164;-;0;0;8
+29;"Ma cousine Louise se déguise toujours, comme Zorro, toute la journée.";11;Phrase_165;-;0;0;8
+29;Je la trouve curieuse.;4;Phrase_166;-;0;0;8
+29;Le pot se brise sur le sol.;7;Phrase_167;-;0;0;8
+29;Je trouve le chocolat irrésistible.;5;Phrase_168;-;0;0;8
+29;Le joueur de tuba joue une musique.;7;Phrase_169;-;0;0;8
+29;Tu écoutes de la musique classique.;6;Phrase_170;-;0;0;8
+29;Tu cuisines une quiche.;4;Phrase_171;-1;0;0;8
+29;Tu visites un musée.;4;Phrase_172;-1;0;0;8
+29;Tu fermes ta valise.;4;Phrase_173;6;0;0;8
+29;Il renifle la rose.;4;Phrase_174;-;0;0;8
+29;Je m'amuse.;2;Phrase_175;-;0;0;8
+29;Papa lui a mise une claque.;6;-;-;0;0;8
+30;Je suis furieuse.;3;Phrase_176;-;0;0;8
+30;Tu es furieuse.;3;-;-;0;0;8
+30;Tu n'as pas réfléchi.;4;Phrase_179;-;0;0;8
+30;Charlotte a tous ses joujoux.;5;Phrase_078;-;0;0;8
+30;Léa porte ses poupées.;4;Phrase_181;-;0;0;8
+30;Papi ouvre les portes.;4;Phrase_182;-;0;0;8
+30;Papa porte mes skis roses.;5;Phrase_183;6;0;0;8
+30;Tu as caché tes trésors.;5;Phrase_184;-;0;0;8
+30;Es-tu parti ?;3;Phrase_185;-;0;0;8
+30;Louise a trouvé ses chats.;5;-;-1;0;0;8
+30;Il a des visiteurs.;4;Phrase_186;-;0;0;8
+31;Louise a ramassé les roses et le mimosa de mamie.;10;Phrase_177;-;0;0;9
+31;Le voleur est idiot. Il a oublié le trésor.;9;Phrase_187;-;0;0;9
+31;Tu es malade et fiévreux.;5;Phrase_188;-1;0;0;9
+31;Le lac est bleu.;4;Phrase_189;-;0;0;9
+31;J'avale et je recrache.;4;Phrase_190;-;0;0;9
+31;Il est revenu du Brésil.;5;Phrase_191;-;0;0;9
+31;Tu es revenu du Brésil.;5;-;4;0;0;9
+31;"La pelouse est verte. Il y a des tulipes, des roses et des marguerites partout.";15;Phrase_195;-;0;0;9
+31;Il est puni.;3;Phrase_196;-1;0;0;9
+31;Il est parti;3;Phrase_197;4;0;0;9
+31;Louise s'est lavée.;3;Phrase_198;-;0;0;9
+31;Médor s'est mordu.;3;Phrase_199;-;0;0;9
+31;Mamie est passée.;3;Phrase_200;-;0;0;9
+31;Est-il tard ?;3;Phrase_201;4;0;0;9
+31;Est-il tôt ?;3;Phrase_202;-;0;0;9
+31;Est-il levé ?;3;Phrase_203;-1;0;0;9
+31;Est-il malade ?;3;Phrase_204;-;0;0;9
+31;"Tony n'a pas tous ses joujoux, il est jaloux.";9;Phrase_079;-;0;0;9
+32;les crabes;2;-;-;1;0;9
+32;des marmottes;2;-;-;1;0;9
+32;les matelots;2;-;-;1;0;9
+32;des fleurs;2;-;-;1;0;9
+32;les cloches;2;-;-;1;0;9
+32;les mariés;2;-;-;1;0;9
+32;des rats;2;-;-;1;0;9
+32;les valises;2;-;-;1;0;9
+32;Ils marchent.;2;Phrase_205;-;0;1;9
+32;Ils lisent.;2;Phrase_206;-;0;1;9
+32;Ils courent.;2;Phrase_207;-;0;1;9
+32;Ils pleurent.;2;Phrase_208;-;0;1;9
+32;Ils dorment.;2;Phrase_209;-;0;1;9
+32;Ils parlent.;2;Phrase_210;-;0;1;9
+32;Ils jouent.;2;Phrase_211;-;0;1;9
+32;Ils cachent.;2;Phrase_212;-;0;1;9
+32;Ils portent.;2;Phrase_213;-;0;1;9
+32;Marie et Jacques écrivent.;4;Phrase_214;-;0;1;9
+32;Emilie et Julie cousent.;4;Phrase_215;-;0;1;9
+32;Les crabes creusent.;3;Phrase_216;4;0;0;9
+32;Les marmottes plient l'aluminium du chocolat.;6;Phrase_217;-;0;1;9
+32;Mamie et Papi arrosent les fleurs.;6;Phrase_219;-;0;1;9
+32;Ses fleurs poussent.;3;Phrase_220;-;0;1;9
+32;Les fleurs poussent.;3;-;-1;0;0;9
+32;Les cloches sonnent et les mariés sortent de l'église.;9;Phrase_221;-;0;1;9
+32;Les chats courent sur le mur.;6;Phrase_222;-;0;1;9
+32;Ils chassent les rats.;4;Phrase_223;4;0;0;9
+32;Papa et Papi arrivent du Brésil.;6;Phrase_224;-;0;1;9
+32;Papa pose ses valises et les valises de Papi sur le chariot.;12;Phrase_225;-;0;1;9
+33;Il a passé un an dans les Pyrénées.;8;Phrase_226;-;0;0;9
+33;Médor est dans sa niche.;5;Phrase_227;-;0;0;9
+33;Les pandas se cachent sous les bambous.;7;Phrase_228;-;0;0;9
+33;Maman plie la jambe.;4;Phrase_229;-1;0;0;9
+33;Le colis est posé devant la porte.;7;Phrase_230;-;0;0;9
+33;Ma cousine me tire la langue.;6;Phrase_231;-;0;0;9
+33;"Pour le repas, maman et papa préparent de la viande, des légumes et des iles flottantes.";16;Phrase_232;-;0;0;9
+33;Les pélicans attrapent les crabes.;5;Phrase_233;-;0;0;9
+33;Je chante.;2;Phrase_234;-;0;0;9
+33;Ils dansent.;2;Phrase_235;-;0;0;9
+33;Mes cousines adorent le flan sans sucre.;7;Phrase_236;-;0;0;9
+33;J'allume la lampe pour lire un roman.;7;Phrase_237;-;0;0;9
+33;Tu changes l'ampoule.;3;Phrase_238;-;0;0;9
+33;Je trouve mes tantes amusantes.;5;Phrase_239;-;0;0;9
+33;Tu n'es pas marrant.;4;Phrase_242;-;0;0;9
+34;"Tous les dimanches, les exposants du marché vendent des fruits et des légumes.";13;Phrase_244;-;0;0;9
+34;"Étant malade, je ne suis pas allée en cours. Je suis malade, je m'ennuie et m'endors.";16;Phrase_245;-;0;0;9
+34;"Pendant l'été, les pies se remplissent le ventre de fruits.";10;Phrase_248;-;0;0;9
+34;"Souvent, l'été, je campe sous une tente.";7;Phrase_249;-;0;0;9
+34;Il n'est pas devenu président.;5;Phrase_193;-;0;0;9
+34;L'ogre a le ventre tendu car il a encore avalé goulûment des brebis dodues.;14;Phrase_251;-;0;0;9
+34;J'enfile mes collants.;3;Phrase_252;-;0;0;9
+34;Blanche et Yvan marchent ensemble.;5;Phrase_254;-;0;0;9
+34;Il poste une enveloppe.;4;Phrase_255;-1;0;0;9
+34;La viande est un aliment.;5;Phrase_256;-;0;0;9
+34;Médor a emporté la viande.;5;Phrase_258;-;0;0;9
+35;Je suis tombée.;3;-;-1;0;0;10
+35;Le comique raconte une blague rigolote.;6;Phrase_140;-;0;0;10
+35;Je porte mon anorak pour la balade sous la pluie.;10;Phrase_151;-;0;0;10
+35;Le gros ballon rebondit sur la vague.;7;-;-;0;0;10
+35;Il a les joues et les bras tout bronzés.;9;Phrase_192;-;0;0;10
+35;Je suis tombée sur le sol.;6;Phrase_262;-;0;0;10
+35;L'enfant s'est endormi dans son lit.;6;Phrase_247;-;0;0;10
+35;Son oncle regarde la télévision.;5;Phrase_263;-1;0;0;10
+35;On avale la bonne tarte de Barbara.;7;Phrase_132;-;0;0;10
+35;Il a préféré devenir avocat comme son papi et sa mamie.;11;Phrase_194;-;0;0;10
+35;Nous avons bu un bon chocolat en revenant du ski.;10;Phrase_264;-;0;0;10
+35;Je dis toujours bonjour.;4;Phrase_265;-;0;0;10
+35;Tu me donnes un quart de ton fruit.;8;Phrase_124;-;0;0;10
+35;Mon amie la marmotte a trouvé mon tournesol.;8;Phrase_083;-;0;0;10
+35;Ils font des avions en carton.;6;Phrase_266;-;0;0;10
+35;Il est content.;3;Phrase_267;2;0;0;10
+35;Ils vont sur le balcon. La vue est somptueuse.;9;Phrase_269;-;0;0;10
+35;On a ramassé un kilo de fruits sur l'arbre.;9;Phrase_160;-;0;0;10
+35;Les enfants font des biscuits.;5;Phrase_271;6;0;0;10
+35;Le pot de compote est tombé et s'est cassé.;9;Phrase_273;-;0;0;10
+35;La farine est répandue sur les murs.;7;Phrase_274;-;0;0;10
+35;Le beurre fondu coule de la table et tombe sur le sol.;12;Phrase_275;-;0;0;10
+35;"Pour l'entrée, il y a du concombre.";7;Phrase_278;-;0;0;10
+35;Ton vélo roule vite sur la route.;7;Phrase_081;-;0;0;10
+35;Je remplie le bidon.;4;Phrase_280;-;0;0;10
+35;Gaston joue du violon.;4;Phrase_281;-;0;0;10
+35;Je pilote un avion.;4;Phrase_282;-;0;0;10
+35;Mon ombre me suit.;4;Phrase_283;-;0;0;10
+35;Mon oncle épluche une mandarine.;5;-;8;0;0;10
+36;"Un matin, Martin marche sur le chemin dans le jardin.";10;Phrase_284;-;0;0;10
+36;"Mon petit cousin joue dans la boue, il est sale comme un cochon.";13;Phrase_272;-;0;0;10
+36;Je suis dans le magasin. ;5;Phrase_286;-;0;0;10
+36;Mon cousin a acheté des patins.;6;Phrase_287;-;0;0;10
+36;Papa colle un timbre sur l'enveloppe.;6;Phrase_288;-;0;0;10
+36;Tu colles le timbre.;4;-;6;0;0;10
+36;Quinze poussins coquins poursuivent la dinde.;6;Phrase_289;-;0;0;10
+36;La dinde court sous les pins.;6;Phrase_290;-;0;0;10
+36;La dinde est bonne.;4;-;6;0;0;10
+36;Ils retrouvent le joli chemin.;5;-;6;0;0;10
+36;Le pingouin glisse sur la banquise.;6;Phrase_292;-;0;0;10
+36;Le pingouin glisse.;3;-;4;0;0;10
+36;Je me suis assis sur un coussin.;7;Phrase_294;-;0;0;10
+36;Le chimpanzé grimpe.;3;Phrase_295;-1;0;0;10
+36;Le pinson monte dans l'arbre.;5;-;-1;0;0;10
+36;Il y a des pommes de pins dans les sapins.;10;Phrase_297;-;0;0;10
+36;Le mouton broute un brin de romarin.;7;Phrase_298;-;0;0;10
+37;Les moutons broutent le foin.;5;-;-1;0;0;10
+37;Le labrador aboie.;3;-;-1;0;0;10
+37;"Dans la basse-cour, il y a deux oies, trois poussins et quatre dindes.";13;Phrase_ 301;-;0;0;10
+37;Papa se rase en se regardant dans le miroir.;9;Phrase_302;-;0;0;10
+37;Je suis maladroite.;3;Phrase_303;4;0;0;10
+37;Je me suis tapée le coude sur le coin de la voiture.;12;Phrase_304;-;0;0;10
+37;Grégoire est maladroit.;3;Phrase_305;-;0;0;10
+37;Il a trébuché sur le trottoir et s'est cassé le bras.;11;Phrase_306;-;0;0;10
+37;Le cochon a le groin sale.;6;Phrase_307;-;0;0;10
+37;Pourquoi ne voit-t-on les étoiles que le soir ?;9;Phrase_310;-;0;0;10
+37;"Parfois, le roi doit faire des choix.";7;Phrase_311;-;0;0;10
+37;Le loir a soif. Il boit goulûment puis s'endort.;9;Phrase_313;-;0;0;10
+37;Médor le labrador aboie contre le chat.;7;Phrase_314;-;0;0;10
+38;L'ours à la jolie fourrure rousse ramasse le fruit.;9;Phrase_035;-;0;0;11
+38;La tortue a mâché une ortie.;6;-;-;0;0;11
+38;La fée offre le fruit à Léo.;7;Phrase_037;-;0;0;11
+38;Il va à l'école.;4;Phrase_315;-;0;0;11
+38;As-tu déjà pétri une pâte à pizza ?;8;Phrase_316;-;0;0;11
+38;Jérôme est à califourchon sur l'âne.;6;Phrase_318;-;0;0;11
+38;Quentin tire l'âne.;3;-;-1;0;0;11
+38;Le cheval mâche.;3;-;-;0;0;11
+38;Le châton a pris le jambon.;6;Phrase_270;-;0;0;11
+38;Le châton ronronne.;3;Phrase_279;-;0;0;11
+38;Tu as donné un bisou à chacune de mes cousines.;10;Phrase_178;-;0;0;11
+38;L'âne rue.;2;Phrase_320;-;0;0;11
+38;Simone tombe et le bras finit dans le plâtre.;9;Phrase_321;-;0;0;11
+38;Annie a une tâche sur sa jupe.;7;Phrase_322;-;0;0;11
+38;Le marin monte sur le mât.;6;Phrase_323;-;0;0;11
+38;Maman a mal à la mâchoire.;6;Phrase_325;-;0;0;11
+38;"Mon cousin est malade, il a le visage pâle.";9;Phrase_326;-;0;0;11
+38;Mon cousin chante une chanson.;5;-;4;0;0;11
+38;Je suis fâchée contre papi.  Il a lâché son bâton. Il est tombé sur mon crâne. ;16;Phrase_328;-;0;0;11
+38;Je dévore les pâtes.;4;-;-1;0;0;11
+39;Le mandarin pépie et le pinson aussi.;7;Phrase_296;-;0;0;11
+39;Antoine et moi partons en voiture pour voir les chimpanzés au jardin.;12;Phrase_299;-;0;0;11
+39;Le poussin est jaune.;4;Phrase_331;4;0;0;11
+39;Ils jouent au ballon.;4;Phrase_268;-;0;0;11
+39;Je bois de l'eau.;4;Phrase_332;-;0;0;11
+39;La taupe creuse dans le sol.;6;Phrase_333;-;0;0;11
+39;Papa m'a montré son bureau.;5;Phrase_334;-;0;0;11
+39;Il est beau.;3;Phrase_335;-;0;0;11
+39;J'ai cassé les bocaux de confiture de mamie.;8;Phrase_336;-;0;0;11
+39;Il a cassé les bocaux.;5;-;-1;0;0;11
+39;Le cheval et le chameau sont des animaux.;8;Phrase_337;-;0;0;11
+39;Je porte le chapeau de papa et le manteau de maman.;11;Phrase_338;-;0;0;11
+39;Maman et moi allons au port.;6;Phrase_339;-;0;0;11
+39;Nous partons en bateau sur l'eau.;6;Phrase_440;-;0;0;11
+39;Le bateau coule.;3;-;-1;0;0;11
+39;Nous allons au Pôle Sud voir les pingouins.;8;Phrase_341;-;0;0;11
+39;Le faucon et le corbeau sont des oiseaux.;8;Phrase_342;-;0;0;11
+39;Les dinosaures ont disparu.;4;Phrase_343;-;0;0;11
+39;Papa a coupé le gâteau en utilisant le couteau.;9;Phrase_344;-;0;0;11
+39;Il sert Maman et Cléo.;5;Phrase_345;-;0;0;11
+39;Momo en veut aussi.;4;Phrase_346;-;0;0;11
+39;Le veau est le petit de la vache.;8;Phrase_347;-;0;0;11
+39;Je ne chante pas faux.;5;Phrase_350;-;0;0;11
+39;"A côté du ruisseau, le crapaud a sauté sur le rocher pour se poser.";14;Phrase_351;-;0;0;11
+39;As-tu ton manteau ?;4;-;4;0;0;11
+39;Tu chantes faux.;3;-;4;0;0;11
+39;Regarde le faucon.;3;-;2;0;0;11
+39;Coupe les gâteaux.;3;-;-1;0;0;11
+40;Tu as le même cartable que moi.;7;Phrase_353;-;0;0;11
+40;Ton père et ton frère ont vu une bête.;9;Phrase_354;-;0;0;11
+40;Je pèle une pêche.;4;-;-1;0;0;11
+40;Ta maman est très en colère !;7;Phrase_355;-;0;0;11
+40;Notre maman est en colère !;6;-;-1;0;0;11
+40;Ton petit frère grimpe dans le chêne.;7;Phrase_359;-;0;0;11
+40;Préfères-tu être piqué par une guêpe ou mordu par une vipère ?;12;Phrase_360;-;0;0;11
+40;Juste ni l'un ni l'autre !;6;Phrase_361;-;0;0;11
+40;Tu es un bon élève.;5;Phrase_362;-;0;0;11
+40;Le marin pêche le requin.;5;Phrase_293;-;0;0;11
+40;Le jour se lève.;4;Phrase_045;-;0;0;11
+40;Les biscuits ont disparu de leurs bocaux !;8;Phrase_363;-;0;0;11
+40;C'est un mystère...;3;Phrase_364;-;0;0;11
+40;Le zèbre galope dans la savane.;6;Phrase_365;-;0;0;11
+41;"Tu as mal au coeur, tu as goulument dévoré trop de crêpes.";12;Phrase_367;-;0;0;12
+41;Maman a cuit un oeuf dur.;6;Phrase_368;-;0;0;12
+41;Papa est en colère.;4;Phrase_366;-;0;0;12
+41;Il y a un oeuf dans mon gâteau.;8;Phrase_369;-;0;0;12
+41;Ta petite soeur peut venir aussi.;6;Phrase_370;-;0;0;12
+41;Ta petite soeur peut venir.;5;-;8;0;0;12
+41;"Nous allons au restaurant. Sur le menu du jour, il y a du boeuf et des poireaux. ";17;Phrase_371;-;0;0;12
+41;Nous allons tous au restaurant.;5;-;-1;0;0;12
+41;Ma soeur est tombée sur le sol.;7;Phrase_372;-;0;0;12
+41;Tu m'as donné ton coeur. Je suis ton amoureuse.;9;Phrase_373;-;0;0;12
+41;Nous avons deux crêpes chaudes.;5;-;6;0;0;12
+42;un brigand;2;-;-;1;0;12
+42;le boulevard;2;-;-;1;0;12
+42;l'étang;1;-;-;1;0;12
+42;un foulard;2;-;-;1;0;12
+42;un fusil;2;-;-;1;0;12
+42;le guépard;2;-;-;1;0;12
+42;un canard;2;-;-;1;0;12
+42;le crapaud;2;-;-;1;0;12
+42;le léopard;2;-;-;1;0;12
+42;le lézard;2;-;-;1;0;12
+42;un loup;2;-;-;1;0;12
+42;un noeud;2;-;-;1;0;12
+42;le nid;2;-;-;1;0;12
+42;le nord;2;-;-;1;0;12
+42;un porc;2;-;-;1;0;12
+42;un renard;2;-;-;1;0;12
+42;le riz;2;-;-;1;0;12
+42;le sirop;2;-;-;1;0;12
+42;des brigands;2;-;-;1;0;12
+42;les crocs;2;-;-;1;0;12
+42;des pétards;2;-;-;1;0;12
+42;les têtards;2;-;-;1;0;12
+42;les draps;2;-;-;1;0;12
+42;Je rampe sur les grandes branches du grand arbre.;9;Phrase_243;-;0;1;12
+42;Papi tond le mouton.;4;Phrase_277;6;0;0;12
+42;Édouard part sur la rivière en canoë. Il a peur des rapides !;13;Phrase_356;-;0;1;12
+42;Yvan a ramé sur l'étang.;5;Phrase_240;-;0;1;12
+42;Le canard barbotte sur la mare.;6;Phrase_136;-;0;1;12
+42;Tu marches trop lentement.;4;Phrase_246;-;0;1;12
+42;"Il y a longtemps, les dinosaures ont vécu sur la planète Terre.";12;Phrase_374;-;0;1;12
+42;"Quand il prend une douche, il utilise beaucoup trop d'eau.";10;Phrase_375;-;0;1;12
+42;Le loup crie la nuit.;5;Phrase_376;-;0;1;12
+42;Le chasseur bloque la route du renard. Le renard fuit sous l'arbre.;12;Phrase_134;-;0;1;12
+42;L'oiseau est dans son nid.;5;Phrase_377;-;0;1;12
+42;"Après avoir mangé trop de chocolat, Gaëlle a mal à l'estomac.";11;Phrase_379;-;0;1;12
+42;Gaëlle est trop gourmande.;4;Phrase_380;-;0;1;12
+42;Les brigands s'enfuient au galop.;5;Phrase_381;-;0;1;12
+42;Le léopard attrape le lézard dans ses crocs.;8;Phrase_382;-;0;1;12
+42;Je me suis assis sur le tronc d'arbre.;8;Phrase_383;-;0;1;12
+42;Nous avons allumé des pétards.;5;Phrase_386;-;0;1;12
+42;Les têtards sont sous l'eau.;5;Phrase_387;-;0;1;12
+42;Les pingouins se mettent en rang puis sautent dans l'eau.;10;Phrase_388;-;0;1;12
+42;Le cheval est au galop.;5;Phrase_389;-;0;1;12
+42;Le noeud de cravate est vert.;6;Phrase_390;-;0;1;12
+42;Je dors sous les draps.;5;Phrase_391;-;0;1;12
+42;Je ne veux pas avoir froid.;6;Phrase_392;-;0;1;12
+42;"Sur la banquise, le renard est blanc.";7;Phrase_393;-;0;1;12
+43;Les agneaux broutent sur la montagne.;6;Phrase_394;-;0;0;12
+43;Ils grignotent des griottes.;4;Phrase_397;-;0;0;12
+43;Le loup grogne.;3;Phrase_398;-;0;0;12
+43;La louve grogne.;3;-;-1;0;0;12
+43;Gaspard a gagné la course.;5;Phrase_399;-;0;0;12
+43;Le bébé est mignon.;4;Phrase_400;-1;0;0;12
+43;L'infirmière soigne le malade.;4;Phrase_401;-;0;0;12
+43;Le chat ignore la souris.;5;Phrase_404;-1;0;0;12
+43;La souris s'éloigne rapidement.;4;Phrase_405;-;0;0;12
+43;Les champignons poussent.;3;Phrase_407;-;0;0;12
+43;Gladys a gagné.;3;Phrase_408;-;0;0;12
+43;Les agneaux sont doux.;4;Phrase_409;-;0;0;12
+43;Maman m'accompagne à l'école.;4;Phrase_410;-;0;0;12
+43;Je tourne la poignée de porte.;6;Phrase_411;-;0;0;12
+43;Le rossignol chante.;3;Phrase_412;-;0;0;12
+43;Papa m'accompagne.;2;-;-1;0;0;12
+44;Qu'elle est belle ma maman dans sa robe violette !;10;Phrase_413;-;0;0;13
+44;L'ogre a la grippe. Il reste sous sa grosse couette.;10;Phrase_138;-;0;0;13
+44;Tu remplis le verre.;4;Phrase_253;-;0;0;13
+44;"Dans mon épuisette, j'attrape des crevettes.";6;Phrase_416;-;0;0;13
+44;J'envoie une lettre à ma grand-mère.;6;Phrase_417;-;0;0;13
+44;"Le matin, papa mange une baguette et de la confiture. ";10;Phrase_418;-;0;0;13
+44;"Après la fête, la poubelle est remplie. Il faut la sortir.";11;Phrase_421;-;0;0;13
+44;La belette ne grignote pas de noisettes.;7;Phrase_422;-;0;0;13
+44;Le lion pourchasse la gazelle dans la savane. Le lion ne gagnera pas.;13;Phrase_423;-;0;0;13
+44;Mon cousin s'est déguisé en squelette.;6;Phrase_424;-;0;0;13
+44;Je me cache sous la couette.;6;Phrase_425;-;0;0;13
+44;Pierre est monté sur l'échelle et se balade sur le toit.;11;Phrase_426;-;0;0;13
+44;Le lutin malin grimpe dans le sapin et jette des pommes de pin.;13;Phrase_291;-;0;0;13
+44;Il tousse sous la couette.;5;Phrase_155;4;0;0;13
+44;Nous prenons l'apéritif sur la terrasse.;6;Phrase_427;-;0;0;13
+44;Je ne trouve pas la réponse à la devinette.;9;Phrase_428;-;0;0;13
+44;Je porte une casquette.;4;Phrase_429;-1;0;0;13
+44;Elle est coquette.;3;-;4;0;0;13
+45;J'ai entendu la sonnette.;4;Phrase_419;6;0;0;13
+45;J'ai fait un gâteau au chocolat.;6;Phrase_430;-;0;0;13
+45;Le requin fait des vagues.;5;Phrase_431;-;0;0;13
+45;Le bébé barbotte dans la baignoire.;6;Phrase_432;-;0;0;13
+45;L'aigle vole au-dessus de la falaise.;6;Phrase_433;-;0;0;13
+45;Il a de grandes ailes.;5;Phrase_434;-;0;0;13
+45;Il y a des dizaines de dromadaires dans le désert.;10;Phrase_435;-;0;0;13
+45;Médor boit de l'eau à la fontaine.;7;Phrase_436;-;0;0;13
+45;La mouette s'est posée sur le bateau du capitaine.;9;Phrase_437;-;0;0;13
+45;J'aime les fraises.;3;Phrase_438;-;0;0;13
+45;Il aime les fraises.;4;-;6;0;0;13
+45;Ma maîtresse m'apprend à lire.;5;Phrase_439;-;0;0;13
+45;Le roi vit dans un somptueux palais.;7;Phrase_440;-;0;0;13
+45;J'ai fait une vinaigrette pour la salade.;7;Phrase_441;-;0;0;13
+45;Pierre a fait des vinaigrettes.;5;-;-1;0;0;13
+45;La librairie est remplie de livres.;6;Phrase_443;-;0;0;13
+45;Agnès et son compagnon ramassent une poignée de raisins dans la vigne.;12;Phrase_396;-;0;0;13
+45;"Papa prépare du riz au lait, maman fait la vaisselle et je ne bouge pas de la chaise.";18;Phrase_444;-;0;0;13
+45;L'escargot a mangé la laitue de papi.;7;Phrase_445;-;0;0;13
+45;Elle plante des graines.;4;Phrase_446;-;0;0;13
+45;L'éclair est à la fraise.;5;Phrase_447;-;0;0;13
+45;Le bateau est à quai.;5;Phrase_448;-;0;0;13
+45;Il entendait le bruit.;4;Phrase_449;-;0;0;13
+45;Elle chantait la chanson.;4;Phrase_450;-;0;0;13
+45;Je dévore mon bol de riz au lait.;8;Phrase_378;-;0;0;13
+45;Tu croquais la pomme.;4;Phrase_451;-;0;0;13
+45;Je regardais les oiseaux.;4;Phrase_452;-;0;0;13
+45;La caissière compte la monnaie.;5;-;8;0;0;13
+45;Nous buvons du lait.;4;-;4;0;0;13
+46;Voulez-vous une boisson chaude ou froide ?;7;Phrase_349;-;0;0;14
+46;Venez chez moi !;4;Phrase_453;-;0;0;14
+46;La sirène de pompier a retenti par la fenêtre.;9;Phrase_358;-;0;0;14
+46;Allons nous amuser !;4;Phrase_454;4;0;0;14
+46;Il a un nez crochu.;5;Phrase_455;-;0;0;14
+46;Pouvez-vous laver les fraises pour le goûter ?;8;Phrase_456;-;0;0;14
+46;Ne jetez pas vos papiers par terre.;7;Phrase_457;-;0;0;14
+46;Mettez-les dans la poubelle !;5;Phrase_458;-;0;0;14
+46;Il faut prendre le pont pour traverser.;7;Phrase_459;-;0;0;14
+46;Papa est cuisinier dans un restaurant.;6;Phrase_460;-;0;0;14
+46;"Allez, levez-vous !";3;Phrase_462;-1;0;0;14
+46;Venez danser !;3;Phrase_463;-;0;0;14
+46;Je dois laver la vaisselle.;5;Phrase_464;-;0;0;14
+46;Il faut sonner à la porte avant de rentrer. ;9;Phrase_465;-;0;0;14
+46;Mon anniversaire est noté sur le calendrier.;7;Phrase_466;-;0;0;14
+46;Roger doit donner la monnaie à la caissière pour acheter du lait.;12;Phrase_467;-;0;0;14
+46;Elle doit laver la vaisselle.;5;-;4;0;0;14
+47;La marmotte plie le papier du chocolat.;7;Phrase_105;-;0;0;14
+47;Martin aime parler au téléphone.;5;Phrase_468;-;0;0;14
+47;L'éléphant est gris.;3;Phrase_469;-1;0;0;14
+47;Médor a créé une catastrophe dans le salon.;8;Phrase_470;-;0;0;14
+47;Maman l'a grondé.;3;Phrase_471;-;0;0;14
+47;Le phoque est sur la banquise.;6;Phrase_472;-;0;0;14
+47;Le fantôme effraie les visiteurs du phare.;7;Phrase_473;-;0;0;14
+47;Sophie a pris une photographie de sa mamie.;8;Phrase_474;-;0;0;14
+47;J'apprends l'alphabet.;2;Phrase_475;-;0;0;14
+47;Nous apprenons l'alphabet.;3;-;-1;0;0;14
+47;Le dauphin fait des bonds dans l'eau.;7;Phrase_476;-;0;0;14
+47;Les têtards sautent sur les nénuphars.;6;Phrase_477;-;0;0;14
+47;Alphonse veut devenir photographe.;4;Phrase_478;-;0;0;14
+47;Léo veut être photographe.;4;-;4;0;0;14
+47;Papa et moi allons voir les dauphins au zoo.;9;Phrase_479;-;0;0;14
+47;Delphine a téléphoné pour réserver le restaurant.;7;Phrase_480;-;0;0;14
+47;Le phare est allumé.;4;Phrase_481;4;0;0;14
+47;Daphné a téléphoné.;3;-;-1;0;0;14
+47;Nous allons voir les dauphins.;5;-;8;0;0;14
+48;J'ai mal au ventre en tournant sur le tourniquet.;9;Phrase_483;-;0;0;14
+48;"Dans la baignoire, de l'eau sort du robinet et se mélange au savon pour former des bulles.";17;Phrase_484;-;0;0;14
+48;Cassandra m'a chuchoté un secret.;5;Phrase_485;-;0;0;14
+48;Clément a attrapé des poissons violets dans son filet.;9;Phrase_486;-;0;0;14
+48;Papa a cuisiné un poulet au four et des navets pour le diner.;13;Phrase_487;-;0;0;14
+48;Il court le furet du Bois Joli.;7;Phrase_488;-;0;0;14
+48;Les furets courent.;3;-;4;0;0;14
+48;Le perroquet papote sur l'épaule du pirate.;7;Phrase_489;-;0;0;14
+48;J'ai sifflé dans mon sifflet.;5;Phrase_490;-;0;0;14
+48;Papi me construit un tabouret en bois.;7;Phrase_491;-;0;0;14
+48;Papi me construit un tabouret.;5;-;-1;0;0;14
+48;J'ai glissé en chaussettes sur le parquet.;7;Phrase_493;-;0;0;14
+49;un haricot;2;-;-;1;0;15
+49;une histoire;2;-;-;1;0;15
+49;l'hirondelle;1;-;-;1;0;15
+49;un hélicoptère;2;-;-;1;0;15
+49;l'hippopotame;1;-;-;1;0;15
+49;les huitres;2;-;-;1;0;15
+49;une huitre;2;-;-;1;0;15
+49;les jouets;2;-;-;1;0;15
+49;le printemps;2;-;-;1;0;15
+49;L'aigle vole haut.;3;-;4;0;1;15
+49;"Au printemps, les hirondelles jasent en haut des branches : ''Voici venir le chat. Hâtez-vous de vous cacher ! ''";20;Phrase_495;-;0;1;15
+49;Il a vu un lapin qui renifle du thym.;9;Phrase_285;-;0;1;15
+49;L'hippopotame barbote au bord du fleuve.;6;Phrase_496;-;0;1;15
+49;Nous avons fait un tour de Paris en hélicoptère.;9;Phrase_497;-;0;1;15
+49;"Nous avons fait un tour de Paris en hélicoptère. En bas, les habitants paraissent comme des fourmis.";17;Phrase_498;-;0;1;15
+49;"A la cantine, les haricots sont trop cuits, c'est horrible !";11;Phrase_499;-;0;1;15
+49;On habite dans un appartement.;5;Phrase_261;-1;0;0;15
+49;Thibaut adore les pâtisseries au chocolat.;6;Phrase_324;-;0;1;15
+49;Hugo et Chloé se prêtent leurs jouets.;7;Phrase_501;-;0;1;15
+49;Je mange une huitre.;4;-;4;0;0;15
+49;Henri est jaloux.;3;-;-1;0;0;15
+50;Les cygnes glissent.;3;-;-1;0;0;15
+50;L'aigle vole haut dans le ciel.;6;Phrase_494;-;0;0;15
+50;Elle a reçu un jouet à sa fête d'anniversaire.;9;Phrase_482;-;0;0;15
+50;"Ce soir, c'est la fête de Noël.";7;Phrase_352;-;0;0;15
+50;On vend les antiquités aux puces.;6;Phrase_502;-;0;0;15
+50;"Pendant la nuit, la cité est éclairée.";7;Phrase_503;-;0;0;15
+50;Je mange un poulet à la sauce épicée.;8;Phrase_504;-;0;0;15
+50;Les plumes du cygne sont douces.;6;Phrase_505;-;0;0;15
+50;"Ce soir, pour le diner, papa cuisine des pâtes à la sauce tomate.";13;Phrase_327;-;0;0;15
+50;Nous habitons en France.;4;Phrase_506;-;0;0;15
+50;Les racines de l'arbre descendent très bas dans le sol.;10;Phrase_508;-;0;0;15
+50;Je rêve d'une crêpe au chocolat remplie de morceaux de pêches.;11;Phrase_357;-;0;0;15
+50;Le cerf saute au-dessus du tronc.;6;Phrase_384;-;0;0;15
+50;Papa et maman m'ont emmené voir des guignols au cirque.;10;Phrase_403;-;0;0;15
+50;Je pars en vacances à la campagne.;7;Phrase_395;-;0;0;15
+50;La princesse a senti le petit pois.;7;Phrase_312;-;0;0;15
+50;Lucette remplit la brouette.;4;Phrase_415;-;0;0;15
+50;"Cette nuit, une chouette s'est posée sur le rebord de ma fenêtre.";12;Phrase_420;-;0;0;15
+50;La saucisse a roulée sur le sol.;7;Phrase_509;-;0;0;15
+50;Mon cerveau devient plus fort quand j'apprends.;7;Phrase_510;-;0;0;15
+50;Mon cerveau apprend.;3;-;4;0;0;15
+50;L'écorce du citron est acide.;5;Phrase_511;8;0;0;15
+50;Le prince embrasse la princesse.;5;Phrase_512;-;0;0;15
+50;"Au cirque, nous avons vu un pinçon qui parle.";9;Phrase_513;-;0;0;15
+50;J'ai reçu une carte postale de ma grand-mère. Elle est partie en vacances.;13;Phrase_514;-;0;0;15
+50;"Il fait très chaud, je rajoute des glaçons dans mon thé.";11;Phrase_515;-;0;0;15
+51;Gérard est très bavard.;4;Phrase_385;-;0;0;16
+51;Il va avoir un poisson rouge et noir.;8;Phrase_309;-;0;0;16
+51;Il faut que la voiture s'arrête quand le signal est rouge.;11;Phrase_406;-;0;0;16
+51;Quel âge as-tu ?;4;Phrase_516;-;0;0;16
+51;Le canari chante dans sa cage.;6;Phrase_517;-;0;0;16
+51;"Au zoo, j'ai vu des singes dans leur grande cage.";10;Phrase_518;-;0;0;16
+51;"A Paris, il y a beaucoup de pigeons.";8;Phrase_519;-;0;0;16
+51;Les deux pigeons picorent.;4;-;-1;0;0;16
+51;"Le fromage ne sent pas bon, mais il est délicieux.";10;Phrase_520;-;0;0;16
+51;J'ai toujours les genoux écorchés car je suis un aventurier sauvage.;11;Phrase_521;-;0;0;16
+51;Des matelots courageux naviguent.;4;Phrase_218;-;0;0;16
+51;"Sur la plage, je construis un château de sable.";9;Phrase_329;-;0;0;16
+51;"Dans le potager de papi, il fait pousser des navets, des courgettes, des haricots et de la laitue.";18;Phrase_522;-;0;0;16
+51;Ma chambre est au premier étage.;6;Phrase_523;-;0;0;16
+51;"Le matin, il y a du givre sur le sol.";10;Phrase_524;-;0;0;16
+51;Je dois porter un gilet pour jouer dehors.;8;Phrase_525;-;0;0;16
+51;J'ai mal à la gorge.;5;Phrase_526;-;0;0;16
+51;On fait du judo dans un gymnase.;7;Phrase_528;-;0;0;16
+52;On n'a pas besoin de taxi pour aller dans le centre du village.;13;Phrase_530;-;0;0;16
+52;Xavier a fait un gâteau. On dirait une explosion dans la cuisine.;12;Phrase_531;-;0;0;16
+52;Xavier a fait un gâteau.;5;-;-1;0;0;16
+52;Il va devoir s'excuser !;5;Phrase_532;4;0;0;16
+52;Je joue du saxophone dans un groupe de jazz.;9;Phrase_533;-;0;0;16
+52;"Quelle douce nuit, nous pouvons manger à l'extérieur ce soir.";10;Phrase_534;-;0;0;16
+53;J'ai des exercices d'écriture à faire pour demain.;8;Phrase_536;-;0;0;16
+53;Je dois aller acheter du pain à la boulangerie.;9;Phrase_537;-;0;0;16
+53;Le garçon a mangé beaucoup de cerises. Il a mal au ventre.;12;Phrase_507;-;0;0;16
+53;Alain a vu un daim dans la forêt.;8;Phrase_538;-;0;0;16
+53;"Soudainement, papa a ralenti fort pour éviter la collision.";9;Phrase_539;-;0;0;16
+53;"Heureusement, on portait un casque de sécurité !";8;Phrase_540;-;0;0;16
+53;"Demain, nous allons prendre le train.";6;Phrase_541;-;0;0;16
+53;Le poulain est né ce matin.;6;Phrase_542;-;0;0;16
+53;Le poulain est né.;4;-;-1;0;0;16
+53;La graine pousse dans le sol.;6;Phrase_543;-;0;0;16
+53;J'ai beaucoup de copains.;4;Phrase_544;-;0;0;16
+53;Le vilain petit canard.;4;Phrase_545;-;0;0;16
+53;"Maintenant qu'Hippolyte sait lire, il peut lire les histoires tout seul.";11;Phrase_500;-;0;0;16
+53;Mange ton pain maintenant !;5;Phrase_546;4;0;0;16
+53;On sort au prochain arrêt.;5;Phrase_547;-1;0;0;16
+53;Je dessine son portrait.;4;Phrase_548;-;0;0;16
+53;Arrêtez le train !;4;-;4;0;0;16
+54;C'est le mien.;3;Phrase_549;-;0;0;17
+54;Le magicien fait un tour de magie.;7;Phrase_550;-;0;0;17
+54;Bienvenue chez moi !;4;Phrase_551;4;0;0;17
+54;Le pharmacien recommande du sirop pour le mal de gorge.;10;Phrase_552;-;0;0;17
+54;Les musiciens jouent.;3;Phrase_554;-;0;0;17
+54;Le chirurgien vient d'opérer.;4;Phrase_555;-;0;0;17
+54;Je ne veux rien !;5;Phrase_556;4;0;0;17
+54;La maison de mamie est ancienne.;6;Phrase_557;-;0;0;17
+54;Le chien de papi est vieux.;6;Phrase_558;-;0;0;17
+54;Est-ce que c'est le tien ?;6;Phrase_559;-;0;0;17
+54;Je n'ai pas de stylo.  Maximilien m'a prêté le sien.;10;Phrase_560;-;0;0;17
+55;L'espion a chuchoté un secret.;5;Phrase_561;-;0;0;17
+55;J'ai perdu une dent.;4;Phrase_257;-;0;0;17
+55;J'ai perdu mon chien.;4;Phrase_553;4;0;0;17
+55;Patrick a perdu ses clés.;5;Phrase_180;-;0;0;17
+55;Le spectacle au cirque était extraordinaire !;7;Phrase_535;-;0;0;17
+55;Maman l'a enfermé dans son enclos.;6;Phrase_259;-;0;0;17
+55;Léon a déchiré son veston.;5;Phrase_260;-;0;0;17
+55;Quentin déteste les artichauts et adore les quiches aux poireaux.;10;Phrase_348;-;0;0;17
+55;Nous allons chercher une baguette pour le petit déjeuner.;9;Phrase_461;-;0;0;17
+55;J'ai perdu la course.;4;Phrase_562;-;0;0;17
+55;Il a perdu la course.;5;-;-1;0;0;17
+55;Tu glisses sur le verglas.;5;Phrase_146;-;0;0;17
+55;"Madame Bertrand habite dans une ferme, avec son cheval, sa vache et ses moutons.";14;Phrase_563;-;0;0;17
+55;Le magasin est ouvert.;4;Phrase_564;-;0;0;17
+55;J'ai trouvé une perle dans une huitre.;7;Phrase_565;-;0;0;17
+55;Il cherche des glands et des noix dans la terre.;10;Phrase_308;-;0;0;17
+55;"Je cherches mon rat, je suis triste.";7;Phrase_082;-;0;0;17
+55;Le reptile mange des petits insectes.;6;Phrase_567;-;0;0;17
+55;L'escargot porte sur son dos sa maisonnette.;7;Phrase_568;-;0;0;17
+55;Mamie a perdu un ski sur la piste.;8;Phrase_156;-;0;0;17
+55;"Dans la grotte, le détective a fait une découverte extraordinaire.";10;Phrase_569;-;0;0;17
+55;"Mercredi, après l'école, je vais à la piscine.";8;Phrase_570;-;0;0;17
+55;"Mercredi, nous jouerons.";3;-;-1;0;0;17
+55;Je me suis cogné la tête en descendant du bateau.;10;Phrase_402;-;0;0;17
+55;La voiture de maman a glissé sur le verglas.;9;Phrase_571;-;0;0;17
+55;Les perruches se sont posées sur leur perchoir pour picorer les graines.;12;Phrase_572;-;0;0;17
+55;Quelqu'un épluche une mandarine.;4;Phrase_241;-;0;0;17
+55;J'entoure la vache avec mon lasso.;6;-;-;0;0;17
+55;"Le matin, Quentin déguste un croissant avec de la confiture de framboises.";12;Phrase_300;-;0;0;17
+55;Le caméléon attrape avec sa langue la mouche.;8;Phrase_276;-;0;0;17
+55;Il tape avec son bâton.;5;Phrase_319;-;0;0;17
+55;Je creuse un trou dans le sable avec une pelle.;10;Phrase_414;-;0;0;17
+55;Maman se coiffe les cheveux avec un peigne.;8;Phrase_442;-;0;0;17
+55;"Avec mon amie Julie, je fais de la gym tous les mardis.";12;Phrase_529;-;0;0;17
+55;Maman m'a offert un râteau et un seau.;8;Phrase_330;-;0;0;17
+55;J'ai offert un béret violet à mamie.;7;Phrase_492;-;0;0;17
+55;"Aux aguets, le serpent se camoufle derrière le buisson, pour chasser les petites souris.";14;Phrase_573;-;0;0;17
+55;"Cet été, maman, papa et moi avons randonné dans les Alpes.";11;Phrase_574;-;0;0;17
+56;"Afin d'empoisonner la princesse, la vilaine sorcière prépare une potion magique.";11;Phrase_575;-;0;0;17
+56;Elle a trouvé la potion.;5;-;8;0;0;17
+56;Les potions explosent.;3;-;-1;0;0;17
+56;"Ce matin, Martin et Albert ont joué à l'épervier pendant la récréation.";12;Phrase_576;-;0;0;17
+56;L'éruption du volcan a couvert l'ile de lave.;8;Phrase_577;-;0;0;17
+56;"Chez moi, la tradition c'est le diner en famille le dimanche.";11;Phrase_578;-;0;0;17
+56;"Dans l'encyclopédie des animaux, il y a de jolies illustrations.";10;Phrase_579;-;0;0;17
+56;Je ramène une collection de cristaux de notre expédition dans la grotte.;12;Phrase_580;-;0;0;17
+56;J'ai fait des additions.;4;Phrase_581;-1;0;0;17
+56;Papa a trouvé la solution.;5;Phrase_582;-;0;0;17
+56;Dans quelle direction est le parc ?;7;Phrase_583;-;0;0;17
+56;La compétition commence.;3;-;4;0;0;17
+57;Regardez-moi dans les yeux !;5;Phrase_584;-;0;0;18
+57;J'ai mangé mon pot de yaourt.;6;Phrase_585;-;0;0;18
+57;Il mange son yaourt.;4;-;-1;0;0;18
+57;On a rapporté du bon gruyère de la ferme.;9;Phrase_586;-;0;0;18
+57;Il y a trois trous.;5;Phrase_587;-;0;0;18
+57;"Mamie, maman et moi avons toutes les trois les yeux verts.";11;Phrase_588;-;0;0;18
+57;"Avec les copains, on a joué au yoyo.";8;Phrase_589;-;0;0;18
+57;On joue au yoyo.;4;-;-1;0;0;18
+57;"Youpi, c'est la fête !";5;Phrase_590;-;0;0;18
+57;Les yacks sauvages broutent l'herbe dans les hauts plateaux.;9;Phrase_591;-;0;0;18
+58;On a payé la caissière pour le chocolat.;8;Phrase_592;-;0;0;18
+58;Ne te casse pas les dents sur le noyau.;9;Phrase_593;-;0;0;18
+58;Maya a fait un beau dessin avec ses nouveaux crayons.;10;Phrase_594;-;0;0;18
+58;"On part en voyage sur la côte, je n'ai jamais vu d'aussi beau paysage.";14;Phrase_595;-;0;0;18
+58;"Au royaume du roi Dagobert, tout est à l'envers !";10;Phrase_596;-;0;0;18
+58;Vous pouvez trouver le camembert au rayon laitier.;8;Phrase_597;-;0;0;18
+58;"En faisant des grimaces au bébé, il rit joyeusement.";9;Phrase_598;-;0;0;18
+58;Nous tenons un gite pour héberger les voyageurs qui visitent notre village.;12;Phrase_599;-;0;0;18
+58;"En voyant le vilain voleur, les chiens se sont mis à aboyer.";12;Phrase_600;-;0;0;18
+58;Les paysans récoltent le blé tous les ans.;8;Phrase_601;-;0;0;18
+58;"A, é, i et o sont des voyelles.";8;Phrase_602;-;0;0;18
+58;Le voyageur m'a raconté l'incroyable histoire de ses aventures.;9;Phrase_603;-;0;0;18
+58;Il rit joyeusement.;3;-;-1;0;0;18
+59;"Dans la cour de récré, les filles jouent avec des billes et les garçons avec des balles.";17;Phrase_604;-;0;0;18
+59;La chenille se transforme en cocon pour former un beau papillon.;11;Phrase_609;-;0;0;18
+59;"Sur la plage, nous ramassons des coquillages.";7;Phrase_614;-;0;0;18
+59;Je me suis tordu la cheville.;6;Phrase_605;-;0;0;18
+59;Le gorille fait partie de la famille des singes.;9;Phrase_606;-;0;0;18
+59;On a mangé du poisson grillé.;6;-;-;0;0;18
+59;Maman a préparé du flan à la vanille.;8;Phrase_607;-;0;0;18
+59;Maman a mis à bouillir le bouillon sur le feu.;10;Phrase_619;-;0;0;18
+59;Les filles jouent.;3;-;2;0;0;18
+59;Je balance de la purée avec ma cuillère.;8;Phrase_625;-;0;0;18
+59;Je balance de la purée avec ma cuillère. Maman me gronde.;11;Phrase_627;-;0;0;18
+60;J'ai mangé de l'ail. Ma bouche ne sent pas bon.;10;Phrase_611;-;0;0;19
+60;"Avec mes cousins, nous avons joué dans la paille.";9;Phrase_612;-;0;0;19
+60;Les bébés cailles suivent leur maman à la file indienne.;10;Phrase_613;-;0;0;19
+60;Mon papa travaille dans un grand bâtiment.;7;Phrase_317;-;0;0;19
+60;"En plongeant sous l'eau, j'ai vu du corail et des poissons aux brillantes écailles.";14;Phrase_615;-;0;0;19
+60;"Il fait chaud, j'ouvre mon éventail.";6;Phrase_616;-;0;0;19
+60;J'ai gagné une médaille pour la course.;7;Phrase_617;-;0;0;19
+60;J'ai gagné une médaille.;4;-;6;0;0;19
+60;Papa travaille sur un chantier.;5;-;6;0;0;19
+60;Papa travaille sur un chantier. Il construit des portails.;9;Phrase_618;-;0;0;19
+60;Je me suis réveillé.;4;Phrase_620;-1;0;0;19
+60;Le soleil se couche à l'ouest.;6;Phrase_566;-;0;0;19
+60;On sèche le linge au soleil.;6;Phrase_527;-;0;0;19
+60;Le soleil brille de mille feux.;6;-;-;0;0;19
+60;Le soleil brille.;3;Phrase_610;4;0;0;19
+60;""Les abeilles ne me font pas peur, mais les frelons oui !", dit Valérie.";14;Phrase_621;-;0;0;19
+60;J'ai le meilleur fauteuil pour regarder les écureuils par la fenêtre.;11;Phrase_622;-;0;0;19
+60;Camille me chatouille les orteils.;5;Phrase_623;-;0;0;19
+60;Papi me chatouille les orteils.;5;-;-1;0;0;19
+60;La fouine fouille dans les poubelles.;6;Phrase_624;-;0;0;19
+60;Léa a payé la caissière.;5;-;-1;0;0;19
+60;Je lui chatouille alors derrière les oreilles.;7;Phrase_626;-;0;0;19
+60;Martha me gronde.;3;-;-1;0;0;19
+60;Les groseilles sont des petites merveilles sucrées.;7;Phrase_628;-;0;0;19
+60;Les groseilles sont mûres.;4;-;6;0;0;19
+60;"En hiver, il n'y a plus de feuilles sur les tilleuls.";11;Phrase_629;-;0;0;19
+60;"À travers le brouillard, j'ai vu le chevreuil bondir.";9;Phrase_630;-;0;0;19
+60;"Pour me réveiller,  Gaëlle m'a jeté un verre d'eau sur la figure. Je suis tout mouillé et fâché.";18;Phrase_631;-;0;0;19
+60;Je suis tout mouillé et fâché.;6;Phrase_632;4;0;0;19
+60;"En taillant la haie, Papa fait fuir les écureuils apeurés.";10;Phrase_633;-;0;0;19
+61;J'ai écouté un merveilleux orchestre.;5;Phrase_634;-;0;0;19
+61;L'orchestre joue.;2;-;-1;0;0;19
+61;Le choeur chante en écho avec l'orchestre.;7;Phrase_635;-;0;0;19
+61;Le choeur chante.;3;-;4;0;0;19
+61;J'ai une bonne technique pour cueillir les groseilles.;8;Phrase_636;-;0;0;19
+61;"Pour ne pas louper la tarte à la citrouille, maman a mis le chronomètre.";14;Phrase_637;-;0;0;19
+61;Ils ont le chronomètre.;4;-;4;0;0;19
+61;"Selon le chrono, j'ai couru plus rapidement que mes copains.";10;Phrase_638;-;0;0;19
+61;J'ai crié dans la grotte pour entendre mon écho.;9;Phrase_639;-;0;0;19
+61;Il entendait son écho.;4;-;-1;0;0;19
+61;Nous avons appris une chorégraphie pour la fête de l'école.;10;Phrase_640;-;0;0;19
+61;Vous avez appris une chorégraphie.;5;-;6;0;0;19
+61;"Avec la chorale, nous avons chanté à un concert.";9;Phrase_641;-;0;0;19
+61;La chorale chante bien.;4;-;-1;0;0;19
+61;Les orchidées de mamie ont de jolies feuilles et de magnifiques fleurs de couleur corail.;15;Phrase_642;-;0;0;19
+61;Les orchidées sont très colorés.;5;-;-1;0;0;19
+62;Le wapiti est un énorme élan.;6;Phrase_643;-;0;0;19
+62;Le wapiti brame.;3;-;4;0;0;19
+62;Le walibi est un petit kangourou.;6;Phrase_644;-;0;0;19
+62;Le walibi mange.;3;-;-1;0;0;19
+62;"Au cinéma avec papa, nous avons vu un western !";10;Phrase_645;-;0;0;19
+62;Ils ont regardé un western.;5;-;-1;0;0;19
+62;"Hier, j'ai mangé des kiwis sur une plage d'Hawaï.";9;Phrase_646;-;0;0;19
+62;Vous mangez des kiwis.;4;-;6;0;0;19
+62;Ils ont la bonne technique.;5;-;6;0;0;19

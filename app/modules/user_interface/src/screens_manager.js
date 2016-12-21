@@ -22,7 +22,7 @@ define([
         this.closeScreens();
         GameStage.getScreensContainer().addChild(pScreen);
         pScreen.open();
-        console.info("[ScreensManager] Screen " + pScreen.constructor.name + " opened.");
+        if (Config.screenManagerLog) console.info("[ScreensManager] Screen " + pScreen.constructor.name + " opened.");
     };
     
     ScreensManager.prototype.closeScreens = function closeScreens () {

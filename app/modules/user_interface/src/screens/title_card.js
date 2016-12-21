@@ -24,12 +24,12 @@ define([
      * @extends Screen
      * @memberof Kalulu.Interface.User.Screens
     **/
-    function TitleCard (interfaceManager) {
+    function TitleCard (userInterface) {
 
         if (Config.enableKaluluGlobalDebug) window.kalulu.TitleCard = this;
         
         Screen.call(this);
-        this._interfaceManager = interfaceManager;
+        this._userInterface = userInterface;
         this.name = "mcTitleCard";
         this.build();
 
@@ -54,7 +54,7 @@ define([
         if (Config.enableTransitionsTuningControls) {
 
             this._guiFolderName = "TitleCard : Play Button Tween";
-            this._gui = this._interfaceManager.debugPanel.addFolder(this._guiFolderName);
+            this._gui = this._userInterface.debugPanel.addFolder(this._guiFolderName);
             this._durationGui = this._gui.addFolder("Duration");
             this._durationGui.add(this, '_tweenDuration').min(0).max(2).step(0.1).listen();
             this._ctrlPointGui = this._gui.addFolder("Control Point");
@@ -121,13 +121,13 @@ define([
 
     TitleCard.prototype.close = function close () {
         if (Config.enableTransitionsTuningControls) {
-            this._interfaceManager.debugPanel.removeFolder(this._guiFolderName);
+            this._userInterface.debugPanel.removeFolder(this._guiFolderName);
         }
         Screen.prototype.close.call(this);
     };
 
     TitleCard.prototype._requestBrainScreen = function _requestBrainScreen () {
-            this._interfaceManager.requestBrainScreen();
+            this._userInterface.requestBrainScreen();
     };
 
     TitleCard.prototype._onGameStageResize = function _onGameStageResize (eventData) {

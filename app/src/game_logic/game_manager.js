@@ -151,6 +151,7 @@
         this._minigamesManager = new MinigamesManager(this);
 
         this._eventSystem.once(Events.APPLICATION.SAVED_DATA_SENT, this._initRemediation, this);
+        
         this._eventSystem.emit(Events.APPLICATION.GET_SAVE, 'UserData');
 
         if (Config.enableQAControls) {

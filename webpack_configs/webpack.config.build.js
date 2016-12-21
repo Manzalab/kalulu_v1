@@ -35,4 +35,5 @@ module.exports = components.mergeConfigs(
 );
 
 console.log('\n Build :');
+console.log(process.env.kaluluLanguage);
 console.log(module.exports);

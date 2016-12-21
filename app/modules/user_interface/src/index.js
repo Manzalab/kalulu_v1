@@ -74,6 +74,92 @@
         // }
     });
 
+    // ##############################################################################################################################################
+    // ###  PUBLIC METHODS  #########################################################################################################################
+    // ##############################################################################################################################################
+    
+    UserInterface.prototype.requestTitleCard = function requestTitleCard () {
+        this._eventSystem.once(Events.GAME.GOTO_TITLE_CARD, this._onGotoTitleCard, this);
+        this._eventSystem.emit(Events.COMMANDS.GOTO_TITLE_CARD_REQUEST);
+    };
+
+    UserInterface.prototype.requestBrainScreen = function requestBrainScreen () {
+        this._eventSystem.once(Events.GAME.GOTO_BRAIN_SCREEN, this._onGotoBrainScreen, this);
+        this._eventSystem.emit(Events.COMMANDS.GOTO_BRAIN_SCREEN_REQUEST);
+    };
+
+    UserInterface.prototype.requestToyChestScreen = function requestToyChestScreen () {
+        this._eventSystem.once(Events.GAME.GOTO_TOYCHEST_SCREEN, this._onGotoToyChestScreen, this);
+        this._eventSystem.once(Events.GAME.KALULU_TOYCHEST_LOCKED, this._onKaluluToyChestLocked, this);
+        this._eventSystem.emit(Events.COMMANDS.GOTO_TOYCHEST_SCREEN_REQUEST);
+    };
+
+    UserInterface.prototype.requestGardenScreen = function requestGardenScreen (gardenId, delay) {
+        console.log("Garden " + gardenId + " requested");
+        this._eventSystem.once(Events.GAME.GOTO_GARDEN_SCREEN, this._onGotoGardenScreen, this);
+        
+        if (typeof delay !== "undefined") {
+            var screenChangeCallback = function () {
+                this._eventSystem.emit(Events.COMMANDS.GOTO_GARDEN_SCREEN_REQUEST, gardenId);
+                
+            }.bind(this);
+
+            setTimeout(function () {
+                
+                this._screensManager.openGardenTransition(screenChangeCallback);
+            }.bind(this), delay);
+        }
+        else {
+            this._eventSystem.emit(Events.COMMANDS.GOTO_GARDEN_SCREEN_REQUEST, gardenId);
+        }
+    };
+
+    UserInterface.prototype.requestLessonScreen = function requestLessonScreen (lessonNode) {
+        
+        this._eventSystem.once(Events.GAME.GOTO_LESSON_SCREEN, this._onGotoLessonScreen, this);
+        this._eventSystem.emit(Events.COMMANDS.GOTO_LESSON_SCREEN_REQUEST, lessonNode);
+    };
+
+    UserInterface.prototype.requestMinigame = function requestMinigame (node) {
+        this._eventSystem.once(Events.GAME.GOTO_ACTIVITY, this._onGotoActivity, this);
+        if (Config.enableQAControls) {
+            this._eventSystem.emit(Events.COMMANDS.GOTO_ACTIVITY_REQUEST, node, this._debugPanel);
+        }
+        else {
+            this._eventSystem.emit(Events.COMMANDS.GOTO_ACTIVITY_REQUEST, node);
+        }
+    };
+
+    UserInterface.prototype.requestBonusMinigame = function requestBonusMinigame (data) {
+        this._eventSystem.once(Events.GAME.GOTO_ACTIVITY, this._onGotoActivity, this);
+        this._eventSystem.emit("BONUS_MINIGAME_REQUEST", data);
+    };
+
+    UserInterface.prototype.requestToyChestActivityScreen = function requestToyChestActivityScreen (activityType) {
+        this._eventSystem.once(Events.GAME.GOTO_TOYCHEST_ACTIVITY_SCREEN, this._onGotoToyChestActivityScreen, this);
+        this._eventSystem.emit(Events.COMMANDS.GOTO_TOYCHEST_ACTIVITY_SCREEN_REQUEST, activityType);
+    };
+
+    UserInterface.prototype.requestAssessment = function requestAssessment (node) {
+        console.log("[UserInterface] Player requested Assessment for Chapter/Garden " + node.chapterNumber);
+        this._eventSystem.emit(Events.COMMANDS.GOTO_ASSESSMENT_REQUEST, node);
+    };
+
+    UserInterface.prototype.destroy = function destroy () {
+        
+        this._eventSystem.off(Events.APPLICATION.MAIN_LOOP, this._renderingLoop, this);
+    };
+
+    UserInterface.prototype.openPopin = function openPopin (pPopin) {
+        
+        this._screensManager.openPopin(pPopin); 
+    };
+
+    UserInterface.prototype.closePopin = function closePopin (pPopin) {
+        
+        this._screensManager.closeCurrentPopin(pPopin);
+    };
+
 
 
     // ##############################################################################################################################################

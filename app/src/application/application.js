@@ -2,16 +2,16 @@
     
     'use strict';
     var EventEmitter       = require ('eventemitter3');
-    var Events             = require ('application/events');
-    // var LocalStorageModule = require ('application/local_storage_module');
-    // var StorageManager     = require ('application/storage_manager');
+    var Events             = require ('./events');
+    var LocalStorageModule = require ('./local_storage_module');
+    var StorageManager     = require ('./storage_manager');
     var GameManager        = require ('game_logic/game_manager');
     var InterfaceManager   = require ('interface/interface_manager');
     var Stats              = require ('stats');
 
 
     // this line can be changed after having another storage module coded with the same interface.
-    // var storage_strategy = new LocalStorageModule(); //@ todo : transfer in config
+    var storage_strategy = new LocalStorageModule(); //@ todo : transfer in config
 
     // ###############################################################################################################################################
     // ###  CONSTRUCTOR  #############################################################################################################################
@@ -142,7 +142,7 @@
         this._eventSystem = new EventEmitter();
         this._eventSystem.name = "Kalulu App Event System";
 
-        // this._storageManager = new StorageManager(storage_strategy);
+        this._storageManager = new StorageManager(storage_strategy);
 
         this._gameManager = new GameManager(this._eventSystem);
 
@@ -170,8 +170,8 @@
         
         this._eventSystem.emit(Events.COMMANDS.BOOT_STATE_REQUEST);
         
-        // this._eventSystem.on(Events.APPLICATION.GET_SAVE, this._onGetSave, this); //@ TODO removeListener
-        // this._eventSystem.on(Events.APPLICATION.SET_SAVE, this._onSetSave, this); //@ TODO removeListener
+        this._eventSystem.on(Events.APPLICATION.GET_SAVE, this._onGetSave, this); //@ TODO removeListener
+        this._eventSystem.on(Events.APPLICATION.SET_SAVE, this._onSetSave, this); //@ TODO removeListener
     };
 
     /**
@@ -193,15 +193,15 @@
     };
 
     Application.prototype._onGetSave = function _onGetSave (userId) {
-        // this._eventSystem.emit(Events.APPLICATION.SAVED_DATA_SENT, this._storageManager.getUserData(userId));
+        this._eventSystem.emit(Events.APPLICATION.SAVED_DATA_SENT, this._storageManager.getUserData(userId));
     };
 
     Application.prototype._onSetSave = function _onSetSave (userData) {
-        // this._eventSystem.emit(Events.APPLICATION.USER_DATA_SAVED, this._storageManager.saveUserData(userData));
+        this._eventSystem.emit(Events.APPLICATION.USER_DATA_SAVED, this._storageManager.saveUserData(userData));
     };
 
     Application.prototype._onSetSave = function _onSetSave (userData) {
-        // this._eventSystem.emit(Events.APPLICATION.USER_DATA_SAVED, this._storageManager.saveUserData(userData));
+        this._eventSystem.emit(Events.APPLICATION.USER_DATA_SAVED, this._storageManager.saveUserData(userData));
     };
 
     Application.prototype._doActionVoid = function _doActionVoid () {};

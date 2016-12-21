@@ -8,4 +8,5 @@ module.exports = components.mergeConfigs(
 );
 
 console.log('\n Test All :');
+console.log(process.env.kaluluLanguage);
 console.log(module.exports);

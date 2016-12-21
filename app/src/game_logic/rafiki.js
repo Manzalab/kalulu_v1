@@ -1,11 +1,12 @@
 define([
-    // 'language/language_module',
+    'language/src'
     // 'mathematics/maths_module'
 ], function (
-    // LanguageModule,
+    LanguageModule
     // MathsModule
 ) {
     'use strict';
+
 
 
     // ###############################################################################################################################################
@@ -49,7 +50,7 @@ define([
          * @type {LanguageModule}
          * @private
         **/
-        // this._languageModule = new LanguageModule(this, Config.languageModule, userProfile);
+        this._languageModule = new LanguageModule(this, userProfile);
 
         /**
          * The interface to access static Mathematics Data

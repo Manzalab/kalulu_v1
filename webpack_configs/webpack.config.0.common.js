@@ -27,7 +27,9 @@ module.exports = components.mergeConfigs(
         },
         module: {
             loaders: [
-                { test: /\.json/, loader: 'json-loader' }
+                { test: /\.json/, loader: 'json-loader' },
+                { test: /\.csv$/, loader: 'dsv-loader', query: {delimiter :";" } }, //will load all .csv files with dsv-loader by default
+
             ]
         },
         plugins : [
@@ -41,5 +43,7 @@ module.exports = components.mergeConfigs(
     components.clean(PATHS.www)
 );
 
+
 console.log('\n Common :');
+console.log(process.env.kaluluLanguage);
 console.log(module.exports);

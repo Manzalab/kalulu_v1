@@ -23,6 +23,7 @@ function TestEnvironment (webpackSpecificConfig) {
     console.log(components);
     this.config = validate(components.mergeConfigs(webpackCommonConfig, webpackSpecificConfig));
     console.log('\n## Test Environment Final Config :');
+    console.log(process.env.kaluluLanguage);
     console.log(this.config);
     console.log('\n\n');
     this.compiler = webpack(this.config);
@@ -39,6 +40,7 @@ function BuildEnvironment (webpackSpecificConfig) {
     
     this.config = validate(components.mergeConfigs(webpackCommonConfig, webpackSpecificConfig));
     console.log('\n## Build Environment Final Config :');
+    console.log(process.env.kaluluLanguage);
     console.log(this.config);
     console.log('\n\n');
     this.compiler = webpack(this.config).run(onComplete);

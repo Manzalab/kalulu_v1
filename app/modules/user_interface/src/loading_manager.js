@@ -119,7 +119,7 @@
         loader.off(LoadEventType.PROGRESS, this._onLoadProgress, this);
 
         var factory = new MovieClipAnimFactory();
-        console.log(loader.getContent(Config.imagesPath, "user_interface/boot_and_title/title_card.json"));
+        
         factory.addTextures(loader.getContent(Config.imagesPath, "user_interface/global_ui.json"));
         factory.addTextures(loader.getContent(Config.imagesPath, "user_interface/garden_transition/garden_transition_1.json"));
         factory.addTextures(loader.getContent(Config.imagesPath, "user_interface/garden_transition/garden_transition_2.json"));

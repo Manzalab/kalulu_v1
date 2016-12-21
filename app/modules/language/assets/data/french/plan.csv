@@ -1,0 +1,66 @@
+LESSON NUMBER;SECTOR NUMBER;NOTION ID;LECTURE VIDEO;LECTURE IMAGE;LECTURE TRACING;MINIGAME 1 SETUP;MINIGAME 2 SETUP;MINIGAME 3 SETUP
+1;1;["a-a"];true;true;true;letters_jellyfishes;letters_jellyfishes;
+2;1;["é-e"];true;true;true;letters_jellyfishes;letters_crabs_catcher;letters_memory
+3;1;"["i-i", "i-j"]";true;true;true;letters_jellyfishes;letters_crabs_catcher;letters_memory
+4;1;"["o-o", "ô-o"]";true;true;true;letters_jellyfishes;letters_crabs_catcher;letters_memory
+5;2;"["u-y", "u-8", "û-u"]";true;true;true;letters_jellyfishes;letters_crabs_catcher;letters_memory
+6;2;["e-*"];true;true;true;letters_jellyfishes;letters_crabs_catcher;letters_memory
+7;2;["y-i"];true;true;true;letters_jellyfishes;letters_crabs_catcher;letters_memory
+8;3;"["l-l", "ll-l"]";true;true;true;letters_jellyfishes;letters_cocolision;letters_crabs_catcher
+9;3;"["m-m", "mm-m"]";true;true;true;letters_crabs_catcher;letters_cocolision;letters_memory
+10;3;"["s-s", "ss-s"]";true;true;true;letters_crabs_catcher;letters_cocolision;letters_memory
+11;3;"["r-R", "rr-R"]";true;true;true;letters_crabs_catcher;letters_cocolision;letters_missing_words
+12;4;"["ou-u","oû-u"]";true;true;true;letters_jellyfishes;letters_cocolision;letters_missing_words
+13;4;"["e-#", "s-#", "t-#", "x-#"]";true;true;true;letters_penguin_orchestraPart1;letters_cocolision;letters_penguin_orchestraPart2
+14;4;["j-Z"];true;true;true;letters_crabs_catcher;letters_cocolision;letters_frogger
+15;5;"["f-f", "ff-f"]";true;true;true;letters_cocolision;letters_frogger;letters_missing_words
+16;5;["v-v"];true;true;true;letters_crabs_catcher;letters_cocolision;letters_memory
+17;5;["eu-2"];true;true;true;letters_jellyfishes;letters_frogger;letters_frogger
+18;5;"["eu-9", "ue-9"]";true;true;true;letters_crabs_catcher;letters_cocolision;letters_missing_words
+19;6;"["z-z", "zz-z"]";true;true;true;letters_cocolision;letters_frogger;letters_missing_words
+20;6;["ch-S"];true;true;true;letters_frogger;letters_cocolision;letters_missing_words
+21;6;"["n-n", "nn-n"]";true;true;true;letters_jellyfishes;letters_memory;letters_only_one
+22;6;["un-1"];true;true;true;letters_jellyfishes;letters_cocolision;letters_only_one
+23;7;"["t-t", "tt-t"]";true;true;true;letters_crabs_catcher;letters_cocolision;letters_caterpillar
+24;7;"["d-d", "dd-d"]";true;true;true;letters_crabs_catcher;letters_frogger;letters_only_one
+25;7;"["c-k", "cc-k"]";true;true;true;letters_cocolision;letters_caterpillar;letters_missing_words
+26;7;"["p-p", "pp-p"]";true;true;true;letters_frogger;letters_memory;letters_missing_words
+27;8;"["q-k", "qu-k"]";true;true;true;letters_crabs_catcher;letters_turtles_captain;letters_missing_words
+28;8;"["b-b", "b-p"]";true;true;true;letters_cocolision;letters_caterpillar;letters_only_one
+29;8;"["g-g", "gu-g", "ge-g"]";true;true;true;letters_jellyfishes;letters_frogger;letters_missing_words
+30;8;"["k-k", "ck-k"]";true;true;true;letters_memory;letters_turtles_captain;letters_only_one
+31;9;["et-E"];true;true;true;letters_jellyfishes;letters_only_one;letters_caterpillar
+32;9;["s-z"];true;true;true;letters_cocolision;letters_turtles_captain;letters_only_one
+33;9;"["es-E","est-E"]";true;true;true;letters_cocolision;letters_caterpillar;letters_missing_words
+34;9;["ent-#"];true;true;true;letters_penguin_orchestraPart1;letters_missing_words;letters_penguin_orchestraPart2
+35;10;"["an-@", "am-@"]";true;true;true;letters_jellyfishes;letters_cocolision;letters_turtles_captain
+36;10;"["en-@", "em-@"]";true;true;true;letters_jellyfishes;letters_frogger;letters_missing_words
+37;10;"["on-§", "om-§"]";true;true;true;letters_crabs_catcher;letters_caterpillar;letters_missing_words
+38;11;"["in-5", "im-5", "ym-5"]";true;true;true;letters_jellyfishes;letters_missing_words;letters_turtles_captain
+39;11;["oi-wa"];true;true;true;letters_crabs_catcher;letters_cocolision;letters_caterpillar
+40;11;["oin-w5"];true;true;true;letters_crabs_catcher;letters_frogger;letters_only_one
+41;12;["à-a"];true;true;true;letters_crabs_catcher;letters_cocolision;letters_only_one
+42;13;["â-A"];true;true;true;letters_jellyfishes;letters_memory;letters_missing_words
+43;13;"["au-O", "eau-O"]";true;true;true;letters_jellyfishes;letters_frogger;letters_only_one
+44;13;"["è-E", "ê-E", "ë-E"]";true;true;true;letters_crabs_catcher;letters_cocolision;letters_caterpillar
+45;13;["oeu-9"];true;true;true;letters_jellyfishes;letters_cocolision;letters_missing_words
+46;14;"["d-#", "p-#", "c-#", "l-#", "g-#", "z-#"]";true;true;true;letters_penguin_orchestraPart1;letters_missing_words;letters_penguin_orchestraPart2
+47;14;["gn-N"];true;true;true;letters_cocolision;letters_turtles_captain;letters_only_one
+48;14;["e-E"];true;true;true;letters_cocolision;letters_frogger;letters_missing_words
+49;15;"["ai-E", "aî-E", "ei-E"]";true;true;true;letters_jellyfishes;letters_cocolision;letters_caterpillar
+50;15;"["ez-e", "er-e"]";true;true;true;letters_frogger;letters_turtles_captain;letters_missing_words
+51;16;["h-#"];true;true;true;letters_penguin_orchestraPart1;letters_missing_words;letters_penguin_orchestraPart2
+52;16;["ph-f"];true;true;true;letters_cocolision;letters_caterpillar;letters_only_one
+53;16;"["ç-s", "cc-ks", "c-s", "sc-s"]";true;true;true;letters_crabs_catcher;letters_cocolision;letters_only_one
+54;17;["g-Z"];true;true;true;letters_crabs_catcher;letters_cocolision;letters_missing_words
+55;17;"["x-ks", "x-gs", "x-gz"]";true;true;true;letters_frogger;letters_memory;letters_only_one
+56;18;"["ain-5", "aim-5"]";true;true;true;letters_jellyfishes;letters_caterpillar;letters_missing_words
+57;18;["ien-j5"];true;true;true;letters_cocolision;letters_turtles_captain;letters_missing_words
+58;18;["ti-si"];true;true;true;letters_cocolision;letters_caterpillar;letters_missing_words
+59;18;["y-Y"];true;true;true;letters_memory;letters_turtles_captain;letters_frogger
+60;19;["oy-waj"];true;true;true;letters_crabs_catcher;letters_frogger;letters_missing_words
+61;19;["ay-Ey"];true;true;true;letters_cocolision;letters_turtles_captain;letters_only_one
+63;19;["ill-ij"];true;true;true;letters_cocolision;letters_caterpillar;letters_only_one
+62;20;"["ill-j", ""il-j"]";true;true;true;letters_turtles_captain;letters_caterpillar;letters_missing_words
+64;20;["ch-k"];true;true;true;letters_frogger;letters_turtles_captain;letters_missing_words
+65;20;["w-w"];true;true;true;letters_memory;letters_caterpillar;letters_missing_words

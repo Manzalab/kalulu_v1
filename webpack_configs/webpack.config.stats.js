@@ -6,4 +6,5 @@ console.log(build);
 module.exports = build;
 
 // console.log('\n Stats :');
+// console.log(process.env.kaluluLanguage);
 // console.log(module.exports);

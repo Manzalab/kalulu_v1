@@ -4,7 +4,8 @@
         "stats"                   : true,
         "logGameStates"           : true,
         "authoritativeSystemInfo" : false,
-        "logLoading"              : true
+        "logLoading"              : false,
+        "screenManagerLog"        : false
     },
     "paths" : {
         "imagesPath" : "assets/images/",
