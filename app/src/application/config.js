@@ -15,6 +15,11 @@
         authoritativeSystemInfo : { get : function () { return this._config.debug.authoritativeSystemInfo; }},
         logLoading              : { get : function () { return this._config.debug.logLoading; }},
         screenManagerLog        : { get : function () { return this._config.debug.screenManagerLog; }},
+        debugPlanConstruction   : { get : function () { return this._config.debug.debugPlanConstruction; }},
+        enableTransitionsTuning : { get : function () { return this._config.debug.enableTransitionsTuning; }},
+        enableMinigameTuning    : { get : function () { return this._config.debug.enableMinigameTuning; }},
+        enableQAControls        : { get : function () { return this._config.debug.enableQAControls; }},
+
         // paths
         paths                   : { get : function () { return this._config.paths; }},
         imagesPath              : { get : function () { return this._config.paths.imagesPath; }},

@@ -5,7 +5,11 @@
         "logGameStates"           : true,
         "authoritativeSystemInfo" : false,
         "logLoading"              : false,
-        "screenManagerLog"        : false
+        "screenManagerLog"        : false,
+        "debugPlanConstruction"   : false,
+        "enableTransitionsTuning" : true,
+        "enableMinigameTuning"    : false,
+        "enableQAControls"        : false
     },
     "paths" : {
         "imagesPath" : "assets/images/",

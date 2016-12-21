@@ -106,7 +106,7 @@ define([
                         this._modalZone.on(TouchEventType.TAP, this._stopPropagation, this);
                         this._positionables.unshift({ item:this._modalZone, align:UIPositions.FIT_SCREEN, offsetX:0, offsetY:0});
                         
-                        if (Config.enableKaluluGlobalDebug) window.kalulu[Object.getPrototypeOf(this).constructor.name + "_modal"] = this._modalZone;
+                        if (Config.enableGlobalVars) window.kalulu[Object.getPrototypeOf(this).constructor.name + "_modal"] = this._modalZone;
                     }
                     if (this.parent !== null) {
                         this.parent.addChildAt(this._modalZone, this.parent.getChildIndex(this));

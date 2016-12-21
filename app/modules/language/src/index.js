@@ -112,7 +112,7 @@
 
         this._matrix = this._initLettersSimilarityMatrix(staticData.lettersSimilarity);
 
-        if (Config.enableKaluluGlobalDebug) window.kalulu.languageModule = this;
+        if (Config.enableGlobalVars) window.kalulu.languageModule = this;
     }
 
 
@@ -430,7 +430,7 @@
                 // console.log("after parseFloat : " + lVector[element2]);
             }
         }
-        if (Config.enableKaluluGlobalDebug) window.kalulu.lettersSimilarityMatrix = lMatrix;
+        if (Config.enableGlobalVars) window.kalulu.lettersSimilarityMatrix = lMatrix;
         return lMatrix;
     };
 
@@ -447,7 +447,7 @@
             var lGP = new GP(gpArray[i], this);
             gpList[lGP.id] = lGP;
         }
-        if (Config.enableKaluluGlobalDebug) window.kalulu.languageGpList = gpList;
+        if (Config.enableGlobalVars) window.kalulu.languageGpList = gpList;
         return gpList;
     };
 
@@ -465,7 +465,7 @@
             lDistractorSyllable = new Word(wordsArray[i], this);
             wordList[lDistractorSyllable.id] = lDistractorSyllable;
         }
-        if (Config.enableKaluluGlobalDebug) window.kalulu.languageWordList = wordList;
+        if (Config.enableGlobalVars) window.kalulu.languageWordList = wordList;
 
         return wordList;
     };
@@ -503,7 +503,7 @@
         //     if (!syllablesList.hasOwnProperty(lessonIndex)) console.info('[LanguageModule] No Syllable available for lesson ' + lessonIndex);
         // }
 
-        if (Config.enableKaluluGlobalDebug) window.kalulu.syllableGamesShortList = syllablesList;
+        if (Config.enableGlobalVars) window.kalulu.syllableGamesShortList = syllablesList;
         return syllablesList;
     };
 
@@ -528,7 +528,7 @@
             }
         }
         
-        if (Config.enableKaluluGlobalDebug) window.kalulu.wordGamesShortList = wordsList;
+        if (Config.enableGlobalVars) window.kalulu.wordGamesShortList = wordsList;
         return wordsList;
     };
 
@@ -545,7 +545,7 @@
             lGpList[lGP.lesson][lGP.id] = lGP;
         }
         
-        if (Config.enableKaluluGlobalDebug) window.kalulu.wordGamesGPList = lGpList;
+        if (Config.enableGlobalVars) window.kalulu.wordGamesGPList = lGpList;
         return lGpList;
     };
 

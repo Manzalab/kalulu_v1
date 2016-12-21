@@ -26,9 +26,11 @@ define([
      * @param discipline {DisciplineModule} the discipline this plan is attached to
     **/
     function Plan (userProfile, rawData, discipline) {
+        if (Config.debugPlanConstruction) {
+            console.log(rawData);
+            console.log(discipline);            
+        }
 
-        // console.log(rawData);
-        // console.log(discipline);
 
         // INIT OF PLAN
 
@@ -45,8 +47,8 @@ define([
             children    : []
         };
 
-        var cumulbyLesson = {}
-        var AllNotions = ['forward','oneby']
+        var cumulbyLesson = {};
+        var AllNotions = ['forward','oneby'];
         
 
         // for each line (corresponding to a lesson)
@@ -60,9 +62,9 @@ define([
             var lLessonNotionId = lLessonRawData["NOTION ID"];
             
 
-            var lnotions = AllNotions.concat(lLessonNotionId)
+            var lnotions = AllNotions.concat(lLessonNotionId);
             // console.log(lnotions)
-            this.AllNotions =  lnotions
+            this.AllNotions =  lnotions;
 
             if (!plan.children[lChapterNumber - 1]) {
                 plan.children[lChapterNumber - 1] = {
@@ -70,11 +72,11 @@ define([
                     ChapterNumber : lChapterNumber,
                     children : []
                 };
-                //console.log("added " + lChapterId + " to plan");
+                if (Config.debugPlanConstruction) console.log("added " + lChapterId + " to plan");
             }
             if (!cumulbyLesson[lLessonNumber]) cumulbyLesson[lLessonNumber] = lnotions;
 
-            AllNotions = lnotions
+            AllNotions = lnotions;
 
             plan.children[lChapterNumber - 1].children.push(lLessonRawData);
         }
@@ -196,9 +198,9 @@ define([
 
     // PRIVATE METHODS
     Plan.prototype._createChildren = function _createChildren (children) {
-        //console.log(children);
+        if (Config.debugPlanConstruction) console.log(children);
         this._children = [];
-        for (var i = 0 ; i< children.length ; i++) {
+        for (var i = 0 ; i < children.length ; i++) {
             
             this._children.push(new Chapter(this._userProfile, children[i], this));
         }

@@ -25,7 +25,7 @@
 
         require.ensure([], function () {
             var interfaceModule = require('modules/user_interface/src');
-            console.log(Events);
+            
             this._interface = new interfaceModule(eventSystem, Events);
             console.log('Interface Module Loaded');
             this._eventSystem.emit(Events.APPLICATION.INTERFACE_MANAGER_READY);

@@ -21,12 +21,26 @@
 
 
         // patchPIXI();
-
+        patchDat();
         var app = new Application();
         app.initAndStart();
     });
 })();
 
+
+function patchDat () {
+
+    Dat.GUI.prototype.removeFolder =  function removeFolder (name) {
+    var folder = this.__folders[name];
+    if (!folder) {
+      return;
+    }
+    folder.close();
+    this.__ul.removeChild(folder.domElement.parentNode);
+    delete this.__folders[name];
+    this.onResize();
+  };
+}
 
 function patchPIXI () {
     //patching PIXI waiting for update

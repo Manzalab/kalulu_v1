@@ -53,7 +53,7 @@
          * @memberof Kalulu.GameLogic.GameStates#
          * @readonly
         **/
-        // ACTIVITY: { get: function () { return "ACTIVITY"; } },
+        ACTIVITY: { get: function () { return "ACTIVITY"; } },
         
         /**
          * The string Id of the State MathsDebug

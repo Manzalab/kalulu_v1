@@ -75,21 +75,21 @@
 
         this.gameUI = game.add.group();
 
-        this.quitButton = game.add.button(0, 0, 'ui', this.onClickOnQuitPopupButton, this, 'ile_ON', 'ile_ON', 'ile_OFF', 'ile_ON');
+        this.quitButton = game.add.button(0, 0, 'common/src/ui', this.onClickOnQuitPopupButton, this, 'ile_ON', 'ile_ON', 'ile_OFF', 'ile_ON');
         this.quitButton.frameName = 'ile_OFF';
         this.quitButton.height = BUTTON_DIM;
         this.quitButton.width = BUTTON_DIM;
         this.quitButton.anchor.setTo(0, 0);
         this.gameUI.add(this.quitButton);
 
-        this.conchButton = game.add.button(0, game.height / 2, 'ui', this.onClickOnConchButton, this, 'conque-ON', 'conque-ON', 'conque-OFF', 'conque-ON');
+        this.conchButton = game.add.button(0, game.height / 2, 'common/src/ui', this.onClickOnConchButton, this, 'conque-ON', 'conque-ON', 'conque-OFF', 'conque-ON');
         this.conchButton.frameName = 'conque-OFF';
         this.conchButton.height = BUTTON_DIM;
         this.conchButton.width = BUTTON_DIM;
         this.conchButton.anchor.setTo(0, 0.5);
         this.gameUI.add(this.conchButton);
 
-        this.kaluluButton = game.add.button(0, game.height, 'ui', this.onClickOnKaluluButton, this, 'toucan_ON', 'toucan_ON', 'toucan_OFF', 'toucan_ON');
+        this.kaluluButton = game.add.button(0, game.height, 'common/src/ui', this.onClickOnKaluluButton, this, 'toucan_ON', 'toucan_ON', 'toucan_OFF', 'toucan_ON');
         this.kaluluButton.frameName = 'toucan_OFF';
         this.kaluluButton.height = BUTTON_DIM;
         this.kaluluButton.width = BUTTON_DIM;
@@ -101,7 +101,7 @@
          * @private
          **/
         if (this.features.centralConch) {
-            this.centralConchButton = game.add.button(game.width / 2, game.height / 2, 'ui', this.onClickOnCentralConchButton, this, 'conque', 'conque', 'conque', 'conque');
+            this.centralConchButton = game.add.button(game.width / 2, game.height / 2, 'common/src/ui', this.onClickOnCentralConchButton, this, 'conque', 'conque', 'conque', 'conque');
             this.centralConchButton.x -= this.centralConchButton.width / 2;
             this.centralConchButton.anchor.setTo(0, 0.5);
             this.centralConchButton.visible = false;
@@ -125,19 +125,19 @@
         this.quitPopup.x = game.world.centerX;
         this.quitPopup.y = game.world.centerY;
 
-        this.quitPopupBackground = this.quitPopup.create(0, 0, 'ui', 'fond_validation');
+        this.quitPopupBackground = this.quitPopup.create(0, 0, 'common/src/ui', 'fond_validation');
         this.quitPopupBackground.anchor.setTo(0.5, 0.5);
         this.quitPopupBackground.width = 1280;
         this.quitPopupBackground.height = 800;
 
-        this.quitPopupValidateButton = game.add.button(this.quitPopupBackground.width / 2 - 30, this.quitPopupBackground.height / 2 - 20, 'ui', this.onClickOnQuitButton, this);
+        this.quitPopupValidateButton = game.add.button(this.quitPopupBackground.width / 2 - 30, this.quitPopupBackground.height / 2 - 20, 'common/src/ui', this.onClickOnQuitButton, this);
         this.quitPopupValidateButton.frameName = 'retour_valider';
         this.quitPopupValidateButton.height = BUTTON_DIM;
         this.quitPopupValidateButton.width = BUTTON_DIM;
         this.quitPopupValidateButton.anchor.setTo(1, 1);
         this.quitPopup.add(this.quitPopupValidateButton);
 
-        this.quitPopupCancelButton = game.add.button(-this.quitPopupBackground.width / 2 + 30, this.quitPopupBackground.height / 2 - 20, 'ui', this.onClickOnQuitPopupCancelButton, this);
+        this.quitPopupCancelButton = game.add.button(-this.quitPopupBackground.width / 2 + 30, this.quitPopupBackground.height / 2 - 20, 'common/src/ui', this.onClickOnQuitPopupCancelButton, this);
         this.quitPopupCancelButton.frameName = 'retour_annuler';
         this.quitPopupCancelButton.height = BUTTON_DIM;
         this.quitPopupCancelButton.width = BUTTON_DIM;
@@ -185,7 +185,7 @@
         this.gameOverScreen.x = game.width;
         this.gameOverScreen.y = game.height;
 
-        this.gameOverScreenQuitButton = game.add.button(0, 0, 'ui', this.onClickOnQuitButton, this, 'suite_ON', 'suite_ON', 'suite_OFF', 'suite_ON');
+        this.gameOverScreenQuitButton = game.add.button(0, 0, 'common/src/ui', this.onClickOnQuitButton, this, 'suite_ON', 'suite_ON', 'suite_OFF', 'suite_ON');
         this.gameOverScreenQuitButton.frameName = 'suite_ON';
         this.gameOverScreenQuitButton.height = BUTTON_DIM;
         this.gameOverScreenQuitButton.width = BUTTON_DIM;
@@ -193,7 +193,7 @@
         this.gameOverScreen.add(this.gameOverScreenQuitButton);
 
         if (this.features.replay) {
-            this.gameOverScreenReplayButton = game.add.button(-BUTTON_DIM, 0, 'ui', this.onClickOnGameOverScreenReplayButton, this, 'replay_ON', 'replay_ON', 'replay_OFF', 'replay_ON');
+            this.gameOverScreenReplayButton = game.add.button(-BUTTON_DIM, 0, 'common/src/ui', this.onClickOnGameOverScreenReplayButton, this, 'replay_ON', 'replay_ON', 'replay_OFF', 'replay_ON');
             this.gameOverScreenReplayButton.frameName = 'replay_ON';
             this.gameOverScreenReplayButton.visible = false;
             this.gameOverScreenReplayButton.height = BUTTON_DIM;

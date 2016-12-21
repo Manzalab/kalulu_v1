@@ -1,0 +1,121 @@
+{
+  "frames": {
+    "FX_Nenuphar_0000": {
+      "frame": {
+        "x": 257,
+        "y": 514,
+        "w": 256,
+        "h": 256
+      },
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "FX_Nenuphar_0001": {
+      "frame": {
+        "x": 0,
+        "y": 257,
+        "w": 256,
+        "h": 256
+      },
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "FX_Nenuphar_0002": {
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "FX_Nenuphar_0003": {
+      "frame": {
+        "x": 0,
+        "y": 514,
+        "w": 256,
+        "h": 256
+      },
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "Nenuphar_clicable": {
+      "frame": {
+        "x": 257,
+        "y": 257,
+        "w": 256,
+        "h": 256
+      },
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "Nenuphar_non_clicable": {
+      "frame": {
+        "x": 257,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    }
+
+  },
+  "meta": {
+    "image": "lillypad",
+    "size": {
+      "w": 514,
+      "h": 771
+    },
+    "scale": "1"
+  }
+}

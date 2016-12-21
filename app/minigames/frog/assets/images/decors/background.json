@@ -1,0 +1,103 @@
+{
+  "frames": {
+    "Background_frogger": {
+      "frame": {
+        "x": 0,
+        "y": 1025,
+        "w": 1024,
+        "h": 512
+      },
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 1024,
+        "h": 512
+      },
+      "sourceSize": {
+        "w": 1024,
+        "h": 512
+      }
+    },
+    "riviere": {
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 1024,
+        "h": 1024
+      },
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 1024,
+        "h": 1024
+      },
+      "sourceSize": {
+        "w": 1024,
+        "h": 1024
+      }
+    },
+    "rocher": {
+      "frame": {
+        "x": 1025,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "roseau01": {
+      "frame": {
+        "x": 1025,
+        "y": 514,
+        "w": 128,
+        "h": 256
+      },
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 128,
+        "h": 256
+      },
+      "sourceSize": {
+        "w": 128,
+        "h": 256
+      }
+    },
+    "roseau02": {
+      "frame": {
+        "x": 1025,
+        "y": 257,
+        "w": 256,
+        "h": 256
+      },
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    }
+
+  },
+  "meta": {
+    "image": "background",
+    "size": {
+      "w": 1282,
+      "h": 1538
+    },
+    "scale": "1"
+  }
+}

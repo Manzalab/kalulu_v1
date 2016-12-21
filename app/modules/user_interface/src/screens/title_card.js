@@ -26,7 +26,7 @@ define([
     **/
     function TitleCard (userInterface) {
 
-        if (Config.enableKaluluGlobalDebug) window.kalulu.TitleCard = this;
+        if (Config.enableGlobalVars) window.kalulu.TitleCard = this;
         
         Screen.call(this);
         this._userInterface = userInterface;
@@ -92,7 +92,7 @@ define([
         
         // SoundManager.addAmbiance("Bird", ["bird_1","bird_2","bird_3","bird_4","bird_5","bird_6","bird_7","bird_8","bird_9"]);
         // SoundManager.startAmbiance("Bird");
-        console.log(createjs);
+        
         createjs.Tween.get(this._playButton.scale).to({x: this._targetScale, y: this._targetScale}, this._tweenDuration * 1000, createjs.Ease.linear());
 
         // var oldGuide = {

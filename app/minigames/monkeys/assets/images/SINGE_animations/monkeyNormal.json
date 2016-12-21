@@ -1,0 +1,250 @@
+{
+"frames": {
+	"SINGE_Idle01_0000": {
+		"frame": {"x":820, "y":615, "w":204, "h":204},
+		"spriteSourceSize": {"x":0,"y":0,"w":204,"h":204},
+		"sourceSize": {"w":204,"h":204}
+	},
+	"SINGE_Idle01_0001": {
+		"frame": {"x":820, "y":410, "w":204, "h":204},
+		"spriteSourceSize": {"x":0,"y":0,"w":204,"h":204},
+		"sourceSize": {"w":204,"h":204}
+	},
+	"SINGE_Idle01_0002": {
+		"frame": {"x":820, "y":205, "w":204, "h":204},
+		"spriteSourceSize": {"x":0,"y":0,"w":204,"h":204},
+		"sourceSize": {"w":204,"h":204}
+	},
+	"SINGE_Idle01_0003": {
+		"frame": {"x":820, "y":0, "w":204, "h":204},
+		"spriteSourceSize": {"x":0,"y":0,"w":204,"h":204},
+		"sourceSize": {"w":204,"h":204}
+	},
+	"SINGE_Idle01_0004": {
+		"frame": {"x":615, "y":1230, "w":204, "h":204},
+		"spriteSourceSize": {"x":0,"y":0,"w":204,"h":204},
+		"sourceSize": {"w":204,"h":204}
+	},
+	"SINGE_Idle01_0005": {
+		"frame": {"x":615, "y":1025, "w":204, "h":204},
+		"spriteSourceSize": {"x":0,"y":0,"w":204,"h":204},
+		"sourceSize": {"w":204,"h":204}
+	},
+	"SINGE_Idle_noixdecoco01_0000": {
+		"frame": {"x":1230, "y":205, "w":204, "h":204},
+		"spriteSourceSize": {"x":0,"y":0,"w":204,"h":204},
+		"sourceSize": {"w":204,"h":204}
+	},
+	"SINGE_Idle_noixdecoco01_0001": {
+		"frame": {"x":1230, "y":0, "w":204, "h":204},
+		"spriteSourceSize": {"x":0,"y":0,"w":204,"h":204},
+		"sourceSize": {"w":204,"h":204}
+	},
+	"SINGE_Idle_noixdecoco01_0002": {
+		"frame": {"x":1025, "y":1230, "w":204, "h":204},
+		"spriteSourceSize": {"x":0,"y":0,"w":204,"h":204},
+		"sourceSize": {"w":204,"h":204}
+	},
+	"SINGE_Idle_noixdecoco01_0003": {
+		"frame": {"x":1025, "y":1025, "w":204, "h":204},
+		"spriteSourceSize": {"x":0,"y":0,"w":204,"h":204},
+		"sourceSize": {"w":204,"h":204}
+	},
+	"SINGE_Idle_noixdecoco01_0004": {
+		"frame": {"x":1025, "y":820, "w":204, "h":204},
+		"spriteSourceSize": {"x":0,"y":0,"w":204,"h":204},
+		"sourceSize": {"w":204,"h":204}
+	},
+	"SINGE_Idle_noixdecoco01_0005": {
+		"frame": {"x":1025, "y":615, "w":204, "h":204},
+		"spriteSourceSize": {"x":0,"y":0,"w":204,"h":204},
+		"sourceSize": {"w":204,"h":204}
+	},
+	"SINGE_idle_etourdi_0000": {
+		"frame": {"x":0, "y":205, "w":204, "h":204},
+		"spriteSourceSize": {"x":0,"y":0,"w":204,"h":204},
+		"sourceSize": {"w":204,"h":204}
+	},
+	"SINGE_idle_etourdi_0001": {
+		"frame": {"x":0, "y":0, "w":204, "h":204},
+		"spriteSourceSize": {"x":0,"y":0,"w":204,"h":204},
+		"sourceSize": {"w":204,"h":204}
+	},
+	"SINGE_idle_etourdi_0002": {
+		"frame": {"x":615, "y":410, "w":204, "h":204},
+		"spriteSourceSize": {"x":0,"y":0,"w":204,"h":204},
+		"sourceSize": {"w":204,"h":204}
+	},
+	"SINGE_idle_etourdi_0003": {
+		"frame": {"x":1230, "y":820, "w":204, "h":204},
+		"spriteSourceSize": {"x":0,"y":0,"w":204,"h":204},
+		"sourceSize": {"w":204,"h":204}
+	},
+	"SINGE_idle_etourdi_0004": {
+		"frame": {"x":1230, "y":615, "w":204, "h":204},
+		"spriteSourceSize": {"x":0,"y":0,"w":204,"h":204},
+		"sourceSize": {"w":204,"h":204}
+	},
+	"SINGE_idle_etourdi_0005": {
+		"frame": {"x":1230, "y":410, "w":204, "h":204},
+		"spriteSourceSize": {"x":0,"y":0,"w":204,"h":204},
+		"sourceSize": {"w":204,"h":204}
+	},
+	"SINGE_impact_0000": {
+		"frame": {"x":410, "y":1025, "w":204, "h":204},
+		"spriteSourceSize": {"x":0,"y":0,"w":204,"h":204},
+		"sourceSize": {"w":204,"h":204}
+	},
+	"SINGE_impact_0001": {
+		"frame": {"x":410, "y":820, "w":204, "h":204},
+		"spriteSourceSize": {"x":0,"y":0,"w":204,"h":204},
+		"sourceSize": {"w":204,"h":204}
+	},
+	"SINGE_impact_0002": {
+		"frame": {"x":410, "y":615, "w":204, "h":204},
+		"spriteSourceSize": {"x":0,"y":0,"w":204,"h":204},
+		"sourceSize": {"w":204,"h":204}
+	},
+	"SINGE_impact_0003": {
+		"frame": {"x":410, "y":410, "w":204, "h":204},
+		"spriteSourceSize": {"x":0,"y":0,"w":204,"h":204},
+		"sourceSize": {"w":204,"h":204}
+	},
+	"SINGE_lance_0000": {
+		"frame": {"x":410, "y":205, "w":204, "h":204},
+		"spriteSourceSize": {"x":0,"y":0,"w":204,"h":204},
+		"sourceSize": {"w":204,"h":204}
+	},
+	"SINGE_lance_0001": {
+		"frame": {"x":410, "y":0, "w":204, "h":204},
+		"spriteSourceSize": {"x":0,"y":0,"w":204,"h":204},
+		"sourceSize": {"w":204,"h":204}
+	},
+	"SINGE_lance_0002": {
+		"frame": {"x":205, "y":1230, "w":204, "h":204},
+		"spriteSourceSize": {"x":0,"y":0,"w":204,"h":204},
+		"sourceSize": {"w":204,"h":204}
+	},
+	"SINGE_lance_0003": {
+		"frame": {"x":205, "y":1025, "w":204, "h":204},
+		"spriteSourceSize": {"x":0,"y":0,"w":204,"h":204},
+		"sourceSize": {"w":204,"h":204}
+	},
+	"SINGE_lance_0004": {
+		"frame": {"x":205, "y":820, "w":204, "h":204},
+		"spriteSourceSize": {"x":0,"y":0,"w":204,"h":204},
+		"sourceSize": {"w":204,"h":204}
+	},
+	"SINGE_lance_0005": {
+		"frame": {"x":205, "y":615, "w":204, "h":204},
+		"spriteSourceSize": {"x":0,"y":0,"w":204,"h":204},
+		"sourceSize": {"w":204,"h":204}
+	},
+	"SINGE_prononce_0000": {
+		"frame": {"x":205, "y":410, "w":204, "h":204},
+		"spriteSourceSize": {"x":0,"y":0,"w":204,"h":204},
+		"sourceSize": {"w":204,"h":204}
+	},
+	"SINGE_prononce_0001": {
+		"frame": {"x":205, "y":205, "w":204, "h":204},
+		"spriteSourceSize": {"x":0,"y":0,"w":204,"h":204},
+		"sourceSize": {"w":204,"h":204}
+	},
+	"SINGE_prononce_0002": {
+		"frame": {"x":205, "y":0, "w":204, "h":204},
+		"spriteSourceSize": {"x":0,"y":0,"w":204,"h":204},
+		"sourceSize": {"w":204,"h":204}
+	},
+	"SINGE_prononce_0003": {
+		"frame": {"x":0, "y":1230, "w":204, "h":204},
+		"spriteSourceSize": {"x":0,"y":0,"w":204,"h":204},
+		"sourceSize": {"w":204,"h":204}
+	},
+	"SINGE_recupere_noixdecoco_0000": {
+		"frame": {"x":0, "y":1025, "w":204, "h":204},
+		"spriteSourceSize": {"x":0,"y":0,"w":204,"h":204},
+		"sourceSize": {"w":204,"h":204}
+	},
+	"SINGE_recupere_noixdecoco_0001": {
+		"frame": {"x":0, "y":820, "w":204, "h":204},
+		"spriteSourceSize": {"x":0,"y":0,"w":204,"h":204},
+		"sourceSize": {"w":204,"h":204}
+	},
+	"SINGE_recupere_noixdecoco_0002": {
+		"frame": {"x":0, "y":615, "w":204, "h":204},
+		"spriteSourceSize": {"x":0,"y":0,"w":204,"h":204},
+		"sourceSize": {"w":204,"h":204}
+	},
+	"SINGE_recupere_noixdecoco_0003": {
+		"frame": {"x":0, "y":410, "w":204, "h":204},
+		"spriteSourceSize": {"x":0,"y":0,"w":204,"h":204},
+		"sourceSize": {"w":204,"h":204}
+	},
+	"Singe_Idle02_0000": {
+		"frame": {"x":615, "y":820, "w":204, "h":204},
+		"spriteSourceSize": {"x":0,"y":0,"w":204,"h":204},
+		"sourceSize": {"w":204,"h":204}
+	},
+	"Singe_Idle02_0001": {
+		"frame": {"x":615, "y":615, "w":204, "h":204},
+		"spriteSourceSize": {"x":0,"y":0,"w":204,"h":204},
+		"sourceSize": {"w":204,"h":204}
+	},
+	"Singe_Idle02_0002": {
+		"frame": {"x":1230, "y":1025, "w":204, "h":204},
+		"spriteSourceSize": {"x":0,"y":0,"w":204,"h":204},
+		"sourceSize": {"w":204,"h":204}
+	},
+	"Singe_Idle02_0003": {
+		"frame": {"x":615, "y":205, "w":204, "h":204},
+		"spriteSourceSize": {"x":0,"y":0,"w":204,"h":204},
+		"sourceSize": {"w":204,"h":204}
+	},
+	"Singe_Idle02_0004": {
+		"frame": {"x":615, "y":0, "w":204, "h":204},
+		"spriteSourceSize": {"x":0,"y":0,"w":204,"h":204},
+		"sourceSize": {"w":204,"h":204}
+	},
+	"Singe_Idle02_0005": {
+		"frame": {"x":410, "y":1230, "w":204, "h":204},
+		"spriteSourceSize": {"x":0,"y":0,"w":204,"h":204},
+		"sourceSize": {"w":204,"h":204}
+	},
+	"Singe_Idle_noixdecoco02_0000": {
+		"frame": {"x":1025, "y":410, "w":204, "h":204},
+		"spriteSourceSize": {"x":0,"y":0,"w":204,"h":204},
+		"sourceSize": {"w":204,"h":204}
+	},
+	"Singe_Idle_noixdecoco02_0001": {
+		"frame": {"x":1025, "y":205, "w":204, "h":204},
+		"spriteSourceSize": {"x":0,"y":0,"w":204,"h":204},
+		"sourceSize": {"w":204,"h":204}
+	},
+	"Singe_Idle_noixdecoco02_0002": {
+		"frame": {"x":1025, "y":0, "w":204, "h":204},
+		"spriteSourceSize": {"x":0,"y":0,"w":204,"h":204},
+		"sourceSize": {"w":204,"h":204}
+	},
+	"Singe_Idle_noixdecoco02_0003": {
+		"frame": {"x":820, "y":1230, "w":204, "h":204},
+		"spriteSourceSize": {"x":0,"y":0,"w":204,"h":204},
+		"sourceSize": {"w":204,"h":204}
+	},
+	"Singe_Idle_noixdecoco02_0004": {
+		"frame": {"x":820, "y":1025, "w":204, "h":204},
+		"spriteSourceSize": {"x":0,"y":0,"w":204,"h":204},
+		"sourceSize": {"w":204,"h":204}
+	},
+	"Singe_Idle_noixdecoco02_0005": {
+		"frame": {"x":820, "y":820, "w":204, "h":204},
+		"spriteSourceSize": {"x":0,"y":0,"w":204,"h":204},
+		"sourceSize": {"w":204,"h":204}
+	}
+
+},
+"meta": {
+	"image": "monke",
+	"size": {"w": 1435, "h": 1435},
+	"scale": "1"
+}
+}

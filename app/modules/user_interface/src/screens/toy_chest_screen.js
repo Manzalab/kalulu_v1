@@ -36,7 +36,7 @@ define([
 		this._buttonsContainerOffset = this._toyChestButtons.position.clone();
 
 		// Buttons Management :
-		if (Config.enableKaluluGlobalDebug) window.kalulu._toyChestButtons = this._toyChestButtons;
+		if (Config.enableGlobalVars) window.kalulu._toyChestButtons = this._toyChestButtons;
 		
 
 		this._onClickOnActivityButton = this._onClickOnActivityButton.bind(this);
@@ -53,7 +53,7 @@ define([
 		// this._background.filters = [this._blurFilter];
 
 		// Debug
-		if (Config.enableKaluluGlobalDebug) window.kalulu.toyChestScreen = this;
+		if (Config.enableGlobalVars) window.kalulu.toyChestScreen = this;
 	}
 
 	ToyChestScreen.prototype = Object.create(Screen.prototype);

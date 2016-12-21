@@ -52,7 +52,7 @@
         this._states[GameStates.BOOT]       = this._initBootState.bind(this);
         this._states[GameStates.PRELOAD]    = this._initPreloadState.bind(this);
         this._states[GameStates.MENUS]      = this._initMenuState.bind(this);
-        // this._states[GameStates.ACTIVITY]   = this._initActivityState.bind(this);
+        this._states[GameStates.ACTIVITY]   = this._initActivityState.bind(this);
         // this._states[GameStates.MATHS_DEBUG]= this._initMathsDebugState.bind(this);
 
         this._eventSystem.once(Events.COMMANDS.BOOT_STATE_REQUEST, this._onBootStateRequest, this);
@@ -235,6 +235,7 @@
 
     GameManager.prototype._onBrainScreenRequest = function _onBrainScreenRequest (username) {
         this.setState(GameStates.MENUS);
+        
         this._eventSystem.once(Events.COMMANDS.GOTO_TOYCHEST_SCREEN_REQUEST, this._onToyChestScreenRequest, this);
         this._eventSystem.emit(Events.GAME.GOTO_BRAIN_SCREEN, this._rafiki.getChaptersProgression());
     };

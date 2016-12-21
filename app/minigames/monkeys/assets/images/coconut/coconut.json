@@ -1,0 +1,30 @@
+{
+"frames": {
+	"Noix_de_coco_cassee_01": {
+		"frame": {"x":0, "y":0, "w":102, "h":102},
+		"spriteSourceSize": {"x":0,"y":0,"w":102,"h":102},
+		"sourceSize": {"w":102,"h":102}
+	},
+	"Noix_de_coco_cassee_02": {
+		"frame": {"x":0, "y":103, "w":102, "h":102},
+		"spriteSourceSize": {"x":0,"y":0,"w":102,"h":102},
+		"sourceSize": {"w":102,"h":102}
+	},
+	"Noix_de_coco_cassee_03": {
+		"frame": {"x":103, "y":0, "w":102, "h":102},
+		"spriteSourceSize": {"x":0,"y":0,"w":102,"h":102},
+		"sourceSize": {"w":102,"h":102}
+	},
+	"coconut": {
+		"frame": {"x":103, "y":103, "w":102, "h":102},
+		"spriteSourceSize": {"x":0,"y":0,"w":102,"h":102},
+		"sourceSize": {"w":102,"h":102}
+	}
+
+},
+"meta": {
+	"image": "monkeyKing",
+	"size": {"w": 206, "h": 206},
+	"scale": "1"
+}
+}

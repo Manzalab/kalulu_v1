@@ -50,7 +50,7 @@ define([
 		this.addChild(this._popinsContainer);
 		this.addChild(this._screensTransitionsContainer);
 
-		if (Config.enableKaluluGlobalDebug) window.GameStage = this;
+		if (Config.enableGlobalVars) window.GameStage = this;
 	}
 
 	GameStage.prototype = Object.create(PIXI3.Container.prototype);

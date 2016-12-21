@@ -32,8 +32,10 @@ define([
      * @param parent {ProgressionNode}
     **/
     function Chapter (userProfile, setup, parent) {
-        // console.log(setup);
-        // console.log(parent);
+        if (Config.debugPlanConstruction) {
+            console.log(setup);
+            console.log(parent);
+        }
 
         //@param setup.id {string} id of the node
         //@param setup.discipline {DisciplineModule} if parent is not provided, the discipline module of the node.

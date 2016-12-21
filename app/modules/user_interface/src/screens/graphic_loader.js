@@ -24,7 +24,7 @@ define([
 		this.addChild(this._loaderBar);
 		this._loaderBar.anchor.y = 0.5;
 		this._loaderBar.x = - width / 2;
-		if (Config.enableKaluluGlobalDebug) window.kalulu.GraphicLoader = this;
+		if (Config.enableGlobalVars) window.kalulu.GraphicLoader = this;
 		//console.log(this._loaderBar.width);
 		this.reset();
 	}

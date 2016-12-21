@@ -31,7 +31,7 @@ define([
         this._gameManager = gameManager;
         this._currentExerciseSetup = null;
 
-        if (Config.enableKaluluGlobalDebug) {
+        if (Config.enableGlobalVars) {
             window.kalulu.minigamesManager = this;
             window.kalulu.Config = Config;
 
@@ -66,25 +66,34 @@ define([
 
         this._currentProgressionNode = progressionNode;
 
-        var Launcher = Config.minigames[progressionNode.activityType];
-        console.log("[MinigamesManager] " + progressionNode.activityType + " about to be launched with ");
-        console.log(Launcher);
-        if (progressionNode.discipline.id === "maths" && progressionNode.activityType === "lookandlearn") {
-            Launcher = Config.minigames.lecturemu;
-        }
+        require.ensure(['phaser-bundle'], function () {
+            
 
-        console.log(Launcher);
-        if (typeof Launcher.Launcher === "function") {
-            console.log("Jeu HaXe");
-            this._currentMinigame = Launcher.Launcher(this._getInterface(debugPanel));
-        }
-        else {
-            console.log("Jeu Phaser");
+
             this._currentMinigame = new Launcher(this._getInterface(debugPanel));
-        }
+            this._currentProgressionNode.isStarted = true;
+            Timer.start();
+        }.bind(this));
+            
+        // var Launcher = Config.minigames[progressionNode.activityType];
+        // console.log("[MinigamesManager] " + progressionNode.activityType + " about to be launched with ");
+        // console.log(Launcher);
+        // if (progressionNode.discipline.id === "maths" && progressionNode.activityType === "lookandlearn") {
+        //     Launcher = Config.minigames.lecturemu;
+        // }
+
+        // console.log(Launcher);
+        // if (typeof Launcher.Launcher === "function") {
+        //     console.log("Jeu HaXe");
+        //     this._currentMinigame = Launcher.Launcher(this._getInterface(debugPanel));
+        // }
+        // else {
+        //     console.log("Jeu Phaser");
+        //     this._currentMinigame = new Launcher(this._getInterface(debugPanel));
+        // }
         
-        this._currentProgressionNode.isStarted = true;
-        Timer.start();
+        // this._currentProgressionNode.isStarted = true;
+        // Timer.start();
     };
 
     MinigamesManager.prototype.startBonusMinigame = function startBonusMinigame (debugPanel) {
@@ -248,6 +257,30 @@ define([
 
         this._closeMiniGame();
     };
+
+    MinigamesManager.prototype.requireGames = function requireGames () {
+        
+        require.ensure(['phaser-bundle'], function () {
+            
+            var Launchers = {
+                ants         : require('ants/src'),
+                caterpillar  : require('caterpillar/src'),
+                crabs        : require('crabs/src'),
+                fish         : require('fish/src'),
+                frog         : require('frog/src'),
+                jellyfish    : require('jellyfish/src'),
+                lookandlearn : require('lookandlearn/src'),
+                monkeys      : require('monkeys/src'),
+                parakeets    : require('parakeets/src'),
+                patrimath    : require('patrimath/src'),
+                turtles      : require('turtles/src')
+            };
+
+            console.log('MinigamesManager Ready');
+        }.bind(this));
+    };
+
+
 
     return MinigamesManager;
 });

@@ -32,7 +32,7 @@
 
     function startGame () {
         require.ensure(['phaser-bundle'], function () {
-
+            
             var CrabsLauncher = require ('crabs/src');
 
             var part1 = options.discipline !== 'language' ? options.discipline : options.LANGUAGE;

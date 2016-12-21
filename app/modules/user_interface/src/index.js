@@ -2,7 +2,7 @@
     
     'use strict';
 
-    // var createjs             = require ('../libs/tweenjs-0.6.2.combined').createjs;
+    var Dat                  = require ('dat.gui');
 
     var SoundManager         = require ('./utils/sound/sound_manager');
     var GameLoader           = require ('./utils/loader/game_loader');
@@ -16,6 +16,9 @@
 
     var GraphicLoader        = require ('./screens/graphic_loader');
     var TitleCard            = require ('./screens/title_card');
+    var BrainScreen          = require ('./screens/brain_screen');
+    var GardenScreen         = require ('./screens/garden_screen');
+    var LessonScreen         = require ('./screens/lesson_screen');
 
 
     // ###############################################################################################################################################
@@ -60,18 +63,11 @@
     Object.defineProperties(UserInterface.prototype, {
         
         /**
-         * Description of the accessor
+         * The debugPanel
          * @type {boolean}
          * @memberof Namespace.UserInterface#
         **/
-        // privateMemberAccessor: {
-        //     get: function () {
-        //         return this._privateMember;
-        //     },
-        //     set: function (value) {
-        //         return null;
-        //     }
-        // }
+        debugPanel: { get: function () { return this._debugPanel; } }
     });
 
     // ##############################################################################################################################################
@@ -170,7 +166,6 @@
     UserInterface.prototype._init = function _init () {
         
         // Tween utils
-        console.log(createjs);
         createjs.MotionGuidePlugin.install();
 
         // instanciation of members
@@ -179,7 +174,14 @@
         this._screensManager = new ScreensManager();
         this._loadingManager = new LoadingManager(this._eventSystem);
         
-        
+        // debug && tuning
+        if (Config.enableTransitionsTuning || Config.enableMinigameTuning || Config.enableQAControls) {
+            this._debugPanel = new Dat.GUI();
+        }
+
+        if (Config.enableQAControls) {
+            this._initQADebugPanel();
+        }
         // start listening to Events
         this._eventSystem.on(Events.APPLICATION.MAIN_LOOP, this._renderingLoop, this);
         
@@ -232,12 +234,106 @@
         this._screensManager.openScreen(this._screens.titleCard);
     };
 
+
+    UserInterface.prototype._onGotoBrainScreen = function _onGotoBrainScreen (chaptersProgression) {
+        //console.log(chaptersProgression);
+        this._screensManager.prepareTransition();
+        this._screens.brainScreen = new BrainScreen(this);
+        this._screens.brainScreen.unlockChapters(chaptersProgression);
+        this._screensManager.openScreen(this._screens.brainScreen);
+    };
+
+
+    UserInterface.prototype._onGotoGardenScreen = function _onGotoGardenScreen (gardenData, chaptersProgression, userProfile) {
+        //console.log(chaptersProgression);
+        this._screens.gardenScreen = new GardenScreen(this, gardenData, chaptersProgression, userProfile);
+        this._screens.gardenScreen.unlockGardens(chaptersProgression);
+        this._screens.gardenScreen.unlockBonusPath(userProfile);
+        this._screensManager.openScreen(this._screens.gardenScreen);
+        this._screensManager.closeGardenTransition();
+    };
+
+    UserInterface.prototype._onGotoLessonScreen = function _onGotoLessonScreen (lessonNode) {
+        this._screens.lessonScreen = new LessonScreen(this, lessonNode);
+        this._screensManager.openScreen(this._screens.lessonScreen);
+    };
+
     UserInterface.prototype._onGotoActivity = function _onGotoActivity (eventData) {
         console.log(eventData);
         if (eventData.shouldRemoveRenderer) this._renderingManager.removeRenderer();
         // SoundManager.stopAllAmbiances();
         this._eventSystem.once(Events.GAME.BACK_FROM_ACTIVITY, this._onBackFromActivity, this);
     };
+
+    UserInterface.prototype._onBackFromActivity = function _onBackFromActivity (eventData, chaptersProgression) {
+        console.log(eventData);
+        //SoundManager.startAmbiance("Bird");
+        if (!this._renderingManager.rendererIsDisplayed) this._renderingManager.addRenderer();
+        if (eventData && eventData.constructor.name === "Lesson") {
+            this._onGotoLessonScreen(eventData);
+        }
+        else if (eventData && eventData.hasOwnProperty('currentChapter')) {
+            this._onGotoGardenScreen(eventData, chaptersProgression);
+        }
+        else {
+           console.warn("[UserInterface] not implemented");
+           this._onGotoToyChestScreen();
+        }
+    };
+
+    UserInterface.prototype._onGotoToyChestActivityScreen = function _onGotoToyChestActivityScreen (activityType) {
+        this._screens.toyChestActivityScreen = new ToyChestActivityScreen(this, activityType);
+        this._screensManager.openScreen(this._screens.toyChestActivityScreen);
+    };
+
+    UserInterface.prototype._onGotoToyChestScreen = function _onGotoToyChestScreen () {
+        this._screens.toyChestScreen = new ToyChestScreen(this);
+        this._screensManager.openScreen(this._screens.toyChestScreen);
+    };
+
+    UserInterface.prototype._onKaluluToyChestLocked = function _onKaluluToyChestLocked () {
+        if (this._kaluluCharacter)
+        {
+            this._screens.brainScreen._toyChestButton.removeChild(this._kaluluCharacter);
+            this._kaluluCharacter = null;
+            this._kaluluSound.stop();
+        }
+
+        this._kaluluCharacter = new KaluluCharacter();
+        this._kaluluCharacter.scale.set(0.5);
+        this._kaluluCharacter.y -= 100;
+        this._screens.brainScreen._toyChestButton.addChild(this._kaluluCharacter);
+        this._kaluluCharacter.startTalk();
+        this._kaluluSound = SoundManager.getSound("kaluluLocked");
+        setTimeout(function(){this._kaluluSound.play();}.bind(this), 1000);
+        this._kaluluSound.on( "end", function()
+        {
+            this._kaluluCharacter.disappear();
+        }.bind(this));
+    };
+
+
+    // ##############################################################################################################################################
+    // ###  DEBUG METHODS  ########################################################################################################################
+    // ##############################################################################################################################################
+
+    UserInterface.prototype._initQADebugPanel = function _initQADebugPanel () {
+        this._debugPanelQAName = "QA";
+        this._debugPanelQA = this._debugPanel.addFolder(this._debugPanelQAName);
+
+        this.unlockUpToChapter = 1;
+        this._debugPanelQA.add(this, "unlockUpToChapter").min(1).max(20).step(1).listen();
+        this._debugPanelQA.add(this, "executeUnlock");
+    };
+
+    UserInterface.prototype._clearQADebugPanel = function _initQADebugPanel () {
+        this._debugPanel.removeFolder(this._debugPanelQAName);
+    };
+
+    UserInterface.prototype.executeUnlock = function executeUnlock () {
+        this._eventSystem.emit("UNLOCK_DEBUG", this.unlockUpToChapter);
+    };
+
 
     module.exports = UserInterface;
 

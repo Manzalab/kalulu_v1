@@ -1,10 +1,10 @@
 var path              = require('path');
+var fs                = require('fs');
 var webpack           = require('webpack');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var components        = require('./components.webpack.config.js');
 
 // TODO : add https://www.npmjs.com/package/favicons-webpack-plugin for favicons management
-console.log(path.resolve(__dirname, '../app/src'));
 module.exports = components.mergeConfigs(
     {
         entry : {
@@ -16,7 +16,8 @@ module.exports = components.mergeConfigs(
                 Events       : 'application/events',
                 PIXI3        : 'modules/user_interface/libs/pixi',
                 createjs     : 'modules/user_interface/libs/tweenjs-0.6.2.combined',
-                _            : 'underscore'
+                _            : 'underscore',
+                Dat          : 'dat.gui'
             }),
             new CopyWebpackPlugin([
                 { from: 'app/config', to: 'config' }
@@ -24,7 +25,7 @@ module.exports = components.mergeConfigs(
             new webpack.PrefetchPlugin([path.resolve(__dirname, '../app/src/')], './application/application')
         ]
     },
-    components.copyAssetsForMinigames(['common', 'crabs'], process.env.kaluluLanguage),
+    components.copyAssetsForMinigames(fs.readdirSync('app/minigames'), process.env.kaluluLanguage),
     components.copyAssetsForModules(['user_interface']),
     components.generateHtml(),
     components.minify(),

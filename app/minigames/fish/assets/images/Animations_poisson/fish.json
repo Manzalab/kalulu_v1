@@ -1,0 +1,60 @@
+{
+"frames": {
+	"Poisson_Idle1_0000": {
+		"frame": {"x":513, "y":513, "w":512, "h":512},
+		"spriteSourceSize": {"x":0,"y":0,"w":512,"h":512},
+		"sourceSize": {"w":512,"h":512}
+	},
+	"Poisson_Idle1_0001": {
+		"frame": {"x":513, "y":0, "w":512, "h":512},
+		"spriteSourceSize": {"x":0,"y":0,"w":512,"h":512},
+		"sourceSize": {"w":512,"h":512}
+	},
+	"Poisson_Idle1_0002": {
+		"frame": {"x":513, "y":1026, "w":512, "h":512},
+		"spriteSourceSize": {"x":0,"y":0,"w":512,"h":512},
+		"sourceSize": {"w":512,"h":512}
+	},
+	"Poisson_Idle1_0003": {
+		"frame": {"x":513, "y":0, "w":512, "h":512},
+		"spriteSourceSize": {"x":0,"y":0,"w":512,"h":512},
+		"sourceSize": {"w":512,"h":512}
+	},
+	"Poisson_Idle2_0000": {
+		"frame": {"x":513, "y":513, "w":512, "h":512},
+		"spriteSourceSize": {"x":0,"y":0,"w":512,"h":512},
+		"sourceSize": {"w":512,"h":512}
+	},
+	"Poisson_Idle2_0001": {
+		"frame": {"x":1026, "y":0, "w":512, "h":512},
+		"spriteSourceSize": {"x":0,"y":0,"w":512,"h":512},
+		"sourceSize": {"w":512,"h":512}
+	},
+	"Poisson_Idle2_0002": {
+		"frame": {"x":0, "y":1026, "w":512, "h":512},
+		"spriteSourceSize": {"x":0,"y":0,"w":512,"h":512},
+		"sourceSize": {"w":512,"h":512}
+	},
+	"Poisson_Idle2_0003": {
+		"frame": {"x":1026, "y":0, "w":512, "h":512},
+		"spriteSourceSize": {"x":0,"y":0,"w":512,"h":512},
+		"sourceSize": {"w":512,"h":512}
+	},
+	"Poisson_Saute_0000": {
+		"frame": {"x":0, "y":513, "w":512, "h":512},
+		"spriteSourceSize": {"x":0,"y":0,"w":512,"h":512},
+		"sourceSize": {"w":512,"h":512}
+	},
+	"Poisson_Tourne_0000": {
+		"frame": {"x":0, "y":0, "w":512, "h":512},
+		"spriteSourceSize": {"x":0,"y":0,"w":512,"h":512},
+		"sourceSize": {"w":512,"h":512}
+	}
+
+},
+"meta": {
+	"image": "fish",
+	"size": {"w": 1539, "h": 1539},
+	"scale": "1"
+}
+}

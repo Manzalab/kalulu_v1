@@ -64,10 +64,10 @@
 
             //UI 
             this.load.image('pause', 'minigames/common/assets/images/ui/pause.png');
-            this.game.load.atlasJSONHash('ui', 'minigames/common/assets/images/ui/ui.png', 'minigames/common/assets/images/ui/ui.json');
+            this.game.load.atlasJSONHash('common/src/ui', 'minigames/common/assets/images/ui/ui.png', 'minigames/common/assets/images/ui/ui.json');
 
             //FX 
-            this.game.load.atlasJSONHash('fx', 'minigames/common/assets/images/fx/fx.png', 'minigames/common/assets/images/fx/fx.json');
+            this.game.load.atlasJSONHash('common/src/fx', 'minigames/common/assets/images/fx/fx.png', 'minigames/common/assets/images/fx/fx.json');
             this.load.image('wrong', 'minigames/common/assets/images/fx/wrong.png');
 
             var animPath = 'minigames/common/assets/images/kalulu_animations/';

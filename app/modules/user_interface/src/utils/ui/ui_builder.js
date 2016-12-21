@@ -150,10 +150,11 @@ define([
 
                     // Here we have to deal with the special case of garden buttons :
                     if(subCompClassname.indexOf("GardenButton") !== -1) {
-                        //console.log("GardenButton detected");
+                        // console.log("GardenButton detected");
                         dynamicClassName = "GardenButton";
                         subComponent = Type.createInstance(dynamicClassName, description.components[subCompId], subCompClassname);
                         subCompId = "mcGardenButton" + parseInt(subCompClassname.split("_")[1], 10);
+                        // console.log(subComponent);
                     }
                     else if(subCompClassname.indexOf("SpriteGarden_") !== -1) {
                         // console.log("SpriteGarden detected");
@@ -161,25 +162,20 @@ define([
                         subComponent = Type.createInstance(dynamicClassName, subCompClassname);
                         subCompId = "mcSpriteGarden" + parseInt(subCompClassname.split("SpriteGarden_")[1], 10);
                     }
-                    else if(subCompClassname.indexOf("Plant_") !== -1) {
-                        dynamicClassName = "Plant";
-                        subComponent = Type.createInstance(dynamicClassName, description.components[subCompId], subCompClassname);
-                        subCompId = "mcPlant_" + parseInt(subCompClassname.split("_")[1], 10) + "_" + parseInt(subCompClassname.split("_")[2], 10);
-                    }
                     else if(subCompClassname.indexOf("BonusPathA_") !== -1) {
-                        //console.log("Path detected : " + subCompClassname);
+                        // console.log("Path detected : " + subCompClassname);
                         dynamicClassName = "Path";
                         subComponent = Type.createInstance(dynamicClassName, description.components[subCompId], subCompClassname);
                         subCompId = "mcBonusPathA" + parseInt(subCompClassname.split("PathA_")[1], 10);
                     }
                     else if(subCompClassname.indexOf("BonusPathB_") !== -1) {
-                        //console.log("Path detected");
+                        // console.log("Path detected");
                         dynamicClassName = "Path";
                         subComponent = Type.createInstance(dynamicClassName, description.components[subCompId], subCompClassname);
                         subCompId = "mcBonusPathB" + parseInt(subCompClassname.split("PathB_")[1], 10);
                     }
                     else if(subCompClassname.indexOf("Garden_") !== -1) {
-                        //console.log("Garden detected");
+                        // console.log("Garden detected");
                         dynamicClassName = "Garden";
                         subComponent = Type.createInstance(dynamicClassName, description.components[subCompId], subCompClassname);
                         subCompId = "mcGarden" + parseInt(subCompClassname.split("Garden_")[1], 10);
@@ -188,6 +184,12 @@ define([
                         // console.log("Garden detected");
                         dynamicClassName = subCompClassname.split("_")[0];
                         subComponent = Type.createInstance(dynamicClassName, description.components[subCompId], subCompClassname);
+                    }
+                    else if(subCompClassname.indexOf("Neuroenergy") !== -1) {
+                        // console.log("Neuroenergy detected");
+                        dynamicClassName = "Neuroenergy";
+                        subComponent = Type.createInstance(dynamicClassName, description.components[subCompId], subCompClassname);
+                        subCompId = "mcNeuroenergy";
                     }
                     else {
                         
@@ -204,6 +206,8 @@ define([
                         subComponent = new PIXI3.Container(); // no UIComponent, because UIComponent is something you can open, like a screen or a popin
                         subComponent.name = subCompId;
                         // console.log("Building Container " + subCompId);
+                        // console.log(description.components[subCompId]);
+                        // console.log(subComponent);
                         var positionables = this.build(subComponent, description.components[subCompId]);
                         var componentsCount2 = positionables.length;
                         //console.info("[UIBuilder] detected " + componentsCount2 + " components.");

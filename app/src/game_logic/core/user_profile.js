@@ -38,7 +38,7 @@ define([
         this._LARGE  = "Large";
 
         if (!this._data) this._createSave();
-        if (Config.enableKaluluGlobalDebug) window.kalulu.userProfile = this;
+        if (Config.enableGlobalVars) window.kalulu.userProfile = this;
     }
 
     //AddUserRecord(UserProfile);

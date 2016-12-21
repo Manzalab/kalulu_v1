@@ -6,25 +6,17 @@
  * It must be reworked if Discipline Modules are modified.
 **/
 define([
-    'utils/ui/screen',
-    'utils/events/mouse_event_type',
-    'utils/events/touch_event_type',
-    'interface/user/elements/garden_button',
-    'datgui',
-    'utils/sound/sound_manager',
-    'interface/user/elements/kalulu_character'
+    '../utils/ui/screen',
+    '../utils/sound/sound_manager',
+    '../elements/kalulu_character',
+    'victor'
 ], function (
     Screen,
-    MouseEventType,
-    TouchEventType,
-    GardenButton,
-    Dat,
     SoundManager,
-    Kalulu
+    Kalulu,
+    Victor
 ) {
     'use strict';
-
-    var chapterCount = Config.gamedesign.territoriesCount; // 20
 
     function BrainScreen (interfaceManager, chaptersProgression) {
         
@@ -60,7 +52,7 @@ define([
 
         this._arrayGardenButtons = [];
 
-        if (Config.enableKaluluGlobalDebug) window.kalulu.gardenButtons = this._gardenButtons;
+        if (Config.enableGlobalVars) window.kalulu.gardenButtons = this._gardenButtons;
 
         this._onClickOnGardenButton = this._onClickOnGardenButton.bind(this);
         
@@ -92,24 +84,25 @@ define([
         this._kalulu = new Kalulu();
 
         // Debug
-        if (Config.enableKaluluGlobalDebug) window.kalulu.brainScreen = this;
+        if (Config.enableGlobalVars) window.kalulu.brainScreen = this;
+
+
+        // Tweens :
+        this._exitTweenSettings = {
+            duration : 2,
+            scale    : 5,
+            time     : 1000,
+            blur     : 3
+        };
 
         // Datgui
-        if (Config.enableTransitionsTuningControls) {
-            var GuiControls = function() {
-                this.duration = 2;
-                this.scale = 5;
-                this.time = 1000;
-                this.blur = 3;
-            };
-
-            this._guiControls = new GuiControls();
+        if (Config.enableTransitionsTuning) {
             this._guiFolderName = "BrainScreen : Transition Tween";
             this._gui = this._interfaceManager.debugPanel.addFolder(this._guiFolderName);
-            this._gui.add(this._guiControls, 'duration', 1, 10).step(0.5);
-            this._gui.add(this._guiControls, 'scale', 1, 10).step(0.5);
-            this._gui.add(this._guiControls, 'time', 10, 3000).step(10);
-            this._gui.add(this._guiControls, 'blur', 0, 10).step(0.5);
+            this._gui.add(this._exitTweenSettings, 'duration', 1, 10).step(0.5);
+            this._gui.add(this._exitTweenSettings, 'scale', 1, 10).step(0.5);
+            this._gui.add(this._exitTweenSettings, 'time', 10, 3000).step(10);
+            this._gui.add(this._exitTweenSettings, 'blur', 0, 10).step(0.5);
         }
     }
 
@@ -144,7 +137,7 @@ define([
 
 
     BrainScreen.prototype.close = function close () {
-        if (Config.enableTransitionsTuningControls) {
+        if (Config.enableTransitionsTuning) {
             this._interfaceManager.debugPanel.removeFolder(this._guiFolderName);
         }
         Screen.prototype.close.call(this);
@@ -179,19 +172,19 @@ define([
         this._gardenButtons.position = new PIXI3.Point(selectedGarden.position.x + this._buttonsContainerOffset.x, selectedGarden.position.y + this._buttonsContainerOffset.y);
         
         // // Center Camera on selected Garden
-        createjs.Tween.get(this._gardenButtons).to({x: 0, y: 0}, this._guiControls.duration * this._guiControls.time / 2, createjs.Ease.linear());
+        createjs.Tween.get(this._gardenButtons).to({x: 0, y: 0}, this._exitTweenSettings.duration * this._exitTweenSettings.time / 2, createjs.Ease.linear());
 
         // // Rotate until rotationVector is horizontal from left to right
-        createjs.Tween.get(this._gardenButtons).to({rotation: targetAngle}, this._guiControls.duration * this._guiControls.time / 2, createjs.Ease.linear());
+        createjs.Tween.get(this._gardenButtons).to({rotation: targetAngle}, this._exitTweenSettings.duration * this._exitTweenSettings.time / 2, createjs.Ease.linear());
 
         // // Zoom In
-        createjs.Tween.get(this.scale).to({x: this._guiControls.scale, y: this._guiControls.scale}, this._guiControls.duration * this._guiControls.time, createjs.Ease.linear());
+        createjs.Tween.get(this.scale).to({x: this._exitTweenSettings.scale, y: this._exitTweenSettings.scale}, this._exitTweenSettings.duration * this._exitTweenSettings.time, createjs.Ease.linear());
         
         // // Blur background
-        createjs.Tween.get(this._blurFilter).to({blur : this._guiControls.blur}, this._guiControls.duration * this._guiControls.time, createjs.Ease.linear());
+        createjs.Tween.get(this._blurFilter).to({blur : this._exitTweenSettings.blur}, this._exitTweenSettings.duration * this._exitTweenSettings.time, createjs.Ease.linear());
 
         if (Config.tuning) this._gui.destroy();
-        this._interfaceManager.requestGardenScreen(selectedGarden.id, (this._guiControls.duration/3)*1000);
+        this._interfaceManager.requestGardenScreen(selectedGarden.id, (this._exitTweenSettings.duration/3)*1000);
     };
 
     BrainScreen.prototype._onClickOnBackButton = function _onClickOnBackButton (pEventData) {

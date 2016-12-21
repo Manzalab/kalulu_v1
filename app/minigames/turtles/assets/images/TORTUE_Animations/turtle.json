@@ -1,0 +1,230 @@
+{
+"frames": {
+	"Tortue_nage01_0000": {
+		"frame": {"x":1542, "y":0, "w":256, "h":256},
+		"spriteSourceSize": {"x":0,"y":0,"w":256,"h":256},
+		"sourceSize": {"w":256,"h":256}
+	},
+	"Tortue_nage01_0001": {
+		"frame": {"x":1285, "y":1542, "w":256, "h":256},
+		"spriteSourceSize": {"x":0,"y":0,"w":256,"h":256},
+		"sourceSize": {"w":256,"h":256}
+	},
+	"Tortue_nage01_0002": {
+		"frame": {"x":1285, "y":1285, "w":256, "h":256},
+		"spriteSourceSize": {"x":0,"y":0,"w":256,"h":256},
+		"sourceSize": {"w":256,"h":256}
+	},
+	"Tortue_nage01_0003": {
+		"frame": {"x":1285, "y":1028, "w":256, "h":256},
+		"spriteSourceSize": {"x":0,"y":0,"w":256,"h":256},
+		"sourceSize": {"w":256,"h":256}
+	},
+	"Tortue_nage01_0004": {
+		"frame": {"x":1285, "y":771, "w":256, "h":256},
+		"spriteSourceSize": {"x":0,"y":0,"w":256,"h":256},
+		"sourceSize": {"w":256,"h":256}
+	},
+	"Tortue_nage01_0005": {
+		"frame": {"x":1285, "y":514, "w":256, "h":256},
+		"spriteSourceSize": {"x":0,"y":0,"w":256,"h":256},
+		"sourceSize": {"w":256,"h":256}
+	},
+	"Tortue_nage01_0006": {
+		"frame": {"x":1285, "y":257, "w":256, "h":256},
+		"spriteSourceSize": {"x":0,"y":0,"w":256,"h":256},
+		"sourceSize": {"w":256,"h":256}
+	},
+	"Tortue_nage01_0007": {
+		"frame": {"x":1285, "y":0, "w":256, "h":256},
+		"spriteSourceSize": {"x":0,"y":0,"w":256,"h":256},
+		"sourceSize": {"w":256,"h":256}
+	},
+	"Tortue_nage02_0000": {
+		"frame": {"x":1028, "y":1542, "w":256, "h":256},
+		"spriteSourceSize": {"x":0,"y":0,"w":256,"h":256},
+		"sourceSize": {"w":256,"h":256}
+	},
+	"Tortue_nage02_0001": {
+		"frame": {"x":1028, "y":1285, "w":256, "h":256},
+		"spriteSourceSize": {"x":0,"y":0,"w":256,"h":256},
+		"sourceSize": {"w":256,"h":256}
+	},
+	"Tortue_nage02_0002": {
+		"frame": {"x":1028, "y":1028, "w":256, "h":256},
+		"spriteSourceSize": {"x":0,"y":0,"w":256,"h":256},
+		"sourceSize": {"w":256,"h":256}
+	},
+	"Tortue_nage02_0003": {
+		"frame": {"x":1028, "y":771, "w":256, "h":256},
+		"spriteSourceSize": {"x":0,"y":0,"w":256,"h":256},
+		"sourceSize": {"w":256,"h":256}
+	},
+	"Tortue_nage02_0004": {
+		"frame": {"x":1028, "y":514, "w":256, "h":256},
+		"spriteSourceSize": {"x":0,"y":0,"w":256,"h":256},
+		"sourceSize": {"w":256,"h":256}
+	},
+	"Tortue_nage02_0005": {
+		"frame": {"x":1028, "y":257, "w":256, "h":256},
+		"spriteSourceSize": {"x":0,"y":0,"w":256,"h":256},
+		"sourceSize": {"w":256,"h":256}
+	},
+	"Tortue_nage02_0006": {
+		"frame": {"x":1028, "y":0, "w":256, "h":256},
+		"spriteSourceSize": {"x":0,"y":0,"w":256,"h":256},
+		"sourceSize": {"w":256,"h":256}
+	},
+	"Tortue_nage02_0007": {
+		"frame": {"x":771, "y":1542, "w":256, "h":256},
+		"spriteSourceSize": {"x":0,"y":0,"w":256,"h":256},
+		"sourceSize": {"w":256,"h":256}
+	},
+	"Tortue_nage_DROITE_0000": {
+		"frame": {"x":514, "y":0, "w":256, "h":256},
+		"spriteSourceSize": {"x":0,"y":0,"w":256,"h":256},
+		"sourceSize": {"w":256,"h":256}
+	},
+	"Tortue_nage_DROITE_0001": {
+		"frame": {"x":257, "y":1542, "w":256, "h":256},
+		"spriteSourceSize": {"x":0,"y":0,"w":256,"h":256},
+		"sourceSize": {"w":256,"h":256}
+	},
+	"Tortue_nage_DROITE_0002": {
+		"frame": {"x":257, "y":1285, "w":256, "h":256},
+		"spriteSourceSize": {"x":0,"y":0,"w":256,"h":256},
+		"sourceSize": {"w":256,"h":256}
+	},
+	"Tortue_nage_DROITE_0003": {
+		"frame": {"x":257, "y":1028, "w":256, "h":256},
+		"spriteSourceSize": {"x":0,"y":0,"w":256,"h":256},
+		"sourceSize": {"w":256,"h":256}
+	},
+	"Tortue_nage_DROITE_0004": {
+		"frame": {"x":257, "y":771, "w":256, "h":256},
+		"spriteSourceSize": {"x":0,"y":0,"w":256,"h":256},
+		"sourceSize": {"w":256,"h":256}
+	},
+	"Tortue_nage_DROITE_0005": {
+		"frame": {"x":257, "y":514, "w":256, "h":256},
+		"spriteSourceSize": {"x":0,"y":0,"w":256,"h":256},
+		"sourceSize": {"w":256,"h":256}
+	},
+	"Tortue_nage_DROITE_0006": {
+		"frame": {"x":257, "y":257, "w":256, "h":256},
+		"spriteSourceSize": {"x":0,"y":0,"w":256,"h":256},
+		"sourceSize": {"w":256,"h":256}
+	},
+	"Tortue_nage_DROITE_0007": {
+		"frame": {"x":257, "y":0, "w":256, "h":256},
+		"spriteSourceSize": {"x":0,"y":0,"w":256,"h":256},
+		"sourceSize": {"w":256,"h":256}
+	},
+	"Tortue_nage_GAUCHE_0000": {
+		"frame": {"x":0, "y":1542, "w":256, "h":256},
+		"spriteSourceSize": {"x":0,"y":0,"w":256,"h":256},
+		"sourceSize": {"w":256,"h":256}
+	},
+	"Tortue_nage_GAUCHE_0001": {
+		"frame": {"x":0, "y":1285, "w":256, "h":256},
+		"spriteSourceSize": {"x":0,"y":0,"w":256,"h":256},
+		"sourceSize": {"w":256,"h":256}
+	},
+	"Tortue_nage_GAUCHE_0002": {
+		"frame": {"x":0, "y":1028, "w":256, "h":256},
+		"spriteSourceSize": {"x":0,"y":0,"w":256,"h":256},
+		"sourceSize": {"w":256,"h":256}
+	},
+	"Tortue_nage_GAUCHE_0003": {
+		"frame": {"x":0, "y":771, "w":256, "h":256},
+		"spriteSourceSize": {"x":0,"y":0,"w":256,"h":256},
+		"sourceSize": {"w":256,"h":256}
+	},
+	"Tortue_nage_GAUCHE_0004": {
+		"frame": {"x":0, "y":514, "w":256, "h":256},
+		"spriteSourceSize": {"x":0,"y":0,"w":256,"h":256},
+		"sourceSize": {"w":256,"h":256}
+	},
+	"Tortue_nage_GAUCHE_0005": {
+		"frame": {"x":0, "y":257, "w":256, "h":256},
+		"spriteSourceSize": {"x":0,"y":0,"w":256,"h":256},
+		"sourceSize": {"w":256,"h":256}
+	},
+	"Tortue_nage_GAUCHE_0006": {
+		"frame": {"x":0, "y":0, "w":256, "h":256},
+		"spriteSourceSize": {"x":0,"y":0,"w":256,"h":256},
+		"sourceSize": {"w":256,"h":256}
+	},
+	"Tortue_nage_GAUCHE_0007": {
+		"frame": {"x":771, "y":0, "w":256, "h":256},
+		"spriteSourceSize": {"x":0,"y":0,"w":256,"h":256},
+		"sourceSize": {"w":256,"h":256}
+	},
+	"Tortue_plonge_0000": {
+		"frame": {"x":771, "y":1285, "w":256, "h":256},
+		"spriteSourceSize": {"x":0,"y":0,"w":256,"h":256},
+		"sourceSize": {"w":256,"h":256}
+	},
+	"Tortue_plonge_0001": {
+		"frame": {"x":771, "y":1028, "w":256, "h":256},
+		"spriteSourceSize": {"x":0,"y":0,"w":256,"h":256},
+		"sourceSize": {"w":256,"h":256}
+	},
+	"Tortue_plonge_0002": {
+		"frame": {"x":771, "y":771, "w":256, "h":256},
+		"spriteSourceSize": {"x":0,"y":0,"w":256,"h":256},
+		"sourceSize": {"w":256,"h":256}
+	},
+	"Tortue_plonge_0003": {
+		"frame": {"x":771, "y":514, "w":256, "h":256},
+		"spriteSourceSize": {"x":0,"y":0,"w":256,"h":256},
+		"sourceSize": {"w":256,"h":256}
+	},
+	"Tortue_plonge_0004": {
+		"frame": {"x":771, "y":257, "w":256, "h":256},
+		"spriteSourceSize": {"x":0,"y":0,"w":256,"h":256},
+		"sourceSize": {"w":256,"h":256}
+	},
+	"Tortue_plonge_0005": {
+		"frame": {"x":1542, "y":257, "w":256, "h":256},
+		"spriteSourceSize": {"x":0,"y":0,"w":256,"h":256},
+		"sourceSize": {"w":256,"h":256}
+	},
+	"Tortue_victory_0000": {
+		"frame": {"x":514, "y":1542, "w":256, "h":256},
+		"spriteSourceSize": {"x":0,"y":0,"w":256,"h":256},
+		"sourceSize": {"w":256,"h":256}
+	},
+	"Tortue_victory_0001": {
+		"frame": {"x":514, "y":1285, "w":256, "h":256},
+		"spriteSourceSize": {"x":0,"y":0,"w":256,"h":256},
+		"sourceSize": {"w":256,"h":256}
+	},
+	"Tortue_victory_0002": {
+		"frame": {"x":514, "y":1028, "w":256, "h":256},
+		"spriteSourceSize": {"x":0,"y":0,"w":256,"h":256},
+		"sourceSize": {"w":256,"h":256}
+	},
+	"Tortue_victory_0003": {
+		"frame": {"x":514, "y":771, "w":256, "h":256},
+		"spriteSourceSize": {"x":0,"y":0,"w":256,"h":256},
+		"sourceSize": {"w":256,"h":256}
+	},
+	"Tortue_victory_0004": {
+		"frame": {"x":514, "y":514, "w":256, "h":256},
+		"spriteSourceSize": {"x":0,"y":0,"w":256,"h":256},
+		"sourceSize": {"w":256,"h":256}
+	},
+	"Tortue_victory_0005": {
+		"frame": {"x":514, "y":257, "w":256, "h":256},
+		"spriteSourceSize": {"x":0,"y":0,"w":256,"h":256},
+		"sourceSize": {"w":256,"h":256}
+	}
+
+},
+"meta": {
+	"image": "turtle",
+	"size": {"w": 1799, "h": 1799},
+	"scale": "1"
+}
+}

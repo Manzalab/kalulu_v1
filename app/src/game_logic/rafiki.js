@@ -1,9 +1,9 @@
 define([
-    'language/src'
-    // 'mathematics/maths_module'
+    'language/src',
+    'maths/src'
 ], function (
-    LanguageModule
-    // MathsModule
+    LanguageModule,
+    MathsModule
 ) {
     'use strict';
 
@@ -57,7 +57,7 @@ define([
          * @type {DisciplineModule}
          * @private
         **/
-        // this._mathsModule = new MathsModule(this, Config.mathsModule, userProfile);
+        this._mathsModule = new MathsModule(this, userProfile);
     }
 
 

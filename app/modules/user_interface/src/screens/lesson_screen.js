@@ -1,21 +1,9 @@
 define([
-    'utils/ui/screen',
-    'utils/ui/button',
-    'utils/events/mouse_event_type',
-    'utils/events/touch_event_type',
-    'utils/sound/sound_manager',
-    'interface/screens_manager',
-    'interface/user/elements/activity_button',
-    'interface/user/popins/clouds_popin'
+    '../utils/ui/screen',
+    '../utils/sound/sound_manager'
 ], function (
     Screen,
-    Button,
-    MouseEventType,
-    TouchEventType,
-    SoundManager,
-    ScreensManager,
-    ActivityButton,
-    CloudsPopin
+    SoundManager
 ) {
 
     'use strict';
@@ -49,7 +37,7 @@ define([
         this._backButton            = this.getChildByName("mcTLHudLesson").getChildByName("mcBackButton");
         this._kaluluButton          = this.getChildByName("mcBLHudLesson").getChildByName("mcKaluluButton");
         
-        if (Config.enableKaluluGlobalDebug) window.kalulu.lessonScreen = this;
+        if (Config.enableGlobalVars) window.kalulu.lessonScreen = this;
         
         // Setup Buttons
         this._lookAndLearnButton.setup(this._node.children[0], this._onClickOnActivity.bind(this), true);

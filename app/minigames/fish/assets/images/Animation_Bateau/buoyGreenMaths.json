@@ -1,0 +1,60 @@
+{"frames": {
+
+"Balise_verte_idle_0000":
+{
+	"frame": {"x":105,"y":214,"w":110,"h":202},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":13,"w":110,"h":202},
+	"sourceSize": {"w":128,"h":256}
+},
+"Balise_verte_idle_0001":
+{
+	"frame": {"x":1,"y":1,"w":107,"h":205},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":3,"y":13,"w":107,"h":205},
+	"sourceSize": {"w":128,"h":256}
+},
+"Balise_verte_idle_0002":
+{
+	"frame": {"x":1,"y":208,"w":102,"h":209},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":8,"y":13,"w":102,"h":209},
+	"sourceSize": {"w":128,"h":256}
+},
+"Balise_verte_idle_0003":
+{
+	"frame": {"x":110,"y":1,"w":99,"h":211},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":11,"y":13,"w":99,"h":211},
+	"sourceSize": {"w":128,"h":256}
+},
+"Balise_verte_idle_0004":
+{
+	"frame": {"x":217,"y":207,"w":102,"h":209},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":8,"y":13,"w":102,"h":209},
+	"sourceSize": {"w":128,"h":256}
+},
+"Balise_verte_idle_0005":
+{
+	"frame": {"x":211,"y":1,"w":107,"h":204},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":3,"y":13,"w":107,"h":204},
+	"sourceSize": {"w":128,"h":256}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "buoyGreenMaths.png",
+	"format": "RGBA8888",
+	"size": {"w":320,"h":418},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:690f93c4bae6acb4d812982383be55ff:16ee3361ee98b76b8700ae078e010193:d0889e2704f77e2245dfd6280d3ce952$"
+}
+}

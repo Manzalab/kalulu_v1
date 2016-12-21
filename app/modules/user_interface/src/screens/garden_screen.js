@@ -5,25 +5,11 @@
  * a few Lessons (1 to 4) for each discipline, displayed on a separate Path.
 **/
 define([
-    'utils/game/state_graphic',
-    'utils/ui/screen',
-    'utils/events/mouse_event_type',
-    'utils/events/touch_event_type',
-    'utils/sound/sound_manager',
-    'interface/screens_manager',
-    'interface/user/elements/lesson_dot',
-    'utils/ui/button',
-    'interface/user/popins/activities_menu'
+    '../utils/ui/screen',
+    '../utils/sound/sound_manager'
 ], function (
-    StateGraphic,
     Screen,
-    MouseEventType,
-    TouchEventType,
-    SoundManager,
-    ScreensManager,
-    LessonDot,
-    Button,
-    ActivitiesMenu
+    SoundManager
 ) {
 
     'use strict';
@@ -44,17 +30,19 @@ define([
     **/
     function GardenScreen (interfaceManager, chaptersData, chaptersProgression, userProfile) {
         
-        if (Config.enableKaluluGlobalDebug) window.kalulu.gardenScreen = this;
+        if (Config.enableGlobalVars) window.kalulu.gardenScreen = this;
 
         Screen.call(this);
         
         this.modalImage = "blue_bg.png";
 
-        if (Config.enableKaluluGlobalDebug) window.kalulu.gardenScreen = this;
+        if (Config.enableGlobalVars) window.kalulu.gardenScreen = this;
 
         this._chaptersProgression;
         this._data = chaptersData;
         this._interfaceManager = interfaceManager;
+        this._userProfile = userProfile;
+        console.log(this._userProfile);
         this.name="mcGardenScreen";
         this.build();
         
@@ -77,7 +65,19 @@ define([
 
         this._backButton = this.getChildByName("mcGardenTLHud").getChildByName("mcBackButton");
         this._kaluluButton = this.getChildByName("mcGardenBLHud").getChildByName("mcKaluluButton");
-        this._magicBag = this.getChildByName("mcGardenTRHud").getChildByName("mcMagicBag");
+        this._neuroenergy = this.getChildByName("mcGardenTRHud").getChildByName("mcNeuroenergy");
+        
+        // console.log(this._gardensContainer);
+
+        this._lessonDotContainer = new PIXI3.Container();
+        this._lessonDotContainer.name = "LessonDotContainer";
+        this._lessonDotContainer.position.set(0, 0);
+        this._lessonDotContainer.scale.set(1, 1);
+        this._lessonDotContainer.rotation = 0;
+        this._lessonDotContainer.zIndex = this.children.length;
+
+        this.addChild(this._lessonDotContainer);
+        this._createFertilizerText();
 
         // Plant & BonusPath
         this._plants = [];
@@ -87,15 +87,10 @@ define([
         var lChildren;
         for(var chapterIndex = 1; chapterIndex <= length; chapterIndex++){
             lGarden = this._gardens[chapterIndex];
-
-            this._plants[chapterIndex] = [];
-
             for (var k = 0 ; k < lGarden.children.length ; k++) {
                 lChildren = lGarden.children[k];
-
                 if(lChildren.name != null){
-                    if(lChildren.name.indexOf("mcPlant") !== -1) this._plants[chapterIndex][lChildren.name.split("_")[2]] = lChildren;
-                    else if(lChildren.name.indexOf("mcBonusPathA") !== -1) this._bonusPathA[chapterIndex] = lChildren;
+                    if(lChildren.name.indexOf("mcBonusPathA") !== -1) this._bonusPathA[chapterIndex] = lChildren;
                     else if(lChildren.name.indexOf("mcBonusPathB") !== -1) this._bonusPathB[chapterIndex] = lChildren;
                 }
             }
@@ -104,9 +99,6 @@ define([
         // back
         this._backButton.onClick = this._onClickOnBackButton.bind(this);
         this._kaluluButton.onClick = this._onClickOnKaluluButton.bind(this);
-        this._magicBag.onClick = this._onClickOnMagicBagButton.bind(this);
-
-        
     }
 
     GardenScreen.prototype = Object.create(Screen.prototype);
@@ -114,7 +106,7 @@ define([
 
     GardenScreen.prototype.unlockGardens = function unlockGardens (chaptersProgression) {
         var lGarden;
-        this._chaptersProgression = chaptersProgression
+        this._chaptersProgression = chaptersProgression;
         for (var i = 1 ; i <= chaptersProgression.length ; i++) {
             lGarden = this._gardens[i];
 
@@ -132,23 +124,15 @@ define([
     GardenScreen.prototype.unlockPlants = function unlockPlants(userProfile) {
 
         var lengthChapter = this._plants.length;
-        var lengthPlant;
-        var lGarden;
         var lPlant;
 
-        for(var chapterIndex = 1; chapterIndex < lengthChapter; chapterIndex++){
-            lengthPlant = this._plants[chapterIndex].length;
-
-            for (var plantIndex = 1 ; plantIndex < lengthPlant ; plantIndex++) {
-                lPlant = this._plants[chapterIndex][plantIndex];
-
-                lPlant.setSaveState(userProfile.plantsProgression[chapterIndex-1][plantIndex-1]);
-                lPlant.setUserReference(userProfile);
-                lPlant.setGardenScreenReference(this);
-            }
+        for (var i = 0; i < lengthChapter; i++) {
+            lPlant = this._plants[i];
+            lPlant.setSaveState(userProfile.plantsProgression[lPlant._idChapter-1][lPlant._idPlant-1]);
+            lPlant.setUserReference(userProfile);
+            lPlant.setGardenScreenReference(this);
         }
 
-        this._createFertilizerText();
         this.fertilizerText = userProfile.fertilizer;
     }
 
@@ -184,7 +168,7 @@ define([
                 pathIndex++;
             }
         }
-    }
+    };
 
     // ###############################################################################################################################################
     // ###  GETTERS & SETTERS  #######################################################################################################################
@@ -192,10 +176,28 @@ define([
 
     Object.defineProperties(GardenScreen.prototype, {
         fertilizerText : {
-            get : function () {return this._magicBag._txt.text},
+            get : function () { return this._neuroenergy._txt.text; },
             set : function (value) {
-                this._magicBag._txt.text = value+"";
-                return this._magicBag._txt.text;
+                this._neuroenergy._txt.text = value+"";
+                if(value === 0) this._neuroenergy.setModeDisabled();
+                return this._neuroenergy._txt.text;
+            }
+        },
+
+        plants : {
+            get : function () {
+
+                var index = 0;
+                var i, lChildren;
+
+                for (i = 0 ; i < this._focusedGarden.children.length ; i++) {
+                    lChildren = this._focusedGarden.children[i];
+                    if(lChildren.name != null){
+                        if(lChildren.name.indexOf("mcGraphicPlant") !== -1) this._plants[index++] = lChildren;
+                    }
+                }
+                
+                return this._plants;
             }
         }
     });
@@ -225,10 +227,10 @@ define([
     // ##############################################################################################################################################
 
     GardenScreen.prototype._createFertilizerText = function _createFertilizerText () {
-        this._magicBag._txt = new PIXI3.Text("", { font : "40px Arial", fill : "#000000", align : "center" });
-        this._magicBag._txt.anchor.set(0.5, 0.5);
-        this._magicBag._txt.x -= this._magicBag.width;
-        this._magicBag.addChild(this._magicBag._txt);
+        this._neuroenergy._txt = new PIXI3.Text("", { font : "40px Arial", fill : "#000000", align : "center" });
+        this._neuroenergy._txt.anchor.set(0.5, 0.5);
+        this._neuroenergy._txt.x -= this._neuroenergy.width;
+        this._neuroenergy.addChild(this._neuroenergy._txt);
     }
 
     // GardenScreen.prototype.drawPath = function drawPath () {
@@ -254,17 +256,24 @@ define([
         this._gardensContainer.x = -this._focusedGarden.x;
 
         this._manageSlidingNavigation(targetGardenId);
-        this._focusedGarden.draw(this._data.data.language[targetGardenId - 1], this._data.data.maths[targetGardenId - 1]);
+        //this._focusedGarden.draw(this._data.data.language[targetGardenId - 1], this._data.data.maths[targetGardenId - 1]);
     };
 
     GardenScreen.prototype._slideToGarden = function _slideToGarden (eventData) {
         var targetGardenId = eventData.target.id;
+        var duration = 1000;
 
-        createjs.Tween.get(this._gardensContainer).to({x: this._getGardensContainerTargetX(targetGardenId)}, 1000, createjs.Ease.quartInOut).call(function () {
+        // console.log(this._getGardensContainerTargetX(targetGardenId));
+
+        createjs.Tween.get(this._lessonDotContainer).to({x: this._getGardensContainerTargetX(targetGardenId) - this._gardensContainer.x}, duration, createjs.Ease.quartInOut).call(function () {
+            this._lessonDotContainer.x = 0;
+        }.bind(this));
+        createjs.Tween.get(this._gardensContainer).to({x: this._getGardensContainerTargetX(targetGardenId)}, duration, createjs.Ease.quartInOut).call(function () {
             this._manageSlidingNavigation(targetGardenId);
         }.bind(this));
 
-        this._focusedGarden.undraw();
+        this._focusedGarden.undraw(this._lessonDotContainer);
+        this._focusedGarden.undrawPlant();
         this._removeSlideFunctions();
         //this._manageSlidingNavigation(targetGardenId);
     };
@@ -279,7 +288,9 @@ define([
         
         this._registerFocusAndNeighbours(targetGardenId);
         this._assignSlideFunctionsToNeighbourGardens(targetGardenId);
-        this._focusedGarden.draw(this._data.data.language[targetGardenId - 1], this._data.data.maths[targetGardenId - 1]);
+        this._focusedGarden.draw(this._data.data.language[targetGardenId - 1], this._data.data.maths[targetGardenId - 1], this._lessonDotContainer);
+        this._focusedGarden.drawPlant();
+        this.unlockPlants(this._userProfile);
     };
 
     GardenScreen.prototype._removeSlideFunctions = function _removeSlideFunctions () {
@@ -349,20 +360,6 @@ define([
         SoundManager.getSound("click").play();
         console.log("[GardenScreen] Kalulu Button click received. Not yet Implemented");
     };
-
-    GardenScreen.prototype._onClickOnMagicBagButton = function _onClickOnMagicBagButton (eventData) {
-        
-        SoundManager.getSound("click").play();
-        console.log("[GardenScreen] MagicBag Button click received. Not yet Implemented");
-    };
-
-    /*
-    GardenScreen.prototype._onClickOnBurrowButton = function _onClickOnBurrowButton (eventData) {
-        
-        SoundManager.getSound("click").play();
-        console.log("[GardenScreen] Burrow Button click received. Not yet Implemented");
-    };
-    */
 
     return GardenScreen;
 });
