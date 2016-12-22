@@ -7,6 +7,8 @@
     var GP               = require ('./gp');
     var StimuliFactory   = require ('./stimuli_factory');
     
+    var constants        = require ('../config/config');
+
     var staticData = {
         name              : KALULU_LANGUAGE,
         language          : KALULU_LANGUAGE.toLowerCase(),
@@ -313,7 +315,7 @@
     };
 
     LanguageModule.prototype.getPedagogicDataForAssessment = function getPedagogicDataForAssessment (progressionNode) {
-        var constants = Config.languageModule.constants.assessments;
+        var constants = constants.assessments;
         var setup = {
             categories : ['WORD', 'NO WORD'],
             timer : constants.timer,
@@ -743,7 +745,7 @@
 
             var lTarget = totalTargets.pop();
 
-            var isCapitalLetters = Math.random() > Config.languageModule.constants.lowerCaseTargetsShare;
+            var isCapitalLetters = Math.random() > constants.lowerCaseTargetsShare;
             var skills = [graphemeReco];
             if (lTarget.syllabicStructure.indexOf("C") !== -1) skills.push(consonantsReco);
             if (lTarget.syllabicStructure.indexOf("V") !== -1) skills.push(vowelsReco);

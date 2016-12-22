@@ -1,7 +1,7 @@
 (function () {
     
     'use strict';
-    process.env.kaluluLanguage = "english";
+    process.env.kaluluLanguage = "swahili";
     var WebpackEnvironment = require('../webpack_configs/WebpackEnvironment');
 
     console.log('\n#### NPM GLOBAL TEST\n\n');

@@ -33,7 +33,7 @@
             this.monkeySprite.animations.add('throw', Phaser.Animation.generateFrameNames('SINGE_lance_', 0, 5, '', 4), 11, false, false);
             this.monkeySprite.animations.add('speak', Phaser.Animation.generateFrameNames('SINGE_prononce_', 0, 3, '', 4), 11, false, false);
             this.monkeySprite.animations.add('get', Phaser.Animation.generateFrameNames('SINGE_recupere_noixdecoco_', 0, 3, '', 4), 11, false, false);
-            this.add(this.monkeySprite)
+            this.add(this.monkeySprite);
 
             this.stunStars = game.add.sprite(0, -this.monkeySprite.height, 'stunStars', 'etoiles_etourdi_0000');
             this.stunStars.anchor.setTo(0.5, 1);

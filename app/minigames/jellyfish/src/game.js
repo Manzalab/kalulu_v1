@@ -1,9 +1,11 @@
 ﻿define([
+    'phaser-bundle',
     'common/src/ui',
     './remediation',
     'common/src/kalulu',
     'eventemitter3'
 ], function (
+    Phaser,
     Ui,
     Remediation,
     Kalulu,

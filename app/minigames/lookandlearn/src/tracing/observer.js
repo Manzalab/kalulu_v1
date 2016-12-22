@@ -1,7 +1,9 @@
 /**
  * Created by Adrien on 11/08/2016.
  */
-var Victor = require('victor');
+var Victor  = require('victor');
+var Emitter = require('../events/emitter');
+var Events  = require('../events/events');
 
 function Observer(settings){
     this.settings = settings;

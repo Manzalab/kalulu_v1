@@ -3,13 +3,19 @@ define([
     '../ui',
     'eventemitter3',
     '../layouts',
-    '../layouts/bot-canvas'
+    '../layouts/bot-canvas',
+    '../tracing',
+    '../events/emitter',
+    '../events/events'
 ], function (
     Phaser,
     UI,
     EventEmitter,
     loadLayouts,
-    BotCanvasLayout
+    BotCanvasLayout,
+    Tracing,
+    Emitter,
+    Events
 ) {
     'use strict';
 
@@ -35,9 +41,9 @@ define([
         this.game.load.image('illustrative_image_'+ grapheme, this.game.config.pedagogicData.image);
 
         // 3 Kalulu speeches 
-        this.game.load.audio('kaluluIntro',         'lookandlearn/assets/audio/' + this.game.config.pedagogicData.language + '/kalulu/kalulu_intro_CommonCore02_' + this.game.config.disciplines[this.game.config.pedagogicData.discipline] + '.ogg');
-        this.game.load.audio('kaluluHelp',          'lookandlearn/assets/audio/' + this.game.config.pedagogicData.language + '/kalulu/kalulu_help_CommonCore02_' + this.game.config.disciplines[this.game.config.pedagogicData.discipline] + '.ogg');
-        this.game.load.audio('kaluluGameOverWin',   'lookandlearn/assets/audio/' + this.game.config.pedagogicData.language + '/kalulu/kalulu_end_CommonCore02_' + this.game.config.disciplines[this.game.config.pedagogicData.discipline] + '.ogg');
+        this.game.load.audio('kaluluIntro',         'minigames/lookandlearn/assets/audio/kalulu/kalulu_intro_CommonCore02_' + this.game.config.disciplines[this.game.config.pedagogicData.discipline] + '.ogg');
+        this.game.load.audio('kaluluHelp',          'minigames/lookandlearn/assets/audio/kalulu/kalulu_help_CommonCore02_' + this.game.config.disciplines[this.game.config.pedagogicData.discipline] + '.ogg');
+        this.game.load.audio('kaluluGameOverWin',   'minigames/lookandlearn/assets/audio/kalulu/kalulu_end_CommonCore02_' + this.game.config.disciplines[this.game.config.pedagogicData.discipline] + '.ogg');
     }
     
     PhaseImage.prototype.create = function phaseImageCreate () {
