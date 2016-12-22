@@ -2,11 +2,11 @@
 
 "PathA_10.png":
 {
-	"frame": {"x":3,"y":1316,"w":1236,"h":533},
+	"frame": {"x":3,"y":1316,"w":1338,"h":533},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":1236,"h":533},
-	"sourceSize": {"w":1236,"h":533},
+	"spriteSourceSize": {"x":0,"y":0,"w":1338,"h":533},
+	"sourceSize": {"w":1338,"h":533},
 	"pivot": {"x":0.5,"y":0.5}
 },
 "SpriteGarden_130004.png":
@@ -25,6 +25,6 @@
 	"format": "RGBA8888",
 	"size": {"w":1461,"h":1852},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:223c4a2cb3613f3f0b3296511a6a380b:f780fdd579ce69f5a4a521d9bbea7d48:397dc27b02c7dc39d8cf27927f2c39a5$"
+	"smartupdate": "$TexturePacker:SmartUpdate:120267880ffed3891e0506cbb94cba2c:2940f09332be7ad0f3320b83b46c77ee:397dc27b02c7dc39d8cf27927f2c39a5$"
 }
 }

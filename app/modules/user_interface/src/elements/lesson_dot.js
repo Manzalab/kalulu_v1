@@ -80,8 +80,6 @@ define([
 		this._assetName = this._assetNameStandard;
 	};
 
-	//
-	//
 	// FOR DEBUG
 	// LessonDot.prototype._mouseOver = function _mouseOver (pEventData) {
 	// 	this._setModeInProgress();
@@ -89,8 +87,6 @@ define([
 	// LessonDot.prototype._mouseOut = function _mouseOut (pEventData) {
 	// 	this._setModeCompleted();
 	// };
-	//
-	//
 	//
 
 	return LessonDot;

@@ -132,7 +132,7 @@ define([
 	}
 
 	Plant.prototype._setPositionY = function _setPositionY() {
-		this.y = this._initPositionY - this.height/2;
+		this.y = this._initPositionY - this.height/2 - this._initHeight/2;
 	}
 
 

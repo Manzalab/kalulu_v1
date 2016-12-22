@@ -1,21 +1,21 @@
 {"frames": {
 
-"PathA_04.png":
+"PathA_06.png":
 {
-	"frame": {"x":3,"y":1577,"w":1459,"h":397},
+	"frame": {"x":3,"y":1055,"w":1272,"h":474},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":1459,"h":397},
-	"sourceSize": {"w":1459,"h":397},
+	"spriteSourceSize": {"x":0,"y":0,"w":1272,"h":474},
+	"sourceSize": {"w":1272,"h":474},
 	"pivot": {"x":0.5,"y":0.5}
 },
-"PathA_17.png":
+"PathA_09.png":
 {
-	"frame": {"x":3,"y":1055,"w":1125,"h":518},
+	"frame": {"x":3,"y":1533,"w":1441,"h":409},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":1125,"h":518},
-	"sourceSize": {"w":1125,"h":518},
+	"spriteSourceSize": {"x":0,"y":0,"w":1441,"h":409},
+	"sourceSize": {"w":1441,"h":409},
 	"pivot": {"x":0.5,"y":0.5}
 },
 "SpriteGarden_110003.png":
@@ -32,8 +32,8 @@
 	"version": "1.0",
 	"image": "garden_screen_15.png",
 	"format": "RGBA8888",
-	"size": {"w":1576,"h":1977},
+	"size": {"w":1576,"h":1945},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:223c4a2cb3613f3f0b3296511a6a380b:f780fdd579ce69f5a4a521d9bbea7d48:397dc27b02c7dc39d8cf27927f2c39a5$"
+	"smartupdate": "$TexturePacker:SmartUpdate:120267880ffed3891e0506cbb94cba2c:2940f09332be7ad0f3320b83b46c77ee:397dc27b02c7dc39d8cf27927f2c39a5$"
 }
 }

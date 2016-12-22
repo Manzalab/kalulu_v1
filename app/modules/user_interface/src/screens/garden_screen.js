@@ -42,7 +42,6 @@ define([
         this._data = chaptersData;
         this._interfaceManager = interfaceManager;
         this._userProfile = userProfile;
-        console.log(this._userProfile);
         this.name="mcGardenScreen";
         this.build();
         
@@ -121,29 +120,31 @@ define([
         }
     };
 
-    GardenScreen.prototype.unlockPlants = function unlockPlants(userProfile) {
+    GardenScreen.prototype.unlockPlants = function unlockPlants() {
+
+        this.plants; // GETTER
 
         var lengthChapter = this._plants.length;
         var lPlant;
 
         for (var i = 0; i < lengthChapter; i++) {
             lPlant = this._plants[i];
-            lPlant.setSaveState(userProfile.plantsProgression[lPlant._idChapter-1][lPlant._idPlant-1]);
-            lPlant.setUserReference(userProfile);
+            lPlant.setSaveState(this._userProfile.plantsProgression[lPlant._idChapter-1][lPlant._idPlant-1]);
+            lPlant.setUserReference(this._userProfile);
             lPlant.setGardenScreenReference(this);
         }
 
-        this.fertilizerText = userProfile.fertilizer;
+        this.fertilizerText = this._userProfile.fertilizer;
     }
 
-    GardenScreen.prototype.unlockBonusPath = function unlockBonusPath(userProfile) {
+    GardenScreen.prototype.unlockBonusPath = function unlockBonusPath() {
         var pathIndex = 1;
         var index = 2;
 
-        for(var children in userProfile.Language.plan) {
+        for(var children in this._userProfile.Language.plan) {
             if(children == "lesson" + index){
-                if(userProfile.Language.plan[children].isCompleted) this._bonusPathA[pathIndex].setModeOn();
-                //if(!userProfile.Language.plan[children].isCompleted) this._bonusPathA[pathIndex].setModeOn(); // FOR DEBUG
+                if(this._userProfile.Language.plan[children].isCompleted) this._bonusPathA[pathIndex].setModeOn();
+                //if(!this._userProfile.Language.plan[children].isCompleted) this._bonusPathA[pathIndex].setModeOn(); // FOR DEBUG
 
                 if(index==16 || index==17 || index==36) index++;
                 else index += 2;
@@ -154,10 +155,10 @@ define([
 
         pathIndex = 1;
         index = 2;
-        for(children in userProfile.Maths.plan) {
+        for(children in this._userProfile.Maths.plan) {
             if(children == "lesson" + index){
-                if(userProfile.Maths.plan[children].isCompleted) this._bonusPathB[pathIndex].setModeOn();
-                //if(!userProfile.Maths.plan[children].isCompleted) this._bonusPathB[pathIndex].setModeOn(); // FOR DEBUG
+                if(this._userProfile.Maths.plan[children].isCompleted) this._bonusPathB[pathIndex].setModeOn();
+                //if(!this._userProfile.Maths.plan[children].isCompleted) this._bonusPathB[pathIndex].setModeOn(); // FOR DEBUG
 
                 if (index>=35) index += 2;
                 else index += 3;
@@ -220,16 +221,19 @@ define([
         // }
     };
 
-
-
     // ##############################################################################################################################################
     // ###  PRIVATE METHODS  ########################################################################################################################
     // ##############################################################################################################################################
 
     GardenScreen.prototype._createFertilizerText = function _createFertilizerText () {
-        this._neuroenergy._txt = new PIXI3.Text("", { font : "40px Arial", fill : "#000000", align : "center" });
+        this._neuroenergy._txt = new PIXI3.Text("", { font : "40px Muli", fill : "#000000", align : "center" });
+
+        this._neuroenergy._upStyle       = { font : "40px Muli", fill : "#000000", align : "center" };
+        this._neuroenergy._overStyle     = { font : "40px Muli", fill : "#000000", align : "center" };
+        this._neuroenergy._downStyle     = { font : "40px Muli", fill : "#000000", align : "center" };
+        this._neuroenergy._disabledStyle = { font : "40px Muli", fill : "#000000", align : "center" };
+
         this._neuroenergy._txt.anchor.set(0.5, 0.5);
-        this._neuroenergy._txt.x -= this._neuroenergy.width;
         this._neuroenergy.addChild(this._neuroenergy._txt);
     }
 
@@ -244,7 +248,6 @@ define([
         
     //     this.addChild(lPath);
     // };
-
 
     GardenScreen.prototype._focusGarden = function _focusGarden (targetGardenId) {
         this._focusedGarden = this._gardens[targetGardenId];
@@ -290,7 +293,7 @@ define([
         this._assignSlideFunctionsToNeighbourGardens(targetGardenId);
         this._focusedGarden.draw(this._data.data.language[targetGardenId - 1], this._data.data.maths[targetGardenId - 1], this._lessonDotContainer);
         this._focusedGarden.drawPlant();
-        this.unlockPlants(this._userProfile);
+        this.unlockPlants();
     };
 
     GardenScreen.prototype._removeSlideFunctions = function _removeSlideFunctions () {
