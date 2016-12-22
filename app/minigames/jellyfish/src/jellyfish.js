@@ -1,5 +1,7 @@
 ﻿define([
+    'phaser-bundle'
 ], function (
+    Phaser
 ) {
     
     'use strict';

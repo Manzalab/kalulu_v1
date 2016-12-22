@@ -24,8 +24,6 @@ exports.extractBundle = function (optionsArray) {
         
         var options = optionsArray[i];
 
-        var entry = {};
-
         entry[options.name] = options.entries;
 
         names.push(options.name);
@@ -142,9 +140,13 @@ exports.copyAssetsForModules = function (moduleFolderNames, language) {
     for (var i = 0 ; i < count ; i++) {
         var folderName = moduleFolderNames[i];
         console.log('copy logic for module : ' + folderName);
-        attemptCopyRequest('modules', transfers, folderName, 'data', language, true);
+        attemptCopyRequest('modules', transfers, folderName, 'data', undefined, true);
+        attemptCopyRequest('modules', transfers, folderName, 'images', undefined, true);
         attemptCopyRequest('modules', transfers, folderName, 'images', language, true);
+        attemptCopyRequest('modules', transfers, folderName, 'sounds', undefined, true);
         attemptCopyRequest('modules', transfers, folderName, 'sounds', language, true);
+        attemptCopyRequest('modules', transfers, folderName, 'video', undefined, true);
+        attemptCopyRequest('modules', transfers, folderName, 'video', language, true);
     }
 
     console.log(transfers);
@@ -161,8 +163,19 @@ exports.copyAssetsForModules = function (moduleFolderNames, language) {
 
 function attemptCopyRequest (category, array, folderName, assetsSubPath, language, mergeAssets) {
     //console.log('testing ' + folderName + ' > ' + assetsSubPath + ' > ' + language);
-    
-    language = typeof language === 'undefined' ? '' : '/' + language;
+    var ignore = [];
+    if (typeof language === 'undefined') {
+        language = '';
+        ignore = [
+            'swahili/**/*',
+            'english/**/*',
+            'french/**/*'
+        ];
+    }
+    else {
+        language = '/' + language;
+    }
+
     mergeAssets = typeof mergeAssets === 'undefined' ? false : mergeAssets;
 
     var srcPath = 'app/' + category + '/' + folderName + '/assets/' + assetsSubPath + language;
@@ -174,8 +187,8 @@ function attemptCopyRequest (category, array, folderName, assetsSubPath, languag
     else {
         destPath = category + '/' + folderName + '/assets/' + assetsSubPath;
     }
-    console.log('\n\nTesting Path <' + srcPath + '> to copy to <' + destPath + '\n');
-    if (testPathToFolder(srcPath)) array.push({ from: srcPath, to: destPath});
+    console.log('\n\nTesting Path <' + srcPath + '> to copy to <' + destPath + '>, ignoring ' + ignore + '\n');
+    if (testPathToFolder(srcPath)) array.push({ from: srcPath, to: destPath, ignore : ignore});
 }
 
 function testPathToFolder (pathToFolder) {

@@ -208,21 +208,21 @@ define([], function () {
 
         soundPath : {
             get : function () { 
-                var path = Config.soundsPath + 'pedago/phoneme_' + this._phonemeName;
+                var path = Config.soundsPath + 'language/phoneme_' + this._phonemeName;
                 return path + ".ogg";
             }
         },
         
         illustrativeSoundPath : {
             get : function () {
-                var path = Config.soundsPath + 'pedago/phoneme_illustration_' + this._phonemeName;
+                var path = Config.soundsPath + 'language/phoneme_illustration_' + this._phonemeName;
                 return path + ".ogg";
             }
         },
 
         illustrationPath : {
             get : function () {
-                return  Config.imagesPath + 'pedago/' + this._illustrativeWordEnglish.capitalise() + '.jpg';
+                return  Config.imagesPath + 'language/lookandlearn/' + this._illustrativeWordEnglish.capitalise() + '.jpg';
             }
         },
 
@@ -240,9 +240,9 @@ define([], function () {
 
         toTrace : { get : function () { return this._toTrace; } },
         
-        video1 : { get : function () { return Config.videoPath + 'pedago/L' + this.lesson + '.mp4'; } },
+        video1 : { get : function () { return Config.videoPath + 'language/L' + this.lesson + '.mp4'; } },
         
-        video2 : { get : function () { return Config.videoPath + 'pedago/S' + this.lesson + '.mp4'; } },
+        video2 : { get : function () { return Config.videoPath + 'language/S' + this.lesson + '.mp4'; } },
 
         traceUppercase : { get : function () { return this.value.length === 1 ? true : false; } },
 

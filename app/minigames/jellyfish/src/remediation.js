@@ -1,7 +1,9 @@
 ﻿define([
+    'phaser-bundle',
     './jellyfish',
     'common/src/fx'
 ], function (
+    Phaser,
     Jellyfish,
     Fx
 ) {
