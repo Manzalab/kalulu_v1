@@ -1,6 +1,6 @@
 define([
     'phaser-bundle',
-    'common/src/ui',
+    '../ui',
     'eventemitter3',
     '../layouts',
     '../layouts/bot-canvas'

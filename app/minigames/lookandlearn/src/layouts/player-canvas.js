@@ -3,6 +3,9 @@
  */
 var Layout = require('./layout');
 var dat = require('dat.gui');
+var Tracing = require('../tracing');
+var Emitter = require('../events/emitter');
+var Events = require('../events/events');
 
 function PlayerCanvasLayout(game, settings){
     Layout.call(this, game, settings);

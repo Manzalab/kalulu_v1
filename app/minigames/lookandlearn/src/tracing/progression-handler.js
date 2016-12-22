@@ -1,6 +1,10 @@
 /**
  * Created by Adrien on 12/08/2016.
  */
+
+var Emitter = require('../events/emitter');
+var Events = require('../events/events');
+
 function ProgressionHandler(settings, game){
     
     this.game = game;

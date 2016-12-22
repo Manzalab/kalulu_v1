@@ -2,6 +2,9 @@
  * Created by Adrien on 02/08/2016.
  */
 var Layout = require('./layout');
+var Tracing = require('../tracing');
+var Emitter = require('../events/emitter');
+var Events = require('../events/events');
 
 function BotCanvasLayout(game, settings){
 

@@ -18,7 +18,7 @@
 	     * Load assets to be used later in the preloader
 	    **/
         preload: function () {
-            this.load.image('preloaderBar', 'assets_shared/images/ui/preloader-bar.png');
+            this.load.image('preloaderBar', 'minigames/common/assets/images/ui/preloader-bar.png');
         },
 
         /**

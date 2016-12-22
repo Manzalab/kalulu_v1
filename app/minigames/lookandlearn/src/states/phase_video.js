@@ -1,15 +1,21 @@
 define([
     'phaser-bundle',
-    'common/src/ui',
+    '../ui',
     'eventemitter3',
     '../layouts',
-    '../layouts/bot-canvas'
+    '../layouts/bot-canvas',
+    '../tracing',
+    '../events/emitter',
+    '../events/events'
 ], function (
     Phaser,
     UI,
     EventEmitter,
     loadLayouts,
-    BotCanvasLayout
+    BotCanvasLayout,
+    Tracing,
+    Emitter,
+    Events
 ) {
     'use strict';
 
@@ -18,7 +24,13 @@ define([
 	 * @class
 	**/
     function PhaseVideo (game) {
+        console.log(game);
+        this.game = game;
+        console.log(this.game);
         Phaser.State.call(this);
+        console.log(game);
+        console.log(this.game);
+        this.game = game;
         if (this.game.config.globalVars) window.lookandlearn.phaseVideo = this;
     }
 
@@ -35,9 +47,9 @@ define([
         this.game.load.video('video_'+ grapheme + '_2', this.game.config.pedagogicData.video2);
 
         // 3 Kalulu speeches 
-        this.game.load.audio('kaluluIntro',         'lookandlearn/assets/audio/' + this.game.config.pedagogicData.language + '/kalulu/kalulu_intro_CommonCore01_' + this.game.config.disciplines[this.game.config.pedagogicData.discipline] + '.ogg');
-        this.game.load.audio('kaluluHelp',          'lookandlearn/assets/audio/' + this.game.config.pedagogicData.language + '/kalulu/kalulu_help_CommonCore01_' + this.game.config.disciplines[this.game.config.pedagogicData.discipline] + '.ogg');
-        this.game.load.audio('kaluluGameOverWin',   'lookandlearn/assets/audio/' + this.game.config.pedagogicData.language + '/kalulu/kalulu_end_CommonCore01_' + this.game.config.disciplines[this.game.config.pedagogicData.discipline] + '.ogg');
+        this.game.load.audio('kaluluIntro',         'minigames/lookandlearn/assets/audio/kalulu/kalulu_intro_CommonCore01_' + this.game.config.disciplines[this.game.config.pedagogicData.discipline] + '.ogg');
+        this.game.load.audio('kaluluHelp',          'minigames/lookandlearn/assets/audio/kalulu/kalulu_help_CommonCore01_' + this.game.config.disciplines[this.game.config.pedagogicData.discipline] + '.ogg');
+        this.game.load.audio('kaluluGameOverWin',   'minigames/lookandlearn/assets/audio/kalulu/kalulu_end_CommonCore01_' + this.game.config.disciplines[this.game.config.pedagogicData.discipline] + '.ogg');
     };
     
     PhaseVideo.prototype.create = function phaseVideoCreate () {

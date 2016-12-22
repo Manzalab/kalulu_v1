@@ -2,6 +2,8 @@
  * Created by Adrien on 16/08/2016.
  */
 var Layout = require('./layout');
+var Emitter = require('../events/emitter');
+var Events = require('../events/events');
 
 function DebugLayout(game, settings){
     Layout.call(this, game, settings);
