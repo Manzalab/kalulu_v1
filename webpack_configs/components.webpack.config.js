@@ -15,23 +15,37 @@ exports.mergeConfigs = WebpackMerge;
     });
 }();*/
 
-exports.extractBundle = function (options) {
-    
+exports.extractBundle = function (optionsArray) {
     var entry = {};
+    var config = {};
+    var names = [];
 
-    entry[options.name] = options.entries;
+    for (var i = 0 ; i < optionsArray.length ; i++) {
+        
+        var options = optionsArray[i];
+
+        var entry = {};
+
+        entry[options.name] = options.entries;
+
+        names.push(options.name);
+    }
+
+    names.reverse();
+    names.push('manifest');
 
     return {
-        // Define an entry point needed for splitting.
-        entry: entry,
+            // Define an entry point needed for splitting.
+            entry: entry,
 
-        plugins: [
-            // Extract bundle and manifest files. Manifest is needed for reliable caching.
-            new webpack.optimize.CommonsChunkPlugin({
-                names: [options.name, 'manifest']
-            })
-        ]
-    };
+            plugins: [
+                // Extract bundle and manifest files. Manifest is needed for reliable caching.
+                new webpack.optimize.CommonsChunkPlugin({
+                    names: names,
+                    minChunks: Infinity
+                })
+            ]
+        };
 };
 
 exports.minify = function() {
@@ -106,6 +120,7 @@ exports.copyAssetsForMinigames = function (minigameFolderNames, language) {
 
         attemptCopyRequest('minigames', transfers, folderName, 'data');
         attemptCopyRequest('minigames', transfers, folderName, 'images');
+        attemptCopyRequest('minigames', transfers, folderName, 'config');
         attemptCopyRequest('minigames', transfers, folderName, 'audio/sfx');
         attemptCopyRequest('minigames', transfers, folderName, 'audio/kalulu', language);
     }

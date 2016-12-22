@@ -129,8 +129,8 @@ define([], function(){
                 return this._userProfile[this._discipline.type].plan[this.id].isStarted;
             },
             set: function (value) {
-                console.log("setting isStarted to " + value);
-                console.log(this);
+                // console.log("setting isStarted to " + value);
+                // console.log(this);
                 this._userProfile[this._discipline.type].plan[this._id].isStarted = value;
                 if (value && this.parent && !this.parent.isStarted) this.parent.isStarted = true;
                 this._userProfile.save();

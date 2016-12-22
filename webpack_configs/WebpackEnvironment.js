@@ -3,7 +3,7 @@ var webpack              = require('webpack');
 var WebpackDevServer     = require('webpack-dev-server');
 
 // configs
-var webpackCommonConfig = require('../webpack_configs/webpack.config.0.common.js');
+var webpackCommonConfig  = require('../webpack_configs/webpack.config.0.common.js');
 var devServerConfig      = require('../webpack_configs/webpack.dev-server.config.js');
 var components           = require('../webpack_configs/components.webpack.config.js');
 
@@ -21,7 +21,13 @@ module.exports = {
 
 function TestEnvironment (webpackSpecificConfig) {
     console.log(components);
-    this.config = validate(components.mergeConfigs(webpackCommonConfig, webpackSpecificConfig));
+    this.config = validate(components.mergeConfigs(webpackSpecificConfig, webpackCommonConfig));
+    
+    var a = this.config.entry.main;
+    delete this.config.entry.main;
+    this.config.entry.main = a;
+
+
     console.log('\n## Test Environment Final Config :');
     console.log(process.env.kaluluLanguage);
     console.log(this.config);
@@ -38,7 +44,7 @@ function TestEnvironment (webpackSpecificConfig) {
 
 function BuildEnvironment (webpackSpecificConfig) {
     
-    this.config = validate(components.mergeConfigs(webpackCommonConfig, webpackSpecificConfig));
+    this.config = validate(components.mergeConfigs(webpackSpecificConfig, webpackCommonConfig));
     console.log('\n## Build Environment Final Config :');
     console.log(process.env.kaluluLanguage);
     console.log(this.config);

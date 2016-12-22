@@ -1,0 +1,10 @@
+{
+    "gameId" 			: "lookandlearn",
+    "skipKalulu" 		: false,
+    "skipKaluluIntro" 	: false,
+    "skipKaluluHelp" 	: false,
+    "skipKaluluFinal" 	: false,
+    "debugPanel" 		: true,
+    "globalVars" 		: true,
+    "debugPencil" 		: false
+}

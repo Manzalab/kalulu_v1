@@ -44,6 +44,7 @@
     "eventemitter3": "^2.0.2",
     "howler": "^2.0.2",
     "json-loader": "^0.5.4",
+    "micro-events": "^1.0.0",
     "underscore": "^1.8.3",
     "victor": "^1.1.0"
   }

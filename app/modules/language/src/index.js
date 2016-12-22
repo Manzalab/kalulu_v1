@@ -252,7 +252,7 @@
         console.log(selectedNotion);
         pedagogicData = {
             discipline        : 'language',
-            language          : Config.languageModule.language, // can be : english, french, swahili
+            language          : KALULU_LANGUAGE, // can be : english, french, swahili
             video1            : selectedNotion.video1,
             video2            : selectedNotion.video2,
             sound             : selectedNotion.soundPath,

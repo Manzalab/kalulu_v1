@@ -1,7 +1,7 @@
 (function () {
     
     'use strict';
-    
+    process.env.kaluluLanguage = "english";
     console.log('\n#### NPM BUILD\n\n');
 
     var WebpackEnvironment = require('../webpack_configs/WebpackEnvironment');

@@ -1,0 +1,81 @@
+{
+    "phase1Uppercase": {
+        "name" : "botDemo",
+        "enabled": true,
+        "pencilStyle" : {"stroke": "0x000000", "width": "50"},
+        "x": 0,
+        "y": 0,
+        "w": 600,
+        "h": 900,
+        "id": 4,
+        "waitedId": 5,
+        "drawOffset": {"x": 40, "y":40},
+        "callSounds": false,
+        "isTouchSensitive": false
+    },
+    "botLayout": {
+        "name" : "botTrace",
+        "pencilStyle" : {"stroke": "0x000000", "width": "50"},
+        "x": 300,
+        "y": 300,
+        "w": 600,
+        "h": 900,
+        "id": 0,
+        "waitedId": -1,
+        "drawOffset": {"x": 40, "y":40},
+        "callSounds": true,
+        "isTouchSensitive": true
+    },
+    "calcLayout": {
+      "name" : "botCalc",
+      "pencilStyle" : {"stroke": "0x000000", "width": "60", "alpha": 0.3},
+      "x": 1160,
+      "y": 300,
+      "w": 600,
+      "h": 900,
+      "id": 2,
+      "waitedId": 1,
+      "drawOffset": {"x": 40, "y":40}
+    },
+    "playerLayout": {
+        "name" : "playerLayout",
+        "pencilStyle" : {"stroke": "0x000000", "width": "50", "wrong": "0x000000"},
+        "x": 960,
+        "y": 0,
+        "w": 960,
+        "h": 1080,
+        "id": 1,
+        "waitedId": 0,
+        "drawOffset": {"x": 40, "y":40},
+
+        "observer":{
+          "maxDistance": 750,
+          "maxDistanceForLast": 1200,
+          "longDistanceMaxAngleDiff": 40,
+          "shortDistanceMaxAngleDiff": 3,
+          "maxOwnAngle": 40,
+          "distanceBeforeRed": 1000,
+          "maximumErrorDistance": 7000,
+          "maxDistancePerFrame": 150,
+          "offsetX": 200,
+          "offsetY": 300,
+          "nbErrorBeforeHelp1": 2,
+          "timeBeforeHelp1": 10,
+          "nbErrorBeforeHelp2": 4
+        },
+        "helper":{
+            "wayPointColor": "0x551a8b",
+            "wayPointSize": 30,
+            "startPointColor": "0x000000",
+            "endPointColor": "0x00ff00",
+            "failPointColor": "0x0000ff",
+            "stepPointSize": 50,
+            "offsetX": 200,
+            "offsetY": 300
+        }
+    },
+    "debugLayout":{
+      "name" : "debugLayout ",
+      "enabled": false
+    }
+}

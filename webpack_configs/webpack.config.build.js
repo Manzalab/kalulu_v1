@@ -29,11 +29,27 @@ module.exports = components.mergeConfigs(
     components.copyAssetsForModules(['user_interface']),
     components.generateHtml(),
     components.minify(),
-    components.extractBundle({
+    components.extractBundle([{
         name    : 'vendor',
         entries : ['phaser-bundle', 'stats', 'eventemitter3', 'dat.gui', 'modules/user_interface/libs/pixi']
-    })
+    },
+    {
+        name    : 'minigames-common',
+        entries : getCommonScriptsPaths()
+    }])
 );
+
+function getCommonScriptsPaths () {
+    var files = fs.readdirSync('app/minigames/common/src');
+    var paths = [];
+    var count = files.length;
+    for (var i = 0 ; i < count ; i++) {
+        paths.push('common/src/' + files[i]);
+    }
+    return paths;
+}
+
+
 
 console.log('\n Build :');
 console.log(process.env.kaluluLanguage);
