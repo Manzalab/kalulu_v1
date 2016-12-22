@@ -4,7 +4,6 @@
 
     console.log('\n#### NPM TEST CRABS\n\n');
 
-    var WebpackEnvironment = require('../webpack_configs/WebpackEnvironment');
     var config = null;
     process.env.kaluluMinigame = "crabs";
 
@@ -24,6 +23,8 @@
             config = {};
     }
 
+    var WebpackEnvironment = require('../webpack_configs/WebpackEnvironment');
+
     var env = new WebpackEnvironment.Test(config);
 
-})()
+})();

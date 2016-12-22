@@ -1,4 +1,5 @@
 var path              = require('path');
+var fs                = require('fs');
 var webpack           = require('webpack');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var components        = require('./components.webpack.config.js');
@@ -18,7 +19,8 @@ module.exports = components.mergeConfigs(
                 { from: 'app/config', to: 'config' }
             ]),
             new webpack.DefinePlugin({
-              KALULU_MINIGAME : JSON.stringify(process.env.kaluluMinigame)
+              KALULU_MINIGAME       : JSON.stringify(process.env.kaluluMinigame),
+              KALULU_MINIGAMES_LIST : JSON.stringify(fs.readdirSync('app/minigames'))
             })
         ]
     },
@@ -26,6 +28,6 @@ module.exports = components.mergeConfigs(
     components.generateHtml()
 );
 
-// console.log('\n Test Crabs English :');
-// console.log(process.env.kaluluLanguage);
-// console.log(module.exports);
+console.log('\n Test Crabs English :');
+console.log(process.env.kaluluLanguage);
+console.log(module.exports);

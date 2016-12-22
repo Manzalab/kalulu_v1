@@ -20,4 +20,4 @@
 
     var env = new WebpackEnvironment.Build(config);
 
-})()
+})();
