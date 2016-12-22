@@ -1,26 +1,26 @@
 {"frames": {
 
-"PathA_12.png":
+"PathA_01.png":
 {
-	"frame": {"x":3,"y":1306,"w":1229,"h":393},
+	"frame": {"x":3,"y":1588,"w":1066,"h":452},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":1229,"h":393},
-	"sourceSize": {"w":1229,"h":393},
+	"spriteSourceSize": {"x":0,"y":0,"w":1066,"h":452},
+	"sourceSize": {"w":1066,"h":452},
 	"pivot": {"x":0.5,"y":0.5}
 },
-"PathB_20.png":
+"PathA_18.png":
 {
-	"frame": {"x":3,"y":1703,"w":1266,"h":340},
+	"frame": {"x":3,"y":3,"w":1409,"h":278},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":1266,"h":340},
-	"sourceSize": {"w":1266,"h":340},
+	"spriteSourceSize": {"x":0,"y":0,"w":1409,"h":278},
+	"sourceSize": {"w":1409,"h":278},
 	"pivot": {"x":0.5,"y":0.5}
 },
 "SpriteGarden_150001.png":
 {
-	"frame": {"x":3,"y":3,"w":1189,"h":1299},
+	"frame": {"x":3,"y":285,"w":1189,"h":1299},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":1189,"h":1299},
@@ -29,7 +29,7 @@
 },
 "SpriteGarden_150002.png":
 {
-	"frame": {"x":3,"y":3,"w":1189,"h":1299},
+	"frame": {"x":3,"y":285,"w":1189,"h":1299},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":1189,"h":1299},
@@ -38,7 +38,7 @@
 },
 "SpriteGarden_150003.png":
 {
-	"frame": {"x":3,"y":3,"w":1189,"h":1299},
+	"frame": {"x":3,"y":285,"w":1189,"h":1299},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":1189,"h":1299},
@@ -50,8 +50,8 @@
 	"version": "1.0",
 	"image": "garden_screen_21.png",
 	"format": "RGBA8888",
-	"size": {"w":1272,"h":2046},
+	"size": {"w":1415,"h":2043},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:223c4a2cb3613f3f0b3296511a6a380b:f780fdd579ce69f5a4a521d9bbea7d48:397dc27b02c7dc39d8cf27927f2c39a5$"
+	"smartupdate": "$TexturePacker:SmartUpdate:120267880ffed3891e0506cbb94cba2c:2940f09332be7ad0f3320b83b46c77ee:397dc27b02c7dc39d8cf27927f2c39a5$"
 }
 }

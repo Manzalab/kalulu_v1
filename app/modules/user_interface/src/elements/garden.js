@@ -131,12 +131,12 @@ define([
                     console.log("[GardenScreen] Issue with mcLesson" + match[(i+1)] + "PathA");
                     console.log("[GardenScreen] Issue maybe due to missing " + lNode.lessonNumber + " in match array.");
                 }
-                lDot.position.set(markerPosition.x, markerPosition.y);
+                lDot.position.set(markerPosition.x, markerPosition.y + this.y);
             }
             else if (lNode.constructor.name == "Assessment") {
                 lDot = new LessonDot(lNode, this._onClickOnAssessmentDot.bind(this), assetNameAssessment);
                 markerPosition = this.getChildByName("mcAssessmentPathA");
-                lDot.position.set(markerPosition.x, markerPosition.y);
+                lDot.position.set(markerPosition.x, markerPosition.y + this.y);
                 lDot.rotation = Math.DEG2RAD * 180;
                 lDotBossA = lDot;
             }
@@ -167,12 +167,12 @@ define([
                     console.log("[GardenScreen] Issue with mcLesson" + match2[(i+1)] + "PathB");
                     console.log("[GardenScreen] Issue maybe due to missing " + lNode.lessonNumber + " in match array. " + (i+1) + " requested.");
                 }
-                lDot.position.set(markerPosition.x, markerPosition.y);
+                lDot.position.set(markerPosition.x, markerPosition.y + this.y);
             }
             else if (lNode.constructor.name == "Assessment") {
                 lDot = new LessonDot(lNode, this._onClickOnAssessmentDot.bind(this), assetNameAssessment);
                 markerPosition = this.getChildByName("mcAssessmentPathB");
-                lDot.position.set(markerPosition.x, markerPosition.y);
+                lDot.position.set(markerPosition.x, markerPosition.y + this.y);
                 lDotBossB = lDot;
             }
 
@@ -227,7 +227,7 @@ define([
 
                 lPlant = new Plant(lChildren, lChildren.name);
                 lPlant.x = lChildren.x;
-                lPlant.y = lChildren.y;
+                lPlant.y = lChildren.y - lPlant.height/2;
 
                 this.addChild(lPlant);
                 this._plants.push(lPlant);
@@ -254,8 +254,6 @@ define([
     Garden.prototype.onClick = function onClick (pEventData) {
         // to be overriden
     };
-
-
 
     // ##############################################################################################################################################
     // ###  PRIVATE METHODS  ########################################################################################################################

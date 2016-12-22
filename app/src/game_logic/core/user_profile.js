@@ -27,10 +27,10 @@ define([
         **/
         this._data = userData || null;
 
-        /*
-        this._createSave();
-        this._data.fertilizer = 350; // FOR DEBUG
-        */
+        
+        // this._createSave();
+        // this._data.fertilizer = 10; // FOR DEBUG
+        
 
         this._NOT_STARTED = "NotStarted";
         this._SMALL  = "Small";

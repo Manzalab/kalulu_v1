@@ -14,7 +14,7 @@ define([
 	'use strict';
 
 	function Neuroenergy (description, assetName) {
-		
+		/*
 		this._description = description;
 		this._assetName = assetName;
 
@@ -27,6 +27,7 @@ define([
 		this._boxType = BoxType.SELF;
 
 		this.start();
+		*/
 	}
 
 	Neuroenergy.prototype = Object.create(StateGraphic.prototype);
