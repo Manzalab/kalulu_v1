@@ -27,7 +27,7 @@ var SkillTree = function(el,depth, tries, params){
 	else{
 		this.paths 	= el.name
 	}
-	this.number 	= el.number ? el.number : 'null';
+	this.number 	= el.number ? el.number : 0;
 	this.shape 		= el.shape ? el.shape : 'null' ;
 
 
@@ -50,7 +50,7 @@ var SkillTree = function(el,depth, tries, params){
 	var xtwo 				=  {'name':'xtwo', 'value':2}
 	var xthree 				=  {'name':'xthree', 'value':3}
 	var xfour 				=  {'name':'xfour', 'value':4}
-		var xzero 				=  {'name':'xzero', 'value':'0'}
+	var xzero 				=  {'name':'xzero', 'value':0}
 
 	var xfive				=  {'name':'xfive', 'value':5}
 	var xsix				=  {'name':'xsix', 'value':6}
@@ -62,10 +62,10 @@ var SkillTree = function(el,depth, tries, params){
 	var forward 			=  {'name':'forward', 'direction':'forward'}
 	var backward 			=  {'name':'backward', 'direction':'backward'}
 	
-	var oneby 				=  {'name':'oneby', 'step':1}
-	var twoby 				=  {'name':'twoby', 'step':2}
-	var fiveby 				=  {'name':'fiveby', 'step':5}
-	var tenby				=  {'name':'tenby', 'step':10}
+	var oneby 				=  {'name':'oneby', 'value':1}
+	var twoby 				=  {'name':'twoby', 'value':2}
+	var fiveby 				=  {'name':'fiveby', 'value':5}
+	var tenby				=  {'name':'tenby', 'value':10}
 	
 	var zero 				=  {'name':'zero', 'from':'0'}
 	var multiple 			=  {'name':'multiple', 'from':'multiple'}
@@ -79,9 +79,9 @@ var SkillTree = function(el,depth, tries, params){
 
 
 	var from_types 			= [zero, multiple, random] 	
-	var step_types 			= [oneby, twoby] 	
+	var step_types 			= [oneby, twoby, fiveby, tenby] 	
 	var directions 			= [forward, backward]
-	var x_types 			= [xzero, xone, xtwo, xthree, xfour,  xfive, xsix, xseven, xeight, xnine, xten]
+	var x_types 			= [xone, xtwo, xthree, xfour, xzero,  xfive, xsix, xseven, xeight, xnine, xten]
 	var sum_types 			= [lefts, rights]
 	var sum_signs 			= [addition,substraction]
 
@@ -205,6 +205,8 @@ var SkillTree = function(el,depth, tries, params){
 
 	if(depth == this.max_depth){		
 		this.paths_ = this.paths.split("__");
+
+
 	}
 
 	for (var subarray_i =0;  subarray_i < subarray.length;  subarray_i++) {
@@ -228,6 +230,7 @@ var SkillTree = function(el,depth, tries, params){
 		
 		var c = new SkillTree(root, depth+1, tries, params)
 
+		
 
 		// todo : clean to (max_depth - 1 == xx)
 		if((this.depth == 0 && this.group == 'shape'  ) ||  (this.depth == 2 && this.group == 'sum') ||  (this.depth == 2 && this.group == 'counting') || ( this.depth == 0 && this.group == 'recognition') || ( this.depth == 0 && this.group == 'decimal') ) {
@@ -240,6 +243,14 @@ var SkillTree = function(el,depth, tries, params){
 				c.setupValue = pa_.name
 
 			}
+
+			if(this.group == 'sum' && pa_.name ){
+				// special setup for 'sum' to avoid xnumbers-values translation
+				// pass full object {name, value}
+				c.xnumber = pa_
+			}
+			
+
 			c.tries =  tries
 			c.skillvariante = new SkillVariante(c,params)
 			/// ???? buggy .... 
@@ -264,7 +275,22 @@ var SkillTree = function(el,depth, tries, params){
 					});
 					if(test.length > 0 ){
 						this.is_completed = false
-						this.lowest = test[0]
+
+						if(tries>1){
+							// Randomize skill pooling if all completed instead of first match.
+							// random array index to avoid picking in the index[0] lowest skill..
+							var random_lowest = (Math.floor(Math.random() * (test.length + 1)));
+
+							// console.log('randomize pooling random lowest: #'+random)
+							// console.log(test[random])
+
+							this.lowest = test[random_lowest]
+						}
+						else{
+							this.lowest = test[0]
+						}
+						
+						
 					}
 					else{
 						this.lowest = null
@@ -274,11 +300,13 @@ var SkillTree = function(el,depth, tries, params){
 
 		else{	
 					var test = _.filter(this.children, function(c){ 
-					if(c.lowest && c.unlocked == true){
-							return c
-					};
+						
+						if(c.lowest && c.unlocked == true){
+								return c
+						};
 
 					});
+
 					if(test.length > 0 ){
 						this.is_completed = false
 						this.lowest = test[0].lowest

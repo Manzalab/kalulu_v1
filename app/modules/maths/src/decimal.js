@@ -17,13 +17,15 @@ var Decimal = function(number,  stimuli_type, numbers_available, count,  numbers
 	 
 	 this.moduleutils = new ModuleUtils()
 	 this.number = number
+	
 	 this.stimuli_type = stimuli_type
 	 this.numbers_data = numbers_data
 
 	 // NON SENS UNDER 12 
-	 if(number<12){
-			return;
+	 if(this.number < 10 || this.number == null){
+		return this;
 	 }	
+ 		console.log(this.number)
 
 	var n 		= number.toString()
 	var dec 	= parseInt(n[0])
@@ -34,10 +36,12 @@ var Decimal = function(number,  stimuli_type, numbers_available, count,  numbers
 						{
 							'name': 'decimal',
 							'value': dec*10, 
+							'realValue' :this.number,
 							'distractors': new Distractor(dec, numbers_available, count, true)
 						},
 						{ 	'name': 'unit',
 							'value': unit,
+							'realValue' :unit,
 							'distractors': new Distractor(unit, numbers_available, count)
 						}, 
 					]
@@ -55,7 +59,16 @@ var Decimal = function(number,  stimuli_type, numbers_available, count,  numbers
 			var st =  that.moduleutils.addStimuli(true , r.value, 'number',that.numbers_data)
 			st.unitOrDecimal = r.name;
 			st.path = that.stimuli_type
+			
+			if(r.value  !==null && r.name == 'unit' ){
+				st.realValue = r.value
+			}
+			if(r.value !==null && r.name == 'decimal' ){
+				st.realValue = r.realValue
+			}
+			
 			step.stimuli.push(st)
+
 
 			_.each(r.distractors, function(d){
 					//console.log(d.value)
@@ -66,7 +79,17 @@ var Decimal = function(number,  stimuli_type, numbers_available, count,  numbers
 						d.value = null;
 					}
 					var st =  that.moduleutils.addStimuli(false , d.value, 'number',that.numbers_data)
-					st.unitOrDecimal = d.name;
+					st.unitOrDecimal = r.name;
+
+								if(d.value  !==null && r.name == 'unit' ){
+							st.realValue = d.value
+						}
+						if(d.value !==null && r.name == 'decimal' ){
+							st.realValue = that.number
+						}
+					
+					//st.realValue = that.number
+
 					st.path = that.stimuli_type
 					step.stimuli.push(st)	
 			})
@@ -78,7 +101,10 @@ var Decimal = function(number,  stimuli_type, numbers_available, count,  numbers
 				targetNumber : that.number
 		}
 
-		out.round = round
+		if(round.targetSequence.targetNumber !=='null'){
+			out.round = round
+		}
+		
 	}
 
 	return out;
