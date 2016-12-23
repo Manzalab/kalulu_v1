@@ -39,8 +39,8 @@ var Kalulu_maths = function(available_numbers, score, numbers_data__, params___,
  	  		available_numbers 				: filter_number_value,
            	available_skills				: params___.available_skills, //['forward','oneby'],
             available_shapes				: ['circle', 'square', 'triangle'],
-            shapes_data						: new FakeShapesData(config.mathsModule.name),
-            numbers_data 					: new FakeNumbersData(config.mathsModule.name),
+            shapes_data						: new FakeShapesData(config.language),
+            numbers_data 					: new FakeNumbersData(config.language),
             gameType                        : params___.gameType, // "identification", "composition", "pairing", or "other"
             roundsCount                     : params___.roundsCount,           // the amount of rounds, (Rafiki will provide one target per round)
             stepDistracterCount             : params___.stepDistracterCount,             // 
@@ -53,7 +53,7 @@ var Kalulu_maths = function(available_numbers, score, numbers_data__, params___,
 			"gameId": params___.gameType,
 			"gameGroup": params.groupGameType,
 			"discipline" : "maths",
-			"language": config.mathsModule.name,
+			"language": config.language,
 			"data": { "rounds": []}}
 
 
@@ -109,17 +109,19 @@ var loop_on_array = params[loop_on]
 		var temp_rounds_results = pool_loop(tries)
 		//console.log(temp_rounds_results)
 		//// patch 
-		
 		if(temp_rounds_results.length == 0){
-				var end = {'norounds': true}	
-				return end
-
-
-
+			console.log('Score completed, no round anymore, loop on already valid targets (force)')
+			var temp_rounds_results = pool_loop(2)
+			out.tries_results[tries] = temp_rounds_results
+			out.forced_pool = 2		
 		}
+		
+		//if(temp_rounds_results.length == 0){
+			
+		//		var end = {'norounds': true}	
+		//		return end
+		// }
 		else{
-
-
 			while(game.data.rounds.length <= params.roundsCount  ){ //  && tries < 4
 				tries++
 				console.log(temp_rounds_results)

@@ -12,14 +12,11 @@ numbers_available (for distractor)
 
 */
 
-
-
 var _ = require('underscore')
 var Distractor = require('./distractor.js')
 var ModuleUtils 	= require('./module_utils.js')
 
 var Suite = function(n,size,step,from,direction, distractors_count, numbers_data, numbers_available_){
-
    this.number_data = numbers_data
 
    this.moduleutils = new ModuleUtils()
@@ -65,7 +62,7 @@ var Suite = function(n,size,step,from,direction, distractors_count, numbers_data
 		// var n_previous = n-((s-1)*step)
 		var v = n-(s*step)
 		if(direction =='backward'){
-			var v = n-(s*-step)-1
+			var v = n-(s*-step)
 		}
 		
 		if(direction =='backward' && from=='zero' && s<4){
@@ -139,15 +136,8 @@ var Suite = function(n,size,step,from,direction, distractors_count, numbers_data
 
 			}
 			else{
-				//var min = 0
-				//var max = Math.floor(parseInt(available_last_index))/3
-				//random_tail =  Math.floor(Math.random() * (max - min + 1) + min);
-				//if(optimist_suite[random_tail]){
-					// optimist_suite[random_tail] = 'tail'
-				//} 
-				//random_tail = random_tail
+				
 			}
-			//optimist_suite = optimist_suite.slice(0,random_tail);
 	}
 	
 	if(optimist_suite.length < 4){
@@ -169,6 +159,24 @@ var Suite = function(n,size,step,from,direction, distractors_count, numbers_data
 
 
    var sequence = optimist_suite.reverse();
+
+	if(from !== 'zero'){
+		
+		// three passes random to reduce suite "tail" (lenght)
+		for(var t=0; t<3; t++){
+
+			// var max = Math.floor(parseInt(available_last_index))/3
+		   	var length_delta = -(4-(optimist_suite.length))
+		   	var tail = (Math.floor(Math.random() * (length_delta + 1)));
+		   	//console.log('final lenght:'+ tail)
+			optimist_suite = optimist_suite.slice(tail);
+			// console.log(optimist_suite)
+		}
+		sequence = optimist_suite
+	}
+
+
+
    var splited_sequence = ''
 
    //console.log(sequence)
@@ -181,7 +189,7 @@ var Suite = function(n,size,step,from,direction, distractors_count, numbers_data
    	   		
    		splited_sequence += seq
 		if(sequence.length !== seq_i+1){
-		splited_sequence +='-'
+			splited_sequence +='-'
 		}
 
 		var stimuli = {}
@@ -194,7 +202,7 @@ var Suite = function(n,size,step,from,direction, distractors_count, numbers_data
 
 	    /// distractors
 		//console.log(that.numbers_available_)
-	    var distractors = Distractor(seq, that.numbers_available_,distractors_count, false)
+	    var distractors = new Distractor(seq, that.numbers_available_,distractors_count, false)
 	    // console.log(distractors)
 	    // console.log('that.n '+that.n)
 	    if(distractors){
@@ -214,11 +222,17 @@ var Suite = function(n,size,step,from,direction, distractors_count, numbers_data
    	})
    
 
+
+
+
+
    round.targetSequence = {
    		id           : direction+'__'+step+'__from__'+from,
         value        : splited_sequence,
         length       : optimist_suite.length,
-        targetNumber : n
+        targetNumber : n,
+        length_delta : length_delta,
+        tail 		 : tail
 
    }
  	//console.log(round)

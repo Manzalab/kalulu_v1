@@ -366,42 +366,7 @@
               side_ = 'rights'
             }
 
-            if(xnumber_ == '0'){
-              xnumber_ = 'xzero'
-            }
-            if(xnumber_ == 1){
-              xnumber_ = 'xone'
-            }
-            if(xnumber_ == 2){
-              xnumber_ = 'xtwo'
-            }
-            if(xnumber_ == '3'){
-              xnumber_ = 'xthree'
-            }
-            if(xnumber_ == '4'){
-              xnumber_ = 'xfour'
-            }
-            if(xnumber_ == '5'){
-              xnumber_ = 'xfive'
-            }
-            if(xnumber_ == '6'){
-              xnumber_ = 'xsix'
-            }
-            if(xnumber_ == '7'){
-              xnumber_ = 'xseven'
-            }
-            if(xnumber_ == '8'){
-              xnumber_ = 'xeight'
-            }
-            if(xnumber_ == '9'){
-              xnumber_ = 'xnine'
-            }
-            if(xnumber_ == '10'){
-              xnumber_ = 'xten'
-            }
-
-
-
+           
             if(score && score[number_] && score[number_][group_] && score[number_][group_][sign_] && score[number_][group_][sign_][side_] && score[number_][group_][sign_][side_][xnumber_] ){
 
                // console.log(score[number_][[group_]][sign_][side_][xnumber_])
@@ -412,9 +377,6 @@
                 score[number_][group_][sign_][side_][xnumber_] = taverage
 
             }
-
-
-
 
 
 
@@ -502,76 +464,92 @@
     }
 
 
-
-    MathsModule.prototype.getPedagogicData = function getPedagogicData (progressionNode, params) {
-      //  console.log(progressionNode)
-        if (progressionNode.activityType === "lecture") {
-            return this.getPedagogicDataForLecture(progressionNode);
-        }
+    MathsModule.prototype.getPedagogicDataForGame = function getPedagogicDataForGame (progressionNode, params) {
 
 
-      var lessonNumber = progressionNode.parent._lessonNumber;
-      console.log(progressionNode)
+          var lessonNumber = progressionNode.parent._lessonNumber;
+          console.log(progressionNode.activityType)
+          console.log(params)
 
+          var that = this;
 
-      var that = this;
-      
-      var params = {
-            gameType                        : "crabcatcher", 
-            roundsCount                     : 4,           // the amount of rounds, (Rafiki will provide one target per round)
-            stepDistracterCount             : 3,             // 
+          var params = {
+            gameType                        : progressionNode.activityType, 
+            roundsCount                     : params.roundsCount,           // the amount of rounds, (Rafiki will provide one target per round)
+            stepDistracterCount             : params.stepDistracterCount,             // 
             available_skills                : this._notionsInLesson[lessonNumber].skills,
-            available_shapes                : this._notionsInLesson[lessonNumber].skills,
-            groupGameType                   : 'shape'   
+            available_shapes                : this._notionsInLesson[lessonNumber].skills,  
+          }
+
+          if(progressionNode.activityType == 'crabs' || progressionNode.activityType == 'jellyfish' ||  progressionNode.activityType == 'parakeets' ){
+            params.groupGameType      = 'recognition'  
+
+          }
+
+          if(progressionNode.activityType == 'caterpillar' || progressionNode.activityType == 'frog'){
+            params.groupGameType      = 'counting'  
+
+          }
+          if(progressionNode.activityType == 'turtles'){
+            params.groupGameType      = 'decimal'  
+
+          }
+          if(progressionNode.activityType == 'cocolision'){
+            params.groupGameType      = 'sum'  
+
+          }
+
+          if(progressionNode.activityType == 'ants'){
+            params.groupGameType      = 'decimal'  
+
+          }
+
+          if(progressionNode.activityType == 'fish'){
+            params.groupGameType      = 'decimal'  
+
+          }
+          
+          this._currentActivityParams = params;
+          //var pool_type = 'recognition';
+          //var pool_type = 'counting';
+          // console.log('score?')
+          var score ={}
+          if(this._userProfile){
+          score = this._userProfile.Maths.numbers;
+          }
+          //console.log(score)
+          console.log(this._notionsInLesson[lessonNumber].numbers)
+          console.log(this._notionsInLesson[lessonNumber].skills)
+
+          var available_numbers = this._notionsInLesson[lessonNumber].numbers;
+
+          var game = new Kalulu_maths(available_numbers,score,this._numberList, params, staticData);
+          if(!game.data){
+            // alert('finished !')
+          }
+
+          this._currentExerciseSetup = game;
+          //  console.log(this._currentExerciseSetup);
+          // console.log(game)
+          return this._currentExerciseSetup;
       }
-
-
-
-
-     
-      // // "identification", "composition", "pairing", or "other"
-        
-
-      this._currentActivityParams = params;
+    MathsModule.prototype.getPedagogicData = function getPedagogicData (progressionNode, params) {
+      // console.log(progressionNode.activityType)
       
-
-      //var pool_type = 'recognition';
-      //var pool_type = 'counting';
-
-
-      // console.log('score?')
-      var score ={}
-      if(this._userProfile){
-         score = this._userProfile.Maths.numbers;
+      if (progressionNode.activityType === "lookandlearn") {
+          return this.getPedagogicDataForLecture(progressionNode);
       }
-      //console.log(score)
-     console.log(this._notionsInLesson[lessonNumber].numbers)
-     console.log(this._notionsInLesson[lessonNumber].skills)
-
-      var available_numbers = this._notionsInLesson[lessonNumber].numbers;
- 
- 
-
-      var game = new Kalulu_maths(available_numbers,score,this._numberList, params, Config);
-
-
-      if(!game.data){
-         // alert('finished !')
-      }
-
-      this._currentExerciseSetup = game;
-      //  console.log(this._currentExerciseSetup);
-      // console.log(game)
-      return this._currentExerciseSetup;
-    
+      else{
+        return this.getPedagogicDataForGame(progressionNode, params);
+      }    
     };
 
 
 
-
-    MathsModule.prototype.getPedagogicDataForLecture = function getPedagogicDataForLecture (progressionNode) {
-        //console.log(progressionNode);
+    MathsModule.prototype.getPedagogicDataForLookandlearn = function getPedagogicDataForLookandlearn(progressionNode) {
+       console.log(progressionNode);
         var notionsData = [];
+
         for (var notionId in progressionNode.targetNotions) {
             if (!progressionNode.targetNotions.hasOwnProperty(notionId)) continue;
             var lNotion = progressionNode.targetNotions[notionId];
@@ -650,11 +628,15 @@ var record_not_av   = [
           'counting': {
               'forward': { 
                 'oneby': { 'zero':[], 'random':[], 'multiple':[]}, 
-                'twoby': { 'zero': [], 'random':[], 'multiple':[]} 
+                'twoby': { 'zero': [], 'random':[], 'multiple':[]},
+                'fiveby': { 'zero': [], 'random':[], 'multiple':[]},
+                'tenby': { 'zero': [], 'random':[], 'multiple':[]} 
               },
               'backward': { 
                 'oneby': { 'zero': [], 'random':[], 'multiple':[]}, 
-                'twoby': { 'zero': [], 'random':[], 'multiple':[]} 
+                'twoby': { 'zero': [], 'random':[], 'multiple':[]},
+                'fiveby': { 'zero': [], 'random':[], 'multiple':[]},
+                'tenby': { 'zero': [], 'random':[], 'multiple':[]} 
               },
           },
           'sum': {
@@ -671,15 +653,19 @@ var record_not_av   = [
           'decimal'  : {'audioToNonSymbolic': [], 'nonSymbolicToSymbolic':[], 'audio_symbolic':[]}  
           
       },
-      "triangle" :  {'audioToNonSymbolic': [], 'nonSymbolicToSymbolic':[], 'audio_symbolic':[]}, 
-      "circle"   : {'audioToNonSymbolic': [], 'nonSymbolicToSymbolic':[], 'audio_symbolic':[]}, 
-      "square"   :  {'audioToNonSymbolic': [], 'nonSymbolicToSymbolic':[], 'audio_symbolic':[]}, 
-    }
+        "line" :  {'audioToNonSymbolic': [], 'nonSymbolicToSymbolic':[], 'audio_symbolic':[]}, 
+        "square"   :  {'audioToNonSymbolic': [], 'nonSymbolicToSymbolic':[], 'audio_symbolic':[]}, 
+        "triangle" :  {'audioToNonSymbolic': [], 'nonSymbolicToSymbolic':[], 'audio_symbolic':[]}, 
+        "rectangle"   :  {'audioToNonSymbolic': [], 'nonSymbolicToSymbolic':[], 'audio_symbolic':[]}, 
+        "circle"   : {'audioToNonSymbolic': [], 'nonSymbolicToSymbolic':[], 'audio_symbolic':[]}, 
+        "parallelogram"   :  {'audioToNonSymbolic': [], 'nonSymbolicToSymbolic':[], 'audio_symbolic':[]}, 
+        "hexagon"   :  {'audioToNonSymbolic': [], 'nonSymbolicToSymbolic':[], 'audio_symbolic':[]}, 
+        "diamond"   :  {'audioToNonSymbolic': [], 'nonSymbolicToSymbolic':[], 'audio_symbolic':[]}, 
+      }
     for(var i=0; i<=100; i++){
       score[i] = _.clone(score[0])
     }
-
-      return score
+    return score
 
     }
 

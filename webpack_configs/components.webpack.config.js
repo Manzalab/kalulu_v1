@@ -119,7 +119,7 @@ exports.copyAssetsForMinigames = function (minigameFolderNames, language) {
         attemptCopyRequest('minigames', transfers, folderName, 'data');
         attemptCopyRequest('minigames', transfers, folderName, 'images');
         attemptCopyRequest('minigames', transfers, folderName, 'config');
-        attemptCopyRequest('minigames', transfers, folderName, 'audio/sfx');
+        attemptCopyRequest('minigames', transfers, folderName, 'audio');
         attemptCopyRequest('minigames', transfers, folderName, 'audio/kalulu', language);
     }
 
@@ -186,6 +186,7 @@ function attemptCopyRequest (category, array, folderName, assetsSubPath, languag
     }
     else {
         destPath = category + '/' + folderName + '/assets/' + assetsSubPath;
+        if (assetsSubPath.indexOf('kalulu') === -1) ignore.push('kalulu/**/*');
     }
     console.log('\n\nTesting Path <' + srcPath + '> to copy to <' + destPath + '>, ignoring ' + ignore + '\n');
     if (testPathToFolder(srcPath)) array.push({ from: srcPath, to: destPath, ignore : ignore});

@@ -2,8 +2,10 @@
 
 /*
 
-Skill Variante is a Skilltree-leaf
-It prepare "rounds" depending on game type
+Skill Variante is a Skilltree-leaf (from tree)
+It prepare "rounds" depending on game type like
+suites, sum, decimal or shape games
+
 
 
 
@@ -44,60 +46,61 @@ function SkillVariante(el, params){
 
 
 	this.tries = el.tries ? el.tries : 0;
-	console.log('this.tries'+this.tries)
+	// console.log('this.tries'+this.tries)
 	
 
+
+	/// 
+
 	if(this.group == 'counting'){
+		
+
 		this.direction  =   el.paths[1] ? el.paths_[1] : null
 		this.step       =   el.paths[2] ? el.paths_[2] : null
 		this.from       =   el.paths[3] ? el.paths_[3] : null
 		
 		if(this.score[this.direction] && this.score[this.direction][this.step] && this.score[this.direction][this.step][this.from]){
-			 // console.log('##'+this.number)
-			 // console.log('dir '+this.direction)
-			 // console.log('step '+this.step)
-			 // console.log('from '+this.from)
-			 this.score = this.score[this.direction][this.step][this.from]
-			//console.log(this.score[this.direction][this.step][this.from] )
+			 this.score = this.score[this.direction][this.step][this.from]		
 		}
 	}
 	if(this.group == 'sum'){
+		
 		this.sign       =   el.paths[1] ? el.paths_[1] : null
 		this.side       =   el.paths[2] ? el.paths_[2] : null
+		this.xnumber    =   el.xnumber
+
+
+		//if(this.xnumber.name == 'xzero'){
+			this.xnumber_value = el.xnumber.value ?  el.xnumber.value : 0;
+		//}
+		// sum execption cf tree.js
+		// console.log(el.xnumber.name)
+		// console.log('el.xnumber___ :'+el.xnumber.value)
+		
+	
+		
+		this.xnumber_name = this.xnumber.name
+
 		
 
-		 console.log('el.side'+this.side)
-		// el.paths[3] ? el.paths_[3] : null
-
-		
-			this.xnumber    =  '2'
-					this.xnumber__    =  'xtwo'
-
-
-		if(this.number >10){
-			/// return null
-		}
-
-
-
-
-
-		if(this.score[this.sign] && this.score[this.sign][this.side] && this.score[this.sign][this.side][this.xnumber__]){
-			 this.score = this.score[this.sign][this.side][this.xnumber__]
+		if(this.score[this.sign] && this.score[this.sign][this.side] && this.score[this.sign][this.side][this.xnumber_name]){
+			 this.score = this.score[this.sign][this.side][this.xnumber_name]
 		}
 	}
-	if(this.group == 'recognition'){
-		
-		this.stimuli_type  =   el.paths[1] ? el.paths_[1] : null
 
+
+	// same for reco, dec. and shape but in case ..
+	if(this.group == 'recognition'){
+
+		
+
+		this.stimuli_type  =   el.paths[1] ? el.paths_[1] : null
 		if(this.score[this.stimuli_type]){
 			 this.score = this.score[this.stimuli_type]
 		}
 	}
-
 	if(this.group == 'decimal'){ 
 		this.stimuli_type   =   el.paths[1] ? el.paths_[1] : null
-
 		if(this.score[this.stimuli_type]){
 			 this.score = this.score[this.stimuli_type]
 		}
@@ -105,7 +108,6 @@ function SkillVariante(el, params){
 
 	if(this.group == 'shape'){ 
 		this.stimuli_type   =   el.paths[1] ? el.paths_[1] : null
-
 		if(this.score[this.stimuli_type]){
 			 this.score = this.score[this.stimuli_type]
 		}
@@ -118,9 +120,11 @@ function SkillVariante(el, params){
 		this.record  = this.score ? this.score : []
 		
 		// this.getRecords();
+		this.forced_pick =false
 
 		if(this.tries > 1){
-		 this.is_completed = false
+		 	this.is_completed = false
+		 	this.forced_pick = true
 
 		}
 		else{
@@ -142,12 +146,7 @@ function SkillVariante(el, params){
 
 		}
 
-		
-
-
-		
-
-		/// BLUR
+	/// BLUR
 	this.score = {}
 	this.record = {}
 		
@@ -168,35 +167,35 @@ function SkillVariante(el, params){
 }
 
 SkillVariante.prototype.toRound = function (params) {
-	var that = this;
-	var numbers_data = params.numbers_data
-	// console.log('this.name round')
-	var step_suite
+	var numbers_data = params.numbers_data;
+	
+	if(params.gameType){
+			this.gameType = params.gameType
+	}
+	var step_suite;
 
 	if(this.group == 'counting'){
+	
+		switch (this.step) {
+		    case 'oneby':
+		        step_suite = 1
+		        break;
+		    case 'twoby':
+		        step_suite = 2
+		        break;
+		    case 'fiveby':
+		        step_suite = 5
+		        break;
+		    case 'tenby':
+		        step_suite = 10
+		        break;
+		}
 
-		if(this.step == 'oneby'){
-			step_suite = 1
-		}
-		if(this.step == 'twoby'){
-			step_suite = 2
-		}
-		if(this.step == 'fiveby'){
-			step_suite = 5
-		}
-		if(this.step == 'tenby'){
-			step_suite = 10
-		}
 		var tsuite = new Suite(this.number,10,step_suite,this.from,this.direction, 5, numbers_data, params.available_numbers)
 		if(tsuite){
 			var tround = {
 				round: tsuite.round,
 				target : this.number,
-			//	suite : tsuite.suite,
-			//	size: tsuite.length,
-			//	sequence: tsuite.sequence,
-				//expected_size: t.expected_size,
-				//expected_match :t.expected_match,
 				path : this.group+'__'+this.direction+'__'+this.step+'__'+this.from
 			}
 		 }
@@ -205,15 +204,13 @@ SkillVariante.prototype.toRound = function (params) {
 		}
 	}
 	else if(this.group == 'recognition'){
-		var trecognition = new Recognition(this.number,this.stimuli_type,  params.available_numbers, params.stepDistracterCount, numbers_data)
+		var recognition_round = new Recognition(this.number,this.stimuli_type,this.gameType, params.available_numbers, params.stepDistracterCount, numbers_data)
 
 		var tround = {
-				target : this.number,
-				size: 1,
-				round : trecognition.round,
-				//expected_size: t.expected_size,
-				//expected_match :t.expected_match,
-				path : this.group+'__'+this.stimuli_type
+			target : this.number,
+			size: 1,
+			round : recognition_round.round,
+			path : this.group+'__'+this.stimuli_type
 		}
 	 }
 	 else if(this.group == 'decimal'){
@@ -224,18 +221,14 @@ SkillVariante.prototype.toRound = function (params) {
 			size: 1,
 			decimalGame: true,
 			round : decimal_round.round,
-			//expected_size: t.expected_size,
-			//expected_match :t.expected_match,
 			path : this.group+'__'+this.stimuli_type
 		}
 		
 	}
 
 	else if(this.group == 'sum'){
-
 		var _side = ''
-
-		console.log(this.side)
+		// console.log(this.side)
 		if(this.side == 'lefts'){
 			_side =  'left'
 		}
@@ -243,22 +236,19 @@ SkillVariante.prototype.toRound = function (params) {
 			 _side =  'right'
 		}
 		//  console.log(this)
-		var s 	= new Sum(this.number,this.xnumber,_side, this.sign, numbers_data, params.available_numbers, params.stepDistracterCount)
-		
 
+		
+		var s 	= new Sum(this.number,this.xnumber,_side, this.sign, numbers_data, params.available_numbers, params.stepDistracterCount)
 		var tround  = {
 			target : this.number,
 			size: 1,
 			round: s.round,
-			path : this.group+'__'+this.sign+'__'+this.side+'__'+this.xnumber
+			path : this.group+'__'+this.sign+'__'+this.side+'__'+this.xnumber_name
 		}
 	}
-	
 	else if(this.group == 'shape'){
-
 		var shape_round = new Shape(this.shape, this.stimuli_type, params.available_shapes, params.stepDistracterCount, params.shapes_data)
-		
-		var tround 		= {
+		var tround = {
 			target : this.shape,
 			// shape_score : this.score,
 			size: 1,
@@ -266,7 +256,6 @@ SkillVariante.prototype.toRound = function (params) {
 			path : this.group+'__'+this.stimuli_type
 		}
 	}
-
 	return tround
 }
 

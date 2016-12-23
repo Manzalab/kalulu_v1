@@ -72,33 +72,28 @@
                                 "value": 2,
                                 "correctResponse": true,
                                 "stimuli_type": "number",
-
                                 "nonSymbolicImage": "todo/number/data/2.jpg",
                                 "soundPath": "..../undefined/2.ogg"
                             },
                             {
                                 "value": null,
                                 "correctResponse": false,
-                                "stimuli_type": "number",
-
+                                "stimuli_type": "number"
                             },
                             {
                                 "value": null,
                                 "correctResponse": false,
-                                "stimuli_type": "number",
-
+                                "stimuli_type": "number"
                             },
                             {
                                 "value": null,
                                 "correctResponse": false,
-                                "stimuli_type": "number",
-
+                                "stimuli_type": "number"
                             },
                             {
                                 "value": null,
                                 "correctResponse": false,
-                                "stimuli_type": "number",
-
+                                "stimuli_type": "number"
                             }
                         ]
                     },
@@ -108,32 +103,31 @@
                                 "value": 3,
                                 "correctResponse": true,
                                 "stimuli_type": "number",
-
                                 "nonSymbolicImage": "todo/number/data/3.jpg",
                                 "soundPath": "..../undefined/3.ogg"
                             },
                             {
                                 "value": null,
                                 "correctResponse": false,
-                                "stimuli_type": "number",
+                                "stimuli_type": "number"
 
                             },
                             {
                                 "value": null,
                                 "correctResponse": false,
-                                "stimuli_type": "number",
+                                "stimuli_type": "number"
 
                             },
                             {
                                 "value": null,
                                 "correctResponse": false,
-                                "stimuli_type": "number",
+                                "stimuli_type": "number"
 
                             },
                             {
                                 "value": null,
                                 "correctResponse": false,
-                                "stimuli_type": "number",
+                                "stimuli_type": "number"
 
                             }
                         ]
@@ -144,32 +138,31 @@
                                 "value": 4,
                                 "correctResponse": true,
                                 "stimuli_type": "number",
-
                                 "nonSymbolicImage": "todo/number/data/4.jpg",
                                 "soundPath": "..../undefined/4.ogg"
                             },
                             {
                                 "value": null,
                                 "correctResponse": false,
-                                "stimuli_type": "number",
+                                "stimuli_type": "number"
 
                             },
                             {
                                 "value": null,
                                 "correctResponse": false,
-                                "stimuli_type": "number",
+                                "stimuli_type": "number"
 
                             },
                             {
                                 "value": null,
                                 "correctResponse": false,
-                                "stimuli_type": "number",
+                                "stimuli_type": "number"
 
                             },
                             {
                                 "value": null,
                                 "correctResponse": false,
-                                "stimuli_type": "number",
+                                "stimuli_type": "number"
 
                             }
                         ]
@@ -180,32 +173,31 @@
                                 "value": 5,
                                 "correctResponse": true,
                                 "stimuli_type": "number",
-
                                 "nonSymbolicImage": "todo/number/data/5.jpg",
                                 "soundPath": "..../undefined/5.ogg"
                             },
                             {
                                 "value": null,
                                 "correctResponse": false,
-                                "stimuli_type": "number",
+                                "stimuli_type": "number"
 
                             },
                             {
                                 "value": null,
                                 "correctResponse": false,
-                                "stimuli_type": "number",
+                                "stimuli_type": "number"
 
                             },
                             {
                                 "value": null,
                                 "correctResponse": false,
-                                "stimuli_type": "number",
+                                "stimuli_type": "number"
 
                             },
                             {
                                 "value": null,
                                 "correctResponse": false,
-                                "stimuli_type": "number",
+                                "stimuli_type": "number"
 
                             }
                         ]

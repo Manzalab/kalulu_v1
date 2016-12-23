@@ -1,6 +1,11 @@
 /*
 
 SUITES Class test file.
+simulate all kind of suites 
+
+@params 
+
+
 
 Write a json from single or multiple rounds results
 
@@ -17,13 +22,20 @@ var filescore = '../data/suite_gen.json'
 var FakeNumbersData = require('../fakenumbersdata.js')
 
 /// FAKE numbers data.
-var numbers_data = new FakeNumbersData()
+var numbers_data = new FakeNumbersData('fr_suite_debug')
 
+var numbers_available = []
+
+for(var t=0; t<100; t++){
+
+	numbers_available.push(t)
+}
 
 // var Bucket_size = require('./bucket_size.js')
 // var bucket = new Bucket_size()
 
-single("caterpillar")
+//single("caterpillar")
+multi()
 
 function single(gameId){
 	
@@ -34,8 +46,11 @@ function single(gameId){
 	
 	//// var Suite(n,size,step,from,direction,distractors_count)
 
-	var suite 			  = new Suite( 5,8,1,'zero','addition',4, numbers_data)
-	var suite_impossible  = new Suite( 1,8,2,'zero','addition',4, numbers_data)
+	var suite 			  = new Suite( 4, 20, 1,'multiple','backward',4, numbers_data, numbers_available)
+	
+
+
+	var suite_impossible  = new Suite( 1,8,2,'zero','forward',4, numbers_data,numbers_available)
 	
 		
 	if(suite.round){
@@ -60,13 +75,13 @@ function single(gameId){
 var suites = []
 //multi()
 
-
+multi()
 function multi(){
 
 var test_numbers =[1,2,3,5,18,25,30,33,40,41,88,85,90,95,96,97,98,99,100] 	// ,5,6,784
 
 
-	var test_directions = ['backward'] // , 'backward'
+	var test_directions = ['forward'] // , 'backward'
 	var test_steps = [1,2,10] // ,2,5,10
 
     var test_froms = ['zero', 'random']
@@ -84,7 +99,7 @@ var test_numbers =[1,2,3,5,18,25,30,33,40,41,88,85,90,95,96,97,98,99,100] 	// ,5
 
 
 						var t = 'number'+test_numbers[n]+' size'+' dir '+test_directions[d]+'  steps'+test_steps[s]+'By from '+test_froms[f]
-						var suite = new Suite( test_numbers[n], 8 ,test_steps[s],test_froms[f],test_directions[d], 5)
+						var suite = new Suite( test_numbers[n], 8 ,test_steps[s],test_froms[f],test_directions[d], 5, numbers_data,numbers_available)
 						
 						var suite_ = {
 								'n': test_numbers[n],

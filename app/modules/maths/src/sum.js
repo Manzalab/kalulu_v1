@@ -17,17 +17,23 @@ var ModuleUtils 	= require('./module_utils.js')
 
 var Sum = function(number, xnumber, side, sign, numbers_data, numbers_available, count){
 
-	this.number 		= number
-	this.xnumber 		= xnumber
+	this.number 		= parseInt(number) ? parseInt(number) : 0
+	this.xnumber 		= xnumber ? parseInt(xnumber) : 0
 	this.side			= side
 
+	this.xnumber_value 		= xnumber.value ? parseInt(xnumber.value) : 0
+	this.xnumber_name		= xnumber.name
+	if(this.number > 10){
+			return null
+	}
 
-	console.log(this.number+'//'+this.xnumber+'//'+this.side)
+
+	// console.log(this.number+'//'+this.xnumber.name+'//'+this.side)
 
 	/// numbers_available
 	var filter_number_value  =[]
 	_.each(numbers_available, function(an){
-		if(an<=10){
+		if(an <= 10){
 			filter_number_value.push(an)
 		}
 		
@@ -43,33 +49,31 @@ var Sum = function(number, xnumber, side, sign, numbers_data, numbers_available,
 
 	moduleutils 		= new ModuleUtils()
 	var round			= {"steps": []}
-	var step			= {"type": 'sum__'+this.side+'__'+this.sign+'__'+this.xnumber, "stimuli": [] }
+	var step			= {"type": 'target__'+this.number+'__sum__'+this.side+'__'+this.sign+'__'+this.xnumber_name, "stimuli": [] }
 	
 
 	var la, lb, lc;
 
     li = this.number //la+lb
-    var parts = this.picksum(this.number, this.xnumber, this.side, this.sign)
+    var parts = this.picksum(this.number, this.xnumber_value, this.side, this.sign)
 		
-
-	console.log(parts)
+    if(parts.exception == true){
+    	return null
+    }
+	//console.log(parts)
 	//return 
 	la = parts.first
     lb = parts.second
     lc = parts.third
 
     lx = 'x'
-    var resolve_true = la+'//'+this.sign+'//'+lb+'='+lc
+    var resolve_true = la+''+this.sign+''+lb+'='+lc
 
 
-    if(this.side == 'left'){
-		var resolve_masq = la+'//'+this.sign+'//'+lb+'='+lx
-    }
-    if(this.side == 'right'){
-        var resolve_masq = la+'//'+this.sign+'//'+lb+'='+lx
-    }
-    var lpath = {'xnumber':this.xnumber, 'number': this.number, 'side': this.side, 'sign': this.sign}
-	var st =  moduleutils.addStimuli(true , this.number, 'sum', numbers_data, lpath)
+  
+    this.lpath = {'xnumber':this.xnumber_name, 'number': this.number, 'side': this.side, 'sign': this.sign}
+	
+	var st =  moduleutils.addStimuli(true , this.number, 'sum', numbers_data, this.lpath)
 	
 	st.value = resolve_true
 
@@ -80,10 +84,10 @@ var Sum = function(number, xnumber, side, sign, numbers_data, numbers_available,
     var that = this
 	if(distractors){
 		_.each(distractors, function(d){
-			var st =  moduleutils.addStimuli(false , d.value, 'number',numbers_data,lpath )
+			var st =  moduleutils.addStimuli(false , d.value, 'sum',numbers_data,that.lpath )
 			// to fix again.
 
-			st.value = that.number+''+that.sign+''+d.value +'='+parts.third
+			st.value = d.value
 			step.stimuli.push(st)
 		})
 	}
@@ -102,7 +106,7 @@ Sum.prototype.picksum = function (number, xnumber, side, sign) {
 
 	
 
-	if(side =='left'){
+	if(side =='right'){
 
 		var first  	=  number
 		var second 	=  xnumber
@@ -121,12 +125,13 @@ Sum.prototype.picksum = function (number, xnumber, side, sign) {
 		var parts = {
 			first 	: first,
 			second	: second,
-			third	: third
+			third	: third,
+			exception : (third < 0) ? true : false
 		}
 		
 	}
 
-	if(side =='right'){
+	if(side =='left'){
 		
 		var first  = xnumber
 		
@@ -138,14 +143,15 @@ Sum.prototype.picksum = function (number, xnumber, side, sign) {
 			var second =  number+xnumber
 		}
 
-		if(third < 0 ){
+		if(second < 0 ){
 		//	console.log('neg sum exception')
 		}
 
 		var parts = {
 			first   : first,
 			second	: second,
-			third	: number
+			third	: number,
+			exception : (second < 0) ? true : false
 		}	
 	}
 	return parts;

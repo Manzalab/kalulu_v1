@@ -31,7 +31,7 @@ var score = new FakeScore()
 //console.log(numbers_data)
 
 //var target_group = ['sum']
-	  var available_numbers  = [1,2,3,4]
+	  var available_numbers  = [0,1,2,3,4,5,6,7,8,9,10,11]
  	  var params = {
  	  		available_numbers 				: available_numbers,
            	available_skills				: ['forward', 'oneby'],
@@ -41,7 +41,7 @@ var score = new FakeScore()
             gameType                        : "DummyGame", // "identification", "composition", "pairing", or "other"
             roundsCount                     : 4,           // the amount of rounds, (Rafiki will provide one target per round)
             stepDistracterCount             : 2,             // 
-            groupGameType  					: 'shape'    
+            groupGameType  					: 'recognition'    
       }
     
 
@@ -130,11 +130,11 @@ function pool_loop(tries){
 
 
 	if(temp_rounds_results.length == 0){
-		/// twice null...
+				var end = {'norounds': true}	
+				return end
+
 	}
-
-
-	
+	else{
 		while(game.data.rounds.length < params.roundsCount  ){ //  && tries < 4
 				tries++
 
@@ -145,23 +145,23 @@ function pool_loop(tries){
 				})	
 			}
 
-
-	
-	
-
+	}
 
 
 	// console.log('try round lenght : '+temp_rounds_results.length)
 	 
-console.log('final round lenght : '+game.data.rounds.length)
+console.log('final round lenght : '+game.data.rounds.length+' tries'+tries+' forced pooling'+out.forced_pool)
 
 out.tries = tries;
+
+
 jsonfile.writeFile(filescore,out, function (err) {
 	console.error(err)
 	if(!err){
 		console.log(filescore+' written ! ')
 	}
 })
+
 jsonfile.writeFile(gamescore, game, function (err) {
 	console.error(err)
 	if(!err){
