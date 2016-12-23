@@ -5,20 +5,14 @@
  * The Burrow Screen will display the Chapters, first level of the discipline modules hierarchy we are using.
  * It must be reworked if Discipline Modules are modified.
 **/
-define([
-	'utils/ui/screen',
-	'utils/events/mouse_event_type',
-	'utils/events/touch_event_type',
-	'interface/user/popins/video_player',
-	'interface/user/popins/story'
-], function (
-	Screen,
-	MouseEventType,
-	TouchEventType,
-	VideoPlayer,
-	Story
-) {
+(function () {
+
 	'use strict';
+
+	var Screen 		= require ('../utils/ui/screen');
+    var VideoPlayer = require ('../elements/video_player');
+    var Story 		= require ('../elements/story');
+
 
 	function ToyChestActivityScreen (interfaceManager, activityType) {
 		
@@ -36,14 +30,14 @@ define([
 		this._nextActivitiesButton = this.getChildByName("mcActivitiesNext");
 		this._prevActivitiesButton = this.getChildByName("mcActivitiesPrev");
 
-		this._prevActivitiesButton.onClick = this._onClickOnPrevActivities.bind(this);
-		this._nextActivitiesButton.onClick = this._onClickOnNextActivities.bind(this);
+		// this._prevActivitiesButton.onClick = this._onClickOnPrevActivities.bind(this);
+		// this._nextActivitiesButton.onClick = this._onClickOnNextActivities.bind(this);
 
 		this._hud = {
 			topLeft : this.getChildByName("mcBurrowTLHud"),
 			top : this.getChildByName("mc"+activityType+"THud")
 		};
-		this._backButton = this._hud.topLeft.getChildByName("mcBackButton");
+		// this._backButton = this._hud.topLeft.getChildByName("mcBackButton");
 
 		// Buttons Management
 		var lLockStart;
@@ -68,12 +62,12 @@ define([
 		this._activitiesCount = lActivitiesCount;
 		this._lockedActivitiesStart = lLockStart;
 
-		this._prevActivitiesButton.visible = false;
+		// this._prevActivitiesButton.visible = false;
 		if (this._activitiesCount<=10) this._nextActivitiesButton.visible = false;
 		if (this._activitiesButtons!=null)	this._updateActivitiesButtons(true);
 
 
-		this._backButton.onClick = this._onClickOnBackButton.bind(this);
+		// this._backButton.onClick = this._onClickOnBackButton.bind(this);
 	}
 
 	ToyChestActivityScreen.prototype = Object.create(Screen.prototype);
@@ -154,5 +148,5 @@ define([
 		}
 	};
 
-	return ToyChestActivityScreen;
-});
+	module.exports = ToyChestActivityScreen;
+})();

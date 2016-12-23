@@ -61,10 +61,10 @@
 
             //UI 
             this.load.image('pause', 'assets_shared/images/ui/pause.png');
-            this.game.load.atlasJSONHash('common/src/ui', 'assets_shared/images/ui/ui.png', 'assets_shared/images/ui/ui.json');
+            this.game.load.atlasJSONHash('ui', 'assets_shared/images/ui/ui.png', 'assets_shared/images/ui/ui.json');
 
             //FX 
-            this.game.load.atlasJSONHash('common/src/fx', 'assets_shared/images/fx/fx.png', 'assets_shared/images/fx/fx.json');
+            this.game.load.atlasJSONHash('fx', 'assets_shared/images/fx/fx.png', 'assets_shared/images/fx/fx.json');
             this.load.image('wrong', 'assets_shared/images/fx/wrong.png');
 
             //KaluluGraphics
