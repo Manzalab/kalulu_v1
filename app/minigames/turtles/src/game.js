@@ -1,13 +1,13 @@
 ﻿define([
-    'ui',
-    'remediation',
-    'kalulu',
-    'EventEmitter'
+    'eventemitter3',
+    'common/src/kalulu',
+    'common/src/ui',
+    './remediation'
 ], function (
-    Ui,
-    Remediation,
+    EventEmitter,
     Kalulu,
-    EventEmitter
+    Ui,
+    Remediation
 ) {
 
     'use strict';

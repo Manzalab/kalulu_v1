@@ -1,9 +1,9 @@
 ﻿define([
-    'fx',
-    'datgui',
-    'turtle',
-    'island',
-    'collisionHandler'
+    'common/src/fx',
+    'dat.gui',
+    './turtle',
+    './island',
+    './collisionHandler'
 ], function (
     Fx,
     Dat,

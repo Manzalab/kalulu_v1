@@ -1,6 +1,6 @@
 ﻿define([
-    'swipe',
-    'warning'
+    './swipe',
+    './warning'
 ], function (
     Swipe,
     Warning
