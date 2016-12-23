@@ -46,37 +46,38 @@ var record_not_av   = [
           'counting': {
               'forward': { 
                 'oneby': { 'zero':[], 'random':[], 'multiple':[]}, 
-                'twoby': { 'zero': [], 'random':[], 'multiple':[]} 
+                'twoby': { 'zero': [], 'random':[], 'multiple':[]},
+                'fiveby': { 'zero': [], 'random':[], 'multiple':[]},
+                'tenby': { 'zero': [], 'random':[], 'multiple':[]} 
               },
               'backward': { 
                 'oneby': { 'zero': [], 'random':[], 'multiple':[]}, 
-                'twoby': { 'zero': [], 'random':[], 'multiple':[]} 
+                'twoby': { 'zero': [], 'random':[], 'multiple':[]},
+                'fiveby': { 'zero': [], 'random':[], 'multiple':[]},
+                'tenby': { 'zero': [], 'random':[], 'multiple':[]} 
               },
           },
           'sum': {
               'addition' : {
-                'lefts' : {'xzero':record,'xone':record,'xtwo':[], 'xthree': [], 'xfour': [], 'xfive': [], 'xsix':[], 'xseven': [], 'xeight': [], 'xnine': [], 'xten': []},
-                'rights': {'xzero':[],'xone':[],'xtwo':[], 'xthree': [], 'xfour': [], 'xfive': [], 'xsix':[], 'xseven': [], 'xeight': [], 'xnine': [], 'xten': []}
+                'lefts' : {'xone':record,'xtwo':record, 'xthree': record, 'xfour': record, 'xfive': record, 'xsix':record, 'xseven': record, 'xeight': record, 'xnine':record, 'xten':record, 'xzero': record },
+                'rights': {'xzero':record,'xone':record,'xtwo':record, 'xthree': record, 'xfour': record, 'xfive': record, 'xsix':record, 'xseven': record, 'xeight': record, 'xnine': record, 'xten':record}
               },
               'substraction' : {
-                'lefts' : {'xzero':[],'xone':[],'xtwo':[], 'xthree': [], 'xfour': [], 'xfive': [], 'xsix':[], 'xseven': [], 'xeight': [], 'xnine': [], 'xten': []},
-                'rights': {'xzero':[],'xone':[],'xtwo':[], 'xthree': [], 'xfour': [], 'xfive': [], 'xsix':[], 'xseven': [], 'xeight': [], 'xnine': [], 'xten': []}
-              }
+                 'lefts' : {'xone':record,'xtwo':record, 'xthree': record, 'xfour': record, 'xfive': record, 'xsix':record, 'xseven': record, 'xeight': record, 'xnine':record, 'xten':record, 'xzero': record },
+                'rights': {'xzero':record,'xone':record,'xtwo':record, 'xthree': record, 'xfour': record, 'xfive': record, 'xsix':record, 'xseven': record, 'xeight': record, 'xnine': record, 'xten':record}
+               }
           },
           'recognition': {'audioToNonSymbolic': [], 'nonSymbolicToSymbolic':[], 'audio_symbolic':[]}, 
-          'decimal'  : {'audioToNonSymbolic': [], 'nonSymbolicToSymbolic':[], 'audio_symbolic':[]}  
+          'decimal'  : {'audioToNonSymbolic': record, 'nonSymbolicToSymbolic':record, 'audio_symbolic':[]}  
           
       },
       "triangle" :  {'audioToNonSymbolic': [], 'nonSymbolicToSymbolic':[], 'audio_symbolic':[]}, 
       "circle"   : {'audioToNonSymbolic': [], 'nonSymbolicToSymbolic':[], 'audio_symbolic':[]}, 
       "square"   :  {'audioToNonSymbolic': [], 'nonSymbolicToSymbolic':[], 'audio_symbolic':[]}, 
     }
-    for(var i=0; i<=100; i++){
+    for(var i=1; i<=100; i++){
       score[i] = _.clone(score[0])
     }
-      
-    
-
 	return score
 }
 module.exports =  FakeScore;

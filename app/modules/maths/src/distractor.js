@@ -115,16 +115,23 @@ var Distractor = function (number, distractors_available, count, decimal) {
 	//distractors_available = [0,1,2,3]
 	_.each(distractors_pool_all, function(candidate){
 		//console.log(distractors_available)
-		if( _.contains(distractors_available, candidate.value ) ){
+			
+			var antiValue = candidate.value
+			if(decimal && decimal === true){
+				antiValue = (candidate.value)*10
+			}
 
-			if(  candidate.value == number ){
+
+		if( _.contains(distractors_available, antiValue) ){
+
+			if(  antiValue == number ){
 				//	console.log('//////////////')
 			}
 			else{
 					//console.log(number+'  <>' +candidate.value+' is in')
 					// ultimate fix for decimal game (*10 entry)
 					if(decimal && decimal === true){
-						candidate.value = (candidate.value)*10
+						candidate.value = antiValue
 					}
 					//console.log('pushcandidate')
 					//console.log(candidate)

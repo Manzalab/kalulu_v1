@@ -8,7 +8,7 @@ var _ 				= require('underscore')
 var Distractor 		= require('./distractor.js')
 var ModuleUtils 	= require('./module_utils.js')
 
-var Recognition = function(number, stimuli_type, numbers_available, count,  numbers_data){
+var Recognition = function(number, stimuli_type, gameType, numbers_available, count,  numbers_data){
 
 	this.moduleutils = new ModuleUtils()
 	this.number = number
@@ -22,8 +22,12 @@ var Recognition = function(number, stimuli_type, numbers_available, count,  numb
 	var Lpath = ['recognition', this.stimuli_type]
 	
 	var st =  this.moduleutils.addStimuli(true , this.number, 'number',numbers_data, Lpath)
-	
 	step.stimuli.push(st)
+	if(gameType == 'pairing'){
+		/// TODO! twice 
+	}
+
+
 
 	var distractors = new Distractor(this.number,numbers_available,count, false )
 	//console.log(distractors)

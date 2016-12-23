@@ -32,19 +32,26 @@ var ModuleUtils = function(){
 			"stimuli_type"		: dataobject,
 			"apparitions"		: this.addFakeApparitions(isCorrect,1, 'perfect_all') //perfect_nothing
 		}
-		if(value_ !==null){
+		if(value_ !==null && dataset[value_]){
 			// console.log(dataset[value_])
 			st.nonSymbolicImage	= 'todo/'+dataobject+'/data/'+value_+'.jpg'
 		 	st.soundPath =  dataset[value_].soundPath
-		
 		}
+
+		// complex soundpath..
+
 
 		if(dataobject == 'number' && path){
 			st.path = path
 		}
+
 		if(dataobject == 'sum' && path){
 			st.path = path
+			// test for others TODO!
+			st.soundPath = path.xnumber+'/'+path.sign+'/'+path.side+'/'+path.number+'.ogg'
 		}
+
+
 		if(dataobject == 'shape' && path){
 			st.path = path
 		}
