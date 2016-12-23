@@ -53,6 +53,7 @@ define([
 
         this._dots = [];
         this._plants = [];
+        this._starMiddle;
     }
     
     Garden.prototype = Object.create(UIComponent.prototype);
@@ -254,7 +255,7 @@ define([
     }
 
     Garden.prototype.drawStar = function drawStar () {
-        var i, lStar, lChildren;
+        var i, lChildren;
 
         var lLength = this.children.length;
 
@@ -264,17 +265,23 @@ define([
 
             if (lChildren.name.indexOf("StarMiddle") !== -1) {
 
-                lStar = new StarMiddle(lChildren.name);
-                lStar.x = lChildren.x;
-                lStar.y = lChildren.y;
+                this._starMiddle = new StarMiddle(lChildren.name);
+                this._starMiddle.x = lChildren.x;
+                this._starMiddle.y = lChildren.y;
 
-                this.addChild(lStar);
-                this._plants.push(lStar);
-
-                lStar.alpha = 0;
-                createjs.Tween.get(lStar).to({alpha: 1}, 1000, createjs.Ease.linear);
+                this.addChild(this._starMiddle);
+                
+                this._starMiddle.alpha = 0;
+                createjs.Tween.get(this._starMiddle).to({alpha: 1}, 1000, createjs.Ease.linear);
             }
         }
+    }
+
+    Garden.prototype.undrawStar = function undrawStar () {
+        createjs.Tween.get(this._starMiddle).to({alpha: 0}, 1000, createjs.Ease.linear).call(function () {
+            this.removeChild(this._starMiddle);
+            this._starMiddle.destroy();
+        }.bind(this));
     }
 
     Garden.prototype.onClick = function onClick (pEventData) {
