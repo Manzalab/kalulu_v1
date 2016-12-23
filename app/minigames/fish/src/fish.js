@@ -1,5 +1,5 @@
 ﻿define([
-    './swipe'
+    'swipe'
 ], function (
     Swipe
 ) {

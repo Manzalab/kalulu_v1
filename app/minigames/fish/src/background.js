@@ -18,6 +18,8 @@
         this.paused = false;
         this.enabled = false;
         this.time = time;
+        this.addedTime = 0;
+        this.pace = 1 / 60;
         this.eventManager = game.eventManager;
 
         this.backgroundBottom = game.add.sprite(game.world.centerX, game.world.centerY, 'BackgroundBottom');
@@ -66,15 +68,22 @@
             this.enabled = true;
         }, this);
 
-        this.eventManager.on('pause', function () {
-            this.paused = true;
-        }, this);
+        //this.eventManager.on('pause', function () {
+        //    this.paused = true;
+        //}, this);
 
-        this.eventManager.on('unPause', function () {
-            this.paused = false;
-        }, this);
+        //this.eventManager.on('unPause', function () {
+        //    this.paused = false;
+        //}, this);
 
     }
+
+    Background.prototype.addTime = function (addedTime) {
+        this.addedTime += addedTime;
+        var remainingTime = this.time - this.t + this.addedTime * 60 * this.pace;
+        var framesToFinish = remainingTime * 60;
+        this.pace = (remainingTime - this.addedTime * 60 * this.pace) / framesToFinish;
+    };
 
     Background.prototype.sunTrajectory = function (endX, endY) {
         this.endX = endX;
@@ -101,8 +110,7 @@
                     this.enabled = false;
                     this.eventManager.emit('timerFinished');
                 }
-                this.t += 1 / 60;
-
+                this.t += this.pace;
             }
     }
 

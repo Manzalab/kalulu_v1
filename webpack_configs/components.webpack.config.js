@@ -109,6 +109,28 @@ exports.getHMR = function () {
     };
 };
 
+exports.copyCommonAssets = function (language) {
+
+    var ignore = [
+        'swahili/**/*',
+        'english/**/*',
+        'french/**/*'
+    ];
+
+    return {
+        plugins: [
+            // Enable multi-pass compilation for enhanced performance in larger projects. Good default.
+            new CopyWebpackPlugin([
+                { from: 'app/assets/images',                    to: 'assets/images',    ignore : ignore },
+                { from: 'app/assets/images/' + language + '/',  to: 'assets/images'                     },
+                { from: 'app/assets/pdf',                       to: 'assets/images',    ignore : ignore },
+                { from: 'app/assets/pdf/' + language + '/',     to: 'assets/images'                     }
+            ])
+        ]
+    };
+};
+
+
 exports.copyAssetsForMinigames = function (minigameFolderNames, language) {
     // console.log('copy logic for language : ' + language);
     var transfers = [];

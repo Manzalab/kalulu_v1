@@ -25,13 +25,14 @@ module.exports = components.mergeConfigs(
             new webpack.PrefetchPlugin([path.resolve(__dirname, '../app/src/')], './application/application')
         ]
     },
+    components.copyCommonAssets(process.env.kaluluLanguage),
     components.copyAssetsForMinigames(fs.readdirSync('app/minigames'), process.env.kaluluLanguage),
     components.copyAssetsForModules(['user_interface', 'language', 'maths'], process.env.kaluluLanguage),
     components.generateHtml(),
     components.minify(),
     components.extractBundle([{
         name    : 'vendor',
-        entries : ['phaser-bundle', 'stats', 'eventemitter3', 'dat.gui', 'modules/user_interface/libs/pixi']
+        entries : ['phaser-bundle', 'stats', 'eventemitter3', 'dat.gui', 'modules/user_interface/libs/pixi', 'pdfjs-dist']
     },
     {
         name    : 'minigames-common',
@@ -48,8 +49,6 @@ function getCommonScriptsPaths () {
     }
     return paths;
 }
-
-
 
 console.log('\n Build :');
 console.log(process.env.kaluluLanguage);

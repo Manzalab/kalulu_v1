@@ -5,127 +5,92 @@ module.exports = {
 
     language   : 'english',
 
-    data       : {
-
+    data: {
         rounds: [
-
             {
-                stimuli: [
-                    {
-                        image: "Ants_Number_01",
-                        correctResponse: 1
-                    },
-                    {
-                        image: "Ants_Number_08",
-                        correctResponse: 8
-                    },
-                    {
-                        image: "Ants_Number_05",
-                        correctResponse: 5
-                    }
-                ]
+                steps: [{
+                    stimuli: [
+                        {
+                            "value": "3",
+                            "soundPath": "../assets_shared/audio/swahili/number_3.ogg",
+                            "notionId": "3",
+                        },
+                        {
+                            "value": "4",
+                            "soundPath": "../assets_shared/audio/swahili/number_4.ogg",
+                            "notionId": "2",
+                        },
+                        {
+                            "value": "5",
+                            "soundPath": "../assets_shared/audio/swahili/number_5.ogg",
+                            "notionId": "2",
+                        },
+                    ],
+                }]
             },
-
             {
-                stimuli: [
-                    {
-                        image: "Ants_Number_02",
-                        correctResponse: 2
-                    },
-                    {
-                        image: "Ants_Number_09",
-                        correctResponse: 9
-                    },
-                    {
-                        image: "Ants_Number_06",
-                        correctResponse: 6
-                    }
-                ]
+                steps: [{
+                    stimuli: [
+                        {
+                            "value": "1",
+                            "soundPath": "../assets_shared/audio/swahili/number_1.ogg",
+                            "notionId": "3",
+                        },
+                        {
+                            "value": "2",
+                            "soundPath": "../assets_shared/audio/swahili/number_2.ogg",
+                            "notionId": "2",
+                        },
+                        {
+                            "value": "5",
+                            "soundPath": "../assets_shared/audio/swahili/number_5.ogg",
+                            "notionId": "2",
+                        },
+                    ],
+                }]
             },
-
             {
-                stimuli: [
-                    {
-                        image: "Ants_Number_03",
-                        correctResponse: 3
-                    },
-                    {
-                        image: "Ants_Number_10",
-                        correctResponse: 10
-                    },
-                    {
-                        image: "Ants_Number_07",
-                        correctResponse: 7
-                    }
-                ]
+                steps: [{
+                    stimuli: [
+                        {
+                            "value": "3",
+                            "soundPath": "../assets_shared/audio/swahili/number_3.ogg",
+                            "notionId": "3",
+                        },
+                        {
+                            "value": "4",
+                            "soundPath": "../assets_shared/audio/swahili/number_4.ogg",
+                            "notionId": "2",
+                        },
+                        {
+                            "value": "5",
+                            "soundPath": "../assets_shared/audio/swahili/number_5.ogg",
+                            "notionId": "2",
+                        },
+                    ],
+                }]
             },
-
             {
-                stimuli: [
-                    {
-                        image: "Ants_Number_04",
-                        correctResponse: 4
-                    },
-                    {
-                        image: "Ants_Number_01",
-                        correctResponse: 1
-                    },
-                    {
-                        image: "Ants_Number_08",
-                        correctResponse: 8
-                    }
-                ]
-            },
+                steps: [{
+                    stimuli: [
+                        {
+                            "value": "3",
+                            "soundPath": "../assets_shared/audio/swahili/number_3.ogg",
+                            "notionId": "3",
+                        },
+                        {
 
-            {
-                stimuli: [
-                    {
-                        image: "Ants_Number_05",
-                        correctResponse: 5
-                    },
-                    {
-                        image: "Ants_Number_02",
-                        correctResponse: 2
-                    },
-                    {
-                        image: "Ants_Number_09",
-                        correctResponse: 9
-                    }
-                ]
-            },
-
-            {
-                stimuli: [
-                    {
-                        image: "Ants_Number_06",
-                        correctResponse: 6
-                    },
-                    {
-                        image: "Ants_Number_03",
-                        correctResponse: 3
-                    },
-                    {
-                        image: "Ants_Number_10",
-                        correctResponse: 10
-                    }
-                ]
-            },
-
-            {
-                stimuli: [
-                    {
-                        image: "Ants_Number_01",
-                        correctResponse: 1
-                    },
-                    {
-                        image: "Ants_Number_08",
-                        correctResponse: 8
-                    },
-                    {
-                        image: "Ants_Number_05",
-                        correctResponse: 5
-                    }
-                ]
+                            "value": "5",
+                            "soundPath": "../assets_shared/audio/swahili/number_5.ogg",
+                            "notionId": "2",
+                        },
+                        {
+                            "value": "4",
+                            "soundPath": "../assets_shared/audio/swahili/number_4.ogg",
+                            "notionId": "2",
+                        },
+                    ],
+                }]
             }
         ]
     }

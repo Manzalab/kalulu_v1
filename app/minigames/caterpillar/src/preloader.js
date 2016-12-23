@@ -31,27 +31,27 @@
         loadSpecificAssets: function () {
 
             //Game specific Graphics
-            this.load.image('leaf', Config.gameId + '/assets/images/Decors/Feuille.png');
-            this.load.image('background', Config.gameId + '/assets/images/Decors/Background.png');
-            this.load.image('line', Config.gameId + '/assets/images/Decors/Branche_boucle.png');
-            this.load.image('lineEnd', Config.gameId + '/assets/images/Decors/Branche_bout.png');
+            this.load.image('leaf', 'minigames/caterpillar/assets/images/Decors/Feuille.png');
+            this.load.image('background', 'minigames/caterpillar/assets/images/Decors/Background.png');
+            this.load.image('line', 'minigames/caterpillar/assets/images/Decors/Branche_boucle.png');
+            this.load.image('lineEnd', 'minigames/caterpillar/assets/images/Decors/Branche_bout.png');
 
-            this.game.load.atlasJSONHash('berry', Config.gameId + '/assets/images/Animation_Baie/berry.png', Config.gameId + '/assets/images/Animation_Baie/berry.json');
-            this.game.load.atlasJSONHash('caterpillar', Config.gameId + '/assets/images/caterpillar/caterpillar.png', Config.gameId + '/assets/images/caterpillar/caterpillar.json');
-            this.game.load.atlasJSONHash('caterpillarTail', Config.gameId + '/assets/images/caterpillar/tail.png', Config.gameId + '/assets/images/caterpillar/tail.json');
+            this.game.load.atlasJSONHash('berry', 'minigames/caterpillar/assets/images/Animation_Baie/berry.png', 'minigames/caterpillar/assets/images/Animation_Baie/berry.json');
+            this.game.load.atlasJSONHash('caterpillar', 'minigames/caterpillar/assets/images/caterpillar/caterpillar.png', 'minigames/caterpillar/assets/images/caterpillar/caterpillar.json');
+            this.game.load.atlasJSONHash('caterpillarTail', 'minigames/caterpillar/assets/images/caterpillar/tail.png', 'minigames/caterpillar/assets/images/caterpillar/tail.json');
 
             //Game specific UI Graphics            
-            this.load.image('uiScoreWrong', Config.gameId + '/assets/images/ui/ScoreWrong_Graphogame.png');
-            this.load.image('uiScoreRight', Config.gameId + '/assets/images/ui/ScoreSuccess_Graphogame.png')
-            this.load.image('uiScoreEmpty', Config.gameId + '/assets/images/ui/ScoreEmpty_Graphogame.png')
+            this.load.image('uiScoreWrong', 'minigames/caterpillar/assets/images/ui/ScoreWrong_Graphogame.png');
+            this.load.image('uiScoreRight', 'minigames/caterpillar/assets/images/ui/ScoreSuccess_Graphogame.png');
+            this.load.image('uiScoreEmpty', 'minigames/caterpillar/assets/images/ui/ScoreEmpty_Graphogame.png');
 
             //Game Specific Audio
 
 
             //Kalulu Game Specific audio
-            this.game.load.audio('kaluluIntro', Config.gameId + '/assets/audio/kalulu/intro.ogg');
-            this.game.load.audio('kaluluHelp', Config.gameId + '/assets/audio/kalulu/help.ogg');
-            this.game.load.audio('kaluluEnd', Config.gameId + '/assets/audio/kalulu/end.ogg');
+            this.game.load.audio('kaluluIntro', 'minigames/caterpillar/assets/audio/kalulu/intro.ogg');
+            this.game.load.audio('kaluluHelp', 'minigames/caterpillar/assets/audio/kalulu/help.ogg');
+            this.game.load.audio('kaluluEnd', 'minigames/caterpillar/assets/audio/kalulu/end.ogg');
         },
 
         /**
@@ -61,10 +61,10 @@
 
             //UI 
             this.load.image('pause', 'assets_shared/images/ui/pause.png');
-            this.game.load.atlasJSONHash('common/src/ui', 'assets_shared/images/ui/ui.png', 'assets_shared/images/ui/ui.json');
+            this.game.load.atlasJSONHash('ui', 'assets_shared/images/ui/ui.png', 'assets_shared/images/ui/ui.json');
 
             //FX 
-            this.game.load.atlasJSONHash('common/src/fx', 'assets_shared/images/fx/fx.png', 'assets_shared/images/fx/fx.json');
+            this.game.load.atlasJSONHash('fx', 'assets_shared/images/fx/fx.png', 'assets_shared/images/fx/fx.json');
             this.load.image('wrong', 'assets_shared/images/fx/wrong.png');
 
             //KaluluGraphics

@@ -17,7 +17,7 @@
 
         this.options =  {
             LANGUAGE    : KALULU_LANGUAGE,
-            minigame    : 'crabs',
+            minigame    : 'turtles',
             discipline  : 'maths',
             globalLevel : 1,
             localLevel  : 1,
@@ -168,7 +168,7 @@
         var filename = part1 + "_" + part2;
         console.log(filename);
 
-        tester.options.dummyPedagogicData = require('../assets/data/' + filename + '.json');
+        tester.options.dummyPedagogicData = require('../assets/data/' + filename + '.js');
 
         var rafiki = {
             getDifficultyLevel : getDifficultyLevel,

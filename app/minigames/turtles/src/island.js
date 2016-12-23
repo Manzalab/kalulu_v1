@@ -1,5 +1,7 @@
 ﻿define([
+    'common/src/mathSprite'
 ], function (
+    MathSprite
 ) {
 
     'use strict';
@@ -13,7 +15,7 @@
      * @param textLength {int} 
      * @param scale {scale} default 1
 	**/
-    function Island(game, textLength, scale) {
+    function Island(game, textLength, picture, scale) {
         scale = scale || 1;
         textLength = textLength || 4;
 
@@ -52,6 +54,12 @@
         this.text.anchor.setTo(0.5, 0.5);
 
         this.add(this.text);
+
+        if (this.game.discipline == "maths" && typeof picture!=='undefined') {
+            this.picture = new MathSprite(0, -100, picture.value, game, this.islandSprite.width/2, this.islandSprite.height/2);
+            this.add(this.picture);
+            this.text.y += 100;
+        }
 
         this.initEvents();
         this.initSounds(game);

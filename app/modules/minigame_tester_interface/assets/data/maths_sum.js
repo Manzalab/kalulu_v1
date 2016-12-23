@@ -1,4 +1,4 @@
-{
+moldule.exports = {
     "gameId": "DummyGame",
     "gameGroup": "sum",
     "discipline": "maths",
@@ -83,7 +83,7 @@
                     "gameType": "sum",
                     "sequence": "0+9=9",
                     "targetNumber": 0,
-                    "numberIndex": 9
+                    "numberIndex": 0
                 }
             },
             {
@@ -164,7 +164,7 @@
                     "gameType": "sum",
                     "sequence": "1+2=3",
                     "targetNumber": 1,
-                    "numberIndex": 3
+                    "numberIndex": 0
                 }
             },
             {
@@ -326,7 +326,7 @@
                     "gameType": "sum",
                     "sequence": "0+3=3",
                     "targetNumber": 3,
-                    "numberIndex": 3
+                    "numberIndex": 2
                 }
             },
             {
@@ -650,7 +650,7 @@
                     "gameType": "sum",
                     "sequence": "4+3=7",
                     "targetNumber": 7,
-                    "numberIndex": 3
+                    "numberIndex": 4
                 }
             },
             {
@@ -731,7 +731,7 @@
                     "gameType": "sum",
                     "sequence": "7+1=8",
                     "targetNumber": 8,
-                    "numberIndex": 1
+                    "numberIndex": 4
                 }
             },
             {
