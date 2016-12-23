@@ -12,7 +12,7 @@ module.exports = {
                                 "correctResponse": true,
                                 "stimuli_type": "number",
                                 "nonSymbolicImage": "todo/number/data/1.jpg",
-                                "soundPath": "..../debug_config/1.ogg",
+                                "soundPath": "assets/sounds/maths/1.ogg",
                                 "path": [
                                     "recognition",
                                     "audio_symbolic"
@@ -23,7 +23,7 @@ module.exports = {
                                 "correctResponse": false,
                                 "stimuli_type": "number",
                                 "nonSymbolicImage": "todo/number/data/4.jpg",
-                                "soundPath": "..../debug_config/4.ogg",
+                                "soundPath": "assets/sounds/maths/4.ogg",
                                 "path": [
                                     "recognition",
                                     "audio_symbolic"
@@ -34,7 +34,7 @@ module.exports = {
                                 "correctResponse": false,
                                 "stimuli_type": "number",
                                 "nonSymbolicImage": "todo/number/data/5.jpg",
-                                "soundPath": "..../debug_config/5.ogg",
+                                "soundPath": "assets/sounds/maths/5.ogg",
                                 "path": [
                                     "recognition",
                                     "audio_symbolic"
@@ -58,7 +58,7 @@ module.exports = {
                                 "correctResponse": true,
                                 "stimuli_type": "number",
                                 "nonSymbolicImage": "todo/number/data/2.jpg",
-                                "soundPath": "..../debug_config/2.ogg",
+                                "soundPath": "assets/sounds/maths/2.ogg",
                                 "path": [
                                     "recognition",
                                     "audio_symbolic"
@@ -69,7 +69,7 @@ module.exports = {
                                 "correctResponse": false,
                                 "stimuli_type": "number",
                                 "nonSymbolicImage": "todo/number/data/1.jpg",
-                                "soundPath": "..../debug_config/1.ogg",
+                                "soundPath": "assets/sounds/maths/1.ogg",
                                 "path": [
                                     "recognition",
                                     "audio_symbolic"
@@ -80,7 +80,7 @@ module.exports = {
                                 "correctResponse": false,
                                 "stimuli_type": "number",
                                 "nonSymbolicImage": "todo/number/data/5.jpg",
-                                "soundPath": "..../debug_config/5.ogg",
+                                "soundPath": "assets/sounds/maths/5.ogg",
                                 "path": [
                                     "recognition",
                                     "audio_symbolic"
@@ -104,7 +104,7 @@ module.exports = {
                                 "correctResponse": true,
                                 "stimuli_type": "number",
                                 "nonSymbolicImage": "todo/number/data/3.jpg",
-                                "soundPath": "..../debug_config/3.ogg",
+                                "soundPath": "assets/sounds/maths/3.ogg",
                                 "path": [
                                     "recognition",
                                     "audio_symbolic"
@@ -115,7 +115,7 @@ module.exports = {
                                 "correctResponse": false,
                                 "stimuli_type": "number",
                                 "nonSymbolicImage": "todo/number/data/2.jpg",
-                                "soundPath": "..../debug_config/2.ogg",
+                                "soundPath": "assets/sounds/maths/2.ogg",
                                 "path": [
                                     "recognition",
                                     "audio_symbolic"
@@ -126,7 +126,7 @@ module.exports = {
                                 "correctResponse": false,
                                 "stimuli_type": "number",
                                 "nonSymbolicImage": "todo/number/data/6.jpg",
-                                "soundPath": "..../debug_config/6.ogg",
+                                "soundPath": "assets/sounds/maths/6.ogg",
                                 "path": [
                                     "recognition",
                                     "audio_symbolic"
@@ -150,7 +150,7 @@ module.exports = {
                                 "correctResponse": true,
                                 "stimuli_type": "number",
                                 "nonSymbolicImage": "todo/number/data/4.jpg",
-                                "soundPath": "..../debug_config/4.ogg",
+                                "soundPath": "assets/sounds/maths/4.ogg",
                                 "path": [
                                     "recognition",
                                     "audio_symbolic"
@@ -161,7 +161,7 @@ module.exports = {
                                 "correctResponse": false,
                                 "stimuli_type": "number",
                                 "nonSymbolicImage": "todo/number/data/3.jpg",
-                                "soundPath": "..../debug_config/3.ogg",
+                                "soundPath": "assets/sounds/maths/3.ogg",
                                 "path": [
                                     "recognition",
                                     "audio_symbolic"
@@ -172,7 +172,7 @@ module.exports = {
                                 "correctResponse": false,
                                 "stimuli_type": "number",
                                 "nonSymbolicImage": "todo/number/data/2.jpg",
-                                "soundPath": "..../debug_config/2.ogg",
+                                "soundPath": "assets/sounds/maths/2.ogg",
                                 "path": [
                                     "recognition",
                                     "audio_symbolic"
@@ -196,7 +196,7 @@ module.exports = {
                                 "correctResponse": true,
                                 "stimuli_type": "number",
                                 "nonSymbolicImage": "todo/number/data/5.jpg",
-                                "soundPath": "..../debug_config/5.ogg",
+                                "soundPath": "assets/sounds/maths/5.ogg",
                                 "path": [
                                     "recognition",
                                     "audio_symbolic"
@@ -207,7 +207,7 @@ module.exports = {
                                 "correctResponse": false,
                                 "stimuli_type": "number",
                                 "nonSymbolicImage": "todo/number/data/4.jpg",
-                                "soundPath": "..../debug_config/4.ogg",
+                                "soundPath": "assets/sounds/maths/4.ogg",
                                 "path": [
                                     "recognition",
                                     "audio_symbolic"
@@ -218,7 +218,7 @@ module.exports = {
                                 "correctResponse": false,
                                 "stimuli_type": "number",
                                 "nonSymbolicImage": "todo/number/data/10.jpg",
-                                "soundPath": "..../debug_config/10.ogg",
+                                "soundPath": "assets/sounds/maths/10.ogg",
                                 "path": [
                                     "recognition",
                                     "audio_symbolic"
@@ -242,7 +242,7 @@ module.exports = {
                                 "correctResponse": true,
                                 "stimuli_type": "number",
                                 "nonSymbolicImage": "todo/number/data/6.jpg",
-                                "soundPath": "..../debug_config/6.ogg",
+                                "soundPath": "assets/sounds/maths/6.ogg",
                                 "path": [
                                     "recognition",
                                     "audio_symbolic"
@@ -253,7 +253,7 @@ module.exports = {
                                 "correctResponse": false,
                                 "stimuli_type": "number",
                                 "nonSymbolicImage": "todo/number/data/4.jpg",
-                                "soundPath": "..../debug_config/4.ogg",
+                                "soundPath": "assets/sounds/maths/4.ogg",
                                 "path": [
                                     "recognition",
                                     "audio_symbolic"
@@ -264,7 +264,7 @@ module.exports = {
                                 "correctResponse": false,
                                 "stimuli_type": "number",
                                 "nonSymbolicImage": "todo/number/data/10.jpg",
-                                "soundPath": "..../debug_config/10.ogg",
+                                "soundPath": "assets/sounds/maths/10.ogg",
                                 "path": [
                                     "recognition",
                                     "audio_symbolic"
@@ -288,7 +288,7 @@ module.exports = {
                                 "correctResponse": true,
                                 "stimuli_type": "number",
                                 "nonSymbolicImage": "todo/number/data/10.jpg",
-                                "soundPath": "..../debug_config/10.ogg",
+                                "soundPath": "assets/sounds/maths/10.ogg",
                                 "path": [
                                     "recognition",
                                     "audioToNonSymbolic"
@@ -299,7 +299,7 @@ module.exports = {
                                 "correctResponse": false,
                                 "stimuli_type": "number",
                                 "nonSymbolicImage": "todo/number/data/4.jpg",
-                                "soundPath": "..../debug_config/4.ogg",
+                                "soundPath": "assets/sounds/maths/4.ogg",
                                 "path": [
                                     "recognition",
                                     "audioToNonSymbolic"
@@ -310,7 +310,7 @@ module.exports = {
                                 "correctResponse": false,
                                 "stimuli_type": "number",
                                 "nonSymbolicImage": "todo/number/data/3.jpg",
-                                "soundPath": "..../debug_config/3.ogg",
+                                "soundPath": "assets/sounds/maths/3.ogg",
                                 "path": [
                                     "recognition",
                                     "audioToNonSymbolic"
