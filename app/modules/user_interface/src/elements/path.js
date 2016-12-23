@@ -50,19 +50,9 @@ define([
 
 	Object.defineProperties(Path.prototype, {
 	    
-	    /**
-	     * Description of the accessor
-	     * @type {boolean}
-	     * @memberof Namespace.Path#
-	    **/
-	    /*privateMemberAccessor: {
-	        get: function () {
-	            return this._privateMember;
-	        },
-	        set: function (value) {
-	            return null;
-	        }
-	    }*/
+	    state : {
+            get : function () {return this._state}
+        }
 	});
 
 	// ##############################################################################################################################################
@@ -80,6 +70,7 @@ define([
 
 	Path.prototype.setModeOn = function setModeOn(){
 		this._anim.gotoAndStop(this._ON);
+		console.log(this._state);
 	}
 
 

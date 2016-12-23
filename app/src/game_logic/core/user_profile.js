@@ -106,9 +106,6 @@ define([
         fertilizer : {
             get : function () {return this._data.fertilizer; },
             set : function (value) {
-
-                console.log(value);
-
                 this._data.fertilizer = value;
                 this._gameManager.save();
                 return this._data.fertilizer;

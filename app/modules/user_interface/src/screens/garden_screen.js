@@ -144,41 +144,71 @@ define([
     }
 
     GardenScreen.prototype.unlockBonusPath = function unlockBonusPath() {
-        var pathIndex = 1;
-        var index = 2;
+        var lArrayLesson = [];
+        var chapterIndex = 1;
+        var lessonIndex = 1;
+        var boolLessonPath;
 
         for(var children in this._userProfile.Language.plan) {
-            if(children == "lesson" + index){
-                if(this._userProfile.Language.plan[children].isCompleted) this._bonusPathA[pathIndex].setModeOn();
-                //if(!this._userProfile.Language.plan[children].isCompleted) this._bonusPathA[pathIndex].setModeOn(); // FOR DEBUG
+            if(children == "lesson" + lessonIndex){
+                lArrayLesson.push(this._userProfile.Language.plan[children].isCompleted);
+                lessonIndex++;
+            }
+            else if(children == "Assessment" + chapterIndex && lArrayLesson.length >= 1){
+                switch (lArrayLesson.length) {
+                    case 1:
+                        boolLessonPath = lArrayLesson[0];
+                        break;
 
-                if(index==16 || index==17 || index==36) index++;
-                else index += 2;
+                    case 2:
+                    case 3:
+                        boolLessonPath = lArrayLesson[1];
+                        break;
 
-                pathIndex++;
+                    default :
+                        boolLessonPath = lArrayLesson[2];
+                }
+                //if(boolLessonPath) this._bonusPathA[chapterIndex].setModeOn();
+                if(!boolLessonPath) this._bonusPathA[chapterIndex].setModeOn(); // FOR DEBUG
+
+                lArrayLesson = [];
+                chapterIndex++;
             }
         }
 
-        pathIndex = 1;
-        index = 2;
+        chapterIndex = 1;
+        lessonIndex = 1;
+
         for(children in this._userProfile.Maths.plan) {
-            if(children == "lesson" + index){
-                if(this._userProfile.Maths.plan[children].isCompleted) this._bonusPathB[pathIndex].setModeOn();
-                //if(!this._userProfile.Maths.plan[children].isCompleted) this._bonusPathB[pathIndex].setModeOn(); // FOR DEBUG
+            if(children == "lesson" + lessonIndex){
+                lArrayLesson.push(this._userProfile.Maths.plan[children].isCompleted);
+                lessonIndex++;
+            }
+            else if(children == "Assessment" + chapterIndex && lArrayLesson.length >= 1){
+                switch (lArrayLesson.length) {
+                    case 1:
+                        boolLessonPath = lArrayLesson[0];
+                        break;
 
-                if (index>=35) index += 2;
-                else index += 3;
+                    case 2:
+                    case 3:
+                        boolLessonPath = lArrayLesson[1];
+                        break;
 
-                if(index==8 || index==23) index --;
-                else if(index==10 || index==28) index++;
+                    default :
+                        boolLessonPath = lArrayLesson[2];
+                }
+                //if(boolLessonPath) this._bonusPathB[chapterIndex].setModeOn();
+                if(!boolLessonPath) this._bonusPathB[chapterIndex].setModeOn(); // FOR DEBUG
 
-                pathIndex++;
+                lArrayLesson = [];
+                chapterIndex++;
             }
         }
     };
 
     GardenScreen.prototype.unlockStarMiddle = function unlockStarMiddle() {
-
+        console.log(this._bonusPathA[this._focusedGarden.id].state);
     }
 
     // ###############################################################################################################################################
@@ -303,6 +333,7 @@ define([
         this._focusedGarden.drawStar();
 
         this.unlockPlants();
+        this.unlockStarMiddle();
     };
 
     GardenScreen.prototype._removeSlideFunctions = function _removeSlideFunctions () {
