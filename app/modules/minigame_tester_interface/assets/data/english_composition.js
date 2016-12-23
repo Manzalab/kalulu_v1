@@ -1,4 +1,4 @@
-﻿{
+﻿module.exports = {
     "discipline": "normal",
     "data": {
         "rounds": [
@@ -6,7 +6,7 @@
             "word": {
                 "value": "wa",
                 "soundPath": [
-                    "../assets_shared/audio/swahili/syl_wa.ogg"
+                    "assets/audio/language/syl_wa.ogg"
                 ],
                 "correctResponse": true
             },
@@ -17,7 +17,7 @@
                             "value": "w",
                             "correctResponse": true,
                             "soundPath": [
-                                "../assets_shared/audio/swahili/phoneme_w.ogg"
+                                "assets/audio/language/phoneme_w.ogg"
                             ]
                         },
                         {
@@ -33,21 +33,21 @@
                             "value": "a",
                             "correctResponse": true,
                             "soundPath": [
-                                "../assets_shared/audio/swahili/phoneme_a.ogg"
+                                "assets/audio/language/phoneme_a.ogg"
                             ]
                         },
                         {
                             "value": "e",
                             "correctResponse": false,
                             "soundPath": [
-                                "../assets_shared/audio/swahili/phoneme_e.ogg"
+                                "assets/audio/language/phoneme_e.ogg"
                             ]
                         },
                         {
                             "value": "o",
                             "correctResponse": false,
                             "soundPath": [
-                                "../assets_shared/audio/swahili/phoneme_o.ogg"
+                                "assets/audio/language/phoneme_o.ogg"
                             ]
                         }
                     ]
@@ -58,7 +58,7 @@
             "word": {
                 "value": "wi",
                 "soundPath": [
-                    "../assets_shared/audio/swahili/syl_wi.ogg"
+                    "assets/audio/language/syl_wi.ogg"
                 ],
                 "correctResponse": true
             },
@@ -69,7 +69,7 @@
                             "value": "w",
                             "correctResponse": true,
                             "soundPath": [
-                                "../assets_shared/audio/swahili/phoneme_w.ogg"
+                                "assets/audio/language/phoneme_w.ogg"
                             ]
                         },
                         {
@@ -85,21 +85,21 @@
                             "value": "i",
                             "correctResponse": true,
                             "soundPath": [
-                                "../assets_shared/audio/swahili/phoneme_i.ogg"
+                                "assets/audio/language/phoneme_i.ogg"
                             ]
                         },
                         {
                             "value": "e",
                             "correctResponse": false,
                             "soundPath": [
-                                "../assets_shared/audio/swahili/phoneme_e.ogg"
+                                "assets/audio/language/phoneme_e.ogg"
                             ]
                         },
                         {
                             "value": "o",
                             "correctResponse": false,
                             "soundPath": [
-                                "../assets_shared/audio/swahili/phoneme_o.ogg"
+                                "assets/audio/language/phoneme_o.ogg"
                             ]
                         }
                     ]
@@ -110,7 +110,7 @@
             "word": {
                 "value": "wewe",
                 "soundPath": [
-                    "../assets_shared/audio/swahili/word_wewe.ogg"
+                    "assets/audio/language/word_wewe.ogg"
                 ],
                 "correctResponse": true,
             },
@@ -121,7 +121,7 @@
                             "value": "w",
                             "correctResponse": true,
                             "soundPath": [
-                                "../assets_shared/audio/swahili/phoneme_w.ogg"
+                                "assets/audio/language/phoneme_w.ogg"
                             ]
                         },
                         {
@@ -137,21 +137,21 @@
                             "value": "e",
                             "correctResponse": true,
                             "soundPath": [
-                                "../assets_shared/audio/swahili/phoneme_e.ogg"
+                                "assets/audio/language/phoneme_e.ogg"
                             ]
                         },
                         {
                             "value": "a",
                             "correctResponse": false,
                             "soundPath": [
-                                "../assets_shared/audio/swahili/phoneme_a.ogg"
+                                "assets/audio/language/phoneme_a.ogg"
                             ]
                         },
                         {
                             "value": "o",
                             "correctResponse": false,
                             "soundPath": [
-                                "../assets_shared/audio/swahili/phoneme_o.ogg"
+                                "assets/audio/language/phoneme_o.ogg"
                             ]
                         }
                     ]
@@ -162,7 +162,7 @@
                             "value": "w",
                             "correctResponse": true,
                             "soundPath": [
-                                "../assets_shared/audio/swahili/phoneme_w.ogg"
+                                "assets/audio/language/phoneme_w.ogg"
                             ]
                         },
                         {
@@ -178,21 +178,21 @@
                             "value": "e",
                             "correctResponse": true,
                             "soundPath": [
-                                "../assets_shared/audio/swahili/phoneme_e.ogg"
+                                "assets/audio/language/phoneme_e.ogg"
                             ]
                         },
                         {
                             "value": "a",
                             "correctResponse": false,
                             "soundPath": [
-                                "../assets_shared/audio/swahili/phoneme_a.ogg"
+                                "assets/audio/language/phoneme_a.ogg"
                             ]
                         },
                         {
                             "value": "o",
                             "correctResponse": false,
                             "soundPath": [
-                                "../assets_shared/audio/swahili/phoneme_o.ogg"
+                                "assets/audio/language/phoneme_o.ogg"
                             ]
                         }
                     ]
@@ -203,7 +203,7 @@
             "word": {
                 "value": "wenu",
                 "soundPath": [
-                    "../assets_shared/audio/swahili/word_wenu.ogg"
+                    "assets/audio/language/word_wenu.ogg"
                 ],
                 "correctResponse": true,
             },
@@ -214,7 +214,7 @@
                             "value": "w",
                             "correctResponse": true,
                             "soundPath": [
-                                "../assets_shared/audio/swahili/phoneme_w.ogg"
+                                "assets/audio/language/phoneme_w.ogg"
                             ]
                         },
                         {
@@ -230,21 +230,21 @@
                             "value": "e",
                             "correctResponse": true,
                             "soundPath": [
-                                "../assets_shared/audio/swahili/phoneme_e.ogg"
+                                "assets/audio/language/phoneme_e.ogg"
                             ]
                         },
                         {
                             "value": "a",
                             "correctResponse": false,
                             "soundPath": [
-                                "../assets_shared/audio/swahili/phoneme_a.ogg"
+                                "assets/audio/language/phoneme_a.ogg"
                             ]
                         },
                         {
                             "value": "o",
                             "correctResponse": false,
                             "soundPath": [
-                                "../assets_shared/audio/swahili/phoneme_o.ogg"
+                                "assets/audio/language/phoneme_o.ogg"
                             ]
                         }
                     ]
@@ -255,14 +255,14 @@
                             "value": "n",
                             "correctResponse": true,
                             "soundPath": [
-                                "../assets_shared/audio/swahili/phoneme_n.ogg"
+                                "assets/audio/language/phoneme_n.ogg"
                             ]
                         },
                         {
                             "value": "w",
                             "correctResponse": false,
                             "soundPath": [
-                                "../assets_shared/audio/swahili/phoneme_w.ogg"
+                                "assets/audio/language/phoneme_w.ogg"
                             ]
                         },
                         {
@@ -278,21 +278,21 @@
                             "value": "u",
                             "correctResponse": true,
                             "soundPath": [
-                                "../assets_shared/audio/swahili/phoneme_u.ogg"
+                                "assets/audio/language/phoneme_u.ogg"
                             ]
                         },
                         {
                             "value": "a",
                             "correctResponse": false,
                             "soundPath": [
-                                "../assets_shared/audio/swahili/phoneme_a.ogg"
+                                "assets/audio/language/phoneme_a.ogg"
                             ]
                         },
                         {
                             "value": "o",
                             "correctResponse": false,
                             "soundPath": [
-                                "../assets_shared/audio/swahili/phoneme_o.ogg"
+                                "assets/audio/language/phoneme_o.ogg"
                             ]
                         }
                     ]
@@ -303,7 +303,7 @@
             "word": {
                 "value": "waone",
                 "soundPath": [
-                    "../assets_shared/audio/swahili/word_waone.ogg"
+                    "assets/audio/language/word_waone.ogg"
                 ],
                 "correctResponse": true,
             },
@@ -314,7 +314,7 @@
                             "value": "w",
                             "correctResponse": true,
                             "soundPath": [
-                                "../assets_shared/audio/swahili/phoneme_w.ogg"
+                                "assets/audio/language/phoneme_w.ogg"
                             ]
                         },
                         {
@@ -330,21 +330,21 @@
                             "value": "a",
                             "correctResponse": true,
                             "soundPath": [
-                                "../assets_shared/audio/swahili/phoneme_a.ogg"
+                                "assets/audio/language/phoneme_a.ogg"
                             ]
                         },
                         {
                             "value": "e",
                             "correctResponse": false,
                             "soundPath": [
-                                "../assets_shared/audio/swahili/phoneme_e.ogg"
+                                "assets/audio/language/phoneme_e.ogg"
                             ]
                         },
                         {
                             "value": "o",
                             "correctResponse": false,
                             "soundPath": [
-                                "../assets_shared/audio/swahili/phoneme_o.ogg"
+                                "assets/audio/language/phoneme_o.ogg"
                             ]
                         }
                     ]
@@ -355,21 +355,21 @@
                             "value": "o",
                             "correctResponse": true,
                             "soundPath": [
-                                "../assets_shared/audio/swahili/phoneme_o.ogg"
+                                "assets/audio/language/phoneme_o.ogg"
                             ]
                         },
                         {
                             "value": "e",
                             "correctResponse": false,
                             "soundPath": [
-                                "../assets_shared/audio/swahili/phoneme_e.ogg"
+                                "assets/audio/language/phoneme_e.ogg"
                             ]
                         },
                         {
                             "value": "a",
                             "correctResponse": false,
                             "soundPath": [
-                                "../assets_shared/audio/swahili/phoneme_a.ogg"
+                                "assets/audio/language/phoneme_a.ogg"
                             ]
                         }
                     ]
@@ -380,14 +380,14 @@
                             "value": "n",
                             "correctResponse": true,
                             "soundPath": [
-                                "../assets_shared/audio/swahili/phoneme_n.ogg"
+                                "assets/audio/language/phoneme_n.ogg"
                             ]
                         },
                         {
                             "value": "w",
                             "correctResponse": false,
                             "soundPath": [
-                                "../assets_shared/audio/swahili/phoneme_w.ogg"
+                                "assets/audio/language/phoneme_w.ogg"
                             ]
                         },
                         {
@@ -403,21 +403,21 @@
                             "value": "e",
                             "correctResponse": true,
                             "soundPath": [
-                                "../assets_shared/audio/swahili/phoneme_e.ogg"
+                                "assets/audio/language/phoneme_e.ogg"
                             ]
                         },
                         {
                             "value": "a",
                             "correctResponse": false,
                             "soundPath": [
-                                "../assets_shared/audio/swahili/phoneme_a.ogg"
+                                "assets/audio/language/phoneme_a.ogg"
                             ]
                         },
                         {
                             "value": "o",
                             "correctResponse": false,
                             "soundPath": [
-                                "../assets_shared/audio/swahili/phoneme_o.ogg"
+                                "assets/audio/language/phoneme_o.ogg"
                             ]
                         }
                     ]

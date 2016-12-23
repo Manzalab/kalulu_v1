@@ -68,7 +68,7 @@
                 if (this.game.discipline != "maths") {
                     this.game.load.audio(data.rounds[i].word.value, data.rounds[i].word.soundPath);
                 }
-                else this.game.load.atlasJSONHash('maths', Config.gameId + '/assets/images/maths/maths.png', Config.gameId + '/assets/images/maths/maths.json');
+                else this.game.load.atlasJSONHash('maths', 'minigames/turtles/assets/images/maths/maths.png', 'minigames/turtles/assets/images/maths/maths.json');
 
                 stepsCount = data.rounds[i].steps.length;
                 for (var j = 0; j < stepsCount; j++) {
