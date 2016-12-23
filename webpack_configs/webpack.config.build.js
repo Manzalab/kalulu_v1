@@ -50,8 +50,6 @@ function getCommonScriptsPaths () {
     return paths;
 }
 
-
-
 console.log('\n Build :');
 console.log(process.env.kaluluLanguage);
 console.log(module.exports);

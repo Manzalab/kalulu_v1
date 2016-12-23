@@ -1,5 +1,7 @@
 ﻿define([
+    'mathSprite'
 ], function (
+    MathSprite
 ) {
 
     'use strict';
@@ -20,8 +22,9 @@
     var TEXTFONTSIZE = 75;
     var xOffset = 300;
 
-    function Sentence(y, height, words, wordIndex, game, scale) {
+    function Sentence(y, height, words, wordIndex, game, picture, scale) {
         scale = scale || 1;
+        picture = picture || false;
 
         Phaser.Group.call(this, game);
 
@@ -69,10 +72,19 @@
 
         this.holeBackground = game.add.sprite(this.words[this.wordIndex].x + this.words[this.wordIndex].width / 2, this.words[this.wordIndex].y, 'hole' + Math.floor(Math.random() * 2 + 2));
         this.holeBackground.anchor.setTo(0.5, 0.5);
-        this.holeBackground.width = (this.words[this.wordIndex].text.length + 1) * TEXTFONTSIZE;
+        //this.holeBackground.width = (this.words[this.wordIndex].text.length + 1) * TEXTFONTSIZE;
+        this.holeBackground.width = 250;
         this.holeBackground.scale.y = this.holeBackground.scale.x;
 
         this.add(this.holeBackground);
+
+        if (picture) {
+            this.picture = new MathSprite(this.game.world.centerX - 600, this.holeBackground.y, words[0], this.game, 1000,height);
+
+            this.add(this.picture);
+
+            this.holeBackground.x = this.game.world.centerX + 500;
+        }
 
         this.initEvents();
         this.alpha = 0;
