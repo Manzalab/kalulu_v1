@@ -4,8 +4,6 @@ var _ = require('underscore')
 
 var FakeNumbersData = function(lang){
 
-	
-
 	var numbers_data = {}
 	var data_gen = _.range(101);
 

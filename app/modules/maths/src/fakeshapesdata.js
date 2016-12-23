@@ -4,7 +4,9 @@
 var _ = require('underscore')
 var FakeShapesData = function(lang){
 	var shapes_data = {}
-	var data_gen = ['triangle', 'circle', 'square']
+	var data_gen = ['line','square', 'triangle', 'rectangle','circle', 'parallelogram', 'hexagon', 'diamond' ]
+
+
 	
 	_.each(data_gen, function(n){
 		var t = {

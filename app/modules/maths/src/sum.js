@@ -87,7 +87,7 @@ var Sum = function(number, xnumber, side, sign, numbers_data, numbers_available,
 			var st =  moduleutils.addStimuli(false , d.value, 'sum',numbers_data,that.lpath )
 			// to fix again.
 
-			st.value = that.number+''+that.sign+''+d.value +'='+parts.third
+			st.value = d.value
 			step.stimuli.push(st)
 		})
 	}

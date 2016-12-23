@@ -309,7 +309,22 @@ var SkillTree = function(el,depth, tries, params){
 
 					if(test.length > 0 ){
 						this.is_completed = false
-						this.lowest = test[0].lowest
+
+						if(tries>1){
+							// Randomize skill pooling if all completed instead of first match.
+							// random array index to avoid picking in the index[0] lowest skill..
+							var random_lowest = (Math.floor(Math.random() * (test.length + 1)));
+
+							// console.log('randomize pooling random lowest: #'+random)
+							// console.log(test[random])
+
+							// this.lowest = test[random_lowest].lowest
+							this.lowest = test[0].lowest
+						}
+						else{
+							this.lowest = test[0].lowest
+						}
+						
 					}
 					else{
 						this.lowest = null
