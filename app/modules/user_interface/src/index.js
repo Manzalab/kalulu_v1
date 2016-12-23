@@ -19,6 +19,8 @@
     var BrainScreen          = require ('./screens/brain_screen');
     var GardenScreen         = require ('./screens/garden_screen');
     var LessonScreen         = require ('./screens/lesson_screen');
+    var ToyChestScreen       = require ('./screens/toy_chest_screen');
+    var ToyChestActivityScreen       = require ('./screens/toy_chest_activity_screen');
 
 
     // ###############################################################################################################################################

@@ -8,17 +8,18 @@
     "url": "https://dev.kalulu-education.org/cyprien/kalulu-the-gathering.git"
   },
   "scripts": {
-    "buildEnglish": "node npm_scripts/build.js",
-    "buildSwahili": "node npm_scripts/build.js",
-    "buildFrench": "node npm_scripts/build.js",
-    "stats": "node npm_scripts/stats.js",
-    "testAll": "node npm_scripts/test_all.js",
-    "testAllEnglish": "node npm_scripts/test_all.js",
-    "testAllSwahili": "node npm_scripts/test_all.js",
-    "testAllFrench": "node npm_scripts/test_all.js",
-    "testMinigames": "node npm_scripts/test_game.js",
-    "testMinigamesEnglish": "node npm_scripts/test_game.js",
-    "testMinigamesSwahili": "node npm_scripts/test_game.js"
+    "buildEnglish"         : "node npm_scripts/build.js",
+    "build"                : "node npm_scripts/build.js",
+    "buildSwahili"         : "node npm_scripts/build.js",
+    "buildFrench"          : "node npm_scripts/build.js",
+    "stats"                : "node npm_scripts/stats.js",
+    "testAll"              : "node npm_scripts/test_all.js",
+    "testAllEnglish"       : "node npm_scripts/test_all.js",
+    "testAllSwahili"       : "node npm_scripts/test_all.js",
+    "testAllFrench"        : "node npm_scripts/test_all.js",
+    "testMinigames"        : "node npm_scripts/test_game.js",
+    "testMinigamesEnglish" : "node npm_scripts/test_game.js",
+    "testMinigamesSwahili" : "node npm_scripts/test_game.js"
   },
   "keywords": [
     "manzalab",
