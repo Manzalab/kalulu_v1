@@ -18,9 +18,9 @@
 
         this.paused = false;
 
-        this.objects = objectArray;
-        this.island = island;
+        this.turtles = objectArray;
         this.distances = [];
+        this.island = island;
 
         this.initEvents();
     };
@@ -41,39 +41,38 @@
             this.paused = false;
         }, this);
 
-        this.eventManager.on('destroyTurtle', function (turtle) {
-            this.destroyDistances(turtle);
-        }, this);
-    }
-
-    CollisionHandler.prototype.notPresentInArray = function (object, array) {
-        var temp = 0;
-
-        for (var i = 0; i < array.length; i++) {
-            if (object != array[i]) temp++;
-        }
-        if (temp == array.length) return true;
-        else return false;
     }
 
     CollisionHandler.prototype.createNewDistances = function (object) {
-        for (var j = 0; j < this.objects.length; j++) {
-            if (object != this.objects[j]) {
+        for (var j = 0; j < this.turtles.length; j++) {
+            if (object != this.turtles[j]) {
                 var temp = {};
 
-                temp.oldDistance = Math.sqrt(Math.pow(object.x - this.objects[j].x, 2)
-                    + Math.pow(object.y - this.objects[j].y, 2));
-                temp.object1 = object;
-                temp.object2 = this.objects[j];
+                temp.oldDistance = Math.sqrt(Math.pow(object.x - this.turtles[j].x, 2)
+                    + Math.pow(object.y - this.turtles[j].y, 2));
+                temp.turtle1 = this.turtles[j];
+                temp.turtle2 = object;
+                temp.originOfWarning = false;
                 this.distances.push(temp);
             }
         }
     }
 
+    CollisionHandler.prototype.resetDistances = function () {
+        var length = this.distances.length;
+        for (var i = 0; i < length ; i++) {
+            this.distances.splice(0, 1);
+        }
+    }
+
     CollisionHandler.prototype.destroyDistances = function (turtle) {
-        for (var i = 0 ; i < this.distances.length; i++) {
-            if (this.distances.object1 == turtle || this.distances.object2 == turtle) {
+
+        for (var i = 0; i < this.distances.length; i++) {
+            if (this.distances[i].turtle1 == turtle || this.distances[i].turtle2 == turtle) {
+                this.distances[i].turtle1.warning.toggle(false);
+                this.distances[i].turtle2.warning.toggle(false);
                 this.distances.splice(i, 1);
+                i--;
             }
         }
     }
@@ -98,52 +97,40 @@
         var objectsDone = [];
 
         if (!this.paused) {
-            for (var i = 0; i < this.objects.length; i++) {
-                if (this.objects[i].spawned)
-                    this.gameRef.physics.arcade.collide(this.objects[i], this.island, this.collisionIslandHandler, null, this);
+            for (var i = 0; i < this.turtles.length; i++) {
+                if (this.turtles[i].spawned)
+                    this.gameRef.physics.arcade.collide(this.turtles[i], this.island, this.collisionIslandHandler, null, this);
 
-                for (var j = 0; j < this.objects.length; j++) {
-                    if (this.objects[i].spawned && this.objects[j].spawned)
-                        this.gameRef.physics.arcade.collide(this.objects[i], this.objects[j], this.collisionTurtleHandler, null, this);
+                for (var j = 0; j < this.turtles.length; j++) {
+                    if (this.turtles[i].spawned && this.turtles[j].spawned)
+                        this.gameRef.physics.arcade.collide(this.turtles[i], this.turtles[j], this.collisionTurtleHandler, null, this);
+                }
+            }
 
+            for (var i = 0 ; i < this.distances.length; i++) {
 
-                    if (this.objects[i] != this.objects[j] && this.notPresentInArray(this.objects[j], objectsDone)) {
-                        var temp;
+                var temp = Math.sqrt(Math.pow(this.distances[i].turtle1.x - this.distances[i].turtle2.x, 2)
+                    + Math.pow(this.distances[i].turtle1.y - this.distances[i].turtle2.y, 2));
 
-                        temp = Math.sqrt(Math.pow(this.objects[i].x - this.objects[j].x, 2)
-                            + Math.pow(this.objects[i].y - this.objects[j].y, 2));
+                if (temp < this.distances[i].oldDistance && temp < 400) {
+                    this.distances[i].originOfWarning = true;
+                        this.distances[i].turtle1.warning.toggle(true);
+                        this.distances[i].turtle2.warning.toggle(true);
+                }
 
-                        for (var k = 0; k < this.distances.length; k++) {
-                            if ((this.distances[k].object1 == this.objects[i]
-                                && this.distances[k].object2 == this.objects[j])
-                                ||
-                                (this.distances[k].object2 == this.objects[i]
-                                && this.distances[k].object1 == this.objects[j])) {
-                                this.distances[k].oldDistance = this.distances[k].newDistance;
-                                this.distances[k].newDistance = temp;
-
-                                if (this.distances[k].newDistance < this.distances[k].oldDistance
-                                    && this.distances[k].newDistance <= 400) {
-                                    objectsDone.push(this.objects[j]);
-                                    if (!this.distances[k].object1.warning.warningSprite.visible)
-                                        this.distances[k].object1.warning.toggle(true);
-                                    if (!this.distances[k].object2.warning.warningSprite.visible)
-                                        this.distances[k].object2.warning.toggle(true);
-                                }
-                                else {
-                                    this.distances[k].object1.warning.toggle(false);
-                                    this.distances[k].object2.warning.toggle(false);
-                                }
-
-                            }
-
-                        }
+                else {
+                    if (this.distances[i].originOfWarning) {
+                        this.distances[i].turtle1.warning.toggle(false);
+                        this.distances[i].turtle2.warning.toggle(false);
                     }
                 }
-                objectsDone.push(this.objects[i]);
+
+                this.distances[i].oldDistance = temp;
             }
         }
     }
+
+
 
     return CollisionHandler;
 
