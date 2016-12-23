@@ -9,6 +9,7 @@
   },
   "scripts": {
     "buildEnglish"         : "node npm_scripts/build.js",
+    "build"                : "node npm_scripts/build.js",
     "buildSwahili"         : "node npm_scripts/build.js",
     "buildFrench"          : "node npm_scripts/build.js",
     "stats"                : "node npm_scripts/stats.js",
