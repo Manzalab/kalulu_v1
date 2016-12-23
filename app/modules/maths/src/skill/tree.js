@@ -318,7 +318,8 @@ var SkillTree = function(el,depth, tries, params){
 							// console.log('randomize pooling random lowest: #'+random)
 							// console.log(test[random])
 
-							this.lowest = test[random_lowest].lowest
+							// this.lowest = test[random_lowest].lowest
+							this.lowest = test[0].lowest
 						}
 						else{
 							this.lowest = test[0].lowest

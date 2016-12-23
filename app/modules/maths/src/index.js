@@ -475,8 +475,8 @@
 
           var params = {
             gameType                        : progressionNode.activityType, 
-            roundsCount                     : 4,           // the amount of rounds, (Rafiki will provide one target per round)
-            stepDistracterCount             : 3,             // 
+            roundsCount                     : params.roundsCount,           // the amount of rounds, (Rafiki will provide one target per round)
+            stepDistracterCount             : params.stepDistracterCount,             // 
             available_skills                : this._notionsInLesson[lessonNumber].skills,
             available_shapes                : this._notionsInLesson[lessonNumber].skills,  
           }
