@@ -42,7 +42,7 @@
         gui.add(this.options, 'LANGUAGE');
 
         gui.add(this.options, 'minigame', KALULU_MINIGAMES_LIST);
-        gui.add(this.options, 'discipline').listen();
+        gui.add(this.options, 'discipline', ['maths', 'language']).listen();
         gui.add(this.options, 'globalLevel').min(1).max(5).step(1).listen();
         gui.add(this.options, 'localLevel').min(1).max(5).step(1).listen();
         gui.add(this.options, 'start');

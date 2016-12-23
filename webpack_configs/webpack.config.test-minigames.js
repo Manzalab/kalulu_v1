@@ -19,15 +19,14 @@ module.exports = components.mergeConfigs(
                 { from: 'app/config', to: 'config' }
             ]),
             new webpack.DefinePlugin({
-              KALULU_MINIGAME       : JSON.stringify(process.env.kaluluMinigame),
               KALULU_MINIGAMES_LIST : JSON.stringify(fs.readdirSync('app/minigames'))
             })
         ]
     },
-    components.copyAssetsForMinigames(['common', 'crabs'], process.env.kaluluLanguage),
+    components.copyAssetsForMinigames(fs.readdirSync('app/minigames'), process.env.kaluluLanguage),
     components.generateHtml()
 );
 
-console.log('\n Test Crabs English :');
+console.log('\n Test Minigames - ' + process.env.kaluluLanguage + ' :');
 console.log(process.env.kaluluLanguage);
 console.log(module.exports);
