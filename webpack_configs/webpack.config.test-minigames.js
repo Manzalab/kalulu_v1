@@ -24,6 +24,7 @@ module.exports = components.mergeConfigs(
         ]
     },
     components.copyAssetsForMinigames(fs.readdirSync('app/minigames'), process.env.kaluluLanguage),
+    components.copyAssetsForModules(['language', 'maths'], process.env.kaluluLanguage),
     components.generateHtml()
 );
 

@@ -11,9 +11,6 @@
                 secondsOfPauseAfterCorrectResponse: 1,
                 secondsOfPauseAfterIncorrectResponse: 1.5,
                 missedCorrectStimuliCountTriggeringPermanentHelp: 3,
-                incorrectResponseCountTriggeringFirstRemediation: 1,
-                incorrectResponseCountTriggeringSecondRemediation: 2,
-                lives: 3,     // at the time when lives reach 0 the game ends, i.e. at the third incorrect response for 3 lives
                 capitalLettersShare: 0.4,
                 caterpillarSpeed: 10
             },
