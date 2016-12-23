@@ -1,22 +1,24 @@
 {
-  "name": "Kalulu",
-  "version": "2.0.0",
-  "description": "A game to learn how to read, write and count.",
-  "main": "www/index.html",
-  "repository": {
-    "type": "git",
-    "url": "https://dev.kalulu-education.org/cyprien/kalulu-the-gathering.git"
+  "name"        : "Kalulu",
+  "version"     : "2.0.0",
+  "description" : "A game to learn how to read, write and count.",
+  "main"        : "www/index.html",
+  "repository"  : {
+    "type" : "git",
+    "url"  : "https://dev.kalulu-education.org/cyprien/kalulu-the-gathering.git"
   },
   "scripts": {
-    "buildEnglish": "node npm_scripts/build.js",
-    "buildSwahili": "node npm_scripts/build.js",
-    "buildFrench": "node npm_scripts/build.js",
-    "stats": "node npm_scripts/stats.js",
-    "testAllEnglish": "node npm_scripts/test_all.js",
-    "testAllSwahili": "node npm_scripts/test_all.js",
-    "testAllFrench": "node npm_scripts/test_all.js",
-    "testCrabsEnglish": "node npm_scripts/test_crabs.js",
-    "testCrabsSwahili": "node npm_scripts/test_crabs.js"
+    "buildEnglish"        : "node npm_scripts/build.js",
+    "buildSwahili"        : "node npm_scripts/build.js",
+    "buildFrench"         : "node npm_scripts/build.js",
+    "stats"               : "node npm_scripts/stats.js",
+    "testAll"             : "node npm_scripts/test_all.js",
+    "testAllEnglish"      : "node npm_scripts/test_all.js",
+    "testAllSwahili"      : "node npm_scripts/test_all.js",
+    "testAllFrench"       : "node npm_scripts/test_all.js",
+    "testMinigameEnglish" : "node npm_scripts/test_crabs.js",
+    "testCrabsEnglish"    : "node npm_scripts/test_crabs.js",
+    "testCrabsSwahili"    : "node npm_scripts/test_crabs.js"
   },
   "keywords": [
     "manzalab",
@@ -27,29 +29,34 @@
     "Global Learning Challenge",
     "learning"
   ],
-  "author": "Cyprien Larrouy <cyprien.larrouy@gmail.com> (https://fr.linkedin.com/in/cyprienlarrouy)",
-  "contributors": [
-    "Cyprien Larrouy <cyprien.larrouy@gmail.com> (https://fr.linkedin.com/in/cyprienlarrouy)"
+  "author"       : "Cyprien Larrouy <cyprien.larrouy@gmail.com> (https://fr.linkedin.com/in/cyprienlarrouy)",
+  "contributors" : [
+    "Cyprien Larrouy <cyprien.larrouy@gmail.com> (https://fr.linkedin.com/in/cyprienlarrouy)",
+    "Olivier Dehaene <olivier.dehaene@gmail.com> ()",
+    "Tom Wersinger   <homeof@gmail.com> (http://tom-wersinger.com/)",
+    "Adrien Carta    <herzucco@gmail.com> (https://www.linkedin.com/in/herzucco)",
+    "Alexis Meleard  <> ()",
+    "Arnaud Charel   <> ()"
   ],
   "license": "Apache-2.0",
   "devDependencies": {
-    "clean-webpack-plugin": "^0.1.14",
-    "copy-webpack-plugin": "^4.0.1",
-    "dsv-loader": "^1.1.0",
-    "express": "^4.14.0",
-    "html-webpack-plugin": "^2.24.1",
-    "webpack": "^1.14.0",
-    "webpack-dev-server": "^1.16.2",
-    "webpack-merge": "^1.1.1",
-    "webpack-validator": "^2.3.0"
+    "clean-webpack-plugin" : "^0.1.14",
+    "copy-webpack-plugin"  : "^4.0.1",
+    "dsv-loader"           : "^1.1.0",
+    "express"              : "^4.14.0",
+    "html-webpack-plugin"  : "^2.24.1",
+    "webpack"              : "^1.14.0",
+    "webpack-dev-server"   : "^1.16.2",
+    "webpack-merge"        : "^1.1.1",
+    "webpack-validator"    : "^2.3.0"
   },
   "dependencies": {
-    "dat-gui": "^0.5.0",
-    "eventemitter3": "^2.0.2",
-    "howler": "^2.0.2",
-    "json-loader": "^0.5.4",
-    "micro-events": "^1.0.0",
-    "underscore": "^1.8.3",
-    "victor": "^1.1.0"
+    "dat-gui"       : "^0.5.0",
+    "eventemitter3" : "^2.0.2",
+    "howler"        : "^2.0.2",
+    "json-loader"   : "^0.5.4",
+    "micro-events"  : "^1.0.0",
+    "underscore"    : "^1.8.3",
+    "victor"        : "^1.1.0"
   }
 }
