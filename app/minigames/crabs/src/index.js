@@ -35,7 +35,7 @@
          * 1920 * 1350 is the targeted resolution of the Pixel C tablet
          * @type {Phaser.Game}
         **/
-        this.game = new Phaser.Game(1920, 1350, Phaser.AUTO); // TODO : make it dynamic for multiscreen handling
+        this.game = new Phaser.Game(1920, 1350, Phaser.CANVAS); // TODO : make it dynamic for multiscreen handling
         
         // Setting Up the Remediation
         this.game.config = this._config;
