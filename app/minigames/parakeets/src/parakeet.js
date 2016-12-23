@@ -46,7 +46,7 @@
             }
         }, this);
 
-        this.highlight = game.add.sprite(0, -this.parakeetSprite.height / 2, 'common/src/fx', 'FX_02');
+        this.highlight = game.add.sprite(0, -this.parakeetSprite.height / 2, 'fx', 'FX_02');
         this.highlight.anchor.setTo(0.5, 0.5);
         this.highlight.scale.x = 0.9;
         this.highlight.scale.y = 0.9;
@@ -124,7 +124,7 @@
         else {
             this.picture = this.game.add.sprite(0, -this.parakeetSprite.height / 5, 'maths', value);
             this.picture.height = this.parakeetSprite.width/3;
-            this.picture.width = this.parakeetSprite.height/3;
+            this.picture.scale.x = this.picture.scale.y;
             this.picture.anchor.setTo(0.5, 1);
             this.add(this.picture);
         }
