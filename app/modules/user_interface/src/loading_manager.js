@@ -88,7 +88,7 @@
         lLoader.addImageFile("user_interface/kalulu_anims/Kalulu_pop.json");
         lLoader.addImageFile("user_interface/kalulu_anims/Kalulu_talk.json");
         
-        for (var j = 0 ; j <= 40; j++) {
+        for (var j = 0 ; j <= 16; j++) {
             lLoader.addImageFile("user_interface/garden_screen/garden_screen_" + j + ".json");
         }
 
@@ -148,7 +148,7 @@
         //     factory.addTextures(loader.getContent(Config.imagesPath, "illustrations_" + i + ".json"));
         // }
 
-        for (var j = 0 ; j <= 40; j++) {
+        for (var j = 0 ; j <= 16; j++) {
             factory.addTextures(loader.getContent(Config.imagesPath + "user_interface/garden_screen/", "garden_screen_" + j + ".json"));
         }
 

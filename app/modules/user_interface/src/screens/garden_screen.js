@@ -5,9 +5,11 @@
  * a few Lessons (1 to 4) for each discipline, displayed on a separate Path.
 **/
 define([
+    '../elements/garden_screen_bg',
     '../utils/ui/screen',
     '../utils/sound/sound_manager'
 ], function (
+    GardenScreenBackground,
     Screen,
     SoundManager
 ) {
@@ -33,8 +35,8 @@ define([
         if (Config.enableGlobalVars) window.kalulu.gardenScreen = this;
 
         Screen.call(this);
-        
-        this.modalImage = "blue_bg.png";
+
+        //this.modalImage = "blue_bg.png";
 
         if (Config.enableGlobalVars) window.kalulu.gardenScreen = this;
 
@@ -46,8 +48,12 @@ define([
         this.build();
         
         // Reference the built elements
-        this._background = this.getChildByName("mcGardenScreenBackground");
-        
+        this._backgroundContainer = this.getChildByName("mcGardenScreenBackground");
+        this._background = new GardenScreenBackground();
+
+        this._backgroundContainer.addChild(this._background);
+        this._background.position.set(0,0);
+
         this._gardensContainer = this.getChildByName("mcGardensContainer");
 
         this._gardens = {};
@@ -171,6 +177,10 @@ define([
         }
     };
 
+    GardenScreen.prototype.unlockStarMiddle = function unlockStarMiddle() {
+
+    }
+
     // ###############################################################################################################################################
     // ###  GETTERS & SETTERS  #######################################################################################################################
     // ###############################################################################################################################################
@@ -293,6 +303,7 @@ define([
         this._assignSlideFunctionsToNeighbourGardens(targetGardenId);
         this._focusedGarden.draw(this._data.data.language[targetGardenId - 1], this._data.data.maths[targetGardenId - 1], this._lessonDotContainer);
         this._focusedGarden.drawPlant();
+        this._focusedGarden.drawStar();
         this.unlockPlants();
     };
 

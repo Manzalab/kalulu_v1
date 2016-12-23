@@ -3,12 +3,14 @@ define([
     '../utils/ui/ui_builder',
     '../utils/events/mouse_event_type',
     './plant',
+    './star_middle',
     './lesson_dot'
 ], function (
     UIComponent,
     UIBuilder,
     MouseEventType,
     Plant,
+    StarMiddle,
     LessonDot
 ) {
     
@@ -215,7 +217,7 @@ define([
     };
 
     Garden.prototype.drawPlant = function drawPlant () {
-        var i, markerPosition, lPlant, lChildren;
+        var i, lPlant, lChildren;
 
         var lLength = this.children.length;
 
@@ -248,6 +250,30 @@ define([
                 this.removeChild(lPlant);
                 lPlant.destroy();
             }.bind(this));
+        }
+    }
+
+    Garden.prototype.drawStar = function drawStar () {
+        var i, lStar, lChildren;
+
+        var lLength = this.children.length;
+
+        for (i = 0 ; i < lLength ; i++) {
+
+            lChildren = this.children[i];
+
+            if (lChildren.name.indexOf("StarMiddle") !== -1) {
+
+                lStar = new StarMiddle(lChildren.name);
+                lStar.x = lChildren.x;
+                lStar.y = lChildren.y;
+
+                this.addChild(lStar);
+                this._plants.push(lStar);
+
+                lStar.alpha = 0;
+                createjs.Tween.get(lStar).to({alpha: 1}, 1000, createjs.Ease.linear);
+            }
         }
     }
 
