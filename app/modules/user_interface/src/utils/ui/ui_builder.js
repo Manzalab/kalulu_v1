@@ -184,13 +184,15 @@ define([
                         // console.log("Garden detected");
                         dynamicClassName = subCompClassname.split("_")[0];
                         subComponent = Type.createInstance(dynamicClassName, description.components[subCompId], subCompClassname);
-                    }/*
+                    }
+                    /*
                     else if(subCompClassname.indexOf("Neuroenergy") !== -1) {
                         // console.log("Neuroenergy detected");
                         dynamicClassName = "Neuroenergy";
                         subComponent = Type.createInstance(dynamicClassName, description.components[subCompId], subCompClassname);
                         subCompId = "mcNeuroenergy";
-                    }*/
+                    }
+                    */
                     else {
                         
                         dynamicClassName = subCompClassname;//.substr(0, subCompClassname.indexOf(flashTypeSuffixes.MC_SUFFIX));

@@ -1,4 +1,4 @@
-{
+module.exports = {
     "discipline": "maths",
     "data": {
         "rounds": [

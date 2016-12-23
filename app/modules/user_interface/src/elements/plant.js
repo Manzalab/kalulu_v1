@@ -3,9 +3,11 @@
  * 
 **/
 define([
+	'../elements/animation_plant',
 	'../utils/ui/button',
 	'../utils/events/mouse_event_type'
 ], function (
+	AnimationPlant,
 	Button,
 	MouseEventType
 ) {
@@ -104,6 +106,9 @@ define([
 	}
 
 	Plant.prototype._checkFertilizer = function _checkFertilizer() {
+
+		var animation;
+
 		if(this._userProfile) {
 			if(this._userProfile.fertilizer > 0) {
 				switch(this._state){
@@ -126,6 +131,11 @@ define([
 				this._userProfile.plantsProgression = this;
 
 				this._gardenScreen.fertilizerText = this._userProfile.fertilizer;
+
+				animation = new AnimationPlant();
+				this.parent.addChild(animation);
+
+				animation.position.set(this.x, this.y);
 			}
 			else console.log("No fertilizer !");
 		}
@@ -134,7 +144,6 @@ define([
 	Plant.prototype._setPositionY = function _setPositionY() {
 		this.y = this._initPositionY - this.height/2 - this._initHeight/2;
 	}
-
 
 	return Plant;
 });
