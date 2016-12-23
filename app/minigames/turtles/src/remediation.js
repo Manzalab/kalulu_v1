@@ -1,10 +1,12 @@
 ﻿define([
     'common/src/fx',
+    'dat.gui',
     './turtle',
     './island',
     './collisionHandler'
 ], function (
     Fx,
+    Dat,
     Turtle,
     Island,
     CollisionHandler
@@ -55,11 +57,16 @@
         this.fx = new Fx(game);
 
         this.initSounds(game);
-
         this.initRound(this.roundIndex);
+        if (this.game.discipline == 'maths') {
+            var picture = {};
 
-        this.island = new Island(game, this.correctResponses.length);
+            picture.value = this.correctWord.value;
+        }
+        this.island = new Island(game, this.correctResponses.length, picture);
+
         this.collisionHandler = new CollisionHandler(this.turtles, this.island, game);
+        
 
         this.initEvents();
 
@@ -106,7 +113,7 @@
         // Setting up the recording of the game for Rafiki
         this.game.record = new this.game.rafiki.MinigameDstRecord();
 
-        this.results = this.game.pedagogicData; // for convenience we reference also the pedagogicData object under the name 'results' because we will add response data directly on it.
+        this.results = this.game.pedagogicData.data; // for convenience we reference also the pedagogicData object under the name 'results' because we will add response data directly on it.
         this.consecutiveMistakes = 0;
         this.consecutiveSuccess = 0;
         this.triesRemaining = params.getGlobalParams().totalTriesCount;
@@ -120,7 +127,7 @@
      **/
     Remediation.prototype.initRound = function initRound(roundIndex) {
 
-        var roundData = this.game.pedagogicData.rounds[roundIndex];
+        var roundData = this.game.pedagogicData.data.rounds[roundIndex];
 
         this.apparitionsCount = 0;
         this.correctStepResponseApparitionsCount = 0;
@@ -132,7 +139,7 @@
         this.falseStepResponsesCurrentPool = [];
         this.correctWord = roundData.word;
         this.sounds.correctRoundAnswer = this.game.add.audio(roundData.word.value);
-        var stepsLength = roundData.step.length;
+        var stepsLength = roundData.steps.length;
 
         var stimuliLength, stimulus;
         var falseStepResponses, correctStepResponses;
@@ -140,9 +147,9 @@
         for (var i = 0; i < stepsLength; i++) {
             falseStepResponses = [];
             correctStepResponses = {};
-            stimuliLength = roundData.step[i].stimuli.length;
+            stimuliLength = roundData.steps[i].stimuli.length;
             for (var j = 0; j < stimuliLength; j++) {
-                stimulus = roundData.step[i].stimuli[j];
+                stimulus = roundData.steps[i].stimuli[j];
                 if (stimulus.correctResponse === true) {
                     correctStepResponses.value = stimulus.value;
                     correctStepResponses.sound = this.game.add.audio(stimulus.value);
@@ -157,6 +164,7 @@
             this.falseResponses.push(falseStepResponses);
             this.correctResponses.push(correctStepResponses);
         }
+
     };
 
     /**
@@ -178,6 +186,7 @@
     Remediation.prototype.initEvents = function () {
 
         this.eventManager.on('destroyTurtle', function (turtle) {
+            this.collisionHandler.destroyDistances(turtle);
             for (var i = 0 ; i < this.turtles.length; i++) {
                 if (this.turtles[i] === turtle) {
                     if (!this.turtles[i].apparition.isClicked) this.turtles[i].apparition.close(false, 0);
@@ -243,7 +252,7 @@
         turtle2.apparition.close(true, 0);
 
         this.sounds.wrong.play();
-        this.fx.hit(turtle1.x - turtle2.x, turtle1.y - turtle2.y, false);
+        this.fx.hit((turtle1.x + turtle2.x)/2, (turtle1.y + turtle2.y)/2, false);
         this.eventManager.emit("pause");
         this.fail();
     };
@@ -254,16 +263,19 @@
 
         if (value !== "") turtle1.sound.play();
 
+        
 
         if (value == this.correctResponses[this.stepIndex].value) {
             this.sounds.right.play();
             this.resetTurtles();
             this.eventManager.emit("pause");
+            this.fx.hit(turtle1.x, turtle1.y, true);
             this.success();
         }
         else {
             this.sounds.wrong.play();
             this.eventManager.emit("pause");
+            this.fx.hit(turtle1.x, turtle1.y, false);
             this.fail();
         }
     };   
@@ -279,7 +291,13 @@
 
         var temp = "";
         for (var i = 0; i < this.stepIndex; i++) {
-            temp += this.correctResponses[i].value + " ";
+            if (this.game.discipline != "maths") temp += this.correctResponses[i].value + " ";
+            else {
+                var tempValue = this.correctResponses[i].value
+                if (tempValue > 10)
+                    tempValue /= 10;                
+                temp += tempValue + " ";
+            }
         }
         for (var i = this.stepIndex; i < this.correctResponses.length; i++) {
             temp += "_ ";
@@ -305,6 +323,7 @@
                     setTimeout(function () {
                         context.initRound(context.roundIndex);
                         context.island.reset(context.correctResponses.length);
+                        if (context.game.discipline == 'maths') context.island.picture.setValue(context.correctWord.value);
                         context.eventManager.emit('playCorrectSound');
                     }, 3 * 1000);
                 }, 1000);              
@@ -317,6 +336,7 @@
     };
 
     Remediation.prototype.resetTurtles = function () {
+        this.collisionHandler.resetDistances();
         for (var i = 0 ; i < this.turtles.length; i++) {
             this.turtles[i].hit();
         }
@@ -402,25 +422,25 @@
         }
 
         lTurtle = new Turtle(this.game, localParams.speed);
+        this.collisionHandler.createNewDistances(lTurtle);
         lTurtle.init(value);
         this.turtles.push(lTurtle);
-        this.collisionHandler.createNewDistances(lTurtle);
-
+        
 
         j = 0;
-        console.log(value);
-        while (this.results.rounds[this.roundIndex].step[this.stepIndex].stimuli[j].value != value) { //finds the value in the results to add one apparition
+        while (this.results.rounds[this.roundIndex].steps[this.stepIndex].stimuli[j].value != value) { //finds the value in the results to add one apparition
             j++;
         }
         apparition = new this.game.rafiki.StimulusApparition(isTargetValue);
 
-        this.results.rounds[this.roundIndex].step[this.stepIndex].stimuli[j].apparitions.push(apparition);
+        this.results.rounds[this.roundIndex].steps[this.stepIndex].stimuli[j].apparitions.push(apparition);
         lTurtle.apparition = apparition;
         this.apparitionsCount++;
         if (isTargetValue) this.correctStepResponseApparitionsCount++;
 
 
-        this.framesToWaitBeforeNextSpawn = localParams.respawnTime * 60;      
+        this.framesToWaitBeforeNextSpawn = localParams.respawnTime * 60;
+        this.eventManager.emit('newTurtle');
     };
 
     Remediation.prototype.gameOverWin = function gameOverWin() {
@@ -527,16 +547,16 @@
                 success: true
             };
 
-            stepsCount = currentRound.step.length;
+            stepsCount = currentRound.steps.length;
 
             for (var j = 0 ; j < stepsCount ; j++) {
 
-                currentStep = this.results.rounds[i].step[j];
+                currentStep = this.results.rounds[i].steps[j];
                 stimuliCount = currentStep.stimuli.length;
 
                 for (var k = 0 ; k < stimuliCount ; k++) {
 
-                    currentStimulus = this.results.rounds[i].step[j].stimuli[k];
+                    currentStimulus = this.results.rounds[i].steps[j].stimuli[k];
 
                     apparitionStats = {
                         apparitionTime: Date.now() - 3000,
@@ -575,16 +595,16 @@
                 success: false
             };
 
-            stepsCount = currentRound.step.length;
+            stepsCount = currentRound.steps.length;
 
             for (var j = 0 ; j < stepsCount ; j++) {
 
-                currentStep = this.results.rounds[i].step[j];
+                currentStep = this.results.rounds[i].steps[j];
                 stimuliCount = currentStep.stimuli.length;
 
                 for (var k = 0 ; k < stimuliCount ; k++) {
 
-                    currentStimulus = this.results.rounds[i].step[j].stimuli[k];
+                    currentStimulus = this.results.rounds[i].steps[j].stimuli[k];
 
                     apparitionStats = {
                         apparitionTime: Date.now() - 3000,

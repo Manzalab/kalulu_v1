@@ -1,13 +1,13 @@
 ﻿define([
-    'common/src/ui',
-    './remediation',
+    'eventemitter3',
     'common/src/kalulu',
-    'eventemitter3'
+    'common/src/ui',
+    './remediation'
 ], function (
-    Ui,
-    Remediation,
+    EventEmitter,
     Kalulu,
-    EventEmitter
+    Ui,
+    Remediation
 ) {
 
     'use strict';
@@ -59,17 +59,22 @@
 
             // load audiofiles for the current data
 
-            var data = this.game.pedagogicData;
+            var data = this.game.pedagogicData.data;
+            this.game.discipline = this.game.pedagogicData.discipline;
             var roundsCount = data.rounds.length;
             var stepsCount, stimuliCount, stimulus;
 
             for (var i = 0; i < roundsCount; i++) {
-                this.game.load.audio(data.rounds[i].word.value, data.rounds[i].word.soundPath);
-                stepsCount = data.rounds[i].step.length;
-                for (var j = 0; j < data.rounds[i].step.length; j++) {
-                    stimuliCount = data.rounds[i].step[j].stimuli.length;
+                if (this.game.discipline != "maths") {
+                    this.game.load.audio(data.rounds[i].word.value, data.rounds[i].word.soundPath);
+                }
+                else this.game.load.atlasJSONHash('maths', Config.gameId + '/assets/images/maths/maths.png', Config.gameId + '/assets/images/maths/maths.json');
+
+                stepsCount = data.rounds[i].steps.length;
+                for (var j = 0; j < stepsCount; j++) {
+                    stimuliCount = data.rounds[i].steps[j].stimuli.length;
                     for (var k = 0; k < stimuliCount; k++) {
-                        stimulus = data.rounds[i].step[j].stimuli[k];
+                        stimulus = data.rounds[i].steps[j].stimuli[k];
                         if (stimulus.value !== "") {
                             this.game.load.audio(stimulus.value, stimulus.soundPath);
                         }
@@ -95,18 +100,26 @@
             this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
             this.game.eventManager = new EventEmitter();
-			
-			this.background = this.add.sprite(this.world.centerX, this.world.centerY, 'background');
+
+            this.background = this.add.sprite(this.world.centerX, this.world.centerY, 'background');
             this.background.anchor.setTo(0.5, 0.5);
             this.background.width = this.game.width;
             this.background.height = this.game.height;
-			
+
             this.remediation = new Remediation(this.game);
             console.log(this.game.params.getGlobalParams())
-            this.ui = new Ui(this.game.params.getGlobalParams().totalTriesCount, this.game);
+            var centralConch = true, conch = true;
+            if (this.game.discipline == 'maths') {
+                centralConch = false;
+                conch = false;
+            }
+            this.ui = new Ui(this.game.params.getGlobalParams().totalTriesCount, this.game, centralConch, true, conch);
             this.kalulu = new Kalulu(this.game);
 
             this.game.eventManager.emit('startGame');
+            this.game.eventManager.on('newTurtle', function () {
+                this.world.bringToTop(this.ui);
+            }, this);
 
             this.game.time.advancedTiming = true; //Needed for rendering debug fps
         },
