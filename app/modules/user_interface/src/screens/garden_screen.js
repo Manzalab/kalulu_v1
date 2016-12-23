@@ -269,14 +269,11 @@ define([
         this._gardensContainer.x = -this._focusedGarden.x;
 
         this._manageSlidingNavigation(targetGardenId);
-        //this._focusedGarden.draw(this._data.data.language[targetGardenId - 1], this._data.data.maths[targetGardenId - 1]);
     };
 
     GardenScreen.prototype._slideToGarden = function _slideToGarden (eventData) {
         var targetGardenId = eventData.target.id;
         var duration = 1000;
-
-        // console.log(this._getGardensContainerTargetX(targetGardenId));
 
         createjs.Tween.get(this._lessonDotContainer).to({x: this._getGardensContainerTargetX(targetGardenId) - this._gardensContainer.x}, duration, createjs.Ease.quartInOut).call(function () {
             this._lessonDotContainer.x = 0;
@@ -287,8 +284,9 @@ define([
 
         this._focusedGarden.undraw(this._lessonDotContainer);
         this._focusedGarden.undrawPlant();
+        this._focusedGarden.undrawStar();
+
         this._removeSlideFunctions();
-        //this._manageSlidingNavigation(targetGardenId);
     };
 
     GardenScreen.prototype._getGardensContainerTargetX = function _getGardensContainerTargetX (targetGardenId) {
@@ -297,13 +295,13 @@ define([
     };
 
     GardenScreen.prototype._manageSlidingNavigation = function _manageSlidingNavigation (targetGardenId) {
-        // console.log("Starting to Manage Navigation around Garden " + targetGardenId);
-        
         this._registerFocusAndNeighbours(targetGardenId);
         this._assignSlideFunctionsToNeighbourGardens(targetGardenId);
+
         this._focusedGarden.draw(this._data.data.language[targetGardenId - 1], this._data.data.maths[targetGardenId - 1], this._lessonDotContainer);
         this._focusedGarden.drawPlant();
         this._focusedGarden.drawStar();
+
         this.unlockPlants();
     };
 

@@ -69,6 +69,11 @@ define([
 	// StarMiddle.prototype._mouseOut = function _mouseOut (pEventData) {
 	// 	this.setModeLarge();
 	// };
+	// StarMiddle.prototype.destroy = function destroy () {
+	// 	this.off(MouseEventType.MOUSE_OVER, this._mouseOver);
+	// 	this.off(MouseEventType.MOUSE_UP_OUTSIDE, this._mouseOut);
+	// 	StateGraphic.prototype.destroy.call(this);
+	// };
 	//
 
 	return StarMiddle;
