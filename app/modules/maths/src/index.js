@@ -469,6 +469,8 @@
 
           var lessonNumber = progressionNode.parent._lessonNumber;
           console.log(progressionNode.activityType)
+          console.log(params)
+
           var that = this;
 
           var params = {
@@ -479,12 +481,12 @@
             available_shapes                : this._notionsInLesson[lessonNumber].skills,  
           }
 
-          if(progressionNode.activityType == 'crabs'){
+          if(progressionNode.activityType == 'crabs' || progressionNode.activityType == 'jellyfish' ||  progressionNode.activityType == 'parakeets' ){
             params.groupGameType      = 'recognition'  
 
           }
 
-          if(progressionNode.activityType == 'caterpillar'){
+          if(progressionNode.activityType == 'caterpillar' || progressionNode.activityType == 'frog'){
             params.groupGameType      = 'counting'  
 
           }
@@ -492,21 +494,21 @@
             params.groupGameType      = 'decimal'  
 
           }
-           if(progressionNode.activityType == 'parakeets'){
-            params.groupGameType      = 'recognition'  
+          if(progressionNode.activityType == 'cocolision'){
+            params.groupGameType      = 'sum'  
 
           }
-          if(progressionNode.activityType == 'frog'){
+
+          if(progressionNode.activityType == 'ants'){
             params.groupGameType      = 'decimal'  
 
           }
 
-          if(progressionNode.activityType == 'jellyfish'){
-            params.groupGameType      = 'recognition'  
-          } 
+          if(progressionNode.activityType == 'fish'){
+            params.groupGameType      = 'decimal'  
 
-          // // "identification", "composition", "pairing", or "other"
-
+          }
+          
           this._currentActivityParams = params;
           //var pool_type = 'recognition';
           //var pool_type = 'counting';
@@ -521,9 +523,9 @@
 
           var available_numbers = this._notionsInLesson[lessonNumber].numbers;
 
-          var game = new Kalulu_maths(available_numbers,score,this._numberList, params, Config);
+          var game = new Kalulu_maths(available_numbers,score,this._numberList, params, staticData);
           if(!game.data){
-          // alert('finished !')
+            // alert('finished !')
           }
 
           this._currentExerciseSetup = game;
@@ -534,7 +536,7 @@
     MathsModule.prototype.getPedagogicData = function getPedagogicData (progressionNode, params) {
       // console.log(progressionNode.activityType)
       
-      if (progressionNode.activityType === "lecture") {
+      if (progressionNode.activityType === "lookandlearn") {
           return this.getPedagogicDataForLecture(progressionNode);
       }
       else{
@@ -544,9 +546,10 @@
 
 
 
-    MathsModule.prototype.getPedagogicDataForLecture = function getPedagogicDataForLecture (progressionNode) {
-        //console.log(progressionNode);
+    MathsModule.prototype.getPedagogicDataForLookandlearn = function getPedagogicDataForLookandlearn(progressionNode) {
+       console.log(progressionNode);
         var notionsData = [];
+
         for (var notionId in progressionNode.targetNotions) {
             if (!progressionNode.targetNotions.hasOwnProperty(notionId)) continue;
             var lNotion = progressionNode.targetNotions[notionId];
@@ -650,15 +653,19 @@ var record_not_av   = [
           'decimal'  : {'audioToNonSymbolic': [], 'nonSymbolicToSymbolic':[], 'audio_symbolic':[]}  
           
       },
-      "triangle" :  {'audioToNonSymbolic': [], 'nonSymbolicToSymbolic':[], 'audio_symbolic':[]}, 
-      "circle"   : {'audioToNonSymbolic': [], 'nonSymbolicToSymbolic':[], 'audio_symbolic':[]}, 
-      "square"   :  {'audioToNonSymbolic': [], 'nonSymbolicToSymbolic':[], 'audio_symbolic':[]}, 
-    }
+        "line" :  {'audioToNonSymbolic': [], 'nonSymbolicToSymbolic':[], 'audio_symbolic':[]}, 
+        "square"   :  {'audioToNonSymbolic': [], 'nonSymbolicToSymbolic':[], 'audio_symbolic':[]}, 
+        "triangle" :  {'audioToNonSymbolic': [], 'nonSymbolicToSymbolic':[], 'audio_symbolic':[]}, 
+        "rectangle"   :  {'audioToNonSymbolic': [], 'nonSymbolicToSymbolic':[], 'audio_symbolic':[]}, 
+        "circle"   : {'audioToNonSymbolic': [], 'nonSymbolicToSymbolic':[], 'audio_symbolic':[]}, 
+        "parallelogram"   :  {'audioToNonSymbolic': [], 'nonSymbolicToSymbolic':[], 'audio_symbolic':[]}, 
+        "hexagon"   :  {'audioToNonSymbolic': [], 'nonSymbolicToSymbolic':[], 'audio_symbolic':[]}, 
+        "diamond"   :  {'audioToNonSymbolic': [], 'nonSymbolicToSymbolic':[], 'audio_symbolic':[]}, 
+      }
     for(var i=0; i<=100; i++){
       score[i] = _.clone(score[0])
     }
-
-      return score
+    return score
 
     }
 

@@ -109,15 +109,19 @@ var loop_on_array = params[loop_on]
 		var temp_rounds_results = pool_loop(tries)
 		//console.log(temp_rounds_results)
 		//// patch 
-		
 		if(temp_rounds_results.length == 0){
-				console.log('NO ROUND ANYMORE')
-				var end = {'norounds': true}	
-				return end
+			console.log('Score completed, no round anymore, loop on already valid targets (force)')
+			var temp_rounds_results = pool_loop(2)
+			out.tries_results[tries] = temp_rounds_results
+			out.forced_pool = 2		
 		}
+		
+		//if(temp_rounds_results.length == 0){
+			
+		//		var end = {'norounds': true}	
+		//		return end
+		// }
 		else{
-
-
 			while(game.data.rounds.length <= params.roundsCount  ){ //  && tries < 4
 				tries++
 				console.log(temp_rounds_results)
