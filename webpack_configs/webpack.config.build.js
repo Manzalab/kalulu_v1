@@ -25,6 +25,7 @@ module.exports = components.mergeConfigs(
             new webpack.PrefetchPlugin([path.resolve(__dirname, '../app/src/')], './application/application')
         ]
     },
+    components.copyCommonAssets(process.env.kaluluLanguage),
     components.copyAssetsForMinigames(fs.readdirSync('app/minigames'), process.env.kaluluLanguage),
     components.copyAssetsForModules(['user_interface', 'language', 'maths'], process.env.kaluluLanguage),
     components.generateHtml(),
