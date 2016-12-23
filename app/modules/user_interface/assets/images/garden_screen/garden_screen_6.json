@@ -1,39 +1,120 @@
 {"frames": {
 
-"PathB_10.png":
+"PathA_04.png":
 {
-	"frame": {"x":3,"y":1316,"w":1376,"h":719},
+	"frame": {"x":3,"y":1351,"w":1459,"h":397},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":1376,"h":719},
-	"sourceSize": {"w":1376,"h":719},
+	"spriteSourceSize": {"x":0,"y":0,"w":1459,"h":397},
+	"sourceSize": {"w":1459,"h":397},
 	"pivot": {"x":0.5,"y":0.5}
 },
-"SpriteGarden_130001.png":
+"PathA_18.png":
 {
-	"frame": {"x":3,"y":3,"w":1455,"h":1309},
+	"frame": {"x":3,"y":1752,"w":1409,"h":278},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":1455,"h":1309},
-	"sourceSize": {"w":1455,"h":1309},
+	"spriteSourceSize": {"x":0,"y":0,"w":1409,"h":278},
+	"sourceSize": {"w":1409,"h":278},
 	"pivot": {"x":0.5,"y":0.5}
 },
-"SpriteGarden_130002.png":
+"PathB_02.png":
 {
-	"frame": {"x":3,"y":3,"w":1455,"h":1309},
+	"frame": {"x":1466,"y":1306,"w":1180,"h":433},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":1455,"h":1309},
-	"sourceSize": {"w":1455,"h":1309},
+	"spriteSourceSize": {"x":0,"y":0,"w":1180,"h":433},
+	"sourceSize": {"w":1180,"h":433},
 	"pivot": {"x":0.5,"y":0.5}
 },
-"SpriteGarden_130003.png":
+"PathB_15.png":
 {
-	"frame": {"x":3,"y":3,"w":1455,"h":1309},
+	"frame": {"x":1416,"y":1752,"w":1317,"h":267},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":1455,"h":1309},
-	"sourceSize": {"w":1455,"h":1309},
+	"spriteSourceSize": {"x":0,"y":0,"w":1317,"h":267},
+	"sourceSize": {"w":1317,"h":267},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"PathB_17.png":
+{
+	"frame": {"x":2737,"y":1741,"w":1167,"h":298},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":1167,"h":298},
+	"sourceSize": {"w":1167,"h":298},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"PathB_20.png":
+{
+	"frame": {"x":2650,"y":1399,"w":1295,"h":338},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":1295,"h":338},
+	"sourceSize": {"w":1295,"h":338},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"SpriteGarden_010004.png":
+{
+	"frame": {"x":3,"y":3,"w":1372,"h":1344},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":1372,"h":1344},
+	"sourceSize": {"w":1372,"h":1344},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"SpriteGarden_060001.png":
+{
+	"frame": {"x":2737,"y":3,"w":1292,"h":1392},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":1292,"h":1392},
+	"sourceSize": {"w":1292,"h":1392},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"SpriteGarden_060002.png":
+{
+	"frame": {"x":2737,"y":3,"w":1292,"h":1392},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":1292,"h":1392},
+	"sourceSize": {"w":1292,"h":1392},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"SpriteGarden_060003.png":
+{
+	"frame": {"x":2737,"y":3,"w":1292,"h":1392},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":1292,"h":1392},
+	"sourceSize": {"w":1292,"h":1392},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"SpriteGarden_150001.png":
+{
+	"frame": {"x":1379,"y":3,"w":1189,"h":1299},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":1189,"h":1299},
+	"sourceSize": {"w":1189,"h":1299},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"SpriteGarden_150002.png":
+{
+	"frame": {"x":1379,"y":3,"w":1189,"h":1299},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":1189,"h":1299},
+	"sourceSize": {"w":1189,"h":1299},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"SpriteGarden_150003.png":
+{
+	"frame": {"x":1379,"y":3,"w":1189,"h":1299},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":1189,"h":1299},
+	"sourceSize": {"w":1189,"h":1299},
 	"pivot": {"x":0.5,"y":0.5}
 }},
 "meta": {
@@ -41,8 +122,8 @@
 	"version": "1.0",
 	"image": "garden_screen_6.png",
 	"format": "RGBA8888",
-	"size": {"w":1461,"h":2038},
+	"size": {"w":4032,"h":2042},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:120267880ffed3891e0506cbb94cba2c:2940f09332be7ad0f3320b83b46c77ee:397dc27b02c7dc39d8cf27927f2c39a5$"
+	"smartupdate": "$TexturePacker:SmartUpdate:65a1079004468a430657b5697040c2b2:aa283abe2a35b0faba533bfaae29cd7d:a86008c959d06fc4cb174f8df507a97c$"
 }
 }

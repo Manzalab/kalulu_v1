@@ -157,8 +157,10 @@ define([
 
         // concerned gardens
         var selectedGarden = pEventData.target;
-        var nextGarden = this._gardenButtons.getChildByName("mcGardenButton" + (selectedGarden.id + 1));
-        
+        var nextGarden;
+        if(selectedGarden.id === 20) nextGarden = this._gardenButtons.getChildByName("mcGardenButton1");
+        else nextGarden = this._gardenButtons.getChildByName("mcGardenButton" + (selectedGarden.id + 1));
+
         // transition params
         /*var duration = 2;
         var scale = 5;*/
