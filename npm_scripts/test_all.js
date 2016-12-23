@@ -1,9 +1,6 @@
 (function () {
     
     'use strict';
-    process.env.kaluluLanguage = "swahili";
-    
-
     console.log('\n#### NPM GLOBAL TEST\n\n');
 
     var config = null;
@@ -27,6 +24,7 @@
             break;
         default:
             process.env.htmlTitle = "Global Test - English Version";
+            process.env.kaluluLanguage = 'english';
             config = require('../webpack_configs/webpack.config.test-all.js');
             break;
     }
