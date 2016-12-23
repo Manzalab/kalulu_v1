@@ -203,6 +203,7 @@
         
         // rendering on 1 frame out of 2
         if (frameId % 2 === 0) this._renderingManager.render();
+        if (this._kaluluCharacter!==undefined && this._kaluluCharacter.isTalking) this._kaluluCharacter.update();
     };
 
     /**
