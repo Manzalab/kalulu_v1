@@ -31,21 +31,21 @@
         loadSpecificAssets: function () {
 
             //Game specific Graphics
-            this.game.load.atlasJSONHash('turtle', 'minigames/turtles/assets/images/TORTUE_Animations/turtle.png', 'minigames/turtles/assets/images/TORTUE_Animations/turtle.json');
-            this.load.image('background', 'minigames/turtles/assets/images/background/Aiguilleur_Background.png');
-            this.load.image('island', 'minigames/turtles/assets/images/background/Aiguilleur_Ile.png');
-            this.load.image('mask', 'minigames/turtles/assets/images/others/Masque.png');
-            this.load.image('warning', 'minigames/turtles/assets/images/others/warning.png');
+            this.game.load.atlasJSONHash('turtle', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/TORTUE_Animations/turtle.png', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/TORTUE_Animations/turtle.json');
+            this.load.image('background', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/background/Aiguilleur_Background.png');
+            this.load.image('island', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/background/Aiguilleur_Ile.png');
+            this.load.image('mask', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/others/Masque.png');
+            this.load.image('warning', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/others/warning.png');
 
             //Game specific UI Graphics     
-            this.load.image('uiScoreWrong', 'minigames/turtles/assets/images/ui/ScoreWrong_PecheAuxLettres.png');
-            this.load.image('uiScoreRight', 'minigames/turtles/assets/images/ui/ScoreSuccess_PecheAuxLettres.png')
-            this.load.image('uiScoreEmpty', 'minigames/turtles/assets/images/ui/ScoreEmpty_PecheAuxLettres.png')
+            this.load.image('uiScoreWrong', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/ui/ScoreWrong.png');
+            this.load.image('uiScoreRight', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/ui/ScoreSuccess.png')
+            this.load.image('uiScoreEmpty', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/ui/ScoreEmpty.png')
 
             //Kalulu Game Specific audio
-            this.game.load.audio('kaluluIntro', 'minigames/turtles/assets/audio/kalulu/intro.wav');
-            this.game.load.audio('kaluluHelp', 'minigames/turtles/assets/audio/kalulu/help.wav');
-            this.game.load.audio('kaluluEnd', 'minigames/turtles/assets/audio/kalulu/end.wav');
+            this.game.load.audio('kaluluIntro', 'minigames/' + this.game.gameConfig.gameId + '/assets/audio/kalulu/intro.wav');
+            this.game.load.audio('kaluluHelp', 'minigames/' + this.game.gameConfig.gameId + '/assets/audio/kalulu/help.wav');
+            this.game.load.audio('kaluluEnd', 'minigames/' + this.game.gameConfig.gameId + '/assets/audio/kalulu/end.wav');
         },
 
         /**
@@ -74,7 +74,7 @@
             this.game.load.audio('menuYes', 'minigames/common/assets/audio/sfx/ButtonOK.ogg');
             this.game.load.audio('winGame', 'minigames/common/assets/audio/sfx/GameOverWin.ogg');
             this.game.load.audio('loseGame', 'minigames/common/assets/audio/sfx/GameOverLose.ogg');
-            this.game.load.audio('kaluluGameOverLose', 'minigames/common/assets/audio/sfx/KaluluGameOverLose.ogg');
+            this.game.load.audio('kaluluGameOverLose', 'minigames/common/assets/audio/kalulu/KaluluGameOverLose.ogg');
             this.game.load.audio('kaluluOn', 'minigames/common/assets/audio/sfx/KaluluOn.ogg');
             this.game.load.audio('kaluluOff', 'minigames/common/assets/audio/sfx/KaluluOff.ogg');
             this.game.load.audio('menu', 'minigames/common/assets/audio/sfx/OpenPopin.ogg');
