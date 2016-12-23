@@ -86,22 +86,32 @@
      * - 'endGameWin' when all animations and sounds completed ; listened by UI
 	**/
     Kalulu.prototype.initEvents = function () {
-        this.createKaluluEvent("startGame", "firstTryIntro", this.sounds.intro);
+        this.createKaluluEvent("startGame", "firstTryIntro", this.sounds.intro, Config.skipKaluluIntro);
         this.createKaluluEvent("firstTryIntro", "unPause", this.sounds.firstTryIntro);
         this.createKaluluEvent("firstTryWin", "unPause", this.sounds.firstTryWin);
         this.createKaluluEvent("firstTryLoose", "unPause", this.sounds.firstTryLoose);
-        this.createKaluluEvent("secondTryWin", "unPause", this.sounds.secondTryWin);
-        this.createKaluluEvent("secondTryLoose", "unPause", this.sounds.secondTryLoose);
+        this.createKaluluEvent("secondTryWin", ["unPause", 'startTimer'], this.sounds.secondTryWin);
+        this.createKaluluEvent("secondTryLoose", ["unPause", 'startTimer'], this.sounds.secondTryLoose);
         this.createKaluluEvent("GameOverWin", "GameOverWinScreen", this.sounds.endWin);
         this.createKaluluEvent("GameOverLose", "GameOverLoseScreen", this.sounds.endLoose);
     }
 
-    Kalulu.prototype.createKaluluEvent = function (entryEventName, endEventName, sound) {
+    Kalulu.prototype.createKaluluEvent = function (entryEventName, endEventName, sound, skipCondition) {
+        skipCondition = (typeof skipCondition !== 'undefined') ? skipCondition : false;        
 
-        this.eventManager.on(entryEventName, function () {
+        this.eventManager.on(entryEventName, function () {           
             this.eventManager.emit('help');
             this.eventManager.emit('offUi');
             this.eventManager.emit('pause');
+            if (Config.skipKalulu || skipCondition) {              
+                if (Array.isArray(endEventName))
+                    for (var i = 0; i < endEventName.length; i++) {
+                        this.eventManager.emit(endEventName[i]);
+                    }
+                else
+                    this.eventManager.emit(endEventName);
+                return;
+            }
             this.sounds.on.play();
             this.parent.bringToTop(this.kaluluSprite);
             this.kaluluSprite.visible = true;
@@ -124,10 +134,16 @@
                     this.kaluluSprite.animations.play('outroAnim');
                     this.kaluluSprite.animations.currentAnim.onComplete.addOnce(function () {
                         this.kaluluSprite.visible = false;
-                        this.eventManager.emit(endEventName);
+                        if (Array.isArray(endEventName))
+                            for (var i = 0; i < endEventName.length; i++) {
+                                this.eventManager.emit(endEventName[i]);
+                            }
+                        else
+                            this.eventManager.emit(endEventName);
                     }, this);
                 }, this);
             }, this);
+
         }, this);
 
     }
