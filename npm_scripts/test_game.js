@@ -8,12 +8,12 @@
 
     // Detect how npm is run and branch based on that
     switch(process.env.npm_lifecycle_event) {
-        case 'testMinigameEnglish':
+        case 'testMinigamesEnglish':
             process.env.htmlTitle = "Minigames Test - English";
             process.env.kaluluLanguage = "english";
             config = require('../webpack_configs/webpack.config.test-minigames.js');
         break;
-        case 'testMinigameSwahili':
+        case 'testMinigamesSwahili':
             process.env.htmlTitle = "Minigames Test - Swahili";
             process.env.kaluluLanguage = "swahili";
             config = require('../webpack_configs/webpack.config.test-minigames.js');
