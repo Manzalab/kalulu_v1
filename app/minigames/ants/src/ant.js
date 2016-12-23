@@ -28,7 +28,7 @@
 
         this.game = game;
         this.x = x - game.width;
-        this.y = y - 128;
+        this.y = y - 210;
         this.origin = { x: x, y: this.y };
         this.v = speed;
         this.vx = null;
@@ -63,7 +63,8 @@
 
         this.textBackground = game.add.sprite(0, 0, 'hole1');
         this.textBackground.anchor.setTo(0.5, 0.5);
-        this.textBackground.width = (this.text.text.length + 1) * TEXTFONTSIZE;
+        //this.textBackground.width = (this.text.text.length + 1) * TEXTFONTSIZE;
+        this.textBackground.width = 250;
         this.textBackground.scale.y = this.textBackground.scale.x;
 
         this.add(this.textBackground)
@@ -174,7 +175,9 @@
      * @private
      **/
     Ant.prototype.update = function () {
-
+        if (this.walking && !this.paused)
+            if (this.vx < 0 ) this.antSprite.scale.x = -Math.abs(this.antSprite.scale.x);
+            else this.antSprite.scale.x = Math.abs(this.antSprite.scale.x);
 
         if (this.antSprite.animations.currentAnim.isFinished || !this.antSprite.animations.currentAnim.isPlaying) {
             var rand = Math.random();
@@ -183,10 +186,13 @@
                 if (rand < 0.7)
                     this.antSprite.animations.play('idle1');
                 else this.antSprite.animations.play('idle2');
-            else
+            else {
                 if (rand < 0.7)
                     this.antSprite.animations.play('walk1');
                 else this.antSprite.animations.play('walk2');
+
+
+            }
         }
         if (this.clicked) {
             this.walkToVectorial(this.game.input.activePointer.position.x, this.game.input.activePointer.position.y);
