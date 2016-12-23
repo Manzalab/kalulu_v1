@@ -19,7 +19,6 @@
 		Screen.call(this);
 		this._activityType = activityType;
 		this.name = "mcBurrow"+activityType+"Screen";
-		console.log(activityType);
 		this._interfaceManager = interfaceManager;
 		this.build();
 		
@@ -30,14 +29,14 @@
 		this._nextActivitiesButton = this.getChildByName("mcActivitiesNext");
 		this._prevActivitiesButton = this.getChildByName("mcActivitiesPrev");
 
-		// this._prevActivitiesButton.onClick = this._onClickOnPrevActivities.bind(this);
-		// this._nextActivitiesButton.onClick = this._onClickOnNextActivities.bind(this);
+		this._prevActivitiesButton.onClick = this._onClickOnPrevActivities.bind(this);
+		this._nextActivitiesButton.onClick = this._onClickOnNextActivities.bind(this);
 
 		this._hud = {
 			topLeft : this.getChildByName("mcBurrowTLHud"),
 			top : this.getChildByName("mc"+activityType+"THud")
 		};
-		// this._backButton = this._hud.topLeft.getChildByName("mcBackButton");
+		this._backButton = this._hud.topLeft.getChildByName("mcBackButton");
 
 		// Buttons Management
 		var lLockStart;
@@ -51,23 +50,23 @@
 
 			case "Video":
 				lActivitiesCount = 18;
-				lLockStart = 1;
+				lLockStart = 4;
 			break;
 
 			case "MiniGame":
 				lActivitiesCount = 9;
-				lLockStart = 2;
+				lLockStart = 1;
 			break;
 		}
 		this._activitiesCount = lActivitiesCount;
 		this._lockedActivitiesStart = lLockStart;
 
-		// this._prevActivitiesButton.visible = false;
+		this._prevActivitiesButton.visible = false;
 		if (this._activitiesCount<=10) this._nextActivitiesButton.visible = false;
 		if (this._activitiesButtons!=null)	this._updateActivitiesButtons(true);
 
 
-		// this._backButton.onClick = this._onClickOnBackButton.bind(this);
+		this._backButton.onClick = this._onClickOnBackButton.bind(this);
 	}
 
 	ToyChestActivityScreen.prototype = Object.create(Screen.prototype);
@@ -106,7 +105,6 @@
 			else lButton.removeChildAt(lButton.children.length-1);
 			var lNum = (k+1)+(10*this._currActivitiesPage);
 			lButton._txt.text = lNum;
-			console.log(lButton);
 			lButton.name = lNum;
 			var lCover = new PIXI3.Sprite(PIXI3.Texture.fromImage(Config.imagesPath + "activity_covers/" + this._activityType.toLowerCase() + "/" + lNum + ".jpg"));
 			lCover.anchor.set(0.5);
@@ -128,7 +126,7 @@
 	};
 
 	ToyChestActivityScreen.prototype._onClickOnActivitiesButton = function _onClickOnActivitiesButton (pEventData) {
-		console.log(this._activityType + pEventData.target.name);
+		
 		switch (this._activityType)
 		{
 			case "Video":
