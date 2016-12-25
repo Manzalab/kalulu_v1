@@ -57,7 +57,7 @@
         },
 
         /**
-         * Load all assets in assets_shared
+         * Load all assets in minigames/common/assets
          **/
         loadSharedAssets: function () {
 
