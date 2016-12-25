@@ -486,7 +486,7 @@
         //console.log(str);
         // console.info("frames before new " + this.framesToWaitBeforeNextSpawn);
         if (berriesCountToAdd === 0) {
-            console.log("engough jellies on screen");
+            //console.log("engough jellies on screen");
             return;
         }
         else if (berriesCountToAdd > 0 && this.framesToWaitBeforeNextSpawn <= 0) {
