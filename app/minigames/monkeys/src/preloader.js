@@ -57,9 +57,9 @@
             this.game.load.audio('sendWrong', 'minigames/' + Config.gameId + '/assets/audio/monkey/ELAN_GAME_MONKEY_SendCoco_Wrong.ogg');
 
             //Kalulu Game Specific audio
-            this.game.load.audio('kaluluIntro', 'minigames/' + Config.gameId + '/assets/audio/kalulu/intro.ogg');
-            this.game.load.audio('kaluluHelp', 'minigames/' + Config.gameId + '/assets/audio/kalulu/help.ogg');
-            this.game.load.audio('kaluluEnd', 'minigames/' + Config.gameId + '/assets/audio/kalulu/end.ogg');
+            this.game.load.audio('kaluluIntro', 'minigames/' + Config.gameId + '/assets/audio/kalulu/kalulu_Intro_' + this.game.gameConfig.gameId.capitalise() + '_' + this.game.rafiki.discipline + '.ogg');
+            this.game.load.audio('kaluluHelp', 'minigames/' + Config.gameId + '/assets/audio/kalulu/kalulu_Help_' + this.game.gameConfig.gameId.capitalise() + '_' + this.game.rafiki.discipline + '.ogg');
+            this.game.load.audio('kaluluEnd', 'minigames/' + Config.gameId + '/assets/audio/kalulu/kalulu_End_' + this.game.gameConfig.gameId.capitalise() + '_' + this.game.rafiki.discipline + '.ogg');
         },
 
         /**
