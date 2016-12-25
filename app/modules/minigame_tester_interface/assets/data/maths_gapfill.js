@@ -12,17 +12,17 @@ module.exports = {
                     stimuli: [
                         {
                             "value": "3",
-                            "soundPath": "../assets_shared/audio/swahili/number_3.ogg",
+                            "soundPath": "assets/sounds/maths/number_3.ogg",
                             "notionId": "3",
                         },
                         {
                             "value": "4",
-                            "soundPath": "../assets_shared/audio/swahili/number_4.ogg",
+                            "soundPath": "assets/sounds/maths/number_4.ogg",
                             "notionId": "2",
                         },
                         {
                             "value": "5",
-                            "soundPath": "../assets_shared/audio/swahili/number_5.ogg",
+                            "soundPath": "assets/sounds/maths/number_5.ogg",
                             "notionId": "2",
                         },
                     ],
@@ -33,17 +33,17 @@ module.exports = {
                     stimuli: [
                         {
                             "value": "1",
-                            "soundPath": "../assets_shared/audio/swahili/number_1.ogg",
+                            "soundPath": "assets/sounds/maths/number_1.ogg",
                             "notionId": "3",
                         },
                         {
                             "value": "2",
-                            "soundPath": "../assets_shared/audio/swahili/number_2.ogg",
+                            "soundPath": "assets/sounds/maths/number_2.ogg",
                             "notionId": "2",
                         },
                         {
                             "value": "5",
-                            "soundPath": "../assets_shared/audio/swahili/number_5.ogg",
+                            "soundPath": "assets/sounds/maths/number_5.ogg",
                             "notionId": "2",
                         },
                     ],
@@ -54,17 +54,17 @@ module.exports = {
                     stimuli: [
                         {
                             "value": "3",
-                            "soundPath": "../assets_shared/audio/swahili/number_3.ogg",
+                            "soundPath": "assets/sounds/maths/number_3.ogg",
                             "notionId": "3",
                         },
                         {
                             "value": "4",
-                            "soundPath": "../assets_shared/audio/swahili/number_4.ogg",
+                            "soundPath": "assets/sounds/maths/number_4.ogg",
                             "notionId": "2",
                         },
                         {
                             "value": "5",
-                            "soundPath": "../assets_shared/audio/swahili/number_5.ogg",
+                            "soundPath": "assets/sounds/maths/number_5.ogg",
                             "notionId": "2",
                         },
                     ],
@@ -75,18 +75,18 @@ module.exports = {
                     stimuli: [
                         {
                             "value": "3",
-                            "soundPath": "../assets_shared/audio/swahili/number_3.ogg",
+                            "soundPath": "assets/sounds/maths/number_3.ogg",
                             "notionId": "3",
                         },
                         {
 
                             "value": "5",
-                            "soundPath": "../assets_shared/audio/swahili/number_5.ogg",
+                            "soundPath": "assets/sounds/maths/number_5.ogg",
                             "notionId": "2",
                         },
                         {
                             "value": "4",
-                            "soundPath": "../assets_shared/audio/swahili/number_4.ogg",
+                            "soundPath": "assets/sounds/maths/number_4.ogg",
                             "notionId": "2",
                         },
                     ],

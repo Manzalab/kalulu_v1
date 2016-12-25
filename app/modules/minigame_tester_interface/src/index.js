@@ -95,7 +95,7 @@
         if (tester.options.discipline === 'maths') {
             switch (tester.options.minigame) {
                 case 'ants':
-                    part2 = 'decimal';
+                    part2 = 'gapfill';
                     break;
                 case 'caterpillar':
                     part2 = 'counting';
