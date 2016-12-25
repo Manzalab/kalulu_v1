@@ -3,10 +3,10 @@ module.exports = {
     "data": {
         "rounds": [
             {
-                "word": {
+                "target": {
                     value: "54",
                     //soundPath: [
-                    //    "../assets_shared/audio/swahili/syl_wa.ogg",
+                    //    "assets/sounds/maths/number_54.ogg",
                     //],
                     correctResponse: true
                 },
@@ -17,7 +17,7 @@ module.exports = {
                                 "value": "50",
                                 "correctResponse": true,
                                 "soundPath": [
-                                    "../assets_shared/audio/swahili/number_1.ogg",
+                                    "assets/sounds/maths/number_1.ogg",
                                 ]
                             },
                             {
@@ -33,21 +33,21 @@ module.exports = {
                                 "value": "4",
                                 "correctResponse": true,
                                 "soundPath": [
-                                    "../assets_shared/audio/swahili/phoneme_4.ogg",
+                                    "assets/sounds/maths/phoneme_4.ogg",
                                 ]
                             },
                             {
                                 "value": "3",
                                 "correctResponse": false,
                                 "soundPath": [
-                                    "../assets_shared/audio/swahili/phoneme_3.ogg",
+                                    "assets/sounds/maths/phoneme_3.ogg",
                                 ]
                             },
                             {
                                 "value": "2",
                                 "correctResponse": false,
                                 "soundPath": [
-                                    "../assets_shared/audio/swahili/phoneme_2.ogg",
+                                    "assets/sounds/maths/phoneme_2.ogg",
                                 ]
                             }
                         ]
@@ -58,7 +58,7 @@ module.exports = {
                 "word": {
                     value: "wi",
                     soundPath: [
-                        "../assets_shared/audio/swahili/syl_wi.ogg"
+                        "assets/sounds/maths/syl_wi.ogg"
                     ],
                     correctResponse: true
                 },
@@ -69,7 +69,7 @@ module.exports = {
                                 "value": "w",
                                 "correctResponse": true,
                                 "soundPath": [
-                                    "../assets_shared/audio/swahili/phoneme_w.ogg",
+                                    "assets/sounds/maths/phoneme_w.ogg",
                                 ]
                             },
                             {
@@ -85,21 +85,21 @@ module.exports = {
                                 "value": "i",
                                 "correctResponse": true,
                                 "soundPath": [
-                                    "../assets_shared/audio/swahili/phoneme_i.ogg",
+                                    "assets/sounds/maths/phoneme_i.ogg",
                                 ]
                             },
                             {
                                 "value": "e",
                                 "correctResponse": false,
                                 "soundPath": [
-                                    "../assets_shared/audio/swahili/phoneme_e.ogg",
+                                    "assets/sounds/maths/phoneme_e.ogg",
                                 ]
                             },
                             {
                                 "value": "o",
                                 "correctResponse": false,
                                 "soundPath": [
-                                    "../assets_shared/audio/swahili/phoneme_o.ogg",
+                                    "assets/sounds/maths/phoneme_o.ogg",
                                 ]
                             }
                         ]
@@ -110,7 +110,7 @@ module.exports = {
                 "word": {
                     value: "wewe",
                     soundPath: [
-                        "../assets_shared/audio/swahili/word_wewe.ogg",
+                        "assets/sounds/maths/word_wewe.ogg",
                     ],
                     correctResponse: true,
                 },
@@ -121,7 +121,7 @@ module.exports = {
                                 "value": "w",
                                 "correctResponse": true,
                                 "soundPath": [
-                                    "../assets_shared/audio/swahili/phoneme_w.ogg",
+                                    "assets/sounds/maths/phoneme_w.ogg",
                                 ]
                             },
                             {
@@ -137,21 +137,21 @@ module.exports = {
                                 "value": "e",
                                 "correctResponse": true,
                                 "soundPath": [
-                                    "../assets_shared/audio/swahili/phoneme_e.ogg",
+                                    "assets/sounds/maths/phoneme_e.ogg",
                                 ]
                             },
                             {
                                 "value": "a",
                                 "correctResponse": false,
                                 "soundPath": [
-                                    "../assets_shared/audio/swahili/phoneme_a.ogg",
+                                    "assets/sounds/maths/phoneme_a.ogg",
                                 ]
                             },
                             {
                                 "value": "o",
                                 "correctResponse": false,
                                 "soundPath": [
-                                    "../assets_shared/audio/swahili/phoneme_o.ogg",
+                                    "assets/sounds/maths/phoneme_o.ogg",
                                 ]
                             }
                         ]
@@ -162,7 +162,7 @@ module.exports = {
                                 "value": "w",
                                 "correctResponse": true,
                                 "soundPath": [
-                                    "../assets_shared/audio/swahili/phoneme_w.ogg",
+                                    "assets/sounds/maths/phoneme_w.ogg",
                                 ]
                             },
                             {
@@ -178,21 +178,21 @@ module.exports = {
                                 "value": "e",
                                 "correctResponse": true,
                                 "soundPath": [
-                                    "../assets_shared/audio/swahili/phoneme_e.ogg",
+                                    "assets/sounds/maths/phoneme_e.ogg",
                                 ]
                             },
                             {
                                 "value": "a",
                                 "correctResponse": false,
                                 "soundPath": [
-                                    "../assets_shared/audio/swahili/phoneme_a.ogg",
+                                    "assets/sounds/maths/phoneme_a.ogg",
                                 ]
                             },
                             {
                                 "value": "o",
                                 "correctResponse": false,
                                 "soundPath": [
-                                    "../assets_shared/audio/swahili/phoneme_o.ogg",
+                                    "assets/sounds/maths/phoneme_o.ogg",
                                 ]
                             }
                         ]
@@ -203,7 +203,7 @@ module.exports = {
                 "word": {
                     value: "wenu",
                     soundPath: [
-                        "../assets_shared/audio/swahili/word_wenu.ogg",
+                        "assets/sounds/maths/word_wenu.ogg",
                     ],
                     correctResponse: true,
                 },
@@ -214,7 +214,7 @@ module.exports = {
                                 "value": "w",
                                 "correctResponse": true,
                                 "soundPath": [
-                                    "../assets_shared/audio/swahili/phoneme_w.ogg",
+                                    "assets/sounds/maths/phoneme_w.ogg",
                                 ]
                             },
                             {
@@ -230,21 +230,21 @@ module.exports = {
                                 "value": "e",
                                 "correctResponse": true,
                                 "soundPath": [
-                                    "../assets_shared/audio/swahili/phoneme_e.ogg",
+                                    "assets/sounds/maths/phoneme_e.ogg",
                                 ]
                             },
                             {
                                 "value": "a",
                                 "correctResponse": false,
                                 "soundPath": [
-                                    "../assets_shared/audio/swahili/phoneme_a.ogg",
+                                    "assets/sounds/maths/phoneme_a.ogg",
                                 ]
                             },
                             {
                                 "value": "o",
                                 "correctResponse": false,
                                 "soundPath": [
-                                    "../assets_shared/audio/swahili/phoneme_o.ogg",
+                                    "assets/sounds/maths/phoneme_o.ogg",
                                 ]
                             }
                         ]
@@ -255,14 +255,14 @@ module.exports = {
                                 "value": "n",
                                 "correctResponse": true,
                                 "soundPath": [
-                                    "../assets_shared/audio/swahili/phoneme_n.ogg",
+                                    "assets/sounds/maths/phoneme_n.ogg",
                                 ]
                             },
                             {
                                 "value": "w",
                                 "correctResponse": false,
                                 "soundPath": [
-                                    "../assets_shared/audio/swahili/phoneme_w.ogg",
+                                    "assets/sounds/maths/phoneme_w.ogg",
                                 ]
                             },
                             {
@@ -278,21 +278,21 @@ module.exports = {
                                 "value": "u",
                                 "correctResponse": true,
                                 "soundPath": [
-                                    "../assets_shared/audio/swahili/phoneme_u.ogg",
+                                    "assets/sounds/maths/phoneme_u.ogg",
                                 ]
                             },
                             {
                                 "value": "a",
                                 "correctResponse": false,
                                 "soundPath": [
-                                    "../assets_shared/audio/swahili/phoneme_a.ogg",
+                                    "assets/sounds/maths/phoneme_a.ogg",
                                 ]
                             },
                             {
                                 "value": "o",
                                 "correctResponse": false,
                                 "soundPath": [
-                                    "../assets_shared/audio/swahili/phoneme_o.ogg",
+                                    "assets/sounds/maths/phoneme_o.ogg",
                                 ]
                             }
                         ]
@@ -303,7 +303,7 @@ module.exports = {
                 "word": {
                     value: "waone",
                     soundPath: [
-                        "../assets_shared/audio/swahili/word_waone.ogg",
+                        "assets/sounds/maths/word_waone.ogg",
                     ],
                     correctResponse: true,
                 },
@@ -314,7 +314,7 @@ module.exports = {
                                 "value": "w",
                                 "correctResponse": true,
                                 "soundPath": [
-                                    "../assets_shared/audio/swahili/phoneme_w.ogg",
+                                    "assets/sounds/maths/phoneme_w.ogg",
                                 ]
                             },
                             {
@@ -330,21 +330,21 @@ module.exports = {
                                 "value": "a",
                                 "correctResponse": true,
                                 "soundPath": [
-                                    "../assets_shared/audio/swahili/phoneme_a.ogg",
+                                    "assets/sounds/maths/phoneme_a.ogg",
                                 ]
                             },
                             {
                                 "value": "e",
                                 "correctResponse": false,
                                 "soundPath": [
-                                    "../assets_shared/audio/swahili/phoneme_e.ogg",
+                                    "assets/sounds/maths/phoneme_e.ogg",
                                 ]
                             },
                             {
                                 "value": "o",
                                 "correctResponse": false,
                                 "soundPath": [
-                                    "../assets_shared/audio/swahili/phoneme_o.ogg",
+                                    "assets/sounds/maths/phoneme_o.ogg",
                                 ]
                             }
                         ]
@@ -355,21 +355,21 @@ module.exports = {
                                 "value": "o",
                                 "correctResponse": true,
                                 "soundPath": [
-                                    "../assets_shared/audio/swahili/phoneme_o.ogg",
+                                    "assets/sounds/maths/phoneme_o.ogg",
                                 ]
                             },
                             {
                                 "value": "e",
                                 "correctResponse": false,
                                 "soundPath": [
-                                    "../assets_shared/audio/swahili/phoneme_e.ogg",
+                                    "assets/sounds/maths/phoneme_e.ogg",
                                 ]
                             },
                             {
                                 "value": "a",
                                 "correctResponse": false,
                                 "soundPath": [
-                                    "../assets_shared/audio/swahili/phoneme_a.ogg",
+                                    "assets/sounds/maths/phoneme_a.ogg",
                                 ]
                             }
                         ]
@@ -380,14 +380,14 @@ module.exports = {
                                 "value": "n",
                                 "correctResponse": true,
                                 "soundPath": [
-                                    "../assets_shared/audio/swahili/phoneme_n.ogg",
+                                    "assets/sounds/maths/phoneme_n.ogg",
                                 ]
                             },
                             {
                                 "value": "w",
                                 "correctResponse": false,
                                 "soundPath": [
-                                    "../assets_shared/audio/swahili/phoneme_w.ogg",
+                                    "assets/sounds/maths/phoneme_w.ogg",
                                 ]
                             },
                             {
@@ -403,21 +403,21 @@ module.exports = {
                                 "value": "e",
                                 "correctResponse": true,
                                 "soundPath": [
-                                    "../assets_shared/audio/swahili/phoneme_e.ogg",
+                                    "assets/sounds/maths/phoneme_e.ogg",
                                 ]
                             },
                             {
                                 "value": "a",
                                 "correctResponse": false,
                                 "soundPath": [
-                                    "../assets_shared/audio/swahili/phoneme_a.ogg",
+                                    "assets/sounds/maths/phoneme_a.ogg",
                                 ]
                             },
                             {
                                 "value": "o",
                                 "correctResponse": false,
                                 "soundPath": [
-                                    "../assets_shared/audio/swahili/phoneme_o.ogg",
+                                    "assets/sounds/maths/phoneme_o.ogg",
                                 ]
                             }
                         ]

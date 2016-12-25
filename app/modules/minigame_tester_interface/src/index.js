@@ -17,7 +17,7 @@
 
         this.options =  {
             LANGUAGE    : KALULU_LANGUAGE,
-            minigame    : 'parakeets',
+            minigame    : 'ants',
             discipline  : 'language',
             globalLevel : 1,
             localLevel  : 1,
@@ -37,7 +37,7 @@
         console.log(Dat);
         window.dat = Dat;
 
-        var gui = new Dat.GUI();
+        var gui = this.gui = new Dat.GUI();
         
         gui.add(this.options, 'LANGUAGE');
 
@@ -171,10 +171,12 @@
         tester.options.dummyPedagogicData = require('../assets/data/' + filename + '.js');
 
         var rafiki = {
+            discipline         : tester.options.discipline,
             getDifficultyLevel : getDifficultyLevel,
             getPedagogicData   : getPedagogicData,
             save               : save,
             close              : close,
+            debugPanel         : tester.gui,
             MinigameDstRecord  : MinigameDstRecord,
             StimulusApparition : StimulusApparition
         };
