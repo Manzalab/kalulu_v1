@@ -29,32 +29,32 @@
          * Load game specific assets
          **/
         loadSpecificAssets: function () {
-            if (!this.game.config.gameId) {
-                console.error("Game Id equals " + this.game.config.gameId + ". No loading will be possible");
+            if (!this.game.gameConfig.gameId) {
+                console.error("Game Id equals " + this.game.gameConfig.gameId + ". No loading will be possible");
             }
             //Game specific Graphics
-            this.load.image('background', 'minigames/' + this.game.config.gameId + '/assets/images/background.png');
+            this.load.image('background', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/background.png');
 
-            this.game.load.atlasJSONHash('hole', 'minigames/' + this.game.config.gameId + '/assets/images/hole/hole.png', 'minigames/' + this.game.config.gameId + '/assets/images/hole/hole.json');
-            this.game.load.atlasJSONHash('crab', 'minigames/' + this.game.config.gameId + '/assets/images/crab/crab.png', 'minigames/' + this.game.config.gameId + '/assets/images/crab/crab.json');
+            this.game.load.atlasJSONHash('hole', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/hole/hole.png', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/hole/hole.json');
+            this.game.load.atlasJSONHash('crab', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/crab/crab.png', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/crab/crab.json');
 
             //Game specific UI Graphics            
-            this.load.image('uiScoreWrong', 'minigames/' + this.game.config.gameId + '/assets/images/ui/ScoreWrong_TapeCrabe.png');
-            this.load.image('uiScoreRight', 'minigames/' + this.game.config.gameId + '/assets/images/ui/ScoreSuccess_TapeCrabe.png');
-            this.load.image('uiScoreEmpty', 'minigames/' + this.game.config.gameId + '/assets/images/ui/ScoreEmpty_TapeCrabe.png');
+            this.load.image('uiScoreWrong', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/ui/ScoreWrong_TapeCrabe.png');
+            this.load.image('uiScoreRight', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/ui/ScoreSuccess_TapeCrabe.png');
+            this.load.image('uiScoreEmpty', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/ui/ScoreEmpty_TapeCrabe.png');
 
             //Game Specific Audio
             var temp;
             for (var i = 0; i < 13 ; i++) {
                 if ((i + 1) >= 10) temp = i +1;
                 else temp = "0" + (i + 1);
-                this.game.load.audio('rdm' + temp, 'minigames/' + this.game.config.gameId + '/assets/audio/sfx/ELAN_GAME_CRAB_Rdm_' + temp + '.ogg');
+                this.game.load.audio('rdm' + temp, 'minigames/' + this.game.gameConfig.gameId + '/assets/audio/sfx/ELAN_GAME_CRAB_Rdm_' + temp + '.ogg');
             }
 
             //Kalulu Game Specific audio
-            this.game.load.audio('kaluluIntro', 'minigames/' + this.game.config.gameId + '/assets/audio/kalulu/intro.ogg');
-            this.game.load.audio('kaluluHelp', 'minigames/' + this.game.config.gameId + '/assets/audio/kalulu/help.ogg');
-            this.game.load.audio('kaluluGameOverWin', 'minigames/' + this.game.config.gameId + '/assets/audio/kalulu/end.ogg');
+            this.game.load.audio('kaluluIntro', 'minigames/' + this.game.gameConfig.gameId + '/assets/audio/kalulu/kalulu_Intro_' + this.game.gameConfig.gameId.capitalise() + '_' + this.game.rafiki.discipline + '.ogg');
+            this.game.load.audio('kaluluHelp', 'minigames/' + this.game.gameConfig.gameId + '/assets/audio/kalulu/kalulu_Help_' + this.game.gameConfig.gameId.capitalise() + '_' + this.game.rafiki.discipline + '.ogg');
+            this.game.load.audio('kaluluGameOverWin', 'minigames/' + this.game.gameConfig.gameId + '/assets/audio/kalulu/kalulu_End_' + this.game.gameConfig.gameId.capitalise() + '_' + this.game.rafiki.discipline + '.ogg');
         },
 
         /**
@@ -64,10 +64,10 @@
 
             //UI 
             this.load.image('pause', 'minigames/common/assets/images/ui/pause.png');
-            this.game.load.atlasJSONHash('common/src/ui', 'minigames/common/assets/images/ui/ui.png', 'minigames/common/assets/images/ui/ui.json');
+            this.game.load.atlasJSONHash('ui', 'minigames/common/assets/images/ui/ui.png', 'minigames/common/assets/images/ui/ui.json');
 
             //FX 
-            this.game.load.atlasJSONHash('common/src/fx', 'minigames/common/assets/images/fx/fx.png', 'minigames/common/assets/images/fx/fx.json');
+            this.game.load.atlasJSONHash('fx', 'minigames/common/assets/images/fx/fx.png', 'minigames/common/assets/images/fx/fx.json');
             this.load.image('wrong', 'minigames/common/assets/images/fx/wrong.png');
 
             var animPath = 'minigames/common/assets/images/kalulu_animations/';
