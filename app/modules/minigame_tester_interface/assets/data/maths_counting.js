@@ -11,25 +11,25 @@ module.exports = {
                                 "correctResponse": true,
                                 "stimuli_type": "number",
                                 "nonSymbolicImage": "todo/number/data/0.jpg",
-                                "soundPath": "..../undefined/0.ogg"
+                                "soundPath": "assets/sounds/maths/number_0.ogg"
                             },
                             {
-                                "value": null,
+                                "value": '',
                                 "correctResponse": false,
                                 "stimuli_type": "number"
                             },
                             {
-                                "value": null,
+                                "value": '',
                                 "correctResponse": false,
                                 "stimuli_type": "number"
                             },
                             {
-                                "value": null,
+                                "value": '',
                                 "correctResponse": false,
                                 "stimuli_type": "number"
                             },
                             {
-                                "value": null,
+                                "value": '',
                                 "correctResponse": false,
                                 "stimuli_type": "number"
                             }
@@ -42,25 +42,25 @@ module.exports = {
                                 "correctResponse": true,
                                 "stimuli_type": "number",
                                 "nonSymbolicImage": "todo/number/data/1.jpg",
-                                "soundPath": "..../undefined/1.ogg"
+                                "soundPath": "assets/sounds/maths/number_1.ogg"
                             },
                             {
-                                "value": null,
+                                "value": '',
                                 "correctResponse": false,
                                 "stimuli_type": "number"
                             },
                             {
-                                "value": null,
+                                "value": '',
                                 "correctResponse": false,
                                 "stimuli_type": "number"
                             },
                             {
-                                "value": null,
+                                "value": '',
                                 "correctResponse": false,
                                 "stimuli_type": "number"
                             },
                             {
-                                "value": null,
+                                "value": '',
                                 "correctResponse": false,
                                 "stimuli_type": "number"
                             }
@@ -73,25 +73,25 @@ module.exports = {
                                 "correctResponse": true,
                                 "stimuli_type": "number",
                                 "nonSymbolicImage": "todo/number/data/2.jpg",
-                                "soundPath": "..../undefined/2.ogg"
+                                "soundPath": "assets/sounds/maths/number_2.ogg"
                             },
                             {
-                                "value": null,
+                                "value": '',
                                 "correctResponse": false,
                                 "stimuli_type": "number"
                             },
                             {
-                                "value": null,
+                                "value": '',
                                 "correctResponse": false,
                                 "stimuli_type": "number"
                             },
                             {
-                                "value": null,
+                                "value": '',
                                 "correctResponse": false,
                                 "stimuli_type": "number"
                             },
                             {
-                                "value": null,
+                                "value": '',
                                 "correctResponse": false,
                                 "stimuli_type": "number"
                             }
@@ -104,28 +104,28 @@ module.exports = {
                                 "correctResponse": true,
                                 "stimuli_type": "number",
                                 "nonSymbolicImage": "todo/number/data/3.jpg",
-                                "soundPath": "..../undefined/3.ogg"
+                                "soundPath": "assets/sounds/maths/number_3.ogg"
                             },
                             {
-                                "value": null,
+                                "value": '',
                                 "correctResponse": false,
                                 "stimuli_type": "number"
 
                             },
                             {
-                                "value": null,
+                                "value": '',
                                 "correctResponse": false,
                                 "stimuli_type": "number"
 
                             },
                             {
-                                "value": null,
+                                "value": '',
                                 "correctResponse": false,
                                 "stimuli_type": "number"
 
                             },
                             {
-                                "value": null,
+                                "value": '',
                                 "correctResponse": false,
                                 "stimuli_type": "number"
 
@@ -139,28 +139,28 @@ module.exports = {
                                 "correctResponse": true,
                                 "stimuli_type": "number",
                                 "nonSymbolicImage": "todo/number/data/4.jpg",
-                                "soundPath": "..../undefined/4.ogg"
+                                "soundPath": "assets/sounds/maths/number_4.ogg"
                             },
                             {
-                                "value": null,
+                                "value": '',
                                 "correctResponse": false,
                                 "stimuli_type": "number"
 
                             },
                             {
-                                "value": null,
+                                "value": '',
                                 "correctResponse": false,
                                 "stimuli_type": "number"
 
                             },
                             {
-                                "value": null,
+                                "value": '',
                                 "correctResponse": false,
                                 "stimuli_type": "number"
 
                             },
                             {
-                                "value": null,
+                                "value": '',
                                 "correctResponse": false,
                                 "stimuli_type": "number"
 
@@ -174,28 +174,28 @@ module.exports = {
                                 "correctResponse": true,
                                 "stimuli_type": "number",
                                 "nonSymbolicImage": "todo/number/data/5.jpg",
-                                "soundPath": "..../undefined/5.ogg"
+                                "soundPath": "assets/sounds/maths/number_5.ogg"
                             },
                             {
-                                "value": null,
+                                "value": '',
                                 "correctResponse": false,
                                 "stimuli_type": "number"
 
                             },
                             {
-                                "value": null,
+                                "value": '',
                                 "correctResponse": false,
                                 "stimuli_type": "number"
 
                             },
                             {
-                                "value": null,
+                                "value": '',
                                 "correctResponse": false,
                                 "stimuli_type": "number"
 
                             },
                             {
-                                "value": null,
+                                "value": '',
                                 "correctResponse": false,
                                 "stimuli_type": "number"
 
@@ -219,25 +219,25 @@ module.exports = {
                                 "correctResponse": true,
                                 "stimuli_type": "number",
                                 "nonSymbolicImage": "todo/number/data/0.jpg",
-                                "soundPath": "..../undefined/0.ogg"
+                                "soundPath": "assets/sounds/maths/number_0.ogg"
                             },
                             {
-                                "value": null,
+                                "value": '',
                                 "correctResponse": false,
                                 "stimuli_type": "number"
                             },
                             {
-                                "value": null,
+                                "value": '',
                                 "correctResponse": false,
                                 "stimuli_type": "number"
                             },
                             {
-                                "value": null,
+                                "value": '',
                                 "correctResponse": false,
                                 "stimuli_type": "number"
                             },
                             {
-                                "value": null,
+                                "value": '',
                                 "correctResponse": false,
                                 "stimuli_type": "number"
                             }
@@ -250,25 +250,25 @@ module.exports = {
                                 "correctResponse": true,
                                 "stimuli_type": "number",
                                 "nonSymbolicImage": "todo/number/data/1.jpg",
-                                "soundPath": "..../undefined/1.ogg"
+                                "soundPath": "assets/sounds/maths/number_1.ogg"
                             },
                             {
-                                "value": null,
+                                "value": '',
                                 "correctResponse": false,
                                 "stimuli_type": "number"
                             },
                             {
-                                "value": null,
+                                "value": '',
                                 "correctResponse": false,
                                 "stimuli_type": "number"
                             },
                             {
-                                "value": null,
+                                "value": '',
                                 "correctResponse": false,
                                 "stimuli_type": "number"
                             },
                             {
-                                "value": null,
+                                "value": '',
                                 "correctResponse": false,
                                 "stimuli_type": "number"
                             }
@@ -281,25 +281,25 @@ module.exports = {
                                 "correctResponse": true,
                                 "stimuli_type": "number",
                                 "nonSymbolicImage": "todo/number/data/2.jpg",
-                                "soundPath": "..../undefined/2.ogg"
+                                "soundPath": "assets/sounds/maths/number_2.ogg"
                             },
                             {
-                                "value": null,
+                                "value": '',
                                 "correctResponse": false,
                                 "stimuli_type": "number"
                             },
                             {
-                                "value": null,
+                                "value": '',
                                 "correctResponse": false,
                                 "stimuli_type": "number"
                             },
                             {
-                                "value": null,
+                                "value": '',
                                 "correctResponse": false,
                                 "stimuli_type": "number"
                             },
                             {
-                                "value": null,
+                                "value": '',
                                 "correctResponse": false,
                                 "stimuli_type": "number"
                             }
@@ -312,28 +312,28 @@ module.exports = {
                                 "correctResponse": true,
                                 "stimuli_type": "number",
                                 "nonSymbolicImage": "todo/number/data/3.jpg",
-                                "soundPath": "..../undefined/3.ogg"
+                                "soundPath": "assets/sounds/maths/number_3.ogg"
                             },
                             {
-                                "value": null,
+                                "value": '',
                                 "correctResponse": false,
                                 "stimuli_type": "number"
 
                             },
                             {
-                                "value": null,
+                                "value": '',
                                 "correctResponse": false,
                                 "stimuli_type": "number"
 
                             },
                             {
-                                "value": null,
+                                "value": '',
                                 "correctResponse": false,
                                 "stimuli_type": "number"
 
                             },
                             {
-                                "value": null,
+                                "value": '',
                                 "correctResponse": false,
                                 "stimuli_type": "number"
 
@@ -347,28 +347,28 @@ module.exports = {
                                 "correctResponse": true,
                                 "stimuli_type": "number",
                                 "nonSymbolicImage": "todo/number/data/4.jpg",
-                                "soundPath": "..../undefined/4.ogg"
+                                "soundPath": "assets/sounds/maths/number_4.ogg"
                             },
                             {
-                                "value": null,
+                                "value": '',
                                 "correctResponse": false,
                                 "stimuli_type": "number"
 
                             },
                             {
-                                "value": null,
+                                "value": '',
                                 "correctResponse": false,
                                 "stimuli_type": "number"
 
                             },
                             {
-                                "value": null,
+                                "value": '',
                                 "correctResponse": false,
                                 "stimuli_type": "number"
 
                             },
                             {
-                                "value": null,
+                                "value": '',
                                 "correctResponse": false,
                                 "stimuli_type": "number"
 
@@ -382,28 +382,28 @@ module.exports = {
                                 "correctResponse": true,
                                 "stimuli_type": "number",
                                 "nonSymbolicImage": "todo/number/data/5.jpg",
-                                "soundPath": "..../undefined/5.ogg"
+                                "soundPath": "assets/sounds/maths/number_5.ogg"
                             },
                             {
-                                "value": null,
+                                "value": '',
                                 "correctResponse": false,
                                 "stimuli_type": "number"
 
                             },
                             {
-                                "value": null,
+                                "value": '',
                                 "correctResponse": false,
                                 "stimuli_type": "number"
 
                             },
                             {
-                                "value": null,
+                                "value": '',
                                 "correctResponse": false,
                                 "stimuli_type": "number"
 
                             },
                             {
-                                "value": null,
+                                "value": '',
                                 "correctResponse": false,
                                 "stimuli_type": "number"
 
