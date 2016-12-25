@@ -1256,7 +1256,50 @@
 
 
     LanguageModule.prototype._populateGapFillGame = function _populateGapFillGame () {
-        return {};
+        
+        if (!data) console.error('link data here');
+        
+        var refined = {
+
+            "discipline" : 'language',
+
+            "language": 'english',
+
+            "data": {
+
+                "rounds": []
+            }
+        };
+
+        var roundIndex = null;
+
+        for (var i = 0 ; i < data.length ; i++) {
+
+            var row = data[i];
+            if(row.GROUP !== roundIndex) {
+                roundIndex = row.GROUP;
+                refined.data.rounds.push({
+                    "steps": [{
+                        "stimuli": []
+                    }]
+                });
+            }
+
+            var cleanWords = row.ORTHOGRAPHY;
+            cleanWords = cleanWords.replace('.', '');
+            cleanWords = cleanWords.replace('!', '');
+            cleanWords = cleanWords.replace(',', '');
+            cleanWords = cleanWords.replace('?', '');
+
+            var words = cleanWords.split(' ');
+
+            refined.data.rounds[roundIndex - 1].steps[0].stimuli.push({
+                sentence: row.ORTHOGRAPHY,
+                wordIndex: words.indexOf(row.WORD)
+            })
+        }
+        console.log('done');
+        return refined;
     };
 
     module.exports = LanguageModule;
