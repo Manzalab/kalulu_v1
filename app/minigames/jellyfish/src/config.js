@@ -1,6 +1,7 @@
 module.exports = {
     version : 1.1,
-    gameId : "jellyfishes",     // the module build will export to this foldername. lowercase for the filesystem
+    gameId: "jellyfish",     // the module build will export to this foldername. lowercase for the filesystem
+    discipline: "maths",
     skipKalulu : false, // do not play kalulu speeches for faster debug. incomplete implementation
     skipKaluluIntro : false, // do not play kalulu speeches for faster debug. incomplete implementation
     skipKaluluHelp : false, // do not play kalulu speeches for faster debug. incomplete implementation

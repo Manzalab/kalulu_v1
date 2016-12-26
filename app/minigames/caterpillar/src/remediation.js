@@ -247,6 +247,9 @@
     };
 
     Remediation.prototype.collisionHandler = function (obj1, obj2) {
+        // console.log(obj1);
+        // console.log(obj2);
+
         this.caterpillar.clickable = false;
         var value = obj2.parent.text.text;
         obj2.parent.apparition.close(true, 0);
@@ -486,7 +489,7 @@
         //console.log(str);
         // console.info("frames before new " + this.framesToWaitBeforeNextSpawn);
         if (berriesCountToAdd === 0) {
-            console.log("engough jellies on screen");
+            //console.log("engough jellies on screen");
             return;
         }
         else if (berriesCountToAdd > 0 && this.framesToWaitBeforeNextSpawn <= 0) {
@@ -528,7 +531,8 @@
         lBerry = this.lines[lineNumber].spawnGraph(value);
 
         j = 0;
-        console.log(value);
+        // console.log(value);
+        // console.log(lBerry);
         while (this.results.rounds[this.roundIndex].steps[this.stepIndex].stimuli[j].value != value) { //finds the value in the results to add one apparition
             j++;
         }

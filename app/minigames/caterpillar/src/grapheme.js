@@ -46,8 +46,13 @@
     Grapheme.prototype.constructor = Grapheme;
 
     Grapheme.prototype.setText = function (value) {
+        // console.log(value);
         this.text.text = value;
-        if (value != "") this.sound = this.gameRef.add.audio(value);
+        if (value !== "") {
+            this.sound = this.gameRef.add.audio(value);
+            // console.log("setting sound for grapheme");
+            // console.log(this);
+        }
     };
 
     Grapheme.prototype.pause = function (bool) {

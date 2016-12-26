@@ -481,16 +481,19 @@
         var syllablesList = {};
         var lDistractorSyllable;
         var lessonNumber;
+        
         for (var wordId in wordList) {
             if (!wordList.hasOwnProperty(wordId)) continue;
 
             lDistractorSyllable = wordList[wordId];
+            console.log('processing <' + lDistractorSyllable.value + '>');
             if (lDistractorSyllable.syllableCount === 1 && (
-                lDistractorSyllable.syllabicStructure === "CV." || 
-                lDistractorSyllable.syllabicStructure === "VC." || 
-                lDistractorSyllable.syllabicStructure === "V." ))
+                lDistractorSyllable.syllabicStructure === "CV" || 
+                lDistractorSyllable.syllabicStructure === "VC" || 
+                lDistractorSyllable.syllabicStructure === "V" ))
             {
-                
+                console.log('match');
+                console.log(lDistractorSyllable);
                 lessonNumber = 0;
                 for (var i = 0 ; i < lDistractorSyllable.graphemeCount ; i++) {
                     lessonNumber = Math.max(lessonNumber, lDistractorSyllable.gpList[i].lesson);
@@ -1256,7 +1259,50 @@
 
 
     LanguageModule.prototype._populateGapFillGame = function _populateGapFillGame () {
-        return {};
+        
+        if (!data) console.error('link data here');
+        
+        var refined = {
+
+            "discipline" : 'language',
+
+            "language": 'english',
+
+            "data": {
+
+                "rounds": []
+            }
+        };
+
+        var roundIndex = null;
+
+        for (var i = 0 ; i < data.length ; i++) {
+
+            var row = data[i];
+            if(row.GROUP !== roundIndex) {
+                roundIndex = row.GROUP;
+                refined.data.rounds.push({
+                    "steps": [{
+                        "stimuli": []
+                    }]
+                });
+            }
+
+            var cleanWords = row.ORTHOGRAPHY;
+            cleanWords = cleanWords.replace('.', '');
+            cleanWords = cleanWords.replace('!', '');
+            cleanWords = cleanWords.replace(',', '');
+            cleanWords = cleanWords.replace('?', '');
+
+            var words = cleanWords.split(' ');
+
+            refined.data.rounds[roundIndex - 1].steps[0].stimuli.push({
+                sentence: row.ORTHOGRAPHY,
+                wordIndex: words.indexOf(row.WORD)
+            })
+        }
+        console.log('done');
+        return refined;
     };
 
     module.exports = LanguageModule;

@@ -100,9 +100,10 @@ define([
      * @private
      * @return an object containing 3 functions ready to be called
     **/
-    MinigamesManager.prototype._getInterface = function _getInterface (debugPanel) {
+    MinigamesManager.prototype._getInterface = function _getInterface (debugPanel, node) {
 
         return {
+            discipline          : node ? node.discipline.type.toLowerCase() : null,
             getDifficultyLevel  : this._getDifficultyParams.bind(this),
             getPedagogicData    : this._getPedagogicData.bind(this), // We let to the discipline module the logic of providing the appropriate setup depending on the node
             save                : this._saveMiniGameData.bind(this),
@@ -237,7 +238,7 @@ define([
 
     MinigamesManager.prototype.launchGame = function launchGame (Launcher) {
         
-        this._currentMinigame = new Launcher(this._getInterface(this._debugPanel));
+        this._currentMinigame = new Launcher(this._getInterface(this._debugPanel, this._currentProgressionNode));
         this._currentProgressionNode.isStarted = true;
         Timer.start();
     };

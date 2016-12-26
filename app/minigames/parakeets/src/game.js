@@ -1,13 +1,13 @@
 ﻿define([
     'eventemitter3',
+    'common/src/kalulu',
     'common/src/ui',
-    './remediation',
-    'common/src/kalulu'
+    './remediation'
 ], function (
     EventEmitter,
+    Kalulu,
     Ui,
-    Remediation,
-    Kalulu
+    Remediation
 ) {
 
     'use strict';
@@ -57,25 +57,26 @@
         preload: function preloadGame() {
             console.info("[Game State] Preloading new game");
             this.game.discipline = this.game.pedagogicData.discipline;
-            var data = this.game.pedagogicData;
+            var data = this.game.pedagogicData.data;
             var roundsCount = data.rounds.length;
             var stimuliCount, stimulus;
 
             // load audiofiles for the current data
             for (var i = 0; i < roundsCount; i++) {
+                var stepsCount = data.rounds[i].steps.length;
+                for (var j = 0 ; j < stepsCount; j++) {
+                    stimuliCount = data.rounds[i].steps[j].stimuli.length;
 
-                stimuliCount = data.rounds[i].stimuli.length;
+                    for (var k = 0; k < stimuliCount; k++) {
 
-                for (var j = 0; j < stimuliCount; j++) {
-
-                    stimulus = data.rounds[i].stimuli[j];
-                    if (stimulus.value !== "") {
-                        //console.log("Loading Phoneme " + stimulus.value.toUpperCase() + " Sound, path : " + stimulus.soundPath);
-                        this.game.load.audio(stimulus.value, stimulus.soundPath);
+                        stimulus = data.rounds[i].steps[j].stimuli[k];
+                        if (stimulus.value !== "") {
+                            this.game.load.audio(stimulus.value, stimulus.soundPath);
+                        }
                     }
                 }
             }
-            if (this.game.discipline == "maths") this.game.load.atlasJSONHash('maths', Config.gameId + '/assets/images/maths/maths.png', Config.gameId + '/assets/images/maths/maths.json');
+            if (this.game.discipline == "maths") this.game.load.atlasJSONHash('maths', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/maths/maths.png', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/maths/maths.json');
 
 
         },
@@ -100,7 +101,7 @@
             this.game.eventManager = new EventEmitter();
             this.remediation = new Remediation(this.game);
             this.game.world.bringToTop(this.backgroundTree);
-            this.ui = new Ui(this.game.params.getGlobalParams().totalTriesCount, this.game, false, false, false);
+            this.ui = new Ui(this.game.pedagogicData.data.rounds[0].steps[0].stimuli.length, this.game, false, false, false);
             this.kalulu = new Kalulu(this.game);
             this.game.kalulu = this.kalulu;
 

@@ -1,8 +1,8 @@
 ﻿define([
-    'sentence',
-    'ant',
-    'fx',
-    'datgui'
+    './sentence',
+    './ant',
+    'common/src/fx',
+    'dat.gui'
 ], function (
     Sentence,
     Ant,

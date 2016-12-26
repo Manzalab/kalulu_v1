@@ -1,9 +1,9 @@
 ﻿define([
-    'fx',
-    'datgui',
-    'buoy',
-    'background',
-    'fish'
+    'common/src/fx',
+    'dat.gui',
+    './buoy',
+    './background',
+    './fish'
 ], function (
     Fx,
     Dat,

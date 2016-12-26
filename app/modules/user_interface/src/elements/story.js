@@ -1,18 +1,11 @@
 
-define([
-	"../utils/ui/ui_component",
-	"../utils/ui/ui_positions",
-	"../utils/system/device_capabilities"
-	// "../pdfJs"
-], function (
-	UIComponent,
-	UIPositions,
-	DeviceCapabilities
-	// PdfJs
-) {
+( function () {
 	'use strict';
 
-
+	var UIComponent 		= require("../utils/ui/ui_component");
+	var UIPositions 		= require ('../utils/ui/ui_positions');
+    var DeviceCapabilities 	= require ('../utils/system/device_capabilities');
+    var PdfJs 				= require ('pdfjs-dist');
 	// ###############################################################################################################################################
 	// ###  CONSTRUCTOR  #############################################################################################################################
 	// ###############################################################################################################################################
@@ -51,7 +44,7 @@ define([
 		this._buttonNext.onClick = this._openNext.bind(this);
 		this._buttonPrev.onClick = this._openPrev.bind(this);
 		this._openPage = this._openPage.bind(this);
-		PdfJs.getDocument(Config.pdfPath + "stories/story"+storyId+".pdf").then(function(pdfFile)
+		PdfJs.getDocument(Config.imagesPath + "stories/story"+storyId+".pdf").then(function(pdfFile)
 		{
 			this._pdfFile = pdfFile;
 			this._openPage(pdfFile, 1);
@@ -77,8 +70,9 @@ define([
 	// ###  METHODS  ################################################################################################################################
 	// ##############################################################################################################################################
 
-	Story.prototype._openNext = function _openNext () 
+	Story.prototype._openNext = function _openNext (e) 
 	{
+		e.stopPropagation();
 		var pageNumber = Math.min(this._pdfFile.numPages, this._currPageNumber + 1);
 		if (pageNumber !== this._currPageNumber) {
 		    this._currPageNumber = pageNumber;
@@ -86,8 +80,9 @@ define([
 		}
 	};
 
-	Story.prototype._openPrev = function _openPrev () 
+	Story.prototype._openPrev = function _openPrev (e) 
 	{
+		e.stopPropagation();
 		var pageNumber = Math.max(1, this._currPageNumber - 1);
 		if (pageNumber !== this._currPageNumber) {
 		    this._currPageNumber = pageNumber;
@@ -141,5 +136,5 @@ define([
 		this._interfaceManager.closePopin(this);
 	};
 
-	return Story;
-});
+	module.exports = Story;
+})();

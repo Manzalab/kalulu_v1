@@ -1,9 +1,11 @@
 ﻿define([
     './nest',
-    './branch'
+    './branch',
+    'dat.gui'
 ], function (
     Nest,
-    Branch
+    Branch,
+    Dat
 ) {
 
     'use strict';
@@ -116,7 +118,8 @@
         var localParams = this.game.params.getLocalParams();
 
         var arrayStimuli = [];
-        var roundData = this.game.pedagogicData.rounds[0];
+        var roundData = this.game.pedagogicData.data.rounds[0].steps[0];
+        var roundType = roundData.type;
         console.log(roundData);
         var pairsCount = roundData.stimuli.length;
         console.log(this.game.discipline);
@@ -140,17 +143,9 @@
                 for (var j = 0; j < 2; j++) {
                     var value = {};
                     value.value = stimuli.value;
+                    value.text = stimuli.value;
 
-                    var rand = Math.random();
-                    if (rand <= localParams.alternativePercentage) {
-                        value.text = stimuli.alternative;
-                        var rand2 = Math.random();
-                        if (rand2 <= localParams.alternativePicturePercentage) value.picture = stimuli.alternativePicture;
-                    }
-                    else {
-                        value.text = stimuli.value;
-                    }
-
+                    if (this.game.discipline == "maths" && roundType == "audioToNonSymbolic") value.picture = true;
                     arrayStimuli.push(value);
 
                 }             

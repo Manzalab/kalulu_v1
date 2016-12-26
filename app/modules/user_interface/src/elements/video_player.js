@@ -1,16 +1,11 @@
 
-define([
-	"../utils/ui/ui_component",
-	"../utils/ui/ui_positions",
-	"../utils/system/device_capabilities"
-], function (
-	UIComponent,
-	UIPositions,
-	DeviceCapabilities
-) {
+( function () {
 	
 	'use strict';
 
+	var UIComponent 		= require("../utils/ui/ui_component");
+	var UIPositions 		= require ('../utils/ui/ui_positions');
+    var DeviceCapabilities 	= require ('../utils/system/device_capabilities');
 
 	// ###############################################################################################################################################
 	// ###  CONSTRUCTOR  #############################################################################################################################
@@ -160,8 +155,5 @@ define([
 		this._interfaceManager.closePopin(this);
 	}
 
-
-
-
-	return VideoPlayer;
-});
+	module.exports = VideoPlayer;
+})();

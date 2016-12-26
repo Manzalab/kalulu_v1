@@ -1,15 +1,13 @@
 ﻿define([
-    'phaser-bundle',
-    'common/src/ui',
-    './remediation',
+    'eventemitter3',
     'common/src/kalulu',
-    'eventemitter3'
+    'common/src/ui',
+    './remediation'
 ], function (
-    Phaser,
-    Ui,
-    Remediation,
+    EventEmitter,
     Kalulu,
-    EventEmitter
+    Ui,
+    Remediation
 ) {
     
     'use strict';
@@ -56,24 +54,27 @@
     Game.prototype = {
         preload : function preloadGame () {
             console.info("[Game State] Preloading new game");
-            var data = this.game.pedagogicData;
+            this.game.discipline = this.game.pedagogicData.discipline;
+            var data = this.game.pedagogicData.data;
             var roundsCount = data.rounds.length;
             var stimuliCount, stimulus;
 
             // load audiofiles for the current data
             for (var i = 0; i < roundsCount; i++) {
-                
-                stimuliCount = data.rounds[i].stimuli.length;
+                var stepsCount = data.rounds[i].steps.length;
+                for (var j = 0 ; j < stepsCount; j++) {
+                    stimuliCount = data.rounds[i].steps[j].stimuli.length;
 
-                for (var j = 0; j < stimuliCount; j++) {
-                    
-                    stimulus = data.rounds[i].stimuli[j];
-                    if (stimulus.value !== "") {
-                        //console.log("Loading Phoneme " + stimulus.value.toUpperCase() + " Sound, path : " + stimulus.soundPath);
-                        this.game.load.audio(stimulus.value, stimulus.soundPath);
+                    for (var k = 0; k < stimuliCount; k++) {
+
+                        stimulus = data.rounds[i].steps[j].stimuli[k];
+                        if (stimulus.value !== "") {
+                            this.game.load.audio(stimulus.value, stimulus.soundPath);
+                        }
                     }
                 }
             }
+            if (this.game.discipline == "maths") this.game.load.atlasJSONHash('maths', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/maths/maths.png', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/maths/maths.json');
         },
 
         /**
@@ -116,7 +117,7 @@
          * @private
          **/
         render: function () {
-            //this.game.debug.text(this.game.time.fps, 2, 14, "#00ff00");
+            this.game.debug.text(this.game.time.fps, 2, 14, "#00ff00");
         }
     };
     

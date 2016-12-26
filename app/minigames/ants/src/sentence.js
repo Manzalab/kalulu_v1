@@ -1,5 +1,5 @@
 ﻿define([
-    'mathSprite'
+    'common/src/mathSprite'
 ], function (
     MathSprite
 ) {
