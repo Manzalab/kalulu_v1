@@ -1,0 +1,21 @@
+{"frames": {
+
+"StarBg0001.png":
+{
+	"frame": {"x":3,"y":3,"w":2430,"h":1536},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":2430,"h":1536},
+	"sourceSize": {"w":2430,"h":1536},
+	"pivot": {"x":0.5,"y":0.5}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "background_0.png",
+	"format": "RGBA8888",
+	"size": {"w":2436,"h":1542},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:f276b549e1d954efb6c21e6160aed464:ca14fa15da49d84ee8cbe9249d748122:71a7927dee87f501787b85f04e34a09f$"
+}
+}

@@ -13,13 +13,13 @@ define([
 ) {
 	'use strict';
 
-	function GardenScreenBg () {
+	function StarBg () {
 		
-		this._assetName = "GardenScreenBg";
+		this._assetName = "StarBg";
 
 		StateGraphic.call(this);
 
-		this._assetName = "GardenScreenBg";
+		this._assetName = "StarBg";
 
 		this._factory = new MovieClipAnimFactory();
 		this._boxType = BoxType.SELF;
@@ -27,12 +27,12 @@ define([
 		this.start();
 	}
 
-	GardenScreenBg.prototype = Object.create(StateGraphic.prototype);
-	GardenScreenBg.prototype.constructor = GardenScreenBg;
+	StarBg.prototype = Object.create(StateGraphic.prototype);
+	StarBg.prototype.constructor = StarBg;
 	
-	Object.defineProperty(GardenScreenBg.prototype, "id", { get: function () { return this._id; } });
+	Object.defineProperty(StarBg.prototype, "id", { get: function () { return this._id; } });
 
-	GardenScreenBg.prototype.start = function start(){
+	StarBg.prototype.start = function start(){
 		var speedDivisor = 15; 
 
 		this._setState(this._DEFAULT_STATE, true, true);
@@ -40,5 +40,5 @@ define([
 		this._anim.animationSpeed /= speedDivisor;
 	}
 
-	return GardenScreenBg;
+	return StarBg;
 });
