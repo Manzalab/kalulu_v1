@@ -46,9 +46,9 @@
         this.initEvents();
 
         // Debug & Tuning
-        if (Config.globalVars) window.jellyfishes.jellyfishes = this.jellyfishes;
+        if (this.game.gameConfig.globalVars) window.jellyfishes.jellyfishes = this.jellyfishes;
 
-        if (Config.debugPanel) {
+        if (this.game.gameConfig.debugPanel) {
             this.setupDebugPanel();
         }
     }
@@ -130,11 +130,11 @@
             this.eventManager = null;
             this.game.rafiki.close();
             this.game.destroy();
-            if (Config.debugPanel) this.clearDebugPanel();
+            if (this.game.gameConfig.debugPanel) this.clearDebugPanel();
         }, this);
 
         this.eventManager.on('replay', function () {
-            if (Config.debugPanel) {
+            if (this.game.gameConfig.debugPanel) {
                 document.getElementsByClassName("dg main a")[0].remove();
                 this.debug = null;
             }
@@ -156,7 +156,7 @@
         // Setting up the recording of the game for Rafiki
         this.game.record = new this.game.rafiki.MinigameDstRecord();
 
-        this.results = this.game.pedagogicData.data; // for convenience we reference also the pedagogicData object under the name 'results' because we will add response data directly on it.
+        this.results = this.game.pedagogicData; // for convenience we reference also the pedagogicData object under the name 'results' because we will add response data directly on it.
         this.consecutiveMistakes = 0;
         this.consecutiveSuccess = 0;
         this.triesRemaining = params.getGlobalParams().totalTriesCount;
@@ -172,7 +172,7 @@
         
         var roundData = this.game.pedagogicData.data.rounds[roundIndex];
         this.roundType = roundData.steps[0].type;
-        console.log(this.roundType,roundData)
+        console.log(this.roundType, roundData);
         this.apparitionsCount = 0;
         this.framesToWaitBeforeNextSpawn = 0;
         this.framesToWaitBeforeNewSound = 0;
@@ -220,9 +220,9 @@
         if (this.triesRemaining > 0) {
             if (this.consecutiveSuccess % 2 === 0) { // Increment difficulty
                 
-                if (Config.debugPanel) this.cleanLocalPanel();
+                if (this.game.gameConfig.debugPanel) this.cleanLocalPanel();
                 this.game.params.increaseLocalDifficulty();
-                if (Config.debugPanel) this.setLocalPanel();
+                if (this.game.gameConfig.debugPanel) this.setLocalPanel();
             }
 
             var context = this;
@@ -255,16 +255,16 @@
                     context.eventManager.emit('playCorrectSound');//listened here; check initEvents
                 }, 1000);
                 
-                if (Config.debugPanel) this.cleanLocalPanel();
+                if (this.game.gameConfig.debugPanel) this.cleanLocalPanel();
                 this.game.params.decreaseLocalDifficulty();
-                if (Config.debugPanel) this.setLocalPanel();
+                if (this.game.gameConfig.debugPanel) this.setLocalPanel();
             }
             else if (this.consecutiveMistakes === params.incorrectResponseCountTriggeringSecondRemediation) {
                 
                 this.eventManager.emit('help'); // listened by Kalulu to start the help speech; pauses the game in kalulu
-                if (Config.debugPanel) this.cleanLocalPanel();
+                if (this.game.gameConfig.debugPanel) this.cleanLocalPanel();
                 this.game.params.decreaseLocalDifficulty();
-                if (Config.debugPanel) this.setLocalPanel();
+                if (this.game.gameConfig.debugPanel) this.setLocalPanel();
                 //TODO : implement the highlight of the targetJellys
                 this.consecutiveMistakes = 0; // restart the remediation
             }
@@ -359,12 +359,13 @@
         this.jellyfishes.push(lJellyfish);
 
         j = 0;
-        while (this.results.rounds[0].steps[0].stimuli[j].value != value.text) { //finds the value in the results to add one apparition
+        console.log(this.results);
+        while (this.results.data.rounds[0].steps[0].stimuli[j].value != value.text) { //finds the value in the results to add one apparition
             j++;
         }
         apparition = new this.game.rafiki.StimulusApparition(isTargetValue);
 
-        this.results.rounds[0].steps[0].stimuli[j].apparitions.push(apparition);
+        this.results.data.rounds[0].steps[0].stimuli[j].apparitions.push(apparition);
         lJellyfish.apparition = apparition;
         this.apparitionsCount++;
         this.framesToWaitBeforeNextSpawn = localParams.respawnTime * 60;
@@ -531,16 +532,16 @@
     Remediation.prototype.AutoWin = function WinGameAndSave () {
 
         var apparition;
-        for (var i = 0 ; i < this.results.rounds.length ; i++) {
+        for (var i = 0 ; i < this.results.data.rounds.length ; i++) {
             
-            for (var j = 0 ; j < this.results.rounds[i].stimuli.length ; j++) {
+            for (var j = 0 ; j < this.results.data.rounds[i].steps[0].stimuli.length ; j++) {
                 
-                if (this.results.rounds[i].stimuli[j].correctResponse) {
+                if (this.results.data.rounds[i].steps[0].stimuli[j].correctResponse) {
                     
                     for (var k = 0 ; k < this.triesRemaining ; k++) {
                         apparition = new this.game.rafiki.StimulusApparition(true);
                         apparition.close(true, 3);
-                        this.results.rounds[i].stimuli[j].apparitions.push(apparition);
+                        this.results.data.rounds[i].steps[0].stimuli[j].apparitions.push(apparition);
                     }
                 }
                 else {
@@ -548,7 +549,7 @@
 
                         apparition = new this.game.rafiki.StimulusApparition(false);
                         apparition.close(false);
-                        this.results.rounds[i].stimuli[j].apparitions.push(apparition);
+                        this.results.data.rounds[i].steps[0].stimuli[j].apparitions.push(apparition);
                     }
                 }
             }
@@ -560,16 +561,16 @@
 	Remediation.prototype.AutoLose = function LoseGame() {
 
         var apparition;
-        for (var i = 0 ; i < this.results.rounds.length ; i++) {
+        for (var i = 0 ; i < this.results.data.rounds.length ; i++) {
             
-            for (var j = 0 ; j < this.results.rounds[i].stimuli.length ; j++) {
+            for (var j = 0 ; j < this.results.data.rounds[i].steps[0].stimuli.length ; j++) {
                 
-                if (this.results.rounds[i].stimuli[j].correctResponse) {
+                if (this.results.data.rounds[i].steps[0].stimuli[j].correctResponse) {
                     
                     for (var k = 0 ; k < this.triesRemaining ; k++) {
                         apparition = new this.game.rafiki.StimulusApparition(true);
                         apparition.close(false);
-                        this.results.rounds[i].stimuli[j].apparitions.push(apparition);
+                        this.results.data.rounds[i].steps[0].stimuli[j].apparitions.push(apparition);
                     }
                 }
                 else {
@@ -577,7 +578,7 @@
 
                         apparition = new this.game.rafiki.StimulusApparition(false);
                         apparition.close(true, 3);
-                        this.results.rounds[i].stimuli[j].apparitions.push(apparition);
+                        this.results.data.rounds[i].steps[0].stimuli[j].apparitions.push(apparition);
                     }
                 }
             }
