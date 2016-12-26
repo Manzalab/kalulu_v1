@@ -481,16 +481,19 @@
         var syllablesList = {};
         var lDistractorSyllable;
         var lessonNumber;
+        
         for (var wordId in wordList) {
             if (!wordList.hasOwnProperty(wordId)) continue;
 
             lDistractorSyllable = wordList[wordId];
+            console.log('processing <' + lDistractorSyllable.value + '>');
             if (lDistractorSyllable.syllableCount === 1 && (
-                lDistractorSyllable.syllabicStructure === "CV." || 
-                lDistractorSyllable.syllabicStructure === "VC." || 
-                lDistractorSyllable.syllabicStructure === "V." ))
+                lDistractorSyllable.syllabicStructure === "CV" || 
+                lDistractorSyllable.syllabicStructure === "VC" || 
+                lDistractorSyllable.syllabicStructure === "V" ))
             {
-                
+                console.log('match');
+                console.log(lDistractorSyllable);
                 lessonNumber = 0;
                 for (var i = 0 ; i < lDistractorSyllable.graphemeCount ; i++) {
                     lessonNumber = Math.max(lessonNumber, lDistractorSyllable.gpList[i].lesson);
