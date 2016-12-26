@@ -17,8 +17,8 @@
 
         this.options =  {
             LANGUAGE    : KALULU_LANGUAGE,
-            minigame    : 'ants',
-            discipline  : 'language',
+            minigame    : 'caterpillar',
+            discipline  : 'maths',
             globalLevel : 1,
             localLevel  : 1,
             start       : this.startGame.bind(this)
