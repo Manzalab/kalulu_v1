@@ -71,7 +71,7 @@ define(['../utils/ui/button'], function (Button) {
             this._setModeInProgress();
         else
             this._setModeOpen();
-        this.addChild(this._txt);
+        //this.addChild(this._txt);
     };
 
     ActivityButton.prototype._doNothing = function _doNothing () {};

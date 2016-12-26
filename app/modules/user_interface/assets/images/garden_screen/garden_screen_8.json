@@ -1,75 +1,39 @@
 {"frames": {
 
-"PathA_12.png":
+"PathB_03.png":
 {
-	"frame": {"x":1336,"y":1384,"w":1304,"h":393},
+	"frame": {"x":3,"y":1351,"w":1110,"h":621},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":1304,"h":393},
-	"sourceSize": {"w":1304,"h":393},
+	"spriteSourceSize": {"x":0,"y":0,"w":1110,"h":621},
+	"sourceSize": {"w":1110,"h":621},
 	"pivot": {"x":0.5,"y":0.5}
 },
-"PathA_14.png":
+"SpriteGarden_010001.png":
 {
-	"frame": {"x":2644,"y":1265,"w":1127,"h":453},
+	"frame": {"x":3,"y":3,"w":1372,"h":1344},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":1127,"h":453},
-	"sourceSize": {"w":1127,"h":453},
+	"spriteSourceSize": {"x":0,"y":0,"w":1372,"h":1344},
+	"sourceSize": {"w":1372,"h":1344},
 	"pivot": {"x":0.5,"y":0.5}
 },
-"PathB_08.png":
+"SpriteGarden_010002.png":
 {
-	"frame": {"x":3,"y":1329,"w":1329,"h":396},
+	"frame": {"x":3,"y":3,"w":1372,"h":1344},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":1329,"h":396},
-	"sourceSize": {"w":1329,"h":396},
+	"spriteSourceSize": {"x":0,"y":0,"w":1372,"h":1344},
+	"sourceSize": {"w":1372,"h":1344},
 	"pivot": {"x":0.5,"y":0.5}
 },
-"SpriteGarden_030001.png":
+"SpriteGarden_010003.png":
 {
-	"frame": {"x":1395,"y":3,"w":1144,"h":1377},
+	"frame": {"x":3,"y":3,"w":1372,"h":1344},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":1144,"h":1377},
-	"sourceSize": {"w":1144,"h":1377},
-	"pivot": {"x":0.5,"y":0.5}
-},
-"SpriteGarden_030002.png":
-{
-	"frame": {"x":1395,"y":3,"w":1144,"h":1377},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":1144,"h":1377},
-	"sourceSize": {"w":1144,"h":1377},
-	"pivot": {"x":0.5,"y":0.5}
-},
-"SpriteGarden_030003.png":
-{
-	"frame": {"x":1395,"y":3,"w":1144,"h":1377},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":1144,"h":1377},
-	"sourceSize": {"w":1144,"h":1377},
-	"pivot": {"x":0.5,"y":0.5}
-},
-"SpriteGarden_040004.png":
-{
-	"frame": {"x":3,"y":3,"w":1388,"h":1322},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":1388,"h":1322},
-	"sourceSize": {"w":1388,"h":1322},
-	"pivot": {"x":0.5,"y":0.5}
-},
-"SpriteGarden_050004.png":
-{
-	"frame": {"x":2543,"y":3,"w":1155,"h":1258},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":1155,"h":1258},
-	"sourceSize": {"w":1155,"h":1258},
+	"spriteSourceSize": {"x":0,"y":0,"w":1372,"h":1344},
+	"sourceSize": {"w":1372,"h":1344},
 	"pivot": {"x":0.5,"y":0.5}
 }},
 "meta": {
@@ -77,8 +41,8 @@
 	"version": "1.0",
 	"image": "garden_screen_8.png",
 	"format": "RGBA8888",
-	"size": {"w":3774,"h":1780},
+	"size": {"w":1378,"h":1975},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:65a1079004468a430657b5697040c2b2:aa283abe2a35b0faba533bfaae29cd7d:a86008c959d06fc4cb174f8df507a97c$"
+	"smartupdate": "$TexturePacker:SmartUpdate:c03cdd38f4950dbdd4804c001c8e6fce:b64d74788d409b722e233fe91366dea9:397dc27b02c7dc39d8cf27927f2c39a5$"
 }
 }

@@ -253,7 +253,6 @@
         //console.log(chaptersProgression);
         this._screens.gardenScreen = new GardenScreen(this, gardenData, chaptersProgression, userProfile);
         this._screens.gardenScreen.unlockGardens(chaptersProgression);
-        this._screens.gardenScreen.unlockBonusPath(userProfile);
         this._screensManager.openScreen(this._screens.gardenScreen);
         this._screensManager.closeGardenTransition();
     };

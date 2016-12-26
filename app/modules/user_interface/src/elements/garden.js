@@ -67,20 +67,9 @@ define([
 
 
     Object.defineProperties(Garden.prototype, {
-        
-        // /**
-        //  * Description of the accessor
-        //  * @type {boolean}
-        //  * @memberof Namespace.Garden#
-        // **/
-        // privateMemberAccessor: {
-        //     get: function () {
-        //         return this._privateMember;
-        //     },
-        //     set: function (value) {
-        //         return null;
-        //     }
-        // }
+        starMiddle : {
+            get : function () { return this._starMiddle; }
+        }
     });
 
 

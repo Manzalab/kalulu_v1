@@ -12,8 +12,8 @@ define(['./activity_button'], function (ActivityButton) {
     
 
     MinigameButton.prototype.setup = function setup (activityData, onClickCallback, shouldStartNow) {
-        
         this.setText(activityData.activityType);
+        this._assetName += this._txt.text.charAt(0).toUpperCase() + this._txt.text.slice(1);
         ActivityButton.prototype.setup.apply(this, arguments);
     };  
 
