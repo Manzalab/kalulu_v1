@@ -134,7 +134,7 @@
 
     MovieClipAnimFactory.prototype._onAnimComplete = function _onAnimComplete () {
         // console.log('anim ended');
-        if (!this._anim.loop) {
+        if (!this._anim.loop && this._setAnimEnded) {
             // console.log('anim ended and has no loop');
             this._setAnimEnded();
         }
