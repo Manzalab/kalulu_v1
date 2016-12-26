@@ -22,7 +22,8 @@
     MovieClipAnimFactory.prototype = Object.create(AnimFactory.prototype);
     MovieClipAnimFactory.prototype.constructor = MovieClipAnimFactory;
 
-    MovieClipAnimFactory.prototype.getAnim = function getAnim () {
+    MovieClipAnimFactory.prototype.getAnim = function getAnim (state_graphic) {
+        if (this._anim) this._anim.onComplete = this._onAnimComplete.bind(this);
         return this._anim;
     };
 
@@ -131,6 +132,13 @@
         if (pAutoPlay) this._anim.play();
     };
 
+    MovieClipAnimFactory.prototype._onAnimComplete = function _onAnimComplete () {
+        // console.log('anim ended');
+        if (!this._anim.loop) {
+            // console.log('anim ended and has no loop');
+            this._hasAnimEnded = true;
+        }
+    };
 
     module.exports = MovieClipAnimFactory;
 

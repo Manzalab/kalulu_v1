@@ -133,7 +133,8 @@ define([
 		
 		if (this._factory === null) console.error("[StateGraphic] You are trying to set a graphic state but no factory is defined for the animation (assetName " + this._assetName + ")");
 
-		this._anim = this._factory.getAnim();
+		this._anim = this._factory.getAnim(this);
+		
 		
 		if (this._anim === null) {			
 			if (this._boxType === BoxType.SELF) {
