@@ -5,7 +5,7 @@
     var Boot               = require('common/src/boot');
     var Setup              = require('common/src/setup');
     var MinigameParameters = require('common/src/minigame_parameters');
-    var Config             = require('common/src/minigame_config');
+    var Config             = require('./config');
 
     var Preloader          = require('./preloader');
     var Game               = require('./game');
@@ -24,8 +24,14 @@
     function GameLauncher (rafiki) {
 
         this._rafiki = rafiki;
-        this._config = new Config();
-        this._config.request('minigames/caterpillar/assets/data', this.onConfigLoaded.bind(this));
+        if (typeof Config === 'function') {
+            this._config = new Config();
+            this._config.request('minigames/caterpillar/assets/data', this.onConfigLoaded.bind(this));
+        }
+        else {
+            this._config = Config;
+            this.onConfigLoaded();
+        }
     }   
     
     GameLauncher.prototype.onConfigLoaded = function onConfigLoaded () {
@@ -35,10 +41,10 @@
          * 1920 * 1350 is the targeted resolution of the Pixel C tablet
          * @type {Phaser.Game}
         **/
-        this.game = new Phaser.Game(1920, 1350, Phaser.AUTO); // TODO : make it dynamic for multiscreen handling
+        this.game = new Phaser.Game(1920, 1350, Phaser.CANVAS); // TODO : make it dynamic for multiscreen handling
         
         // Setting Up the Remediation
-        this.game.config = this._config;
+        this.game.gameConfig = this._config;
         this.game.params = new MinigameParameters(params);
         this.game.rafiki = this._rafiki;
         // debug Panel from Kalulu

@@ -1,11 +1,9 @@
-define([
-    '../utils/game/state_graphic',
-    '../utils/game/factories/movie_clip_anim_factory'
-], function (
-    StateGraphic,
-    MovieClipAnimFactory
-) {
+( function () {
     
+    var SoundManager            = require ('../utils/sound/sound_manager');
+    var StateGraphic            = require ('../utils/game/state_graphic');
+    var MovieClipAnimFactory    = require ('../utils/game/factories/movie_clip_anim_factory');
+
     'use strict';
 
 
@@ -38,6 +36,9 @@ define([
         this.TALK_2_STATE = "Talk2_";
         this.TALK_3_STATE = "Talk3_";
         this.TALK_STATES = [this.TALK_1_STATE, this.TALK_2_STATE, this.TALK_3_STATE];
+
+        this.isTalking = false;
+        this._kaluluSound = null;
     }
 
     KaluluCharacter.prototype = Object.create(StateGraphic.prototype);
@@ -76,18 +77,38 @@ define([
         this._anim.animationSpeed = 0.2;
     };
 
-    KaluluCharacter.prototype.startTalk = function startTalk()
+    KaluluCharacter.prototype.startTalk = function startTalk(soundName)
     {
+        this._kaluluSound = SoundManager.getSound(soundName);
+        if (this._kaluluSound===undefined)
+        {
+            console.error("The soundName '"+soundName+"' isn't valid.")
+            return;
+        }
         this._setState(this.APPEARANCE_STATE);
         this._anim.onComplete = this.talk.bind(this);
         this._anim.animationSpeed = 0.25;
+        this._kaluluSound.on( "end", this.disappear.bind(this));
     };
 
     KaluluCharacter.prototype.talk = function talk()
     {
-        this._setState(this.TALK_STATES[Math.floor(Math.random()*this.TALK_STATES.length)], true);
-        this._anim.animationSpeed = 0.2;
+        this.isTalking = true;
+        this._kaluluSound.play();
     };
+
+    KaluluCharacter.prototype.update = function update()
+    {
+        if (this.isTalking && this._anim.isAnimEnd) //remplacer this._anim.isAnimEnd par un isAnimEnd qui fonctionne et ça devrait marcher
+        {
+            var lRandom = Math.random();
+            if (lRandom<=0.1) lRandom = 1;
+            else if (lRandom<=0.3) lRandom = 0;
+            else lRandom = 2;
+            this._setState(this.TALK_STATES[lRandom]);
+            this._anim.animationSpeed = 0.2;
+        }
+    }
 
     KaluluCharacter.prototype.disappear = function disappear()
     {
@@ -96,6 +117,12 @@ define([
         this._anim.animationSpeed = 0.25;
     };
 
+    KaluluCharacter.prototype.stopSound = function stopSound()
+    {
+        if (this._kaluluSound!==undefined) this._kaluluSound.stop();
+        this.isTalking = false;
+    }
 
-    return KaluluCharacter;
-});
+
+    module.exports = KaluluCharacter;
+})();

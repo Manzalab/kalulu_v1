@@ -2,23 +2,27 @@
     
     'use strict';
 
-    var Dat                  = require ('dat.gui');
+    var Dat                     = require ('dat.gui');
+    
+    var SoundManager            = require ('./utils/sound/sound_manager');
+    var GameLoader              = require ('./utils/loader/game_loader');
+    var LoadEventType           = require ('./utils/events/load_event_type');
+    var MovieClipAnimFactory    = require ('./utils/game/factories/movie_clip_anim_factory');
+    var UIBuilder               = require ('./utils/ui/ui_builder');
+    
+    var RenderingManager        = require ('./rendering_manager');
+    var ScreensManager          = require ('./screens_manager');
+    var LoadingManager          = require ('./loading_manager');
+    
+    var GraphicLoader           = require ('./screens/graphic_loader');
+    var TitleCard               = require ('./screens/title_card');
+    var BrainScreen             = require ('./screens/brain_screen');
+    var GardenScreen            = require ('./screens/garden_screen');
+    var LessonScreen            = require ('./screens/lesson_screen');
+    var ToyChestScreen          = require ('./screens/toy_chest_screen');
+    var ToyChestActivityScreen  = require ('./screens/toy_chest_activity_screen');
 
-    var SoundManager         = require ('./utils/sound/sound_manager');
-    var GameLoader           = require ('./utils/loader/game_loader');
-    var LoadEventType        = require ('./utils/events/load_event_type');
-    var MovieClipAnimFactory = require ('./utils/game/factories/movie_clip_anim_factory');
-    var UIBuilder            = require ('./utils/ui/ui_builder');
-
-    var RenderingManager     = require ('./rendering_manager');
-    var ScreensManager       = require ('./screens_manager');
-    var LoadingManager       = require ('./loading_manager');
-
-    var GraphicLoader        = require ('./screens/graphic_loader');
-    var TitleCard            = require ('./screens/title_card');
-    var BrainScreen          = require ('./screens/brain_screen');
-    var GardenScreen         = require ('./screens/garden_screen');
-    var LessonScreen         = require ('./screens/lesson_screen');
+    var KaluluCharacter         = require ('./elements/kalulu_character');
 
 
     // ###############################################################################################################################################
@@ -199,6 +203,7 @@
         
         // rendering on 1 frame out of 2
         if (frameId % 2 === 0) this._renderingManager.render();
+        if (this._kaluluCharacter!==undefined && this._kaluluCharacter.isTalking) this._kaluluCharacter.update();
     };
 
     /**
@@ -295,21 +300,16 @@
         if (this._kaluluCharacter)
         {
             this._screens.brainScreen._toyChestButton.removeChild(this._kaluluCharacter);
+            this._kaluluCharacter.stopSound();
             this._kaluluCharacter = null;
-            this._kaluluSound.stop();
         }
 
         this._kaluluCharacter = new KaluluCharacter();
         this._kaluluCharacter.scale.set(0.5);
         this._kaluluCharacter.y -= 100;
         this._screens.brainScreen._toyChestButton.addChild(this._kaluluCharacter);
-        this._kaluluCharacter.startTalk();
-        this._kaluluSound = SoundManager.getSound("kaluluLocked");
-        setTimeout(function(){this._kaluluSound.play();}.bind(this), 1000);
-        this._kaluluSound.on( "end", function()
-        {
-            this._kaluluCharacter.disappear();
-        }.bind(this));
+        this._kaluluCharacter.startTalk("kaluluLocked");
+        
     };
 
 

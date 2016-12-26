@@ -109,6 +109,28 @@ exports.getHMR = function () {
     };
 };
 
+exports.copyCommonAssets = function (language) {
+
+    var ignore = [
+        'swahili/**/*',
+        'english/**/*',
+        'french/**/*'
+    ];
+
+    return {
+        plugins: [
+            // Enable multi-pass compilation for enhanced performance in larger projects. Good default.
+            new CopyWebpackPlugin([
+                { from: 'app/assets/images',                    to: 'assets/images',    ignore : ignore },
+                { from: 'app/assets/images/' + language + '/',  to: 'assets/images'                     },
+                { from: 'app/assets/pdf',                       to: 'assets/images',    ignore : ignore },
+                { from: 'app/assets/pdf/' + language + '/',     to: 'assets/images'                     }
+            ])
+        ]
+    };
+};
+
+
 exports.copyAssetsForMinigames = function (minigameFolderNames, language) {
     // console.log('copy logic for language : ' + language);
     var transfers = [];
@@ -119,7 +141,7 @@ exports.copyAssetsForMinigames = function (minigameFolderNames, language) {
         attemptCopyRequest('minigames', transfers, folderName, 'data');
         attemptCopyRequest('minigames', transfers, folderName, 'images');
         attemptCopyRequest('minigames', transfers, folderName, 'config');
-        attemptCopyRequest('minigames', transfers, folderName, 'audio/sfx');
+        attemptCopyRequest('minigames', transfers, folderName, 'audio');
         attemptCopyRequest('minigames', transfers, folderName, 'audio/kalulu', language);
     }
 
@@ -186,6 +208,7 @@ function attemptCopyRequest (category, array, folderName, assetsSubPath, languag
     }
     else {
         destPath = category + '/' + folderName + '/assets/' + assetsSubPath;
+        if (assetsSubPath.indexOf('kalulu') === -1) ignore.push('kalulu/**/*');
     }
     console.log('\n\nTesting Path <' + srcPath + '> to copy to <' + destPath + '>, ignoring ' + ignore + '\n');
     if (testPathToFolder(srcPath)) array.push({ from: srcPath, to: destPath, ignore : ignore});

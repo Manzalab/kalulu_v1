@@ -1,11 +1,13 @@
 ﻿define([
     './line',
     './caterpillar',
-    'common/src/fx'
+    'common/src/fx',
+    'dat.gui'
 ], function (
     Line,
     Caterpillar,
-    Fx
+    Fx,
+    Dat
 ) {
     'use strict';
 
@@ -160,7 +162,7 @@
         // Setting up the recording of the game for Rafiki
         this.game.record = new this.game.rafiki.MinigameDstRecord();
 
-        this.results = this.game.pedagogicData; // for convenience we reference also the pedagogicData object under the name 'results' because we will add response data directly on it.
+        this.results = this.game.pedagogicData.data; // for convenience we reference also the pedagogicData object under the name 'results' because we will add response data directly on it.
         this.consecutiveMistakes = 0;
         this.consecutiveSuccess = 0;
         this.triesRemaining = params.getGlobalParams().totalTriesCount;
@@ -174,7 +176,7 @@
      **/
     Remediation.prototype.initRound = function initRound(roundIndex) {
 
-        var roundData = this.game.pedagogicData.rounds[roundIndex];
+        var roundData = this.game.pedagogicData.data.rounds[roundIndex];
 
         this.apparitionsCount = 0;
         this.framesToWaitBeforeNextSpawn = 0;
@@ -187,7 +189,7 @@
             this.correctWord = roundData.word;
             this.sounds.correctRoundAnswer = this.game.add.audio(roundData.word.value);
         }
-        var stepsLength = roundData.step.length;
+        var stepsLength = roundData.steps.length;
 
         var stimuliLength, stimulus;
         var falseStepResponses, correctStepResponses;
@@ -195,9 +197,9 @@
         for (var i = 0; i < stepsLength; i++) {
             falseStepResponses = [];
             correctStepResponses = {};
-            stimuliLength = roundData.step[i].stimuli.length;
+            stimuliLength = roundData.steps[i].stimuli.length;
             for (var j = 0; j < stimuliLength; j++) {
-                stimulus = roundData.step[i].stimuli[j];
+                stimulus = roundData.steps[i].stimuli[j];
                 if (stimulus.correctResponse === true) {
                     correctStepResponses.value = stimulus.value;
                 }
@@ -484,7 +486,7 @@
         //console.log(str);
         // console.info("frames before new " + this.framesToWaitBeforeNextSpawn);
         if (berriesCountToAdd === 0) {
-            console.log("engough jellies on screen");
+            //console.log("engough jellies on screen");
             return;
         }
         else if (berriesCountToAdd > 0 && this.framesToWaitBeforeNextSpawn <= 0) {
@@ -527,12 +529,12 @@
 
         j = 0;
         console.log(value);
-        while (this.results.rounds[this.roundIndex].step[this.stepIndex].stimuli[j].value != value) { //finds the value in the results to add one apparition
+        while (this.results.rounds[this.roundIndex].steps[this.stepIndex].stimuli[j].value != value) { //finds the value in the results to add one apparition
             j++;
         }
         apparition = new this.game.rafiki.StimulusApparition(isTargetValue);
 
-        this.results.rounds[this.roundIndex].step[this.stepIndex].stimuli[j].apparitions.push(apparition);
+        this.results.rounds[this.roundIndex].steps[this.stepIndex].stimuli[j].apparitions.push(apparition);
         lBerry.apparition = apparition;
         this.apparitionsCount++;
         this.framesToWaitBeforeNextSpawn = localParams.respawnTime * 60;

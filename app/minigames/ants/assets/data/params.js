@@ -52,8 +52,8 @@
                 globalRemediation: {
                     gameTimer                       : Infinity,
                     gameTimerVisible                : false,
-                    roundsCount: 3,
-                    totalTriesCount: 5,
+                    roundsCount                     : 4,
+                    totalTriesCount                 : 6,
                 },
                 localRemediation: {
                     sentencesCount                  : { min: 2, max: 2 }
@@ -63,20 +63,20 @@
                 globalRemediation: {
                     gameTimer                       : Infinity,
                     gameTimerVisible                : false,
-                    roundsCount: 3,
-                    totalTriesCount: 5,
+                    roundsCount                     : 5,
+                    totalTriesCount                 : 7,
 
                 },
                 localRemediation: {
-                    sentencesCount                  : { min: 2, max: 2 }
+                    sentencesCount                  : { min: 3, max: 3 }
                 }
             },
             { // LEVEL 4
                 globalRemediation: {
                     gameTimer                       : Infinity,
                     gameTimerVisible                : false,
-                    roundsCount: 3,
-                    totalTriesCount: 5,
+                    roundsCount                     : 5,
+                    totalTriesCount                 : 7,
 
                 },
                 localRemediation: {
@@ -87,8 +87,8 @@
                 globalRemediation: {
                     gameTimer                       : Infinity,
                     gameTimerVisible                : false,
-                    roundsCount: 4,
-                    totalTriesCount: 6,
+                    roundsCount                     : 7,
+                    totalTriesCount                 : 9,
                 },
                 localRemediation: {
                     sentencesCount                  : { min: 3, max: 3 }

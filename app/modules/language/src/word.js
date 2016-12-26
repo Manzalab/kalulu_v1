@@ -174,7 +174,7 @@ define([], function () {
         value : { get : function () { return this._word; }},
         soundPath : {
             get : function () { 
-                var path = Config.soundsPath + 'pedago/' + this._audiofileName;
+                var path = Config.soundsPath + 'language/' + this._audiofileName;
                 return path + ".ogg";
             }
         }

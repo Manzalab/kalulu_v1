@@ -100,9 +100,10 @@ define([
      * @private
      * @return an object containing 3 functions ready to be called
     **/
-    MinigamesManager.prototype._getInterface = function _getInterface (debugPanel) {
+    MinigamesManager.prototype._getInterface = function _getInterface (debugPanel, node) {
 
         return {
+            discipline          : node ? node.discipline.name : null,
             getDifficultyLevel  : this._getDifficultyParams.bind(this),
             getPedagogicData    : this._getPedagogicData.bind(this), // We let to the discipline module the logic of providing the appropriate setup depending on the node
             save                : this._saveMiniGameData.bind(this),
@@ -237,130 +238,174 @@ define([
 
     MinigamesManager.prototype.launchGame = function launchGame (Launcher) {
         
-        this._currentMinigame = new Launcher(this._getInterface(this._debugPanel));
+        this._currentMinigame = new Launcher(this._getInterface(this._debugPanel, this._currentProgressionNode));
         this._currentProgressionNode.isStarted = true;
         Timer.start();
     };
     
     MinigamesManager.prototype.startAnts = function startAnts () {
-        
-        require.ensure(['phaser-bundle'], function () {
-            
-            this.launchers.lookandlearn = require('lookandlearn/src');
-            console.log('Look And Learn Ready');
-            this.launchGame(this.launchers.lookandlearn);
-            
-        }.bind(this));
+        if (this.launchers.ants) {
+            this.launchGame(this.launchers.ants);
+        }
+        else {
+            require.ensure(['phaser-bundle'], function () {
+                
+                this.launchers.ants = require('ants/src');
+                console.log('Look And Learn Ready');
+                this.launchGame(this.launchers.ants);
+                
+            }.bind(this));            
+        }
     };
 
     MinigamesManager.prototype.startCaterpillar = function startCaterpillar () {
-        
-        require.ensure(['phaser-bundle'], function () {
-            
-            this.launchers.caterpillar = require('caterpillar/src');
-            console.log('Caterpillar Ready');
+        if (this.launchers.ants) {
             this.launchGame(this.launchers.caterpillar);
-            
-        }.bind(this));
+        }
+        else {
+            require.ensure(['phaser-bundle'], function () {
+                
+                this.launchers.caterpillar = require('caterpillar/src');
+                console.log('Caterpillar Ready');
+                this.launchGame(this.launchers.caterpillar);
+                
+            }.bind(this));           
+        }
     };
 
     MinigamesManager.prototype.startCrabs = function startCrabs () {
-        
-        require.ensure(['phaser-bundle'], function () {
-            
-            this.launchers.crabs = require('crabs/src');
-            console.log('Crabs Ready');
+        if (this.launchers.crabs) {
             this.launchGame(this.launchers.crabs);
-            
-        }.bind(this));
+        }
+        else {
+            require.ensure(['phaser-bundle'], function () {
+                
+                this.launchers.crabs = require('crabs/src');
+                console.log('Crabs Ready');
+                this.launchGame(this.launchers.crabs);
+                
+            }.bind(this));    
+        }
     };
 
     MinigamesManager.prototype.startFish = function startFish () {
-        
-        require.ensure(['phaser-bundle'], function () {
-            
-            this.launchers.fish = require('fish/src');
-            console.log('Fish Ready');
+        if (this.launchers.fish) {
             this.launchGame(this.launchers.fish);
-            
-        }.bind(this));
+        }
+        else {
+            require.ensure(['phaser-bundle'], function () {
+                
+                this.launchers.fish = require('fish/src');
+                console.log('Fish Ready');
+                this.launchGame(this.launchers.fish);
+                
+            }.bind(this));
+        }
     };
 
     MinigamesManager.prototype.startFrog = function startFrog () {
-        
-        require.ensure(['phaser-bundle'], function () {
-            
-            this.launchers.frog = require('frog/src');
-            console.log('Frog Ready');
+        if (this.launchers.frog) {
             this.launchGame(this.launchers.frog);
-            
-        }.bind(this));
+        }
+        else {
+            require.ensure(['phaser-bundle'], function () {
+                
+                this.launchers.frog = require('frog/src');
+                console.log('Frog Ready');
+                this.launchGame(this.launchers.frog);
+                
+            }.bind(this));
+        }
     };
 
     MinigamesManager.prototype.startJellyfish = function startJellyfish () {
-        
-        require.ensure(['phaser-bundle'], function () {
-            
-            this.launchers.jellyfish = require('jellyfish/src');
-            console.log('Jellyfish Ready');
+        if (this.launchers.jellyfish) {
             this.launchGame(this.launchers.jellyfish);
-            
-        }.bind(this));
+        }
+        else {
+            require.ensure(['phaser-bundle'], function () {
+                
+                this.launchers.jellyfish = require('jellyfish/src');
+                console.log('Jellyfish Ready');
+                this.launchGame(this.launchers.jellyfish);
+                
+            }.bind(this));
+        }
     };
 
     MinigamesManager.prototype.startLookandlearn = function startLookAndLearn () {
-        
-        require.ensure(['phaser-bundle'], function () {
-            
-            this.launchers.lookandlearn = require('lookandlearn/src');
-            console.log('Look And Learn Ready');
+        if (this.launchers.lookandlearn) {
             this.launchGame(this.launchers.lookandlearn);
-            
-        }.bind(this));
+        }
+        else {
+            require.ensure(['phaser-bundle'], function () {
+                
+                this.launchers.lookandlearn = require('lookandlearn/src');
+                console.log('Look And Learn Ready');
+                this.launchGame(this.launchers.lookandlearn);
+                
+            }.bind(this));
+        }
     };
 
     MinigamesManager.prototype.startMonkeys = function startMonkeys () {
-        
-        require.ensure(['phaser-bundle'], function () {
-            
-            this.launchers.monkeys = require('monkeys/src');
-            console.log('Monkeys Ready');
+        if (this.launchers.monkeys) {
             this.launchGame(this.launchers.monkeys);
-            
-        }.bind(this));
+        }
+        else {
+            require.ensure(['phaser-bundle'], function () {
+                
+                this.launchers.monkeys = require('monkeys/src');
+                console.log('Monkeys Ready');
+                this.launchGame(this.launchers.monkeys);
+                
+            }.bind(this));
+        }
     };
 
     MinigamesManager.prototype.startParakeets = function startParakeets () {
-        
-        require.ensure(['phaser-bundle'], function () {
-            
-            this.launchers.parakeets = require('parakeets/src');
-            console.log('Parakeets Ready');
+        if (this.launchers.parakeets) {
             this.launchGame(this.launchers.parakeets);
-            
-        }.bind(this));
+        }
+        else {
+            require.ensure(['phaser-bundle'], function () {
+                
+                this.launchers.parakeets = require('parakeets/src');
+                console.log('Parakeets Ready');
+                this.launchGame(this.launchers.parakeets);
+                
+            }.bind(this));
+        }
     };
 
     MinigamesManager.prototype.startPatrimath = function startPatrimath () {
-        
-        require.ensure(['phaser-bundle'], function () {
-            
-            this.launchers.patrimath = require('patrimath/src');
-            console.log('Patrimath Ready');
+        if (this.launchers.patrimath) {
             this.launchGame(this.launchers.patrimath);
-            
-        }.bind(this));
+        }
+        else {
+            require.ensure(['phaser-bundle'], function () {
+                
+                this.launchers.patrimath = require('patrimath/src');
+                console.log('Patrimath Ready');
+                this.launchGame(this.launchers.patrimath);
+                
+            }.bind(this));
+        }
     };
 
     MinigamesManager.prototype.startTurtles = function startTurtles () {
-        
-        require.ensure(['phaser-bundle'], function () {
-            
-            this.launchers.turtles = require('turtles/src');
-            console.log('Turtles Ready');
+        if (this.launchers.turtles) {
             this.launchGame(this.launchers.turtles);
-            
-        }.bind(this));
+        }
+        else {
+            require.ensure(['phaser-bundle'], function () {
+                
+                this.launchers.turtles = require('turtles/src');
+                console.log('Turtles Ready');
+                this.launchGame(this.launchers.turtles);
+                
+            }.bind(this));
+        }
     };
 
     return MinigamesManager;

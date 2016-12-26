@@ -75,7 +75,7 @@
 
     Remediation.prototype.initRound = function initRound(roundIndex) {
         console.log(this.game.pedagogicData);
-        var roundData = this.game.pedagogicData.rounds[roundIndex];
+        var roundData = this.game.pedagogicData.data.rounds[roundIndex];
         console.log(roundData);
         this.apparitionsCount = 0;
         this.framesToWaitBeforeNextSpawn = 0;
@@ -87,11 +87,11 @@
         this.falseResponsesCurrentPool = [];
         this.correctResponse = {};
 
-        var length = roundData.stimuli.length;
+        var length = roundData.steps[0].stimuli.length;
         var stimulus;
 
         for (var i = 0; i < length; i++) {
-            stimulus = roundData.stimuli[i];
+            stimulus = roundData.steps[0].stimuli[i];
             if (stimulus.correctResponse === true) {
                 this.sounds.correctRoundAnswer = this.game.add.audio(stimulus.value.toLowerCase());
                 console.log("adding target sound");
@@ -346,12 +346,13 @@
         randomCrab.isCorrectResponse = isTargetValue;
 
         j = 0;
-        while (this.results.rounds[this.currentRound].stimuli[j].value != value.value) { //finds the value in the results to add one apparition
+        console.log(this.results);
+        while (this.results.data.rounds[this.currentRound].steps[0].stimuli[j].value != value.value) { //finds the value in the results to add one apparition
             j++;
         }
         apparition = new this.game.rafiki.StimulusApparition(isTargetValue);
 
-        this.results.rounds[this.currentRound].stimuli[j].apparitions.push(apparition);
+        this.results.data.rounds[this.currentRound].steps[0].stimuli[j].apparitions.push(apparition);
         randomCrab.apparition = apparition;
         this.apparitionsCount++;
 
@@ -533,23 +534,23 @@
     Remediation.prototype.AutoWin = function AutoWin() {
 
         var apparition;
-        for (var i = 0 ; i < this.results.rounds.length ; i++) {
+        for (var i = 0 ; i < this.results.data.rounds.length ; i++) {
 
-            for (var j = 0 ; j < this.results.rounds[i].stimuli.length ; j++) {
-                if (!this.results.rounds[i].stimuli[j].apparitions) this.results.rounds[i].stimuli[j].apparitions = [];
-                if (this.results.rounds[i].stimuli[j].correctResponse) {
-                    var length = Math.ceil(this.triesRemaining / this.results.rounds.length);
+            for (var j = 0 ; j < this.results.data.rounds[i].steps[0].stimuli.length ; j++) {
+                if (!this.results.data.rounds[i].steps[0].stimuli[j].apparitions) this.results.data.rounds[i].steps[0].stimuli[j].apparitions = [];
+                if (this.results.data.rounds[i].steps[0].stimuli[j].correctResponse) {
+                    var length = Math.ceil(this.triesRemaining / this.results.data.rounds.length);
                     for (var k = 0 ; k < length; k++) {
                         apparition = new this.game.rafiki.StimulusApparition(true);
                         apparition.close(true, 3);
-                        this.results.rounds[i].stimuli[j].apparitions.push(apparition);
+                        this.results.data.rounds[i].steps[0].stimuli[j].apparitions.push(apparition);
                     }
                 }
                 else {
                     for (var l = 0 ; l < 3 ; l++) {
                         apparition = new this.game.rafiki.StimulusApparition(false);
                         apparition.close(false);
-                        this.results.rounds[i].stimuli[j].apparitions.push(apparition);
+                        this.results.data.rounds[i].steps[0].stimuli[j].apparitions.push(apparition);
                     }
                 }
             }
@@ -561,16 +562,16 @@
     Remediation.prototype.AutoLose = function AutoLose() {
 
         var apparition;
-        for (var i = 0 ; i < this.results.rounds.length ; i++) {
+        for (var i = 0 ; i < this.results.data.rounds.length ; i++) {
 
-            for (var j = 0 ; j < this.results.rounds[i].stimuli.length ; j++) {
-                if (!this.results.rounds[i].stimuli[j].apparitions) this.results.rounds[i].stimuli[j].apparitions = [];
-                if (this.results.rounds[i].stimuli[j].correctResponse) {
-                    var length = Math.ceil(this.triesRemaining / this.results.rounds.length);
+            for (var j = 0 ; j < this.results.data.rounds[i].steps[0].stimuli.length ; j++) {
+                if (!this.results.data.rounds[i].steps[0].stimuli[j].apparitions) this.results.data.rounds[i].steps[0].stimuli[j].apparitions = [];
+                if (this.results.data.rounds[i].steps[0].stimuli[j].correctResponse) {
+                    var length = Math.ceil(this.triesRemaining / this.results.data.rounds.length);
                     for (var k = 0 ; k < length; k++) {
                         apparition = new this.game.rafiki.StimulusApparition(true);
                         apparition.close(false);
-                        this.results.rounds[i].stimuli[j].apparitions.push(apparition);
+                        this.results.data.rounds[i].steps[0].stimuli[j].apparitions.push(apparition);
                     }
                 }
                 else {
@@ -578,7 +579,7 @@
 
                         apparition = new this.game.rafiki.StimulusApparition(false);
                         apparition.close(true, 3);
-                        this.results.rounds[i].stimuli[j].apparitions.push(apparition);
+                        this.results.data.rounds[i].steps[0].stimuli[j].apparitions.push(apparition);
                     }
                 }
             }

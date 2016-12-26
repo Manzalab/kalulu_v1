@@ -54,6 +54,7 @@
         this.turtleSprite.animations.add('swimLeft', Phaser.Animation.generateFrameNames('Tortue_nage_GAUCHE_', 0, 7, '', 4), 8, false, true);
         this.turtleSprite.animations.add('victory', Phaser.Animation.generateFrameNames('Tortue_victory_', 0, 5, '', 4), 8, false, false);
         this.turtleSprite.animations.add('hit', Phaser.Animation.generateFrameNames('Tortue_plonge_', 0, 5, '', 4), 8, false, false);
+        this.turtleSprite.animations.add('emerge', Phaser.Animation.generateFrameNames('Tortue_plonge_', 5, 0, '', 4), 8, false, false);
 
 
         this.add(this.turtleSprite)
@@ -113,8 +114,8 @@
         this.text.text = text;
 
         var angle = Math.floor(Math.random() * 360);
-        var xOffset = this.gameRef.width / 2 + this.turtleSprite.width / 2;
-        var yOffset = this.gameRef.height / 2 + this.turtleSprite.height / 2;
+        var xOffset = this.gameRef.width / 2 + this.turtleSprite.width / 2 - 50;
+        var yOffset = this.gameRef.height / 2 + this.turtleSprite.height / 2 - 50;
 
         this.x = xOffset * Math.cos(toRadians(angle)) + this.gameRef.width / 2;
         this.y = -yOffset * Math.sin(toRadians(angle)) + this.gameRef.height / 2;
@@ -122,6 +123,8 @@
         this.updateAngle(angle);
 
         if (text != "") this.sound = this.gameRef.add.audio(text);
+        this.turtleSprite.animations.play('emerge');
+
     }
 
     /**

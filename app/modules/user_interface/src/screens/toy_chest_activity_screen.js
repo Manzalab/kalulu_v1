@@ -5,27 +5,20 @@
  * The Burrow Screen will display the Chapters, first level of the discipline modules hierarchy we are using.
  * It must be reworked if Discipline Modules are modified.
 **/
-define([
-	'utils/ui/screen',
-	'utils/events/mouse_event_type',
-	'utils/events/touch_event_type',
-	'interface/user/popins/video_player',
-	'interface/user/popins/story'
-], function (
-	Screen,
-	MouseEventType,
-	TouchEventType,
-	VideoPlayer,
-	Story
-) {
+(function () {
+
 	'use strict';
+
+	var Screen 		= require ('../utils/ui/screen');
+    var VideoPlayer = require ('../elements/video_player');
+    var Story 		= require ('../elements/story');
+
 
 	function ToyChestActivityScreen (interfaceManager, activityType) {
 		
 		Screen.call(this);
 		this._activityType = activityType;
 		this.name = "mcBurrow"+activityType+"Screen";
-		console.log(activityType);
 		this._interfaceManager = interfaceManager;
 		this.build();
 		
@@ -57,12 +50,12 @@ define([
 
 			case "Video":
 				lActivitiesCount = 18;
-				lLockStart = 1;
+				lLockStart = 4;
 			break;
 
 			case "MiniGame":
 				lActivitiesCount = 9;
-				lLockStart = 2;
+				lLockStart = 1;
 			break;
 		}
 		this._activitiesCount = lActivitiesCount;
@@ -112,7 +105,6 @@ define([
 			else lButton.removeChildAt(lButton.children.length-1);
 			var lNum = (k+1)+(10*this._currActivitiesPage);
 			lButton._txt.text = lNum;
-			console.log(lButton);
 			lButton.name = lNum;
 			var lCover = new PIXI3.Sprite(PIXI3.Texture.fromImage(Config.imagesPath + "activity_covers/" + this._activityType.toLowerCase() + "/" + lNum + ".jpg"));
 			lCover.anchor.set(0.5);
@@ -134,7 +126,7 @@ define([
 	};
 
 	ToyChestActivityScreen.prototype._onClickOnActivitiesButton = function _onClickOnActivitiesButton (pEventData) {
-		console.log(this._activityType + pEventData.target.name);
+		
 		switch (this._activityType)
 		{
 			case "Video":
@@ -154,5 +146,5 @@ define([
 		}
 	};
 
-	return ToyChestActivityScreen;
-});
+	module.exports = ToyChestActivityScreen;
+})();

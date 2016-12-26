@@ -3,12 +3,14 @@ define([
     '../utils/ui/ui_builder',
     '../utils/events/mouse_event_type',
     './plant',
+    './star_middle',
     './lesson_dot'
 ], function (
     UIComponent,
     UIBuilder,
     MouseEventType,
     Plant,
+    StarMiddle,
     LessonDot
 ) {
     
@@ -51,6 +53,7 @@ define([
 
         this._dots = [];
         this._plants = [];
+        this._starMiddle;
     }
     
     Garden.prototype = Object.create(UIComponent.prototype);
@@ -215,7 +218,7 @@ define([
     };
 
     Garden.prototype.drawPlant = function drawPlant () {
-        var i, markerPosition, lPlant, lChildren;
+        var i, lPlant, lChildren;
 
         var lLength = this.children.length;
 
@@ -249,6 +252,36 @@ define([
                 lPlant.destroy();
             }.bind(this));
         }
+    }
+
+    Garden.prototype.drawStar = function drawStar () {
+        var i, lChildren;
+
+        var lLength = this.children.length;
+
+        for (i = 0 ; i < lLength ; i++) {
+
+            lChildren = this.children[i];
+
+            if (lChildren.name.indexOf("StarMiddle") !== -1) {
+
+                this._starMiddle = new StarMiddle(lChildren.name);
+                this._starMiddle.x = lChildren.x;
+                this._starMiddle.y = lChildren.y;
+
+                this.addChild(this._starMiddle);
+                
+                this._starMiddle.alpha = 0;
+                createjs.Tween.get(this._starMiddle).to({alpha: 1}, 1000, createjs.Ease.linear);
+            }
+        }
+    }
+
+    Garden.prototype.undrawStar = function undrawStar () {
+        createjs.Tween.get(this._starMiddle).to({alpha: 0}, 1000, createjs.Ease.linear).call(function () {
+            this.removeChild(this._starMiddle);
+            this._starMiddle.destroy();
+        }.bind(this));
     }
 
     Garden.prototype.onClick = function onClick (pEventData) {

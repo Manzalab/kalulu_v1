@@ -31,12 +31,12 @@
         loadSpecificAssets: function () {
 
             //Game specific Graphics
-            this.load.image('BackgroundBottom', Config.gameId + '/assets/images/background/BG_Bilan_partie1.png');
-            this.load.image('BackgroundTop', Config.gameId + '/assets/images/background/BG_Bilan_nuages.png');
-            this.load.image('sun', Config.gameId + '/assets/images/background/Soleil.png');
-            this.game.load.atlasJSONHash('fish', Config.gameId + '/assets/images/Animations_poisson/fish.png', Config.gameId + '/assets/images/Animations_poisson/fish.json');
+            this.load.image('BackgroundBottom', 'minigames/' + Config.gameId + '/assets/images/background/BG_Bilan_partie1.png');
+            this.load.image('BackgroundTop', 'minigames/' + Config.gameId + '/assets/images/background/BG_Bilan_nuages.png');
+            this.load.image('sun', 'minigames/' + Config.gameId + '/assets/images/background/Soleil.png');
+            this.game.load.atlasJSONHash('fish', 'minigames/' + Config.gameId + '/assets/images/Animations_poisson/fish.png', 'minigames/' + Config.gameId + '/assets/images/Animations_poisson/fish.json');
             
-            this.game.load.atlasJSONHash('boat', Config.gameId + '/assets/images/Animation_Bateau/boat.png', Config.gameId + '/assets/images/Animation_Bateau/boat.json');
+            this.game.load.atlasJSONHash('boat', 'minigames/' + Config.gameId + '/assets/images/Animation_Bateau/boat.png', 'minigames/' + Config.gameId + '/assets/images/Animation_Bateau/boat.json');
 
             //Game specific UI Graphics            
 
@@ -45,14 +45,14 @@
             //Game Specific Audio
 
             //Kalulu Game Specific audio
-            this.game.load.audio('kaluluIntro', Config.gameId + '/assets/audio/kalulu/intro.wav');
-            this.game.load.audio('kaluluEndWin', Config.gameId + '/assets/audio/kalulu/endWin.wav');
-            this.game.load.audio('kaluluEndLoose', Config.gameId + '/assets/audio/kalulu/endLoose.wav');
-            this.game.load.audio('kaluluFirstTryIntro', Config.gameId + '/assets/audio/kalulu/firstTryIntro.wav');
-            this.game.load.audio('kaluluFirstTryWin', Config.gameId + '/assets/audio/kalulu/firstTryWin.wav');
-            this.game.load.audio('kaluluFirstTryLoose', Config.gameId + '/assets/audio/kalulu/firstTryWrong.wav');
-            this.game.load.audio('kaluluSecondTryWin', Config.gameId + '/assets/audio/kalulu/secondTryWin.wav');
-            this.game.load.audio('kaluluSecondTryLoose', Config.gameId + '/assets/audio/kalulu/secondTryWrong.wav');
+            this.game.load.audio('kaluluIntro', 'minigames/' + Config.gameId + '/assets/audio/kalulu/intro.wav');
+            this.game.load.audio('kaluluEndWin', 'minigames/' + Config.gameId + '/assets/audio/kalulu/endWin.wav');
+            this.game.load.audio('kaluluEndLoose', 'minigames/' + Config.gameId + '/assets/audio/kalulu/endLoose.wav');
+            this.game.load.audio('kaluluFirstTryIntro', 'minigames/' + Config.gameId + '/assets/audio/kalulu/firstTryIntro.wav');
+            this.game.load.audio('kaluluFirstTryWin', 'minigames/' + Config.gameId + '/assets/audio/kalulu/firstTryWin.wav');
+            this.game.load.audio('kaluluFirstTryLoose', 'minigames/' + Config.gameId + '/assets/audio/kalulu/firstTryWrong.wav');
+            this.game.load.audio('kaluluSecondTryWin', 'minigames/' + Config.gameId + '/assets/audio/kalulu/secondTryWin.wav');
+            this.game.load.audio('kaluluSecondTryLoose', 'minigames/' + Config.gameId + '/assets/audio/kalulu/secondTryWrong.wav');
         },
 
         /**
@@ -61,31 +61,31 @@
         loadSharedAssets: function () {
 
             //UI 
-            this.load.image('pause', 'assets_shared/images/ui/pause.png');
-            this.game.load.atlasJSONHash('common/src/ui', 'assets_shared/images/ui/ui.png', 'assets_shared/images/ui/ui.json');
+            this.load.image('pause', 'minigames/common/assets/images/ui/pause.png');
+            this.game.load.atlasJSONHash('ui', 'minigames/common/assets/images/ui/ui.png', 'minigames/common/assets/images/ui/ui.json');
 
             //FX 
-            this.game.load.atlasJSONHash('common/src/fx', 'assets_shared/images/fx/fx.png', 'assets_shared/images/fx/fx.json');
-            this.load.image('wrong', 'assets_shared/images/fx/wrong.png');
+            this.game.load.atlasJSONHash('fx', 'minigames/common/assets/images/fx/fx.png', 'minigames/common/assets/images/fx/fx.json');
+            this.load.image('wrong', 'minigames/common/assets/images/fx/wrong.png');
 
             //KaluluGraphics
-            this.game.load.atlasJSONHash('kaluluIntro', 'assets_shared/images/Kalulu_animations/kaluluIntro.png', 'assets_shared/images/Kalulu_animations/kaluluIntro.json');
-            this.game.load.atlasJSONHash('kaluluOutro', 'assets_shared/images/Kalulu_animations/kaluluOutro.png', 'assets_shared/images/Kalulu_animations/kaluluOutro.json');
-            this.game.load.atlasJSONHash('kaluluIdle1', 'assets_shared/images/Kalulu_animations/kaluluIdle1.png', 'assets_shared/images/Kalulu_animations/kaluluIdle1.json');
-            this.game.load.atlasJSONHash('kaluluIdle2', 'assets_shared/images/Kalulu_animations/kaluluIdle2.png', 'assets_shared/images/Kalulu_animations/kaluluIdle2.json');
-            this.game.load.atlasJSONHash('kaluluSpeaking1', 'assets_shared/images/Kalulu_animations/kaluluSpeaking1.png', 'assets_shared/images/Kalulu_animations/kaluluSpeaking1.json');
-            this.game.load.atlasJSONHash('kaluluSpeaking2', 'assets_shared/images/Kalulu_animations/kaluluSpeaking2.png', 'assets_shared/images/Kalulu_animations/kaluluSpeaking2.json');
+            this.game.load.atlasJSONHash('kaluluIntro', 'minigames/common/assets/images/kalulu_animations/kaluluIntro.png', 'minigames/common/assets/images/kalulu_animations/kaluluIntro.json');
+            this.game.load.atlasJSONHash('kaluluOutro', 'minigames/common/assets/images/kalulu_animations/kaluluOutro.png', 'minigames/common/assets/images/kalulu_animations/kaluluOutro.json');
+            this.game.load.atlasJSONHash('kaluluIdle1', 'minigames/common/assets/images/kalulu_animations/kaluluIdle1.png', 'minigames/common/assets/images/kalulu_animations/kaluluIdle1.json');
+            this.game.load.atlasJSONHash('kaluluIdle2', 'minigames/common/assets/images/kalulu_animations/kaluluIdle2.png', 'minigames/common/assets/images/kalulu_animations/kaluluIdle2.json');
+            this.game.load.atlasJSONHash('kaluluSpeaking1', 'minigames/common/assets/images/kalulu_animations/kaluluSpeaking1.png', 'minigames/common/assets/images/kalulu_animations/kaluluSpeaking1.json');
+            this.game.load.atlasJSONHash('kaluluSpeaking2', 'minigames/common/assets/images/kalulu_animations/kaluluSpeaking2.png', 'minigames/common/assets/images/kalulu_animations/kaluluSpeaking2.json');
 
             // Audio
-            this.game.load.audio('menuNo', 'assets_shared/audio/sfx/ButtonCancel.ogg');
-            this.game.load.audio('menuYes', 'assets_shared/audio/sfx/ButtonOK.ogg');
-            this.game.load.audio('menu', 'assets_shared/audio/sfx/OpenPopin.ogg');
-            this.game.load.audio('right', 'assets_shared/audio/sfx/ResponseCorrect.ogg');
-            this.game.load.audio('wrong', 'assets_shared/audio/sfx/ResponseIncorrect.ogg');
-            this.game.load.audio('winGame', 'assets_shared/audio/sfx/GameOverWin.ogg');
-            this.game.load.audio('loseGame', 'assets_shared/audio/sfx/GameOverLose.ogg');
-            this.game.load.audio('kaluluOn', 'assets_shared/audio/sfx/KaluluOn.ogg');
-            this.game.load.audio('kaluluOff', 'assets_shared/audio/sfx/KaluluOff.ogg');
+            this.game.load.audio('menuNo', 'minigames/common/assets/audio/sfx/ButtonCancel.ogg');
+            this.game.load.audio('menuYes', 'minigames/common/assets/audio/sfx/ButtonOK.ogg');
+            this.game.load.audio('menu', 'minigames/common/assets/audio/sfx/OpenPopin.ogg');
+            this.game.load.audio('right', 'minigames/common/assets/audio/sfx/ResponseCorrect.ogg');
+            this.game.load.audio('wrong', 'minigames/common/assets/audio/sfx/ResponseIncorrect.ogg');
+            this.game.load.audio('winGame', 'minigames/common/assets/audio/sfx/GameOverWin.ogg');
+            this.game.load.audio('loseGame', 'minigames/common/assets/audio/sfx/GameOverLose.ogg');
+            this.game.load.audio('kaluluOn', 'minigames/common/assets/audio/sfx/KaluluOn.ogg');
+            this.game.load.audio('kaluluOff', 'minigames/common/assets/audio/sfx/KaluluOff.ogg');
         },
 
         /**

@@ -51,11 +51,11 @@
                     totalTriesCount                 : 5
                 },
                 localRemediation : {
-                    minimumCorrectStimuliOnScreen   : {min : 1, max : 1}, //
+                    minimumCorrectStimuliOnScreen   : {min : 2, max : 1}, //
                     correctResponsePercentage       : { min: 0.90, max: 0.75 }, //
                     berryPerLine                    : { min: 0, max: 1 }, 
-                    respawnTime                     : {min : 4, max : 3}, //
-                    speed                           : {min : 4, max : 5},  //
+                    respawnTime                     : {min : 3, max : 2.5}, //
+                    speed                           : {min : 5, max : 5.5},  //
                 }
             },
             { // LEVEL 2
@@ -63,39 +63,39 @@
                    stepDistracterCount             : 3, //
                    roundsCount                     : 3, //
                    lineCount                       : 3,
-                   berriesOnScreen                 : 3,
+                   berriesOnScreen                 : 2,
                    totalTriesCount                 : 5
                 },
                 localRemediation: {
-                    minimumCorrectStimuliOnScreen   : {min : 1, max : 1}, //
+                    minimumCorrectStimuliOnScreen   : {min : 2, max : 1}, //
                     correctResponsePercentage       : { min: 0.75, max: 0.60 }, //
                     berryPerLine                    : { min: 0, max: 1 }, 
-                    respawnTime                     : {min : 4, max : 3}, //
-                    speed                           : {min : 5, max : 7},  //
+                    respawnTime                     : {min : 3, max : 2.5}, //
+                    speed                           : {min : 5.5, max : 6},  //
                 }
             },
             { // LEVEL 3
                 globalRemediation: {
                    stepDistracterCount             : 3, //
                    roundsCount                     : 4, //
-                   lineCount                       : 3,
-                   berriesOnScreen                 : 4,
+                   lineCount                       : 4,
+                   berriesOnScreen                 : 3,
                    totalTriesCount                 : 6
                 },
                 localRemediation: {
-                    minimumCorrectStimuliOnScreen   : {min : 1, max : 1}, //
+                    minimumCorrectStimuliOnScreen   : {min : 2, max : 1}, //
                     correctResponsePercentage       : { min: 0.60, max: 0.45 }, //
                     berryPerLine                    : { min: 0, max: 2 }, 
-                    respawnTime                     : {min : 3, max : 2}, //
-                    speed                           : {min : 7, max : 8},  //
+                    respawnTime                     : {min : 2.5, max : 2}, //
+                    speed                           : {min : 6, max : 7},  //
                 }
             }, 
             { // LEVEL 4
                  globalRemediation: {
                    stepDistracterCount             : 3, //
                    roundsCount                     : 4, //
-                   lineCount                       : 3,
-                   berriesOnScreen                 : 5,
+                   lineCount                       : 4,
+                   berriesOnScreen                 : 4,
                    totalTriesCount                 : 6
                 },
                 localRemediation: {
@@ -103,15 +103,15 @@
                     correctResponsePercentage       : { min: 0.45, max: 0.30 }, //
                     berryPerLine                    : { min: 0, max: 2 }, 
                     respawnTime                     : {min : 2, max : 1.5}, //
-                    speed                           : {min : 8, max : 8.5},  //
+                    speed                           : {min : 7.5, max : 8},  //
                 }
             },
             { // LEVEL 5
                 globalRemediation: {
                    stepDistracterCount             : 3, //
                    roundsCount                     : 5, //
-                   lineCount                       : 3,
-                   berriesOnScreen                 : 6,
+                   lineCount                       : 5,
+                   berriesOnScreen                 : 5,
                    totalTriesCount                 : 7
                 },
                 localRemediation: {
@@ -119,7 +119,7 @@
                     correctResponsePercentage       : { min: 0.30, max: 0.10 }, //
                     berryPerLine                    : { min: 0, max: 3 }, 
                     respawnTime                     : {min : 1.5, max : 1}, //
-                    speed                           : {min : 8.5, max : 9},  //
+                    speed                           : {min : 8, max : 8.5},  //
                 }
             }
         ]

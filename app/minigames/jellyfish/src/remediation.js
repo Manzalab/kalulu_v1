@@ -1,11 +1,11 @@
 ﻿define([
-    'phaser-bundle',
     './jellyfish',
-    'common/src/fx'
+    'common/src/fx',
+    'dat.gui'
 ], function (
-    Phaser,
     Jellyfish,
-    Fx
+    Fx,
+    Dat
 ) {
     'use strict';
 
@@ -156,7 +156,7 @@
         // Setting up the recording of the game for Rafiki
         this.game.record = new this.game.rafiki.MinigameDstRecord();
 
-        this.results = this.game.pedagogicData; // for convenience we reference also the pedagogicData object under the name 'results' because we will add response data directly on it.
+        this.results = this.game.pedagogicData.data; // for convenience we reference also the pedagogicData object under the name 'results' because we will add response data directly on it.
         this.consecutiveMistakes = 0;
         this.consecutiveSuccess = 0;
         this.triesRemaining = params.getGlobalParams().totalTriesCount;
@@ -170,8 +170,9 @@
      **/
     Remediation.prototype.initRound = function initRound (roundIndex) {
         
-        var roundData = this.game.pedagogicData.rounds[roundIndex];
-        
+        var roundData = this.game.pedagogicData.data.rounds[roundIndex];
+        this.roundType = roundData.steps[0].type;
+        console.log(this.roundType,roundData)
         this.apparitionsCount = 0;
         this.framesToWaitBeforeNextSpawn = 0;
         this.framesToWaitBeforeNewSound = 0;
@@ -180,12 +181,13 @@
         this.falseResponsesCurrentPool = [];
         this.correctResponse = {};
 
-        var length = roundData.stimuli.length;
+        var length = roundData.steps[0].stimuli.length;
         var stimulus;
         for (var i = 0; i < length; i++) {
-            stimulus = roundData.stimuli[i];
+            stimulus = roundData.steps[0].stimuli[i];
             if (stimulus.correctResponse === true) {
-                this.sounds.correctResponse = this.game.add.audio(stimulus.value.toLowerCase());
+                if (this.game.discipline != "maths") this.sounds.correctResponse = this.game.add.audio(stimulus.value.toLowerCase());
+                else this.sounds.correctResponse = this.game.add.audio(stimulus.value);
                 this.correctResponse.value = stimulus.value;
             }
 
@@ -319,7 +321,8 @@
         
         var localParams = this.game.params.getLocalParams();
         var globalParams = this.game.params.getGlobalParams();
-        var isTargetValue, value, columnNumber, lJellyfish, j, apparition;
+        var isTargetValue, columnNumber, lJellyfish, j, apparition;
+        var value = {};
 
         // determine if we need a target or a distracter
         if (this.targetJellyfishesSpawned < localParams.minimumCorrectStimuliOnScreen && this.apparitionsCount > globalParams.jellyfishesOnScreen/2) {
@@ -333,7 +336,7 @@
         }
 
         if (isTargetValue) {
-            value = this.correctResponse.value;
+            value.text = this.correctResponse.value;
             //console.log("value : " + value);
         }
         else {
@@ -343,22 +346,25 @@
                 //console.log(this.falseResponsesCurrentPool);
                 // we do it two times to have 2 times each false response in the pool.
             }
-            value = this.falseResponsesCurrentPool.splice(Math.floor(Math.random() * this.falseResponsesCurrentPool.length), 1)[0]; // Picks a random value in all the false response values
+            value.text = this.falseResponsesCurrentPool.splice(Math.floor(Math.random() * this.falseResponsesCurrentPool.length), 1)[0]; // Picks a random value in all the false response values
             // console.log(this.falseResponsesCurrentPool.length + " distracters remaining in the pool");
             // console.log("value : " + value + " of type " + typeof value);
         }
 
         columnNumber = Math.floor(Math.random() * globalParams.columnCount) + 1;
+
+        if (this.game.discipline == "maths" && this.roundType == "audioToNonSymbolic") value.picture = true;
+        else value.picture = false;
         lJellyfish = new Jellyfish(columnNumber * this.game.width / (globalParams.columnCount + 1), this.game, value, localParams.speed);
         this.jellyfishes.push(lJellyfish);
 
         j = 0;
-        while (this.results.rounds[0].stimuli[j].value != value) { //finds the value in the results to add one apparition
+        while (this.results.rounds[0].steps[0].stimuli[j].value != value.text) { //finds the value in the results to add one apparition
             j++;
         }
         apparition = new this.game.rafiki.StimulusApparition(isTargetValue);
 
-        this.results.rounds[0].stimuli[j].apparitions.push(apparition);
+        this.results.rounds[0].steps[0].stimuli[j].apparitions.push(apparition);
         lJellyfish.apparition = apparition;
         this.apparitionsCount++;
         this.framesToWaitBeforeNextSpawn = localParams.respawnTime * 60;

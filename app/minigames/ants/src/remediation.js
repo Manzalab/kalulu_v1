@@ -1,11 +1,13 @@
 ﻿define([
     './sentence',
     './ant',
-    'common/src/fx'
+    'common/src/fx',
+    'dat.gui'
 ], function (
     Sentence,
     Ant,
-    Fx
+    Fx,
+    Dat
 ) {
     'use strict';
 
@@ -36,7 +38,7 @@
         this.fx = new Fx(game);
         this.initSounds(game);
 
-        this.validateRoundButton = game.add.button(this.game.world.centerX, this.game.height, 'common/src/ui', this.onClickValidateRound, this);
+        this.validateRoundButton = game.add.button(this.game.world.centerX, this.game.height, 'ui', this.onClickValidateRound, this);
         this.validateRoundButton.frameName = 'retour_valider';
         this.validateRoundButton.height = 300;
         this.validateRoundButton.width = 300;
@@ -165,7 +167,7 @@
         // Setting up the recording of the game for Rafiki
         this.game.record = new this.game.rafiki.MinigameDstRecord();
 
-        this.results = this.game.pedagogicData; // for convenience we reference also the pedagogicData object under the name 'results' because we will add response data directly on it.
+        this.results = this.game.pedagogicData.data; // for convenience we reference also the pedagogicData object under the name 'results' because we will add response data directly on it.
         this.consecutiveMistakes = 0;
         this.consecutiveSuccess = 0;
         this.lives = params.getGeneralParams().lives;
@@ -178,16 +180,47 @@
      * Initialise parameters for the required round with data contained in this.pedagogicData
      **/
     Remediation.prototype.initRound = function initRound(roundIndex) {
-
-        var roundData = this.game.pedagogicData.rounds[roundIndex];
+        var roundData = this.game.pedagogicData.data.rounds[roundIndex].steps[0];
         var localParams = this.game.params.getLocalParams(); // get the latest localParams (localParams can change anytime during the game following player's inputs)
 
         var yOffset = (this.game.height - 200) / (localParams.sentencesCount + 1);
         var xOffset = this.game.width / (localParams.sentencesCount + 1);
+        var sentences = [];
+        var ants = [];
         for (var i = 0; i < localParams.sentencesCount; i++) {
-            var words = roundData.stimuli[i].sentence.split(" ");
-            this.ants.push(new Ant((i + 1) * xOffset, this.game.height, this.game, words[roundData.stimuli[i].wordIndex]));
-            this.sentences.push(new Sentence(i * yOffset, yOffset, words, roundData.stimuli[i].wordIndex, this.game));
+            roundData.stimuli[i].apparitions = [];
+            roundData.stimuli[i].apparitions.push(new this.game.rafiki.StimulusApparition(true));
+            sentences.push(roundData.stimuli[i]);
+            ants.push(roundData.stimuli[i]);
+        }
+
+        for (var i = 0; i < localParams.sentencesCount; i++) {
+            if (this.game.discipline != "maths") {
+                var randSentence = Math.floor(Math.random() * sentences.length);
+                var randAnt = Math.floor(Math.random() * ants.length);
+
+                var wordsSentence = sentences[randSentence].sentence.split(" ");
+                var wordAnt = ants[randAnt].sentence.split(" ")[ants[randAnt].wordIndex];
+                this.ants.push(new Ant((i + 1) * xOffset, this.game.height, this.game, wordAnt));
+                var sentence = new Sentence(i * yOffset, yOffset, wordsSentence, sentences[randSentence].wordIndex, this.game);
+                sentence.apparitions = sentences[randSentence].apparitions;
+                this.sentences.push(sentence);
+                sentences.splice(randSentence, 1);
+                ants.splice(randAnt, 1);
+            }
+            else {
+                var randSentence = Math.floor(Math.random() * sentences.length);
+                var randAnt = Math.floor(Math.random() * ants.length);
+
+                var numberSentence = sentences[randSentence].value;
+                var numberAnt = ants[randAnt].value;
+                this.ants.push(new Ant((i + 1) * xOffset, this.game.height, this.game, numberAnt));
+                var sentence = new Sentence(i * yOffset, yOffset, numberSentence, 0, this.game, true);
+                sentence.apparitions = sentences[randSentence].apparitions;
+                this.sentences.push(sentence);
+                sentences.splice(randSentence, 1);
+                ants.splice(randAnt, 1);
+            }
         }
 
         this.stepCount = 0;
@@ -202,13 +235,14 @@
                 origin = false;
                 if (ant.associatedSentence !== null) {
                     ant.associatedSentence.associatedAnt = null;
+                    this.stepCount--;
                 }
                 ant.associatedSentence = this.sentences[i];
                 this.sentences[i].associatedAnt = ant;
-                ant.walkToSlope(this.sentences[i].words[this.sentences[i].wordIndex].x + this.sentences[i].words[this.sentences[i].wordIndex].width / 2
-                    , this.sentences[i].words[this.sentences[i].wordIndex].y + this.sentences[i].y);
+                ant.walkToSlope(this.sentences[i].holeBackground.x, this.sentences[i].holeBackground.y + this.sentences[i].y);
                 this.stepCount++;
             }
+
         }
         if (origin) {
             if (ant.associatedSentence !== null) {
@@ -219,6 +253,7 @@
             ant.walkToSlope(ant.origin.x, ant.origin.y);
         }
         if (this.stepCount == localParams.sentencesCount) {
+
             var context = this;
             setTimeout(function () {
                 context.validateRoundButton.visible = true;
@@ -226,7 +261,6 @@
 
             this.validateRoundButton.visible = true;
         }
-
         this.validateRoundButton.visible = false;
     }
 
@@ -235,14 +269,24 @@
         this.validateRoundButton.visible = false;
         var success = true;
         for (var i = 0 ; i < this.sentences.length; i++) {
+            this.sentences[i].apparitions[this.sentences[i].apparitions.length - 1].close(true, 0);
+            this.sentences[i].apparitions[this.sentences[i].apparitions.length - 1].associatedWith = this.sentences[i].associatedAnt.text.text;
+
             if (this.sentences[i].words[this.sentences[i].wordIndex].text != this.sentences[i].associatedAnt.text.text) {
                 success = false;
-            }
+            }                            
         }
-        if (success)
+        if (success) {
+            this.sounds.right.play();
             this.success();
-        else
+        }
+        else {
+            for (var i = 0; i < this.sentences.length; i++) {
+                this.sentences[i].apparitions.push(new this.game.rafiki.StimulusApparition(true));
+            }
+            this.sounds.wrong.play();
             this.fail();
+        }
     }
 
     /**
@@ -257,8 +301,7 @@
 
         if (this.triesRemaining > 0) {
 
-            if (this.consecutiveSuccess % 2 === 0) { // Increment difficulty
-                //this.updateRemediation(true); // TODO : implement an increase in local difficulty
+            if (this.consecutiveSuccess % 2 === 0) {
                 if (Config.debugPanel) this.cleanLocalPanel();
                 this.game.params.increaseLocalDifficulty();
                 if (Config.debugPanel) this.setLocalPanel();
@@ -358,60 +401,7 @@
         }
     };
 
-    /*
-    Remediation.prototype.spawnJellyfish = function spawnJellyfish() {
 
-        var localParams = this.game.params.getLocalParams();
-        var globalParams = this.game.params.getGlobalParams();
-        var isTargetValue, value, columnNumber, lJellyfish, j, apparition;
-
-        // determine if we need a target or a distracter
-        if (this.targetJellyfishesSpawned < localParams.minimumCorrectStimuliOnScreen && this.apparitionsCount > globalParams.jellyfishesOnScreen / 2) {
-            isTargetValue = true; // we spawn a correct answer stimulus
-        }
-        else if (this.targetJellyfishesSpawned >= localParams.maximumCorrectStimuliOnScreen && this.apparitionsCount > globalParams.jellyfishesOnScreen / 2) {
-            isTargetValue = false; // we spawn an incorrect answer stimulus
-        }
-        else {
-            isTargetValue = Math.round(Math.random()); // we spawn an random answer stimulus (50/50)
-        }
-
-        if (isTargetValue) {
-            value = this.correctResponse.value;
-            //console.log("value : " + value);
-        }
-        else {
-            if (this.falseResponsesCurrentPool.length === 0) {
-                this.falseResponsesCurrentPool = this.falseResponsesCurrentPool.concat(this.falseResponses.slice(0));
-                this.falseResponsesCurrentPool = this.falseResponsesCurrentPool.concat(this.falseResponses.slice(0));
-                //console.log(this.falseResponsesCurrentPool);
-                // we do it two times to have 2 times each false response in the pool.
-            }
-            value = this.falseResponsesCurrentPool.splice(Math.floor(Math.random() * this.falseResponsesCurrentPool.length), 1)[0]; // Picks a random value in all the false response values
-            // console.log(this.falseResponsesCurrentPool.length + " distracters remaining in the pool");
-            // console.log("value : " + value + " of type " + typeof value);
-        }
-
-        columnNumber = Math.floor(Math.random() * globalParams.columnCount) + 1;
-        lJellyfish = new Jellyfish(columnNumber * this.game.width / (globalParams.columnCount + 1), this.game, value, localParams.speed);
-        this.jellyfishes.push(lJellyfish);
-
-        j = 0;
-        while (this.results.rounds[0].stimuli[j].value != value) { //finds the value in the results to add one apparition
-            j++;
-        }
-        apparition = new this.game.rafiki.StimulusApparition(isTargetValue);
-
-        this.results.rounds[0].stimuli[j].apparitions.push(apparition);
-        lJellyfish.apparition = apparition;
-        this.apparitionsCount++;
-        this.framesToWaitBeforeNextSpawn = localParams.respawnTime * 60;
-    };
-    */
-
-    /**
-     * Close the apparitions of exited jellyfishes, calls the spawner, increment frame counters
-     **/
     Remediation.prototype.update = function () {
 
     };

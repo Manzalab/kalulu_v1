@@ -36,6 +36,9 @@ module.exports = components.mergeConfigs(
             new webpack.DefinePlugin({
               KALULU_VERSION  : JSON.stringify(process.env.npm_package_version),
               KALULU_LANGUAGE : JSON.stringify(process.env.kaluluLanguage),
+            }),
+            new webpack.ProvidePlugin({
+              Phaser  : ('phaser-bundle')
             })
         ]
     },

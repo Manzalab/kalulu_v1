@@ -5,16 +5,10 @@
  * The Burrow Screen will display the Chapters, first level of the discipline modules hierarchy we are using.
  * It must be reworked if Discipline Modules are modified.
 **/
-define([
-	'utils/ui/screen',
-	'utils/events/mouse_event_type',
-	'utils/events/touch_event_type'
-], function (
-	Screen,
-	MouseEventType,
-	TouchEventType
-) {
+(function () {
 	'use strict';
+
+	var Screen 			= require ('../utils/ui/screen');
 
 	function ToyChestScreen (interfaceManager) {
 		
@@ -39,8 +33,6 @@ define([
 		if (Config.enableGlobalVars) window.kalulu._toyChestButtons = this._toyChestButtons;
 		
 
-		this._onClickOnActivityButton = this._onClickOnActivityButton.bind(this);
-		
 		for (var k = this._toyChestButtons.children.length-1 ; k >= 0 ; k--) 
 			this._toyChestButtons.children[k].onClick = this._onClickOnActivityButton.bind(this);
 
@@ -71,5 +63,6 @@ define([
 		this._interfaceManager.requestBrainScreen();
 	};
 
-	return ToyChestScreen;
-});
+	module.exports = ToyChestScreen;
+
+})();

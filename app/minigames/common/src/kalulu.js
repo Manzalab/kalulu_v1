@@ -18,6 +18,9 @@
          * @private
 	    **/
         this.eventManager = game.eventManager;
+        this.game = game;
+        console.log(this.game.gameConfig)
+        console.log(this.game)
         
         /**
          * All kalulu's sounds  
@@ -82,7 +85,7 @@
     Kalulu.prototype.initEvents = function () {
         
         this.eventManager.on('startGame', function () {
-            if (Config.skipKalulu || Config.skipKaluluIntro) {
+            if (this.game.gameConfig.skipKalulu || this.game.gameConfig.skipKaluluIntro) {
                 this.eventManager.emit('pause');
                 this.eventManager.emit('startUi');
                 return;
@@ -122,7 +125,7 @@
         
         
         this.eventManager.on('help', function () { // emitted on click on kalulu button in the main game UI
-            if (Config.skipKalulu || Config.skipKaluluHelp) {
+            if (this.game.gameConfig.skipKalulu || this.game.gameConfig.skipKaluluHelp) {
                 this.eventManager.emit('pause');
                 this.eventManager.emit('offUi');
                 this.eventManager.emit('unPause');
@@ -205,7 +208,7 @@
     Kalulu.prototype.gameOver = function gameOver (isWin) {
         this.playingFinalSpeech = true;
         this.finalResult = isWin;
-        if (Config.skipKalulu || Config.skipKaluluFinal) {
+        if (this.game.gameConfig.skipKalulu || this.game.gameConfig.skipKaluluFinal) {
             this.eventManager.emit('pause');
             if (isWin) this.eventManager.emit('GameOverWinScreen'); // remediation reacts by launching its GameOverWin Script
             else this.eventManager.emit('GameOverLoseScreen'); // remediation reacts by launching its GameOverLose Script

@@ -1,10 +1,12 @@
 ﻿define([
     'common/src/fx',
+    'dat.gui',
     './buoy',
     './background',
     './fish'
 ], function (
     Fx,
+    Dat,
     Buoy,
     Background,
     Fish
@@ -114,27 +116,19 @@
 
         this.eventManager.on('timerFinished', function () {
             if (this.score >= globalParams.minimumSortedWords && this.score / (globalParams.totalTriesCount - this.triesRemaining) >= globalParams.minimumWinRatio) {
-                this.sounds.winGame.play();
-                this.eventManager.emit('offUi'); //listened by Ui
-                this.sounds.winGame.onStop.add(function () {
-                    this.sounds.winGame.onStop.removeAll();
-                    this.eventManager.emit('endWin');
-                }, this);
+                this.gameOverWin();
             }
             else {
-                this.sounds.loseGame.play();
-                this.eventManager.emit('offUi'); //listened by Ui
-                this.sounds.loseGame.onStop.add(function () {
-                    this.sounds.loseGame.onStop.removeAll();
-                    this.eventManager.emit('endLoose');
-                }, this);
+                this.gameOverLose();
             }
         }, this);
 
         this.eventManager.on('swipe', function (object, direction) {
             this.eventManager.emit('pause');
+            if (this.background.enabled) this.background.addTime(object.time);
             if (direction == 4) {
-                object.flyTo(this.buoys.left.x, this.buoys.left.y)
+                object.flyTo(this.buoys.left.x, this.buoys.left.y);
+
                 this.direction = "left";
             }
             if (direction == 8) {
@@ -145,10 +139,10 @@
 
         this.eventManager.on('finishedFlying', function () {
             if (this.game.discipline != "maths") {
-                this.stimuli[this.stepIndex][0].apparitions[this.stimuli[this.stepIndex][0].apparitions.length - 1].close(true, 0);
+                if(!this.tutorial1 && !this.tutorial2) this.stimuli[this.stepIndex][0].apparitions[this.stimuli[this.stepIndex][0].apparitions.length - 1].close(true, 0);
 
                 if (this.direction == "right") {
-                    this.stimuli[this.stepIndex][0].apparitions[this.stimuli[this.stepIndex][0].apparitions.length - 1].clickedCategory = this.buoys.right.category;
+                    if (!this.tutorial1 && !this.tutorial2) this.stimuli[this.stepIndex][0].apparitions[this.stimuli[this.stepIndex][0].apparitions.length - 1].clickedCategory = this.buoys.right.category;
                     if (this.stimuli[this.stepIndex][0].category == this.buoys.right.category) {
                         this.success();
                     }
@@ -158,7 +152,7 @@
 
                 }
                 else {
-                    this.stimuli[this.stepIndex][0].apparitions[this.stimuli[this.stepIndex][0].apparitions.length - 1].clickedCategory = this.buoys.left.category;
+                    if (!this.tutorial1 && !this.tutorial2) this.stimuli[this.stepIndex][0].apparitions[this.stimuli[this.stepIndex][0].apparitions.length - 1].clickedCategory = this.buoys.left.category;
                     if (this.stimuli[this.stepIndex][0].category == this.buoys.left.category) {
                         this.success();
                     }
@@ -169,11 +163,12 @@
                 }
             }
             else {
-                //for (var i = 0 ; i < this.stimuli[this.stepIndex].length; i++) {
-                //    this.stimuli[this.stepIndex][i].apparitions[this.stimuli[this.stepIndex][i].apparitions.length - 1].close(true, 0);
-                //}
-
+                console.log(this.buoys.right.stimuli.apparitions)
                 if (this.direction == "right") {
+                    if (!this.tutorial1 && !this.tutorial2) {
+                        this.buoys.right.stimuli.apparitions[this.buoys.right.stimuli.apparitions.length - 1].close(true, 0);
+                        this.buoys.left.stimuli.apparitions[this.buoys.left.stimuli.apparitions.length - 1].close(false, 0);
+                    }
                     if (this.buoys.right.text.text > this.buoys.left.text.text) {
                         this.success();
                     }
@@ -183,6 +178,10 @@
 
                 }
                 else {
+                    if (!this.tutorial1 && !this.tutorial2) {
+                        this.buoys.left.stimuli.apparitions[this.buoys.left.stimuli.apparitions.length - 1].close(true, 0);
+                        this.buoys.right.stimuli.apparitions[this.buoys.right.stimuli.apparitions.length - 1].close(false, 0);
+                    }
                     if (this.buoys.left.text.text > this.buoys.right.text.text) {
                         this.success();
                     }
@@ -254,19 +253,21 @@
     Remediation.prototype.newStep = function () {
         this.stepIndex = Math.floor(Math.random() * (this.stimuli.length));
 
-        for (var i = 0 ; i < this.stimuli[this.stepIndex].length; i++) {
-            var apparition = new this.game.rafiki.StimulusApparition(true);
-            this.stimuli[this.stepIndex][i].apparitions = [];
-            this.stimuli[this.stepIndex][i].apparitions.push(apparition);
-        }
+        if (!this.tutorial1 && !this.tutorial2)
+            for (var i = 0 ; i < this.stimuli[this.stepIndex].length; i++) {
+                var apparition = new this.game.rafiki.StimulusApparition(this.stimuli[this.stepIndex][i].correctResponse);
+                this.stimuli[this.stepIndex][i].apparitions = [];
+                this.stimuli[this.stepIndex][i].apparitions.push(apparition);
+            }
 
         if (this.game.discipline != "maths") this.fish.reset(this.stimuli[this.stepIndex][0].value);
         else {
             this.fish.reset("");
             var rand = Math.floor(Math.random() * 2);
             this.buoys.left.setText(this.stimuli[this.stepIndex][rand].value);
+            this.buoys.left.stimuli = this.stimuli[this.stepIndex][rand];
             this.buoys.right.setText(this.stimuli[this.stepIndex][Math.abs(rand - 1)].value);
-
+            this.buoys.right.stimuli = this.stimuli[this.stepIndex][Math.abs(rand - 1)];
         }
     };
 
@@ -290,7 +291,7 @@
             this.sounds.right.play();
             this.sounds.right.onStop.add(function () {
                 this.sounds.right.onStop.removeAll();
-                this.newStep();
+                
                 if (this.tutorial1) {
                     this.tutorial1 = false;
                     this.eventManager.emit('firstTryWin');
@@ -298,10 +299,11 @@
                 else if (this.tutorial2) {
                     this.tutorial2 = false;
                     this.eventManager.emit('secondTryWin');
-                    this.eventManager.emit('startTimer');
                 }
                 else
                     this.eventManager.emit('unPause');
+
+                this.newStep();
             }, this);
 
         }
@@ -344,7 +346,6 @@
                 else if (this.tutorial2) {
                     this.tutorial2 = false;
                     this.eventManager.emit('secondTryLoose');
-                    this.eventManager.emit('startTimer');
                 }
                 else this.eventManager.emit('unPause');
             }, this);
