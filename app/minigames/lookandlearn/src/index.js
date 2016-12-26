@@ -39,11 +39,12 @@ define([
     **/
     function GameLauncher (rafiki) {
         this.rafiki = rafiki;
-        this.config = minigameConfig;
-        this.config.pedagogicData = rafiki.getPedagogicData();
+        this._config = minigameConfig;
+        
+        this._config.pedagogicData = rafiki.getPedagogicData();
         console.log('here');
-        if (typeof this.config.requestMinigameConfig === 'function') {
-            this.config.requestMinigameConfig(this.init.bind(this));
+        if (typeof this._config.requestMinigameConfig === 'function') {
+            this._config.requestMinigameConfig(this.init.bind(this));
             console.log("[Minigame] Requested this.game.config");
         }
         else {
@@ -61,8 +62,8 @@ define([
          * @type {Phaser.Game}
         **/
         this.game = new Phaser.Game(1920, 1350, Phaser.AUTO); // TODO : make it dynamic for multiscreen handling
-        this.game.config = this.config;
-        if (this.game.config.globalVars) {
+        this.game.gameConfig = this._config;
+        if (this.game.gameConfig.globalVars) {
             console.info('Debug with global Variables enabled. Everything can be found in global variable "lookandlearn"');
             window.lookandlearn = {};
             window.lookandlearn.game = this.game;

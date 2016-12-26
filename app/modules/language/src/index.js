@@ -253,8 +253,6 @@
         }
         console.log(selectedNotion);
         pedagogicData = {
-            discipline        : 'language',
-            language          : KALULU_LANGUAGE, // can be : english, french, swahili
             video1            : selectedNotion.video1,
             video2            : selectedNotion.video2,
             sound             : selectedNotion.soundPath,
@@ -265,7 +263,11 @@
         };
         
         console.log(pedagogicData);
-        return pedagogicData;
+        return {
+            discipline : 'language',
+            language   : KALULU_LANGUAGE, // can be : english, french, swahili
+            data       : [pedagogicData]
+        };
     };
 
     /**
