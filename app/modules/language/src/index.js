@@ -486,14 +486,14 @@
             if (!wordList.hasOwnProperty(wordId)) continue;
 
             lDistractorSyllable = wordList[wordId];
-            console.log('processing <' + lDistractorSyllable.value + '>');
+            //console.log('processing <' + lDistractorSyllable.gpMatch + '>');
             if (lDistractorSyllable.syllableCount === 1 && (
                 lDistractorSyllable.syllabicStructure === "CV" || 
                 lDistractorSyllable.syllabicStructure === "VC" || 
                 lDistractorSyllable.syllabicStructure === "V" ))
             {
-                console.log('match');
-                console.log(lDistractorSyllable);
+                // console.log('match');
+                // console.log(lDistractorSyllable);
                 lessonNumber = 0;
                 for (var i = 0 ; i < lDistractorSyllable.graphemeCount ; i++) {
                     lessonNumber = Math.max(lessonNumber, lDistractorSyllable.gpList[i].lesson);
@@ -735,7 +735,12 @@
 
         var totalTargets = this._selectTargets(params, lessonNumber, stimuliPool);
         
-        var lSetup = { rounds : [] };
+        var lSetup = { 
+            discipline : 'language',
+            data : {
+                rounds : []
+            }
+        };
 
         // CONSTRUCTION OF SETUP OBJECT
         rounds :
@@ -743,7 +748,11 @@
             
             var lRound = {
                 stepRequiredCrCount : params.stepRequiredCrCount || 1, // amount of correct responses to validate the step (or round if 1 step only)
-                stimuli : []
+                steps : [
+                    {
+                        stimuli : []
+                    }
+                ]
             };
 
             var lTarget = totalTargets.pop();
@@ -754,7 +763,7 @@
             if (lTarget.syllabicStructure.indexOf("V") !== -1) skills.push(vowelsReco);
             if (lTarget.lettersCount > 1) skills.push(leftToRightReading);
             var targetStimulus = StimuliFactory.fromWord(lTarget, skills, isCapitalLetters, true);
-            lRound.stimuli.push(targetStimulus);
+            lRound.steps[0].stimuli.push(targetStimulus);
 
 
             // SELECTION OF CANDIDATE SYLLABLES FOR DISTRACTION
@@ -875,12 +884,11 @@
             this._selectRandomElements(vowelChangeCount, distractorsStimuli.vowelChange, selectedDistractorsStimuli, false, true);
 
             console.log(selectedDistractorsStimuli);
-            lRound.stimuli = lRound.stimuli.concat(selectedDistractorsStimuli);
+            lRound.steps[0].stimuli = lRound.steps[0].stimuli.concat(selectedDistractorsStimuli);
 
-            lSetup.rounds.push(lRound);
+            lSetup.data.rounds.push(lRound);
         }
 
-        lSetup.round = lSetup.rounds; // for the deprecated use of "round" in minigames
         this._currentExerciseSetup = lSetup;
         console.log(this._currentExerciseSetup);
         return this._currentExerciseSetup;
@@ -1075,12 +1083,12 @@
         var totalClicks = 0;
         var totalCorrectClicks = 0;
         var results = record.results;
-
+        console.log(record);
         var flawlessGame = true;
 
-        for (var r = 0; r < results.rounds.length ; r++) {
+        for (var r = 0; r < results.data.rounds.length ; r++) {
             console.info("[LangugaeModule] Processing Results of Minigame for Round " + r);
-            var stimuli = results.rounds[r].stimuli;
+            var stimuli = results.data.rounds[r].steps[0].stimuli;
             
             for (var s = 0 ; s < stimuli.length ; s++) {
                 

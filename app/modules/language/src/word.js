@@ -148,7 +148,7 @@ define([], function () {
         **/
         id: {
             get: function () {
-                return this._word;
+                return this._gpMatch;
             },
             set: function (value) {
                 try { value = value.toString(); }
