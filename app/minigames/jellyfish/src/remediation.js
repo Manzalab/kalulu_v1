@@ -129,8 +129,8 @@
             this.eventManager.removeAllListeners();
             this.eventManager = null;
             this.game.rafiki.close();
-            this.game.destroy();
             if (this.game.gameConfig.debugPanel) this.clearDebugPanel();
+            this.game.destroy();
         }, this);
 
         this.eventManager.on('replay', function () {
