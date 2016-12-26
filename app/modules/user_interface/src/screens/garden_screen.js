@@ -44,6 +44,7 @@ define([
         this._data = chaptersData;
         this._interfaceManager = interfaceManager;
         this._userProfile = userProfile;
+        console.log(userProfile);
         this.name="mcGardenScreen";
         this.build();
         
@@ -141,7 +142,7 @@ define([
         }
 
         this.fertilizerText = this._userProfile.fertilizer;
-    }
+    };
 
     GardenScreen.prototype.unlockBonusPath = function unlockBonusPath() {
         var lArrayLesson = [];
