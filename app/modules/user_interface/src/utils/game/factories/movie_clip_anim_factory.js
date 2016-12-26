@@ -136,7 +136,7 @@
         // console.log('anim ended');
         if (!this._anim.loop) {
             // console.log('anim ended and has no loop');
-            this._hasAnimEnded = true;
+            this._setAnimEnded();
         }
     };
 

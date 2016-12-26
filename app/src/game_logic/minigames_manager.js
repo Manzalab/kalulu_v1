@@ -103,7 +103,7 @@ define([
     MinigamesManager.prototype._getInterface = function _getInterface (debugPanel, node) {
 
         return {
-            discipline          : node ? node.discipline.name : null,
+            discipline          : node ? node.discipline.type.toLowerCase() : null,
             getDifficultyLevel  : this._getDifficultyParams.bind(this),
             getPedagogicData    : this._getPedagogicData.bind(this), // We let to the discipline module the logic of providing the appropriate setup depending on the node
             save                : this._saveMiniGameData.bind(this),
