@@ -35,7 +35,7 @@ function ProgressionHandler(settings, game){
         that.setModel(that.series[that.currentModelIndex]);
     });
 
-    this.settings.lettersDescriptor = this.game.config.letters;
+    this.settings.lettersDescriptor = this.game.gameConfig.letters;
 }
 
 ProgressionHandler.prototype.load = function ProgressionHandlerLoad(callback){
@@ -64,7 +64,7 @@ ProgressionHandler.prototype.setModel = function ProgressionHandlerSetModel(lett
   this.letterID = letter;
   this.currentModel = this.settings.lettersDescriptor.letters[letter];
   this.currentStep = 0;
-
+  
   Emitter.emit(Events.NEW_LETTER, JSON.parse(JSON.stringify(this.currentModel)), letter);
   Emitter.emit(Events.STEP_STARTED, this.getCurrentStep(), 1);
 

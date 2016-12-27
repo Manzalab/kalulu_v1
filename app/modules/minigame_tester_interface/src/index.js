@@ -12,7 +12,19 @@
     String.prototype.capitalise = function capitalise () {
         return this[0].toUpperCase() + this.substr(1);
     };
-    
+
+
+    Dat.GUI.prototype.removeFolder =  function removeFolder (name) {
+        var folder = this.__folders[name];
+        if (!folder) {
+            return;
+        }
+        folder.close();
+        this.__ul.removeChild(folder.domElement.parentNode);
+        delete this.__folders[name];
+        this.onResize();
+    };
+
     function MinigamesTester () {
 
         this.options =  {
@@ -41,13 +53,15 @@
 
         var gui = this.gui = new Dat.GUI();
         
-        gui.add(this.options, 'LANGUAGE');
-
-        gui.add(this.options, 'minigame', KALULU_MINIGAMES_LIST);
-        gui.add(this.options, 'discipline', ['maths', 'language']).listen();
-        gui.add(this.options, 'globalLevel').min(1).max(5).step(1).listen();
-        gui.add(this.options, 'localLevel').min(1).max(5).step(1).listen();
-        gui.add(this.options, 'start');
+        this.guiFolderName = 'Launcher GUI';
+        var LauncherGUI = gui.addFolder(this.guiFolderName);
+        LauncherGUI.add(this.options, 'LANGUAGE');
+        LauncherGUI.add(this.options, 'minigame', KALULU_MINIGAMES_LIST);
+        LauncherGUI.add(this.options, 'discipline', ['maths', 'language']).listen();
+        LauncherGUI.add(this.options, 'globalLevel').min(1).max(5).step(1).listen();
+        LauncherGUI.add(this.options, 'localLevel').min(1).max(5).step(1).listen();
+        LauncherGUI.add(this.options, 'start');
+        LauncherGUI.open();
     };
 
     MinigamesTester.prototype.startGame = function startGame () {
@@ -182,7 +196,8 @@
             MinigameDstRecord  : MinigameDstRecord,
             StimulusApparition : StimulusApparition
         };
-
+        
+        tester.gui.removeFolder(tester.guiFolderName);
         this._currentMinigame = new Launcher(rafiki);
     }
 

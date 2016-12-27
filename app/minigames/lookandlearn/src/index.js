@@ -49,7 +49,7 @@ define([
         if (typeof this._config.requestMinigameConfig === 'function') {
             
             this._config.requestMinigameConfig(this.init.bind(this));
-            console.log("[Minigame] Requested this.game.config");
+            console.log("[Minigame] Requested this.game.gameConfig");
         }
         else {
             
@@ -74,9 +74,14 @@ define([
             window.lookandlearn.game = this.game;
         }
 
+
         this.game.rafiki = this.rafiki;
         // debug Panel from Kalulu
         this.game.debugPanel = this.rafiki.debugPanel;
+
+        if (this.game.gameConfig.debugPanel) {
+            this.setupDebugPanel();
+        }
         
         //  Game States
         this.game.state.add('Boot', Boot);
@@ -110,6 +115,49 @@ define([
         
         this.game.destroy();
         this.game = null;
+    };
+
+    GameLauncher.prototype.setupDebugPanel = function setupDebugPanel() {
+        
+        console.log("LookAndLearn Setupping debug Panel");
+        var debugPanel = null;
+        if (this.game.debugPanel) {
+            debugPanel = this.game.debugPanel;
+            this.game.gameConfig.rafikiDebugPanel = true;
+        }
+        else {
+            debugPanel = this.game.debugPanel = new Dat.GUI();
+            this.game.gameConfig.rafikiDebugPanel = false;
+        }
+
+        this.game.debugFolderNames = {
+            functions: "Debug Functions"
+        };
+
+        this._debugFunctions = debugPanel.addFolder(this.game.debugFolderNames.functions);
+
+        this._debugFunctions.add(this, "AutoWin");
+        this._debugFunctions.add(this, "skipKalulu");
+        this._debugFunctions.open();
+    };
+
+    GameLauncher.prototype.clearDebugPanel = function clearDebugPanel() {
+        if (this.game.gameConfig.rafikiDebugPanel) {
+            this.game.debugPanel.removeFolder(this.game.debugFolderNames.functions);
+        }
+        else {
+            this.game.debugPanel.destroy();
+        }
+    };
+
+    GameLauncher.prototype.AutoWin = function AutoWin() {
+
+        this.game.eventManager.emit("exitGame");
+    };
+
+    GameLauncher.prototype.skipKalulu = function skipKalulu() {
+
+        this.game.eventManager.emit("skipKalulu");
     };
 
     return GameLauncher;
