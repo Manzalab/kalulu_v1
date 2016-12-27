@@ -16,7 +16,7 @@ function gameCreator(preload, create, loop, config, endFunction){
 
     console.log('End creating Game Object');
 
-    game.config = config;
+    game.gameConfig = config;
     game.end = endFunction;
     console.log(config);
     Emitter.emit(Events.GAME_LAUNCHED);

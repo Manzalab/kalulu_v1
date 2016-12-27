@@ -149,7 +149,7 @@
             this.eventManager.emit('introSequenceComplete');
             return;
         }
-
+        this.isPlayingIntroSequence = true;
         this.eventManager.emit('pause');
         this.eventManager.emit('offUi');
         this.sounds.currentSound = this.sounds.on;
@@ -176,6 +176,7 @@
                 this.kaluluSprite.animations.play('outroAnim');
                 this.kaluluSprite.animations.currentAnim.onComplete.addOnce(function () {
                     this.kaluluSprite.visible = false;
+                    this.isPlayingIntroSequence = false;
                     this.eventManager.emit('startUi');
                     this.eventManager.emit('introSequenceComplete');
                 }, this);
@@ -339,6 +340,12 @@
         this.kaluluSprite.animations.currentAnim.stop();
         this.speaking = false;
         this.kaluluSprite.visible = false;
+
+        if (this.isPlayingIntroSequence) {
+            this.isPlayingIntroSequence = false;
+            this.eventManager.emit('introSequenceComplete');
+        }
+
         if (this.playingFinalSpeech) {
             if (this.finalResult) this.eventManager.emit('GameOverWinScreen');
             else this.eventManager.emit('GameOverLoseScreen');
