@@ -14,7 +14,7 @@ module.exports = components.mergeConfigs(
         devtool : 'eval-source-map',
         output : {
             path : PATHS.www,
-            publicPath : '/',
+            publicPath : '',
             // the [name] syntax allows to build each entry point separately in a js file named after the key in the entry object
             // the [chunkhash] syntax allows to add the chunk version hash string to the filename for better caching
             filename : '[name].[hash].js',

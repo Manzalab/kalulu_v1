@@ -104,7 +104,7 @@
      * Initialise the game manager and the interface manager. Starts the application main loop.
     **/
     Application.prototype.initAndStart = function initAndStart () {
-        Config.request('/config/config.json', function () {
+        Config.request('config/config.json', function () {
             this._init();
         }.bind(this));
     };
