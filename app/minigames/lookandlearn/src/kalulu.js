@@ -142,7 +142,7 @@
 
     Kalulu.prototype.playIntroSequence = function playIntroSequence () {
 
-        if (this.game.config.skipKalulu || this.game.config.skipKaluluIntro) {
+        if (this.game.gameConfig.skipKalulu || this.game.gameConfig.skipKaluluIntro) {
             console.info("[Kalulu] Skipping Intro Speech due to debug configuration");
             this.eventManager.emit('pause');
             this.eventManager.emit('startUi');
@@ -185,7 +185,7 @@
 
     Kalulu.prototype.playHelpSequence = function playHelpSequence () { // emitted on click on kalulu button in the main game UI
         
-        if (this.game.config.skipKalulu || this.game.config.skipKaluluHelp) {
+        if (this.game.gameConfig.skipKalulu || this.game.gameConfig.skipKaluluHelp) {
             console.info("[Kalulu] Skipping Help Speech due to debug configuration");
             this.eventManager.emit('pause');
             this.eventManager.emit('offUi');
@@ -240,7 +240,7 @@
     Kalulu.prototype.gameOver = function gameOver (isWin) {
         this.playingFinalSpeech = true;
         this.finalResult = isWin;
-        if (this.game.config.skipKalulu || this.game.config.skipKaluluFinal) {
+        if (this.game.gameConfig.skipKalulu || this.game.gameConfig.skipKaluluFinal) {
             this.eventManager.emit('pause');
             if (isWin) this.eventManager.emit('GameOverWinScreen'); // remediation reacts by launching its GameOverWin Script
             else this.eventManager.emit('GameOverLoseScreen'); // remediation reacts by launching its GameOverLose Script
@@ -292,7 +292,7 @@
     Kalulu.prototype.onCloseStep = function onCloseStep () {
         this.playingFinalSpeech = true;
 
-        if (this.game.config.skipKalulu || this.game.config.skipKaluluFinal) {
+        if (this.game.gameConfig.skipKalulu || this.game.gameConfig.skipKaluluFinal) {
             this.eventManager.emit('pause');
             this.eventManager.emit('nextStep');
             return;

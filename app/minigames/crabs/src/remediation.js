@@ -26,7 +26,7 @@
         this.initCrabs(game);
 
         // Debug & Tuning
-        if (Config.debugPanel) {
+        if (this.game.gameConfig.debugPanel) {
             this.setupDebugPanel();
         }
     };
@@ -150,7 +150,7 @@
             this.eventManager.removeAllListeners();
             this.eventManager = null;
             this.game.rafiki.close();
-            if (Config.debugPanel) this.clearDebugPanel();
+            if (this.game.gameConfig.debugPanel) this.clearDebugPanel();
             this.game.destroy();
         }, this);
 
@@ -238,9 +238,9 @@
 
         if (this.triesRemaining > 0) {
             if (this.consecutiveSuccess % 2 === 0) {
-                if (Config.debugPanel) this.cleanLocalPanel();
+                if (this.game.gameConfig.debugPanel) this.cleanLocalPanel();
                 this.game.params.increaseLocalDifficulty();
-                if (Config.debugPanel) this.setLocalPanel();
+                if (this.game.gameConfig.debugPanel) this.setLocalPanel();
             }
 
 
@@ -265,9 +265,9 @@
             if (this.triesRemaining > 0) {
                 if (this.consecutiveMistakes % 2 === 0) {
                     this.eventManager.emit('help');
-                    if (Config.debugPanel) this.cleanLocalPanel();
+                    if (this.game.gameConfig.debugPanel) this.cleanLocalPanel();
                     this.game.params.decreaseLocalDifficulty();
-                    if (Config.debugPanel) this.setLocalPanel();
+                    if (this.game.gameConfig.debugPanel) this.setLocalPanel();
                 }
                 else {
                     this.eventManager.emit('playCorrectSound');
@@ -437,7 +437,7 @@
 
     Remediation.prototype.onClickOnReplay = function onClickOnReplay() {
 
-        if (Config.debugPanel) {
+        if (this.game.gameConfig.debugPanel) {
             document.getElementsByClassName("dg main a")[0].remove();
             this.debug = null;
         }
@@ -448,7 +448,7 @@
     // DEBUG
 
     Remediation.prototype.setupDebugPanel = function setupDebugPanel() {
-
+        console.log("Crabs Setupping debug Panel");
         if (this.game.debugPanel) {
             this.debugPanel = this.game.debugPanel;
             this.rafikiDebugPanel = true;

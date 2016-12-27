@@ -26,10 +26,10 @@ define([
     function PhaseVideo (game) {
         console.log(game);
         this.game = game;
-        console.log(this.game);
+        // console.log(this.game);
         Phaser.State.call(this);
-        console.log(game);
-        console.log(this.game);
+        // console.log(game);
+        // console.log(this.game);
         this.game = game;
         if (this.game.config.globalVars) window.lookandlearn.phaseVideo = this;
     }
