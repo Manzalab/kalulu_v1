@@ -86,9 +86,9 @@ define([
         var amplitude = 1.5;
 
         createjs.Tween.get(this._leaf1).to({rotation: Math.DEG2RAD * this._angles.leaf1}, duration * 1000, createjs.Ease.getElasticOut(amplitude,duration)).call(function () {
-            //console.log("complete");
             this._isIn = true;
             callback();
+            this.tweenOut(duration);
         }.bind(this));
         createjs.Tween.get(this._leaf2).to({rotation: Math.DEG2RAD * this._angles.leaf2}, duration * 1000, createjs.Ease.getElasticOut(amplitude,duration));
         createjs.Tween.get(this._leaf3).to({rotation: Math.DEG2RAD * this._angles.leaf3}, duration * 1000, createjs.Ease.getElasticOut(amplitude,duration));
@@ -96,6 +96,32 @@ define([
     };
 
     GardenTransition.prototype.easeOut = function easeOut (duration, callback) {
+
+        this._callback = callback;
+
+        // if (!this._isIn) {
+        //     console.log("not In");
+        //     setTimeout(this.easeOut.bind(this), 200);
+        //     return;
+        // }
+        
+        // if (typeof duration === "undefined") duration = 3;
+
+        // var amplitude = 1.5;
+
+        // createjs.Tween.get(this._leaf1).to({rotation: this._rotations.leaf1}, duration * 1000, createjs.Ease.getElasticIn(amplitude,duration)).call(function () {
+
+        //     //window.onload = function () { alert("It's loaded!") }
+
+        //     // callback();
+        //     this._isIn = false;
+        // }.bind(this));
+        // createjs.Tween.get(this._leaf2).to({rotation: this._rotations.leaf2}, duration * 1000, createjs.Ease.getElasticIn(amplitude,duration));
+        // createjs.Tween.get(this._leaf3).to({rotation: this._rotations.leaf3}, duration * 1000, createjs.Ease.getElasticIn(amplitude,duration));
+        // createjs.Tween.get(this._leaf4).to({rotation: this._rotations.leaf4}, duration * 1000, createjs.Ease.getElasticIn(amplitude,duration));
+    };
+
+    GardenTransition.prototype.tweenOut = function tweenOut (duration) {
         if (!this._isIn) {
             console.log("not In");
             setTimeout(this.easeOut.bind(this), 200);
@@ -107,13 +133,14 @@ define([
         var amplitude = 1.5;
 
         createjs.Tween.get(this._leaf1).to({rotation: this._rotations.leaf1}, duration * 1000, createjs.Ease.getElasticIn(amplitude,duration)).call(function () {
-            callback();
+
+            this._callback();
             this._isIn = false;
         }.bind(this));
         createjs.Tween.get(this._leaf2).to({rotation: this._rotations.leaf2}, duration * 1000, createjs.Ease.getElasticIn(amplitude,duration));
         createjs.Tween.get(this._leaf3).to({rotation: this._rotations.leaf3}, duration * 1000, createjs.Ease.getElasticIn(amplitude,duration));
         createjs.Tween.get(this._leaf4).to({rotation: this._rotations.leaf4}, duration * 1000, createjs.Ease.getElasticIn(amplitude,duration));
-    };
+    }
 
     /**
      * Returns something

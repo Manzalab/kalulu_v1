@@ -72,6 +72,10 @@ define([
         this._backButton = this.getChildByName("mcGardenTLHud").getChildByName("mcBackButton");
         this._kaluluButton = this.getChildByName("mcGardenBLHud").getChildByName("mcKaluluButton");
         this._neuroenergy = this.getChildByName("mcGardenTRHud").getChildByName("mcNeuroenergy");
+        this._toyChestButton = this.getChildByName("mcGardenBRHud").getChildByName("mcBurrowButton");
+
+        this._toyChestButton.alpha = 0;
+        this._toyChestButton.setModeVoid();
 
         this._lessonDotContainer = new PIXI3.Container();
         this._lessonDotContainer.name = "LessonDotContainer";
@@ -105,6 +109,10 @@ define([
         // back
         this._backButton.onClick = this._onClickOnBackButton.bind(this);
         this._kaluluButton.onClick = this._onClickOnKaluluButton.bind(this);
+
+        // Tween
+
+        this._index = 1;
     }
 
     GardenScreen.prototype = Object.create(Screen.prototype);
@@ -211,7 +219,10 @@ define([
     GardenScreen.prototype.unlockStarMiddle = function unlockStarMiddle() {
         var id = this._focusedGarden.id;
         
-        if(this._bonusPathA[id].state === "On" && this._bonusPathB[id].state === "On") this._focusedGarden.starMiddle.setModeLarge();
+        if(this._bonusPathA[id].state === "On" && this._bonusPathB[id].state === "On") {
+            this._focusedGarden.starMiddle.setModeLarge();
+            //this._tweenStar(this._focusedGarden.starMiddle);
+        }
         else if(this._bonusPathA[id].state === "On" || this._bonusPathB[id].state === "On") this._focusedGarden.starMiddle.setModeMedium();
         else this._focusedGarden.starMiddle.setModeSmall();
     }
@@ -396,6 +407,34 @@ define([
             // console.log("Right Garden has been set Interactive");
         }
     };
+
+    GardenScreen.prototype._tweenStar = function _tweenStar (star) {
+        // RETIRER LES INTERACTIONS
+
+        var duration = 1000;
+
+        star.alpha = 1;
+        star.scale.x = 0.5;
+        star.scale.y = 0.5;
+
+        if (this._index < 3){
+            createjs.Tween.get(star.scale).to({x: 1.5, y: 1.5}, duration, createjs.Ease.bounceOut).call(function () {
+                this._tweenStar(star);
+                this._index++;
+            }.bind(this));
+            createjs.Tween.get(star).to({rotation: star.rotation + Math.PI},duration);
+        }
+        else {
+            createjs.Tween.get(star.scale).to({x: 1, y: 1}, duration, createjs.Ease.bounceOut).call(function () {
+                star.rotation = 0;
+                this._index = 0;
+            }.bind(this));
+            createjs.Tween.get(star).to({rotation: star.rotation + Math.PI},duration);
+        }
+        
+
+        // REMETTRE LES INTERACTIONS
+    }
 
     GardenScreen.prototype._onClickOnBackButton = function _onClickOnBackButton (eventData) {
         

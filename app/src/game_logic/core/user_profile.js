@@ -217,6 +217,11 @@ define([
     // ###  DEBUG  ##################################################################################################################################
     // ##############################################################################################################################################
 
+    UserProfile.prototype.unlockNeuroEnergy = function unlockNeuroEnergy(neuroEnergyValue) {
+        console.log(neuroEnergyValue);
+        this.fertilizer = neuroEnergyValue;
+    }
+
     UserProfile.prototype.completeAllNodes = function completeAllNodes () {
         this.setPlanNodesTo(this.Language.plan, true);
         this.setPlanNodesTo(this.Maths.plan, true);

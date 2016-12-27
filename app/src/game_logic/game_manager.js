@@ -155,7 +155,8 @@
         this._eventSystem.emit(Events.APPLICATION.GET_SAVE, 'UserData');
 
         if (Config.enableQAControls) {
-            this._eventSystem.on("UNLOCK_DEBUG", this._onDebugUnlockRequest, this);
+            this._eventSystem.on(Events.DEBUG.UNLOCK_DEBUG, this._onDebugUnlockRequest, this);
+            this._eventSystem.on(Events.DEBUG.UNLOCK_NEUROENERGY_DEBUG, this._onDebugUnlockNeuroEnergyRequest, this);
         }
     };
     
@@ -316,7 +317,11 @@
     GameManager.prototype._onDebugUnlockRequest = function _onDebugUnlockRequest (eventData) {
         console.info("UNLOCKING REQUEST RECEIVED");
         this._rafiki.unlockAllNodesUpToChapter(eventData);
-        
+    };
+
+    GameManager.prototype._onDebugUnlockNeuroEnergyRequest = function _onDebugUnlockNeuroEnergyRequest (eventData) {
+        console.info("UNLOCKING NEURO ENERGY REQUEST RECEIVED");
+        this._currentUserProfile.unlockNeuroEnergy(eventData);
     };
 
     module.exports = GameManager;

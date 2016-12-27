@@ -69,9 +69,9 @@
         lLoader.addImageFile("user_interface/global_ui.json");
 
         //lLoader.addImageFile("garden_screen.json");
+        lLoader.addImageFile("user_interface/garden_transition/garden_transition_0.json");
         lLoader.addImageFile("user_interface/garden_transition/garden_transition_1.json");
         lLoader.addImageFile("user_interface/garden_transition/garden_transition_2.json");
-        lLoader.addImageFile("user_interface/garden_transition/garden_transition_3.json");
         lLoader.addImageFile("user_interface/lesson_screen/lesson_screen_0.json");
         lLoader.addImageFile("user_interface/boot_and_title/title_card.json");
         lLoader.addImageFile("user_interface/brain_screen/brain_screen_0.json");
@@ -125,9 +125,9 @@
         var factory = new MovieClipAnimFactory();
         
         factory.addTextures(loader.getContent(Config.imagesPath, "user_interface/global_ui.json"));
+        factory.addTextures(loader.getContent(Config.imagesPath, "user_interface/garden_transition/garden_transition_0.json"));
         factory.addTextures(loader.getContent(Config.imagesPath, "user_interface/garden_transition/garden_transition_1.json"));
         factory.addTextures(loader.getContent(Config.imagesPath, "user_interface/garden_transition/garden_transition_2.json"));
-        factory.addTextures(loader.getContent(Config.imagesPath, "user_interface/garden_transition/garden_transition_3.json"));
         factory.addTextures(loader.getContent(Config.imagesPath, "user_interface/lesson_screen/lesson_screen_0.json"));
         factory.addTextures(loader.getContent(Config.imagesPath, "user_interface/boot_and_title/title_card.json"));
         factory.addTextures(loader.getContent(Config.imagesPath, "user_interface/brain_screen/brain_screen_0.json"));

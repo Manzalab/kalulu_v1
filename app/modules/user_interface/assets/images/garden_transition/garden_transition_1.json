@@ -1,21 +1,12 @@
 {"frames": {
 
-"Leaf_2.png":
+"Leaf_1.png":
 {
-	"frame": {"x":0,"y":0,"w":2519,"h":1970},
+	"frame": {"x":3,"y":3,"w":2519,"h":2852},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":2519,"h":1970},
-	"sourceSize": {"w":2519,"h":1970},
-	"pivot": {"x":0.5,"y":0.5}
-},
-"Leaf_4.png":
-{
-	"frame": {"x":0,"y":1970,"w":2297,"h":1359},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":2297,"h":1359},
-	"sourceSize": {"w":2297,"h":1359},
+	"spriteSourceSize": {"x":0,"y":0,"w":2519,"h":2852},
+	"sourceSize": {"w":2519,"h":2852},
 	"pivot": {"x":0.5,"y":0.5}
 }},
 "meta": {
@@ -23,8 +14,8 @@
 	"version": "1.0",
 	"image": "garden_transition_1.png",
 	"format": "RGBA8888",
-	"size": {"w":2519,"h":3329},
+	"size": {"w":2525,"h":2858},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:0d7629a4eeab445b35e7be217bb10463:50309193237896f2d4fb320c5a96760f:5f1e566d7383578271d20349370a847a$"
+	"smartupdate": "$TexturePacker:SmartUpdate:05900d7670ba88b1ce91fa36ddaade61:b6ad4b37ea746e71c9d5dbc84348942f:2ab6138138d221f63397fe5f0c3f556f$"
 }
 }

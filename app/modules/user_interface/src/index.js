@@ -322,6 +322,10 @@
         this.unlockUpToChapter = 1;
         this._debugPanelQA.add(this, "unlockUpToChapter").min(1).max(20).step(1).listen();
         this._debugPanelQA.add(this, "executeUnlock");
+
+        this.unlockNeuroEnergy = 10;
+        this._debugPanelQA.add(this, "unlockNeuroEnergy").min(0).max(300).step(1).listen();
+        this._debugPanelQA.add(this, "executeUnlockNeuroEnergy");
     };
 
     UserInterface.prototype._clearQADebugPanel = function _initQADebugPanel () {
@@ -329,10 +333,13 @@
     };
 
     UserInterface.prototype.executeUnlock = function executeUnlock () {
-        this._eventSystem.emit("UNLOCK_DEBUG", this.unlockUpToChapter);
+        this._eventSystem.emit(Events.DEBUG.UNLOCK_DEBUG, this.unlockUpToChapter);
     };
 
-
+    UserInterface.prototype.executeUnlockNeuroEnergy = function executeUnlockNeuroEnergy () {
+        this._eventSystem.emit(Events.DEBUG.UNLOCK_NEUROENERGY_DEBUG, this.unlockNeuroEnergy);
+    };
+    
     module.exports = UserInterface;
 
 })();
