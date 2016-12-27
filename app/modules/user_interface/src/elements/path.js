@@ -49,7 +49,6 @@ define([
 	// ###############################################################################################################################################
 
 	Object.defineProperties(Path.prototype, {
-	    
 	    state : {
             get : function () {return this._state}
         }
@@ -66,11 +65,12 @@ define([
 
 	Path.prototype.setModeOff = function setModeOff(){
 		this._anim.gotoAndStop(this._OFF);
+		this._state = "Off";
 	}
 
 	Path.prototype.setModeOn = function setModeOn(){
 		this._anim.gotoAndStop(this._ON);
-		console.log(this._state);
+		this._state = "On";
 	}
 
 

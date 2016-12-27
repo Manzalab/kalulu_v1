@@ -18,6 +18,8 @@
         this.options =  {
             LANGUAGE    : "swahili",
             minigame    : 'crabs',
+            // LANGUAGE    : KALULU_LANGUAGE,
+            // minigame    : 'lookandlearn',
             discipline  : 'maths',
             globalLevel : 1,
             localLevel  : 1,

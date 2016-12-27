@@ -5,11 +5,11 @@
  * a few Lessons (1 to 4) for each discipline, displayed on a separate Path.
 **/
 define([
-    '../elements/garden_screen_bg',
+    '../elements/star_bg',
     '../utils/ui/screen',
     '../utils/sound/sound_manager'
 ], function (
-    GardenScreenBackground,
+    StarBackground,
     Screen,
     SoundManager
 ) {
@@ -44,12 +44,13 @@ define([
         this._data = chaptersData;
         this._interfaceManager = interfaceManager;
         this._userProfile = userProfile;
+        console.log(userProfile);
         this.name="mcGardenScreen";
         this.build();
         
         // Reference the built elements
         this._backgroundContainer = this.getChildByName("mcGardenScreenBackground");
-        this._background = new GardenScreenBackground();
+        this._background = new StarBackground();
 
         this._backgroundContainer.addChild(this._background);
         this._background.position.set(0,0);
@@ -71,8 +72,6 @@ define([
         this._backButton = this.getChildByName("mcGardenTLHud").getChildByName("mcBackButton");
         this._kaluluButton = this.getChildByName("mcGardenBLHud").getChildByName("mcKaluluButton");
         this._neuroenergy = this.getChildByName("mcGardenTRHud").getChildByName("mcNeuroenergy");
-        
-        // console.log(this._gardensContainer);
 
         this._lessonDotContainer = new PIXI3.Container();
         this._lessonDotContainer.name = "LessonDotContainer";
@@ -100,6 +99,8 @@ define([
                 }
             }
         }
+
+        this.unlockBonusPath();
 
         // back
         this._backButton.onClick = this._onClickOnBackButton.bind(this);
@@ -141,7 +142,7 @@ define([
         }
 
         this.fertilizerText = this._userProfile.fertilizer;
-    }
+    };
 
     GardenScreen.prototype.unlockBonusPath = function unlockBonusPath() {
         var lArrayLesson = [];
@@ -168,8 +169,8 @@ define([
                     default :
                         boolLessonPath = lArrayLesson[2];
                 }
-                //if(boolLessonPath) this._bonusPathA[chapterIndex].setModeOn();
-                if(!boolLessonPath) this._bonusPathA[chapterIndex].setModeOn(); // FOR DEBUG
+                if(boolLessonPath) this._bonusPathA[chapterIndex].setModeOn();
+                // if(!boolLessonPath) this._bonusPathA[chapterIndex].setModeOn(); // FOR DEBUG
 
                 lArrayLesson = [];
                 chapterIndex++;
@@ -198,8 +199,8 @@ define([
                     default :
                         boolLessonPath = lArrayLesson[2];
                 }
-                //if(boolLessonPath) this._bonusPathB[chapterIndex].setModeOn();
-                if(!boolLessonPath) this._bonusPathB[chapterIndex].setModeOn(); // FOR DEBUG
+                if(boolLessonPath) this._bonusPathB[chapterIndex].setModeOn();
+                // if(!boolLessonPath) this._bonusPathB[chapterIndex].setModeOn(); // FOR DEBUG
 
                 lArrayLesson = [];
                 chapterIndex++;
@@ -208,7 +209,11 @@ define([
     };
 
     GardenScreen.prototype.unlockStarMiddle = function unlockStarMiddle() {
-        console.log(this._bonusPathA[this._focusedGarden.id].state);
+        var id = this._focusedGarden.id;
+        
+        if(this._bonusPathA[id].state === "On" && this._bonusPathB[id].state === "On") this._focusedGarden.starMiddle.setModeLarge();
+        else if(this._bonusPathA[id].state === "On" || this._bonusPathB[id].state === "On") this._focusedGarden.starMiddle.setModeMedium();
+        else this._focusedGarden.starMiddle.setModeSmall();
     }
 
     // ###############################################################################################################################################

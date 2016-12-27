@@ -10,7 +10,8 @@ define([
     'eventemitter3',
     './states/phase_video',
     './states/phase_image',
-    './states/phase_tracing'
+    './states/phase_tracing',
+    './states/phase_1_maths'
 ], function (
     Phaser,
     minigameConfig,
@@ -23,7 +24,8 @@ define([
     EventEmitter,
     PhaseVideo,
     PhaseImage,
-    PhaseTracing
+    PhaseTracing,
+    Phase1Maths
 ) {
     'use strict';
 
@@ -38,15 +40,19 @@ define([
          * - close() => tell kalulu's engine you're done
     **/
     function GameLauncher (rafiki) {
+
         this.rafiki = rafiki;
-        this.config = minigameConfig;
-        this.config.pedagogicData = rafiki.getPedagogicData();
-        console.log('here');
-        if (typeof this.config.requestMinigameConfig === 'function') {
-            this.config.requestMinigameConfig(this.init.bind(this));
+        this._config = minigameConfig;
+        
+        this._config.pedagogicData = rafiki.getPedagogicData();
+
+        if (typeof this._config.requestMinigameConfig === 'function') {
+            
+            this._config.requestMinigameConfig(this.init.bind(this));
             console.log("[Minigame] Requested this.game.config");
         }
         else {
+            
             console.error('issue with config');
         }
 
@@ -61,8 +67,8 @@ define([
          * @type {Phaser.Game}
         **/
         this.game = new Phaser.Game(1920, 1350, Phaser.AUTO); // TODO : make it dynamic for multiscreen handling
-        this.game.config = this.config;
-        if (this.game.config.globalVars) {
+        this.game.gameConfig = this._config;
+        if (this.game.gameConfig.globalVars) {
             console.info('Debug with global Variables enabled. Everything can be found in global variable "lookandlearn"');
             window.lookandlearn = {};
             window.lookandlearn.game = this.game;
@@ -79,6 +85,7 @@ define([
         this.game.state.add('Phase1Video', PhaseVideo);
         this.game.state.add('Phase2Image', PhaseImage);
         this.game.state.add('Phase3Tracing', PhaseTracing);
+        this.game.state.add('Phase1Maths', Phase1Maths);
         
         //Starts the 'Boot' State
         console.info("Look&Learn App Created, Starting Boot...");

@@ -35,8 +35,8 @@ define([
         this.game.load.json('audio'             , 'minigames/lookandlearn/assets/config/audio.json');            
         this.game.load.json('config'            , 'minigames/lookandlearn/assets/config/config.json');            
         this.game.load.json('letters-descriptor', 'minigames/lookandlearn/assets/config/letters-descriptor.json');
-
-        this.game.load.audio(this.game.config.pedagogicData.sound, this.game.config.pedagogicData.sound);
+        console.log(this.game.gameConfig);
+        this.game.load.audio(this.game.gameConfig.pedagogicData.sound, this.game.gameConfig.pedagogicData.sound);
     };
 
     /**
@@ -85,11 +85,19 @@ define([
         this.game.config.audio        = this.game.cache.getJSON('audio');
         this.game.config.letters      = this.game.cache.getJSON('letters-descriptor');
         console.log('before');
-        this.game.add.audio(this.game.config.pedagogicData.sound);
+        this.game.add.audio(this.game.gameConfig.pedagogicData.sound);
         console.log('after');
-        console.info("Preload Complete, Starting Phase1Video...");
-        this.state.start('Phase1Video');
-    }
+
+        var discipline = this.game.gameConfig.pedagogicData.discipline;
+        if (discipline === 'language') {
+            console.info("Preload Complete, Starting Phase1Video...");
+            this.state.start('Phase1Video');
+        }
+        else if (discipline === 'maths') {
+            console.info("Preload Complete, Starting Phase1Maths...");
+            this.state.start('Phase1Maths');            
+        }
+    };
     
     return PreloadState;
 });

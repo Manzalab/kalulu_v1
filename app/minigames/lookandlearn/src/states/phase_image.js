@@ -286,6 +286,7 @@ define([
 
     PhaseImage.prototype.shutdown = function PhaseImageShutdown () {
         Emitter.listeners = {};
-    }
+    };
+    
     return PhaseImage;
 });

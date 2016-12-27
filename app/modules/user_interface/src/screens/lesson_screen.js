@@ -1,7 +1,9 @@
 define([
+    '../elements/star_bg',
     '../utils/ui/screen',
     '../utils/sound/sound_manager'
 ], function (
+    StarBackground,
     Screen,
     SoundManager
 ) {
@@ -20,10 +22,17 @@ define([
         Screen.call(this);
         this._interfaceManager = interfaceManager;
         this.name="mcLessonScreen";
-        this.modalImage = "purple_bg.png";
+        //this.modalImage = "purple_bg.png";
 
         this.build();
 
+        // Background
+
+        this._backgroundContainer = this.getChildByName("mcLessonBackground");
+        this._background = new StarBackground();
+
+        this._backgroundContainer.addChild(this._background);
+        this._background.position.set(0,0);
 
         this._node = lessonNode;
         //console.log(this._node);
@@ -77,7 +86,6 @@ define([
     };
 
     LessonScreen.prototype.stringifyTargetNotions = function stringifyTargetNotions (lessonNode) {
-        console.log(lessonNode);
         var string ="";
         
         for (var notionId in lessonNode.targetNotions) {
