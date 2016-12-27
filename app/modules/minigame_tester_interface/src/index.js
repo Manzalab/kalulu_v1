@@ -17,7 +17,7 @@
 
         this.options =  {
             LANGUAGE    : KALULU_LANGUAGE,
-            minigame    : 'caterpillar',
+            minigame    : 'lookandlearn',
             discipline  : 'maths',
             globalLevel : 1,
             localLevel  : 1,
