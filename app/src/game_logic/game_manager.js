@@ -122,7 +122,7 @@
                     currentChapter : nextNode.chapterNumber,
                     data : this._rafiki.getChaptersData(),
                 };
-                this._eventSystem.emit(Events.GAME.BACK_FROM_ACTIVITY, pedagogicData, this._rafiki.getChaptersProgression());
+                this._eventSystem.emit(Events.GAME.BACK_FROM_ACTIVITY, pedagogicData, this._rafiki.getChaptersProgression(), this._currentUserProfile);
             }
             this.save();
         }

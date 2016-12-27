@@ -250,7 +250,6 @@
 
 
     UserInterface.prototype._onGotoGardenScreen = function _onGotoGardenScreen (gardenData, chaptersProgression, userProfile) {
-        //console.log(chaptersProgression);
         this._screens.gardenScreen = new GardenScreen(this, gardenData, chaptersProgression, userProfile);
         this._screens.gardenScreen.unlockGardens(chaptersProgression);
         this._screensManager.openScreen(this._screens.gardenScreen);
@@ -269,7 +268,7 @@
         this._eventSystem.once(Events.GAME.BACK_FROM_ACTIVITY, this._onBackFromActivity, this);
     };
 
-    UserInterface.prototype._onBackFromActivity = function _onBackFromActivity (eventData, chaptersProgression) {
+    UserInterface.prototype._onBackFromActivity = function _onBackFromActivity (eventData, chaptersProgression, userProfile) {
         console.log(eventData);
         //SoundManager.startAmbiance("Bird");
         if (!this._renderingManager.rendererIsDisplayed) this._renderingManager.addRenderer();
@@ -277,7 +276,7 @@
             this._onGotoLessonScreen(eventData);
         }
         else if (eventData && eventData.hasOwnProperty('currentChapter')) {
-            this._onGotoGardenScreen(eventData, chaptersProgression);
+            this._onGotoGardenScreen(eventData, chaptersProgression, userProfile);
         }
         else {
            console.warn("[UserInterface] not implemented");
