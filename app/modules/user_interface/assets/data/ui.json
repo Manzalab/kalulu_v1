@@ -50,6 +50,25 @@
 				"fontSize": 140,
 				"fontWeight": false
 			},
+			"instance740": {
+				"x": -434,
+				"zIndex": 3,
+				"rotation": 0,
+				"y": -430,
+				"font": "195px Impact",
+				"fontStyle": false,
+				"width": 610,
+				"text": "KALULU",
+				"fill": 16763904,
+				"height": 242,
+				"align": "center",
+				"scaleY": 1,
+				"classname": "TCTitle2_txt",
+				"scaleX": 1,
+				"uiType": "Text",
+				"fontSize": 195,
+				"fontWeight": false
+			},
 			"mcPlayButton": {
 				"scaleX": 1,
 				"x": 0,
@@ -81,25 +100,6 @@
 						"rotation": 0
 					}
 				}
-			},
-			"instance740": {
-				"x": -434,
-				"zIndex": 3,
-				"rotation": 0,
-				"y": -430,
-				"font": "195px Impact",
-				"fontStyle": false,
-				"width": 610,
-				"text": "KALULU",
-				"fill": 16763904,
-				"height": 242,
-				"align": "center",
-				"scaleY": 1,
-				"classname": "TCTitle2_txt",
-				"scaleX": 1,
-				"uiType": "Text",
-				"fontSize": 195,
-				"fontWeight": false
 			},
 			"mcTitleCardBg": {
 				"scaleX": 1,
@@ -211,10 +211,10 @@
 				"components": {
 					"mcBurrowButton": {
 						"scaleX": 1,
-						"x": -164,
+						"x": -150,
 						"zIndex": 0,
 						"scaleY": 1,
-						"y": -152,
+						"y": -150,
 						"classname": "BurrowButton_btn",
 						"uiType": "Button",
 						"rotation": 0
@@ -261,13 +261,13 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"instance315": {
+							"mcAssessmentPathB": {
 								"scaleX": 1,
-								"x": 167,
-								"zIndex": 3,
+								"x": 605,
+								"zIndex": 21,
 								"scaleY": 1,
-								"y": -349,
-								"classname": "BonusPathA_13",
+								"y": -6,
+								"classname": "Marker",
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
@@ -291,14 +291,14 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"mcLesson2PathB": {
+							"instance311": {
 								"scaleX": 1,
-								"x": -92,
-								"zIndex": 18,
+								"x": -94,
+								"zIndex": 1,
 								"scaleY": 1,
-								"y": 59,
-								"classname": "Marker",
-								"uiType": "MovieClip",
+								"y": -248,
+								"classname": "PathA_13",
+								"uiType": "UIAsset",
 								"rotation": 0
 							},
 							"mcPlantChapter13Index03": {
@@ -311,23 +311,13 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"mcLesson1PathA": {
+							"mcAssessmentPathA": {
 								"scaleX": 1,
-								"x": -335,
-								"zIndex": 12,
+								"x": 607,
+								"zIndex": 16,
 								"scaleY": 1,
-								"y": -51,
+								"y": -106,
 								"classname": "Marker",
-								"uiType": "MovieClip",
-								"rotation": 0
-							},
-							"instance317": {
-								"scaleX": 1,
-								"x": 80,
-								"zIndex": 4,
-								"scaleY": 1,
-								"y": -148,
-								"classname": "BonusPathB_13",
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
@@ -351,33 +341,43 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"mcAssessmentPathB": {
+							"instance317": {
 								"scaleX": 1,
-								"x": 605,
-								"zIndex": 21,
+								"x": 80,
+								"zIndex": 4,
 								"scaleY": 1,
-								"y": -6,
+								"y": -148,
+								"classname": "BonusPathB_13",
+								"uiType": "MovieClip",
+								"rotation": 0
+							},
+							"mcLesson2PathB": {
+								"scaleX": 1,
+								"x": -92,
+								"zIndex": 18,
+								"scaleY": 1,
+								"y": 59,
 								"classname": "Marker",
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"instance313": {
+							"mcLesson3PathB": {
 								"scaleX": 1,
-								"x": -103,
-								"zIndex": 2,
+								"x": 42,
+								"zIndex": 20,
 								"scaleY": 1,
-								"y": 46,
-								"classname": "PathB_13",
-								"uiType": "UIAsset",
+								"y": -73,
+								"classname": "Marker",
+								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"mcAssessmentPathA": {
+							"instance315": {
 								"scaleX": 1,
-								"x": 607,
-								"zIndex": 16,
+								"x": 167,
+								"zIndex": 3,
 								"scaleY": 1,
-								"y": -106,
-								"classname": "Marker",
+								"y": -349,
+								"classname": "BonusPathA_13",
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
@@ -411,24 +411,24 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"mcLesson3PathB": {
+							"instance313": {
 								"scaleX": 1,
-								"x": 42,
-								"zIndex": 20,
+								"x": -103,
+								"zIndex": 2,
 								"scaleY": 1,
-								"y": -73,
-								"classname": "Marker",
-								"uiType": "MovieClip",
+								"y": 46,
+								"classname": "PathB_13",
+								"uiType": "UIAsset",
 								"rotation": 0
 							},
-							"instance311": {
+							"mcLesson1PathA": {
 								"scaleX": 1,
-								"x": -94,
-								"zIndex": 1,
+								"x": -335,
+								"zIndex": 12,
 								"scaleY": 1,
-								"y": -248,
-								"classname": "PathA_13",
-								"uiType": "UIAsset",
+								"y": -51,
+								"classname": "Marker",
+								"uiType": "MovieClip",
 								"rotation": 0
 							},
 							"StarMiddle13": {
@@ -503,22 +503,22 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"instance157": {
+							"instance159": {
 								"scaleX": 1,
-								"x": -209,
-								"zIndex": 2,
+								"x": 24,
+								"zIndex": 3,
 								"scaleY": 1,
-								"y": 40,
-								"classname": "PathB_07",
-								"uiType": "UIAsset",
+								"y": -21,
+								"classname": "BonusPathA_07",
+								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"mcLesson2PathB": {
+							"mcLesson4PathA": {
 								"scaleX": 1,
-								"x": -357,
-								"zIndex": 18,
+								"x": 350,
+								"zIndex": 14,
 								"scaleY": 1,
-								"y": 208,
+								"y": -121,
 								"classname": "Marker",
 								"uiType": "MovieClip",
 								"rotation": 0
@@ -543,14 +543,24 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"instance159": {
+							"instance157": {
 								"scaleX": 1,
-								"x": 24,
-								"zIndex": 3,
+								"x": -209,
+								"zIndex": 2,
 								"scaleY": 1,
-								"y": -21,
-								"classname": "BonusPathA_07",
-								"uiType": "MovieClip",
+								"y": 40,
+								"classname": "PathB_07",
+								"uiType": "UIAsset",
+								"rotation": 0
+							},
+							"instance155": {
+								"scaleX": 1,
+								"x": -207,
+								"zIndex": 1,
+								"scaleY": 1,
+								"y": -237,
+								"classname": "PathA_07",
+								"uiType": "UIAsset",
 								"rotation": 0
 							},
 							"mcLesson3PathA": {
@@ -579,6 +589,16 @@
 								"zIndex": 21,
 								"scaleY": 1,
 								"y": 43,
+								"classname": "Marker",
+								"uiType": "MovieClip",
+								"rotation": 0
+							},
+							"mcLesson2PathB": {
+								"scaleX": 1,
+								"x": -357,
+								"zIndex": 18,
+								"scaleY": 1,
+								"y": 208,
 								"classname": "Marker",
 								"uiType": "MovieClip",
 								"rotation": 0
@@ -623,16 +643,6 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"mcLesson4PathA": {
-								"scaleX": 1,
-								"x": 350,
-								"zIndex": 14,
-								"scaleY": 1,
-								"y": -121,
-								"classname": "Marker",
-								"uiType": "MovieClip",
-								"rotation": 0
-							},
 							"mcLesson1PathA": {
 								"scaleX": 1,
 								"x": -401,
@@ -651,16 +661,6 @@
 								"y": 141,
 								"classname": "StarMiddle_07",
 								"uiType": "MovieClip",
-								"rotation": 0
-							},
-							"instance155": {
-								"scaleX": 1,
-								"x": -207,
-								"zIndex": 1,
-								"scaleY": 1,
-								"y": -237,
-								"classname": "PathA_07",
-								"uiType": "UIAsset",
 								"rotation": 0
 							},
 							"mcLesson4PathB": {
@@ -927,13 +927,23 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"StarMiddle14": {
+							"mcLesson4PathA": {
 								"scaleX": 1,
-								"x": 16,
-								"zIndex": 11,
+								"x": 207,
+								"zIndex": 14,
 								"scaleY": 1,
-								"y": 172,
-								"classname": "StarMiddle_14",
+								"y": 158,
+								"classname": "Marker",
+								"uiType": "MovieClip",
+								"rotation": 0
+							},
+							"instance343": {
+								"scaleX": 1,
+								"x": 36,
+								"zIndex": 4,
+								"scaleY": 1,
+								"y": 265,
+								"classname": "BonusPathB_14",
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
@@ -957,34 +967,24 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"instance343": {
+							"instance337": {
 								"scaleX": 1,
-								"x": 36,
-								"zIndex": 4,
+								"x": -190,
+								"zIndex": 1,
 								"scaleY": 1,
-								"y": 265,
-								"classname": "BonusPathB_14",
-								"uiType": "MovieClip",
-								"rotation": 0
-							},
-							"mcPlantChapter14Index03": {
-								"scaleX": 1,
-								"x": 74,
-								"zIndex": 7,
-								"scaleY": 1,
-								"y": -237,
-								"classname": "Plant_14_03",
-								"uiType": "MovieClip",
-								"rotation": 0
-							},
-							"instance339": {
-								"scaleX": 1,
-								"x": -191,
-								"zIndex": 2,
-								"scaleY": 1,
-								"y": 234,
-								"classname": "PathB_14",
+								"y": 14,
+								"classname": "PathA_14",
 								"uiType": "UIAsset",
+								"rotation": 0
+							},
+							"mcLesson2PathB": {
+								"scaleX": 1,
+								"x": -228,
+								"zIndex": 18,
+								"scaleY": 1,
+								"y": 346,
+								"classname": "Marker",
+								"uiType": "MovieClip",
 								"rotation": 0
 							},
 							"mcAssessmentPathA": {
@@ -1017,33 +1017,13 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"instance337": {
+							"mcPlantChapter14Index03": {
 								"scaleX": 1,
-								"x": -190,
-								"zIndex": 1,
+								"x": 74,
+								"zIndex": 7,
 								"scaleY": 1,
-								"y": 14,
-								"classname": "PathA_14",
-								"uiType": "UIAsset",
-								"rotation": 0
-							},
-							"mcAssessmentPathB": {
-								"scaleX": 1,
-								"x": 373,
-								"zIndex": 21,
-								"scaleY": 1,
-								"y": 321,
-								"classname": "Marker",
-								"uiType": "MovieClip",
-								"rotation": 0
-							},
-							"mcLesson2PathB": {
-								"scaleX": 1,
-								"x": -228,
-								"zIndex": 18,
-								"scaleY": 1,
-								"y": 346,
-								"classname": "Marker",
+								"y": -237,
+								"classname": "Plant_14_03",
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
@@ -1057,13 +1037,13 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"mcLesson3PathB": {
+							"instance341": {
 								"scaleX": 1,
-								"x": 54,
-								"zIndex": 20,
+								"x": 29,
+								"zIndex": 3,
 								"scaleY": 1,
-								"y": 366,
-								"classname": "Marker",
+								"y": 72,
+								"classname": "BonusPathA_14",
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
@@ -1077,23 +1057,33 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"mcLesson4PathA": {
+							"mcAssessmentPathB": {
 								"scaleX": 1,
-								"x": 207,
-								"zIndex": 14,
+								"x": 373,
+								"zIndex": 21,
 								"scaleY": 1,
-								"y": 158,
+								"y": 321,
 								"classname": "Marker",
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"instance341": {
+							"instance339": {
 								"scaleX": 1,
-								"x": 29,
-								"zIndex": 3,
+								"x": -191,
+								"zIndex": 2,
 								"scaleY": 1,
-								"y": 72,
-								"classname": "BonusPathA_14",
+								"y": 234,
+								"classname": "PathB_14",
+								"uiType": "UIAsset",
+								"rotation": 0
+							},
+							"StarMiddle14": {
+								"scaleX": 1,
+								"x": 16,
+								"zIndex": 11,
+								"scaleY": 1,
+								"y": 172,
+								"classname": "StarMiddle_14",
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
@@ -1103,6 +1093,16 @@
 								"zIndex": 12,
 								"scaleY": 1,
 								"y": -28,
+								"classname": "Marker",
+								"uiType": "MovieClip",
+								"rotation": 0
+							},
+							"mcLesson3PathB": {
+								"scaleX": 1,
+								"x": 54,
+								"zIndex": 20,
+								"scaleY": 1,
+								"y": 366,
 								"classname": "Marker",
 								"uiType": "MovieClip",
 								"rotation": 0
@@ -1149,44 +1149,14 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"mcPlantChapter08Index04": {
+							"StarMiddle08": {
 								"scaleX": 1,
-								"x": -339,
-								"zIndex": 8,
+								"x": -70,
+								"zIndex": 11,
 								"scaleY": 1,
-								"y": 189,
-								"classname": "Plant_08_04",
+								"y": -197,
+								"classname": "StarMiddle_08",
 								"uiType": "MovieClip",
-								"rotation": 0
-							},
-							"instance183": {
-								"scaleX": 1,
-								"x": -190,
-								"zIndex": 2,
-								"scaleY": 1,
-								"y": 198,
-								"classname": "PathB_08",
-								"uiType": "UIAsset",
-								"rotation": 0
-							},
-							"instance185": {
-								"scaleX": 1,
-								"x": 11,
-								"zIndex": 3,
-								"scaleY": 1,
-								"y": -285,
-								"classname": "BonusPathA_08",
-								"uiType": "MovieClip",
-								"rotation": 0
-							},
-							"instance181": {
-								"scaleX": 1,
-								"x": -172,
-								"zIndex": 1,
-								"scaleY": 1,
-								"y": -223,
-								"classname": "PathA_08",
-								"uiType": "UIAsset",
 								"rotation": 0
 							},
 							"instance187": {
@@ -1196,6 +1166,16 @@
 								"scaleY": 1,
 								"y": -24,
 								"classname": "BonusPathB_08",
+								"uiType": "MovieClip",
+								"rotation": 0
+							},
+							"mcLesson2PathA": {
+								"scaleX": 1,
+								"x": -168,
+								"zIndex": 13,
+								"scaleY": 1,
+								"y": -416,
+								"classname": "Marker",
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
@@ -1229,23 +1209,13 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"mcLesson2PathA": {
+							"instance185": {
 								"scaleX": 1,
-								"x": -168,
-								"zIndex": 13,
+								"x": 11,
+								"zIndex": 3,
 								"scaleY": 1,
-								"y": -416,
-								"classname": "Marker",
-								"uiType": "MovieClip",
-								"rotation": 0
-							},
-							"mcLesson3PathA": {
-								"scaleX": 1,
-								"x": 97,
-								"zIndex": 15,
-								"scaleY": 1,
-								"y": -371,
-								"classname": "Marker",
+								"y": -285,
+								"classname": "BonusPathA_08",
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
@@ -1267,6 +1237,26 @@
 								"y": 37,
 								"classname": "Marker",
 								"uiType": "MovieClip",
+								"rotation": 0
+							},
+							"instance181": {
+								"scaleX": 1,
+								"x": -172,
+								"zIndex": 1,
+								"scaleY": 1,
+								"y": -223,
+								"classname": "PathA_08",
+								"uiType": "UIAsset",
+								"rotation": 0
+							},
+							"instance183": {
+								"scaleX": 1,
+								"x": -190,
+								"zIndex": 2,
+								"scaleY": 1,
+								"y": 198,
+								"classname": "PathB_08",
+								"uiType": "UIAsset",
 								"rotation": 0
 							},
 							"mcLesson3PathB": {
@@ -1299,6 +1289,16 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
+							"mcLesson3PathA": {
+								"scaleX": 1,
+								"x": 97,
+								"zIndex": 15,
+								"scaleY": 1,
+								"y": -371,
+								"classname": "Marker",
+								"uiType": "MovieClip",
+								"rotation": 0
+							},
 							"mcLesson4PathA": {
 								"scaleX": 1,
 								"x": 296,
@@ -1309,13 +1309,13 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"StarMiddle08": {
+							"mcPlantChapter08Index04": {
 								"scaleX": 1,
-								"x": -70,
-								"zIndex": 11,
+								"x": -339,
+								"zIndex": 8,
 								"scaleY": 1,
-								"y": -197,
-								"classname": "StarMiddle_08",
+								"y": 189,
+								"classname": "Plant_08_04",
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
@@ -1351,12 +1351,12 @@
 						"uiType": "MovieClip",
 						"rotation": 0,
 						"components": {
-							"mcLesson3PathA": {
+							"mcLesson1PathB": {
 								"scaleX": 1,
-								"x": 0,
-								"zIndex": 14,
+								"x": -486,
+								"zIndex": 16,
 								"scaleY": 1,
-								"y": -325,
+								"y": 131,
 								"classname": "Marker",
 								"uiType": "MovieClip",
 								"rotation": 0
@@ -1371,26 +1371,6 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"mcLesson2PathA": {
-								"scaleX": 1,
-								"x": -317,
-								"zIndex": 12,
-								"scaleY": 1,
-								"y": -274,
-								"classname": "Marker",
-								"uiType": "MovieClip",
-								"rotation": 0
-							},
-							"mcLesson4PathB": {
-								"scaleX": 1,
-								"x": 170,
-								"zIndex": 18,
-								"scaleY": 1,
-								"y": 260,
-								"classname": "Marker",
-								"uiType": "MovieClip",
-								"rotation": 0
-							},
 							"instance494": {
 								"scaleX": 1,
 								"x": -229,
@@ -1401,13 +1381,33 @@
 								"uiType": "UIAsset",
 								"rotation": 0
 							},
-							"mcLesson1PathB": {
+							"instance492": {
 								"scaleX": 1,
-								"x": -486,
-								"zIndex": 16,
+								"x": -215,
+								"zIndex": 1,
 								"scaleY": 1,
-								"y": 131,
-								"classname": "Marker",
+								"y": -93,
+								"classname": "PathA_20",
+								"uiType": "UIAsset",
+								"rotation": 0
+							},
+							"mcPlantChapter20Index05": {
+								"scaleX": 1,
+								"x": -56,
+								"zIndex": 5,
+								"scaleY": 1,
+								"y": 156,
+								"classname": "Plant_20_05",
+								"uiType": "MovieClip",
+								"rotation": 0
+							},
+							"instance498": {
+								"scaleX": 1,
+								"x": -162,
+								"zIndex": 4,
+								"scaleY": 1,
+								"y": 181,
+								"classname": "BonusPathB_20",
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
@@ -1421,12 +1421,22 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"mcAssessmentPathA": {
+							"mcLesson1PathA": {
 								"scaleX": 1,
-								"x": 423,
-								"zIndex": 15,
+								"x": -468,
+								"zIndex": 11,
 								"scaleY": 1,
-								"y": 148,
+								"y": -125,
+								"classname": "Marker",
+								"uiType": "MovieClip",
+								"rotation": 0
+							},
+							"mcLesson2PathA": {
+								"scaleX": 1,
+								"x": -317,
+								"zIndex": 12,
+								"scaleY": 1,
+								"y": -274,
 								"classname": "Marker",
 								"uiType": "MovieClip",
 								"rotation": 0
@@ -1441,13 +1451,13 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"mcPlantChapter20Index05": {
+							"mcLesson3PathA": {
 								"scaleX": 1,
-								"x": -56,
-								"zIndex": 5,
+								"x": 0,
+								"zIndex": 14,
 								"scaleY": 1,
-								"y": 156,
-								"classname": "Plant_20_05",
+								"y": -325,
+								"classname": "Marker",
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
@@ -1471,12 +1481,12 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"mcLesson3PathB": {
+							"mcAssessmentPathA": {
 								"scaleX": 1,
-								"x": -91,
-								"zIndex": 19,
+								"x": 423,
+								"zIndex": 15,
 								"scaleY": 1,
-								"y": 297,
+								"y": 148,
 								"classname": "Marker",
 								"uiType": "MovieClip",
 								"rotation": 0
@@ -1488,16 +1498,6 @@
 								"scaleY": 1,
 								"y": 0,
 								"classname": "SpriteGarden_20",
-								"uiType": "MovieClip",
-								"rotation": 0
-							},
-							"instance496": {
-								"scaleX": 1,
-								"x": -141,
-								"zIndex": 3,
-								"scaleY": 1,
-								"y": -111,
-								"classname": "BonusPathA_20",
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
@@ -1521,24 +1521,24 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"mcLesson1PathA": {
+							"instance496": {
 								"scaleX": 1,
-								"x": -468,
-								"zIndex": 11,
+								"x": -141,
+								"zIndex": 3,
 								"scaleY": 1,
-								"y": -125,
-								"classname": "Marker",
+								"y": -111,
+								"classname": "BonusPathA_20",
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"instance492": {
+							"mcLesson3PathB": {
 								"scaleX": 1,
-								"x": -215,
-								"zIndex": 1,
+								"x": -91,
+								"zIndex": 19,
 								"scaleY": 1,
-								"y": -93,
-								"classname": "PathA_20",
-								"uiType": "UIAsset",
+								"y": 297,
+								"classname": "Marker",
+								"uiType": "MovieClip",
 								"rotation": 0
 							},
 							"mcPlantChapter20Index03": {
@@ -1551,13 +1551,13 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"instance498": {
+							"mcLesson4PathB": {
 								"scaleX": 1,
-								"x": -162,
-								"zIndex": 4,
+								"x": 170,
+								"zIndex": 18,
 								"scaleY": 1,
-								"y": 181,
-								"classname": "BonusPathB_20",
+								"y": 260,
+								"classname": "Marker",
 								"uiType": "MovieClip",
 								"rotation": 0
 							}
@@ -1573,13 +1573,23 @@
 						"uiType": "MovieClip",
 						"rotation": 0,
 						"components": {
-							"instance362": {
+							"instance364": {
 								"scaleX": 1,
-								"x": 0,
-								"zIndex": 0,
+								"x": -208,
+								"zIndex": 1,
 								"scaleY": 1,
-								"y": 0,
-								"classname": "SpriteGarden_15",
+								"y": -127,
+								"classname": "PathA_15",
+								"uiType": "UIAsset",
+								"rotation": 0
+							},
+							"mcLesson1PathB": {
+								"scaleX": 1,
+								"x": -357,
+								"zIndex": 17,
+								"scaleY": 1,
+								"y": 252,
+								"classname": "Marker",
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
@@ -1603,12 +1613,12 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"mcLesson1PathB": {
+							"mcLesson4PathB": {
 								"scaleX": 1,
-								"x": -357,
-								"zIndex": 17,
+								"x": 210,
+								"zIndex": 19,
 								"scaleY": 1,
-								"y": 252,
+								"y": 136,
 								"classname": "Marker",
 								"uiType": "MovieClip",
 								"rotation": 0
@@ -1623,14 +1633,14 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"instance368": {
+							"instance366": {
 								"scaleX": 1,
-								"x": -3,
-								"zIndex": 3,
+								"x": -219,
+								"zIndex": 2,
 								"scaleY": 1,
-								"y": -210,
-								"classname": "BonusPathA_15",
-								"uiType": "MovieClip",
+								"y": 119,
+								"classname": "PathB_15",
+								"uiType": "UIAsset",
 								"rotation": 0
 							},
 							"instance370": {
@@ -1643,32 +1653,22 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"mcLesson2PathB": {
-								"scaleX": 1,
-								"x": -170,
-								"zIndex": 18,
-								"scaleY": 1,
-								"y": 82,
-								"classname": "Marker",
-								"uiType": "MovieClip",
-								"rotation": 0
-							},
-							"mcPlantChapter15Index04": {
-								"scaleX": 1,
-								"x": 158,
-								"zIndex": 8,
-								"scaleY": 1,
-								"y": 467,
-								"classname": "Plant_15_04",
-								"uiType": "MovieClip",
-								"rotation": 0
-							},
 							"mcLesson3PathA": {
 								"scaleX": 1,
 								"x": -27,
 								"zIndex": 15,
 								"scaleY": 1,
 								"y": -297,
+								"classname": "Marker",
+								"uiType": "MovieClip",
+								"rotation": 0
+							},
+							"mcLesson2PathB": {
+								"scaleX": 1,
+								"x": -170,
+								"zIndex": 18,
+								"scaleY": 1,
+								"y": 82,
 								"classname": "Marker",
 								"uiType": "MovieClip",
 								"rotation": 0
@@ -1683,24 +1683,24 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"mcAssessmentPathA": {
+							"mcPlantChapter15Index04": {
 								"scaleX": 1,
-								"x": 455,
-								"zIndex": 16,
+								"x": 158,
+								"zIndex": 8,
 								"scaleY": 1,
-								"y": 40,
-								"classname": "Marker",
+								"y": 467,
+								"classname": "Plant_15_04",
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"instance366": {
+							"instance362": {
 								"scaleX": 1,
-								"x": -219,
-								"zIndex": 2,
+								"x": 0,
+								"zIndex": 0,
 								"scaleY": 1,
-								"y": 119,
-								"classname": "PathB_15",
-								"uiType": "UIAsset",
+								"y": 0,
+								"classname": "SpriteGarden_15",
+								"uiType": "MovieClip",
 								"rotation": 0
 							},
 							"mcAssessmentPathB": {
@@ -1733,14 +1733,14 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"instance364": {
+							"mcLesson3PathB": {
 								"scaleX": 1,
-								"x": -208,
-								"zIndex": 1,
+								"x": 11,
+								"zIndex": 20,
 								"scaleY": 1,
-								"y": -127,
-								"classname": "PathA_15",
-								"uiType": "UIAsset",
+								"y": 6,
+								"classname": "Marker",
+								"uiType": "MovieClip",
 								"rotation": 0
 							},
 							"mcLesson1PathA": {
@@ -1753,13 +1753,13 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"mcLesson3PathB": {
+							"instance368": {
 								"scaleX": 1,
-								"x": 11,
-								"zIndex": 20,
+								"x": -3,
+								"zIndex": 3,
 								"scaleY": 1,
-								"y": 6,
-								"classname": "Marker",
+								"y": -210,
+								"classname": "BonusPathA_15",
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
@@ -1773,12 +1773,12 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"mcLesson4PathB": {
+							"mcAssessmentPathA": {
 								"scaleX": 1,
-								"x": 210,
-								"zIndex": 19,
+								"x": 455,
+								"zIndex": 16,
 								"scaleY": 1,
-								"y": 136,
+								"y": 40,
 								"classname": "Marker",
 								"uiType": "MovieClip",
 								"rotation": 0
@@ -1795,24 +1795,34 @@
 						"uiType": "MovieClip",
 						"rotation": 0,
 						"components": {
-							"mcLesson1PathB": {
+							"instance209": {
 								"scaleX": 1,
-								"x": -585,
-								"zIndex": 16,
+								"x": -293,
+								"zIndex": 2,
 								"scaleY": 1,
-								"y": 189,
+								"y": 107,
+								"classname": "PathB_09",
+								"uiType": "UIAsset",
+								"rotation": 0
+							},
+							"mcAssessmentPathB": {
+								"scaleX": 1,
+								"x": 447,
+								"zIndex": 20,
+								"scaleY": 1,
+								"y": -248,
 								"classname": "Marker",
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"StarMiddle09": {
+							"instance207": {
 								"scaleX": 1,
-								"x": -118,
-								"zIndex": 10,
+								"x": -288,
+								"zIndex": 1,
 								"scaleY": 1,
-								"y": -10,
-								"classname": "StarMiddle_09",
-								"uiType": "MovieClip",
+								"y": -178,
+								"classname": "PathA_09",
+								"uiType": "UIAsset",
 								"rotation": 0
 							},
 							"mcLesson2PathA": {
@@ -1825,23 +1835,13 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"mcLesson4PathB": {
+							"mcLesson1PathB": {
 								"scaleX": 1,
-								"x": 122,
-								"zIndex": 18,
+								"x": -585,
+								"zIndex": 16,
 								"scaleY": 1,
-								"y": 120,
+								"y": 189,
 								"classname": "Marker",
-								"uiType": "MovieClip",
-								"rotation": 0
-							},
-							"instance213": {
-								"scaleX": 1,
-								"x": -177,
-								"zIndex": 4,
-								"scaleY": 1,
-								"y": 202,
-								"classname": "BonusPathB_09",
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
@@ -1865,23 +1865,13 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"mcAssessmentPathA": {
+							"StarMiddle09": {
 								"scaleX": 1,
-								"x": 457,
-								"zIndex": 15,
+								"x": -118,
+								"zIndex": 10,
 								"scaleY": 1,
-								"y": -338,
-								"classname": "Marker",
-								"uiType": "MovieClip",
-								"rotation": 0
-							},
-							"instance211": {
-								"scaleX": 1,
-								"x": -45,
-								"zIndex": 3,
-								"scaleY": 1,
-								"y": -161,
-								"classname": "BonusPathA_09",
+								"y": -10,
+								"classname": "StarMiddle_09",
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
@@ -1905,13 +1895,13 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"mcAssessmentPathB": {
+							"instance213": {
 								"scaleX": 1,
-								"x": 447,
-								"zIndex": 20,
+								"x": -177,
+								"zIndex": 4,
 								"scaleY": 1,
-								"y": -248,
-								"classname": "Marker",
+								"y": 202,
+								"classname": "BonusPathB_09",
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
@@ -1925,12 +1915,12 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"mcLesson3PathB": {
+							"mcAssessmentPathA": {
 								"scaleX": 1,
-								"x": -133,
-								"zIndex": 19,
+								"x": 457,
+								"zIndex": 15,
 								"scaleY": 1,
-								"y": 461,
+								"y": -338,
 								"classname": "Marker",
 								"uiType": "MovieClip",
 								"rotation": 0
@@ -1965,14 +1955,14 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"instance207": {
+							"mcLesson3PathB": {
 								"scaleX": 1,
-								"x": -288,
-								"zIndex": 1,
+								"x": -133,
+								"zIndex": 19,
 								"scaleY": 1,
-								"y": -178,
-								"classname": "PathA_09",
-								"uiType": "UIAsset",
+								"y": 461,
+								"classname": "Marker",
+								"uiType": "MovieClip",
 								"rotation": 0
 							},
 							"mcLesson1PathA": {
@@ -1982,6 +1972,16 @@
 								"scaleY": 1,
 								"y": -172,
 								"classname": "Marker",
+								"uiType": "MovieClip",
+								"rotation": 0
+							},
+							"instance211": {
+								"scaleX": 1,
+								"x": -45,
+								"zIndex": 3,
+								"scaleY": 1,
+								"y": -161,
+								"classname": "BonusPathA_09",
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
@@ -1995,14 +1995,14 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"instance209": {
+							"mcLesson4PathB": {
 								"scaleX": 1,
-								"x": -293,
-								"zIndex": 2,
+								"x": 122,
+								"zIndex": 18,
 								"scaleY": 1,
-								"y": 107,
-								"classname": "PathB_09",
-								"uiType": "UIAsset",
+								"y": 120,
+								"classname": "Marker",
+								"uiType": "MovieClip",
 								"rotation": 0
 							}
 						}
@@ -2037,24 +2037,14 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"mcAssessmentPathB": {
+							"instance7": {
 								"scaleX": 1,
-								"x": 538,
-								"zIndex": 21,
+								"x": 13,
+								"zIndex": 4,
 								"scaleY": 1,
-								"y": 79,
-								"classname": "Marker",
+								"y": 220,
+								"classname": "BonusPathB_01",
 								"uiType": "MovieClip",
-								"rotation": 0
-							},
-							"mcPathA": {
-								"scaleX": 1,
-								"x": -10,
-								"zIndex": 1,
-								"scaleY": 1,
-								"y": -220,
-								"classname": "PathA_01",
-								"uiType": "UIAsset",
 								"rotation": 0
 							},
 							"mcLesson2PathA": {
@@ -2087,16 +2077,6 @@
 								"uiType": "UIAsset",
 								"rotation": 0
 							},
-							"instance7": {
-								"scaleX": 1,
-								"x": 13,
-								"zIndex": 4,
-								"scaleY": 1,
-								"y": 220,
-								"classname": "BonusPathB_01",
-								"uiType": "MovieClip",
-								"rotation": 0
-							},
 							"mcLesson2PathB": {
 								"scaleX": 1,
 								"x": -344,
@@ -2105,6 +2085,16 @@
 								"y": 430,
 								"classname": "Marker",
 								"uiType": "MovieClip",
+								"rotation": 0
+							},
+							"mcPathA": {
+								"scaleX": 1,
+								"x": -10,
+								"zIndex": 1,
+								"scaleY": 1,
+								"y": -220,
+								"classname": "PathA_01",
+								"uiType": "UIAsset",
 								"rotation": 0
 							},
 							"mcAssessmentPathA": {
@@ -2137,13 +2127,13 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"instance5": {
+							"mcAssessmentPathB": {
 								"scaleX": 1,
-								"x": -45,
-								"zIndex": 3,
+								"x": 538,
+								"zIndex": 21,
 								"scaleY": 1,
-								"y": -206,
-								"classname": "BonusPathA_01",
+								"y": 79,
+								"classname": "Marker",
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
@@ -2154,6 +2144,16 @@
 								"scaleY": 1,
 								"y": 96,
 								"classname": "Plant_01_02",
+								"uiType": "MovieClip",
+								"rotation": 0
+							},
+							"instance5": {
+								"scaleX": 1,
+								"x": -45,
+								"zIndex": 3,
+								"scaleY": 1,
+								"y": -206,
+								"classname": "BonusPathA_01",
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
@@ -2471,6 +2471,16 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
+							"instance390": {
+								"scaleX": 1,
+								"x": -148,
+								"zIndex": 1,
+								"scaleY": 1,
+								"y": -180,
+								"classname": "PathA_16",
+								"uiType": "UIAsset",
+								"rotation": 0
+							},
 							"mcPlantChapter16Index01": {
 								"scaleX": 1,
 								"x": 373,
@@ -2481,26 +2491,6 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"mcLesson2PathA": {
-								"scaleX": 1,
-								"x": -532,
-								"zIndex": 13,
-								"scaleY": 1,
-								"y": -445,
-								"classname": "Marker",
-								"uiType": "MovieClip",
-								"rotation": 0
-							},
-							"instance394": {
-								"scaleX": 1,
-								"x": -153,
-								"zIndex": 3,
-								"scaleY": 1,
-								"y": -194,
-								"classname": "BonusPathA_16",
-								"uiType": "MovieClip",
-								"rotation": 0
-							},
 							"mcLesson4PathB": {
 								"scaleX": 1,
 								"x": 527,
@@ -2508,6 +2498,26 @@
 								"scaleY": 1,
 								"y": 221,
 								"classname": "Marker",
+								"uiType": "MovieClip",
+								"rotation": 0
+							},
+							"mcPlantChapter16Index03": {
+								"scaleX": 1,
+								"x": -383,
+								"zIndex": 7,
+								"scaleY": 1,
+								"y": -53,
+								"classname": "Plant_16_03",
+								"uiType": "MovieClip",
+								"rotation": 0
+							},
+							"instance396": {
+								"scaleX": 1,
+								"x": 147,
+								"zIndex": 4,
+								"scaleY": 1,
+								"y": 135,
+								"classname": "BonusPathB_16",
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
@@ -2531,44 +2541,44 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"instance392": {
+							"mcLesson2PathA": {
 								"scaleX": 1,
-								"x": -146,
-								"zIndex": 2,
+								"x": -532,
+								"zIndex": 13,
 								"scaleY": 1,
-								"y": 223,
-								"classname": "PathB_16",
-								"uiType": "UIAsset",
-								"rotation": 0
-							},
-							"instance396": {
-								"scaleX": 1,
-								"x": 147,
-								"zIndex": 4,
-								"scaleY": 1,
-								"y": 135,
-								"classname": "BonusPathB_16",
+								"y": -445,
+								"classname": "Marker",
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"mcPlantChapter16Index03": {
+							"mcAssessmentPathA": {
 								"scaleX": 1,
-								"x": -383,
-								"zIndex": 7,
+								"x": 704,
+								"zIndex": 16,
 								"scaleY": 1,
-								"y": -53,
-								"classname": "Plant_16_03",
+								"y": 68,
+								"classname": "Marker",
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"instance390": {
+							"instance394": {
 								"scaleX": 1,
-								"x": -148,
-								"zIndex": 1,
+								"x": -153,
+								"zIndex": 3,
 								"scaleY": 1,
-								"y": -180,
-								"classname": "PathA_16",
-								"uiType": "UIAsset",
+								"y": -194,
+								"classname": "BonusPathA_16",
+								"uiType": "MovieClip",
+								"rotation": 0
+							},
+							"mcPlantChapter16Index05": {
+								"scaleX": 1,
+								"x": 48,
+								"zIndex": 9,
+								"scaleY": 1,
+								"y": -332,
+								"classname": "Plant_16_05",
+								"uiType": "MovieClip",
 								"rotation": 0
 							},
 							"mcAssessmentPathB": {
@@ -2591,22 +2601,12 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"mcAssessmentPathA": {
+							"mcLesson3PathB": {
 								"scaleX": 1,
-								"x": 704,
-								"zIndex": 16,
+								"x": 307,
+								"zIndex": 20,
 								"scaleY": 1,
-								"y": 68,
-								"classname": "Marker",
-								"uiType": "MovieClip",
-								"rotation": 0
-							},
-							"mcLesson3PathA": {
-								"scaleX": 1,
-								"x": -287,
-								"zIndex": 15,
-								"scaleY": 1,
-								"y": -445,
+								"y": 326,
 								"classname": "Marker",
 								"uiType": "MovieClip",
 								"rotation": 0
@@ -2621,13 +2621,13 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"mcPlantChapter16Index05": {
+							"mcLesson3PathA": {
 								"scaleX": 1,
-								"x": 48,
-								"zIndex": 9,
+								"x": -287,
+								"zIndex": 15,
 								"scaleY": 1,
-								"y": -332,
-								"classname": "Plant_16_05",
+								"y": -445,
+								"classname": "Marker",
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
@@ -2651,14 +2651,14 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"mcLesson3PathB": {
+							"instance392": {
 								"scaleX": 1,
-								"x": 307,
-								"zIndex": 20,
+								"x": -146,
+								"zIndex": 2,
 								"scaleY": 1,
-								"y": 326,
-								"classname": "Marker",
-								"uiType": "MovieClip",
+								"y": 223,
+								"classname": "PathB_16",
+								"uiType": "UIAsset",
 								"rotation": 0
 							},
 							"StarMiddle16": {
@@ -2683,33 +2683,13 @@
 						"uiType": "MovieClip",
 						"rotation": 0,
 						"components": {
-							"instance238": {
+							"mcLesson1PathB": {
 								"scaleX": 1,
-								"x": -92,
-								"zIndex": 4,
+								"x": -509,
+								"zIndex": 17,
 								"scaleY": 1,
-								"y": 129,
-								"classname": "BonusPathB_10",
-								"uiType": "MovieClip",
-								"rotation": 0
-							},
-							"mcLesson2PathA": {
-								"scaleX": 1,
-								"x": 51,
-								"zIndex": 13,
-								"scaleY": 1,
-								"y": -448,
+								"y": 25,
 								"classname": "Marker",
-								"uiType": "MovieClip",
-								"rotation": 0
-							},
-							"StarMiddle10": {
-								"scaleX": 1,
-								"x": -118,
-								"zIndex": 11,
-								"scaleY": 1,
-								"y": -121,
-								"classname": "StarMiddle_10",
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
@@ -2723,13 +2703,23 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"instance232": {
+							"StarMiddle10": {
 								"scaleX": 1,
-								"x": -220,
-								"zIndex": 1,
+								"x": -118,
+								"zIndex": 11,
 								"scaleY": 1,
-								"y": -236,
-								"classname": "PathA_10",
+								"y": -121,
+								"classname": "StarMiddle_10",
+								"uiType": "MovieClip",
+								"rotation": 0
+							},
+							"instance234": {
+								"scaleX": 1,
+								"x": -203,
+								"zIndex": 2,
+								"scaleY": 1,
+								"y": 63,
+								"classname": "PathB_10",
 								"uiType": "UIAsset",
 								"rotation": 0
 							},
@@ -2743,6 +2733,26 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
+							"mcLesson2PathA": {
+								"scaleX": 1,
+								"x": 51,
+								"zIndex": 13,
+								"scaleY": 1,
+								"y": -448,
+								"classname": "Marker",
+								"uiType": "MovieClip",
+								"rotation": 0
+							},
+							"instance232": {
+								"scaleX": 1,
+								"x": -220,
+								"zIndex": 1,
+								"scaleY": 1,
+								"y": -236,
+								"classname": "PathA_10",
+								"uiType": "UIAsset",
+								"rotation": 0
+							},
 							"mcPlantChapter10Index01": {
 								"scaleX": 1,
 								"x": -257,
@@ -2750,16 +2760,6 @@
 								"scaleY": 1,
 								"y": -30,
 								"classname": "Plant_10_01",
-								"uiType": "MovieClip",
-								"rotation": 0
-							},
-							"mcLesson1PathB": {
-								"scaleX": 1,
-								"x": -509,
-								"zIndex": 17,
-								"scaleY": 1,
-								"y": 25,
-								"classname": "Marker",
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
@@ -2773,16 +2773,6 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"mcPlantChapter10Index02": {
-								"scaleX": 1,
-								"x": 515,
-								"zIndex": 6,
-								"scaleY": 1,
-								"y": 499,
-								"classname": "Plant_10_02",
-								"uiType": "MovieClip",
-								"rotation": 0
-							},
 							"instance236": {
 								"scaleX": 1,
 								"x": 31,
@@ -2790,6 +2780,16 @@
 								"scaleY": 1,
 								"y": -234,
 								"classname": "BonusPathA_10",
+								"uiType": "MovieClip",
+								"rotation": 0
+							},
+							"mcPlantChapter10Index02": {
+								"scaleX": 1,
+								"x": 515,
+								"zIndex": 6,
+								"scaleY": 1,
+								"y": 499,
+								"classname": "Plant_10_02",
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
@@ -2813,6 +2813,16 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
+							"instance238": {
+								"scaleX": 1,
+								"x": -92,
+								"zIndex": 4,
+								"scaleY": 1,
+								"y": 129,
+								"classname": "BonusPathB_10",
+								"uiType": "MovieClip",
+								"rotation": 0
+							},
 							"mcAssessmentPathA": {
 								"scaleX": 1,
 								"x": 480,
@@ -2821,16 +2831,6 @@
 								"y": 14,
 								"classname": "Marker",
 								"uiType": "MovieClip",
-								"rotation": 0
-							},
-							"instance234": {
-								"scaleX": 1,
-								"x": -203,
-								"zIndex": 2,
-								"scaleY": 1,
-								"y": 63,
-								"classname": "PathB_10",
-								"uiType": "UIAsset",
 								"rotation": 0
 							},
 							"mcGardenBackground": {
@@ -2915,32 +2915,42 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"instance85": {
+							"mcLesson4PathA": {
 								"scaleX": 1,
-								"x": 197,
-								"zIndex": 4,
+								"x": 447,
+								"zIndex": 13,
 								"scaleY": 1,
-								"y": 77,
-								"classname": "BonusPathB_04",
+								"y": -308,
+								"classname": "Marker",
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"instance83": {
+							"StarMiddle04": {
 								"scaleX": 1,
-								"x": 194,
-								"zIndex": 3,
+								"x": 144,
+								"zIndex": 10,
 								"scaleY": 1,
-								"y": -295,
-								"classname": "BonusPathA_04",
+								"y": -147,
+								"classname": "StarMiddle_04",
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"mcLesson1PathA": {
+							"mcPlantChapter04Index05": {
 								"scaleX": 1,
-								"x": -420,
-								"zIndex": 11,
+								"x": 166,
+								"zIndex": 9,
 								"scaleY": 1,
-								"y": -187,
+								"y": 548,
+								"classname": "Plant_04_05",
+								"uiType": "MovieClip",
+								"rotation": 0
+							},
+							"mcLesson4PathB": {
+								"scaleX": 1,
+								"x": 441,
+								"zIndex": 18,
+								"scaleY": 1,
+								"y": 133,
 								"classname": "Marker",
 								"uiType": "MovieClip",
 								"rotation": 0
@@ -2955,14 +2965,14 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"mcLesson4PathB": {
+							"instance79": {
 								"scaleX": 1,
-								"x": 441,
-								"zIndex": 18,
+								"x": -153,
+								"zIndex": 1,
 								"scaleY": 1,
-								"y": 133,
-								"classname": "Marker",
-								"uiType": "MovieClip",
+								"y": -250,
+								"classname": "PathA_04",
+								"uiType": "UIAsset",
 								"rotation": 0
 							},
 							"mcPlantChapter04Index01": {
@@ -2975,13 +2985,23 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"StarMiddle04": {
+							"mcLesson2PathB": {
 								"scaleX": 1,
-								"x": 144,
-								"zIndex": 10,
+								"x": -45,
+								"zIndex": 17,
 								"scaleY": 1,
-								"y": -147,
-								"classname": "StarMiddle_04",
+								"y": 331,
+								"classname": "Marker",
+								"uiType": "MovieClip",
+								"rotation": 0
+							},
+							"mcPlantChapter04Index02": {
+								"scaleX": 1,
+								"x": -367,
+								"zIndex": 6,
+								"scaleY": 1,
+								"y": -358,
+								"classname": "Plant_04_02",
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
@@ -2995,22 +3015,12 @@
 								"uiType": "UIAsset",
 								"rotation": 0
 							},
-							"mcPlantChapter04Index02": {
+							"mcAssessmentPathB": {
 								"scaleX": 1,
-								"x": -367,
-								"zIndex": 6,
+								"x": 583,
+								"zIndex": 20,
 								"scaleY": 1,
-								"y": -358,
-								"classname": "Plant_04_02",
-								"uiType": "MovieClip",
-								"rotation": 0
-							},
-							"mcLesson3PathA": {
-								"scaleX": 1,
-								"x": 246,
-								"zIndex": 14,
-								"scaleY": 1,
-								"y": -439,
+								"y": 39,
 								"classname": "Marker",
 								"uiType": "MovieClip",
 								"rotation": 0
@@ -3025,16 +3035,6 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"mcLesson2PathB": {
-								"scaleX": 1,
-								"x": -45,
-								"zIndex": 17,
-								"scaleY": 1,
-								"y": 331,
-								"classname": "Marker",
-								"uiType": "MovieClip",
-								"rotation": 0
-							},
 							"mcAssessmentPathA": {
 								"scaleX": 1,
 								"x": 589,
@@ -3045,53 +3045,53 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"instance79": {
+							"mcPlantChapter04Index04": {
 								"scaleX": 1,
-								"x": -153,
-								"zIndex": 1,
+								"x": 2,
+								"zIndex": 8,
 								"scaleY": 1,
-								"y": -250,
-								"classname": "PathA_04",
-								"uiType": "UIAsset",
-								"rotation": 0
-							},
-							"mcGardenBackground": {
-								"scaleX": 1,
-								"x": 0,
-								"zIndex": 0,
-								"scaleY": 1,
-								"y": 0,
-								"classname": "SpriteGarden_04",
+								"y": 192,
+								"classname": "Plant_04_04",
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"mcAssessmentPathB": {
+							"mcLesson3PathA": {
 								"scaleX": 1,
-								"x": 583,
-								"zIndex": 20,
+								"x": 246,
+								"zIndex": 14,
 								"scaleY": 1,
-								"y": 39,
+								"y": -439,
 								"classname": "Marker",
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"mcLesson4PathA": {
+							"instance83": {
 								"scaleX": 1,
-								"x": 447,
-								"zIndex": 13,
+								"x": 194,
+								"zIndex": 3,
 								"scaleY": 1,
-								"y": -308,
-								"classname": "Marker",
+								"y": -295,
+								"classname": "BonusPathA_04",
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"mcPlantChapter04Index05": {
+							"instance85": {
 								"scaleX": 1,
-								"x": 166,
-								"zIndex": 9,
+								"x": 197,
+								"zIndex": 4,
 								"scaleY": 1,
-								"y": 548,
-								"classname": "Plant_04_05",
+								"y": 77,
+								"classname": "BonusPathB_04",
+								"uiType": "MovieClip",
+								"rotation": 0
+							},
+							"mcLesson1PathA": {
+								"scaleX": 1,
+								"x": -420,
+								"zIndex": 11,
+								"scaleY": 1,
+								"y": -187,
+								"classname": "Marker",
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
@@ -3105,13 +3105,13 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"mcPlantChapter04Index04": {
+							"mcGardenBackground": {
 								"scaleX": 1,
-								"x": 2,
-								"zIndex": 8,
+								"x": 0,
+								"zIndex": 0,
 								"scaleY": 1,
-								"y": 192,
-								"classname": "Plant_04_04",
+								"y": 0,
+								"classname": "SpriteGarden_04",
 								"uiType": "MovieClip",
 								"rotation": 0
 							}
@@ -3127,24 +3127,14 @@
 						"uiType": "MovieClip",
 						"rotation": 0,
 						"components": {
-							"instance422": {
+							"instance416": {
 								"scaleX": 1,
-								"x": 21,
-								"zIndex": 4,
+								"x": -193,
+								"zIndex": 1,
 								"scaleY": 1,
-								"y": 152,
-								"classname": "BonusPathB_17",
-								"uiType": "MovieClip",
-								"rotation": 0
-							},
-							"mcLesson1PathB": {
-								"scaleX": 1,
-								"x": -240,
-								"zIndex": 16,
-								"scaleY": 1,
-								"y": 347,
-								"classname": "Marker",
-								"uiType": "MovieClip",
+								"y": -41,
+								"classname": "PathA_17",
+								"uiType": "UIAsset",
 								"rotation": 0
 							},
 							"mcLesson4PathA": {
@@ -3157,6 +3147,16 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
+							"mcAssessmentPathB": {
+								"scaleX": 1,
+								"x": 411,
+								"zIndex": 20,
+								"scaleY": 1,
+								"y": 69,
+								"classname": "Marker",
+								"uiType": "MovieClip",
+								"rotation": 0
+							},
 							"mcPlantChapter17Index03": {
 								"scaleX": 1,
 								"x": 274,
@@ -3164,16 +3164,6 @@
 								"scaleY": 1,
 								"y": 506,
 								"classname": "Plant_17_03",
-								"uiType": "MovieClip",
-								"rotation": 0
-							},
-							"instance420": {
-								"scaleX": 1,
-								"x": -48,
-								"zIndex": 3,
-								"scaleY": 1,
-								"y": -130,
-								"classname": "BonusPathA_17",
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
@@ -3197,14 +3187,14 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"instance418": {
+							"mcPlantChapter17Index04": {
 								"scaleX": 1,
-								"x": -191,
-								"zIndex": 2,
+								"x": 358,
+								"zIndex": 8,
 								"scaleY": 1,
-								"y": 229,
-								"classname": "PathB_17",
-								"uiType": "UIAsset",
+								"y": 482,
+								"classname": "Plant_17_04",
+								"uiType": "MovieClip",
 								"rotation": 0
 							},
 							"mcLesson2PathB": {
@@ -3217,13 +3207,13 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"mcAssessmentPathA": {
+							"instance420": {
 								"scaleX": 1,
-								"x": 421,
-								"zIndex": 15,
+								"x": -48,
+								"zIndex": 3,
 								"scaleY": 1,
-								"y": -20,
-								"classname": "Marker",
+								"y": -130,
+								"classname": "BonusPathA_17",
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
@@ -3247,22 +3237,22 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"mcPlantChapter17Index04": {
+							"instance418": {
 								"scaleX": 1,
-								"x": 358,
-								"zIndex": 8,
+								"x": -191,
+								"zIndex": 2,
 								"scaleY": 1,
-								"y": 482,
-								"classname": "Plant_17_04",
-								"uiType": "MovieClip",
+								"y": 229,
+								"classname": "PathB_17",
+								"uiType": "UIAsset",
 								"rotation": 0
 							},
-							"mcAssessmentPathB": {
+							"mcLesson1PathB": {
 								"scaleX": 1,
-								"x": 411,
-								"zIndex": 20,
+								"x": -240,
+								"zIndex": 16,
 								"scaleY": 1,
-								"y": 69,
+								"y": 347,
 								"classname": "Marker",
 								"uiType": "MovieClip",
 								"rotation": 0
@@ -3287,14 +3277,14 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"instance416": {
+							"instance422": {
 								"scaleX": 1,
-								"x": -193,
-								"zIndex": 1,
+								"x": 21,
+								"zIndex": 4,
 								"scaleY": 1,
-								"y": -41,
-								"classname": "PathA_17",
-								"uiType": "UIAsset",
+								"y": 152,
+								"classname": "BonusPathB_17",
+								"uiType": "MovieClip",
 								"rotation": 0
 							},
 							"mcPlantChapter17Index01": {
@@ -3327,6 +3317,16 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
+							"mcAssessmentPathA": {
+								"scaleX": 1,
+								"x": 421,
+								"zIndex": 15,
+								"scaleY": 1,
+								"y": -20,
+								"classname": "Marker",
+								"uiType": "MovieClip",
+								"rotation": 0
+							},
 							"mcPlantChapter17Index02": {
 								"scaleX": 1,
 								"x": -238,
@@ -3349,14 +3349,14 @@
 						"uiType": "MovieClip",
 						"rotation": 0,
 						"components": {
-							"StarMiddle11": {
+							"instance258": {
 								"scaleX": 1,
-								"x": 18,
-								"zIndex": 11,
+								"x": -175,
+								"zIndex": 1,
 								"scaleY": 1,
-								"y": 146,
-								"classname": "StarMiddle_11",
-								"uiType": "MovieClip",
+								"y": -77,
+								"classname": "PathA_11",
+								"uiType": "UIAsset",
 								"rotation": 0
 							},
 							"mcLesson4PathA": {
@@ -3365,6 +3365,26 @@
 								"zIndex": 14,
 								"scaleY": 1,
 								"y": -118,
+								"classname": "Marker",
+								"uiType": "MovieClip",
+								"rotation": 0
+							},
+							"instance262": {
+								"scaleX": 1,
+								"x": 31,
+								"zIndex": 3,
+								"scaleY": 1,
+								"y": -42,
+								"classname": "BonusPathA_11",
+								"uiType": "MovieClip",
+								"rotation": 0
+							},
+							"mcAssessmentPathB": {
+								"scaleX": 1,
+								"x": 621,
+								"zIndex": 21,
+								"scaleY": 1,
+								"y": -56,
 								"classname": "Marker",
 								"uiType": "MovieClip",
 								"rotation": 0
@@ -3379,13 +3399,23 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"mcLesson1PathB": {
+							"instance260": {
 								"scaleX": 1,
-								"x": -357,
-								"zIndex": 17,
+								"x": -136,
+								"zIndex": 2,
 								"scaleY": 1,
-								"y": 156,
-								"classname": "Marker",
+								"y": 165,
+								"classname": "PathB_11",
+								"uiType": "UIAsset",
+								"rotation": 0
+							},
+							"StarMiddle11": {
+								"scaleX": 1,
+								"x": 18,
+								"zIndex": 11,
+								"scaleY": 1,
+								"y": 146,
+								"classname": "StarMiddle_11",
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
@@ -3399,6 +3429,16 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
+							"mcAssessmentPathA": {
+								"scaleX": 1,
+								"x": 598,
+								"zIndex": 16,
+								"scaleY": 1,
+								"y": -130,
+								"classname": "Marker",
+								"uiType": "MovieClip",
+								"rotation": 0
+							},
 							"mcLesson2PathA": {
 								"scaleX": 1,
 								"x": -307,
@@ -3407,26 +3447,6 @@
 								"y": -303,
 								"classname": "Marker",
 								"uiType": "MovieClip",
-								"rotation": 0
-							},
-							"instance258": {
-								"scaleX": 1,
-								"x": -175,
-								"zIndex": 1,
-								"scaleY": 1,
-								"y": -77,
-								"classname": "PathA_11",
-								"uiType": "UIAsset",
-								"rotation": 0
-							},
-							"instance260": {
-								"scaleX": 1,
-								"x": -136,
-								"zIndex": 2,
-								"scaleY": 1,
-								"y": 165,
-								"classname": "PathB_11",
-								"uiType": "UIAsset",
 								"rotation": 0
 							},
 							"mcPlantChapter11Index03": {
@@ -3439,22 +3459,12 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"instance264": {
+							"mcLesson1PathB": {
 								"scaleX": 1,
-								"x": 75,
-								"zIndex": 4,
+								"x": -357,
+								"zIndex": 17,
 								"scaleY": 1,
-								"y": 264,
-								"classname": "BonusPathB_11",
-								"uiType": "MovieClip",
-								"rotation": 0
-							},
-							"mcAssessmentPathB": {
-								"scaleX": 1,
-								"x": 621,
-								"zIndex": 21,
-								"scaleY": 1,
-								"y": -56,
+								"y": 156,
 								"classname": "Marker",
 								"uiType": "MovieClip",
 								"rotation": 0
@@ -3466,16 +3476,6 @@
 								"scaleY": 1,
 								"y": 234,
 								"classname": "Marker",
-								"uiType": "MovieClip",
-								"rotation": 0
-							},
-							"instance262": {
-								"scaleX": 1,
-								"x": 31,
-								"zIndex": 3,
-								"scaleY": 1,
-								"y": -42,
-								"classname": "BonusPathA_11",
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
@@ -3519,6 +3519,16 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
+							"instance264": {
+								"scaleX": 1,
+								"x": 75,
+								"zIndex": 4,
+								"scaleY": 1,
+								"y": 264,
+								"classname": "BonusPathB_11",
+								"uiType": "MovieClip",
+								"rotation": 0
+							},
 							"mcLesson1PathA": {
 								"scaleX": 1,
 								"x": -526,
@@ -3535,16 +3545,6 @@
 								"zIndex": 20,
 								"scaleY": 1,
 								"y": 380,
-								"classname": "Marker",
-								"uiType": "MovieClip",
-								"rotation": 0
-							},
-							"mcAssessmentPathA": {
-								"scaleX": 1,
-								"x": 598,
-								"zIndex": 16,
-								"scaleY": 1,
-								"y": -130,
 								"classname": "Marker",
 								"uiType": "MovieClip",
 								"rotation": 0
@@ -3591,13 +3591,23 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"instance110": {
+							"mcAssessmentPathB": {
 								"scaleX": 1,
-								"x": -37,
-								"zIndex": 4,
+								"x": 432,
+								"zIndex": 21,
 								"scaleY": 1,
-								"y": 39,
-								"classname": "BonusPathB_05",
+								"y": -62,
+								"classname": "Marker",
+								"uiType": "MovieClip",
+								"rotation": 0
+							},
+							"mcLesson1PathA": {
+								"scaleX": 1,
+								"x": -425,
+								"zIndex": 12,
+								"scaleY": 1,
+								"y": -138,
+								"classname": "Marker",
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
@@ -3611,33 +3621,13 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"mcLesson4PathB": {
+							"instance110": {
 								"scaleX": 1,
-								"x": 242,
-								"zIndex": 19,
+								"x": -37,
+								"zIndex": 4,
 								"scaleY": 1,
-								"y": 207,
-								"classname": "Marker",
-								"uiType": "MovieClip",
-								"rotation": 0
-							},
-							"mcLesson1PathB": {
-								"scaleX": 1,
-								"x": -365,
-								"zIndex": 17,
-								"scaleY": 1,
-								"y": 68,
-								"classname": "Marker",
-								"uiType": "MovieClip",
-								"rotation": 0
-							},
-							"instance108": {
-								"scaleX": 1,
-								"x": 2,
-								"zIndex": 3,
-								"scaleY": 1,
-								"y": -334,
-								"classname": "BonusPathA_05",
+								"y": 39,
+								"classname": "BonusPathB_05",
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
@@ -3681,6 +3671,16 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
+							"mcLesson1PathB": {
+								"scaleX": 1,
+								"x": -365,
+								"zIndex": 17,
+								"scaleY": 1,
+								"y": 68,
+								"classname": "Marker",
+								"uiType": "MovieClip",
+								"rotation": 0
+							},
 							"mcLesson2PathB": {
 								"scaleX": 1,
 								"x": -249,
@@ -3691,24 +3691,14 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"mcAssessmentPathB": {
+							"instance108": {
 								"scaleX": 1,
-								"x": 432,
-								"zIndex": 21,
+								"x": 2,
+								"zIndex": 3,
 								"scaleY": 1,
-								"y": -62,
-								"classname": "Marker",
+								"y": -334,
+								"classname": "BonusPathA_05",
 								"uiType": "MovieClip",
-								"rotation": 0
-							},
-							"instance106": {
-								"scaleX": 1,
-								"x": -144,
-								"zIndex": 2,
-								"scaleY": 1,
-								"y": 142,
-								"classname": "PathB_05",
-								"uiType": "UIAsset",
 								"rotation": 0
 							},
 							"mcPlantChapter05Index04": {
@@ -3718,16 +3708,6 @@
 								"scaleY": 1,
 								"y": 76,
 								"classname": "Plant_05_04",
-								"uiType": "MovieClip",
-								"rotation": 0
-							},
-							"mcGardenBackground": {
-								"scaleX": 1,
-								"x": 0,
-								"zIndex": 0,
-								"scaleY": 1,
-								"y": 0,
-								"classname": "SpriteGarden_05",
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
@@ -3741,6 +3721,26 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
+							"mcGardenBackground": {
+								"scaleX": 1,
+								"x": 0,
+								"zIndex": 0,
+								"scaleY": 1,
+								"y": 0,
+								"classname": "SpriteGarden_05",
+								"uiType": "MovieClip",
+								"rotation": 0
+							},
+							"instance106": {
+								"scaleX": 1,
+								"x": -144,
+								"zIndex": 2,
+								"scaleY": 1,
+								"y": 142,
+								"classname": "PathB_05",
+								"uiType": "UIAsset",
+								"rotation": 0
+							},
 							"mcPlantChapter05Index05": {
 								"scaleX": 1,
 								"x": -209,
@@ -3751,14 +3751,14 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"mcLesson1PathA": {
+							"instance104": {
 								"scaleX": 1,
-								"x": -425,
-								"zIndex": 12,
+								"x": -156,
+								"zIndex": 1,
 								"scaleY": 1,
-								"y": -138,
-								"classname": "Marker",
-								"uiType": "MovieClip",
+								"y": -281,
+								"classname": "PathA_05",
+								"uiType": "UIAsset",
 								"rotation": 0
 							},
 							"mcLesson3PathB": {
@@ -3771,14 +3771,14 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"instance104": {
+							"mcLesson4PathB": {
 								"scaleX": 1,
-								"x": -156,
-								"zIndex": 1,
+								"x": 242,
+								"zIndex": 19,
 								"scaleY": 1,
-								"y": -281,
-								"classname": "PathA_05",
-								"uiType": "UIAsset",
+								"y": 207,
+								"classname": "Marker",
+								"uiType": "MovieClip",
 								"rotation": 0
 							}
 						}
@@ -3793,13 +3793,13 @@
 						"uiType": "MovieClip",
 						"rotation": 0,
 						"components": {
-							"instance445": {
+							"mcLesson1PathB": {
 								"scaleX": 1,
-								"x": 77,
-								"zIndex": 3,
+								"x": -341,
+								"zIndex": 17,
 								"scaleY": 1,
-								"y": -33,
-								"classname": "BonusPathA_18",
+								"y": 174,
+								"classname": "Marker",
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
@@ -3813,14 +3813,24 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"instance441": {
+							"instance443": {
 								"scaleX": 1,
-								"x": -261,
-								"zIndex": 1,
+								"x": -253,
+								"zIndex": 2,
 								"scaleY": 1,
-								"y": -76,
-								"classname": "PathA_18",
+								"y": 180,
+								"classname": "PathB_18",
 								"uiType": "UIAsset",
+								"rotation": 0
+							},
+							"instance447": {
+								"scaleX": 1,
+								"x": 102,
+								"zIndex": 4,
+								"scaleY": 1,
+								"y": 156,
+								"classname": "BonusPathB_18",
+								"uiType": "MovieClip",
 								"rotation": 0
 							},
 							"mcLesson2PathA": {
@@ -3840,16 +3850,6 @@
 								"scaleY": 1,
 								"y": -48,
 								"classname": "Plant_18_04",
-								"uiType": "MovieClip",
-								"rotation": 0
-							},
-							"mcLesson1PathB": {
-								"scaleX": 1,
-								"x": -341,
-								"zIndex": 17,
-								"scaleY": 1,
-								"y": 174,
-								"classname": "Marker",
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
@@ -3883,16 +3883,6 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"instance443": {
-								"scaleX": 1,
-								"x": -253,
-								"zIndex": 2,
-								"scaleY": 1,
-								"y": 180,
-								"classname": "PathB_18",
-								"uiType": "UIAsset",
-								"rotation": 0
-							},
 							"mcLesson3PathA": {
 								"scaleX": 1,
 								"x": 40,
@@ -3903,14 +3893,14 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"instance447": {
+							"instance441": {
 								"scaleX": 1,
-								"x": 102,
-								"zIndex": 4,
+								"x": -261,
+								"zIndex": 1,
 								"scaleY": 1,
-								"y": 156,
-								"classname": "BonusPathB_18",
-								"uiType": "MovieClip",
+								"y": -76,
+								"classname": "PathA_18",
+								"uiType": "UIAsset",
 								"rotation": 0
 							},
 							"mcAssessmentPathB": {
@@ -3933,13 +3923,13 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"mcLesson3PathB": {
+							"instance445": {
 								"scaleX": 1,
-								"x": 79,
-								"zIndex": 20,
+								"x": 77,
+								"zIndex": 3,
 								"scaleY": 1,
-								"y": 263,
-								"classname": "Marker",
+								"y": -33,
+								"classname": "BonusPathA_18",
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
@@ -3969,6 +3959,16 @@
 								"zIndex": 14,
 								"scaleY": 1,
 								"y": 0,
+								"classname": "Marker",
+								"uiType": "MovieClip",
+								"rotation": 0
+							},
+							"mcLesson3PathB": {
+								"scaleX": 1,
+								"x": 79,
+								"zIndex": 20,
+								"scaleY": 1,
+								"y": 263,
 								"classname": "Marker",
 								"uiType": "MovieClip",
 								"rotation": 0
@@ -4025,16 +4025,6 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"mcLesson4PathA": {
-								"scaleX": 1,
-								"x": 217,
-								"zIndex": 14,
-								"scaleY": 1,
-								"y": -137,
-								"classname": "Marker",
-								"uiType": "MovieClip",
-								"rotation": 0
-							},
 							"mcPlantChapter12Index01": {
 								"scaleX": 1,
 								"x": -468,
@@ -4042,6 +4032,16 @@
 								"scaleY": 1,
 								"y": 404,
 								"classname": "Plant_12_01",
+								"uiType": "MovieClip",
+								"rotation": 0
+							},
+							"mcLesson2PathA": {
+								"scaleX": 1,
+								"x": -219,
+								"zIndex": 13,
+								"scaleY": 1,
+								"y": -301,
+								"classname": "Marker",
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
@@ -4055,12 +4055,102 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"mcLesson2PathA": {
+							"mcPlantChapter12Index02": {
 								"scaleX": 1,
-								"x": -219,
-								"zIndex": 13,
+								"x": -398,
+								"zIndex": 6,
 								"scaleY": 1,
-								"y": -301,
+								"y": 469,
+								"classname": "Plant_12_02",
+								"uiType": "MovieClip",
+								"rotation": 0
+							},
+							"mcLesson2PathB": {
+								"scaleX": 1,
+								"x": -208,
+								"zIndex": 18,
+								"scaleY": 1,
+								"y": 228,
+								"classname": "Marker",
+								"uiType": "MovieClip",
+								"rotation": 0
+							},
+							"instance287": {
+								"scaleX": 1,
+								"x": -204,
+								"zIndex": 2,
+								"scaleY": 1,
+								"y": 83,
+								"classname": "PathB_12",
+								"uiType": "UIAsset",
+								"rotation": 0
+							},
+							"mcPlantChapter12Index03": {
+								"scaleX": 1,
+								"x": 62,
+								"zIndex": 7,
+								"scaleY": 1,
+								"y": 72,
+								"classname": "Plant_12_03",
+								"uiType": "MovieClip",
+								"rotation": 0
+							},
+							"mcLesson3PathA": {
+								"scaleX": 1,
+								"x": 63,
+								"zIndex": 15,
+								"scaleY": 1,
+								"y": -386,
+								"classname": "Marker",
+								"uiType": "MovieClip",
+								"rotation": 0
+							},
+							"instance289": {
+								"scaleX": 1,
+								"x": -71,
+								"zIndex": 3,
+								"scaleY": 1,
+								"y": -255,
+								"classname": "BonusPathA_12",
+								"uiType": "MovieClip",
+								"rotation": 0
+							},
+							"mcAssessmentPathB": {
+								"scaleX": 1,
+								"x": 453,
+								"zIndex": 21,
+								"scaleY": 1,
+								"y": 76,
+								"classname": "Marker",
+								"uiType": "MovieClip",
+								"rotation": 0
+							},
+							"mcPlantChapter12Index04": {
+								"scaleX": 1,
+								"x": -38,
+								"zIndex": 8,
+								"scaleY": 1,
+								"y": 46,
+								"classname": "Plant_12_04",
+								"uiType": "MovieClip",
+								"rotation": 0
+							},
+							"instance291": {
+								"scaleX": 1,
+								"x": -91,
+								"zIndex": 4,
+								"scaleY": 1,
+								"y": 68,
+								"classname": "BonusPathB_12",
+								"uiType": "MovieClip",
+								"rotation": 0
+							},
+							"mcAssessmentPathA": {
+								"scaleX": 1,
+								"x": 473,
+								"zIndex": 16,
+								"scaleY": 1,
+								"y": -2,
 								"classname": "Marker",
 								"uiType": "MovieClip",
 								"rotation": 0
@@ -4085,86 +4175,6 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"mcPlantChapter12Index02": {
-								"scaleX": 1,
-								"x": -398,
-								"zIndex": 6,
-								"scaleY": 1,
-								"y": 469,
-								"classname": "Plant_12_02",
-								"uiType": "MovieClip",
-								"rotation": 0
-							},
-							"mcLesson2PathB": {
-								"scaleX": 1,
-								"x": -208,
-								"zIndex": 18,
-								"scaleY": 1,
-								"y": 228,
-								"classname": "Marker",
-								"uiType": "MovieClip",
-								"rotation": 0
-							},
-							"mcAssessmentPathA": {
-								"scaleX": 1,
-								"x": 473,
-								"zIndex": 16,
-								"scaleY": 1,
-								"y": -2,
-								"classname": "Marker",
-								"uiType": "MovieClip",
-								"rotation": 0
-							},
-							"mcPlantChapter12Index03": {
-								"scaleX": 1,
-								"x": 62,
-								"zIndex": 7,
-								"scaleY": 1,
-								"y": 72,
-								"classname": "Plant_12_03",
-								"uiType": "MovieClip",
-								"rotation": 0
-							},
-							"mcLesson3PathA": {
-								"scaleX": 1,
-								"x": 63,
-								"zIndex": 15,
-								"scaleY": 1,
-								"y": -386,
-								"classname": "Marker",
-								"uiType": "MovieClip",
-								"rotation": 0
-							},
-							"mcAssessmentPathB": {
-								"scaleX": 1,
-								"x": 453,
-								"zIndex": 21,
-								"scaleY": 1,
-								"y": 76,
-								"classname": "Marker",
-								"uiType": "MovieClip",
-								"rotation": 0
-							},
-							"mcPlantChapter12Index04": {
-								"scaleX": 1,
-								"x": -38,
-								"zIndex": 8,
-								"scaleY": 1,
-								"y": 46,
-								"classname": "Plant_12_04",
-								"uiType": "MovieClip",
-								"rotation": 0
-							},
-							"mcLesson3PathB": {
-								"scaleX": 1,
-								"x": 23,
-								"zIndex": 20,
-								"scaleY": 1,
-								"y": 249,
-								"classname": "Marker",
-								"uiType": "MovieClip",
-								"rotation": 0
-							},
 							"mcPlantChapter12Index05": {
 								"scaleX": 1,
 								"x": 395,
@@ -4175,33 +4185,13 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"instance287": {
+							"mcLesson4PathA": {
 								"scaleX": 1,
-								"x": -204,
-								"zIndex": 2,
+								"x": 217,
+								"zIndex": 14,
 								"scaleY": 1,
-								"y": 83,
-								"classname": "PathB_12",
-								"uiType": "UIAsset",
-								"rotation": 0
-							},
-							"instance289": {
-								"scaleX": 1,
-								"x": -71,
-								"zIndex": 3,
-								"scaleY": 1,
-								"y": -255,
-								"classname": "BonusPathA_12",
-								"uiType": "MovieClip",
-								"rotation": 0
-							},
-							"instance291": {
-								"scaleX": 1,
-								"x": -91,
-								"zIndex": 4,
-								"scaleY": 1,
-								"y": 68,
-								"classname": "BonusPathB_12",
+								"y": -137,
+								"classname": "Marker",
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
@@ -4211,6 +4201,16 @@
 								"zIndex": 12,
 								"scaleY": 1,
 								"y": -209,
+								"classname": "Marker",
+								"uiType": "MovieClip",
+								"rotation": 0
+							},
+							"mcLesson3PathB": {
+								"scaleX": 1,
+								"x": 23,
+								"zIndex": 20,
+								"scaleY": 1,
+								"y": 249,
 								"classname": "Marker",
 								"uiType": "MovieClip",
 								"rotation": 0
@@ -4247,33 +4247,13 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"mcLesson4PathA": {
+							"instance136": {
 								"scaleX": 1,
-								"x": 187,
-								"zIndex": 13,
+								"x": 59,
+								"zIndex": 4,
 								"scaleY": 1,
-								"y": -107,
-								"classname": "Marker",
-								"uiType": "MovieClip",
-								"rotation": 0
-							},
-							"mcPlantChapter06Index01": {
-								"scaleX": 1,
-								"x": -334,
-								"zIndex": 9,
-								"scaleY": 1,
-								"y": -35,
-								"classname": "Plant_06_01",
-								"uiType": "MovieClip",
-								"rotation": 0
-							},
-							"instance134": {
-								"scaleX": 1,
-								"x": -41,
-								"zIndex": 3,
-								"scaleY": 1,
-								"y": -305,
-								"classname": "BonusPathA_06",
+								"y": -8,
+								"classname": "BonusPathB_06",
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
@@ -4297,16 +4277,6 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"instance130": {
-								"scaleX": 1,
-								"x": -221,
-								"zIndex": 1,
-								"scaleY": 1,
-								"y": -318,
-								"classname": "PathA_06",
-								"uiType": "UIAsset",
-								"rotation": 0
-							},
 							"mcPlantChapter06Index02": {
 								"scaleX": 1,
 								"x": 270,
@@ -4314,6 +4284,16 @@
 								"scaleY": 1,
 								"y": -266,
 								"classname": "Plant_06_02",
+								"uiType": "MovieClip",
+								"rotation": 0
+							},
+							"instance134": {
+								"scaleX": 1,
+								"x": -41,
+								"zIndex": 3,
+								"scaleY": 1,
+								"y": -305,
+								"classname": "BonusPathA_06",
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
@@ -4327,12 +4307,22 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"mcAssessmentPathA": {
+							"mcPlantChapter06Index01": {
 								"scaleX": 1,
-								"x": 438,
-								"zIndex": 15,
+								"x": -334,
+								"zIndex": 9,
 								"scaleY": 1,
-								"y": -156,
+								"y": -35,
+								"classname": "Plant_06_01",
+								"uiType": "MovieClip",
+								"rotation": 0
+							},
+							"mcLesson1PathA": {
+								"scaleX": 1,
+								"x": -502,
+								"zIndex": 11,
+								"scaleY": 1,
+								"y": -283,
 								"classname": "Marker",
 								"uiType": "MovieClip",
 								"rotation": 0
@@ -4357,16 +4347,6 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"instance132": {
-								"scaleX": 1,
-								"x": -197,
-								"zIndex": 2,
-								"scaleY": 1,
-								"y": 109,
-								"classname": "PathB_06",
-								"uiType": "UIAsset",
-								"rotation": 0
-							},
 							"mcAssessmentPathB": {
 								"scaleX": 1,
 								"x": 461,
@@ -4377,22 +4357,22 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"mcPlantChapter06Index04": {
+							"instance132": {
 								"scaleX": 1,
-								"x": -144,
-								"zIndex": 6,
+								"x": -197,
+								"zIndex": 2,
 								"scaleY": 1,
-								"y": 148,
-								"classname": "Plant_06_04",
-								"uiType": "MovieClip",
+								"y": 109,
+								"classname": "PathB_06",
+								"uiType": "UIAsset",
 								"rotation": 0
 							},
-							"mcLesson3PathB": {
+							"mcAssessmentPathA": {
 								"scaleX": 1,
-								"x": 117,
-								"zIndex": 19,
+								"x": 438,
+								"zIndex": 15,
 								"scaleY": 1,
-								"y": 182,
+								"y": -156,
 								"classname": "Marker",
 								"uiType": "MovieClip",
 								"rotation": 0
@@ -4417,22 +4397,42 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"instance136": {
+							"mcLesson4PathA": {
 								"scaleX": 1,
-								"x": 59,
-								"zIndex": 4,
+								"x": 187,
+								"zIndex": 13,
 								"scaleY": 1,
-								"y": -8,
-								"classname": "BonusPathB_06",
+								"y": -107,
+								"classname": "Marker",
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"mcLesson1PathA": {
+							"mcPlantChapter06Index04": {
 								"scaleX": 1,
-								"x": -502,
-								"zIndex": 11,
+								"x": -144,
+								"zIndex": 6,
 								"scaleY": 1,
-								"y": -283,
+								"y": 148,
+								"classname": "Plant_06_04",
+								"uiType": "MovieClip",
+								"rotation": 0
+							},
+							"instance130": {
+								"scaleX": 1,
+								"x": -221,
+								"zIndex": 1,
+								"scaleY": 1,
+								"y": -318,
+								"classname": "PathA_06",
+								"uiType": "UIAsset",
+								"rotation": 0
+							},
+							"mcLesson3PathB": {
+								"scaleX": 1,
+								"x": 117,
+								"zIndex": 19,
+								"scaleY": 1,
+								"y": 182,
 								"classname": "Marker",
 								"uiType": "MovieClip",
 								"rotation": 0
@@ -4469,14 +4469,34 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"mcLesson3PathA": {
+							"mcLesson1PathB": {
 								"scaleX": 1,
-								"x": 94,
-								"zIndex": 14,
+								"x": -274,
+								"zIndex": 16,
 								"scaleY": 1,
-								"y": -328,
+								"y": 101,
 								"classname": "Marker",
 								"uiType": "MovieClip",
+								"rotation": 0
+							},
+							"instance467": {
+								"scaleX": 1,
+								"x": -240,
+								"zIndex": 1,
+								"scaleY": 1,
+								"y": -146,
+								"classname": "PathA_19",
+								"uiType": "UIAsset",
+								"rotation": 0
+							},
+							"instance469": {
+								"scaleX": 1,
+								"x": -246,
+								"zIndex": 2,
+								"scaleY": 1,
+								"y": 162,
+								"classname": "PathB_19",
+								"uiType": "UIAsset",
 								"rotation": 0
 							},
 							"mcPlantChapter19Index04": {
@@ -4499,23 +4519,13 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"mcLesson1PathB": {
+							"instance473": {
 								"scaleX": 1,
-								"x": -274,
-								"zIndex": 16,
+								"x": 96,
+								"zIndex": 4,
 								"scaleY": 1,
-								"y": 101,
-								"classname": "Marker",
-								"uiType": "MovieClip",
-								"rotation": 0
-							},
-							"mcPlantChapter19Index05": {
-								"scaleX": 1,
-								"x": -88,
-								"zIndex": 5,
-								"scaleY": 1,
-								"y": 88,
-								"classname": "Plant_19_05",
+								"y": 170,
+								"classname": "BonusPathB_19",
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
@@ -4539,14 +4549,14 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"instance467": {
+							"mcLesson3PathA": {
 								"scaleX": 1,
-								"x": -240,
-								"zIndex": 1,
+								"x": 94,
+								"zIndex": 14,
 								"scaleY": 1,
-								"y": -146,
-								"classname": "PathA_19",
-								"uiType": "UIAsset",
+								"y": -328,
+								"classname": "Marker",
+								"uiType": "MovieClip",
 								"rotation": 0
 							},
 							"StarMiddle19": {
@@ -4559,13 +4569,23 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"mcAssessmentPathB": {
+							"mcPlantChapter19Index05": {
 								"scaleX": 1,
-								"x": 404,
-								"zIndex": 20,
+								"x": -88,
+								"zIndex": 5,
 								"scaleY": 1,
-								"y": 26,
-								"classname": "Marker",
+								"y": 88,
+								"classname": "Plant_19_05",
+								"uiType": "MovieClip",
+								"rotation": 0
+							},
+							"instance471": {
+								"scaleX": 1,
+								"x": 75,
+								"zIndex": 3,
+								"scaleY": 1,
+								"y": -96,
+								"classname": "BonusPathA_19",
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
@@ -4599,24 +4619,14 @@
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
-							"instance473": {
+							"mcAssessmentPathB": {
 								"scaleX": 1,
-								"x": 96,
-								"zIndex": 4,
+								"x": 404,
+								"zIndex": 20,
 								"scaleY": 1,
-								"y": 170,
-								"classname": "BonusPathB_19",
+								"y": 26,
+								"classname": "Marker",
 								"uiType": "MovieClip",
-								"rotation": 0
-							},
-							"instance469": {
-								"scaleX": 1,
-								"x": -246,
-								"zIndex": 2,
-								"scaleY": 1,
-								"y": 162,
-								"classname": "PathB_19",
-								"uiType": "UIAsset",
 								"rotation": 0
 							},
 							"mcLesson4PathA": {
@@ -4646,16 +4656,6 @@
 								"scaleY": 1,
 								"y": -110,
 								"classname": "Marker",
-								"uiType": "MovieClip",
-								"rotation": 0
-							},
-							"instance471": {
-								"scaleX": 1,
-								"x": 75,
-								"zIndex": 3,
-								"scaleY": 1,
-								"y": -96,
-								"classname": "BonusPathA_19",
 								"uiType": "MovieClip",
 								"rotation": 0
 							},
@@ -4695,32 +4695,22 @@
 				"uiType": "MovieClip",
 				"rotation": 0,
 				"components": {
-					"instance585": {
+					"instance591": {
 						"scaleX": 1,
-						"x": 100,
-						"zIndex": 7,
+						"x": -33,
+						"zIndex": 10,
 						"scaleY": 1,
-						"y": -52,
+						"y": -153,
 						"classname": "flash.display::MovieClip",
 						"uiType": "MovieClip",
 						"rotation": 0
 					},
-					"instance605": {
+					"instance589": {
 						"scaleX": 1,
-						"x": -45,
-						"zIndex": 17,
+						"x": 58,
+						"zIndex": 9,
 						"scaleY": 1,
-						"y": 14,
-						"classname": "flash.display::MovieClip",
-						"uiType": "MovieClip",
-						"rotation": 0
-					},
-					"instance581": {
-						"scaleX": 1,
-						"x": -19,
-						"zIndex": 5,
-						"scaleY": 1,
-						"y": -126,
+						"y": 93,
 						"classname": "flash.display::MovieClip",
 						"uiType": "MovieClip",
 						"rotation": 0
@@ -4735,32 +4725,12 @@
 						"uiType": "MovieClip",
 						"rotation": 0
 					},
-					"instance595": {
+					"instance577": {
 						"scaleX": 1,
-						"x": 89,
-						"zIndex": 12,
+						"x": 41,
+						"zIndex": 3,
 						"scaleY": 1,
-						"y": 12,
-						"classname": "flash.display::MovieClip",
-						"uiType": "MovieClip",
-						"rotation": 0
-					},
-					"instance597": {
-						"scaleX": 1,
-						"x": 89,
-						"zIndex": 13,
-						"scaleY": 1,
-						"y": 85,
-						"classname": "flash.display::MovieClip",
-						"uiType": "MovieClip",
-						"rotation": 0
-					},
-					"instance573": {
-						"scaleX": 1,
-						"x": 94,
-						"zIndex": 1,
-						"scaleY": 1,
-						"y": -28,
+						"y": 44,
 						"classname": "flash.display::MovieClip",
 						"uiType": "MovieClip",
 						"rotation": 0
@@ -4775,82 +4745,12 @@
 						"uiType": "MovieClip",
 						"rotation": 0
 					},
-					"instance583": {
-						"scaleX": 1,
-						"x": 85,
-						"zIndex": 6,
-						"scaleY": 1,
-						"y": -104,
-						"classname": "flash.display::MovieClip",
-						"uiType": "MovieClip",
-						"rotation": 0
-					},
-					"instance591": {
-						"scaleX": 1,
-						"x": -33,
-						"zIndex": 10,
-						"scaleY": 1,
-						"y": -153,
-						"classname": "flash.display::MovieClip",
-						"uiType": "MovieClip",
-						"rotation": 0
-					},
 					"instance579": {
 						"scaleX": 1,
 						"x": -117,
 						"zIndex": 4,
 						"scaleY": 1,
 						"y": 98,
-						"classname": "flash.display::MovieClip",
-						"uiType": "MovieClip",
-						"rotation": 0
-					},
-					"instance577": {
-						"scaleX": 1,
-						"x": 41,
-						"zIndex": 3,
-						"scaleY": 1,
-						"y": 44,
-						"classname": "flash.display::MovieClip",
-						"uiType": "MovieClip",
-						"rotation": 0
-					},
-					"instance601": {
-						"scaleX": 1,
-						"x": -31,
-						"zIndex": 15,
-						"scaleY": 1,
-						"y": -84,
-						"classname": "flash.display::MovieClip",
-						"uiType": "MovieClip",
-						"rotation": 0
-					},
-					"instance587": {
-						"scaleX": 1,
-						"x": 2,
-						"zIndex": 8,
-						"scaleY": 1,
-						"y": 15,
-						"classname": "flash.display::MovieClip",
-						"uiType": "MovieClip",
-						"rotation": 0
-					},
-					"instance575": {
-						"scaleX": 1,
-						"x": -145,
-						"zIndex": 2,
-						"scaleY": 1,
-						"y": -59,
-						"classname": "flash.display::MovieClip",
-						"uiType": "MovieClip",
-						"rotation": 0
-					},
-					"instance593": {
-						"scaleX": 1,
-						"x": -69,
-						"zIndex": 11,
-						"scaleY": 1,
-						"y": 84,
 						"classname": "flash.display::MovieClip",
 						"uiType": "MovieClip",
 						"rotation": 0
@@ -4865,12 +4765,112 @@
 						"uiType": "MovieClip",
 						"rotation": 0
 					},
-					"instance589": {
+					"instance587": {
 						"scaleX": 1,
-						"x": 58,
-						"zIndex": 9,
+						"x": 2,
+						"zIndex": 8,
 						"scaleY": 1,
-						"y": 93,
+						"y": 15,
+						"classname": "flash.display::MovieClip",
+						"uiType": "MovieClip",
+						"rotation": 0
+					},
+					"instance595": {
+						"scaleX": 1,
+						"x": 89,
+						"zIndex": 12,
+						"scaleY": 1,
+						"y": 12,
+						"classname": "flash.display::MovieClip",
+						"uiType": "MovieClip",
+						"rotation": 0
+					},
+					"instance605": {
+						"scaleX": 1,
+						"x": -45,
+						"zIndex": 17,
+						"scaleY": 1,
+						"y": 14,
+						"classname": "flash.display::MovieClip",
+						"uiType": "MovieClip",
+						"rotation": 0
+					},
+					"instance573": {
+						"scaleX": 1,
+						"x": 94,
+						"zIndex": 1,
+						"scaleY": 1,
+						"y": -28,
+						"classname": "flash.display::MovieClip",
+						"uiType": "MovieClip",
+						"rotation": 0
+					},
+					"instance583": {
+						"scaleX": 1,
+						"x": 85,
+						"zIndex": 6,
+						"scaleY": 1,
+						"y": -104,
+						"classname": "flash.display::MovieClip",
+						"uiType": "MovieClip",
+						"rotation": 0
+					},
+					"instance575": {
+						"scaleX": 1,
+						"x": -145,
+						"zIndex": 2,
+						"scaleY": 1,
+						"y": -59,
+						"classname": "flash.display::MovieClip",
+						"uiType": "MovieClip",
+						"rotation": 0
+					},
+					"instance585": {
+						"scaleX": 1,
+						"x": 100,
+						"zIndex": 7,
+						"scaleY": 1,
+						"y": -52,
+						"classname": "flash.display::MovieClip",
+						"uiType": "MovieClip",
+						"rotation": 0
+					},
+					"instance593": {
+						"scaleX": 1,
+						"x": -69,
+						"zIndex": 11,
+						"scaleY": 1,
+						"y": 84,
+						"classname": "flash.display::MovieClip",
+						"uiType": "MovieClip",
+						"rotation": 0
+					},
+					"instance601": {
+						"scaleX": 1,
+						"x": -31,
+						"zIndex": 15,
+						"scaleY": 1,
+						"y": -84,
+						"classname": "flash.display::MovieClip",
+						"uiType": "MovieClip",
+						"rotation": 0
+					},
+					"instance581": {
+						"scaleX": 1,
+						"x": -19,
+						"zIndex": 5,
+						"scaleY": 1,
+						"y": -126,
+						"classname": "flash.display::MovieClip",
+						"uiType": "MovieClip",
+						"rotation": 0
+					},
+					"instance597": {
+						"scaleX": 1,
+						"x": 89,
+						"zIndex": 13,
+						"scaleY": 1,
+						"y": 85,
 						"classname": "flash.display::MovieClip",
 						"uiType": "MovieClip",
 						"rotation": 0
@@ -4995,10 +4995,10 @@
 				"components": {
 					"mcBurrowButton": {
 						"scaleX": 1,
-						"x": -164,
+						"x": -150,
 						"zIndex": 0,
 						"scaleY": 1,
-						"y": -152,
+						"y": -150,
 						"classname": "BurrowButton_btn",
 						"uiType": "Button",
 						"rotation": 0
@@ -5025,153 +5025,13 @@
 				"uiType": "MovieClip",
 				"rotation": 0,
 				"components": {
-					"instance680": {
+					"instance656": {
 						"scaleX": 1,
-						"x": -212,
-						"zIndex": 16,
+						"x": -484,
+						"zIndex": 4,
 						"scaleY": 1,
-						"y": -79,
-						"classname": "GardenButton_16",
-						"uiType": "MovieClip",
-						"rotation": 0
-					},
-					"instance684": {
-						"scaleX": 1,
-						"x": 19,
-						"zIndex": 18,
-						"scaleY": 1,
-						"y": -291,
-						"classname": "GardenButton_18",
-						"uiType": "MovieClip",
-						"rotation": 0
-					},
-					"instance650": {
-						"scaleX": 1,
-						"x": -221,
-						"zIndex": 1,
-						"scaleY": 1,
-						"y": 88,
-						"classname": "GardenButton_01",
-						"uiType": "MovieClip",
-						"rotation": 0
-					},
-					"instance686": {
-						"scaleX": 1,
-						"x": 143,
-						"zIndex": 19,
-						"scaleY": 1,
-						"y": -198,
-						"classname": "GardenButton_19",
-						"uiType": "MovieClip",
-						"rotation": 0
-					},
-					"instance672": {
-						"scaleX": 1,
-						"x": 55,
-						"zIndex": 12,
-						"scaleY": 1,
-						"y": -449,
-						"classname": "GardenButton_12",
-						"uiType": "MovieClip",
-						"rotation": 0
-					},
-					"instance682": {
-						"scaleX": 1,
-						"x": -145,
-						"zIndex": 17,
-						"scaleY": 1,
-						"y": -228,
-						"classname": "GardenButton_17",
-						"uiType": "MovieClip",
-						"rotation": 0
-					},
-					"instance658": {
-						"scaleX": 1,
-						"x": -416,
-						"zIndex": 5,
-						"scaleY": 1,
-						"y": -431,
-						"classname": "GardenButton_05",
-						"uiType": "MovieClip",
-						"rotation": 0
-					},
-					"instance674": {
-						"scaleX": 1,
-						"x": -112,
-						"zIndex": 13,
-						"scaleY": 1,
-						"y": -426,
-						"classname": "GardenButton_13",
-						"uiType": "MovieClip",
-						"rotation": 0
-					},
-					"instance654": {
-						"scaleX": 1,
-						"x": -472,
-						"zIndex": 3,
-						"scaleY": 1,
-						"y": -113,
-						"classname": "GardenButton_03",
-						"uiType": "MovieClip",
-						"rotation": 0
-					},
-					"instance676": {
-						"scaleX": 1,
-						"x": -260,
-						"zIndex": 14,
-						"scaleY": 1,
-						"y": -367,
-						"classname": "GardenButton_14",
-						"uiType": "MovieClip",
-						"rotation": 0
-					},
-					"instance670": {
-						"scaleX": 1,
-						"x": 200,
-						"zIndex": 11,
-						"scaleY": 1,
-						"y": -361,
-						"classname": "GardenButton_11",
-						"uiType": "MovieClip",
-						"rotation": 0
-					},
-					"instance652": {
-						"scaleX": 1,
-						"x": -380,
-						"zIndex": 2,
-						"scaleY": 1,
-						"y": 17,
-						"classname": "GardenButton_02",
-						"uiType": "MovieClip",
-						"rotation": 0
-					},
-					"instance664": {
-						"scaleX": 1,
-						"x": 47,
-						"zIndex": 8,
-						"scaleY": 1,
-						"y": -595,
-						"classname": "GardenButton_08",
-						"uiType": "MovieClip",
-						"rotation": 0
-					},
-					"instance668": {
-						"scaleX": 1,
-						"x": 332,
-						"zIndex": 10,
-						"scaleY": 1,
-						"y": -441,
-						"classname": "GardenButton_10",
-						"uiType": "MovieClip",
-						"rotation": 0
-					},
-					"instance688": {
-						"scaleX": 1,
-						"x": 3,
-						"zIndex": 20,
-						"scaleY": 1,
-						"y": -151,
-						"classname": "GardenButton_20",
+						"y": -276,
+						"classname": "GardenButton_04",
 						"uiType": "MovieClip",
 						"rotation": 0
 					},
@@ -5185,13 +5045,53 @@
 						"uiType": "MovieClip",
 						"rotation": 0
 					},
-					"instance662": {
+					"instance658": {
 						"scaleX": 1,
-						"x": -128,
-						"zIndex": 7,
+						"x": -416,
+						"zIndex": 5,
 						"scaleY": 1,
-						"y": -601,
-						"classname": "GardenButton_07",
+						"y": -431,
+						"classname": "GardenButton_05",
+						"uiType": "MovieClip",
+						"rotation": 0
+					},
+					"instance654": {
+						"scaleX": 1,
+						"x": -472,
+						"zIndex": 3,
+						"scaleY": 1,
+						"y": -113,
+						"classname": "GardenButton_03",
+						"uiType": "MovieClip",
+						"rotation": 0
+					},
+					"instance686": {
+						"scaleX": 1,
+						"x": 143,
+						"zIndex": 19,
+						"scaleY": 1,
+						"y": -198,
+						"classname": "GardenButton_19",
+						"uiType": "MovieClip",
+						"rotation": 0
+					},
+					"instance676": {
+						"scaleX": 1,
+						"x": -260,
+						"zIndex": 14,
+						"scaleY": 1,
+						"y": -367,
+						"classname": "GardenButton_14",
+						"uiType": "MovieClip",
+						"rotation": 0
+					},
+					"instance680": {
+						"scaleX": 1,
+						"x": -212,
+						"zIndex": 16,
+						"scaleY": 1,
+						"y": -79,
+						"classname": "GardenButton_16",
 						"uiType": "MovieClip",
 						"rotation": 0
 					},
@@ -5205,13 +5105,43 @@
 						"uiType": "UIAsset",
 						"rotation": 0
 					},
-					"instance660": {
+					"instance650": {
 						"scaleX": 1,
-						"x": -286,
-						"zIndex": 6,
+						"x": -221,
+						"zIndex": 1,
 						"scaleY": 1,
-						"y": -540,
-						"classname": "GardenButton_06",
+						"y": 88,
+						"classname": "GardenButton_01",
+						"uiType": "MovieClip",
+						"rotation": 0
+					},
+					"instance682": {
+						"scaleX": 1,
+						"x": -145,
+						"zIndex": 17,
+						"scaleY": 1,
+						"y": -228,
+						"classname": "GardenButton_17",
+						"uiType": "MovieClip",
+						"rotation": 0
+					},
+					"instance662": {
+						"scaleX": 1,
+						"x": -128,
+						"zIndex": 7,
+						"scaleY": 1,
+						"y": -601,
+						"classname": "GardenButton_07",
+						"uiType": "MovieClip",
+						"rotation": 0
+					},
+					"instance670": {
+						"scaleX": 1,
+						"x": 200,
+						"zIndex": 11,
+						"scaleY": 1,
+						"y": -361,
+						"classname": "GardenButton_11",
 						"uiType": "MovieClip",
 						"rotation": 0
 					},
@@ -5225,13 +5155,83 @@
 						"uiType": "MovieClip",
 						"rotation": 0
 					},
-					"instance656": {
+					"instance672": {
 						"scaleX": 1,
-						"x": -484,
-						"zIndex": 4,
+						"x": 55,
+						"zIndex": 12,
 						"scaleY": 1,
-						"y": -276,
-						"classname": "GardenButton_04",
+						"y": -449,
+						"classname": "GardenButton_12",
+						"uiType": "MovieClip",
+						"rotation": 0
+					},
+					"instance660": {
+						"scaleX": 1,
+						"x": -286,
+						"zIndex": 6,
+						"scaleY": 1,
+						"y": -540,
+						"classname": "GardenButton_06",
+						"uiType": "MovieClip",
+						"rotation": 0
+					},
+					"instance684": {
+						"scaleX": 1,
+						"x": 19,
+						"zIndex": 18,
+						"scaleY": 1,
+						"y": -291,
+						"classname": "GardenButton_18",
+						"uiType": "MovieClip",
+						"rotation": 0
+					},
+					"instance688": {
+						"scaleX": 1,
+						"x": 3,
+						"zIndex": 20,
+						"scaleY": 1,
+						"y": -151,
+						"classname": "GardenButton_20",
+						"uiType": "MovieClip",
+						"rotation": 0
+					},
+					"instance664": {
+						"scaleX": 1,
+						"x": 47,
+						"zIndex": 8,
+						"scaleY": 1,
+						"y": -595,
+						"classname": "GardenButton_08",
+						"uiType": "MovieClip",
+						"rotation": 0
+					},
+					"instance652": {
+						"scaleX": 1,
+						"x": -380,
+						"zIndex": 2,
+						"scaleY": 1,
+						"y": 17,
+						"classname": "GardenButton_02",
+						"uiType": "MovieClip",
+						"rotation": 0
+					},
+					"instance668": {
+						"scaleX": 1,
+						"x": 332,
+						"zIndex": 10,
+						"scaleY": 1,
+						"y": -441,
+						"classname": "GardenButton_10",
+						"uiType": "MovieClip",
+						"rotation": 0
+					},
+					"instance674": {
+						"scaleX": 1,
+						"x": -112,
+						"zIndex": 13,
+						"scaleY": 1,
+						"y": -426,
+						"classname": "GardenButton_13",
 						"uiType": "MovieClip",
 						"rotation": 0
 					}
