@@ -241,7 +241,7 @@
     };
 
     PhaseOneMaths.prototype.enableNextStep = function PhaseOneMathsEnableNextStep () {
-        this.game.ui.enableNext('Phase3Tracing');
+        this.game.ui.enableNext('Phase2Image');
     };
 
     PhaseOneMaths.prototype.shutdown = function PhaseOneMathsShutdown () {

@@ -74,8 +74,8 @@ define([
         this.videoPhaseStage = new Phaser.Group(this.game, this.game.world, 'videoPhaseStage');
         
         // #### Video
-        this.videoTexture1 = new Phaser.Video(this.game, 'video_a_1');
-        this.videoTexture2 = new Phaser.Video(this.game, 'video_a_2');
+        this.videoTexture1 = new Phaser.Video(this.game, 'video_'+ this.notion.value + '_1');
+        this.videoTexture2 = new Phaser.Video(this.game, 'video_'+ this.notion.value + '_2');
         this.video = new Phaser.Sprite(this.game, 960, 400, this.videoTexture1);
         this.video.inputEnabled = false;
         this.video.anchor.set(0.5, 0.5);

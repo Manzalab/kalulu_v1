@@ -28,10 +28,8 @@
     function MinigamesTester () {
 
         this.options =  {
-            LANGUAGE    : "swahili",
-            minigame    : 'crabs',
-            // LANGUAGE    : KALULU_LANGUAGE,
-            // minigame    : 'lookandlearn',
+            LANGUAGE    : KALULU_LANGUAGE, // cannot be changed post build, presence for information only.
+            minigame    : 'lookandlearn',
             discipline  : 'maths',
             globalLevel : 1,
             localLevel  : 1,

@@ -103,17 +103,15 @@ define([
     };
 
     PhaseTracing.prototype.prepareSeries = function phaseTracingPrepareSeries () {
-        
-
-        if (this.game.gameConfig.pedagogicData.data.traceUppercase) {
-
+        var series = {};
+        var upperCase = this.game.gameConfig.pedagogicData.data.traceUppercase;
+        if (upperCase) {
+            series[this.notion.textValue.toUpperCase()] = { nbOfTimes: 2 };
         }
 
+        series[this.notion.textValue.toLowerCase()] = { nbOfTimes: 2 };
 
-        return {
-            'A': { nbOfTimes: 2 },
-            'a': { nbOfTimes: 2 }
-        };
+        return series;
     };
 
     PhaseTracing.prototype.update = function phaseTracingUpdate () {
