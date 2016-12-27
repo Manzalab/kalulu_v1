@@ -177,8 +177,8 @@ define([
                     default :
                         boolLessonPath = lArrayLesson[2];
                 }
-                //if(boolLessonPath) this._bonusPathA[chapterIndex].setModeOn();
-                if(!boolLessonPath) this._bonusPathA[chapterIndex].setModeOn(); // FOR DEBUG
+                if(boolLessonPath) this._bonusPathA[chapterIndex].setModeOn();
+                // if(!boolLessonPath) this._bonusPathA[chapterIndex].setModeOn(); // FOR DEBUG
 
                 lArrayLesson = [];
                 chapterIndex++;
@@ -207,8 +207,8 @@ define([
                     default :
                         boolLessonPath = lArrayLesson[2];
                 }
-                //if(boolLessonPath) this._bonusPathB[chapterIndex].setModeOn();
-                if(!boolLessonPath) this._bonusPathB[chapterIndex].setModeOn(); // FOR DEBUG
+                if(boolLessonPath) this._bonusPathB[chapterIndex].setModeOn();
+                // if(!boolLessonPath) this._bonusPathB[chapterIndex].setModeOn(); // FOR DEBUG
 
                 lArrayLesson = [];
                 chapterIndex++;
