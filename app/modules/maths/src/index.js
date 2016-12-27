@@ -568,7 +568,9 @@
         return {
           discipline : 'maths',
           language   : KALULU_LANGUAGE, // can be : english, french, swahili
-          data       : notionsData
+          data       : {
+            notions : notionsData
+          }
         }
     };
 

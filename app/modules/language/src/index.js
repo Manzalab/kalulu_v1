@@ -258,7 +258,7 @@
             sound             : selectedNotion.soundPath,
             illustrativeSound : selectedNotion.illustrativeSoundPath,
             image             : selectedNotion.illustrationPath,
-            textValue         : selectedNotion.value,
+            value             : selectedNotion.value,
             traceUppercase    : selectedNotion.traceUppercase
         };
         
@@ -266,7 +266,10 @@
         return {
             discipline : 'language',
             language   : KALULU_LANGUAGE, // can be : english, french, swahili
-            data       : [pedagogicData]
+            data       : {
+                traceUppercase : pedagogicData.traceUppercase,
+                notions : [pedagogicData]
+            }
         };
     };
 
