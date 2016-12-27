@@ -9,7 +9,7 @@
         "debugPlanConstruction"   : false,
         "enableTransitionsTuning" : true,
         "enableMinigameTuning"    : false,
-        "enableQAControls"        : false
+        "enableQAControls"        : true
     },
     "paths" : {
         "imagesPath" : "assets/images/",

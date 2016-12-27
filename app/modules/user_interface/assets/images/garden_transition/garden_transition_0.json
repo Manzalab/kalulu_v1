@@ -2,7 +2,7 @@
 
 "Leaf_3.png":
 {
-	"frame": {"x":0,"y":0,"w":3165,"h":2894},
+	"frame": {"x":3,"y":3,"w":3165,"h":2894},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":3165,"h":2894},
@@ -12,10 +12,10 @@
 "meta": {
 	"app": "http://www.codeandweb.com/texturepacker",
 	"version": "1.0",
-	"image": "garden_transition_3.png",
+	"image": "garden_transition_0.png",
 	"format": "RGBA8888",
-	"size": {"w":3165,"h":2894},
+	"size": {"w":3171,"h":2900},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:3e56d107120c20eb10a88701d2a93d17:032d3ab85e13df900a7053fda711218c:971ef0b8169f51d22bf703dbd2d16bff$"
+	"smartupdate": "$TexturePacker:SmartUpdate:05900d7670ba88b1ce91fa36ddaade61:b6ad4b37ea746e71c9d5dbc84348942f:2ab6138138d221f63397fe5f0c3f556f$"
 }
 }
