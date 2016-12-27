@@ -16,9 +16,9 @@
     function MinigamesTester () {
 
         this.options =  {
-            LANGUAGE    : KALULU_LANGUAGE,
-            minigame    : 'ants',
-            discipline  : 'language',
+            LANGUAGE    : "swahili",
+            minigame    : 'crabs',
+            discipline  : 'maths',
             globalLevel : 1,
             localLevel  : 1,
             start       : this.startGame.bind(this)
@@ -116,7 +116,7 @@
                     part2 = 'lookandlearn';
                     break;
                 case 'monkeys':
-                    part2 = 'sums';
+                    part2 = 'sum';
                     break;
                 case 'parakeets':
                     part2 = 'pairing';
