@@ -45,7 +45,7 @@
             //Kalulu Game Specific audio
             this.game.load.audio('kaluluIntro', 'minigames/' + this.game.gameConfig.gameId + '/assets/audio/kalulu/intro.wav');
             this.game.load.audio('kaluluHelp', 'minigames/' + this.game.gameConfig.gameId + '/assets/audio/kalulu/help.wav');
-            this.game.load.audio('kaluluEnd', 'minigames/' + this.game.gameConfig.gameId + '/assets/audio/kalulu/end.wav');
+            this.game.load.audio('kaluluGameOverWin', 'minigames/' + this.game.gameConfig.gameId + '/assets/audio/kalulu/end.wav');
         },
 
         /**
@@ -74,7 +74,7 @@
             this.game.load.audio('menuYes', 'minigames/common/assets/audio/sfx/ButtonOK.ogg');
             this.game.load.audio('winGame', 'minigames/common/assets/audio/sfx/GameOverWin.ogg');
             this.game.load.audio('loseGame', 'minigames/common/assets/audio/sfx/GameOverLose.ogg');
-            this.game.load.audio('kaluluGameOverLose', 'minigames/common/assets/audio/kalulu/KaluluGameOverLose.ogg');
+            this.game.load.audio('kaluluGameOverLose', 'minigames/common/assets/audio/kalulu/kalulu_lose_minigame.ogg');
             this.game.load.audio('kaluluOn', 'minigames/common/assets/audio/sfx/KaluluOn.ogg');
             this.game.load.audio('kaluluOff', 'minigames/common/assets/audio/sfx/KaluluOff.ogg');
             this.game.load.audio('menu', 'minigames/common/assets/audio/sfx/OpenPopin.ogg');

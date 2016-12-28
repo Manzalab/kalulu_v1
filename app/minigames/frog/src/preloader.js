@@ -52,7 +52,7 @@
             //Kalulu Game Specific audio
             this.game.load.audio('kaluluIntro', 'frogger/assets/audio/kalulu/intro.wav');
             this.game.load.audio('kaluluHelp', 'frogger/assets/audio/kalulu/help.wav');
-            this.game.load.audio('kaluluEnd', 'frogger/assets/audio/kalulu/end.wav');
+            this.game.load.audio('kaluluGameOverWin', 'frogger/assets/audio/kalulu/end.wav');
         },
 
         /**

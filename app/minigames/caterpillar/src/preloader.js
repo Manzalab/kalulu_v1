@@ -51,7 +51,7 @@
             //Kalulu Game Specific audio
             this.game.load.audio('kaluluIntro', 'minigames/caterpillar/assets/audio/kalulu/kalulu_Intro_Caterpillar_' + this.game.rafiki.discipline + '.ogg');
             this.game.load.audio('kaluluHelp', 'minigames/caterpillar/assets/audio/kalulu/kalulu_Help_Caterpillar_' + this.game.rafiki.discipline + '.ogg');
-            this.game.load.audio('kaluluEnd', 'minigames/caterpillar/assets/audio/kalulu/kalulu_End_Caterpillar_' + this.game.rafiki.discipline + '.ogg');
+            this.game.load.audio('kaluluGameOverWin', 'minigames/caterpillar/assets/audio/kalulu/kalulu_End_Caterpillar_' + this.game.rafiki.discipline + '.ogg');
         },
 
         /**
@@ -76,7 +76,7 @@
             this.game.load.atlasJSONHash('kaluluSpeaking2', 'minigames/common/assets/images/kalulu_animations/kaluluSpeaking2.png', 'minigames/common/assets/images/kalulu_animations/kaluluSpeaking2.json');
 
             // Audio
-            this.game.load.audio('kaluluGameOverLose', 'minigames/common/assets/audio/kalulu/ButtonCancel.ogg');
+            this.game.load.audio('kaluluGameOverLose', 'minigames/common/assets/audio/kalulu/kalulu_lose_minigame.ogg');
 
             this.game.load.audio('menuNo', 'minigames/common/assets/audio/sfx/ButtonCancel.ogg');
             this.game.load.audio('menuYes', 'minigames/common/assets/audio/sfx/ButtonOK.ogg');
