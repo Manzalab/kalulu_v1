@@ -4,6 +4,7 @@
 
     var DisciplineModule = require ('game_logic/core/discipline_module');
     var Kalulu_maths     = require ('./kalulu_maths');
+    var _                = require ('underscore');
     var staticData = {
         name              : 'maths',
         language          : KALULU_LANGUAGE.toLowerCase(),
@@ -707,7 +708,7 @@ var record_not_av   = [
     };
 
     MathsModule.prototype.getNotionsForLesson = function getNotionsForLesson (lessonNumber) {
-        return Object.values(this._notionsListByLesson[lessonNumber]);
+        return _.values(this._notionsListByLesson[lessonNumber]);
     };
 
     MathsModule.prototype.getNotionIdsForLesson = function getNotionIdsForLesson (lessonNumber) {
