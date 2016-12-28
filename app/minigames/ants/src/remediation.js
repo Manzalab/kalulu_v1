@@ -180,7 +180,7 @@
      * Initialise parameters for the required round with data contained in this.pedagogicData
      **/
     Remediation.prototype.initRound = function initRound(roundIndex) {
-        var roundData = this.game.pedagogicData.data.rounds[roundIndex].steps[0];
+        var roundData = this.game.pedagogicData.data.rounds[roundIndex].steps[0]; console.log(roundData);
         var localParams = this.game.params.getLocalParams(); // get the latest localParams (localParams can change anytime during the game following player's inputs)
 
         var yOffset = (this.game.height - 200) / (localParams.sentencesCount + 1);
