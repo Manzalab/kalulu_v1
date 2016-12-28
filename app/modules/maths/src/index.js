@@ -557,12 +557,15 @@
             //var lTexture = new PIXI3.Texture.fromFrame(lNotion.illustrationName + ".jpg");
 
             notionsData.push({
+                id                : parseInt(lNotion.VALUE, 10),
+                value             : parseInt(lNotion.VALUE, 10),
+                textValue         : lNotion.VALUE,
                 sound             : Config.soundsPath + this.id + "/number_" + lNotion.VALUE + '.ogg',
-                illustrativeSound : Config.soundsPath + this.id + "/" + lNotion.illustrativeSoundFilename,
-                image             : Config.imagesPath + this.id + "/" + lNotion.IMAGE + '.png',
-                value             : parseInt(lNotion.VALUE, 10)
+                illustrativeSound : Config.soundsPath + this.id + "/number_" + lNotion.VALUE + '.ogg',
+                image             : Config.imagesPath + this.id + "/" + lNotion.IMAGE.toLowerCase() + '.jpg'
             });
         }
+
         //console.log(notionsData);
 
         return {
