@@ -13,6 +13,7 @@
     var RenderingManager        = require ('./rendering_manager');
     var ScreensManager          = require ('./screens_manager');
     var LoadingManager          = require ('./loading_manager');
+    var Reward                  = require ('./dynamic_rewards');
     
     var GraphicLoader           = require ('./screens/graphic_loader');
     var TitleCard               = require ('./screens/title_card');
@@ -23,6 +24,8 @@
     var ToyChestActivityScreen  = require ('./screens/toy_chest_activity_screen');
 
     var KaluluCharacter         = require ('./elements/kalulu_character');
+
+    var Timer                   = require ('../../../src/game_logic/timer');
 
 
     // ###############################################################################################################################################
@@ -56,6 +59,10 @@
         this._screens = {};
 
         this._init();
+        this.kaluluCharacter = KaluluCharacter;
+        this.rewards = Reward;
+        this.unlockedRewards = ["Mamba_mwenye_njaa"];
+        this._eventSystem.on(Events.GAME.UNLOCK_REWARD_TOYCHEST, this._onRewardUnlocked.bind(this));
     }
 
 
@@ -71,7 +78,11 @@
          * @type {boolean}
          * @memberof Namespace.UserInterface#
         **/
-        debugPanel: { get: function () { return this._debugPanel; } }
+        debugPanel: { get: function () { return this._debugPanel; } },
+
+        isToyChestLocked: { get: function() { return Timer.elapsedTime < Config.minutesRequiredToUnlockToyChest;}},
+
+        isTutorialCompleted : { get: function() { return this._userProfile.kaluluTalks.lesson2; }}
     });
 
     // ##############################################################################################################################################
@@ -203,7 +214,7 @@
         
         // rendering on 1 frame out of 2
         if (frameId % 2 === 0) this._renderingManager.render();
-        if (this._kaluluCharacter!==undefined && this._kaluluCharacter.isTalking) this._kaluluCharacter.update();
+        if (this.kaluluCharacter!==undefined) this.kaluluCharacter.update();
     };
 
     /**
@@ -237,30 +248,101 @@
         SoundManager.stopAllAmbiances();
         this._screens.titleCard = new TitleCard(this);
         this._screensManager.openScreen(this._screens.titleCard);
+        // SoundManager.stopAllSounds();
     };
 
 
-    UserInterface.prototype._onGotoBrainScreen = function _onGotoBrainScreen (chaptersProgression) {
+    UserInterface.prototype._onGotoBrainScreen = function _onGotoBrainScreen (chaptersProgression, userProfile) {
         //console.log(chaptersProgression);
+        this._userProfile = userProfile;
         this._screensManager.prepareTransition();
         this._screens.brainScreen = new BrainScreen(this);
         this._screens.brainScreen.unlockChapters(chaptersProgression);
         this._screensManager.openScreen(this._screens.brainScreen);
+
+        this.kaluluCharacter.kaluluButton = this._screens.brainScreen._kaluluButton;
+
+        if (this._userProfile.kaluluTalks.brainScreen)
+        {
+            this.kaluluCharacter.startTalk("kalulu_intro_brainscreen", ["kalulu_tuto_brainscreen"]);
+            this.kaluluCharacter.x = this.kaluluCharacter.width/2;
+            this.kaluluCharacter.y = -this.kaluluCharacter.height/3;
+            this._screens.brainScreen._hud.bottomLeft.addChild(this.kaluluCharacter);
+            this._userProfile.kaluluTalks.brainScreen = false;
+        }
+        if (this._userProfile.kaluluTalks.firstTreasure && !this._userProfile.kaluluTalks.firstStar)
+        {
+            this.kaluluCharacter.startTalk("kalulu_tuto_firsttreasure_01", ["kalulu_tuto_firsttreasure_02"]);
+
+            this.kaluluCharacter.x = this.kaluluCharacter.width/2;
+            this.kaluluCharacter.y = -this.kaluluCharacter.height/3;
+            this._screens.brainScreen._hud.bottomLeft.addChild(this.kaluluCharacter);
+            this._userProfile.kaluluTalks.firstTreasure = false;
+        }
     };
 
 
     UserInterface.prototype._onGotoGardenScreen = function _onGotoGardenScreen (gardenData, chaptersProgression, userProfile) {
-        //console.log(chaptersProgression);
+        
         this._screens.gardenScreen = new GardenScreen(this, gardenData, chaptersProgression, userProfile);
         this._screens.gardenScreen.unlockGardens(chaptersProgression);
         this._screens.gardenScreen.unlockBonusPath(userProfile);
         this._screensManager.openScreen(this._screens.gardenScreen);
         this._screensManager.closeGardenTransition();
+
+        this.kaluluCharacter.kaluluButton = this._screens.gardenScreen._kaluluButton;
+
+        if (this._userProfile.kaluluTalks.gardenScreen)
+        {
+            this.kaluluCharacter.startTalk("kalulu_intro_gardenscreen", ["kalulu_tuto_introstep01_gardenscreen"]);
+
+            this.kaluluCharacter.x = this.kaluluCharacter.width/2;
+            this.kaluluCharacter.y = -this.kaluluCharacter.height/3;
+            this._screens.gardenScreen._hud.bottomLeft.addChild(this.kaluluCharacter);
+            this._userProfile.kaluluTalks.gardenScreen = false;
+        }
+        else if (this._dataForLesson && this._dataForLesson.isCompleted && this._userProfile.kaluluTalks.gardenLesson)
+        {
+            this.kaluluCharacter.x = this.kaluluCharacter.width/2;
+            this.kaluluCharacter.y = -this.kaluluCharacter.height/3;
+            this._screens.gardenScreen._hud.bottomLeft.addChild(this.kaluluCharacter);
+            this.kaluluCharacter.startTalk("kalulu_tuto_endstep02_gardenscreen", ["kalulu_tuto_introstep03_gardenscreen"]);
+            this._userProfile.kaluluTalks.gardenLesson = false;
+        }
+
     };
 
     UserInterface.prototype._onGotoLessonScreen = function _onGotoLessonScreen (lessonNode) {
         this._screens.lessonScreen = new LessonScreen(this, lessonNode);
         this._screensManager.openScreen(this._screens.lessonScreen);
+
+        this.kaluluCharacter.kaluluButton = this._screens.lessonScreen._kaluluButton;
+        if (lessonNode.lessonNumber == 1 && this._userProfile.kaluluTalks.lesson1)
+        {
+            this.kaluluCharacter.startTalk("kalulu_intro_lessonscreen", ["kalulu_tuto_lessonscreen"]);
+
+            this.kaluluCharacter.x = this.kaluluCharacter.width/2;
+            this.kaluluCharacter.y = -this.kaluluCharacter.height/3;
+            this._screens.lessonScreen._hud.bottomLeft.addChild(this.kaluluCharacter);
+            this._userProfile.kaluluTalks.lesson1 = false;
+        }
+        else if (lessonNode.lessonNumber == 2 && this._userProfile.kaluluTalks.lesson2)
+        {
+            this.kaluluCharacter.startTalk("kalulu_tuto_secondlesson");
+
+            this.kaluluCharacter.x = this.kaluluCharacter.width/2;
+            this.kaluluCharacter.y = -this.kaluluCharacter.height/3;
+            this._screens.lessonScreen._hud.bottomLeft.addChild(this.kaluluCharacter);
+            this._userProfile.kaluluTalks.lesson2 = false;
+        }
+        else if (lessonNode.children[0].lessonNumber == 1 && lessonNode.children[0].isCompleted && this._userProfile.kaluluTalks.gardenLetter)
+        {
+            this.kaluluCharacter.x = this.kaluluCharacter.width/2;
+            this.kaluluCharacter.y = -this.kaluluCharacter.height/3;
+            this._screens.lessonScreen._hud.bottomLeft.addChild(this.kaluluCharacter);
+            this.kaluluCharacter.startTalk("kalulu_tuto_endstep01_gardenscreen", ["kalulu_tuto_introstep02_gardenscreen"]);
+            this._userProfile.kaluluTalks.gardenLetter = false;
+        }
     };
 
     UserInterface.prototype._onGotoActivity = function _onGotoActivity (eventData) {
@@ -271,8 +353,9 @@
     };
 
     UserInterface.prototype._onBackFromActivity = function _onBackFromActivity (eventData, chaptersProgression) {
-        console.log(eventData);
+        console.log(eventData.children[0]);
         //SoundManager.startAmbiance("Bird");
+        this._dataForLesson = eventData;
         if (!this._renderingManager.rendererIsDisplayed) this._renderingManager.addRenderer();
         if (eventData && eventData.constructor.name === "Lesson") {
             this._onGotoLessonScreen(eventData);
@@ -294,24 +377,43 @@
     UserInterface.prototype._onGotoToyChestScreen = function _onGotoToyChestScreen () {
         this._screens.toyChestScreen = new ToyChestScreen(this);
         this._screensManager.openScreen(this._screens.toyChestScreen);
-    };
 
-    UserInterface.prototype._onKaluluToyChestLocked = function _onKaluluToyChestLocked () {
-        if (this._kaluluCharacter)
+        if (this._userProfile.kaluluTalks.toyChestScreen)
         {
-            this._screens.brainScreen._toyChestButton.removeChild(this._kaluluCharacter);
-            this._kaluluCharacter.stopSound();
-            this._kaluluCharacter = null;
+            this.kaluluCharacter.startTalk("kalulu_intro_toychest", ["kalulu_tuto_toychest01"]);
+            this.kaluluCharacter.x = this.kaluluCharacter.width/2;
+            this.kaluluCharacter.y = -this.kaluluCharacter.height/3;
+            this._screens.toyChestScreen.addChild(this.kaluluCharacter); // j'addchild dans le toychestScreen pcq je n'ai pas de hud BL ainsi qu'un kalulubutton pour l'instant
+            this._userProfile.kaluluTalks.toyChestScreen = false;
+        }
+    };
+    
+    UserInterface.prototype._onKaluluToyChestLocked = function _onKaluluToyChestLocked () {
+        if (this.kaluluCharacter)
+        {
+            this.kaluluCharacter.parent.removeChild(this.kaluluCharacter);
+            this.kaluluCharacter.stopSound();
         }
 
-        this._kaluluCharacter = new KaluluCharacter();
-        this._kaluluCharacter.scale.set(0.5);
-        this._kaluluCharacter.y -= 100;
-        this._screens.brainScreen._toyChestButton.addChild(this._kaluluCharacter);
-        this._kaluluCharacter.startTalk("kaluluLocked");
+        this.kaluluCharacter.scale.set(0.5);
+        this.kaluluCharacter.y -= 100;
+        this.kaluluCharacter.x = 0;
+        this._screens.brainScreen._toyChestButton.addChild(this.kaluluCharacter);
+        this.kaluluCharacter.startTalk("kalulu_info_toychestnotavailable");
         
     };
 
+    UserInterface.prototype._onRewardUnlocked = function _onRewardUnlocked (pRewardName) {
+        this.unlockedRewards.push(pRewardName);
+        if (this._userProfile.kaluluTalks.firstStar)
+        {
+            this.kaluluCharacter.startTalk("kalulu_tuto_firststarwon_01", ["kalulu_tuto_firststarwon_02"]);
+            this.kaluluCharacter.x = this.kaluluCharacter.width/2;
+            this.kaluluCharacter.y = -this.kaluluCharacter.height/3;
+            this._screens.gardenScreen._hud.bottomLeft.addChild(this.kaluluCharacter);
+            this._userProfile.kaluluTalks.firstStar = false;
+        } 
+    };
 
     // ##############################################################################################################################################
     // ###  DEBUG METHODS  ########################################################################################################################

@@ -8,6 +8,7 @@
     var Rafiki              = require('./rafiki');
     var Timer               = require('./timer');
     var UserProfile         = require('./core/user_profile');
+    var Reward              = require('application/dynamic_rewards');
 
     // ###############################################################################################################################################
     // ###  CONSTRUCTOR  #############################################################################################################################
@@ -123,6 +124,12 @@
                     data : this._rafiki.getChaptersData(),
                 };
                 this._eventSystem.emit(Events.GAME.BACK_FROM_ACTIVITY, pedagogicData, this._rafiki.getChaptersProgression());
+                if (Reward.levelRewards[progressionNode.discipline.type.toLowerCase()][progressionNode.lessonNumber]) 
+                {
+                    // Reward.levelRewards[progressionNode.discipline.type.toLowerCase()][progressionNode.lessonNumber]
+                    // envoyer ce nom dans l'interface manager avec un event pour push le nom du reward dans ToyChestActivityScreen._unlockedActivities
+                    this.emit(Events.GAME.UNLOCK_REWARD_TOYCHEST, Reward.levelRewards[progressionNode.discipline.type.toLowerCase()][progressionNode.lessonNumber]);
+                }
             }
             this.save();
         }
@@ -237,7 +244,7 @@
         this.setState(GameStates.MENUS);
         
         this._eventSystem.once(Events.COMMANDS.GOTO_TOYCHEST_SCREEN_REQUEST, this._onToyChestScreenRequest, this);
-        this._eventSystem.emit(Events.GAME.GOTO_BRAIN_SCREEN, this._rafiki.getChaptersProgression());
+        this._eventSystem.emit(Events.GAME.GOTO_BRAIN_SCREEN, this._rafiki.getChaptersProgression(), this._currentUserProfile);
     };
 
     GameManager.prototype._initMathsDebugState = function _initMathsDebugState () {

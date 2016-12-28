@@ -39,6 +39,20 @@ define([
 
         if (!this._data) this._createSave();
         if (Config.enableGlobalVars) window.kalulu.userProfile = this;
+        /*if (this._data.kaluluTalks===undefined)*/ this._data.kaluluTalks = {
+                brainScreen : true,
+                firstTreasure : true,
+                gardenScreen : true,
+                gardenLetter : true,
+                gardenLesson : true,
+                gardenPlant : true,
+                firstStar : true,
+                lesson1 : true,
+                lessonGame1 : true,
+                lessonGame2 : true,
+                lesson2 : true,
+                toyChestScreen : true
+        };
     }
 
     //AddUserRecord(UserProfile);
@@ -122,7 +136,18 @@ define([
                 this._gameManager.save();
                 return this._data.plantsData;
             }
+        },
+
+        kaluluTalks : {
+            get : function () { return this._data.kaluluTalks;},
+            set : function (talks) {
+                this._data.kaluluTalks = talks;
+                this._gameManager.save();
+                return this._data.kaluluTalks;
+            }
         }
+
+
     });
 
 

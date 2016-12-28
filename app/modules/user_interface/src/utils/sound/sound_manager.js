@@ -18,6 +18,7 @@ define([], function () {
 		this.startAmbiance = startAmbiance;
 		this.stopAmbiance = stopAmbiance;
 		this.stopAllAmbiances = stopAllAmbiances;
+		this.stopAllSounds = stopAllSounds;
 
 		// FUNCTIONS
 
@@ -76,6 +77,14 @@ define([], function () {
 				stoppedAmbiances[lAmbiance] = true;
 			}
 		}
+
+		function stopAllSounds()
+		{
+			for (var lSoundName in list) {
+				list[lSoundName].stop();
+			}
+		}
+
 	}
 
 	return new SoundManager();

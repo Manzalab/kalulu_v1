@@ -24,7 +24,7 @@ define([
 
         this.build();
 
-
+        this._kalulu = this._interfaceManager.kaluluCharacter;
         this._node = lessonNode;
         //console.log(this._node);
 
@@ -35,7 +35,8 @@ define([
         this._rightMinigameButton   = this.getChildByName("mcMinigameRight");
         
         this._backButton            = this.getChildByName("mcTLHudLesson").getChildByName("mcBackButton");
-        this._kaluluButton          = this.getChildByName("mcBLHudLesson").getChildByName("mcKaluluButton");
+        this._hud                   = { bottomLeft: this.getChildByName("mcBLHudLesson") };
+        this._kaluluButton          = this._hud.bottomLeft.getChildByName("mcKaluluButton");
         
         if (Config.enableGlobalVars) window.kalulu.lessonScreen = this;
         
@@ -72,8 +73,16 @@ define([
 
     LessonScreen.prototype._onClickOnKaluluButton = function _onClickOnKaluluButton (pEventData) {
         
-        SoundManager.getSound("click").play();
-        console.log("TODO");//@TODO implement help
+
+        this._kalulu.x = this._kalulu.width/2;
+        this._kalulu.y = -this._kalulu.height/3;
+        this._hud.bottomLeft.addChild(this._kalulu);
+        /*if (this._node.children[1].isCompleted&&this._node.children[2].isCompleted&&this._node.children[3].isCompleted) this._kalulu.startTalk("kalulu_tuto_lessonscreen");
+        else*/ if ((this._node.children[1].isCompleted&&this._node.children[2].isCompleted)||
+                 (this._node.children[2].isCompleted&&this._node.children[3].isCompleted)||
+                 (this._node.children[3].isCompleted&&this._node.children[1].isCompleted))  this._kalulu.startTalk("kalulu_tuto_twogameplayed");
+        else if (this._node.children[1].isCompleted||this._node.children[2].isCompleted||this._node.children[3].isCompleted)    this._kalulu.startTalk("kalulu_tuto_onegameplayed");
+        else this._kalulu.startTalk("kalulu_tuto_lessonscreen");
     };
 
     LessonScreen.prototype.stringifyTargetNotions = function stringifyTargetNotions (lessonNode) {

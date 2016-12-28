@@ -51,7 +51,8 @@
             GOTO_LESSON_SCREEN            : { get: function () { return "goToLessonScreen"; } },
             GOTO_ACTIVITY                 : { get: function () { return "goToActivity"; } },
             BACK_FROM_ACTIVITY            : { get: function () { return "backFromActivity"; } },
-            KALULU_TOYCHEST_LOCKED        : { get: function () { return "kaluluToyChestLocked"; } }
+            KALULU_TOYCHEST_LOCKED        : { get: function () { return "kaluluToyChestLocked"; } },
+            UNLOCK_REWARD_TOYCHEST        : { get: function () { return "unlockRewardToyChest"; } }
         });
 
 
