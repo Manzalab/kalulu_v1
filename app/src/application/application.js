@@ -200,10 +200,6 @@
         this._eventSystem.emit(Events.APPLICATION.USER_DATA_SAVED, this._storageManager.saveUserData(userData));
     };
 
-    Application.prototype._onSetSave = function _onSetSave (userData) {
-        this._eventSystem.emit(Events.APPLICATION.USER_DATA_SAVED, this._storageManager.saveUserData(userData));
-    };
-
     Application.prototype._doActionVoid = function _doActionVoid () {};
 
     Application.prototype._doActionWaitForSystems = function _doActionWaitForSystems () {
