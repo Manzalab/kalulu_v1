@@ -69,6 +69,7 @@
 
                         stimulus = data.rounds[i].steps[j].stimuli[k];
                         if (stimulus.value !== "") {
+                            console.log("preloading " + stimulus.value + " sound at path " + stimulus.soundPath);
                             this.game.load.audio(stimulus.value, stimulus.soundPath);
                         }
                     }
@@ -87,7 +88,7 @@
          **/
         create: function () {
             console.info("[Game State] Creating new game");
-            if (Config.globalVars) {
+            if (this.game.gameConfig.globalVars) {
                 window.jellyfishes = {};
                 window.jellyfishes.game = this.game;
             }

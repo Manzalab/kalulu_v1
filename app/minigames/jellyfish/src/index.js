@@ -45,7 +45,7 @@
 
         // Setting Up the Remediation
         this.game.gameConfig = this._config;
-        console.log(this.game)
+        console.log(this.game);
         this.game.params = new MinigameParameters(params);
         this.game.rafiki = this._rafiki;
         // debug Panel from Kalulu

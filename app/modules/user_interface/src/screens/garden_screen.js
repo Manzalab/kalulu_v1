@@ -5,11 +5,11 @@
  * a few Lessons (1 to 4) for each discipline, displayed on a separate Path.
 **/
 define([
-    '../elements/garden_screen_bg',
+    '../elements/star_bg',
     '../utils/ui/screen',
     '../utils/sound/sound_manager'
 ], function (
-    GardenScreenBackground,
+    StarBackground,
     Screen,
     SoundManager
 ) {
@@ -49,7 +49,7 @@ define([
         
         // Reference the built elements
         this._backgroundContainer = this.getChildByName("mcGardenScreenBackground");
-        this._background = new GardenScreenBackground();
+        this._background = new StarBackground();
 
         this._backgroundContainer.addChild(this._background);
         this._background.position.set(0,0);
@@ -72,8 +72,10 @@ define([
         this._hud = { bottomLeft : this.getChildByName("mcGardenBLHud") };
         this._kaluluButton = this._hud.bottomLeft.getChildByName("mcKaluluButton");
         this._neuroenergy = this.getChildByName("mcGardenTRHud").getChildByName("mcNeuroenergy");
-        
-        // console.log(this._gardensContainer);
+        this._toyChestButton = this.getChildByName("mcGardenBRHud").getChildByName("mcBurrowButton");
+
+        this._toyChestButton.alpha = 0;
+        this._toyChestButton.setModeVoid();
 
         this._lessonDotContainer = new PIXI3.Container();
         this._lessonDotContainer.name = "LessonDotContainer";
@@ -102,9 +104,20 @@ define([
             }
         }
 
+        this.unlockBonusPath();
+
         // back
         this._backButton.onClick = this._onClickOnBackButton.bind(this);
         this._kaluluButton.onClick = this._onClickOnKaluluButton.bind(this);
+
+        // Tween
+        this._targetPosition = new PIXI3.Point(this._toyChestButton.parent.x + this._toyChestButton.x, this._toyChestButton.parent.y + this._toyChestButton.y);
+
+        this._index = 1;
+        this._tweenControlPoint = new PIXI3.Point(this._targetPosition.x, -500);
+        this._tweenDestinationPoint = new PIXI3.Point(this._targetPosition.x, this._targetPosition.y);
+
+        this._interactiveObject = [];
     }
 
     GardenScreen.prototype = Object.create(Screen.prototype);
@@ -142,7 +155,7 @@ define([
         }
 
         this.fertilizerText = this._userProfile.fertilizer;
-    }
+    };
 
     GardenScreen.prototype.unlockBonusPath = function unlockBonusPath() {
         var lArrayLesson = [];
@@ -169,8 +182,8 @@ define([
                     default :
                         boolLessonPath = lArrayLesson[2];
                 }
-                //if(boolLessonPath) this._bonusPathA[chapterIndex].setModeOn();
-                if(!boolLessonPath) this._bonusPathA[chapterIndex].setModeOn(); // FOR DEBUG
+                if(boolLessonPath) this._bonusPathA[chapterIndex].setModeOn();
+                // if(!boolLessonPath) this._bonusPathA[chapterIndex].setModeOn(); // FOR DEBUG
 
                 lArrayLesson = [];
                 chapterIndex++;
@@ -199,8 +212,8 @@ define([
                     default :
                         boolLessonPath = lArrayLesson[2];
                 }
-                //if(boolLessonPath) this._bonusPathB[chapterIndex].setModeOn();
-                if(!boolLessonPath) this._bonusPathB[chapterIndex].setModeOn(); // FOR DEBUG
+                if(boolLessonPath) this._bonusPathB[chapterIndex].setModeOn();
+                // if(!boolLessonPath) this._bonusPathB[chapterIndex].setModeOn(); // FOR DEBUG
 
                 lArrayLesson = [];
                 chapterIndex++;
@@ -209,8 +222,18 @@ define([
     };
 
     GardenScreen.prototype.unlockStarMiddle = function unlockStarMiddle() {
-        console.log(this._bonusPathA[this._focusedGarden.id].state);
-    }
+        var id = this._focusedGarden.id;
+        
+        if(this._bonusPathA[id].state === "On" && this._bonusPathB[id].state === "On") {
+            this._focusedGarden.starMiddle.setModeLarge();
+            if(!this._userProfile.starMiddle[this._focusedGarden.id]){
+                this._removeAllChildrenInterractiveStatus(this);
+                this._tweenStar(this._focusedGarden.starMiddle);
+            }
+        }
+        else if(this._bonusPathA[id].state === "On" || this._bonusPathB[id].state === "On") this._focusedGarden.starMiddle.setModeMedium();
+        else this._focusedGarden.starMiddle.setModeSmall();
+    };
 
     // ###############################################################################################################################################
     // ###  GETTERS & SETTERS  #######################################################################################################################
@@ -265,6 +288,14 @@ define([
     // ##############################################################################################################################################
     // ###  PRIVATE METHODS  ########################################################################################################################
     // ##############################################################################################################################################
+
+    GardenScreen.prototype._onGameStageResize = function _onGameStageResize (eventData) {
+        Screen.prototype._onGameStageResize.call(this, eventData);
+        
+        this._targetPosition.set(this._toyChestButton.parent.x + this._toyChestButton.x, this._toyChestButton.parent.y + this._toyChestButton.y);
+        this._tweenControlPoint.set(this._targetPosition.x, -500);
+        this._tweenDestinationPoint.set(this._targetPosition.x, this._targetPosition.y);
+    };
 
     GardenScreen.prototype._createFertilizerText = function _createFertilizerText () {
         this._neuroenergy._txt = new PIXI3.Text("", { font : "40px Muli", fill : "#000000", align : "center" });
@@ -392,6 +423,96 @@ define([
             // console.log("Right Garden has been set Interactive");
         }
     };
+
+    GardenScreen.prototype._tweenStar = function _tweenStar (star) {
+        // AJOUTER ASSET
+
+        var duration = 1000;
+
+        star.alpha = 1;
+        star.scale.x = 0.5;
+        star.scale.y = 0.5;
+
+        if (this._index < 3){
+            createjs.Tween.get(star.scale).to({x: 1.5, y: 1.5}, duration, createjs.Ease.bounceOut).call(function () {
+                this._tweenStar(star);
+                this._index++;
+            }.bind(this));
+            createjs.Tween.get(star).to({rotation: star.rotation + Math.PI},duration);
+        }
+        else {
+            this._toyChestButton.scale.x = 0;
+            this._toyChestButton.scale.y = 0;
+
+            createjs.Tween.get(star.scale).to({x: 1, y: 1}, duration, createjs.Ease.bounceOut).wait(100).call(function () {
+                this._index = 0;
+
+                // A MODIFIER UNE FOIS L'ASSET INTEGRER
+                star.parent.removeChild(star);
+                this.addChild(star);
+                //
+
+                var guide = {
+                    guide : {
+                        path: [
+                            star.x, star.y,
+                            this._tweenControlPoint.x, this._tweenControlPoint.y,
+                            this._tweenDestinationPoint.x, this._tweenDestinationPoint.y
+                        ]
+                    }
+                };
+
+                createjs.Tween.get(star).to(guide, duration * 2).wait(100).call(function(){
+                    createjs.Tween.get(star).to({alpha: 0}, duration, createjs.Ease.cubicInOut).call(function () {
+                        // DETRUIRE ASSET
+                        // A MODIFIER UNE FOIS L'ASSET INTEGRER
+                        star.parent.removeChild(star);
+                        this._focusedGarden.addChild(star);
+                        //
+
+                        this._userProfile.starMiddle = this._focusedGarden.id;
+                        this._addChildrenInterractiveStatus();
+                    }.bind(this));
+                    createjs.Tween.get(this._toyChestButton).to({alpha: 0}, duration, createjs.Ease.cubicInOut);
+                    createjs.Tween.get(this._toyChestButton.scale).to({x: 0, y: 0}, duration, createjs.Ease.cubicInOut);
+                }.bind(this));
+            }.bind(this));
+            createjs.Tween.get(star).to({rotation: star.rotation + Math.PI},duration);
+            createjs.Tween.get(this._toyChestButton).to({alpha: 1}, duration, createjs.Ease.cubicInOut);
+            createjs.Tween.get(this._toyChestButton.scale).to({x: 1, y: 1}, duration, createjs.Ease.cubicInOut);
+        }
+    };
+
+    GardenScreen.prototype._removeAllChildrenInterractiveStatus = function _removeAllChildrenInterractiveStatus (pObject) {
+        var lLength = pObject.children.length;
+        var lChildren, i;
+
+        for(i = lLength-1; i>=0; i--){
+            if(pObject.children){
+                lChildren = pObject.children[i];
+                if(lChildren.children.length >= 1) this._removeAllChildrenInterractiveStatus(lChildren);
+                if (lChildren.interactive) {
+                    lChildren.interactive = false;
+                    this._interactiveObject.push(lChildren);
+                }
+            }
+        }
+        if(pObject.interactive) {
+            pObject.interactive = false;
+            this._interactiveObject.push(pObject);
+        }
+    }
+
+    GardenScreen.prototype._addChildrenInterractiveStatus = function _addChildrenInterractiveStatus () {
+        var lLength = this._interactiveObject.length;
+        var i;
+
+        for(i = 0; i < lLength; i++) {
+            this._interactiveObject[i].interactive = true;
+        }
+
+        this._interactiveObject = [];
+    }
 
     GardenScreen.prototype._onClickOnBackButton = function _onClickOnBackButton (eventData) {
         

@@ -215,7 +215,7 @@ define([], function () {
         
         illustrativeSoundPath : {
             get : function () {
-                var path = Config.soundsPath + 'language/phoneme_illustration_' + this._phonemeName;
+                var path = Config.soundsPath + 'language/phoneme_illustration_' + this._illustrativeWordEnglish;
                 return path + ".ogg";
             }
         },

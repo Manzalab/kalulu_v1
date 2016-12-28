@@ -32,17 +32,16 @@ define([
 
     PhaseTracing.prototype.preload = function phaseTracingPreload () {
         
-        var grapheme = this.grapheme = this.game.config.pedagogicData.textValue;
-        var pathToFolder = "";
+        var notion = this.notion = this.game.gameConfig.pedagogicData.data.notions[0];
         
-        // the grapheme sound
-        //this.game.load.audio(this.game.config.pedagogicData.sound, this.game.config.pedagogicData.sound);
+        // the notion sound
+        //this.game.load.audio(this.game.gameConfig.pedagogicData.sound, this.game.gameConfig.pedagogicData.sound);
 
         // 3 Kalulu speeches 
-        this.game.load.audio('kaluluIntro',         'minigames/lookandlearn/assets/audio/kalulu/kalulu_intro_CommonCore03_' + this.game.config.disciplines[this.game.config.pedagogicData.discipline] + '.ogg');
-        this.game.load.audio('kaluluHelp',          'minigames/lookandlearn/assets/audio/kalulu/kalulu_help_CommonCore03_' + this.game.config.disciplines[this.game.config.pedagogicData.discipline] + '.ogg');
-        this.game.load.audio('kaluluGameOverWin',   'minigames/lookandlearn/assets/audio/kalulu/kalulu_end_CommonCore03_' + this.game.config.disciplines[this.game.config.pedagogicData.discipline] + '.ogg');
-    }
+        this.game.load.audio('kaluluIntro',         'minigames/lookandlearn/assets/audio/kalulu/kalulu_intro_commoncore03_' + this.game.gameConfig.pedagogicData.discipline + '.ogg');
+        this.game.load.audio('kaluluHelp',          'minigames/lookandlearn/assets/audio/kalulu/kalulu_help_commoncore03_' + this.game.gameConfig.pedagogicData.discipline + '.ogg');
+        this.game.load.audio('kaluluGameOverWin',   'minigames/lookandlearn/assets/audio/kalulu/kalulu_end_commoncore03_' + this.game.gameConfig.pedagogicData.discipline + '.ogg');
+    };
     
     PhaseTracing.prototype.create = function phaseTracingCreate () {
         if (this.game.load.hasLoaded) console.info("PhaseTracing State has correctly completed loading.");
@@ -88,13 +87,13 @@ define([
             isDebugOn : false
         };
         
-        loadLayouts(this.game, this.game.config, options2);
+        loadLayouts(this.game, this.game.gameConfig, options2);
         Emitter.emit(Events.TRIGGER_LAYOUT, -1);
         for (var i = 0 ; i < this.game.layouts.length ; i++) {
             this.tracingPhaseStage.add(this.game.layouts[i].group);
         }
 
-        this.progression = new Tracing.ProgressionHandler(this.game.config.progression, this.game);
+        this.progression = new Tracing.ProgressionHandler(this.game.gameConfig.progression, this.game);
         this.tracingOn = false;
         this.game.endOfTracing = this.endTracing.bind(this);
 
@@ -104,10 +103,15 @@ define([
     };
 
     PhaseTracing.prototype.prepareSeries = function phaseTracingPrepareSeries () {
-        return {
-            'A': { nbOfTimes: 2 },
-            'a': { nbOfTimes: 2 }
-        };
+        var series = {};
+        var upperCase = this.game.gameConfig.pedagogicData.data.traceUppercase;
+        if (upperCase) {
+            series[this.notion.textValue.toUpperCase()] = { nbOfTimes: 2 };
+        }
+
+        series[this.notion.textValue.toLowerCase()] = { nbOfTimes: 2 };
+
+        return series;
     };
 
     PhaseTracing.prototype.update = function phaseTracingUpdate () {

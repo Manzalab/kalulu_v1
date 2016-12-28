@@ -40,7 +40,7 @@
         // console.log(staticData.numbers)
 
         // sorted by lesson [index]
-        // this._numberListByLesson = this._initNumberListByLesson(this._numberList);
+        this._notionsListByLesson = this._initNotionsListByLesson(this._numberList);
         this._notionsInLesson = {};
 
         DisciplineModule.call(this, rafiki, staticData, userProfile);
@@ -53,7 +53,7 @@
                 this._initUserData();
                 this._plan.isUnlocked = true;
             }
-        if (Config.debug) window.kalulu.mathsModule = this;
+        if (Config.enableGlobalVars) window.kalulu.mathsModule = this;
            
     }
 
@@ -383,7 +383,7 @@
         }
         else if(gameGroup == 'shape'){
 
-           console.log(stimuli)
+           console.log(stimuli);
            var shape_ = stimuli.value;
            var stimuli_type = stimuli.path.stimuli_type;
            // console.log(shape_)
@@ -391,11 +391,11 @@
                       if(score && score[shape_] && score[shape_][stimuli_type]) {
                          
 
-                         score[shape_][stimuli_type].push(record)
-                         var tscore = score[shape_][stimuli_type]
-                          console.log(tscore )
-                         var taverage  = this.getAverageScorefromRecords(tscore)
-                         score[shape_][stimuli_type]= taverage
+                         score[shape_][stimuli_type].push(record);
+                         var tscore = score[shape_][stimuli_type];
+                          console.log(tscore );
+                         var taverage  = this.getAverageScorefromRecords(tscore);
+                         score[shape_][stimuli_type]= taverage;
                       }
 
         }
@@ -537,7 +537,7 @@
       // console.log(progressionNode.activityType)
       
       if (progressionNode.activityType === "lookandlearn") {
-          return this.getPedagogicDataForLecture(progressionNode);
+          return this.getPedagogicDataForLookAndLearn(progressionNode);
       }
       else{
         return this.getPedagogicDataForGame(progressionNode, params);
@@ -546,7 +546,7 @@
 
 
 
-    MathsModule.prototype.getPedagogicDataForLookandlearn = function getPedagogicDataForLookandlearn(progressionNode) {
+    MathsModule.prototype.getPedagogicDataForLookAndLearn = function getPedagogicDataForLookAndLearn (progressionNode) {
        console.log(progressionNode);
         var notionsData = [];
 
@@ -557,16 +557,24 @@
             //var lTexture = new PIXI3.Texture.fromFrame(lNotion.illustrationName + ".jpg");
 
             notionsData.push({
-                video1 : Config.videoPath + this.id + "/" + lNotion.video1Name,
-                video2 : Config.videoPath + this.id + "/" + lNotion.video2Name,
-                sound : Config.soundsPath + this.id + "/" + lNotion.soundFilename,
-                illustrativeSound : Config.soundsPath + this.id + "/" + lNotion.illustrativeSoundFilename,
-                //image : lTexture, // TextureCache of PIXI is not shared and the Texture is unknown of the minigame's instanjce of PIXI. Pass a string instead.
-                textValue : lNotion.txtValue
+                id                : parseInt(lNotion.VALUE, 10),
+                value             : parseInt(lNotion.VALUE, 10),
+                textValue         : lNotion.VALUE,
+                sound             : Config.soundsPath + this.id + "/number_" + lNotion.VALUE + '.ogg',
+                illustrativeSound : Config.soundsPath + this.id + "/number_" + lNotion.VALUE + '.ogg',
+                image             : Config.imagesPath + this.id + "/" + lNotion.IMAGE.toLowerCase() + '.jpg'
             });
         }
 
-        return notionsData;
+        //console.log(notionsData);
+
+        return {
+          discipline : 'maths',
+          language   : KALULU_LANGUAGE, // can be : english, french, swahili
+          data       : {
+            notions : notionsData
+          }
+        }
     };
 
 
@@ -680,6 +688,31 @@ var record_not_av   = [
         this._userProfile.Maths = data;
         // console.log(this._userProfile.Maths)
     };
-    
+
+    MathsModule.prototype._initNotionsListByLesson = function _initNotionsListByLesson (notionsList) {
+        var lNotionListByLesson = {};
+        var lNotion;
+        console.log(notionsList)
+        for (var notionId in notionsList) {
+            if (!notionsList.hasOwnProperty(notionId)) continue;
+
+            lNotion = notionsList[notionId];
+
+            if (!lNotionListByLesson[lNotion.LESSON]) lNotionListByLesson[lNotion.LESSON] = {};
+            lNotionListByLesson[lNotion.LESSON][lNotion.VALUE] = lNotion;
+        }
+        
+        if (Config.enableGlobalVars) window.kalulu.mathsNotionListByLesson = lNotionListByLesson;
+        return lNotionListByLesson;
+    };
+
+    MathsModule.prototype.getNotionsForLesson = function getNotionsForLesson (lessonNumber) {
+        return Object.values(this._notionsListByLesson[lessonNumber]);
+    };
+
+    MathsModule.prototype.getNotionIdsForLesson = function getNotionIdsForLesson (lessonNumber) {
+        return Object.keys(this._notionsListByLesson[lessonNumber]);
+    };
+
     module.exports = MathsModule;
 })();

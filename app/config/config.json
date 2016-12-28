@@ -3,13 +3,13 @@
         "enableGlobalVars"        : true,
         "stats"                   : true,
         "logGameStates"           : true,
-        "authoritativeSystemInfo" : false,
-        "logLoading"              : false,
-        "screenManagerLog"        : false,
-        "debugPlanConstruction"   : false,
+        "authoritativeSystemInfo" : true,
+        "logLoading"              : true,
+        "screenManagerLog"        : true,
+        "debugPlanConstruction"   : true,
         "enableTransitionsTuning" : true,
-        "enableMinigameTuning"    : false,
-        "enableQAControls"        : false
+        "enableMinigameTuning"    : true,
+        "enableQAControls"        : true
     },
     "paths" : {
         "imagesPath" : "assets/images/",

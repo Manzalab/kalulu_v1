@@ -10,7 +10,8 @@ define([
     'eventemitter3',
     './states/phase_video',
     './states/phase_image',
-    './states/phase_tracing'
+    './states/phase_tracing',
+    './states/phase_1_maths'
 ], function (
     Phaser,
     minigameConfig,
@@ -23,7 +24,8 @@ define([
     EventEmitter,
     PhaseVideo,
     PhaseImage,
-    PhaseTracing
+    PhaseTracing,
+    Phase1Maths
 ) {
     'use strict';
 
@@ -38,15 +40,19 @@ define([
          * - close() => tell kalulu's engine you're done
     **/
     function GameLauncher (rafiki) {
+
         this.rafiki = rafiki;
-        this.config = minigameConfig;
-        this.config.pedagogicData = rafiki.getPedagogicData();
-        console.log('here');
-        if (typeof this.config.requestMinigameConfig === 'function') {
-            this.config.requestMinigameConfig(this.init.bind(this));
-            console.log("[Minigame] Requested this.game.config");
+        this._config = minigameConfig;
+        
+        this._config.pedagogicData = rafiki.getPedagogicData();
+
+        if (typeof this._config.requestMinigameConfig === 'function') {
+            
+            this._config.requestMinigameConfig(this.init.bind(this));
+            console.log("[Minigame] Requested this.game.gameConfig");
         }
         else {
+            
             console.error('issue with config');
         }
 
@@ -61,16 +67,21 @@ define([
          * @type {Phaser.Game}
         **/
         this.game = new Phaser.Game(1920, 1350, Phaser.AUTO); // TODO : make it dynamic for multiscreen handling
-        this.game.config = this.config;
-        if (this.game.config.globalVars) {
+        this.game.gameConfig = this._config;
+        if (this.game.gameConfig.globalVars) {
             console.info('Debug with global Variables enabled. Everything can be found in global variable "lookandlearn"');
             window.lookandlearn = {};
             window.lookandlearn.game = this.game;
         }
 
+
         this.game.rafiki = this.rafiki;
         // debug Panel from Kalulu
         this.game.debugPanel = this.rafiki.debugPanel;
+
+        if (this.game.gameConfig.debugPanel) {
+            this.setupDebugPanel();
+        }
         
         //  Game States
         this.game.state.add('Boot', Boot);
@@ -79,6 +90,7 @@ define([
         this.game.state.add('Phase1Video', PhaseVideo);
         this.game.state.add('Phase2Image', PhaseImage);
         this.game.state.add('Phase3Tracing', PhaseTracing);
+        this.game.state.add('Phase1Maths', Phase1Maths);
         
         //Starts the 'Boot' State
         console.info("Look&Learn App Created, Starting Boot...");
@@ -103,6 +115,49 @@ define([
         
         this.game.destroy();
         this.game = null;
+    };
+
+    GameLauncher.prototype.setupDebugPanel = function setupDebugPanel() {
+        
+        console.log("LookAndLearn Setupping debug Panel");
+        var debugPanel = null;
+        if (this.game.debugPanel) {
+            debugPanel = this.game.debugPanel;
+            this.game.gameConfig.rafikiDebugPanel = true;
+        }
+        else {
+            debugPanel = this.game.debugPanel = new Dat.GUI();
+            this.game.gameConfig.rafikiDebugPanel = false;
+        }
+
+        this.game.debugFolderNames = {
+            functions: "Debug Functions"
+        };
+
+        this._debugFunctions = debugPanel.addFolder(this.game.debugFolderNames.functions);
+
+        this._debugFunctions.add(this, "AutoWin");
+        this._debugFunctions.add(this, "skipKalulu");
+        this._debugFunctions.open();
+    };
+
+    GameLauncher.prototype.clearDebugPanel = function clearDebugPanel() {
+        if (this.game.gameConfig.rafikiDebugPanel) {
+            this.game.debugPanel.removeFolder(this.game.debugFolderNames.functions);
+        }
+        else {
+            this.game.debugPanel.destroy();
+        }
+    };
+
+    GameLauncher.prototype.AutoWin = function AutoWin() {
+
+        this.game.eventManager.emit("exitGame");
+    };
+
+    GameLauncher.prototype.skipKalulu = function skipKalulu() {
+
+        this.game.eventManager.emit("skipKalulu");
     };
 
     return GameLauncher;

@@ -142,7 +142,7 @@
 
     Kalulu.prototype.playIntroSequence = function playIntroSequence () {
 
-        if (this.game.config.skipKalulu || this.game.config.skipKaluluIntro) {
+        if (this.game.gameConfig.skipKalulu || this.game.gameConfig.skipKaluluIntro) {
             console.info("[Kalulu] Skipping Intro Speech due to debug configuration");
             this.eventManager.emit('pause');
             this.eventManager.emit('startUi');
@@ -150,6 +150,7 @@
             return;
         }
 
+        this.isPlayingIntroSequence = true;
         this.eventManager.emit('pause');
         this.eventManager.emit('offUi');
         this.sounds.currentSound = this.sounds.on;
@@ -176,6 +177,7 @@
                 this.kaluluSprite.animations.play('outroAnim');
                 this.kaluluSprite.animations.currentAnim.onComplete.addOnce(function () {
                     this.kaluluSprite.visible = false;
+                    this.isPlayingIntroSequence = false;
                     this.eventManager.emit('startUi');
                     this.eventManager.emit('introSequenceComplete');
                 }, this);
@@ -185,13 +187,15 @@
 
     Kalulu.prototype.playHelpSequence = function playHelpSequence () { // emitted on click on kalulu button in the main game UI
         
-        if (this.game.config.skipKalulu || this.game.config.skipKaluluHelp) {
+        if (this.game.gameConfig.skipKalulu || this.game.gameConfig.skipKaluluHelp) {
             console.info("[Kalulu] Skipping Help Speech due to debug configuration");
             this.eventManager.emit('pause');
             this.eventManager.emit('offUi');
             this.eventManager.emit('unPause');
             return;
         }
+
+        this.isPlayingHelpSequence = true;
 
         this.eventManager.emit('pause');
         this.eventManager.emit('offUi');
@@ -238,9 +242,11 @@
 
     // launch kalulu final speech, depending on the result of the game
     Kalulu.prototype.gameOver = function gameOver (isWin) {
+        
         this.playingFinalSpeech = true;
+        
         this.finalResult = isWin;
-        if (this.game.config.skipKalulu || this.game.config.skipKaluluFinal) {
+        if (this.game.gameConfig.skipKalulu || this.game.gameConfig.skipKaluluFinal) {
             this.eventManager.emit('pause');
             if (isWin) this.eventManager.emit('GameOverWinScreen'); // remediation reacts by launching its GameOverWin Script
             else this.eventManager.emit('GameOverLoseScreen'); // remediation reacts by launching its GameOverLose Script
@@ -289,11 +295,12 @@
         }, this);
     };
 
-    Kalulu.prototype.onCloseStep = function onCloseStep () {
-        this.playingFinalSpeech = true;
+    Kalulu.prototype.onCloseStep = function onCloseStep (nextState) {
+        
+        console.log(nextState);
+        this.isClosingStep = true;
 
-        if (this.game.config.skipKalulu || this.game.config.skipKaluluFinal) {
-            this.eventManager.emit('pause');
+        if (this.game.gameConfig.skipKalulu || this.game.gameConfig.skipKaluluFinal) {
             this.eventManager.emit('nextStep');
             return;
         }
@@ -339,6 +346,12 @@
         this.kaluluSprite.animations.currentAnim.stop();
         this.speaking = false;
         this.kaluluSprite.visible = false;
+
+        if (this.isPlayingIntroSequence) {
+            this.isPlayingIntroSequence = false;
+            this.eventManager.emit('introSequenceComplete');
+        }
+
         if (this.playingFinalSpeech) {
             if (this.finalResult) this.eventManager.emit('GameOverWinScreen');
             else this.eventManager.emit('GameOverLoseScreen');

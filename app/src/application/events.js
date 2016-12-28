@@ -24,9 +24,9 @@
             LOAD_PROGRESS           : { get: function () { return "loadProgress"; } },
             LOAD_COMPLETED          : { get: function () { return "loadCompleted"; } },
             INTERFACE_MANAGER_READY : { get: function () { return "interfaceManagerReady"; } },
-            GET_SAVE        : { get: function () { return "getSave"; } },
-            SET_SAVE        : { get: function () { return "setSave"; } },
-            SAVED_DATA_SENT : { get: function () { return "savedDataSent"; } }
+            GET_SAVE                : { get: function () { return "getSave"; } },
+            SET_SAVE                : { get: function () { return "setSave"; } },
+            SAVED_DATA_SENT         : { get: function () { return "savedDataSent"; } }
         });
 
 
@@ -73,6 +73,19 @@
             GOTO_GARDEN_SCREEN_REQUEST            : { get: function () { return "goToGardenScreenRequest"; } },
             GOTO_LESSON_SCREEN_REQUEST            : { get: function () { return "goToLessonScreenRequest"; } },
             GOTO_ACTIVITY_REQUEST                 : { get: function () { return "goToActivityRequest"; } }
+        });
+
+        // ## COMMANDS ADDRESSED TO GAME LOGIC
+        this.DEBUG = {};
+
+        Object.defineProperties(this.DEBUG, {
+            /**
+             * Description of the accessor
+             * @type {boolean}
+             * @memberof Namespace.LoadingManager#
+            **/
+            UNLOCK_DEBUG            : { get: function () { return "unlockDebug"; } },
+            UNLOCK_NEUROENERGY_DEBUG: { get: function () { return "unlockNeuroEnergyDebug"; } },
         });
 
 

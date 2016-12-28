@@ -286,7 +286,6 @@
         
         this._screens.gardenScreen = new GardenScreen(this, gardenData, chaptersProgression, userProfile);
         this._screens.gardenScreen.unlockGardens(chaptersProgression);
-        this._screens.gardenScreen.unlockBonusPath(userProfile);
         this._screensManager.openScreen(this._screens.gardenScreen);
         this._screensManager.closeGardenTransition();
 
@@ -352,7 +351,7 @@
         this._eventSystem.once(Events.GAME.BACK_FROM_ACTIVITY, this._onBackFromActivity, this);
     };
 
-    UserInterface.prototype._onBackFromActivity = function _onBackFromActivity (eventData, chaptersProgression) {
+    UserInterface.prototype._onBackFromActivity = function _onBackFromActivity (eventData, chaptersProgression, userProfile) {
         console.log(eventData.children[0]);
         //SoundManager.startAmbiance("Bird");
         this._dataForLesson = eventData;
@@ -361,7 +360,7 @@
             this._onGotoLessonScreen(eventData);
         }
         else if (eventData && eventData.hasOwnProperty('currentChapter')) {
-            this._onGotoGardenScreen(eventData, chaptersProgression);
+            this._onGotoGardenScreen(eventData, chaptersProgression, userProfile);
         }
         else {
            console.warn("[UserInterface] not implemented");
@@ -426,6 +425,10 @@
         this.unlockUpToChapter = 1;
         this._debugPanelQA.add(this, "unlockUpToChapter").min(1).max(20).step(1).listen();
         this._debugPanelQA.add(this, "executeUnlock");
+
+        this.unlockNeuroEnergy = 10;
+        this._debugPanelQA.add(this, "unlockNeuroEnergy").min(0).max(300).step(1).listen();
+        this._debugPanelQA.add(this, "executeUnlockNeuroEnergy");
     };
 
     UserInterface.prototype._clearQADebugPanel = function _initQADebugPanel () {
@@ -433,10 +436,13 @@
     };
 
     UserInterface.prototype.executeUnlock = function executeUnlock () {
-        this._eventSystem.emit("UNLOCK_DEBUG", this.unlockUpToChapter);
+        this._eventSystem.emit(Events.DEBUG.UNLOCK_DEBUG, this.unlockUpToChapter);
     };
 
-
+    UserInterface.prototype.executeUnlockNeuroEnergy = function executeUnlockNeuroEnergy () {
+        this._eventSystem.emit(Events.DEBUG.UNLOCK_NEUROENERGY_DEBUG, this.unlockNeuroEnergy);
+    };
+    
     module.exports = UserInterface;
 
 })();

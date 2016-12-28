@@ -69,10 +69,10 @@
         lLoader.addImageFile("user_interface/global_ui.json");
 
         //lLoader.addImageFile("garden_screen.json");
+        lLoader.addImageFile("user_interface/garden_transition/garden_transition_0.json");
         lLoader.addImageFile("user_interface/garden_transition/garden_transition_1.json");
         lLoader.addImageFile("user_interface/garden_transition/garden_transition_2.json");
-        lLoader.addImageFile("user_interface/garden_transition/garden_transition_3.json");
-        lLoader.addImageFile("user_interface/lesson_screen/lesson_screen.json");
+        lLoader.addImageFile("user_interface/lesson_screen/lesson_screen_0.json");
         lLoader.addImageFile("user_interface/boot_and_title/title_card.json");
         lLoader.addImageFile("user_interface/brain_screen/brain_screen_0.json");
         lLoader.addImageFile("user_interface/brain_screen/brain_screen_1.json");
@@ -84,11 +84,15 @@
         lLoader.addImageFile("user_interface/plant/plant_0.json");
         lLoader.addImageFile("user_interface/plant/plant_1.json");
 
+        lLoader.addImageFile("user_interface/background/background_0.json");
+        lLoader.addImageFile("user_interface/background/background_1.json");
+        lLoader.addImageFile("user_interface/background/background_2.json");
+
         lLoader.addImageFile("user_interface/kalulu_anims/Kalulu_idle.json");
         lLoader.addImageFile("user_interface/kalulu_anims/Kalulu_pop.json");
         lLoader.addImageFile("user_interface/kalulu_anims/Kalulu_talk.json");
         
-        for (var j = 0 ; j <= 16; j++) {
+        for (var j = 0 ; j <= 40; j++) {
             lLoader.addImageFile("user_interface/garden_screen/garden_screen_" + j + ".json");
         }
 
@@ -121,10 +125,10 @@
         var factory = new MovieClipAnimFactory();
         
         factory.addTextures(loader.getContent(Config.imagesPath, "user_interface/global_ui.json"));
+        factory.addTextures(loader.getContent(Config.imagesPath, "user_interface/garden_transition/garden_transition_0.json"));
         factory.addTextures(loader.getContent(Config.imagesPath, "user_interface/garden_transition/garden_transition_1.json"));
         factory.addTextures(loader.getContent(Config.imagesPath, "user_interface/garden_transition/garden_transition_2.json"));
-        factory.addTextures(loader.getContent(Config.imagesPath, "user_interface/garden_transition/garden_transition_3.json"));
-        factory.addTextures(loader.getContent(Config.imagesPath, "user_interface/lesson_screen/lesson_screen.json"));
+        factory.addTextures(loader.getContent(Config.imagesPath, "user_interface/lesson_screen/lesson_screen_0.json"));
         factory.addTextures(loader.getContent(Config.imagesPath, "user_interface/boot_and_title/title_card.json"));
         factory.addTextures(loader.getContent(Config.imagesPath, "user_interface/brain_screen/brain_screen_0.json"));
         factory.addTextures(loader.getContent(Config.imagesPath, "user_interface/brain_screen/brain_screen_1.json"));
@@ -135,6 +139,10 @@
 
         factory.addTextures(loader.getContent(Config.imagesPath, "user_interface/plant/plant_0.json"));
         factory.addTextures(loader.getContent(Config.imagesPath, "user_interface/plant/plant_1.json"));
+
+        factory.addTextures(loader.getContent(Config.imagesPath, "user_interface/background/background_0.json"));
+        factory.addTextures(loader.getContent(Config.imagesPath, "user_interface/background/background_1.json"));
+        factory.addTextures(loader.getContent(Config.imagesPath, "user_interface/background/background_2.json"));
 
         // for (var k = 0 ; k < 3 ; k++) {
         //     factory.addTextures(loader.getContent(Config.imagesPath, "kalulu_character_" + k + ".json"));
@@ -148,7 +156,7 @@
         //     factory.addTextures(loader.getContent(Config.imagesPath, "illustrations_" + i + ".json"));
         // }
 
-        for (var j = 0 ; j <= 16; j++) {
+        for (var j = 0 ; j <= 40; j++) {
             factory.addTextures(loader.getContent(Config.imagesPath + "user_interface/garden_screen/", "garden_screen_" + j + ".json"));
         }
 
