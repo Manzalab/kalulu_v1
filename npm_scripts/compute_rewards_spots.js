@@ -5,13 +5,15 @@
     var fs = require('fs');
     var d3 = require('d3-dsv');
     
-    var levelRewards = { language:{}, maths:{}, both:[], bookCount:0, videoCount:0, gameCount:0 };
+    
 
     setRewardsSpots('english');
     setRewardsSpots('swahili');
 
     function setRewardsSpots (language) {
-
+        
+        var levelRewards = { language:{}, maths:{}, both:[], bookCount:0, videoCount:0, gameCount:0 };
+        
         var lRewardsCSV = d3.dsvFormat(",").parse(fs.readFileSync('app/assets/data/' + language + '/rewards.csv', 'UTF-8'));
         
         var lRewardCount_language = 0;
@@ -49,6 +51,9 @@
             var lRewards = lRewardsCSV[i].LANGUAGE?lRewards_language:lRewards_maths;
             lRewards.push(lRewardsCSV[i]["FOLDER NAME"]);
         }
+            console.log(language + ' : ');
+            console.log(lRewards_language);
+
         levelRewards.bookCount = lBookCount;
         levelRewards.videoCount = lVideoCount;
         levelRewards.gameCount = lGameCount;
@@ -92,10 +97,26 @@
             }
 
             lChapters = Array.prototype.concat.apply([], lChapters);
+            var ratio = lChapters.length / lRewardCount;
             lStepForReward = Math.round(lChapters.length / lRewardCount);
+   
+
+            console.log(lRewardCount + ' : ' + lRewards.length);
+            console.log(lRewards);
+            console.log(lChapters);
             for (var j = 0; j < lRewardCount; j++) 
             {
-                var lIndex = Math.min(lChapters[Math.min(j*lStepForReward,lChapters.length-1)],lLevelCount);
+                var aaa = (a === 0 ? levelRewards.language : levelRewards.maths);
+                var lIndexA = Math.min(j*lStepForReward,lChapters.length-1);
+                var lIndex = Math.min(lChapters[lIndexA],lLevelCount);
+
+                if (aaa[lIndex]) {
+                    var toReposition = aaa[lIndex];
+
+                    lIndex = lChapters[lIndexA - 1];
+                    aaa[lIndex] = toReposition;
+                    lIndex = Math.min(lChapters[lIndexA],lLevelCount);
+                }
                 (a === 0 ? levelRewards.language : levelRewards.maths)[lIndex] = lRewards.shift();
             }
 
