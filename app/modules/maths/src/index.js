@@ -114,20 +114,20 @@
                   if(that._numberList[notionID]){
                       that._notionsInLesson[lesson].numbers.push(that._numberList[notionID])
                   }
-                // IS A SKILL OR A SHAPE
+                  // IS A SKILL OR A SHAPE
                   else{
-                    var static_skills_array = ['forward', 'backward']
+                    var static_skills_array = ['forward', 'backward', 'oneby', 'twoby', 'fiveby', 'tenby', 'recognition']
 
-                    // > if _.contains...
-                    if(notionID== 'backward' || notionID== 'forward' ||  notionID== 'oneby' || notionID== 'twoby' ||  notionID== 'fiveby' || notionID== 'tenby' || notionID== 'recognition'){
+                    if( _.contains(static_skills_array, notionID) ){
+
                        that._notionsInLesson[lesson].skills.push(notionID)
                        that._skills_from_plan.push(notionID)
                        that._skills_from_plan = _.uniq(that._skills_from_plan)
                     }
-                    var static_shapes_array = ['circle', 'square']
+                    var static_shapes_array = ['line','square', 'triangle', 'rectangle','circle', 'parallelogram', 'hexagon', 'diamond']
 
                     // > if _.contains...
-                    if(notionID== 'circle'){
+                    if(  _.contains(static_shapes_array, notionID) ){
                        that._notionsInLesson[lesson].shapes.push(notionID)
                        that._shapes_from_plan.push(notionID)
                        that._shapes_from_plan = _.uniq(that._shapes_from_plan)
@@ -212,26 +212,20 @@
             return false;
         }
         var result = results.setup.data.rounds;
-
-
         console.log(result)
 
-         var score ={}
-         if(this._userProfile){
+        var score ={}
+        if(this._userProfile){
             score = this._userProfile.Maths.numbers;
-         }
+        }
 
-          console.log(score)
-
+        console.log(score)
 
         var roundsCount = result.length;
         
         rounds:
         for (var r = 0; r < roundsCount ; r++) { 
             //var currentRoundPath = result[r].path;
-
- 
-
 
             //console.log(result[r].path)
             var currentRound = result[r];
@@ -500,7 +494,7 @@
           }
 
           if(progressionNode.activityType == 'ants'){
-            params.groupGameType      = 'decimal'  
+            params.groupGameType      = 'gapfill'  
 
           }
 
@@ -539,6 +533,12 @@
       if (progressionNode.activityType === "lookandlearn") {
           return this.getPedagogicDataForLookAndLearn(progressionNode);
       }
+      else if (progressionNode.activityType === "ants") {
+          return this._populateGapFillGame(progressionNode, params);
+      }
+
+
+    
       else{
         return this.getPedagogicDataForGame(progressionNode, params);
       }    
@@ -707,6 +707,43 @@ var record_not_av   = [
 
     MathsModule.prototype.getNotionIdsForLesson = function getNotionIdsForLesson (lessonNumber) {
         return Object.keys(this._notionsListByLesson[lessonNumber]);
+    };
+
+     MathsModule.prototype._populateGapFillGame = function _populateGapFillGame () {
+        
+        // if (!data) console.error('link data here');
+        
+        var refined = {
+
+            "discipline" : 'maths',
+            "language": KALULU_LANGUAGE,
+            "data": {
+
+                "rounds": []
+            }
+        };
+
+        var roundIndex = null;
+
+        for (var i = 0 ; i < staticData.filling.length ; i++) {
+
+            var row = staticData.filling[i];
+            if(row.GROUP !== roundIndex) {
+                roundIndex = row.GROUP;
+                refined.data.rounds.push({
+                    "steps": [{
+                        "stimuli": []
+                    }]
+                });
+            }
+            refined.data.rounds[roundIndex - 1].steps[0].stimuli.push({
+               //sentence: row.ORTHOGRAPHY,
+               // wordIndex: words.indexOf(row.WORD)
+           });
+        }
+          console.log(refined);
+        console.log('done');
+        return refined;
     };
 
     module.exports = MathsModule;

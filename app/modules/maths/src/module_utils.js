@@ -22,7 +22,7 @@ var ModuleUtils = function(){
 }
 	
 	// dataset can be either numbers_ or shapes_
-	ModuleUtils.prototype.addStimuli = function (isCorrect, distractorvalue_or_object, dataobject, dataset, path) {
+	ModuleUtils.prototype.addStimuli = function (isCorrect, distractorvalue_or_object, dataobject, dataset, path, lang) {
 
 		value_ = distractorvalue_or_object
 		var out = []
@@ -35,7 +35,10 @@ var ModuleUtils = function(){
 		if(value_ !==null && dataset[value_]){
 			// console.log(dataset[value_])
 			st.nonSymbolicImage	= 'todo/'+dataobject+'/data/'+value_+'.jpg'
-		 	st.soundPath =  dataset[value_].soundPath
+		 	
+
+		 	st.soundPath =  'assets/'+lang+'/sounds/number_'+value_+'.ogg'
+		 	// dataset[value_].soundPath
 		}
 
 		// complex soundpath..
@@ -43,12 +46,16 @@ var ModuleUtils = function(){
 
 		if(dataobject == 'number' && path){
 			st.path = path
+			// st.soundPath =  'number_00.jpg'
+			// dataset[value_].soundPath
 		}
 
 		if(dataobject == 'sum' && path){
 			st.path = path
-			// test for others TODO!
-			st.soundPath = path.xnumber+'/'+path.sign+'/'+path.side+'/'+path.number+'.ogg'
+			
+			st.nonSymbolicImage	= 'number_'+path.number+''+path.sign+''+path.xnumber_value+'.jpg'
+
+			//st.soundPath = path.xnumber+'/'+path.sign+'/'+path.side+'/'+path.number+'.ogg'
 		}
 
 
