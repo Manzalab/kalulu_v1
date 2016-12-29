@@ -151,7 +151,8 @@ define([
     };
 
     GameLauncher.prototype.AutoWin = function AutoWin() {
-
+        this.clearDebugPanel();
+        this.game.rafiki.save();
         this.game.eventManager.emit("exitGame");
     };
 
