@@ -107,7 +107,7 @@ function PlayerCanvasLayout(game, settings){
       that.disable();
   });
 
-  if (this.game.config.debugPencil) {
+  if (this.game.gameConfig.debugPencil) {
     var gui = new dat.GUI();
     gui.domElement.id = 'gui';
 

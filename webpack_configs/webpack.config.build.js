@@ -32,7 +32,7 @@ module.exports = components.mergeConfigs(
     components.minify(),
     components.extractBundle([{
         name    : 'vendor',
-        entries : ['phaser-bundle', 'stats', 'eventemitter3', 'dat.gui', 'modules/user_interface/libs/pixi', 'pdfjs-dist']
+        entries : ['phaser-bundle', 'underscore', 'stats', 'eventemitter3', 'dat.gui', 'modules/user_interface/libs/pixi', 'pdfjs-dist']
     },
     {
         name    : 'minigames-common',

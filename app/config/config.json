@@ -2,11 +2,11 @@
     "debug" : {
         "enableGlobalVars"        : true,
         "stats"                   : true,
-        "logGameStates"           : true,
-        "authoritativeSystemInfo" : true,
-        "logLoading"              : true,
-        "screenManagerLog"        : true,
-        "debugPlanConstruction"   : true,
+        "logGameStates"           : false,
+        "authoritativeSystemInfo" : false,
+        "logLoading"              : false,
+        "screenManagerLog"        : false,
+        "debugPlanConstruction"   : false,
         "enableTransitionsTuning" : true,
         "enableMinigameTuning"    : true,
         "enableQAControls"        : true

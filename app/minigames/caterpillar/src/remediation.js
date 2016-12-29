@@ -37,34 +37,9 @@
 
         this.initGame();
 
-        if (Config.debugPanel) {
-
-            this.debug = new Dat.GUI(/*{ autoPlace: false }*/);
-
-            var globalLevel = this.game.params.globalLevel;
-
-            var infoPanel = this.debug.addFolder("Level Info");
-
-            var generalParamsPanel = this.debug.addFolder("General Parameters");
-            var globalParamsPanel = this.debug.addFolder("Global Parameters");
-            this._localParamsPanel = this.debug.addFolder("Local Parameters");
-
-            var debugPanel = this.debug.addFolder("Debug Functions");
-
-            infoPanel.add(this.game.params, "_currentGlobalLevel").listen();
-            infoPanel.add(this.game.params, "_currentLocalRemediationStage").listen();
-
-            generalParamsPanel.add(this.game.params._settingsByLevel[globalLevel].generalParameters, "incorrectResponseCountTriggeringFirstRemediation").min(1).max(5).step(1).listen();
-            generalParamsPanel.add(this.game.params._settingsByLevel[globalLevel].generalParameters, "incorrectResponseCountTriggeringSecondRemediation").min(1).max(5).step(1).listen();
-            generalParamsPanel.add(this.game.params._settingsByLevel[globalLevel].generalParameters, "lives").min(1).max(5).step(1).listen();
-
-            globalParamsPanel.add(this.game.params._settingsByLevel[globalLevel].globalRemediation, "berriesOnScreen").min(1).max(6).step(1).listen();
-            globalParamsPanel.add(this.game.params._settingsByLevel[globalLevel].globalRemediation, "lineCount").min(2).max(4).step(1).listen();
-
-            this.setLocalPanel();
-
-            debugPanel.add(this, "AutoWin");
-            debugPanel.add(this, "AutoLose");
+        // Debug & Tuning
+        if (this.game.gameConfig.debugPanel) {
+            this.setupDebugPanel();
         }
 
 
@@ -144,7 +119,7 @@
         }, this);
 
         this.eventManager.on('replay', function () {
-            if (Config.debugPanel) {
+            if (this.game.gameConfig.debugPanel) {
                 document.getElementsByClassName("dg main a")[0].remove();
                 this.debug = null;
             }
@@ -308,9 +283,9 @@
             if (this.triesRemaining > 0) {
 
                 if (this.discipline != "maths") this.sounds.correctRoundAnswer.play();              
-                if (Config.debugPanel) this.cleanLocalPanel();
+                if (this.game.gameConfig.debugPanel) this.cleanLocalPanel();
                 this.game.params.increaseLocalDifficulty();
-                if (Config.debugPanel) this.setLocalPanel(); 
+                if (this.game.gameConfig.debugPanel) this.setLocalPanel(); 
                 var context = this;
                 setTimeout(function () {
                     context.initRound(context.roundIndex);
@@ -399,9 +374,9 @@
             if (this.consecutiveMistakes == this.game.params.getGeneralParams().incorrectResponseCountTriggeringSecondRemediation) {
                 this.consecutiveMistakes = 0;
                 this.eventManager.emit('help');
-                if (Config.debugPanel) this.cleanLocalPanel();
+                if (this.game.gameConfig.debugPanel) this.cleanLocalPanel();
                 this.game.params.decreaseLocalDifficulty();
-                if (Config.debugPanel) this.setLocalPanel();
+                if (this.game.gameConfig.debugPanel) this.setLocalPanel();
             }
             else {
                 this.eventManager.emit('playCorrectSound');             
@@ -592,24 +567,93 @@
         this.manageBerriesSpawning();
     };
 
-    Remediation.prototype.setLocalPanel = function setLocalPanel() {
+
+    // DEBUG
+
+    Remediation.prototype.setupDebugPanel = function setupDebugPanel() {
+        console.log("Crabs Setupping debug Panel");
+        if (this.game.debugPanel) {
+            this.debugPanel = this.game.debugPanel;
+            this.rafikiDebugPanel = true;
+        }
+        else {
+            this.debugPanel = new Dat.GUI();
+            this.rafikiDebugPanel = false;
+        }
 
         var globalLevel = this.game.params.globalLevel;
-        var localStage = this.game.params.localRemediationStage;
+        
+        var generalParams = this.game.params.getGeneralParams();
+        var globalParams = this.game.params.getGlobalParams();
+        
 
-        this._localParamsPanel.items = {};
-        this._localParamsPanel.items.param1 = this._localParamsPanel.add(this.game.params._settingsByLevel[globalLevel].localRemediation[localStage], "minimumCorrectStimuliOnScreen").min(0).max(20).step(1).listen();
-        this._localParamsPanel.items.param2 = this._localParamsPanel.add(this.game.params._settingsByLevel[globalLevel].localRemediation[localStage], "correctResponsePercentage").min(0).max(1).step(0.1).listen();
-        this._localParamsPanel.items.param3 = this._localParamsPanel.add(this.game.params._settingsByLevel[globalLevel].localRemediation[localStage], "respawnTime").min(1).max(5).step(0.1).listen();
-        this._localParamsPanel.items.param4 = this._localParamsPanel.add(this.game.params._settingsByLevel[globalLevel].localRemediation[localStage], "speed").min(1).max(20).step(0.5).listen();
-        this._localParamsPanel.items.param5 = this._localParamsPanel.add(this, "updateGameDesignDebug");
+
+        this.debugFolderNames = {
+            info: "Level Info",
+            general: "General Parameters",
+            global: "Global Parameters",
+            local: "Local Parameters",
+            functions: "Debug Functions",
+        };
+
+        this._debugInfo = this.debugPanel.addFolder(this.debugFolderNames.info);
+        this._debugGeneralParams = this.debugPanel.addFolder(this.debugFolderNames.general);
+        this._debugGlobalParams = this.debugPanel.addFolder(this.debugFolderNames.global);
+        this._debugLocalParams = this.debugPanel.addFolder(this.debugFolderNames.local);
+        this._debugFunctions = this.debugPanel.addFolder(this.debugFolderNames.functions);
+        // console.log(this.game.params);
+        this._debugInfo.add(this.game.params, "globalLevel").listen();
+        this._debugInfo.add(this.game.params, "localRemediationStage").listen();
+
+        this._debugGeneralParams.add(generalParams, "incorrectResponseCountTriggeringFirstRemediation").min(1).max(5).step(1).listen();
+        this._debugGeneralParams.add(generalParams, "incorrectResponseCountTriggeringSecondRemediation").min(1).max(5).step(1).listen();
+        this._debugGeneralParams.add(generalParams, "lives").min(1).max(5).step(1).listen();
+
+        // SPECIFIC TO THIS GAME
+
+        this._debugGeneralParams.add(globalParams, "berriesOnScreen").min(0).max(5).step(0.1).listen();
+        this._debugGeneralParams.add(globalParams, "lineCount").min(0).max(5).step(0.1).listen();
+
+        this.setLocalPanel();
+        // END OF SPECIFIC
+
+        this._debugFunctions.add(this, "AutoWin");
+        this._debugFunctions.add(this, "AutoLose");
+        this._debugFunctions.add(this, "skipKalulu");
+    };
+
+    Remediation.prototype.clearDebugPanel = function clearDebugPanel() {
+        if (this.rafikiDebugPanel) {
+            this.debugPanel.removeFolder(this.debugFolderNames.info);
+            this.debugPanel.removeFolder(this.debugFolderNames.general);
+            this.debugPanel.removeFolder(this.debugFolderNames.global);
+            this.debugPanel.removeFolder(this.debugFolderNames.local);
+            this.debugPanel.removeFolder(this.debugFolderNames.functions);
+        }
+        else {
+            this.debugPanel.destroy();
+        }
+    };
+
+
+    Remediation.prototype.setLocalPanel = function setLocalPanel() {
+
+        var localParams = this.game.params.getLocalParams();
+
+        this._debugLocalParams.items = {};
+        this._debugLocalParams.items.param1 = this._debugLocalParams.add(localParams, "minimumCorrectStimuliOnScreen").min(0).max(20).step(1).listen();
+        this._debugLocalParams.items.param2 = this._debugLocalParams.add(localParams, "correctResponsePercentage").min(0).max(1).step(0.1).listen();
+        this._debugLocalParams.items.param2 = this._debugLocalParams.add(localParams, "berryPerLine").min(0).max(10).step(1).listen();
+        this._debugLocalParams.items.param3 = this._debugLocalParams.add(localParams, "respawnTime").min(1).max(5).step(0.1).listen();
+        this._debugLocalParams.items.param4 = this._debugLocalParams.add(localParams, "speed").min(1).max(20).step(0.5).listen();
+        this._debugLocalParams.items.param5 = this._debugLocalParams.add(this, "updateGameDesignDebug");
     };
 
     Remediation.prototype.cleanLocalPanel = function cleanLocalPanel() {
 
-        for (var element in this._localParamsPanel.items) {
-            if (!this._localParamsPanel.items.hasOwnProperty(element)) continue;
-            this._localParamsPanel.remove(this._localParamsPanel.items[element]);
+        for (var element in this._debugLocalParams.items) {
+            if (!this._debugLocalParams.items.hasOwnProperty(element)) continue;
+            this._debugLocalParams.remove(this._debugLocalParams.items[element]);
         }
     };
 
@@ -623,22 +667,32 @@
         for (var i = 0 ; i < roundsCount ; i++) {
 
             currentRound = this.results.rounds[i];
-            currentRound.word.stats = {
-                apparitionTime: Date.now() - 10000,
-                exitTime: Date.now(),
-                success: true
-            };
+            console.log(currentRound);
+            if (this.game.pedagogicData.discipline === 'language') {
+                currentRound.word.stats = {
+                    apparitionTime: Date.now() - 10000,
+                    exitTime: Date.now(),
+                    success: true
+                };
+            }
+            else if (this.game.pedagogicData.discipline === 'maths') {
+                currentRound.targetSequence.stats = {
+                    apparitionTime: Date.now() - 10000,
+                    exitTime: Date.now(),
+                    success: true
+                };
+            }
 
-            stepsCount = currentRound.step.length;
+            stepsCount = currentRound.steps.length;
 
             for (var j = 0 ; j < stepsCount ; j++) {
 
-                currentStep = this.results.rounds[i].step[j];
+                currentStep = this.results.rounds[i].steps[j];
                 stimuliCount = currentStep.stimuli.length;
 
                 for (var k = 0 ; k < stimuliCount ; k++) {
 
-                    currentStimulus = this.results.rounds[i].step[j].stimuli[k];
+                    currentStimulus = this.results.rounds[i].steps[j].stimuli[k];
 
                     apparitionStats = {
                         apparitionTime: Date.now() - 3000,
@@ -671,22 +725,31 @@
         for (var i = 0 ; i < roundsCount ; i++) {
 
             currentRound = this.results.rounds[i];
-            currentRound.word.stats = {
-                apparitionTime: Date.now() - 20000,
-                exitTime: Date.now(),
-                success: false
-            };
+            if (this.game.pedagogicData.discipline === 'language') {
+                currentRound.word.stats = {
+                    apparitionTime: Date.now() - 20000,
+                    exitTime: Date.now(),
+                    success: false
+                };
+            }
+            else if (this.game.pedagogicData.discipline === 'maths') {
+                currentRound.targetSequence.stats = {
+                    apparitionTime: Date.now() - 20000,
+                    exitTime: Date.now(),
+                    success: false
+                };
+            }
 
-            stepsCount = currentRound.step.length;
+            stepsCount = currentRound.steps.length;
 
             for (var j = 0 ; j < stepsCount ; j++) {
 
-                currentStep = this.results.rounds[i].step[j];
+                currentStep = this.results.rounds[i].steps[j];
                 stimuliCount = currentStep.stimuli.length;
 
                 for (var k = 0 ; k < stimuliCount ; k++) {
 
-                    currentStimulus = this.results.rounds[i].step[j].stimuli[k];
+                    currentStimulus = this.results.rounds[i].steps[j].stimuli[k];
 
                     apparitionStats = {
                         apparitionTime: Date.now() - 3000,
@@ -707,6 +770,11 @@
 
         this.won = false;
         this.eventManager.emit('exitGame');
+    };
+
+    Remediation.prototype.skipKalulu = function skipKalulu() {
+
+        this.eventManager.emit("skipKalulu");
     };
 
     return Remediation;

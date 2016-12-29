@@ -43,7 +43,7 @@ define([], function () {
          * @type {boolean}
          * @private
         **/
-        this._hasReachedMaxLocalDifficulty = false;
+        // this._hasReachedMaxLocalDifficulty = false;
 
         /**
          * The list of stimulus as sent by Kalulu, but completed with the StimulusApparitions
@@ -96,7 +96,7 @@ define([], function () {
          * @type {boolean}
          * @memberof Kalulu.GameLogic.Core.MinigameDstRecord#
         **/
-        hasReachedMaxLocalDifficulty: { get: function () { return this._hasReachedMaxLocalDifficulty; } },
+        // hasReachedMaxLocalDifficulty: { get: function () { return this._hasReachedMaxLocalDifficulty; } },
         
         /**
          * The results of the minigame (stimuliList sent by Kalulu completed with StimulusApparitions)

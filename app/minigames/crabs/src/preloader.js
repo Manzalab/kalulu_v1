@@ -38,7 +38,8 @@
             this.game.load.atlasJSONHash('hole', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/hole/hole.png', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/hole/hole.json');
             this.game.load.atlasJSONHash('crab', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/crab/crab.png', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/crab/crab.json');
 
-            //Game specific UI Graphics            
+            //Game specific UI Graphics
+            console.log('minigames/' + this.game.gameConfig.gameId + '/assets/images/ui/ScoreSuccess_TapeCrabe.png');
             this.load.image('uiScoreWrong', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/ui/ScoreWrong_TapeCrabe.png');
             this.load.image('uiScoreRight', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/ui/ScoreSuccess_TapeCrabe.png');
             this.load.image('uiScoreEmpty', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/ui/ScoreEmpty_TapeCrabe.png');
@@ -84,15 +85,19 @@
             //General Audio
             this.game.load.audio('menuNo'            , sfxPath + 'ButtonCancel.ogg');
             this.game.load.audio('menuYes'           , sfxPath + 'ButtonOK.ogg');
+
             this.game.load.audio('winGame'           , sfxPath + 'GameOverWin.ogg');
             this.game.load.audio('loseGame'          , sfxPath + 'GameOverLose.ogg');
+
             this.game.load.audio('kaluluOn'          , sfxPath + 'KaluluOn.ogg');
             this.game.load.audio('kaluluOff'         , sfxPath + 'KaluluOff.ogg');
+
             this.game.load.audio('menu'              , sfxPath + 'OpenPopin.ogg');
+            
             this.game.load.audio('right'             , sfxPath + 'ResponseCorrect.ogg');
             this.game.load.audio('wrong'             , sfxPath + 'ResponseIncorrect.ogg');
 
-            this.game.load.audio('kaluluGameOverLose', 'minigames/common/assets/audio/kalulu/KaluluGameOverLose.ogg');
+            this.game.load.audio('kaluluGameOverLose', 'minigames/common/assets/audio/kalulu/kalulu_lose_minigame.ogg');
         },
 
         /**

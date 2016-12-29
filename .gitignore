@@ -2,3 +2,5 @@ node_modules/
 stats.json
 npm-debug.log.*
 www/
+platforms/
+npm-debug.log

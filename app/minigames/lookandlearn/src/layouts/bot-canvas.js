@@ -71,7 +71,7 @@ BotCanvasLayout.prototype.update = function BotCanvasLayoutUpdate(){
 
     if (this.painter.waitForEnd && this.settings.callSounds === true && !this.soundPlayed && (this.sound === null || !this.sound.isPlaying)) {
         // console.log(this.name + " : playing sound");
-        this.sound = this.game.sound.play(this.game.config.pedagogicData.sound);
+        this.sound = this.game.sound.play(this.game.gameConfig.pedagogicData.sound);
         this.sound.play();
         this.soundPlayed = true;
     }
@@ -107,7 +107,7 @@ BotCanvasLayout.prototype.redoDrawing = function BotCanvasLayoutRedoDrawing(){
     
 //     this.letterID = letter;
 //     console.log(this);
-//     this.model = this.game.config.letters.letters[letter];
+//     this.model = this.game.gameConfig.letters.letters[letter];
 
 //     if(!this.settings.isTouchSensitive){
 //         this.disable();

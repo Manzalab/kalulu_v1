@@ -31,12 +31,12 @@
         loadSpecificAssets: function () {
 
             //Game specific Graphics
-            this.load.image('BackgroundBottom', 'minigames/' + Config.gameId + '/assets/images/background/BG_Bilan_partie1.png');
-            this.load.image('BackgroundTop', 'minigames/' + Config.gameId + '/assets/images/background/BG_Bilan_nuages.png');
-            this.load.image('sun', 'minigames/' + Config.gameId + '/assets/images/background/Soleil.png');
-            this.game.load.atlasJSONHash('fish', 'minigames/' + Config.gameId + '/assets/images/Animations_poisson/fish.png', 'minigames/' + Config.gameId + '/assets/images/Animations_poisson/fish.json');
+            this.load.image('BackgroundBottom', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/background/BG_Bilan_partie1.png');
+            this.load.image('BackgroundTop', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/background/BG_Bilan_nuages.png');
+            this.load.image('sun', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/background/Soleil.png');
+            this.game.load.atlasJSONHash('fish', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/Animations_poisson/fish.png', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/Animations_poisson/fish.json');
             
-            this.game.load.atlasJSONHash('boat', 'minigames/' + Config.gameId + '/assets/images/Animation_Bateau/boat.png', 'minigames/' + Config.gameId + '/assets/images/Animation_Bateau/boat.json');
+            this.game.load.atlasJSONHash('boat', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/Animation_Bateau/boat.png', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/Animation_Bateau/boat.json');
 
             //Game specific UI Graphics            
 
@@ -45,14 +45,14 @@
             //Game Specific Audio
 
             //Kalulu Game Specific audio
-            this.game.load.audio('kaluluIntro', 'minigames/' + Config.gameId + '/assets/audio/kalulu/intro.wav');
-            this.game.load.audio('kaluluEndWin', 'minigames/' + Config.gameId + '/assets/audio/kalulu/endWin.wav');
-            this.game.load.audio('kaluluEndLoose', 'minigames/' + Config.gameId + '/assets/audio/kalulu/endLoose.wav');
-            this.game.load.audio('kaluluFirstTryIntro', 'minigames/' + Config.gameId + '/assets/audio/kalulu/firstTryIntro.wav');
-            this.game.load.audio('kaluluFirstTryWin', 'minigames/' + Config.gameId + '/assets/audio/kalulu/firstTryWin.wav');
-            this.game.load.audio('kaluluFirstTryLoose', 'minigames/' + Config.gameId + '/assets/audio/kalulu/firstTryWrong.wav');
-            this.game.load.audio('kaluluSecondTryWin', 'minigames/' + Config.gameId + '/assets/audio/kalulu/secondTryWin.wav');
-            this.game.load.audio('kaluluSecondTryLoose', 'minigames/' + Config.gameId + '/assets/audio/kalulu/secondTryWrong.wav');
+            this.game.load.audio('kaluluIntro', 'minigames/' + this.game.gameConfig.gameId + '/assets/audio/kalulu/intro.wav');
+            this.game.load.audio('kaluluEndWin', 'minigames/' + this.game.gameConfig.gameId + '/assets/audio/kalulu/endWin.wav');
+            this.game.load.audio('kaluluEndLoose', 'minigames/' + this.game.gameConfig.gameId + '/assets/audio/kalulu/endLoose.wav');
+            this.game.load.audio('kaluluFirstTryIntro', 'minigames/' + this.game.gameConfig.gameId + '/assets/audio/kalulu/firstTryIntro.wav');
+            this.game.load.audio('kaluluFirstTryWin', 'minigames/' + this.game.gameConfig.gameId + '/assets/audio/kalulu/firstTryWin.wav');
+            this.game.load.audio('kaluluFirstTryLoose', 'minigames/' + this.game.gameConfig.gameId + '/assets/audio/kalulu/firstTryWrong.wav');
+            this.game.load.audio('kaluluSecondTryWin', 'minigames/' + this.game.gameConfig.gameId + '/assets/audio/kalulu/secondTryWin.wav');
+            this.game.load.audio('kaluluSecondTryLoose', 'minigames/' + this.game.gameConfig.gameId + '/assets/audio/kalulu/secondTryWrong.wav');
         },
 
         /**

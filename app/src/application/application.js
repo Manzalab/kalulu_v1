@@ -104,7 +104,7 @@
      * Initialise the game manager and the interface manager. Starts the application main loop.
     **/
     Application.prototype.initAndStart = function initAndStart () {
-        Config.request('/config/config.json', function () {
+        Config.request('config/config.json', function () {
             this._init();
         }.bind(this));
     };
@@ -194,10 +194,6 @@
 
     Application.prototype._onGetSave = function _onGetSave (userId) {
         this._eventSystem.emit(Events.APPLICATION.SAVED_DATA_SENT, this._storageManager.getUserData(userId));
-    };
-
-    Application.prototype._onSetSave = function _onSetSave (userData) {
-        this._eventSystem.emit(Events.APPLICATION.USER_DATA_SAVED, this._storageManager.saveUserData(userData));
     };
 
     Application.prototype._onSetSave = function _onSetSave (userData) {

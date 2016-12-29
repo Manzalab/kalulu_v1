@@ -33,6 +33,7 @@
                 roundTargetClass                : "Syllable",   // the class of a round Target
                 stepTargetClass                 : "Syllable",   // the class of a step Target (if same than round --> identification, if component -> composition)
                 stepDistracterCount             : 0,            // the amount of distracter stimuli to be provided by Rafiki for each round.
+                totalTriesCount                 : 0,            // something having to do with the UI score bar
                 holesCount                      : 0             // the number of columns on which jellyfishes will spawn
             },
             localRemediation : { // the local remediation settings are used to adapt the difficulty inside a game. The game divide the min-max range in 5 stages and starts at the middle one.
@@ -52,6 +53,7 @@
                     gameTimerVisible                : false,
                     roundsCount                     : 5,
                     stepDistracterCount             : 3,
+                    totalTriesCount                 : 3,
                     holesCount                      : 3
                 },
                 localRemediation : {
@@ -70,6 +72,7 @@
                     gameTimerVisible                : false,
                     roundsCount                     : 5,
                     stepDistracterCount             : 4,
+                    totalTriesCount                 : 3,
                     holesCount                      : 5
                 },
                 localRemediation : {
@@ -88,6 +91,7 @@
                     gameTimerVisible                : false,
                     roundsCount                     : 7,
                     stepDistracterCount             : 5,
+                    totalTriesCount                 : 3,
                     holesCount                      : 5
                 },
                 localRemediation : {
@@ -106,6 +110,7 @@
                     gameTimerVisible                : false,
                     roundsCount                     : 9,
                     stepDistracterCount             : 7,
+                    totalTriesCount                 : 3,
                     holesCount                      : 7
                 },
                 localRemediation : {
@@ -124,6 +129,7 @@
                     gameTimerVisible                : false,
                     roundsCount                     : 12,
                     stepDistracterCount             : 9,
+                    totalTriesCount                 : 3,
                     holesCount                      : 9
                 },
                 localRemediation : {

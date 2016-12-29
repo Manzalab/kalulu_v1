@@ -53,6 +53,7 @@ define([
 
         this._dots = [];
         this._plants = [];
+        this._starsPath = [];
         this._starMiddle;
     }
     
@@ -98,9 +99,9 @@ define([
     /**
      * 
     **/
-    Garden.prototype.draw = function draw (languageChapter, mathsChapter, container) {
+    Garden.prototype.draw = function draw (languageChapter, mathsChapter, container, lessonsNumber, rewardLanguage, rewardMath) {
 
-        var i, j, markerPosition, lDot, lNode, lDotBossA, lDotBossB, lRotation, lDeltaX, lDeltaY;
+        var i, j, markerPosition, lDot, lNode, star, lDotBossA, lDotBossB, lRotation, lDeltaX, lDeltaY;
         var assetNameAssessment = "LessonDotBoss";
 
         // ### LANGUAGE : PATH A
@@ -124,6 +125,14 @@ define([
                     console.log("[GardenScreen] Issue maybe due to missing " + lNode.lessonNumber + " in match array.");
                 }
                 lDot.position.set(markerPosition.x, markerPosition.y + this.y);
+
+                for(j = 0; j < rewardLanguage.length; j++){
+                    if(lessonsNumber[this.id][0] + i == rewardLanguage[j]) {
+                        if(this.id < 10) star = new StarMiddle("StarMiddle0" + this.id);
+                        else star = new StarMiddle("StarMiddle" + this.id);
+                        star.position.set(markerPosition.x, markerPosition.y + this.y);
+                    }
+                }
             }
             else if (lNode.constructor.name == "Assessment") {
                 lDot = new LessonDot(lNode, this._onClickOnAssessmentDot.bind(this), assetNameAssessment);
@@ -139,6 +148,15 @@ define([
 
             lDot.alpha = 0;
             createjs.Tween.get(lDot).to({alpha: 1}, 1000, createjs.Ease.linear);
+
+            if(star) {
+                container.addChild(star);
+                star.alpha = 0;
+                createjs.Tween.get(star).to({alpha: 1}, 1000, createjs.Ease.linear);
+
+                this._starsPath.push(star);
+                star = null;
+            }
         }
 
         // ### MATHS : PATH B
@@ -160,6 +178,14 @@ define([
                     console.log("[GardenScreen] Issue maybe due to missing " + lNode.lessonNumber + " in match array. " + (i+1) + " requested.");
                 }
                 lDot.position.set(markerPosition.x, markerPosition.y + this.y);
+
+                for(j = 0; j < rewardMath.length; j++){
+                    if(lessonsNumber[this.id][0] + i == rewardMath[j]) {
+                        if(this.id < 10) star = new StarMiddle("StarMiddle0" + this.id);
+                        else star = new StarMiddle("StarMiddle" + this.id);
+                        star.position.set(markerPosition.x, markerPosition.y + this.y);
+                    }
+                }
             }
             else if (lNode.constructor.name == "Assessment") {
                 lDot = new LessonDot(lNode, this._onClickOnAssessmentDot.bind(this), assetNameAssessment);
@@ -174,6 +200,15 @@ define([
 
             lDot.alpha = 0;
             createjs.Tween.get(lDot).to({alpha: 1}, 1000, createjs.Ease.linear);
+
+            if(star) {
+                container.addChild(star);
+                star.alpha = 0;
+                createjs.Tween.get(star).to({alpha: 1}, 1000, createjs.Ease.linear);
+
+                this._starsPath.push(star);
+                star = null;
+            }
         }
 
         lRotation = Math.atan((lDotBossB.x-lDotBossA.x)/(lDotBossB.y-lDotBossA.y));
@@ -204,7 +239,22 @@ define([
                 lDot.destroy();
             }.bind(this));
         }
+
+        this.undrawStarPath(container);
     };
+
+    Garden.prototype.undrawStarPath = function undrawStarPath(container) {
+        var lastStarIndex = this._starsPath.length - 1;
+        var i, lStar;
+
+        for (i = lastStarIndex ; i >= 0 ; i--) {
+            createjs.Tween.get(this._starsPath[i]).to({alpha: 0}, 1000, createjs.Ease.linear).call(function () {
+                lStar = this._starsPath.splice(i, 1)[0];
+                container.removeChild(lStar);
+                lStar.destroy();
+            }.bind(this));
+        }
+    }
 
     Garden.prototype.drawPlant = function drawPlant () {
         var i, lPlant, lChildren;

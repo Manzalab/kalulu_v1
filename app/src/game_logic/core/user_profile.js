@@ -32,13 +32,27 @@ define([
         // this._data.fertilizer = 10; // FOR DEBUG
         
 
-        this._NOT_STARTED = "NotStarted";
+        // this._NOT_STARTED = "NotStarted";
         this._SMALL  = "Small";
         this._MEDIUM = "Medium";
         this._LARGE  = "Large";
 
         if (!this._data) this._createSave();
         if (Config.enableGlobalVars) window.kalulu.userProfile = this;
+        /*if (this._data.kaluluTalks===undefined)*/ this._data.kaluluTalks = {
+                brainScreen : true,
+                firstTreasure : true,
+                gardenScreen : true,
+                gardenLetter : true,
+                gardenLesson : true,
+                gardenPlant : true,
+                firstStar : true,
+                lesson1 : true,
+                lessonGame1 : true,
+                lessonGame2 : true,
+                lesson2 : true,
+                toyChestScreen : true
+        };
     }
 
     //AddUserRecord(UserProfile);
@@ -103,6 +117,15 @@ define([
             }
         },
 
+        starMiddle : {
+            get : function () {return this._data.starMiddle; },
+            set : function (id) {
+                this._data.starMiddle[id] = true;
+                this._gameManager.save();
+                return this._data.starMiddle;
+            }
+        },
+
         fertilizer : {
             get : function () {return this._data.fertilizer; },
             set : function (value) {
@@ -122,7 +145,18 @@ define([
                 this._gameManager.save();
                 return this._data.plantsData;
             }
+        },
+
+        kaluluTalks : {
+            get : function () { return this._data.kaluluTalks;},
+            set : function (talks) {
+                this._data.kaluluTalks = talks;
+                this._gameManager.save();
+                return this._data.kaluluTalks;
+            }
         }
+
+
     });
 
 
@@ -142,9 +176,11 @@ define([
                 maths : null
             },
             bonusActivitiesData : null,
+            starMiddle : null,
             fertilizer : 0,
             plantsData : null
         };
+        this.getStarMiddle();
         this.getPlantsStatus();
     };
 
@@ -169,9 +205,16 @@ define([
         return arr;
     };
 
+    UserProfile.prototype.getStarMiddle = function getStarMiddle () {
+        var chapterCount = 20;
+        this._data.starMiddle = [];
+
+        for (var i = 1; i <= chapterCount; i++) {
+            this._data.starMiddle[i] = false;
+        }
+    };
+
     UserProfile.prototype.getPlantsStatus = function getPlantsStatus () {
-        
-        //var mathsPlan = this._data.pedagogicData.Maths.planData;
         var chapterCount = 20;
         var plantCount = 5;
 
@@ -216,6 +259,11 @@ define([
     // ##############################################################################################################################################
     // ###  DEBUG  ##################################################################################################################################
     // ##############################################################################################################################################
+
+    UserProfile.prototype.unlockNeuroEnergy = function unlockNeuroEnergy(neuroEnergyValue) {
+        console.log(neuroEnergyValue);
+        this.fertilizer = neuroEnergyValue;
+    };
 
     UserProfile.prototype.completeAllNodes = function completeAllNodes () {
         this.setPlanNodesTo(this.Language.plan, true);

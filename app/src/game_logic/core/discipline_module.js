@@ -151,9 +151,10 @@ define([
 
     DisciplineModule.prototype.getDifficultyParams = function getDifficultyParams (progressionNode) {
         var level, stage;
+
         if (this._userProfile[progressionNode.discipline.type].minigamesRecords[progressionNode.activityType]) {
-            level = this._userProfile[progressionNode.discipline.type].minigamesRecords[progressionNode.activityType].currentLevel;
-            stage = this._userProfile[progressionNode.discipline.type].minigamesRecords[progressionNode.activityType].currentStage;
+            level = this._userProfile[progressionNode.discipline.type].minigamesRecords[progressionNode.activityType].globalLevel;
+            stage = this._userProfile[progressionNode.discipline.type].minigamesRecords[progressionNode.activityType].localLevel;
         }
         else {
             level = 3;
@@ -164,6 +165,14 @@ define([
             globalLevel : level,
             localStage : stage
         }; 
+    };
+
+    DisciplineModule.prototype.getLatestRecord = function getLatestRecord (progressionNode) {
+    	var arrayRecord = this._userProfile[progressionNode.discipline.type].minigamesRecords.records;
+
+    	if(arrayRecord)
+    		if(arrayRecord.length > 0) return arrayRecord[arrayRecord.length - 1];
+    	else return null;
     };
 
     DisciplineModule.prototype.getNotionsForLesson = function getNotionsForLesson (lessonNumber) {

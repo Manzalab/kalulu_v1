@@ -86,7 +86,7 @@
      * - 'endGameWin' when all animations and sounds completed ; listened by UI
 	**/
     Kalulu.prototype.initEvents = function () {
-        this.createKaluluEvent("startGame", "firstTryIntro", this.sounds.intro, Config.skipKaluluIntro);
+        this.createKaluluEvent("startGame", "firstTryIntro", this.sounds.intro, this.game.gameConfig.skipKaluluIntro);
         this.createKaluluEvent("firstTryIntro", "unPause", this.sounds.firstTryIntro);
         this.createKaluluEvent("firstTryWin", "unPause", this.sounds.firstTryWin);
         this.createKaluluEvent("firstTryLoose", "unPause", this.sounds.firstTryLoose);
@@ -103,7 +103,7 @@
             this.eventManager.emit('help');
             this.eventManager.emit('offUi');
             this.eventManager.emit('pause');
-            if (Config.skipKalulu || skipCondition) {              
+            if (this.game.gameConfig.skipKalulu || skipCondition) {              
                 if (Array.isArray(endEventName))
                     for (var i = 0; i < endEventName.length; i++) {
                         this.eventManager.emit(endEventName[i]);

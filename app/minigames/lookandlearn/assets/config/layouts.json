@@ -2,7 +2,7 @@
     "phase1Uppercase": {
         "name" : "botDemo",
         "enabled": true,
-        "pencilStyle" : {"stroke": "0x000000", "width": "50"},
+        "pencilStyle" : {"stroke": "0x000000", "width": "35"},
         "x": 0,
         "y": 0,
         "w": 600,
@@ -15,7 +15,7 @@
     },
     "botLayout": {
         "name" : "botTrace",
-        "pencilStyle" : {"stroke": "0x000000", "width": "50"},
+        "pencilStyle" : {"stroke": "0x000000", "width": "35"},
         "x": 300,
         "y": 300,
         "w": 600,
@@ -28,7 +28,7 @@
     },
     "calcLayout": {
       "name" : "botCalc",
-      "pencilStyle" : {"stroke": "0x000000", "width": "60", "alpha": 0.3},
+      "pencilStyle" : {"stroke": "0x000000", "width": "40", "alpha": 0.3},
       "x": 1160,
       "y": 300,
       "w": 600,
@@ -39,7 +39,7 @@
     },
     "playerLayout": {
         "name" : "playerLayout",
-        "pencilStyle" : {"stroke": "0x000000", "width": "50", "wrong": "0x000000"},
+        "pencilStyle" : {"stroke": "0x000000", "width": "35", "wrong": "0x000000"},
         "x": 960,
         "y": 0,
         "w": 960,

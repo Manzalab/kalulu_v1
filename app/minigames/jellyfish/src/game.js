@@ -75,7 +75,7 @@
                     }
                 }
             }
-            if (this.game.discipline == "maths") this.game.load.atlasJSONHash('maths', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/maths/maths.png', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/maths/maths.json');
+            if (this.game.discipline == "maths") this.game.load.atlasJSONHash('maths', 'minigames/common/assets/images/maths/maths.png', 'minigames/common/assets/images/maths/maths.json');
         },
 
         /**

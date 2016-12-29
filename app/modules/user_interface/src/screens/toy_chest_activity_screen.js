@@ -39,27 +39,28 @@
 		this._backButton = this._hud.topLeft.getChildByName("mcBackButton");
 
 		// Buttons Management
-		var lLockStart;
-		var lActivitiesCount;
-		switch	(activityType)
-		{
-			case "Story":
-				lActivitiesCount = 42;
-				lLockStart = 5;
-			break;
+		var lLocked;
+        var lActivitiesCount;
+        var lRewards = this._interfaceManager.rewards;
+        switch (activityType) {
+            case "Story":
+                lActivitiesCount = lRewards.levelRewards.bookCount;
+                lLocked = lRewards.levelRewards.locked.book;
+                break;
 
-			case "Video":
-				lActivitiesCount = 18;
-				lLockStart = 4;
-			break;
+            case "Video":
+                lActivitiesCount = lRewards.levelRewards.videoCount;
+                lLocked = lRewards.levelRewards.locked.video;
+                break;
 
-			case "MiniGame":
-				lActivitiesCount = 9;
-				lLockStart = 1;
-			break;
-		}
-		this._activitiesCount = lActivitiesCount;
-		this._lockedActivitiesStart = lLockStart;
+            case "MiniGame":
+                lActivitiesCount = lRewards.levelRewards.gameCount;
+                lLocked = lRewards.levelRewards.locked.game;
+                break;
+        }
+        this._activitiesCount = lActivitiesCount;
+        this._lockedActivities = lLocked;
+        this._unlockedActivities = this._interfaceManager.unlockedRewards;
 
 		this._prevActivitiesButton.visible = false;
 		if (this._activitiesCount<=10) this._nextActivitiesButton.visible = false;
@@ -96,33 +97,35 @@
 
 	ToyChestActivityScreen.prototype._updateActivitiesButtons = function _updateActivitiesButtons (pIsListening) {
 		var colorFilter = new PIXI3.filters.ColorMatrixFilter();
-		colorFilter.greyscale(0.3);
-		for (var k = this._activitiesButtons.children.length-1 ; k >= 0 ; k--)
-		{
-			var lButton = this._activitiesButtons.children[k];
+        colorFilter.greyscale(0.3);
+        for (var k = 0; k < this._activitiesButtons.children.length; k++) {
+            var lButton = this._activitiesButtons.children[k];
+            var lNum = (k + 1) + (10 * this._currActivitiesPage);
+            // lButton._txt.text = this._lockedActivities[k].replace("_"," ");
+            lButton.name = lNum;
+            lButton.locked = !this._unlockedActivities.includes(this._lockedActivities[k]);
 
-			if (pIsListening) lButton.onClick = this._onClickOnActivitiesButton.bind(this);
-			else lButton.removeChildAt(lButton.children.length-1);
-			var lNum = (k+1)+(10*this._currActivitiesPage);
-			lButton._txt.text = lNum;
-			lButton.name = lNum;
-			var lCover = new PIXI3.Sprite(PIXI3.Texture.fromImage(Config.imagesPath + "activity_covers/" + this._activityType.toLowerCase() + "/" + lNum + ".jpg"));
-			lCover.anchor.set(0.5);
-			lCover.scale.set(0.33);
-			lButton.addChild(lCover);
-			if (lNum >= this._lockedActivitiesStart)
-			{
-				lCover.filters = [colorFilter];
-				lButton.setModeDisabled();
-			}
-			else 
-			{
-				lCover.filters = null;
-				lButton.setModeEnabled();
-			}
-			if (lNum > this._activitiesCount) lButton.visible = false;
-			else lButton.visible = true;
-		}
+            if (lNum > this._activitiesCount)
+            {
+            	lButton.visible = false;
+            	continue;	
+            } 
+            else lButton.visible = true;
+
+            if (pIsListening) lButton.onClick = this._onClickOnActivitiesButton.bind(this);
+            else lButton.removeChildAt(lButton.children.length - 1);
+            var lCover = new PIXI3.Sprite(PIXI3.Texture.fromImage(Config.imagesPath + "activity_covers/" + this._activityType.toLowerCase() + "/" + lNum + ".jpg"));
+            lCover.anchor.set(0.5);
+            lCover.scale.set(0.33);
+            lButton.addChild(lCover);
+            if (lButton.locked) {
+                lCover.filters = [colorFilter];
+                lButton.setModeDisabled();
+            } else {
+                lCover.filters = null;
+                lButton.setModeEnabled();
+            }
+        }
 	};
 
 	ToyChestActivityScreen.prototype._onClickOnActivitiesButton = function _onClickOnActivitiesButton (pEventData) {

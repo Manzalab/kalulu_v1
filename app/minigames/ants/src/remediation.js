@@ -53,7 +53,7 @@
 
         // Debug
 
-        if (Config.debugPanel) {
+        if (this.game.gameConfig.debugPanel) {
 
             this.debug = new Dat.GUI();
 
@@ -144,7 +144,7 @@
         }, this);
 
         this.eventManager.on('replay', function () {
-            if (Config.debugPanel) {
+            if (this.game.gameConfig.debugPanel) {
                 document.getElementsByClassName("dg main a")[0].remove();
                 this.debug = null;
             }
@@ -180,7 +180,7 @@
      * Initialise parameters for the required round with data contained in this.pedagogicData
      **/
     Remediation.prototype.initRound = function initRound(roundIndex) {
-        var roundData = this.game.pedagogicData.data.rounds[roundIndex].steps[0];
+        var roundData = this.game.pedagogicData.data.rounds[roundIndex].steps[0]; console.log(roundData);
         var localParams = this.game.params.getLocalParams(); // get the latest localParams (localParams can change anytime during the game following player's inputs)
 
         var yOffset = (this.game.height - 200) / (localParams.sentencesCount + 1);
@@ -302,9 +302,9 @@
         if (this.triesRemaining > 0) {
 
             if (this.consecutiveSuccess % 2 === 0) {
-                if (Config.debugPanel) this.cleanLocalPanel();
+                if (this.game.gameConfig.debugPanel) this.cleanLocalPanel();
                 this.game.params.increaseLocalDifficulty();
-                if (Config.debugPanel) this.setLocalPanel();
+                if (this.game.gameConfig.debugPanel) this.setLocalPanel();
             }
 
             var context = this;
@@ -348,9 +348,9 @@
             if (this.consecutiveMistakes === params.incorrectResponseCountTriggeringSecondRemediation) {
 
                 this.eventManager.emit('help'); // listened by Kalulu to start the help speech; pauses the game in kalulu
-                if (Config.debugPanel) this.cleanLocalPanel();
+                if (this.game.gameConfig.debugPanel) this.cleanLocalPanel();
                 this.game.params.decreaseLocalDifficulty();
-                if (Config.debugPanel) this.setLocalPanel();
+                if (this.game.gameConfig.debugPanel) this.setLocalPanel();
                 //TODO : implement the highlight of the targetJellys
                 this.consecutiveMistakes = 0; // restart the remediation
             }

@@ -29,13 +29,13 @@ define([
     function MinigamesManager (gameManager) {
 
         this._gameManager = gameManager;
+
         this._currentExerciseSetup = null;
         this.launchers = {};
 
         if (Config.enableGlobalVars) {
             window.kalulu.minigamesManager = this;
             window.kalulu.Config = Config;
-
         }
     }
 
@@ -58,7 +58,7 @@ define([
      * @param progressionNode {ProgressionNode} the node of the activity we want to start (i.e. a Lecture or a Minigame)
     **/
     MinigamesManager.prototype.startActivity = function startActivity (progressionNode, debugPanel) {
-        
+
         // DEBUG TOOL TO REMOVE :
         if (progressionNode.discipline.id === "maths") {
             console.log("debug maths here");
@@ -81,8 +81,6 @@ define([
 
     MinigamesManager.prototype.startDebugActivity = function startDebugActivity (progressionNode) {
 
-        console.log("debug here");
-        console.log(progressionNode);
         this._currentProgressionNode = progressionNode;
 
         var debugInterface = this._getInterface();
@@ -102,10 +100,13 @@ define([
     **/
     MinigamesManager.prototype._getInterface = function _getInterface (debugPanel, node) {
 
+        //this._currentProgressionNode = node;
+
         return {
             discipline          : node ? node.discipline.type.toLowerCase() : null,
             getDifficultyLevel  : this._getDifficultyParams.bind(this),
             getPedagogicData    : this._getPedagogicData.bind(this), // We let to the discipline module the logic of providing the appropriate setup depending on the node
+            latestRecord        : this._getLatestRecord(),
             save                : this._saveMiniGameData.bind(this),
             close               : this._closeMiniGame.bind(this),
             MinigameDstRecord   : MinigameDstRecord,
@@ -130,11 +131,16 @@ define([
     MinigamesManager.prototype._getPedagogicData = function _getPedagogicData (params) {
         // We let to the discipline module the logic of providing the appropriate setup depending on the node :
         this._latestSetupSent = this._currentProgressionNode.discipline.getPedagogicData(this._currentProgressionNode, params);
+
         console.log("Pedagogic Data Received : ");
         console.log(this._latestSetupSent);
+
         return this._latestSetupSent;
     };
 
+    MinigamesManager.prototype._getLatestRecord = function _getLatestRecord () {
+        return this._currentProgressionNode.discipline.getLatestRecord(this._currentProgressionNode);
+    };
 
     /**
      * Records the result of a minigame in the player's profile

@@ -70,7 +70,7 @@
             this.game.discipline = this.game.pedagogicData.discipline;
             console.log(this.game.discipline)
             if (this.game.discipline == "maths") {
-                this.game.load.atlasJSONHash('maths', 'minigames/ants/assets/images/maths/maths.png', 'minigames/ants/assets/images/maths/maths.json');
+                this.game.load.atlasJSONHash('maths', 'minigames/common/assets/images/maths/maths.png', 'minigames/common/assets/images/maths/maths.json');
                 var roundsCount = data.rounds.length;
                 var stepsCount, stimuliCount, stimulus;
 
@@ -99,7 +99,7 @@
          **/
         create: function () {
             console.info("[Game State] Creating new game");
-            if (Config.globalVars) {
+            if (this.game.gameConfig.globalVars) {
                 window.jellyfishes = {};
                 window.jellyfishes.game = this.game;
             }
