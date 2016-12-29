@@ -17,6 +17,14 @@ define(['./activity_button'], function (ActivityButton) {
         ActivityButton.prototype.setup.apply(this, arguments);
     };  
 
-
+    // FOR DEBUG
+    // MinigameButton.prototype._mouseOver = function _mouseOver (pEventData) {
+    //     this._setModeInProgress();
+    // };
+    // MinigameButton.prototype._mouseOut = function _mouseOut (pEventData) {
+    //     this._setModeCompleted();
+    // };
+    //
+    
     return MinigameButton;
 });

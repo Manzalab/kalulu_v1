@@ -405,7 +405,48 @@
             plan   : this._plan.createSave(),
             gp     : {},
             words  : {},
-            minigamesRecords : []
+            minigamesRecords : {
+                ants : {
+                    localLevel  : 1,
+                    globalLevel : 1,
+                    records :[]
+                },
+                caterpillar : {
+                    localLevel  : 1,
+                    globalLevel : 1,
+                    records :[]
+                },
+                crabs : {
+                    localLevel  : 1,
+                    globalLevel : 1,
+                    records :[]
+                },
+                frog : {
+                    localLevel  : 1,
+                    globalLevel : 1,
+                    records :[]
+                },
+                jellyfish : {
+                    localLevel  : 1,
+                    globalLevel : 1,
+                    records :[]
+                },
+                monkeys : {
+                    localLevel  : 1,
+                    globalLevel : 1,
+                    records :[]
+                },
+                parakeets : {
+                    localLevel  : 1,
+                    globalLevel : 1,
+                    records :[]
+                },
+                turtles : {
+                    localLevel  : 1,
+                    globalLevel : 1,
+                    records :[]
+                }
+            }
         };
         this._userProfile.Language = data;
 
@@ -1165,9 +1206,6 @@
             isPreviousGameFlawless = records[records.length - 1].flawless;
 
         }
-
-        this._userProfile[currentProgressionNode.discipline.type].minigamesRecords[currentProgressionNode.activityType].currentStage = record.finalLocalStage;
-        this._userProfile[currentProgressionNode.discipline.type].minigamesRecords[currentProgressionNode.activityType].records.push(record);
         
         if (record.hasWon) {
             currentProgressionNode.isCompleted = true;
