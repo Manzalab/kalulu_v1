@@ -44,7 +44,8 @@ var Kalulu_maths = function(available_numbers, score, numbers_data__, params___,
             gameType                        : params___.gameType, // "identification", "composition", "pairing", or "other"
             roundsCount                     : params___.roundsCount,           // the amount of rounds, (Rafiki will provide one target per round)
             stepDistracterCount             : params___.stepDistracterCount,             // 
-            groupGameType  					: params___.groupGameType // 'recognition'    
+            groupGameType  					: params___.groupGameType, // 'recognition'    
+      		language 						: config.language,
       }
 
 
