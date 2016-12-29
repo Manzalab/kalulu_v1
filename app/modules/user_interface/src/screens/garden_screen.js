@@ -515,7 +515,7 @@ define([
     }
 
     GardenScreen.prototype._onClickOnBackButton = function _onClickOnBackButton (eventData) {
-        
+        if (this._interfaceManager.kaluluCharacter.isTalking) return;
         SoundManager.getSound("click").play();
         this._interfaceManager.requestBrainScreen();
     };

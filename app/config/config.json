@@ -9,7 +9,8 @@
         "debugPlanConstruction"   : false,
         "enableTransitionsTuning" : true,
         "enableMinigameTuning"    : true,
-        "enableQAControls"        : true
+        "enableQAControls"        : true,
+        "skipKalulu"              : false
     },
     "paths" : {
         "imagesPath" : "assets/images/",
