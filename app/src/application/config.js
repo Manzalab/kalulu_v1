@@ -19,6 +19,7 @@
         enableTransitionsTuning : { get : function () { return this._config.debug.enableTransitionsTuning; }},
         enableMinigameTuning    : { get : function () { return this._config.debug.enableMinigameTuning; }},
         enableQAControls        : { get : function () { return this._config.debug.enableQAControls; }},
+        skipKalulu              : { get : function () { return this._config.debug.skipKalulu; }},
 
         // paths
         paths                   : { get : function () { return this._config.paths; }},
