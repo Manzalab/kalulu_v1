@@ -43,12 +43,9 @@ var Distractor = function (number, distractors_available, count, decimal) {
 	})
 	var distractors_pool_all = []
 
-
-   
 	var stepper = 0
 
 	while(stepper < count){
-
 
 		var swap;
 		if(number > 12 && number < 99){
@@ -83,7 +80,6 @@ var Distractor = function (number, distractors_available, count, decimal) {
 	}
 
 
-
 	var kindmax  = 0
 	kindmax = _.max(distractors_pool, function(p){return p.size_}).size_
 	//console.log('kindmax == '+kindmax)
@@ -93,18 +89,18 @@ var Distractor = function (number, distractors_available, count, decimal) {
 	// using the 'kindmax' value as "for loop" maximum		
 	for (var s = 0; s <= kindmax ; s++) {
 		_.each(loop_kinds, function(kind){
-				if(distractors_pool[kind].pool[distractors_pool[kind].index_]){
-					var val_ = distractors_pool[kind].pool[distractors_pool[kind].index_]
-					var distractor_ = {
-						'correctResponse': false,
-						'dLevel': distractors_pool[kind].name
-					}
-					//console.log(val_)
-					distractor_.value = val_
-					distractors_pool_all.push(distractor_)
-					//console.log(distractors_pool[kind].name +'>'+distractors_pool[kind].index_)
-					distractors_pool[kind].index_ ++
+			if(distractors_pool[kind].pool[distractors_pool[kind].index_]){
+				var val_ 		= distractors_pool[kind].pool[distractors_pool[kind].index_]
+				var distractor_ = {
+					'correctResponse': false,
+					'dLevel': distractors_pool[kind].name
 				}
+				//console.log(val_)
+				distractor_.value = val_
+				distractors_pool_all.push(distractor_)
+				//console.log(distractors_pool[kind].name +'>'+distractors_pool[kind].index_)
+				distractors_pool[kind].index_ ++
+			}
 		})	
 	}
 
@@ -115,7 +111,7 @@ var Distractor = function (number, distractors_available, count, decimal) {
 	//distractors_available = [0,1,2,3]
 	_.each(distractors_pool_all, function(candidate){
 		//console.log(distractors_available)
-			
+			// "antivalue" is the value to avoid
 			var antiValue = candidate.value
 			if(decimal && decimal === true){
 				antiValue = (candidate.value)*10
@@ -128,15 +124,15 @@ var Distractor = function (number, distractors_available, count, decimal) {
 				//	console.log('//////////////')
 			}
 			else{
-					//console.log(number+'  <>' +candidate.value+' is in')
-					// ultimate fix for decimal game (*10 entry)
-					if(decimal && decimal === true){
-						candidate.value = antiValue
-					}
-					//console.log('pushcandidate')
-					//console.log(candidate)
+				//console.log(number+'  <>' +candidate.value+' is in')
+				// ultimate fix for decimal game (*10 entry)
+				if(decimal && decimal === true){
+					candidate.value = antiValue
+				}
+				//console.log('pushcandidate')
+				//console.log(candidate)
 
-					out.push(candidate)
+				out.push(candidate)
 			}
 		
 		}
