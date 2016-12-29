@@ -146,8 +146,7 @@
     // #### GAME INITIALISATION
 
     GameManager.prototype._initGame = function _initGame () {
-        
-        
+
         this._minigamesManager = new MinigamesManager(this);
 
         this._eventSystem.once(Events.APPLICATION.SAVED_DATA_SENT, this._initRemediation, this);

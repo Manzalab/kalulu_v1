@@ -679,8 +679,48 @@ var record_not_av   = [
         var data = {
             plan             : this._plan.createSave(),
             numbers          : this.loop_numbers_skills(),
-            minigamesRecords : {}
-
+            minigamesRecords : {
+                ants : {
+                    localLevel  : 1,
+                    globalLevel : 1,
+                    records :[]
+                },
+                caterpillar : {
+                    localLevel  : 1,
+                    globalLevel : 1,
+                    records :[]
+                },
+                crabs : {
+                    localLevel  : 1,
+                    globalLevel : 1,
+                    records :[]
+                },
+                frog : {
+                    localLevel  : 1,
+                    globalLevel : 1,
+                    records :[]
+                },
+                jellyfish : {
+                    localLevel  : 1,
+                    globalLevel : 1,
+                    records :[]
+                },
+                monkeys : {
+                    localLevel  : 1,
+                    globalLevel : 1,
+                    records :[]
+                },
+                parakeets : {
+                    localLevel  : 1,
+                    globalLevel : 1,
+                    records :[]
+                },
+                turtles : {
+                    localLevel  : 1,
+                    globalLevel : 1,
+                    records :[]
+                }
+            }
         };
         this._userProfile.Maths = data;
         // console.log(this._userProfile.Maths)

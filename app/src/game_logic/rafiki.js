@@ -157,9 +157,13 @@ define([
      * Save the results of a minigame
     **/
     Rafiki.prototype.savePedagogicResults = function savePedagogicResults (currentProgressionNode, data) {
-        
-        console.log(currentProgressionNode);
-        console.log(data);
+        var lastRecord = {
+            elapsedTime : data.endTime - data.startTime,
+            hasWon : data.hasWon,
+            finalLocalStage : data.finalLocalStage
+        };
+        this._currentUserProfile[currentProgressionNode.discipline.type].minigamesRecords[currentProgressionNode.activityType].localLevel = lastRecord.finalLocalStage;
+        this._currentUserProfile[currentProgressionNode.discipline.type].minigamesRecords[currentProgressionNode.activityType].records.push(lastRecord);
 
         if (currentProgressionNode.constructor.name === "Lecture") {
             currentProgressionNode.isCompleted = true;
