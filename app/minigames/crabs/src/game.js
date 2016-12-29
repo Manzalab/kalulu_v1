@@ -102,7 +102,7 @@
             this.background.height = this.game.height;
             
             this.remediation = new Remediation(this.game);
-            this.ui = new Ui(this.game.params.getGlobalParams().totalTriesCount, this.game);
+            this.ui = new Ui(this.game.params.getGlobalParams().roundsCount, this.game);
             this.kalulu = new Kalulu(this.game);
             this.game.kalulu = this.kalulu;
             
