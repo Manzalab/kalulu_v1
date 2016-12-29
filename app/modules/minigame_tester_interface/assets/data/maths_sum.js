@@ -1,4 +1,4 @@
-moldule.exports = {
+module.exports = {
     "gameId": "DummyGame",
     "gameGroup": "sum",
     "discipline": "maths",
