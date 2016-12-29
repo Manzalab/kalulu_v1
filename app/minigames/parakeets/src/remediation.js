@@ -48,9 +48,9 @@
         this.initSounds(game);
 
         // Debug
-        if (Config.globalVars) window.memory.memory = this.memory;
+        if (this.game.gameConfig.globalVars) window.memory.memory = this.memory;
 
-        if (Config.debugPanel) {
+        if (this.game.gameConfig.debugPanel) {
 
             this.debug = new Dat.GUI(/*{ autoPlace: false }*/);
            

@@ -48,7 +48,7 @@
 
         create: function () {
             console.info("[Game State] Creating new game");
-            if (Config.globalVars) {
+            if (this.game.gameConfig.globalVars) {
                 window.caterpillar = {};
                 window.caterpillar.game = this.game;
             }

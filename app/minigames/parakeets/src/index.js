@@ -29,7 +29,7 @@
             this._config.request('minigames/caterpillar/assets/data', this.onConfigLoaded.bind(this));
         }
         else {
-            this.config = Config;
+            this._config = Config;
             this.onConfigLoaded();
         }
     }
@@ -44,7 +44,7 @@
         this.game = new Phaser.Game(1920, 1350, Phaser.CANVAS); // TODO : make it dynamic for multiscreen handling
 
         // Setting Up the Remediation
-        this.game.gameConfig = this.config;
+        this.game.gameConfig = this._config;
         console.log(this.game)
         this.game.params = new MinigameParameters(params);
         this.game.rafiki = this._rafiki;

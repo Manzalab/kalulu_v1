@@ -97,7 +97,7 @@
         create: function () {
 
             console.info("[Game State] Creating new game");
-            if (Config.globalVars) {
+            if (this.game.gameConfig.globalVars) {
                 window.frogger = {};
                 window.frogger.game = this.game;
             }

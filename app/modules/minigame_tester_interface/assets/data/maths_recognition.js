@@ -11,8 +11,8 @@ module.exports = {
                                 "value": 1,
                                 "correctResponse": true,
                                 "stimuli_type": "number",
-                                "nonSymbolicImage": "todo/number/data/1.jpg",
-                                "soundPath": "assets/sounds/maths/1.ogg",
+                                "nonSymbolicImage": "assets/images/maths/number_1.jpg",
+                                "soundPath": "assets/sounds/maths/number_1.ogg",
                                 "path": [
                                     "recognition",
                                     "audio_symbolic"
@@ -22,8 +22,8 @@ module.exports = {
                                 "value": 4,
                                 "correctResponse": false,
                                 "stimuli_type": "number",
-                                "nonSymbolicImage": "todo/number/data/4.jpg",
-                                "soundPath": "assets/sounds/maths/4.ogg",
+                                "nonSymbolicImage": "assets/images/maths/number_4.jpg",
+                                "soundPath": "assets/sounds/maths/number_4.ogg",
                                 "path": [
                                     "recognition",
                                     "audio_symbolic"
@@ -33,8 +33,8 @@ module.exports = {
                                 "value": 5,
                                 "correctResponse": false,
                                 "stimuli_type": "number",
-                                "nonSymbolicImage": "todo/number/data/5.jpg",
-                                "soundPath": "assets/sounds/maths/5.ogg",
+                                "nonSymbolicImage": "assets/images/maths/number_5.jpg",
+                                "soundPath": "assets/sounds/maths/number_5.ogg",
                                 "path": [
                                     "recognition",
                                     "audio_symbolic"
@@ -57,8 +57,8 @@ module.exports = {
                                 "value": 2,
                                 "correctResponse": true,
                                 "stimuli_type": "number",
-                                "nonSymbolicImage": "todo/number/data/2.jpg",
-                                "soundPath": "assets/sounds/maths/2.ogg",
+                                "nonSymbolicImage": "assets/images/maths/number_2.jpg",
+                                "soundPath": "assets/sounds/maths/number_2.ogg",
                                 "path": [
                                     "recognition",
                                     "audio_symbolic"
@@ -68,8 +68,8 @@ module.exports = {
                                 "value": 1,
                                 "correctResponse": false,
                                 "stimuli_type": "number",
-                                "nonSymbolicImage": "todo/number/data/1.jpg",
-                                "soundPath": "assets/sounds/maths/1.ogg",
+                                "nonSymbolicImage": "assets/images/maths/number_1.jpg",
+                                "soundPath": "assets/sounds/maths/number_1.ogg",
                                 "path": [
                                     "recognition",
                                     "audio_symbolic"
@@ -79,8 +79,8 @@ module.exports = {
                                 "value": 5,
                                 "correctResponse": false,
                                 "stimuli_type": "number",
-                                "nonSymbolicImage": "todo/number/data/5.jpg",
-                                "soundPath": "assets/sounds/maths/5.ogg",
+                                "nonSymbolicImage": "assets/images/maths/number_5.jpg",
+                                "soundPath": "assets/sounds/maths/number_5.ogg",
                                 "path": [
                                     "recognition",
                                     "audio_symbolic"
@@ -103,8 +103,8 @@ module.exports = {
                                 "value": 3,
                                 "correctResponse": true,
                                 "stimuli_type": "number",
-                                "nonSymbolicImage": "todo/number/data/3.jpg",
-                                "soundPath": "assets/sounds/maths/3.ogg",
+                                "nonSymbolicImage": "assets/images/maths/number_3.jpg",
+                                "soundPath": "assets/sounds/maths/number_3.ogg",
                                 "path": [
                                     "recognition",
                                     "audio_symbolic"
@@ -114,8 +114,8 @@ module.exports = {
                                 "value": 2,
                                 "correctResponse": false,
                                 "stimuli_type": "number",
-                                "nonSymbolicImage": "todo/number/data/2.jpg",
-                                "soundPath": "assets/sounds/maths/2.ogg",
+                                "nonSymbolicImage": "assets/images/maths/number_2.jpg",
+                                "soundPath": "assets/sounds/maths/number_2.ogg",
                                 "path": [
                                     "recognition",
                                     "audio_symbolic"
@@ -125,8 +125,8 @@ module.exports = {
                                 "value": 6,
                                 "correctResponse": false,
                                 "stimuli_type": "number",
-                                "nonSymbolicImage": "todo/number/data/6.jpg",
-                                "soundPath": "assets/sounds/maths/6.ogg",
+                                "nonSymbolicImage": "assets/images/maths/number_6.jpg",
+                                "soundPath": "assets/sounds/maths/number_6.ogg",
                                 "path": [
                                     "recognition",
                                     "audio_symbolic"
@@ -149,8 +149,8 @@ module.exports = {
                                 "value": 4,
                                 "correctResponse": true,
                                 "stimuli_type": "number",
-                                "nonSymbolicImage": "todo/number/data/4.jpg",
-                                "soundPath": "assets/sounds/maths/4.ogg",
+                                "nonSymbolicImage": "assets/images/maths/number_4.jpg",
+                                "soundPath": "assets/sounds/maths/number_4.ogg",
                                 "path": [
                                     "recognition",
                                     "audio_symbolic"
@@ -160,8 +160,8 @@ module.exports = {
                                 "value": 3,
                                 "correctResponse": false,
                                 "stimuli_type": "number",
-                                "nonSymbolicImage": "todo/number/data/3.jpg",
-                                "soundPath": "assets/sounds/maths/3.ogg",
+                                "nonSymbolicImage": "assets/images/maths/number_3.jpg",
+                                "soundPath": "assets/sounds/maths/number_3.ogg",
                                 "path": [
                                     "recognition",
                                     "audio_symbolic"
@@ -171,8 +171,8 @@ module.exports = {
                                 "value": 2,
                                 "correctResponse": false,
                                 "stimuli_type": "number",
-                                "nonSymbolicImage": "todo/number/data/2.jpg",
-                                "soundPath": "assets/sounds/maths/2.ogg",
+                                "nonSymbolicImage": "assets/images/maths/number_2.jpg",
+                                "soundPath": "assets/sounds/maths/number_2.ogg",
                                 "path": [
                                     "recognition",
                                     "audio_symbolic"
@@ -195,8 +195,8 @@ module.exports = {
                                 "value": 5,
                                 "correctResponse": true,
                                 "stimuli_type": "number",
-                                "nonSymbolicImage": "todo/number/data/5.jpg",
-                                "soundPath": "assets/sounds/maths/5.ogg",
+                                "nonSymbolicImage": "assets/images/maths/number_5.jpg",
+                                "soundPath": "assets/sounds/maths/number_5.ogg",
                                 "path": [
                                     "recognition",
                                     "audio_symbolic"
@@ -206,8 +206,8 @@ module.exports = {
                                 "value": 4,
                                 "correctResponse": false,
                                 "stimuli_type": "number",
-                                "nonSymbolicImage": "todo/number/data/4.jpg",
-                                "soundPath": "assets/sounds/maths/4.ogg",
+                                "nonSymbolicImage": "assets/images/maths/number_4.jpg",
+                                "soundPath": "assets/sounds/maths/number_4.ogg",
                                 "path": [
                                     "recognition",
                                     "audio_symbolic"
@@ -217,8 +217,8 @@ module.exports = {
                                 "value": 10,
                                 "correctResponse": false,
                                 "stimuli_type": "number",
-                                "nonSymbolicImage": "todo/number/data/10.jpg",
-                                "soundPath": "assets/sounds/maths/10.ogg",
+                                "nonSymbolicImage": "assets/images/maths/number_10.jpg",
+                                "soundPath": "assets/sounds/maths/number_10.ogg",
                                 "path": [
                                     "recognition",
                                     "audio_symbolic"
@@ -241,8 +241,8 @@ module.exports = {
                                 "value": 6,
                                 "correctResponse": true,
                                 "stimuli_type": "number",
-                                "nonSymbolicImage": "todo/number/data/6.jpg",
-                                "soundPath": "assets/sounds/maths/6.ogg",
+                                "nonSymbolicImage": "assets/images/maths/number_6.jpg",
+                                "soundPath": "assets/sounds/maths/number_6.ogg",
                                 "path": [
                                     "recognition",
                                     "audio_symbolic"
@@ -252,8 +252,8 @@ module.exports = {
                                 "value": 4,
                                 "correctResponse": false,
                                 "stimuli_type": "number",
-                                "nonSymbolicImage": "todo/number/data/4.jpg",
-                                "soundPath": "assets/sounds/maths/4.ogg",
+                                "nonSymbolicImage": "assets/images/maths/number_4.jpg",
+                                "soundPath": "assets/sounds/maths/number_4.ogg",
                                 "path": [
                                     "recognition",
                                     "audio_symbolic"
@@ -263,8 +263,8 @@ module.exports = {
                                 "value": 10,
                                 "correctResponse": false,
                                 "stimuli_type": "number",
-                                "nonSymbolicImage": "todo/number/data/10.jpg",
-                                "soundPath": "assets/sounds/maths/10.ogg",
+                                "nonSymbolicImage": "assets/images/maths/number_10.jpg",
+                                "soundPath": "assets/sounds/maths/number_10.ogg",
                                 "path": [
                                     "recognition",
                                     "audio_symbolic"
@@ -287,8 +287,8 @@ module.exports = {
                                 "value": 10,
                                 "correctResponse": true,
                                 "stimuli_type": "number",
-                                "nonSymbolicImage": "todo/number/data/10.jpg",
-                                "soundPath": "assets/sounds/maths/10.ogg",
+                                "nonSymbolicImage": "assets/images/maths/number_10.jpg",
+                                "soundPath": "assets/sounds/maths/number_10.ogg",
                                 "path": [
                                     "recognition",
                                     "audioToNonSymbolic"
@@ -298,8 +298,8 @@ module.exports = {
                                 "value": 4,
                                 "correctResponse": false,
                                 "stimuli_type": "number",
-                                "nonSymbolicImage": "todo/number/data/4.jpg",
-                                "soundPath": "assets/sounds/maths/4.ogg",
+                                "nonSymbolicImage": "assets/images/maths/number_4.jpg",
+                                "soundPath": "assets/sounds/maths/number_4.ogg",
                                 "path": [
                                     "recognition",
                                     "audioToNonSymbolic"
@@ -309,8 +309,8 @@ module.exports = {
                                 "value": 3,
                                 "correctResponse": false,
                                 "stimuli_type": "number",
-                                "nonSymbolicImage": "todo/number/data/3.jpg",
-                                "soundPath": "assets/sounds/maths/3.ogg",
+                                "nonSymbolicImage": "assets/images/maths/number_3.jpg",
+                                "soundPath": "assets/sounds/maths/number_3.ogg",
                                 "path": [
                                     "recognition",
                                     "audioToNonSymbolic"
