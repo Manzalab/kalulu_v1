@@ -119,6 +119,7 @@ define([
         }
 
         this.unlockBonusPath();
+        this.undrawBonusPath();
 
         // back
         this._backButton.onClick = this._onClickOnBackButton.bind(this);
@@ -235,12 +236,36 @@ define([
         }
     };
 
+    GardenScreen.prototype.undrawBonusPath = function undrawBonusPath() {
+        var chapterIndex, i, bonusPathA, bonusPathB;
+        var chapterCount = 20;
+        var rewardCount = this._rewardChapter.length;
+        var bonusChapter = false;
+
+        console.log(rewardCount);
+
+        for(chapterIndex = 1; chapterIndex < chapterCount; chapterIndex++) {
+            for(i = 0; i < rewardCount; i++) {
+                if(this._rewardChapter[i] == chapterIndex) bonusChapter = true;
+            }
+            if(!bonusChapter) {
+                bonusPathA = this._bonusPathA[chapterIndex];
+                bonusPathB = this._bonusPathB[chapterIndex];
+
+                this._bonusPathA[chapterIndex] = null;
+                this._bonusPathB[chapterIndex] = null;
+
+                bonusPathA.parent.removeChild(bonusPathA);
+                bonusPathB.parent.removeChild(bonusPathB);
+
+                bonusPathA.destroy();
+                bonusPathB.destroy();
+            }
+            bonusChapter = false;
+        }
+    }
+
     GardenScreen.prototype.unlockStarMiddle = function unlockStarMiddle() {
-
-        console.log(DynamicRewards.levelRewards.both);
-
-        if(!this._focusedGarden.starMiddle) return;
-
         var id = this._focusedGarden.id;
         
         if(this._bonusPathA[id].state === "On" && this._bonusPathB[id].state === "On") {
@@ -429,7 +454,9 @@ define([
         this._focusedGarden.drawStar(this._rewardChapter);
 
         this.unlockPlants();
-        this.unlockStarMiddle();
+        if(this._focusedGarden.starMiddle) {
+            this.unlockStarMiddle();
+        }
     };
 
     GardenScreen.prototype._removeSlideFunctions = function _removeSlideFunctions () {
