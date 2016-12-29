@@ -210,18 +210,20 @@ return /******/ (function(modules) { // webpackBootstrap
   
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
   
-  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } } /**
-                                                                                                                                                             * dat-gui JavaScript Controller Library
-                                                                                                                                                             * http://code.google.com/p/dat-gui
-                                                                                                                                                             *
-                                                                                                                                                             * Copyright 2011 Data Arts Team, Google Creative Lab
-                                                                                                                                                             *
-                                                                                                                                                             * Licensed under the Apache License, Version 2.0 (the "License");
-                                                                                                                                                             * you may not use this file except in compliance with the License.
-                                                                                                                                                             * You may obtain a copy of the License at
-                                                                                                                                                             *
-                                                                                                                                                             * http://www.apache.org/licenses/LICENSE-2.0
-                                                                                                                                                             */
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+  
+  /**
+   * dat-gui JavaScript Controller Library
+   * http://code.google.com/p/dat-gui
+   *
+   * Copyright 2011 Data Arts Team, Google Creative Lab
+   *
+   * Licensed under the Apache License, Version 2.0 (the "License");
+   * you may not use this file except in compliance with the License.
+   * You may obtain a copy of the License at
+   *
+   * http://www.apache.org/licenses/LICENSE-2.0
+   */
   
   var Color = function () {
     function Color() {

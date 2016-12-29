@@ -20,7 +20,8 @@
         enableMinigameTuning    : { get : function () { return this._config.debug.enableMinigameTuning; }},
         enableQAControls        : { get : function () { return this._config.debug.enableQAControls; }},
         skipKalulu              : { get : function () { return this._config.debug.skipKalulu; }},
-
+        displayGardenIdsOnBrainScreen : { get : function () { return this._config.debug.displayGardenIdsOnBrainScreen; }},
+        
         // paths
         paths                   : { get : function () { return this._config.paths; }},
         imagesPath              : { get : function () { return this._config.paths.imagesPath; }},
