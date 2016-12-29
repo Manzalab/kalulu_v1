@@ -148,7 +148,7 @@
 
     KaluluCharacter.prototype.update = function update()
     {
-        console.log(this.isTalking);
+        //console.log(this.isTalking);
         if (this.isTalking && this.hasAnimEnded()) //remplacer this._anim.isAnimEnd par un isAnimEnd qui fonctionne et ça devrait marcher
         {
             var lRandom = Math.random();

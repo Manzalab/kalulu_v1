@@ -222,7 +222,7 @@ define([], function () {
 
         illustrationPath : {
             get : function () {
-                return  Config.imagesPath + 'language/lookandlearn/' + this._illustrativeWordEnglish.capitalise() + '.jpg';
+                return  Config.imagesPath + 'language/lookandlearn/' + this._illustrativeWordEnglish + '.jpg';
             }
         },
 

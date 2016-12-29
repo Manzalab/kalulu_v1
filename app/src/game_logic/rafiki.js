@@ -157,11 +157,17 @@ define([
      * Save the results of a minigame
     **/
     Rafiki.prototype.savePedagogicResults = function savePedagogicResults (currentProgressionNode, data) {
-        var lastRecord = {
-            elapsedTime : data.endTime - data.startTime,
-            hasWon : data.hasWon,
-            finalLocalStage : data.finalLocalStage
-        };
+        console.log(data);
+        var lastRecord
+        if (data) {
+            lastRecord = {
+                elapsedTime : data.endTime - data.startTime,
+                hasWon : data.hasWon,
+                finalLocalStage : data.finalLocalStage
+            };
+        }
+        else lastRecord = {};
+        
         this._currentUserProfile[currentProgressionNode.discipline.type].minigamesRecords[currentProgressionNode.activityType].localLevel = lastRecord.finalLocalStage;
         this._currentUserProfile[currentProgressionNode.discipline.type].minigamesRecords[currentProgressionNode.activityType].records.push(lastRecord);
 

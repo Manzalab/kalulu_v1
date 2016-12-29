@@ -260,6 +260,7 @@
             illustrativeSound : selectedNotion.illustrativeSoundPath,
             image             : selectedNotion.illustrationPath,
             value             : selectedNotion.value,
+            textValue         : selectedNotion.value,
             traceUppercase    : selectedNotion.traceUppercase
         };
         
@@ -427,6 +428,11 @@
                     records :[]
                 },
                 jellyfish : {
+                    localLevel  : 1,
+                    globalLevel : 1,
+                    records :[]
+                },
+                lookandlearn : {
                     localLevel  : 1,
                     globalLevel : 1,
                     records :[]
