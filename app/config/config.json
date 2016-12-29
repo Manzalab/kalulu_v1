@@ -10,7 +10,8 @@
         "enableTransitionsTuning" : true,
         "enableMinigameTuning"    : true,
         "enableQAControls"        : true,
-        "skipKalulu"              : false
+        "skipKalulu"              : false,
+        "displayGardenIdsOnBrainScreen" : false
     },
     "paths" : {
         "imagesPath" : "assets/images/",
