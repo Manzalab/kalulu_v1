@@ -66,16 +66,22 @@ var Sum = function(number, xnumber, side, sign, numbers_data, numbers_available,
     lb = parts.second
     lc = parts.third
 
-    lx = 'x'
+    var lx = ''
+    if(this.side =='left'){
+ 		lx = lb
+    }
+    else{
+		lx = lc
+    }
     var resolve_true = la+''+this.sign+''+lb+'='+lc
 
 
   
-    this.lpath = {'xnumber':this.xnumber_name, 'number': this.number, 'side': this.side, 'sign': this.sign}
+    this.lpath = {'xnumber_value':this.xnumber_value, 'xnumber_name':this.xnumber_name, 'number': this.number, 'side': this.side, 'sign': this.sign}
 	
 	var st =  moduleutils.addStimuli(true , this.number, 'sum', numbers_data, this.lpath)
 	
-	st.value = resolve_true
+	st.value = this.number
 
 	step.stimuli.push(st)
 
@@ -95,8 +101,10 @@ var Sum = function(number, xnumber, side, sign, numbers_data, numbers_available,
 
 	round.steps.push(step)
 	round.targetSequence = {
-		gameType       : 'sum', 
-		targetNumber   : this.number
+		gameType       : 'sum',
+		sequence 	   : resolve_true,
+		targetNumber   : this.number,
+		numberIndex    : lx
 	}
 	
   	this.round = round

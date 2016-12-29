@@ -7,11 +7,13 @@
 define([
     '../elements/star_bg',
     '../utils/ui/screen',
-    '../utils/sound/sound_manager'
+    '../utils/sound/sound_manager',
+    'assets/data/' + KALULU_LANGUAGE + '/dynamic_rewards'
 ], function (
     StarBackground,
     Screen,
-    SoundManager
+    SoundManager,
+    DynamicRewards
 ) {
 
     'use strict';
@@ -31,7 +33,7 @@ define([
      * }
     **/
     function GardenScreen (interfaceManager, chaptersData, chaptersProgression, userProfile) {
-        
+
         if (Config.enableGlobalVars) window.kalulu.gardenScreen = this;
 
         Screen.call(this);
@@ -57,6 +59,7 @@ define([
         this._gardensContainer = this.getChildByName("mcGardensContainer");
 
         this._gardens = {};
+        this._lessonsNumber = [[0,0], [0,0]];
 
         var length = this._gardensContainer.children.length;
         var lGarden;
@@ -68,6 +71,8 @@ define([
         //console.log(this._gardens);
         this._gardensCount = _.size(this._gardens);
 
+        this._getLessonsNumber();
+        
         this._backButton = this.getChildByName("mcGardenTLHud").getChildByName("mcBackButton");
         this._hud = { bottomLeft : this.getChildByName("mcGardenBLHud") };
         this._kaluluButton = this._hud.bottomLeft.getChildByName("mcKaluluButton");
@@ -86,6 +91,15 @@ define([
 
         this.addChild(this._lessonDotContainer);
         this._createFertilizerText();
+
+        // Rewards
+        this._rewardChapter = [];
+        this._rewardLessonLanguage = [];
+        this._rewardLessonMaths = [];
+
+        this.getDynamicRewardsBoth();
+        this.getDynamicRewardsLanguage();
+        this.getDynamicRewardsMaths();
 
         // Plant & BonusPath
         this._plants = [];
@@ -222,6 +236,11 @@ define([
     };
 
     GardenScreen.prototype.unlockStarMiddle = function unlockStarMiddle() {
+
+        console.log(DynamicRewards.levelRewards.both);
+
+        if(!this._focusedGarden.starMiddle) return;
+
         var id = this._focusedGarden.id;
         
         if(this._bonusPathA[id].state === "On" && this._bonusPathB[id].state === "On") {
@@ -234,6 +253,37 @@ define([
         else if(this._bonusPathA[id].state === "On" || this._bonusPathB[id].state === "On") this._focusedGarden.starMiddle.setModeMedium();
         else this._focusedGarden.starMiddle.setModeSmall();
     };
+
+    GardenScreen.prototype.getDynamicRewardsBoth = function getDynamicRewardsBoth() {
+        var chapterIndex;
+        var chapterCount = 20;
+
+        for(chapterIndex = 1; chapterIndex <= chapterCount; chapterIndex++) {
+            if(DynamicRewards.levelRewards.both[chapterIndex] != null) {
+                this._rewardChapter.push(chapterIndex);
+            }
+        }
+    }
+
+    GardenScreen.prototype.getDynamicRewardsLanguage = function getDynamicRewardsLanguage() {
+        var lessonIndex = 1;
+        for(var object in this._userProfile.Language.plan) {
+            if(DynamicRewards.levelRewards.language[lessonIndex] != null) {
+                this._rewardLessonLanguage.push(lessonIndex);
+            }
+            lessonIndex++;
+        }
+    }
+
+    GardenScreen.prototype.getDynamicRewardsMaths = function getDynamicRewardsMaths() {
+        var lessonIndex = 1;
+        for(var object in this._userProfile.Maths.plan) {
+            if(DynamicRewards.levelRewards.maths[lessonIndex] != null) {
+                this._rewardLessonMaths.push(lessonIndex);
+            }
+            lessonIndex++;
+        }
+    }
 
     // ###############################################################################################################################################
     // ###  GETTERS & SETTERS  #######################################################################################################################
@@ -288,6 +338,20 @@ define([
     // ##############################################################################################################################################
     // ###  PRIVATE METHODS  ########################################################################################################################
     // ##############################################################################################################################################
+
+    GardenScreen.prototype._getLessonsNumber = function _getLessonsNumber () {
+        var gardenIndex, dotCountA, dotCountB;
+        var chapterCount = 20;
+        var preLessonGarden;
+
+        for(gardenIndex = 1; gardenIndex < chapterCount; gardenIndex++) {
+            dotCountA = this._data.data.language[gardenIndex - 1].children.length - 1;
+            dotCountB = this._data.data.maths[gardenIndex - 1].children.length - 1;
+
+            preLessonGarden = this._lessonsNumber[gardenIndex];
+            this._lessonsNumber.push([preLessonGarden[0] + dotCountA, preLessonGarden[1] + dotCountB]);
+        }
+    }
 
     GardenScreen.prototype._onGameStageResize = function _onGameStageResize (eventData) {
         Screen.prototype._onGameStageResize.call(this, eventData);
@@ -346,7 +410,7 @@ define([
 
         this._focusedGarden.undraw(this._lessonDotContainer);
         this._focusedGarden.undrawPlant();
-        this._focusedGarden.undrawStar();
+        if(this._focusedGarden.starMiddle) this._focusedGarden.undrawStar();
 
         this._removeSlideFunctions();
     };
@@ -360,9 +424,9 @@ define([
         this._registerFocusAndNeighbours(targetGardenId);
         this._assignSlideFunctionsToNeighbourGardens(targetGardenId);
 
-        this._focusedGarden.draw(this._data.data.language[targetGardenId - 1], this._data.data.maths[targetGardenId - 1], this._lessonDotContainer);
+        this._focusedGarden.draw(this._data.data.language[targetGardenId - 1], this._data.data.maths[targetGardenId - 1], this._lessonDotContainer, this._lessonsNumber, this._rewardLessonLanguage, this._rewardLessonMaths);
         this._focusedGarden.drawPlant();
-        this._focusedGarden.drawStar();
+        this._focusedGarden.drawStar(this._rewardChapter);
 
         this.unlockPlants();
         this.unlockStarMiddle();

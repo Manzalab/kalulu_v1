@@ -29,6 +29,9 @@ function SkillVariante(el, params){
 
 	this.moduleutils = new ModuleUtils()
 
+
+	this.lang = params.language
+
 	this.name   = el.name
 	this.group  = el.group
 	this.number = el.number
@@ -191,7 +194,7 @@ SkillVariante.prototype.toRound = function (params) {
 		        break;
 		}
 
-		var tsuite = new Suite(this.number,10,step_suite,this.from,this.direction, 5, numbers_data, params.available_numbers)
+		var tsuite = new Suite(this.number,10,step_suite,this.from,this.direction, 5, numbers_data, params.available_numbers, this.lang)
 		if(tsuite){
 			var tround = {
 				round: tsuite.round,
