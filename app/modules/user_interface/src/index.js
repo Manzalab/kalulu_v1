@@ -60,6 +60,7 @@
 
         this._init();
         this.kaluluCharacter = KaluluCharacter;
+        if (!Config.skipKalulu) this.kaluluCharacter.initEvents(eventSystem);
         this.rewards = Reward;
         this.unlockedRewards = ["Mamba_mwenye_njaa"];
         this._eventSystem.on(Events.GAME.UNLOCK_REWARD_TOYCHEST, this._onRewardUnlocked.bind(this));
@@ -380,8 +381,8 @@
         if (this._userProfile.kaluluTalks.toyChestScreen)
         {
             this.kaluluCharacter.startTalk("kalulu_intro_toychest", ["kalulu_tuto_toychest01"]);
-            this.kaluluCharacter.x = this.kaluluCharacter.width/2;
-            this.kaluluCharacter.y = -this.kaluluCharacter.height/3;
+            this.kaluluCharacter.x = 0;
+            this.kaluluCharacter.y = 0;
             this._screens.toyChestScreen.addChild(this.kaluluCharacter); // j'addchild dans le toychestScreen pcq je n'ai pas de hud BL ainsi qu'un kalulubutton pour l'instant
             this._userProfile.kaluluTalks.toyChestScreen = false;
         }
@@ -421,6 +422,7 @@
     UserInterface.prototype._initQADebugPanel = function _initQADebugPanel () {
         this._debugPanelQAName = "QA";
         this._debugPanelQA = this._debugPanel.addFolder(this._debugPanelQAName);
+        
 
         this.unlockUpToChapter = 1;
         this._debugPanelQA.add(this, "unlockUpToChapter").min(1).max(20).step(1).listen();
@@ -429,7 +431,18 @@
         this.unlockNeuroEnergy = 10;
         this._debugPanelQA.add(this, "unlockNeuroEnergy").min(0).max(300).step(1).listen();
         this._debugPanelQA.add(this, "executeUnlockNeuroEnergy");
+
+        if (!Config.skipKalulu) 
+        {
+            this._debugPanelKalulu = this._debugPanel.addFolder("Kalulu Tuto");
+            this._debugPanelKalulu.add(this, "skipKaluluOnClick");
+        }
     };
+
+    UserInterface.prototype.skipKaluluOnClick = function skipKaluluOnClick()
+    {
+        this._eventSystem.emit(Events.DEBUG.SKIP_KALULU);
+    }
 
     UserInterface.prototype._clearQADebugPanel = function _initQADebugPanel () {
         this._debugPanel.removeFolder(this._debugPanelQAName);
