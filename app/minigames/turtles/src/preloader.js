@@ -43,9 +43,9 @@
             this.load.image('uiScoreEmpty', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/ui/ScoreEmpty.png')
 
             //Kalulu Game Specific audio
-            this.game.load.audio('kaluluIntro', 'minigames/' + this.game.gameConfig.gameId + '/assets/audio/kalulu/intro.wav');
-            this.game.load.audio('kaluluHelp', 'minigames/' + this.game.gameConfig.gameId + '/assets/audio/kalulu/help.wav');
-            this.game.load.audio('kaluluGameOverWin', 'minigames/' + this.game.gameConfig.gameId + '/assets/audio/kalulu/end.wav');
+            this.game.load.audio('kaluluIntro'      , 'minigames/' + this.game.gameConfig.gameId + '/assets/audio/kalulu/kalulu_intro_turtles_' +  this.game.rafiki.discipline + '.ogg');
+            this.game.load.audio('kaluluHelp'       , 'minigames/' + this.game.gameConfig.gameId + '/assets/audio/kalulu/kalulu_help_turtles_' +  this.game.rafiki.discipline + '.ogg');
+            this.game.load.audio('kaluluGameOverWin', 'minigames/' + this.game.gameConfig.gameId + '/assets/audio/kalulu/kalulu_end_turtles_' +  this.game.rafiki.discipline + '.ogg');
         },
 
         /**

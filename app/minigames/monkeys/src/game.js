@@ -67,17 +67,17 @@
 
             // load audiofiles for the current data
 
-            var data = this.game.pedagogicData;
+            var data = this.game.pedagogicData.data;
             var roundsCount = data.rounds.length;
             var stepsCount, stimuliCount, stimulus;
 
             for (var i = 0; i < roundsCount; i++) {
-                this.game.load.audio(data.rounds[i].word.value, data.rounds[i].word.soundPath);
-                stepsCount = data.rounds[i].step.length;
-                for (var j = 0; j < data.rounds[i].step.length; j++) {
-                    stimuliCount = data.rounds[i].step[j].stimuli.length;
+                if (this.game.discipline === 'language') this.game.load.audio(data.rounds[i].word.value, data.rounds[i].word.soundPath);
+                stepsCount = data.rounds[i].steps.length;
+                for (var j = 0; j < data.rounds[i].steps.length; j++) {
+                    stimuliCount = data.rounds[i].steps[j].stimuli.length;
                     for (var k = 0; k < stimuliCount; k++) {
-                        stimulus = data.rounds[i].step[j].stimuli[k];
+                        stimulus = data.rounds[i].steps[j].stimuli[k];
                         if (stimulus.value !== "") {
                             this.game.load.audio(stimulus.value, stimulus.soundPath);
                         }
@@ -107,8 +107,16 @@
             this.ground.width = this.game.width;
 
             this.remediation = new Remediation(this.game);
-            console.log(this.game.params.getGlobalParams())
-            this.ui = new Ui(this.game.params.getGlobalParams().totalTriesCount, this.game);
+            console.log(this.game.params.getGlobalParams());
+
+            var centralConch = true;
+            var conch = true;
+            if (this.game.pedagogicData.discipline === "maths") {
+                conch = false;
+                centralConch = false;
+            }
+            this.ui = new Ui(this.game.params.getGlobalParams().totalTriesCount, this.game, centralConch, true, conch);
+
             this.kalulu = new Kalulu(this.game);
 
             this.game.eventManager.emit('startGame');

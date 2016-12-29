@@ -1,11 +1,13 @@
 ﻿define([
     './tree',
     'common/src/fx',
-    './board'
+    './board',
+    'dat.gui'
 ], function (
     Tree,
     Fx,
-    Board
+    Board,
+    Dat
 ) {
     'use strict';
 
@@ -103,21 +105,23 @@
 
         this.eventManager.on('unPause', function () {
         }, this);
+        console.log(this.game.discipline)
+        if (this.game.discipline === 'language') {
+            this.eventManager.on('playCorrectSound', function () {
+                this.eventManager.emit('unPause');
+                if (this.framesToWaitBeforeNewSound <= 0) {
+                    this.sounds.correctRoundAnswer.play();
+                    this.framesToWaitBeforeNewSound = Math.floor((this.sounds.correctRoundAnswer.totalDuration + 0.5) * 60);
+                }
+            }, this);
 
-        this.eventManager.on('playCorrectSound', function () {
-            this.eventManager.emit('unPause');
-            if (this.framesToWaitBeforeNewSound <= 0) {
-                this.sounds.correctRoundAnswer.play();
-                this.framesToWaitBeforeNewSound = Math.floor((this.sounds.correctRoundAnswer.totalDuration + 0.5) * 60);
-            }
-        }, this);
-
-        this.eventManager.on('playCorrectSoundNoUnPause', function () {
-            if (this.framesToWaitBeforeNewSound <= 0) {
-                this.sounds.correctRoundAnswer.play();
-                this.framesToWaitBeforeNewSound = Math.floor((this.sounds.correctRoundAnswer.totalDuration + 0.5) * 60);
-            }
-        }, this);
+            this.eventManager.on('playCorrectSoundNoUnPause', function () {
+                if (this.framesToWaitBeforeNewSound <= 0) {
+                    this.sounds.correctRoundAnswer.play();
+                    this.framesToWaitBeforeNewSound = Math.floor((this.sounds.correctRoundAnswer.totalDuration + 0.5) * 60);
+                }
+            }, this);
+        }
 
         this.eventManager.on('swipe', function (object) {
             this.eventManager.emit('pause');
@@ -190,7 +194,7 @@
      **/
     Remediation.prototype.initRound = function initRound(roundIndex) {
 
-        var roundData = this.game.pedagogicData.rounds[roundIndex];
+        var roundData = this.game.pedagogicData.data.rounds[roundIndex];
 
         this.apparitionsCount = 0;
         this.framesToWaitBeforeNextSpawn = 0;
@@ -199,9 +203,9 @@
         this.falseResponses = [];
         this.correctResponses = [];
         this.falseStepResponsesCurrentPool = [];
-        this.correctWord = roundData.word;
-        this.sounds.correctRoundAnswer = this.game.add.audio(roundData.word.value);
-        var stepsLength = roundData.step.length;
+        this.target = roundData.word || roundData.targetSequence;
+        if (this.game.discipline === 'language') this.sounds.correctRoundAnswer = this.game.add.audio(roundData.word.value);
+        var stepsLength = roundData.steps.length;
 
         var stimuliLength, stimulus;
         var falseStepResponses, correctStepResponses;
@@ -209,9 +213,9 @@
         for (var i = 0; i < stepsLength; i++) {
             falseStepResponses = [];
             correctStepResponses = {};
-            stimuliLength = roundData.step[i].stimuli.length;
+            stimuliLength = roundData.steps[i].stimuli.length;
             for (var j = 0; j < stimuliLength; j++) {
-                stimulus = roundData.step[i].stimuli[j];
+                stimulus = roundData.steps[i].stimuli[j];
                 if (stimulus.correctResponse === true) {
                     correctStepResponses.value = stimulus.value;
                 }
@@ -271,12 +275,12 @@
             this.trees.normalTree.monkey[randMonkey].coconut.sprite.setText(value);
 
             j = 0;
-            while (this.results.rounds[this.roundIndex].step[this.stepIndex].stimuli[j].value != value) { //finds the value in the results to add one apparition
+            while (this.results.data.rounds[this.roundIndex].steps[this.stepIndex].stimuli[j].value != value) { //finds the value in the results to add one apparition
                 j++;
             }
             apparition = new this.game.rafiki.StimulusApparition(isTargetValue);
 
-            this.results.rounds[this.roundIndex].step[this.stepIndex].stimuli[j].apparitions.push(apparition);
+            this.results.data.rounds[this.roundIndex].steps[this.stepIndex].stimuli[j].apparitions.push(apparition);
             this.trees.normalTree.monkey[randMonkey].coconut.sprite.apparition = apparition;
         }
     };
@@ -334,7 +338,7 @@
             this.triesRemaining--;
             this.eventManager.emit('success');
             if (this.triesRemaining > 0) {
-                this.sounds.correctRoundAnswer.play();
+                if (this.game.discipline === 'language') this.sounds.correctRoundAnswer.play();
                 if (this.game.gameConfig.debugPanel) this.cleanLocalPanel();
                 this.game.params.increaseLocalDifficulty();
                 if (this.game.gameConfig.debugPanel) this.setLocalPanel(); var context = this;
@@ -469,27 +473,27 @@
         var apparitionStats;
         var roundsCount, stepsCount, stimuliCount, currentRound, currentStep, currentStimulus;
 
-        roundsCount = this.results.rounds.length;
+        roundsCount = this.results.data.rounds.length;
 
         for (var i = 0 ; i < roundsCount ; i++) {
 
-            currentRound = this.results.rounds[i];
+            currentRound = this.results.data.rounds[i];
             currentRound.word.stats = {
                 apparitionTime: Date.now() - 10000,
                 exitTime: Date.now(),
                 success: true
             };
 
-            stepsCount = currentRound.step.length;
+            stepsCount = currentRound.steps.length;
 
             for (var j = 0 ; j < stepsCount ; j++) {
 
-                currentStep = this.results.rounds[i].step[j];
-                stimuliCount = currentStep.stimuli.length;
+                currentStep = this.results.data.rounds[i].steps[j];
+                stimuliCount = currentsteps.stimuli.length;
 
                 for (var k = 0 ; k < stimuliCount ; k++) {
 
-                    currentStimulus = this.results.rounds[i].step[j].stimuli[k];
+                    currentStimulus = this.results.data.rounds[i].steps[j].stimuli[k];
 
                     apparitionStats = {
                         apparitionTime: Date.now() - 3000,
@@ -517,27 +521,27 @@
         var apparitionStats;
         var roundsCount, stepsCount, stimuliCount, currentRound, currentStep, currentStimulus;
 
-        roundsCount = this.results.rounds.length;
+        roundsCount = this.results.data.rounds.length;
 
         for (var i = 0 ; i < roundsCount ; i++) {
 
-            currentRound = this.results.rounds[i];
+            currentRound = this.results.data.rounds[i];
             currentRound.word.stats = {
                 apparitionTime: Date.now() - 20000,
                 exitTime: Date.now(),
                 success: false
             };
 
-            stepsCount = currentRound.step.length;
+            stepsCount = currentRound.steps.length;
 
             for (var j = 0 ; j < stepsCount ; j++) {
 
-                currentStep = this.results.rounds[i].step[j];
-                stimuliCount = currentStep.stimuli.length;
+                currentStep = this.results.data.rounds[i].steps[j];
+                stimuliCount = currentsteps.stimuli.length;
 
                 for (var k = 0 ; k < stimuliCount ; k++) {
 
-                    currentStimulus = this.results.rounds[i].step[j].stimuli[k];
+                    currentStimulus = this.results.data.rounds[i].steps[j].stimuli[k];
 
                     apparitionStats = {
                         apparitionTime: Date.now() - 3000,

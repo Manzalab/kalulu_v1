@@ -31,11 +31,11 @@
         loadSpecificAssets: function () {
 
             //Game specific Graphics
-            this.load.image('sky', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/Decors/CIEL_Background.png');
-            this.load.image('ground', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/Decors/Ground.png');
-            this.load.image('tree', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/Decors/Palmier2.png');
-            this.load.image('treeKing', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/Decors/Palmier.png');
-            this.load.image('board', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/Decors/planche_lettres.png');
+            this.load.image('sky', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/decors/CIEL_Background.png');
+            this.load.image('ground', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/decors/Ground.png');
+            this.load.image('tree', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/decors/Palmier2.png');
+            this.load.image('treeKing', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/decors/Palmier.png');
+            this.load.image('board', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/decors/planche_lettres.png');
 
             this.game.load.atlasJSONHash('coconut', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/coconut/coconut.png', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/coconut/coconut.json');
             this.game.load.atlasJSONHash('stunStars', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/SINGE_animations/stunStars.png', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/SINGE_animations/stunStars.json');
@@ -69,10 +69,10 @@
 
             //UI 
             this.load.image('pause', 'minigames/common/assets/images/ui/pause.png');
-            this.game.load.atlasJSONHash('common/src/ui', 'minigames/common/assets/images/ui/ui.png', 'minigames/common/assets/images/ui/ui.json');
+            this.game.load.atlasJSONHash('ui', 'minigames/common/assets/images/ui/ui.png', 'minigames/common/assets/images/ui/ui.json');
 
             //FX 
-            this.game.load.atlasJSONHash('common/src/fx', 'minigames/common/assets/images/fx/fx.png', 'minigames/common/assets/images/fx/fx.json');
+            this.game.load.atlasJSONHash('fx', 'minigames/common/assets/images/fx/fx.png', 'minigames/common/assets/images/fx/fx.json');
             this.load.image('wrong', 'minigames/common/assets/images/fx/wrong.png');
 
             //KaluluGraphics
@@ -84,14 +84,19 @@
             this.game.load.atlasJSONHash('kaluluSpeaking2', 'minigames/common/assets/images/kalulu_animations/kaluluSpeaking2.png', 'minigames/common/assets/images/kalulu_animations/kaluluSpeaking2.json');
 
             //General Audio
+            this.game.load.audio('kaluluGameOverLose', 'minigames/common/assets/audio/kalulu/kalulu_lose_minigame.ogg');
+
             this.game.load.audio('menuNo', 'minigames/common/assets/audio/sfx/ButtonCancel.ogg');
             this.game.load.audio('menuYes', 'minigames/common/assets/audio/sfx/ButtonOK.ogg');
+            
             this.game.load.audio('winGame', 'minigames/common/assets/audio/sfx/GameOverWin.ogg');
             this.game.load.audio('loseGame', 'minigames/common/assets/audio/sfx/GameOverLose.ogg');
-            this.game.load.audio('kaluluGameOverLose', 'minigames/common/assets/audio/sfx/kalulu_lose_minigame.ogg');
+            
             this.game.load.audio('kaluluOn', 'minigames/common/assets/audio/sfx/KaluluOn.ogg');
             this.game.load.audio('kaluluOff', 'minigames/common/assets/audio/sfx/KaluluOff.ogg');
+            
             this.game.load.audio('menu', 'minigames/common/assets/audio/sfx/OpenPopin.ogg');
+            
             this.game.load.audio('right', 'minigames/common/assets/audio/sfx/ResponseCorrect.ogg');
             this.game.load.audio('wrong', 'minigames/common/assets/audio/sfx/ResponseIncorrect.ogg');
         },

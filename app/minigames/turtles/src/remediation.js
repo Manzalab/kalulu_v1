@@ -137,8 +137,8 @@
         this.falseResponses = [];
         this.correctResponses = [];
         this.falseStepResponsesCurrentPool = [];
-        this.correctWord = roundData.word;
-        this.sounds.correctRoundAnswer = this.game.add.audio(roundData.word.value);
+        this.correctWord = roundData.word || roundData.target;
+        this.sounds.correctRoundAnswer = this.game.add.audio((roundData.word || roundData.target).value);
         var stepsLength = roundData.steps.length;
 
         var stimuliLength, stimulus;
