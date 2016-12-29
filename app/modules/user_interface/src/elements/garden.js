@@ -293,8 +293,8 @@ define([
         }
     }
 
-    Garden.prototype.drawStar = function drawStar () {
-        var i, lChildren;
+    Garden.prototype.drawStar = function drawStar (rewardChapter) {
+        var i, j, lChildren;
 
         var lLength = this.children.length;
 
@@ -304,14 +304,20 @@ define([
 
             if (lChildren.name.indexOf("StarMiddle") !== -1) {
 
-                this._starMiddle = new StarMiddle(lChildren.name);
-                this._starMiddle.x = lChildren.x;
-                this._starMiddle.y = lChildren.y;
+                for(j = 0; j < rewardChapter.length; j++) {
+                    if(rewardChapter[j] == this.id) {
+                        this._starMiddle = new StarMiddle(lChildren.name);
+                        this._starMiddle.x = lChildren.x;
+                        this._starMiddle.y = lChildren.y;
 
-                this.addChild(this._starMiddle);
-                
-                this._starMiddle.alpha = 0;
-                createjs.Tween.get(this._starMiddle).to({alpha: 1}, 1000, createjs.Ease.linear);
+                        this.addChild(this._starMiddle);
+                        
+                        this._starMiddle.alpha = 0;
+                        createjs.Tween.get(this._starMiddle).to({alpha: 1}, 1000, createjs.Ease.linear);
+
+                        break;
+                    }
+                }
             }
         }
     }

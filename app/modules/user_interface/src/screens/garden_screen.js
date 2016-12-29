@@ -93,9 +93,11 @@ define([
         this._createFertilizerText();
 
         // Rewards
+        this._rewardChapter = [];
         this._rewardLessonLanguage = [];
         this._rewardLessonMaths = [];
 
+        this.getDynamicRewardsBoth();
         this.getDynamicRewardsLanguage();
         this.getDynamicRewardsMaths();
 
@@ -235,6 +237,10 @@ define([
 
     GardenScreen.prototype.unlockStarMiddle = function unlockStarMiddle() {
 
+        console.log(DynamicRewards.levelRewards.both);
+
+        if(!this._focusedGarden.starMiddle) return;
+
         var id = this._focusedGarden.id;
         
         if(this._bonusPathA[id].state === "On" && this._bonusPathB[id].state === "On") {
@@ -247,6 +253,17 @@ define([
         else if(this._bonusPathA[id].state === "On" || this._bonusPathB[id].state === "On") this._focusedGarden.starMiddle.setModeMedium();
         else this._focusedGarden.starMiddle.setModeSmall();
     };
+
+    GardenScreen.prototype.getDynamicRewardsBoth = function getDynamicRewardsBoth() {
+        var chapterIndex;
+        var chapterCount = 20;
+
+        for(chapterIndex = 1; chapterIndex <= chapterCount; chapterIndex++) {
+            if(DynamicRewards.levelRewards.both[chapterIndex] != null) {
+                this._rewardChapter.push(chapterIndex);
+            }
+        }
+    }
 
     GardenScreen.prototype.getDynamicRewardsLanguage = function getDynamicRewardsLanguage() {
         var lessonIndex = 1;
@@ -393,7 +410,7 @@ define([
 
         this._focusedGarden.undraw(this._lessonDotContainer);
         this._focusedGarden.undrawPlant();
-        this._focusedGarden.undrawStar();
+        if(this._focusedGarden.starMiddle) this._focusedGarden.undrawStar();
 
         this._removeSlideFunctions();
     };
@@ -409,7 +426,7 @@ define([
 
         this._focusedGarden.draw(this._data.data.language[targetGardenId - 1], this._data.data.maths[targetGardenId - 1], this._lessonDotContainer, this._lessonsNumber, this._rewardLessonLanguage, this._rewardLessonMaths);
         this._focusedGarden.drawPlant();
-        this._focusedGarden.drawStar();
+        this._focusedGarden.drawStar(this._rewardChapter);
 
         this.unlockPlants();
         this.unlockStarMiddle();
