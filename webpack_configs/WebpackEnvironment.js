@@ -16,7 +16,8 @@ var fs                   = require('fs');
 
 module.exports = {
     Test : TestEnvironment,
-    Build : BuildEnvironment
+    Build : BuildEnvironment,
+    Serve : serve
 };
 
 function TestEnvironment (webpackSpecificConfig) {

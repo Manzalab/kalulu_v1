@@ -21,7 +21,8 @@
     "testAllFrench"        : "node npm_scripts/test_all.js",
     "testMinigames"        : "node npm_scripts/test_game.js",
     "testMinigamesEnglish" : "node npm_scripts/test_game.js",
-    "testMinigamesSwahili" : "node npm_scripts/test_game.js"
+    "testMinigamesSwahili" : "node npm_scripts/test_game.js",
+    "serve"                : "node npm_scripts/serve.js"
   },
   "keywords": [
     "manzalab",
