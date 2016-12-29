@@ -82,6 +82,12 @@ define([
             get : function () {
                 return this.parent.targetNotions;
             }
+        },
+
+        lessonNumber : {
+            get : function() {
+                return this.parent.lessonNumber;
+            }
         }
     });
 

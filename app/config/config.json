@@ -2,13 +2,13 @@
     "debug" : {
         "enableGlobalVars"        : true,
         "stats"                   : true,
-        "logGameStates"           : true,
+        "logGameStates"           : false,
         "authoritativeSystemInfo" : false,
         "logLoading"              : false,
         "screenManagerLog"        : false,
         "debugPlanConstruction"   : false,
         "enableTransitionsTuning" : true,
-        "enableMinigameTuning"    : false,
+        "enableMinigameTuning"    : true,
         "enableQAControls"        : true
     },
     "paths" : {

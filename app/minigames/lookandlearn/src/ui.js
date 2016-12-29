@@ -129,7 +129,7 @@
         this.blackOverlay.height = this.game.height;
         this.blackOverlay.visible = true;
         this.blackOverlay.alpha = 0.4;
-    }
+    };
 
     Ui.prototype.initKalulu = function initKalulu () {
         
@@ -391,7 +391,7 @@
      **/
     Ui.prototype.onClickOnPhonemeButton = function onClickOnPhonemeButton() {
 
-        this.game.sound.play(this.game.config.pedagogicData.sound);
+        this.game.sound.play(this.game.gameConfig.pedagogicData.sound);
     };
 
     /**
@@ -529,16 +529,18 @@
         this.assignNextButtonCallback();
         console.info("ENABLING NEXT");
         this.isNextButtonEnabled = true;
-        this.eventManager.emit('closeStep');
+        this.eventManager.emit('closeStep', nextState);
         this.eventManager.once('nextStep', this.enableUiMenu, this);
     };
     
     Ui.prototype.assignNextButtonCallback = function assignNextButtonCallback () {
         if (typeof this.nextState === 'undefined') {
             this.nextButtonCallback = this.nextButtonQuitCallBack;
+            console.info("A click on Next will quit the game now");
         }
         else {
             this.nextButtonCallback = this.nextButtonNextStateCallback;
+            console.info("A click on Next will start the next phase");
         }
     };
     

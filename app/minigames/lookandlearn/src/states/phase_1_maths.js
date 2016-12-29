@@ -29,17 +29,18 @@
     PhaseOneMaths.prototype.preload = function phaseOneMathsPreload () {
         
         console.log(this.game.gameConfig.pedagogicData);
-        var notion = this.notion = this.game.config.pedagogicData;
-        var pathToFolder = "";
-
+        var notion = this.notion = this.game.gameConfig.pedagogicData.data.notions[0];
+        
         // 1 image and 1 sound to be played in this phase
-        this.game.load.audio('illustrative_sound_'+ grapheme, this.game.config.pedagogicData.illustrativeSound);
-        this.game.load.image('illustrative_image_'+ grapheme, this.game.config.pedagogicData.image);
+        this.game.load.audio('illustrative_sound_' + notion.value, notion.sound);
+        this.game.load.image('board', 'minigames/lookandlearn/assets/images/board.png');
+        this.game.load.image('figures', 'minigames/lookandlearn/assets/images/figures.png');
+        this.game.load.image('cell', 'minigames/lookandlearn/assets/images/cell.png');
 
         // 3 Kalulu speeches 
-        this.game.load.audio('kaluluIntro',         'minigames/lookandlearn/assets/audio/kalulu/kalulu_intro_CommonCore02_' + this.game.config.disciplines[this.game.config.pedagogicData.discipline] + '.ogg');
-        this.game.load.audio('kaluluHelp',          'minigames/lookandlearn/assets/audio/kalulu/kalulu_help_CommonCore02_' + this.game.config.disciplines[this.game.config.pedagogicData.discipline] + '.ogg');
-        this.game.load.audio('kaluluGameOverWin',   'minigames/lookandlearn/assets/audio/kalulu/kalulu_end_CommonCore02_' + this.game.config.disciplines[this.game.config.pedagogicData.discipline] + '.ogg');
+        this.game.load.audio('kaluluIntro',         'minigames/lookandlearn/assets/audio/kalulu/kalulu_intro_commoncore01_' + this.game.gameConfig.pedagogicData.discipline + '.ogg');
+        this.game.load.audio('kaluluHelp',          'minigames/lookandlearn/assets/audio/kalulu/kalulu_help_commoncore01_' + this.game.gameConfig.pedagogicData.discipline + '.ogg');
+        this.game.load.audio('kaluluGameOverWin',   'minigames/lookandlearn/assets/audio/kalulu/kalulu_end_commoncore01_' + this.game.gameConfig.pedagogicData.discipline + '.ogg');
     };
     
     PhaseOneMaths.prototype.create = function phaseOneMathsCreate () {
@@ -77,23 +78,33 @@
         this.imagePhaseStage.add(this.lettersFrame);
 
         // #### Image & Sound
-        this.image = new Phaser.Sprite(this.game, 960, 400, 'illustrative_image_' + this.grapheme);
-        this.image.anchor.set(0.5, 0.5);
-        var scaleRatio = 600/this.image.height;
-        this.image.scale.set(scaleRatio, scaleRatio);
-        this.imagePhaseStage.add(this.image);
+        var scale = 1.5;
+        this.board = new Phaser.Sprite(this.game, this.game.width/2, 400, 'board');
+        this.cell = new Phaser.Sprite(this.game, 0, 0, 'cell');
+        this.figures = new Phaser.Sprite(this.game, this.game.width/2, 400, 'figures');
+        this.board.anchor.set(0.5, 0.5);
+        this.board.scale.set(scale, scale);
+        this.cell.anchor.set(0.5, 0.5);
+        this.cell.scale.set(scale, scale);
+        this.cell.visible = false;
+        this.figures.anchor.set(0.5, 0.5);
+        this.cellSize = (200-8)/5 * scale;
+        this.figures.scale.set(scale, scale);
+        this.imagePhaseStage.add(this.board);
+        this.imagePhaseStage.add(this.cell);
+        this.imagePhaseStage.add(this.figures);
 
         // #### Tracer
         this.startTracingDelay = null;
         this.secondsOfDelay = 0.8;
 
-        this.game.layouts = [new BotCanvasLayout(this.game, this.game.config.layouts.phase1Uppercase)];
+        this.game.layouts = [new BotCanvasLayout(this.game, this.game.gameConfig.layouts.phase1Uppercase)];
         //Emitter.emit(Events.TRIGGER_LAYOUT, -1);
 
         this.tracingLayout = this.game.layouts[0];
         this.tracingLayout.name = "ImagePhase-BotLayout";
         //this.lowercase = this.game.layouts[1];
-        if (this.game.config.globalVars) window.lookandlearn.bot1 = this.tracingLayout;
+        if (this.game.gameConfig.globalVars) window.lookandlearn.bot1 = this.tracingLayout;
         this.imagePhaseStage.add(this.tracingLayout.group);
         //this.imagePhaseStage.add(this.lowercase.group);
         var tracerScaleRatio = this.scaleRatio = 0.8;
@@ -101,31 +112,23 @@
         //this.lowercase.group.scale.set(0.5, 0.5);
 
         this.xLeftLetter    = 550;
-        this.xMidLetter     = 750;
+        this.xMidLetter     = 700;
         this.xRightLetter   = 950;
         this.yLetter        = 720;
 
-        var xValue;
-        if (this.game.config.pedagogicData.traceUppercase) {
-            console.info("We will trace uppercase and lower case");
-            xValue = this.xLeftLetter;
-        }
-        else {
-            console.info("We will trace only lower case");
-            xValue = this.xMidLetter;
-        }
+        var xValue = this.xMidLetter;
+        
         this.tracingLayout.group.position.set(xValue, this.yLetter);
         //this.lowercase.group.position.set(1020, 850);
 
-        this.progression = new Tracing.ProgressionHandler(this.game.config.progression, this.game);
+        this.progression = new Tracing.ProgressionHandler(this.game.gameConfig.progression, this.game);
 
         this.tracingOn = false;
 
         this.onFirstLetterTracingComplete = this.onFirstLetterTracingComplete.bind(this);
-        this.onSecondLetterTracingComplete = this.onSecondLetterTracingComplete.bind(this);
 
         // #### Events
-        this.game.eventManager.on('introSequenceComplete', this.startTracingDemoAfterDelay, this);
+        this.game.eventManager.once('introSequenceComplete', this.startTracingDemoAfterDelay, this);
         this.game.eventManager.emit('startGame');
     };
 
@@ -143,6 +146,7 @@
         else if (this.startTracingDelay) this.startTracingDelay--;
 
         if (this.tracingOn) {
+            console.log('this.tracingOn : ' + this.tracingOn);
             this.tracingLayout.update();
         }
 
@@ -166,16 +170,8 @@
         console.log("Start Tracing");
         this.tracingOn = true;
         Emitter.on(Events.TRIGGER_LAYOUT, this.onFirstLetterTracingComplete);
-        var value;
-        if (this.game.config.pedagogicData.traceUppercase) {
-            console.info("We will trace uppercase first");
-            value = this.game.config.pedagogicData.textValue.toUpperCase();
-        }
-        else {
-            console.info("We will trace lowercase now");
-            value = this.game.config.pedagogicData.textValue.toLowerCase();
-        }
-
+        var value = this.game.gameConfig.pedagogicData.data.notions[0].value;
+        console.log('[Phase 1 Maths] About to trace <' + value + '>');
         this.progression.setModel(value);
     };
 
@@ -198,29 +194,8 @@
             console.info("Unidentified Layout just finished a letter");
         }
 
-        
-        // var letterBitmapData = new Phaser.BitmapData(this.game, 'frozenFirstLetter', 300, 300);
-        // // source, x, y, width, height, tx, ty, newWidth, newHeight
-        // letterBitmapData.copy(this.tracingLayout.bitmap, 0, 0, 600, 600, 0, 0, 300, 300);
-        // this.frozenFirstLetter = new Phaser.Image(this.game, 600, 850, letterBitmapData);
-        // this.imagePhaseStage.add(this.frozenFirstLetter);
-        
-        if (this.game.config.pedagogicData.traceUppercase) { // if we had to trace uppercase, we have now to trace the lower case.
-            
-            this.freezeLetter(this.xLeftLetter, this.yLetter);
-
-            console.info("We will trace lowercase now");
-
-            this.tracingLayout.group.x = this.xRightLetter;
-
-            Emitter.on(Events.TRIGGER_LAYOUT, this.onSecondLetterTracingComplete);
-            this.progression.setModel(this.game.config.pedagogicData.textValue.toLowerCase());
-        }
-        else {
-            this.freezeLetter(this.xMidLetter, this.yLetter)
-            this.endTracing();
-        }
-        
+        this.freezeLetter(this.xMidLetter, this.yLetter);
+        this.endTracing();
     };
 
     PhaseOneMaths.prototype.onSecondLetterTracingComplete = function onSecondLetterTracingComplete (layoutId) {
@@ -260,6 +235,7 @@
     PhaseOneMaths.prototype.endTracing = function PhaseOneMathsEndTracing () {
         
         this.tracingOn = false;
+        console.log('this.tracingOn : ' + this.tracingOn);
         this.imagePhaseStage.remove(this.tracingLayout.group, true);
         this.tracingLayout = null;
         this.game.layouts = [];
@@ -271,18 +247,73 @@
 
     PhaseOneMaths.prototype.onClickOnLetters = function (onClickOnLetters) {
         console.log("here on click");
+        this.lettersFrame.inputEnabled = false;
         this.game.ui.disableUiMenu();
-        this.sound = this.game.sound.play('illustrative_sound_'+ this.grapheme);
-        this.sound.onStop.addOnce(this.enableNextStep, this);
+        this.sound = this.game.sound.play('illustrative_sound_'+ this.notion.value);
+        this.sound.onStop.addOnce(this.moveCell, this);
     };
 
+    PhaseOneMaths.prototype.moveCell = function moveCell () {
+        this.cell.visible = true;
+        var x0, y0;
+        x0 = this.board.position.x - (4.5 * this.cellSize) ;
+        y0 = this.board.position.y + (4.5 * this.cellSize) ;
+        this.cell.position.set(x0, y0);
+
+        var rows = Math.floor(this.notion.value/10);
+        var cols = this.notion.value % 10;
+        var tweens = [];
+        var lTween = null;
+        var startingPos, endingPos;
+
+        for (var line = 0 ; line < rows ; line++) {
+            startingPos = new Phaser.Point(x0, y0 - this.cellSize * line);
+            endingPos = new Phaser.Point(startingPos.x + 9 * this.cellSize, startingPos.y);
+            lTween = new Phaser.Tween(this.cell, this.game, this.game.tweens);
+            lTween.to({ x: startingPos.x, y : startingPos.y }, 1, Phaser.Easing.Cubic.InOut);
+            tweens.push(lTween);
+            lTween = new Phaser.Tween(this.cell, this.game, this.game.tweens);
+            lTween.to({ x: endingPos.x, y : endingPos.y }, 2000, Phaser.Easing.Cubic.InOut);
+            tweens.push(lTween);
+        }
+
+        if (cols > 0) {
+            startingPos = new Phaser.Point(x0, y0 - this.cellSize * rows);
+            endingPos = new Phaser.Point(startingPos.x + ((cols - 1) * this.cellSize), startingPos.y);
+            lTween = new Phaser.Tween(this.cell, this.game, this.game.tweens);
+            lTween.to({ x: startingPos.x, y : startingPos.y }, 1, Phaser.Easing.Cubic.InOut);
+            tweens.push(lTween);
+            lTween = new Phaser.Tween(this.cell, this.game, this.game.tweens);
+            lTween.to({ x: endingPos.x, y : endingPos.y }, 2000, Phaser.Easing.Cubic.InOut);
+            tweens.push(lTween);
+        }
+
+        var intialScale = this.cell.scale.x;
+        var scale = intialScale * 2;
+        lTween = new Phaser.Tween(this.cell.scale, this.game, this.game.tweens);
+        lTween.to({ x: scale, y : scale }, 500, Phaser.Easing.Cubic.InOut);
+        tweens.push(lTween);
+        lTween = new Phaser.Tween(this.cell.scale, this.game, this.game.tweens);
+        lTween.to({ x: intialScale, y : intialScale }, 1000, Phaser.Easing.Bounce.Out);
+        tweens.push(lTween);
+
+        for (var i = tweens.length - 1 ; i >= 1 ; i--) {
+            tweens[i - 1].chain(tweens[i]);
+        }
+
+        tweens[0].start();
+        tweens[tweens.length - 1].onComplete.add(this.enableNextStep, this);
+    };
+
+
     PhaseOneMaths.prototype.enableNextStep = function PhaseOneMathsEnableNextStep () {
-        this.game.ui.enableNext('Phase3Tracing');
+        this.lettersFrame.inputEnabled = true;
+        this.game.ui.enableNext('Phase2Image');
     };
 
     PhaseOneMaths.prototype.shutdown = function PhaseOneMathsShutdown () {
         Emitter.listeners = {};
-    }
+    };
 
 
     module.exports = PhaseOneMaths;

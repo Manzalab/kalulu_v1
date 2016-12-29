@@ -25,7 +25,7 @@ define([
         // console.log(description);
         // console.log(arguments);
         var kalulu = description.components.mcKalulu;
-        this._kaluluCharacter = new KaluluCharacter();
+        this._kaluluCharacter = KaluluCharacter;
         this._kaluluCharacter.position.set(kalulu.x, kalulu.y);
         // this._kaluluCharacter.interactive = false;
         
@@ -77,7 +77,7 @@ define([
         Button.prototype.start.call(this);
 
         this.addChild(this._kaluluCharacter);
-        this._kaluluCharacter.start();
+        this._kaluluCharacter.startTalk("kalulu_intro_startscreen",[], true);
     };
 
     return PlayButtonTC;

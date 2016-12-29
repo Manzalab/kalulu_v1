@@ -73,17 +73,17 @@ define([
     };
 
     /**
-     * Stores the config Json in the this.game.config object
+     * Stores the config Json in the this.game.gameConfig object
     **/
     PreloadState.prototype.create = function preloadStateCreate () {
         
         if (this.game.load.hasLoaded) console.info("Preload State has correctly completed loading.");
         
-        this.game.config.layouts      = this.game.cache.getJSON('layouts');
-        this.game.config.progression  = this.game.cache.getJSON('progression');
-        this.game.config.game         = this.game.cache.getJSON('game');
-        this.game.config.audio        = this.game.cache.getJSON('audio');
-        this.game.config.letters      = this.game.cache.getJSON('letters-descriptor');
+        this.game.gameConfig.layouts      = this.game.cache.getJSON('layouts');
+        this.game.gameConfig.progression  = this.game.cache.getJSON('progression');
+        this.game.gameConfig.game         = this.game.cache.getJSON('game');
+        this.game.gameConfig.audio        = this.game.cache.getJSON('audio');
+        this.game.gameConfig.letters      = this.game.cache.getJSON('letters-descriptor');
         console.log('before');
         this.game.add.audio(this.game.gameConfig.pedagogicData.sound);
         console.log('after');

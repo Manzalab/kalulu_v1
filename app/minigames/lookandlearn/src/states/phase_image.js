@@ -33,18 +33,17 @@ define([
 
     PhaseImage.prototype.preload = function phaseImagePreload () {
         
-        var grapheme = this.grapheme = this.game.config.pedagogicData.textValue;
-        var pathToFolder = "";
+        var notion = this.notion = this.game.gameConfig.pedagogicData.data.notions[0];
 
         // 1 image and 1 sound to be played in this phase
-        this.game.load.audio('illustrative_sound_'+ grapheme, this.game.config.pedagogicData.illustrativeSound);
-        this.game.load.image('illustrative_image_'+ grapheme, this.game.config.pedagogicData.image);
+        this.game.load.audio('illustrative_sound_'+ notion.value, notion.illustrativeSound);
+        this.game.load.image('illustrative_image_'+ notion.value, notion.image);
 
         // 3 Kalulu speeches 
-        this.game.load.audio('kaluluIntro',         'minigames/lookandlearn/assets/audio/kalulu/kalulu_intro_CommonCore02_' + this.game.config.disciplines[this.game.config.pedagogicData.discipline] + '.ogg');
-        this.game.load.audio('kaluluHelp',          'minigames/lookandlearn/assets/audio/kalulu/kalulu_help_CommonCore02_' + this.game.config.disciplines[this.game.config.pedagogicData.discipline] + '.ogg');
-        this.game.load.audio('kaluluGameOverWin',   'minigames/lookandlearn/assets/audio/kalulu/kalulu_end_CommonCore02_' + this.game.config.disciplines[this.game.config.pedagogicData.discipline] + '.ogg');
-    }
+        this.game.load.audio('kaluluIntro',         'minigames/lookandlearn/assets/audio/kalulu/kalulu_intro_commoncore02_' + this.game.gameConfig.pedagogicData.discipline + '.ogg');
+        this.game.load.audio('kaluluHelp',          'minigames/lookandlearn/assets/audio/kalulu/kalulu_help_commoncore02_'  + this.game.gameConfig.pedagogicData.discipline + '.ogg');
+        this.game.load.audio('kaluluGameOverWin',   'minigames/lookandlearn/assets/audio/kalulu/kalulu_end_commoncore02_'   + this.game.gameConfig.pedagogicData.discipline + '.ogg');
+    };
     
     PhaseImage.prototype.create = function phaseImageCreate () {
         if (this.game.load.hasLoaded) console.info("PhaseImage State has correctly completed loading.");
@@ -81,7 +80,7 @@ define([
         this.imagePhaseStage.add(this.lettersFrame);
 
         // #### Image & Sound
-        this.image = new Phaser.Sprite(this.game, 960, 400, 'illustrative_image_' + this.grapheme);
+        this.image = new Phaser.Sprite(this.game, 960, 400, 'illustrative_image_' + this.notion.value);
         this.image.anchor.set(0.5, 0.5);
         var scaleRatio = 600/this.image.height;
         this.image.scale.set(scaleRatio, scaleRatio);
@@ -91,13 +90,13 @@ define([
         this.startTracingDelay = null;
         this.secondsOfDelay = 0.8;
 
-        this.game.layouts = [new BotCanvasLayout(this.game, this.game.config.layouts.phase1Uppercase)];
+        this.game.layouts = [new BotCanvasLayout(this.game, this.game.gameConfig.layouts.phase1Uppercase)];
         //Emitter.emit(Events.TRIGGER_LAYOUT, -1);
 
         this.tracingLayout = this.game.layouts[0];
         this.tracingLayout.name = "ImagePhase-BotLayout";
         //this.lowercase = this.game.layouts[1];
-        if (this.game.config.globalVars) window.lookandlearn.bot1 = this.tracingLayout;
+        if (this.game.gameConfig.globalVars) window.lookandlearn.bot1 = this.tracingLayout;
         this.imagePhaseStage.add(this.tracingLayout.group);
         //this.imagePhaseStage.add(this.lowercase.group);
         var tracerScaleRatio = this.scaleRatio = 0.8;
@@ -110,7 +109,7 @@ define([
         this.yLetter        = 720;
 
         var xValue;
-        if (this.game.config.pedagogicData.traceUppercase) {
+        if (this.notion.traceUppercase) {
             console.info("We will trace uppercase and lower case");
             xValue = this.xLeftLetter;
         }
@@ -121,7 +120,7 @@ define([
         this.tracingLayout.group.position.set(xValue, this.yLetter);
         //this.lowercase.group.position.set(1020, 850);
 
-        this.progression = new Tracing.ProgressionHandler(this.game.config.progression, this.game);
+        this.progression = new Tracing.ProgressionHandler(this.game.gameConfig.progression, this.game);
 
         this.tracingOn = false;
 
@@ -129,7 +128,7 @@ define([
         this.onSecondLetterTracingComplete = this.onSecondLetterTracingComplete.bind(this);
 
         // #### Events
-        this.game.eventManager.on('introSequenceComplete', this.startTracingDemoAfterDelay, this);
+        this.game.eventManager.once('introSequenceComplete', this.startTracingDemoAfterDelay, this);
         this.game.eventManager.emit('startGame');
     };
 
@@ -171,13 +170,13 @@ define([
         this.tracingOn = true;
         Emitter.on(Events.TRIGGER_LAYOUT, this.onFirstLetterTracingComplete);
         var value;
-        if (this.game.config.pedagogicData.traceUppercase) {
+        if (this.notion.traceUppercase) {
             console.info("We will trace uppercase first");
-            value = this.game.config.pedagogicData.textValue.toUpperCase();
+            value = this.notion.textValue.toUpperCase();
         }
         else {
             console.info("We will trace lowercase now");
-            value = this.game.config.pedagogicData.textValue.toLowerCase();
+            value = this.notion.textValue.toLowerCase();
         }
 
         this.progression.setModel(value);
@@ -209,7 +208,7 @@ define([
         // this.frozenFirstLetter = new Phaser.Image(this.game, 600, 850, letterBitmapData);
         // this.imagePhaseStage.add(this.frozenFirstLetter);
         
-        if (this.game.config.pedagogicData.traceUppercase) { // if we had to trace uppercase, we have now to trace the lower case.
+        if (this.notion.traceUppercase) { // if we had to trace uppercase, we have now to trace the lower case.
             
             this.freezeLetter(this.xLeftLetter, this.yLetter);
 
@@ -218,7 +217,7 @@ define([
             this.tracingLayout.group.x = this.xRightLetter;
 
             Emitter.on(Events.TRIGGER_LAYOUT, this.onSecondLetterTracingComplete);
-            this.progression.setModel(this.game.config.pedagogicData.textValue.toLowerCase());
+            this.progression.setModel(this.notion.value.toLowerCase());
         }
         else {
             this.freezeLetter(this.xMidLetter, this.yLetter)
@@ -276,7 +275,7 @@ define([
     PhaseImage.prototype.onClickOnLetters = function (onClickOnLetters) {
         console.log("here on click");
         this.game.ui.disableUiMenu();
-        this.sound = this.game.sound.play('illustrative_sound_'+ this.grapheme);
+        this.sound = this.game.sound.play('illustrative_sound_'+ this.notion.value);
         this.sound.onStop.addOnce(this.enableNextStep, this);
     };
 

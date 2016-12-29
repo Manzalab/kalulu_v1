@@ -8,6 +8,7 @@
     var Rafiki              = require('./rafiki');
     var Timer               = require('./timer');
     var UserProfile         = require('./core/user_profile');
+    var Reward              = require('application/dynamic_rewards');
 
     // ###############################################################################################################################################
     // ###  CONSTRUCTOR  #############################################################################################################################
@@ -123,6 +124,12 @@
                     data : this._rafiki.getChaptersData(),
                 };
                 this._eventSystem.emit(Events.GAME.BACK_FROM_ACTIVITY, pedagogicData, this._rafiki.getChaptersProgression(), this._currentUserProfile);
+                if (Reward.levelRewards[progressionNode.discipline.type.toLowerCase()][progressionNode.lessonNumber]) 
+                {
+                    // Reward.levelRewards[progressionNode.discipline.type.toLowerCase()][progressionNode.lessonNumber]
+                    // envoyer ce nom dans l'interface manager avec un event pour push le nom du reward dans ToyChestActivityScreen._unlockedActivities
+                    this.emit(Events.GAME.UNLOCK_REWARD_TOYCHEST, Reward.levelRewards[progressionNode.discipline.type.toLowerCase()][progressionNode.lessonNumber]);
+                }
             }
             this.save();
         }
@@ -155,7 +162,8 @@
         this._eventSystem.emit(Events.APPLICATION.GET_SAVE, 'UserData');
 
         if (Config.enableQAControls) {
-            this._eventSystem.on("UNLOCK_DEBUG", this._onDebugUnlockRequest, this);
+            this._eventSystem.on(Events.DEBUG.UNLOCK_DEBUG, this._onDebugUnlockRequest, this);
+            this._eventSystem.on(Events.DEBUG.UNLOCK_NEUROENERGY_DEBUG, this._onDebugUnlockNeuroEnergyRequest, this);
         }
     };
     
@@ -237,7 +245,7 @@
         this.setState(GameStates.MENUS);
         
         this._eventSystem.once(Events.COMMANDS.GOTO_TOYCHEST_SCREEN_REQUEST, this._onToyChestScreenRequest, this);
-        this._eventSystem.emit(Events.GAME.GOTO_BRAIN_SCREEN, this._rafiki.getChaptersProgression());
+        this._eventSystem.emit(Events.GAME.GOTO_BRAIN_SCREEN, this._rafiki.getChaptersProgression(), this._currentUserProfile);
     };
 
     GameManager.prototype._initMathsDebugState = function _initMathsDebugState () {
@@ -316,7 +324,11 @@
     GameManager.prototype._onDebugUnlockRequest = function _onDebugUnlockRequest (eventData) {
         console.info("UNLOCKING REQUEST RECEIVED");
         this._rafiki.unlockAllNodesUpToChapter(eventData);
-        
+    };
+
+    GameManager.prototype._onDebugUnlockNeuroEnergyRequest = function _onDebugUnlockNeuroEnergyRequest (eventData) {
+        console.info("UNLOCKING NEURO ENERGY REQUEST RECEIVED");
+        this._currentUserProfile.unlockNeuroEnergy(eventData);
     };
 
     module.exports = GameManager;

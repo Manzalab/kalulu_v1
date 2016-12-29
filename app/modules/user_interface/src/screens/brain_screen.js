@@ -81,7 +81,7 @@ define([
         this._childHead.filters = [this._blurFilter];
 
         // Kalulu
-        this._kalulu = new Kalulu();
+        this._kalulu = Kalulu;
 
         // Debug
         if (Config.enableGlobalVars) window.kalulu.brainScreen = this;
@@ -110,18 +110,35 @@ define([
     BrainScreen.prototype.constructor = BrainScreen;
 
     BrainScreen.prototype.unlockChapters = function unlockChapters (chaptersProgression) {
+        var lUnlockedChapters = 0;
         for (var i = 0 ; i < chaptersProgression.length ; i++) {
-            if (chaptersProgression[i] != "Locked") this._gardenButtons.getChildByName("mcGardenButton" + (i+1)).unlockChapter(chaptersProgression[i]);
+            if (chaptersProgression[i] != "Locked"){
+                lUnlockedChapters++;
+                this._gardenButtons.getChildByName("mcGardenButton" + (i+1)).unlockChapter(chaptersProgression[i]);
+            } 
         }
+        this._unlockedChapter = lUnlockedChapters;
     };
 
     BrainScreen.prototype.kaluluAppearance = function kaluluAppearance () {
-        this._kalulu.start();
+        
 
         this._kalulu.x = this._kalulu.width/2;
         this._kalulu.y = -this._kalulu.height/3;
 
         this._hud.bottomLeft.addChild(this._kalulu);
+        
+        if (this._interfaceManager.isTutorialCompleted)    this._kalulu.startTalk("kalulu_info_brainscreen_01");
+        else if (this._interfaceManager.isToyChestLocked)  this._kalulu.startTalk("kalulu_info_brainscreen_02");
+        else if (this._unlockedChapter>8)                  this._kalulu.startTalk("kalulu_info_brainscreen_04");
+        else                                               this._kalulu.startTalk("kalulu_info_brainscreen_03");
+        // else if (this._interfaceManager._userProfile.pedagogicData.currentChapter)
+        console.log(this._unlockedChapter);
+        // else if (this._interfaceManager.)
+        // this._kalulu.startTalk("kalulu_info_brainscreen_01");
+        
+        // 
+        // 
         //SoundManager.getSound("kalulu_intro_brainScreen").play();
     };
 
