@@ -4,6 +4,7 @@
 
     var DisciplineModule = require ('game_logic/core/discipline_module');
     var Kalulu_maths     = require ('./kalulu_maths');
+    var _                = require ('underscore');
     var staticData = {
         name              : 'maths',
         language          : KALULU_LANGUAGE.toLowerCase(),
@@ -557,12 +558,15 @@
             //var lTexture = new PIXI3.Texture.fromFrame(lNotion.illustrationName + ".jpg");
 
             notionsData.push({
+                id                : parseInt(lNotion.VALUE, 10),
+                value             : parseInt(lNotion.VALUE, 10),
+                textValue         : lNotion.VALUE,
                 sound             : Config.soundsPath + this.id + "/number_" + lNotion.VALUE + '.ogg',
-                illustrativeSound : Config.soundsPath + this.id + "/" + lNotion.illustrativeSoundFilename,
-                image             : Config.imagesPath + this.id + "/" + lNotion.IMAGE + '.png',
-                value             : parseInt(lNotion.VALUE, 10)
+                illustrativeSound : Config.soundsPath + this.id + "/number_" + lNotion.VALUE + '.ogg',
+                image             : Config.imagesPath + this.id + "/" + lNotion.IMAGE.toLowerCase() + '.jpg'
             });
         }
+
         //console.log(notionsData);
 
         return {
@@ -744,7 +748,7 @@ var record_not_av   = [
     };
 
     MathsModule.prototype.getNotionsForLesson = function getNotionsForLesson (lessonNumber) {
-        return Object.values(this._notionsListByLesson[lessonNumber]);
+        return _.values(this._notionsListByLesson[lessonNumber]);
     };
 
     MathsModule.prototype.getNotionIdsForLesson = function getNotionIdsForLesson (lessonNumber) {

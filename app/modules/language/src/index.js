@@ -1,6 +1,7 @@
 (function () {
     'use strict';
-    
+    var _                = require ('underscore');
+
     var DisciplineModule = require ('game_logic/core/discipline_module');
 
     var Word             = require ('./word');
@@ -193,7 +194,7 @@
      * @return {GP[]}
     **/
     LanguageModule.prototype.getNotionsForLesson = function getNotionsForLesson (lessonNumber) {
-        return Object.values(this._gpListByLesson[lessonNumber]);
+        return _.values(this._gpListByLesson[lessonNumber]);
     };
 
     LanguageModule.prototype.getNotionIdsForLesson = function getNotionIdsForLesson (lessonNumber) {
@@ -1350,7 +1351,7 @@
             refined.data.rounds[roundIndex - 1].steps[0].stimuli.push({
                 sentence: row.ORTHOGRAPHY,
                 wordIndex: words.indexOf(row.WORD)
-            })
+            });
         }
         console.log('done');
         return refined;

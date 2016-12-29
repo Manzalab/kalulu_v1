@@ -69,7 +69,8 @@ define([
         this._gardensCount = _.size(this._gardens);
 
         this._backButton = this.getChildByName("mcGardenTLHud").getChildByName("mcBackButton");
-        this._kaluluButton = this.getChildByName("mcGardenBLHud").getChildByName("mcKaluluButton");
+        this._hud = { bottomLeft : this.getChildByName("mcGardenBLHud") };
+        this._kaluluButton = this._hud.bottomLeft.getChildByName("mcKaluluButton");
         this._neuroenergy = this.getChildByName("mcGardenTRHud").getChildByName("mcNeuroenergy");
         this._toyChestButton = this.getChildByName("mcGardenBRHud").getChildByName("mcBurrowButton");
 

@@ -33,7 +33,9 @@
         
         // 1 image and 1 sound to be played in this phase
         this.game.load.audio('illustrative_sound_' + notion.value, notion.sound);
-        this.game.load.image('illustrative_image_' + notion.value, notion.image);
+        this.game.load.image('board', 'minigames/lookandlearn/assets/images/board.png');
+        this.game.load.image('figures', 'minigames/lookandlearn/assets/images/figures.png');
+        this.game.load.image('cell', 'minigames/lookandlearn/assets/images/cell.png');
 
         // 3 Kalulu speeches 
         this.game.load.audio('kaluluIntro',         'minigames/lookandlearn/assets/audio/kalulu/kalulu_intro_commoncore01_' + this.game.gameConfig.pedagogicData.discipline + '.ogg');
@@ -76,11 +78,21 @@
         this.imagePhaseStage.add(this.lettersFrame);
 
         // #### Image & Sound
-        this.image = new Phaser.Sprite(this.game, 960, 400, 'illustrative_image_' + this.notion.value);
-        this.image.anchor.set(0.5, 0.5);
-        var scaleRatio = 600/this.image.height;
-        this.image.scale.set(scaleRatio, scaleRatio);
-        this.imagePhaseStage.add(this.image);
+        var scale = 1.5;
+        this.board = new Phaser.Sprite(this.game, this.game.width/2, 400, 'board');
+        this.cell = new Phaser.Sprite(this.game, 0, 0, 'cell');
+        this.figures = new Phaser.Sprite(this.game, this.game.width/2, 400, 'figures');
+        this.board.anchor.set(0.5, 0.5);
+        this.board.scale.set(scale, scale);
+        this.cell.anchor.set(0.5, 0.5);
+        this.cell.scale.set(scale, scale);
+        this.cell.visible = false;
+        this.figures.anchor.set(0.5, 0.5);
+        this.cellSize = (200-8)/5 * scale;
+        this.figures.scale.set(scale, scale);
+        this.imagePhaseStage.add(this.board);
+        this.imagePhaseStage.add(this.cell);
+        this.imagePhaseStage.add(this.figures);
 
         // #### Tracer
         this.startTracingDelay = null;
@@ -116,7 +128,7 @@
         this.onFirstLetterTracingComplete = this.onFirstLetterTracingComplete.bind(this);
 
         // #### Events
-        this.game.eventManager.on('introSequenceComplete', this.startTracingDemoAfterDelay, this);
+        this.game.eventManager.once('introSequenceComplete', this.startTracingDemoAfterDelay, this);
         this.game.eventManager.emit('startGame');
     };
 
@@ -235,13 +247,68 @@
 
     PhaseOneMaths.prototype.onClickOnLetters = function (onClickOnLetters) {
         console.log("here on click");
+        this.lettersFrame.inputEnabled = false;
         this.game.ui.disableUiMenu();
         this.sound = this.game.sound.play('illustrative_sound_'+ this.notion.value);
-        this.sound.onStop.addOnce(this.enableNextStep, this);
+        this.sound.onStop.addOnce(this.moveCell, this);
     };
 
+    PhaseOneMaths.prototype.moveCell = function moveCell () {
+        this.cell.visible = true;
+        var x0, y0;
+        x0 = this.board.position.x - (4.5 * this.cellSize) ;
+        y0 = this.board.position.y + (4.5 * this.cellSize) ;
+        this.cell.position.set(x0, y0);
+
+        var rows = Math.floor(this.notion.value/10);
+        var cols = this.notion.value % 10;
+        var tweens = [];
+        var lTween = null;
+        var startingPos, endingPos;
+
+        for (var line = 0 ; line < rows ; line++) {
+            startingPos = new Phaser.Point(x0, y0 - this.cellSize * line);
+            endingPos = new Phaser.Point(startingPos.x + 9 * this.cellSize, startingPos.y);
+            lTween = new Phaser.Tween(this.cell, this.game, this.game.tweens);
+            lTween.to({ x: startingPos.x, y : startingPos.y }, 1, Phaser.Easing.Cubic.InOut);
+            tweens.push(lTween);
+            lTween = new Phaser.Tween(this.cell, this.game, this.game.tweens);
+            lTween.to({ x: endingPos.x, y : endingPos.y }, 2000, Phaser.Easing.Cubic.InOut);
+            tweens.push(lTween);
+        }
+
+        if (cols > 0) {
+            startingPos = new Phaser.Point(x0, y0 - this.cellSize * rows);
+            endingPos = new Phaser.Point(startingPos.x + ((cols - 1) * this.cellSize), startingPos.y);
+            lTween = new Phaser.Tween(this.cell, this.game, this.game.tweens);
+            lTween.to({ x: startingPos.x, y : startingPos.y }, 1, Phaser.Easing.Cubic.InOut);
+            tweens.push(lTween);
+            lTween = new Phaser.Tween(this.cell, this.game, this.game.tweens);
+            lTween.to({ x: endingPos.x, y : endingPos.y }, 2000, Phaser.Easing.Cubic.InOut);
+            tweens.push(lTween);
+        }
+
+        var intialScale = this.cell.scale.x;
+        var scale = intialScale * 2;
+        lTween = new Phaser.Tween(this.cell.scale, this.game, this.game.tweens);
+        lTween.to({ x: scale, y : scale }, 500, Phaser.Easing.Cubic.InOut);
+        tweens.push(lTween);
+        lTween = new Phaser.Tween(this.cell.scale, this.game, this.game.tweens);
+        lTween.to({ x: intialScale, y : intialScale }, 1000, Phaser.Easing.Bounce.Out);
+        tweens.push(lTween);
+
+        for (var i = tweens.length - 1 ; i >= 1 ; i--) {
+            tweens[i - 1].chain(tweens[i]);
+        }
+
+        tweens[0].start();
+        tweens[tweens.length - 1].onComplete.add(this.enableNextStep, this);
+    };
+
+
     PhaseOneMaths.prototype.enableNextStep = function PhaseOneMathsEnableNextStep () {
-        this.game.ui.enableNext('Phase3Tracing');
+        this.lettersFrame.inputEnabled = true;
+        this.game.ui.enableNext('Phase2Image');
     };
 
     PhaseOneMaths.prototype.shutdown = function PhaseOneMathsShutdown () {

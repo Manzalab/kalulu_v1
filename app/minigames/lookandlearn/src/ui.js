@@ -529,7 +529,7 @@
         this.assignNextButtonCallback();
         console.info("ENABLING NEXT");
         this.isNextButtonEnabled = true;
-        this.eventManager.emit('closeStep');
+        this.eventManager.emit('closeStep', nextState);
         this.eventManager.once('nextStep', this.enableUiMenu, this);
     };
     

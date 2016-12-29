@@ -149,6 +149,7 @@
             this.eventManager.emit('introSequenceComplete');
             return;
         }
+
         this.isPlayingIntroSequence = true;
         this.eventManager.emit('pause');
         this.eventManager.emit('offUi');
@@ -193,6 +194,8 @@
             this.eventManager.emit('unPause');
             return;
         }
+
+        this.isPlayingHelpSequence = true;
 
         this.eventManager.emit('pause');
         this.eventManager.emit('offUi');
@@ -239,7 +242,9 @@
 
     // launch kalulu final speech, depending on the result of the game
     Kalulu.prototype.gameOver = function gameOver (isWin) {
+        
         this.playingFinalSpeech = true;
+        
         this.finalResult = isWin;
         if (this.game.gameConfig.skipKalulu || this.game.gameConfig.skipKaluluFinal) {
             this.eventManager.emit('pause');
@@ -290,11 +295,12 @@
         }, this);
     };
 
-    Kalulu.prototype.onCloseStep = function onCloseStep () {
-        this.playingFinalSpeech = true;
+    Kalulu.prototype.onCloseStep = function onCloseStep (nextState) {
+        
+        console.log(nextState);
+        this.isClosingStep = true;
 
         if (this.game.gameConfig.skipKalulu || this.game.gameConfig.skipKaluluFinal) {
-            this.eventManager.emit('pause');
             this.eventManager.emit('nextStep');
             return;
         }

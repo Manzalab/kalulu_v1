@@ -172,11 +172,11 @@ define([
         var value;
         if (this.notion.traceUppercase) {
             console.info("We will trace uppercase first");
-            value = this.notion.value.toUpperCase();
+            value = this.notion.textValue.toUpperCase();
         }
         else {
             console.info("We will trace lowercase now");
-            value = this.notion.value.toLowerCase();
+            value = this.notion.textValue.toLowerCase();
         }
 
         this.progression.setModel(value);

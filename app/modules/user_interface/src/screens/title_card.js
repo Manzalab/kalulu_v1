@@ -88,7 +88,8 @@ define([
     TitleCard.prototype.constructor = TitleCard;
 
     TitleCard.prototype.onClick = function onClick (pEventData) {
-        SoundManager.getSound("click").play();
+        if (this._userInterface.kaluluCharacter.isTalking) return;
+        SoundManager.getSound("kalulu_end_startscreen").play();
         
         // SoundManager.addAmbiance("Bird", ["bird_1","bird_2","bird_3","bird_4","bird_5","bird_6","bird_7","bird_8","bird_9"]);
         // SoundManager.startAmbiance("Bird");
