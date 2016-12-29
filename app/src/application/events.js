@@ -86,6 +86,7 @@
             **/
             UNLOCK_DEBUG            : { get: function () { return "unlockDebug"; } },
             UNLOCK_NEUROENERGY_DEBUG: { get: function () { return "unlockNeuroEnergyDebug"; } },
+            SKIP_KALULU             : { get: function () { return "skipKalulu"; } }
         });
 
 

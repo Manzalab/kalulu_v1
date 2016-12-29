@@ -15,17 +15,17 @@ var ModuleUtils = require('./module_utils.js')
 
 var Decimal = function(number,  stimuli_type, numbers_available, count,  numbers_data){
 	 
-	 this.moduleutils = new ModuleUtils()
-	 this.number = number
+	 this.moduleutils 	= new ModuleUtils()
+	 this.number 		= number
 	
-	 this.stimuli_type = stimuli_type
-	 this.numbers_data = numbers_data
+	 this.stimuli_type 	= stimuli_type
+	 this.numbers_data 	= numbers_data
 
 	 // NON SENS UNDER 12 
 	 if(this.number < 10 || this.number == null){
 		return this;
 	 }	
- 		console.log(this.number)
+ 	console.log(this.number)
 
 	var n 		= number.toString()
 	var dec 	= parseInt(n[0])
@@ -69,36 +69,32 @@ var Decimal = function(number,  stimuli_type, numbers_available, count,  numbers
 			
 			step.stimuli.push(st)
 
-
 			_.each(r.distractors, function(d){
-					//console.log(d.value)
-					if(that.numbers_data[d.value]){
+				//console.log(d.value)
+				if(that.numbers_data[d.value]){
 
+				}
+				else{
+					d.value = '';
+				}
+				var st =  that.moduleutils.addStimuli(false , d.value, 'number',that.numbers_data)
+				st.unitOrDecimal = r.name;
+
+					if(d.value  !==null && r.name == 'unit' ){
+						st.realValue = d.value
 					}
-					else{
-						d.value = null;
+					if(d.value !==null && r.name == 'decimal' ){
+						st.realValue = that.number
 					}
-					var st =  that.moduleutils.addStimuli(false , d.value, 'number',that.numbers_data)
-					st.unitOrDecimal = r.name;
-
-								if(d.value  !==null && r.name == 'unit' ){
-							st.realValue = d.value
-						}
-						if(d.value !==null && r.name == 'decimal' ){
-							st.realValue = that.number
-						}
-					
-					//st.realValue = that.number
-
-					st.path = that.stimuli_type
-					step.stimuli.push(st)	
+				//st.realValue = that.number
+				st.path = that.stimuli_type
+				step.stimuli.push(st)	
 			})
-
 		})
 		round.steps.push(step)
 		round.targetSequence = {
 				gameType        : that.stimuli_type, 
-				targetNumber : that.number
+				targetNumber 	: that.number
 		}
 
 		if(round.targetSequence.targetNumber !=='null'){

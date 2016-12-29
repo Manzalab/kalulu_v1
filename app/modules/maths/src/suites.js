@@ -16,7 +16,7 @@ var _ = require('underscore')
 var Distractor = require('./distractor.js')
 var ModuleUtils 	= require('./module_utils.js')
 
-var Suite = function(n,size,step,from,direction, distractors_count, numbers_data, numbers_available_){
+var Suite = function(n,size,step,from,direction, distractors_count, numbers_data, numbers_available_, lang){
    this.number_data = numbers_data
 
    this.moduleutils = new ModuleUtils()
@@ -197,7 +197,7 @@ var Suite = function(n,size,step,from,direction, distractors_count, numbers_data
 
 		
 
-		var st =  that.moduleutils.addStimuli(true , seq, 'number',numbers_data, lpath)
+		var st =  that.moduleutils.addStimuli(true , seq, 'number',numbers_data, lpath, lang)
 		step.stimuli.push(st)
 
 	    /// distractors
@@ -210,9 +210,9 @@ var Suite = function(n,size,step,from,direction, distractors_count, numbers_data
 	    	 	if(numbers_data[d.value]){		
 				}
 				else{
-					d.value = null
+					d.value = ''
 				}
-				var st =  that.moduleutils.addStimuli(false , d.value, 'number',numbers_data, lpath)
+				var st =  that.moduleutils.addStimuli(false , d.value, 'number',numbers_data, lpath, lang)
 				step.stimuli.push(st)
 	        })
 		}

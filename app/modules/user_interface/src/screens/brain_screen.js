@@ -169,7 +169,7 @@ define([
      * Manage the transition after click on a garden button, emits the relevant events.
     **/
     BrainScreen.prototype._onClickOnGardenButton = function _onClickOnGardenButton (pEventData) {
-        
+        if (this._kalulu.isTalking) return;
         this.removeOnClickOnGargenButton();
 
         // concerned gardens
@@ -207,6 +207,7 @@ define([
     };
 
     BrainScreen.prototype._onClickOnBackButton = function _onClickOnBackButton (pEventData) {
+        if (this._kalulu.isTalking) return;
         this._interfaceManager.requestTitleCard();
     };
 
@@ -215,6 +216,7 @@ define([
     };
 
     BrainScreen.prototype._onClickOnToyChestButton = function _onClickOnToyChestButton (pEventData) {
+        if (this._kalulu.isTalking) return;
         this._interfaceManager.requestToyChestScreen();
     };
 
