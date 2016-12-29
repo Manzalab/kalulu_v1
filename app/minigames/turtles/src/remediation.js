@@ -70,7 +70,7 @@
 
         this.initEvents();
 
-        if (Config.debugPanel) {
+        if (this.game.gameConfig.debugPanel) {
 
             this.debug = new Dat.GUI(/*{ autoPlace: false }*/);
 
@@ -239,7 +239,7 @@
         }, this);
 
         this.eventManager.on('replay', function () {
-            if (Config.debugPanel) {
+            if (this.game.gameConfig.debugPanel) {
                 document.getElementsByClassName("dg main a")[0].remove();
                 this.debug = null;
             }
@@ -317,9 +317,9 @@
                 var context = this;
                 setTimeout(function () {
                     context.sounds.correctRoundAnswer.play();
-                    if (Config.debugPanel) context.cleanLocalPanel();
+                    if (this.game.gameConfig.debugPanel) context.cleanLocalPanel();
                     context.game.params.increaseLocalDifficulty();
-                    if (Config.debugPanel) context.setLocalPanel();
+                    if (this.game.gameConfig.debugPanel) context.setLocalPanel();
                     setTimeout(function () {
                         context.initRound(context.roundIndex);
                         context.island.reset(context.correctResponses.length);
@@ -355,9 +355,9 @@
             if (this.consecutiveMistakes == this.game.params.getGeneralParams().incorrectResponseCountTriggeringSecondRemediation) {
                 this.consecutiveMistakes = 0;
                 this.eventManager.emit('help');
-                if (Config.debugPanel) this.cleanLocalPanel();
+                if (this.game.gameConfig.debugPanel) this.cleanLocalPanel();
                 this.game.params.decreaseLocalDifficulty();
-                if (Config.debugPanel) this.setLocalPanel();
+                if (this.game.gameConfig.debugPanel) this.setLocalPanel();
             }
             else {
                 this.eventManager.emit('playCorrectSound');

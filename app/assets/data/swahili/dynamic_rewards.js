@@ -22,13 +22,13 @@ define([], function () {
         "34": "Akili6",
         "43": "Akili8"
     },
-    "both": [
-        "CIRKAFRICA1 MASTER PARTIE 01",
-        "CIRKAFRICA1 MASTER PARTIE 02",
-        "CIRKAFRICA1 MASTER PARTIE 03",
-        "CIRKAFRICA1 MASTER PARTIE 04",
-        "patrimath"
-    ],
+    "both": {
+        "4": "CIRKAFRICA1 MASTER PARTIE 01",
+        "8": "CIRKAFRICA1 MASTER PARTIE 02",
+        "12": "CIRKAFRICA1 MASTER PARTIE 03",
+        "16": "CIRKAFRICA1 MASTER PARTIE 04",
+        "20": "patrimath"
+    },
     "bookCount": 10,
     "videoCount": 10,
     "gameCount": 1,

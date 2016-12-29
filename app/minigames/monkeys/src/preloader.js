@@ -31,35 +31,35 @@
         loadSpecificAssets: function () {
 
             //Game specific Graphics
-            this.load.image('sky', 'minigames/' + Config.gameId + '/assets/images/Decors/CIEL_Background.png');
-            this.load.image('ground', 'minigames/' + Config.gameId + '/assets/images/Decors/Ground.png');
-            this.load.image('tree', 'minigames/' + Config.gameId + '/assets/images/Decors/Palmier2.png');
-            this.load.image('treeKing', 'minigames/' + Config.gameId + '/assets/images/Decors/Palmier.png');
-            this.load.image('board', 'minigames/' + Config.gameId + '/assets/images/Decors/planche_lettres.png');
+            this.load.image('sky', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/Decors/CIEL_Background.png');
+            this.load.image('ground', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/Decors/Ground.png');
+            this.load.image('tree', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/Decors/Palmier2.png');
+            this.load.image('treeKing', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/Decors/Palmier.png');
+            this.load.image('board', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/Decors/planche_lettres.png');
 
-            this.game.load.atlasJSONHash('coconut', 'minigames/' + Config.gameId + '/assets/images/coconut/coconut.png', 'minigames/' + Config.gameId + '/assets/images/coconut/coconut.json');
-            this.game.load.atlasJSONHash('stunStars', 'minigames/' + Config.gameId + '/assets/images/SINGE_animations/stunStars.png', 'minigames/' + Config.gameId + '/assets/images/SINGE_animations/stunStars.json');
-            this.game.load.atlasJSONHash('monkeyNormal', 'minigames/' + Config.gameId + '/assets/images/SINGE_animations/monkeyNormal.png', 'minigames/' + Config.gameId + '/assets/images/SINGE_animations/monkeyNormal.json');
-            this.game.load.atlasJSONHash('monkeyKing', 'minigames/' + Config.gameId + '/assets/images/SINGE_animations/monkeyKing.png', 'minigames/' + Config.gameId + '/assets/images/SINGE_animations/monkeyKing.json');
+            this.game.load.atlasJSONHash('coconut', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/coconut/coconut.png', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/coconut/coconut.json');
+            this.game.load.atlasJSONHash('stunStars', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/SINGE_animations/stunStars.png', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/SINGE_animations/stunStars.json');
+            this.game.load.atlasJSONHash('monkeyNormal', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/SINGE_animations/monkeyNormal.png', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/SINGE_animations/monkeyNormal.json');
+            this.game.load.atlasJSONHash('monkeyKing', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/SINGE_animations/monkeyKing.png', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/SINGE_animations/monkeyKing.json');
 
             //Game specific UI Graphics            
-            this.load.image('uiScoreWrong', 'minigames/' + Config.gameId + '/assets/images/ui/singe_perdu.png');
-            this.load.image('uiScoreRight', 'minigames/' + Config.gameId + '/assets/images/ui/singe_gagne.png')
-            this.load.image('uiScoreEmpty', 'minigames/' + Config.gameId + '/assets/images/ui/singe_vide.png')
+            this.load.image('uiScoreWrong', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/ui/singe_perdu.png');
+            this.load.image('uiScoreRight', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/ui/singe_gagne.png')
+            this.load.image('uiScoreEmpty', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/ui/singe_vide.png')
 
             //Game Specific Audio
             for (var i = 0; i < 3 ; i++) {
-                this.game.load.audio('rdm' + (i + 1), 'minigames/' + Config.gameId + '/assets/audio/monkey/ELAN_GAME_MONKEY_Monkey_Rdm_0' + (i + 1) + '.ogg');
+                this.game.load.audio('rdm' + (i + 1), 'minigames/' + this.game.gameConfig.gameId + '/assets/audio/monkey/ELAN_GAME_MONKEY_Monkey_Rdm_0' + (i + 1) + '.ogg');
             }
-            this.game.load.audio('receiveHeadCoco', 'minigames/' + Config.gameId + '/assets/audio/monkey/ELAN_GAME_MONKEY_ReceiveHeadCoco.ogg');
-            this.game.load.audio('send', 'minigames/' + Config.gameId + '/assets/audio/monkey/ELAN_GAME_MONKEY_SendCoco.ogg');
-            this.game.load.audio('sendRight', 'minigames/' + Config.gameId + '/assets/audio/monkey/ELAN_GAME_MONKEY_SendCoco_Right.ogg');
-            this.game.load.audio('sendWrong', 'minigames/' + Config.gameId + '/assets/audio/monkey/ELAN_GAME_MONKEY_SendCoco_Wrong.ogg');
+            this.game.load.audio('receiveHeadCoco', 'minigames/' + this.game.gameConfig.gameId + '/assets/audio/monkey/ELAN_GAME_MONKEY_ReceiveHeadCoco.ogg');
+            this.game.load.audio('send', 'minigames/' + this.game.gameConfig.gameId + '/assets/audio/monkey/ELAN_GAME_MONKEY_SendCoco.ogg');
+            this.game.load.audio('sendRight', 'minigames/' + this.game.gameConfig.gameId + '/assets/audio/monkey/ELAN_GAME_MONKEY_SendCoco_Right.ogg');
+            this.game.load.audio('sendWrong', 'minigames/' + this.game.gameConfig.gameId + '/assets/audio/monkey/ELAN_GAME_MONKEY_SendCoco_Wrong.ogg');
 
             //Kalulu Game Specific audio
-            this.game.load.audio('kaluluIntro', 'minigames/' + Config.gameId + '/assets/audio/kalulu/kalulu_Intro_' + this.game.gameConfig.gameId.capitalise() + '_' + this.game.rafiki.discipline + '.ogg');
-            this.game.load.audio('kaluluHelp', 'minigames/' + Config.gameId + '/assets/audio/kalulu/kalulu_Help_' + this.game.gameConfig.gameId.capitalise() + '_' + this.game.rafiki.discipline + '.ogg');
-            this.game.load.audio('kaluluGameOverWin', 'minigames/' + Config.gameId + '/assets/audio/kalulu/kalulu_End_' + this.game.gameConfig.gameId.capitalise() + '_' + this.game.rafiki.discipline + '.ogg');
+            this.game.load.audio('kaluluIntro', 'minigames/' + this.game.gameConfig.gameId + '/assets/audio/kalulu/kalulu_Intro_' + this.game.gameConfig.gameId.capitalise() + '_' + this.game.rafiki.discipline + '.ogg');
+            this.game.load.audio('kaluluHelp', 'minigames/' + this.game.gameConfig.gameId + '/assets/audio/kalulu/kalulu_Help_' + this.game.gameConfig.gameId.capitalise() + '_' + this.game.rafiki.discipline + '.ogg');
+            this.game.load.audio('kaluluGameOverWin', 'minigames/' + this.game.gameConfig.gameId + '/assets/audio/kalulu/kalulu_End_' + this.game.gameConfig.gameId.capitalise() + '_' + this.game.rafiki.discipline + '.ogg');
         },
 
         /**

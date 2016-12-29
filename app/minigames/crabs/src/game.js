@@ -74,7 +74,7 @@
                     }
                 }
             }
-            if (this.game.discipline == "maths") this.game.load.atlasJSONHash('maths', 'minigames/' + Config.gameId + '/assets/images/maths/maths.png', 'minigames/' + Config.gameId + '/assets/images/maths/maths.json');
+            if (this.game.discipline == "maths") this.game.load.atlasJSONHash('maths', 'minigames/common/assets/images/maths/maths.png', 'minigames/common/assets/images/maths/maths.json');
         },
 
         /**
@@ -87,7 +87,7 @@
          **/
         create: function () {
             console.info("[Game State] Creating new game");
-            if (Config.globalVars) {
+            if (this.game.gameConfig.globalVars) {
                 window.jellyfishes = {};
                 window.jellyfishes.game = this.game;
             }
@@ -102,7 +102,7 @@
             this.background.height = this.game.height;
             
             this.remediation = new Remediation(this.game);
-            this.ui = new Ui(this.game.params.getGlobalParams().totalTriesCount, this.game);
+            this.ui = new Ui(this.game.params.getGlobalParams().roundsCount, this.game);
             this.kalulu = new Kalulu(this.game);
             this.game.kalulu = this.kalulu;
             

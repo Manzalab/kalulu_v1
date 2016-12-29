@@ -119,7 +119,7 @@
         }, this);
 
         this.eventManager.on('replay', function () {
-            if (Config.debugPanel) {
+            if (this.game.gameConfig.debugPanel) {
                 document.getElementsByClassName("dg main a")[0].remove();
                 this.debug = null;
             }
@@ -283,9 +283,9 @@
             if (this.triesRemaining > 0) {
 
                 if (this.discipline != "maths") this.sounds.correctRoundAnswer.play();              
-                if (Config.debugPanel) this.cleanLocalPanel();
+                if (this.game.gameConfig.debugPanel) this.cleanLocalPanel();
                 this.game.params.increaseLocalDifficulty();
-                if (Config.debugPanel) this.setLocalPanel(); 
+                if (this.game.gameConfig.debugPanel) this.setLocalPanel(); 
                 var context = this;
                 setTimeout(function () {
                     context.initRound(context.roundIndex);
@@ -374,9 +374,9 @@
             if (this.consecutiveMistakes == this.game.params.getGeneralParams().incorrectResponseCountTriggeringSecondRemediation) {
                 this.consecutiveMistakes = 0;
                 this.eventManager.emit('help');
-                if (Config.debugPanel) this.cleanLocalPanel();
+                if (this.game.gameConfig.debugPanel) this.cleanLocalPanel();
                 this.game.params.decreaseLocalDifficulty();
-                if (Config.debugPanel) this.setLocalPanel();
+                if (this.game.gameConfig.debugPanel) this.setLocalPanel();
             }
             else {
                 this.eventManager.emit('playCorrectSound');             

@@ -93,7 +93,7 @@
         for (var i = 0; i < length; i++) {
             stimulus = roundData.steps[0].stimuli[i];
             if (stimulus.correctResponse === true) {
-                this.sounds.correctRoundAnswer = this.game.add.audio(stimulus.value.toLowerCase());
+                this.sounds.correctRoundAnswer = this.game.add.audio(stimulus.value.toString().toLowerCase());
                 console.log("adding target sound");
                 console.log(this.sounds.correctRoundAnswer);
                 this.correctResponse.value = stimulus.value;

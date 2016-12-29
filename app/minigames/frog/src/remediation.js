@@ -38,9 +38,9 @@
         this.initGame();
 
 
-        if (Config.globalVars) window.frogger.frogger = this.frogger;
+        if (this.game.gameConfig.globalVars) window.frogger.frogger = this.frogger;
 
-        if (Config.debugPanel) {
+        if (this.game.gameConfig.debugPanel) {
 
             this.debug = new Dat.GUI(/*{ autoPlace: false }*/);
 
@@ -315,7 +315,7 @@
         }, this);
 
         this.eventManager.on('replay', function () {
-            if (Config.debugPanel) {
+            if (this.game.gameConfig.debugPanel) {
                 document.getElementsByClassName("dg main a")[0].remove();
                 this.debug = null;
             }
@@ -360,9 +360,9 @@
 
         if (this.triesRemaining > 0) {
             if (this.consecutiveSuccess % 2 == 0) { // Increment difficulty
-                if (Config.debugPanel) this.cleanLocalPanel();
+                if (this.game.gameConfig.debugPanel) this.cleanLocalPanel();
                 this.game.params.increaseLocalDifficulty();
-                if (Config.debugPanel) this.setLocalPanel();
+                if (this.game.gameConfig.debugPanel) this.setLocalPanel();
             }
 
             this.frogJumpManager("playCorrectSound");
@@ -473,16 +473,16 @@
                     context.eventManager.emit('playCorrectSound');//listened here; check initEvents
                 }, 1000);
 
-                if (Config.debugPanel) this.cleanLocalPanel();
+                if (this.game.gameConfig.debugPanel) this.cleanLocalPanel();
                 this.game.params.decreaseLocalDifficulty();
-                if (Config.debugPanel) this.setLocalPanel();
+                if (this.game.gameConfig.debugPanel) this.setLocalPanel();
             }
             else if (this.consecutiveMistakes === params.incorrectResponseCountTriggeringSecondRemediation) {
 
                 this.eventManager.emit('help'); // listened by Kalulu to start the help speech; pauses the game in kalulu
-                if (Config.debugPanel) this.cleanLocalPanel();
+                if (this.game.gameConfig.debugPanel) this.cleanLocalPanel();
                 this.game.params.decreaseLocalDifficulty();
-                if (Config.debugPanel) this.setLocalPanel();
+                if (this.game.gameConfig.debugPanel) this.setLocalPanel();
                 this.consecutiveMistakes = 0; // restart the remediation
             }
         }

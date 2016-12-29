@@ -50,7 +50,7 @@
         if (!this.game.eventManager) {
             this.game.eventManager = new EventEmitter();
         }
-
+        
         if (!this.game.ui) {
             var options = {
                 isKaluluEnabled                 : true,

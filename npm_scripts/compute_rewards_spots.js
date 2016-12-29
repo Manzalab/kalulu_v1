@@ -122,6 +122,25 @@
 
         }
 
+        // attribution of chapter numbers to rewards in the central path
+        console.log('ATTRIBUTION OF CHAPTER NUMBERS');
+        var CHAPTERS_COUNT = 20;
+        var arrayToTransform = levelRewards.both;
+        levelRewards.both = null;
+        var rewardsCount = arrayToTransform.length;
+
+        var spread = Math.floor(CHAPTERS_COUNT / rewardsCount);
+        console.log('Spread found for ' + language + ' : ' + spread);
+
+        var rewardsListByChapter = {};
+        for (var c = CHAPTERS_COUNT ; c >= 1 ; c -= spread) {
+            rewardsListByChapter[c] = arrayToTransform.pop();
+        }
+
+        levelRewards.both = rewardsListByChapter;
+        console.log(arrayToTransform.length + ' rewards still have to be attributed to a chapter');
+
+
         var str =   "define([], function () {\n"+
                     "    'use strict';\n"+
                     "    function Reward () {\n"+
