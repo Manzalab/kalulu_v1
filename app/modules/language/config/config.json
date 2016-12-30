@@ -1,9 +1,10 @@
 {
-    "lowerCaseTargetsShare"    : 0.5,
-    "strongDistractorTreshold" : 0.35,
-    "similarityTreshold"       : 0.35,
+    "revisionTreshold"         : 80,
+    "lowerCaseTargetsShare"    : 50,
+    "strongDistractorTreshold" : 35,
+    "similarityTreshold"       : 35,
     "syllablesGames"           : {
-        "revisionShareInTargets" : 0.2
+        "revisionShareInTargets" : 20
     },
     "wordsGames" : {
         "revisionShareInTargets" : 0

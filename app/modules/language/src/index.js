@@ -22,7 +22,7 @@
         sorting           : require ('../assets/data/' + KALULU_LANGUAGE + '/sorting.csv'),
         words             : require ('../assets/data/' + KALULU_LANGUAGE + '/words_list.csv')
     };
-
+    
     // MINIGAME SETTINGS CSV HEADERS
     // var h_id                    = "ID";
     // var h_description           = "DESCRIPTION";
@@ -106,7 +106,10 @@
 
         if (!this._userProfile.Language) {
             this._initUserData();
-            console.log(this._userProfile);
+            if (Config.debugLanguageModule) {
+                console.log("[LanguageModule] New Save Created");
+                console.log(this._userProfile);
+            }
         }
 
         this._sortingGamesListByChapter = this._initSortingGamesList();
@@ -640,7 +643,9 @@
      * 
     **/
     LanguageModule.prototype._selectNotionsForRevision = function _selectNotionsForRevision (notionsListByLesson, lessonNumber) { 
-        console.log(notionsListByLesson);
+        
+        if (Config.debugLanguageModule) console.log(notionsListByLesson);
+        
         var selectionArray = [];
         
         for (var lessonIndex = 1 ; lessonIndex < lessonNumber ; lessonIndex++) {
@@ -650,13 +655,17 @@
             
             var lNotion = notionsListByLesson[lessonIndex];
             
-            for (var wordId in lNotion) {
-                if (!lNotion.hasOwnProperty(wordId)) continue;
+            for (var id in lNotion) {
+                if (!lNotion.hasOwnProperty(id)) continue;
                 
-                var stimulus = lNotion[wordId];
-                if (stimulus.userScore < Config.pedagogy.revisionTreshold) {
+                var stimulus = lNotion[id];
+                console.log('assessing revision :');
+                console.log(this._getNotionRecord(stimulus));
+                console.log(constants.revisionTreshold);
+                if (this._getNotionRecord(stimulus) < constants.revisionTreshold) {
                     
                     selectionArray.push(stimulus);
+                    console.log(selectionArray);
                 }
             }
         }
@@ -689,7 +698,7 @@
                 if (!lessonStimuli.hasOwnProperty(stimuliId)) continue;
                 
                 stimulus = lessonStimuli[stimuliId];
-                if (this._getNotionRecord(stimulus) > Config.pedagogy.revisionTreshold) {
+                if (this._getNotionRecord(stimulus) > constants.revisionTreshold) {
                     
                     selectionArray.push(stimulus);
                 }
@@ -748,6 +757,7 @@
      * @return {(Word[] | GP[])}
     **/
     LanguageModule.prototype._selectTargets = function _selectTargets (params, lessonNumber, stimuliPool) {
+        if (Config.debugLanguageModule) console.log(params);
         if (!stimuliPool.hasOwnProperty(lessonNumber)) {
             throw new Error("No Syllables available for this lesson (n° " + lessonNumber + ")");
         }
@@ -756,7 +766,9 @@
 
         // SELECTION OF TARGETS FOR REVISION OF PREVIOUS LESSONS
         var previousLessonsAvailableStimuli = this._selectNotionsForRevision(stimuliPool, lessonNumber);
-        var revisionTargetsCount = Math.floor(lRoundsCount * (1 - params.currentLessonShareInTargets));
+        console.log(lRoundsCount, params.currentLessonShareInTargets);
+        var revisionTargetsCount = Math.floor(lRoundsCount * (100 - params.currentLessonShareInTargets) / 100);
+        if (Config.debugLanguageModule) console.log("Trying to get " + revisionTargetsCount + " targets for revision in a pool of " + previousLessonsAvailableStimuli.length);
         var revisionTargets = []; 
         this._selectRandomElements(revisionTargetsCount, previousLessonsAvailableStimuli, revisionTargets, false);
         revisionTargetsCount = revisionTargets.length;
@@ -1096,7 +1108,7 @@
 
     LanguageModule.prototype._getNotionRecord = function _getNotionRecord (notion, windowSize) {
         
-        windowSize = windowSize || Config.pedagogy.scoreWindowSize ;
+        windowSize = windowSize || constants.scoreWindowSize ;
         
         if (notion.constructor.name === "GP") {
             if (!this._userProfile.Language.gp[notion.id]) this._userProfile.Language.gp[notion.id] = [];
@@ -1122,7 +1134,7 @@
             sum += latestResults[i].score;
         }
 
-        return responseCount > 0 ? sum/responseCount : 0;
+        return responseCount > 0 ? sum/responseCount * 100 : 0;
     };
 
 
@@ -1136,24 +1148,26 @@
         var totalClicks = 0;
         var totalCorrectClicks = 0;
         var results = record.results;
-        console.log(record);
+        if (Config.debugLanguageModule) console.log(record);
         var flawlessGame = true;
 
         for (var r = 0; r < results.data.rounds.length ; r++) {
-            console.info("[LangugaeModule] Processing Results of Minigame for Round " + r);
+            if (Config.debugLanguageModule) console.info("[LangugaeModule] Processing Results of Minigame for Round " + r);
             var stimuli = results.data.rounds[r].steps[0].stimuli;
             
             for (var s = 0 ; s < stimuli.length ; s++) {
                 
                 var stimulus = stimuli[s];
-                console.log(stimulus);
+                if (Config.debugLanguageModule) console.log(stimulus);
                 var notion = this.getWordbyId(stimulus.value.toLowerCase());
                 
                 if (notion) { // if it is a blank stimulus we wont save scores on its notion or on underlying notions
-                    console.info("[LangugaeModule] Processing Results of Minigame for Notion " + notion.id);
+                    if (Config.debugLanguageModule) console.info("[LangugaeModule] Processing Results of Minigame for Notion " + notion.id);
                     if (!stimulus.apparitions) {
-                        console.warn("LanguageModule : stimulus has no apparitions :");
-                        console.log(stimulus);
+                        if (Config.debugLanguageModule) {
+                            console.warn("LanguageModule : stimulus has no apparitions :");
+                            console.log(stimulus);
+                        }
                         continue;
                     }
                     var apparition;
@@ -1161,7 +1175,7 @@
                     for (var i = 0 ; i < stimulus.apparitions.length ; i++) { //cannot read length of undefined in a crabs catcher.
                         apparition = stimulus.apparitions[i];
                         if (!apparition.isClosed) { // the stimuli that had not the opportunity to complete their appearance (game end happened) are not closed
-                            console.warn("Appearance " + i + " not closed, continuing...");
+                            if (Config.debugLanguageModule) console.warn("Appearance " + i + " not closed, continuing...");
                             continue;
                         }
 
@@ -1172,10 +1186,12 @@
 
                         if (!apparition.isCorrect && scoreObject.score === 0) {
                             flawlessGame = false;
-                            console.log("value : " + stimulus.value.toLowerCase() + ", isCR : " + apparition.isCorrect + ", clicked : " + apparition.isClicked);
+                            if (Config.debugLanguageModule) console.log("value : " + stimulus.value.toLowerCase() + ", isCR : " + apparition.isCorrect + ", clicked : " + apparition.isClicked);
                         }
-                        console.info("[LangugaeModule] Score for notion " + notion.id + " at appearance " + i);
-                        console.info(scoreObject);
+                        if (Config.debugLanguageModule) {
+                            console.info("[LangugaeModule] Score for notion " + notion.id + " at appearance " + i);
+                            console.info(scoreObject);
+                        }
                         this._addRecordOnNotion(notion, scoreObject);
                         
                         for (var g = 0 ; g < notion.gpList.length ; g++) {
@@ -1195,7 +1211,7 @@
         }
 
         record.flawless = flawlessGame;
-        if (flawlessGame) console.info("##############################\n###### FLAWLESS GAME !! ######\n##############################");
+        if (Config.debugLanguageModule && flawlessGame) console.info("##############################\n###### FLAWLESS GAME !! ######\n##############################");
         record.correctResponseShare = totalCorrectClicks / totalClicks;
         var isPreviousGameFlawless, isPreviousGameWon;
         if (!this._userProfile.Language.minigamesRecords.hasOwnProperty(currentProgressionNode.activityType)) {
@@ -1233,7 +1249,7 @@
 
     LanguageModule.prototype._processCompositionResults = function _processCompositionResults (currentProgressionNode, results, hasWon) {
         
-        console.log(results);
+        if (Config.debugLanguageModule) console.log(results);
 
         var totalDistractorSyllablesCompleted = 0;
 
