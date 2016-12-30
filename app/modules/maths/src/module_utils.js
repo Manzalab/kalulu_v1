@@ -30,7 +30,7 @@ var ModuleUtils = function(){
 			"value"				: value_,
 			"correctResponse"	: isCorrect,
 			"stimuli_type"		: dataobject,
-			"apparitions"		: this.addFakeApparitions(isCorrect,1, 'perfect_all') //perfect_nothing
+			"apparitions"		: this.addFakeApparitions(isCorrect,1, 'prod') //perfect_nothing
 		}
 		if(value_ !=='' && dataset[value_]){
 			// console.log(dataset[value_])
@@ -70,11 +70,12 @@ var ModuleUtils = function(){
 	ModuleUtils.prototype.addFakeApparitions = function (isCorrect, count, mode) {
 		// console.log('addFakeApparitions')
 
-		var out = []
+	
 		
 		if(mode == 'prod'){
-				return out
+				return 
 		}
+			var out = []
 
 		while(out.length < count  ){ 
 			var rand_click = Math.random() >= 0.5;
