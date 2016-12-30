@@ -841,10 +841,14 @@ var record_not_av   = [
         };
 
         var roundIndex = null;
+        console.log(staticData.filling)
 
         for (var i = 0 ; i < staticData.filling.length ; i++) {
 
             var row = staticData.filling[i];
+                    console.log( row)
+
+
             if(row.GROUP !== roundIndex) {
                 roundIndex = row.GROUP;
                 refined.data.rounds.push({
@@ -854,8 +858,10 @@ var record_not_av   = [
                 });
             }
             refined.data.rounds[roundIndex - 1].steps[0].stimuli.push({
-               //sentence: row.ORTHOGRAPHY,
-               // wordIndex: words.indexOf(row.WORD)
+               id         : row["SYMBOLIC NUMBER"],
+               value      : row["SYMBOLIC NUMBER"],
+               soundPath  : 'assets/sounds/maths/number_'+row["SYMBOLIC NUMBER"]+'.ogg'
+
            });
         }
           console.log(refined);
