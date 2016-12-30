@@ -70,13 +70,16 @@ define([
     };
 
     LessonScreen.prototype._onClickOnActivity = function _onClickOnActivity (pEventData) {
+        if (this._kalulu.isTalking) return;
+        if (SoundManager.isPlaying("kalulu_amb_gardenscreen"))     SoundManager.getSound("kalulu_amb_gardenscreen").stop();
+        if (SoundManager.isPlaying("kalulu_amb_gardenscreen2"))    SoundManager.getSound("kalulu_amb_gardenscreen2").stop();
         SoundManager.getSound("click").play();
         this._interfaceManager.requestMinigame(pEventData.target.data);
     };
 
 
     LessonScreen.prototype._onClickOnBackButton = function _onClickOnBackButton (pEventData) {
-        
+        if (this._kalulu.isTalking) return;
         SoundManager.getSound("click").play();
         this._interfaceManager.requestGardenScreen(this._node.parent.chapterNumber);
     };
@@ -85,7 +88,7 @@ define([
         
 
         this._kalulu.x = this._kalulu.width/2;
-        this._kalulu.y = -this._kalulu.height/3;
+        this._kalulu.y = -this._kalulu.height/3-50;
         this._hud.bottomLeft.addChild(this._kalulu);
         /*if (this._node.children[1].isCompleted&&this._node.children[2].isCompleted&&this._node.children[3].isCompleted) this._kalulu.startTalk("kalulu_tuto_lessonscreen");
         else*/ if ((this._node.children[1].isCompleted&&this._node.children[2].isCompleted)||

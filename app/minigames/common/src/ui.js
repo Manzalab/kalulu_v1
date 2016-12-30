@@ -4,7 +4,10 @@
     var Phaser = require('phaser-bundle');
 
     var BUTTON_DIM = 250;
+    var BUTTON_DIM_LITTLE = 190;
     var SCORE_DIM = 130;
+    var MARGE_X = 0;
+    var MARGE_Y = 0;
 
     /**
      * Ui is in charge of the user interface
@@ -45,6 +48,7 @@
 
         this.initGameOverScreen(game); // the game over screen appears on top of the UI when the game ends
         this.initQuitPopup(game); // the quit popup appears when the player clicks on the quit button of the main Game UI Panel
+        this.initPausePopup(game); // the pause popup appears when the player clicks on the pause button of the main Game UI Panel
         this.initGameUI(game); // the main game UI Panel, located on the left of the screen, and accessible when the game is playing (quit, conch, & kalulu buttons).
 
         this.initSounds(game);
@@ -75,22 +79,29 @@
 
         this.gameUI = game.add.group();
 
-        this.quitButton = game.add.button(0, 0, 'ui', this.onClickOnQuitPopupButton, this, 'ile_ON', 'ile_ON', 'ile_OFF', 'ile_ON');
-        this.quitButton.frameName = 'ile_OFF';
+        this.quitButton = game.add.button(MARGE_X, MARGE_Y, 'ui', this.onClickOnQuitPopupButton, this, 'GardenScreenButton0001.png', 'GardenScreenButton0002.png', 'GardenScreenButton0003.png', 'GardenScreenButton0004.png');
+        this.quitButton.frameName = 'GardenScreenButton0004.png';
         this.quitButton.height = BUTTON_DIM;
         this.quitButton.width = BUTTON_DIM;
         this.quitButton.anchor.setTo(0, 0);
         this.gameUI.add(this.quitButton);
 
-        this.conchButton = game.add.button(0, game.height / 2, 'ui', this.onClickOnConchButton, this, 'conque-ON', 'conque-ON', 'conque-OFF', 'conque-ON');
-        this.conchButton.frameName = 'conque-OFF';
-        this.conchButton.height = BUTTON_DIM;
-        this.conchButton.width = BUTTON_DIM;
+        this.conchButton = game.add.button(MARGE_X, (game.height + BUTTON_DIM) / 3, 'ui', this.onClickOnConchButton, this, 'ShellButton0001.png', 'ShellButton0002.png', 'ShellButton0003.png', 'ShellButton0001.png');
+        this.conchButton.frameName = 'ShellButton0004.png';
+        this.conchButton.height = BUTTON_DIM_LITTLE;
+        this.conchButton.width = BUTTON_DIM_LITTLE;
         this.conchButton.anchor.setTo(0, 0.5);
         this.gameUI.add(this.conchButton);
 
-        this.kaluluButton = game.add.button(0, game.height, 'ui', this.onClickOnKaluluButton, this, 'toucan_ON', 'toucan_ON', 'toucan_OFF', 'toucan_ON');
-        this.kaluluButton.frameName = 'toucan_OFF';
+        this.pauseButton = game.add.button(MARGE_X, (2 * game.height - BUTTON_DIM) / 3, 'ui', this.onClickOnPauseButton, this, 'PauseButton0001.png', 'PauseButton0002.png', 'PauseButton0003.png', 'PauseButton0004.png');
+        this.pauseButton.frameName = 'PauseButton0004.png';
+        this.pauseButton.height = BUTTON_DIM_LITTLE;
+        this.pauseButton.width = BUTTON_DIM_LITTLE;
+        this.pauseButton.anchor.setTo(0, 0.5);
+        this.gameUI.add(this.pauseButton);
+
+        this.kaluluButton = game.add.button(MARGE_X, game.height - MARGE_Y, 'ui', this.onClickOnKaluluButton, this, 'KaluluButton0001.png', 'KaluluButton0002.png', 'KaluluButton0003.png', 'KaluluButton0004.png');
+        this.kaluluButton.frameName = 'KaluluButton0004.png';
         this.kaluluButton.height = BUTTON_DIM;
         this.kaluluButton.width = BUTTON_DIM;
         this.kaluluButton.anchor.setTo(0, 1);
@@ -101,8 +112,10 @@
          * @private
          **/
         if (this.features.centralConch) {
-            this.centralConchButton = game.add.button(game.width / 2, game.height / 2, 'ui', this.onClickOnCentralConchButton, this, 'conque', 'conque', 'conque', 'conque');
+            this.centralConchButton = game.add.button(game.width / 2, game.height / 2, 'ui', this.onClickOnCentralConchButton, this, 'ShellBigButton0001.png', 'ShellBigButton0002.png', 'ShellBigButton0003.png', 'ShellBigButton0004.png');
             this.centralConchButton.x -= this.centralConchButton.width / 2;
+            this.centralConchButton.originalX = this.centralConchButton.x;
+            this.centralConchButton.originalY = this.centralConchButton.y;
             this.centralConchButton.anchor.setTo(0, 0.5);
             this.centralConchButton.visible = false;
             this.centralConchButton.inputEnabled = true;
@@ -125,26 +138,50 @@
         this.quitPopup.x = game.world.centerX;
         this.quitPopup.y = game.world.centerY;
 
-        this.quitPopupBackground = this.quitPopup.create(0, 0, 'ui', 'fond_validation');
+        this.quitPopupBackground = this.quitPopup.create(0, 0, 'ui', 'fond_validation.png');
         this.quitPopupBackground.anchor.setTo(0.5, 0.5);
         this.quitPopupBackground.width = 1280;
         this.quitPopupBackground.height = 800;
 
-        this.quitPopupValidateButton = game.add.button(this.quitPopupBackground.width / 2 - 30, this.quitPopupBackground.height / 2 - 20, 'ui', this.onClickOnQuitButton, this);
-        this.quitPopupValidateButton.frameName = 'retour_valider';
+        this.quitPopupValidateButton = game.add.button(this.quitPopupBackground.width / 2 - 30, this.quitPopupBackground.height / 2 - 20, 'ui', this.onClickOnQuitButton, this, 'TickButton0001.png', 'TickButton0002.png', 'TickButton0003.png', 'TickButton0004.png');
+        this.quitPopupValidateButton.frameName = 'TickButton0001.png';
         this.quitPopupValidateButton.height = BUTTON_DIM;
         this.quitPopupValidateButton.width = BUTTON_DIM;
         this.quitPopupValidateButton.anchor.setTo(1, 1);
         this.quitPopup.add(this.quitPopupValidateButton);
 
-        this.quitPopupCancelButton = game.add.button(-this.quitPopupBackground.width / 2 + 30, this.quitPopupBackground.height / 2 - 20, 'ui', this.onClickOnQuitPopupCancelButton, this);
-        this.quitPopupCancelButton.frameName = 'retour_annuler';
+        this.quitPopupCancelButton = game.add.button(-this.quitPopupBackground.width / 2 + 30, this.quitPopupBackground.height / 2 - 20, 'ui', this.onClickOnQuitPopupCancelButton, this, 'CrossButton0001.png', 'CrossButton0002.png', 'CrossButton0003.png', 'CrossButton0004.png');
+        this.quitPopupCancelButton.frameName = 'CrossButton0001.png';
         this.quitPopupCancelButton.height = BUTTON_DIM;
         this.quitPopupCancelButton.width = BUTTON_DIM;
         this.quitPopupCancelButton.anchor.setTo(0, 1);
         this.quitPopup.add(this.quitPopupCancelButton);
 
         this.add(this.quitPopup);
+    };
+
+    /**
+     * Initialize pause pop-up menu, which opens after a click on the GameUI pauseButton
+     * @param game {Phaser.Game} game instance
+     **/
+    Ui.prototype.initPausePopup = function initPausePopup(game) {
+
+        this.pausePopup = game.add.group();
+        this.pausePopup.visible = false;
+        this.pausePopup.x = game.world.centerX;
+        this.pausePopup.y = game.world.centerY;
+
+        this.pausePopupBackground = this.pausePopup.create(0, 0, 'ui', 'fond_validation.png');
+        this.pausePopupBackground.anchor.setTo(0.5, 0.5);
+        this.pausePopupBackground.width = 1280;
+        this.pausePopupBackground.height = 800;
+
+        this.pausePopupValidateButton = game.add.button(0, 0, 'ui', this.onClickOnPlayButton, this, 'PlayButton0001.png', 'PlayButton0002.png', 'PlayButton0003.png', 'PlayButton0001.png');
+        this.pausePopupValidateButton.frameName = 'PlayButton0001.png';
+        this.pausePopupValidateButton.anchor.setTo(0.5, 0.5);
+        this.pausePopup.add(this.pausePopupValidateButton);
+
+        this.add(this.pausePopup);
     };
 
     /**
@@ -185,16 +222,16 @@
         this.gameOverScreen.x = game.width;
         this.gameOverScreen.y = game.height;
 
-        this.gameOverScreenQuitButton = game.add.button(0, 0, 'ui', this.onClickOnQuitButton, this, 'suite_ON', 'suite_ON', 'suite_OFF', 'suite_ON');
-        this.gameOverScreenQuitButton.frameName = 'suite_ON';
+        this.gameOverScreenQuitButton = game.add.button(0, 0, 'ui', this.onClickOnQuitButton, this, 'NextButton0001.png', 'NextButton0002.png', 'NextButton0003.png', 'NextButton0004.png');
+        this.gameOverScreenQuitButton.frameName = 'NextButton0001.png';
         this.gameOverScreenQuitButton.height = BUTTON_DIM;
         this.gameOverScreenQuitButton.width = BUTTON_DIM;
         this.gameOverScreenQuitButton.anchor.setTo(1, 1);
         this.gameOverScreen.add(this.gameOverScreenQuitButton);
 
         if (this.features.replay) {
-            this.gameOverScreenReplayButton = game.add.button(-BUTTON_DIM, 0, 'ui', this.onClickOnGameOverScreenReplayButton, this, 'replay_ON', 'replay_ON', 'replay_OFF', 'replay_ON');
-            this.gameOverScreenReplayButton.frameName = 'replay_ON';
+            this.gameOverScreenReplayButton = game.add.button(-BUTTON_DIM, 0, 'ui', this.onClickOnGameOverScreenReplayButton, this, 'ReplayButton0001.png', 'ReplayButton0002.png', 'ReplayButton0003.png', 'ReplayButton0004.png');
+            this.gameOverScreenReplayButton.frameName = 'ReplayButton0001.png';
             this.gameOverScreenReplayButton.visible = false;
             this.gameOverScreenReplayButton.height = BUTTON_DIM;
             this.gameOverScreenReplayButton.width = BUTTON_DIM;
@@ -300,7 +337,6 @@
         this.parent.game.world.bringToTop(this);
         this.quitPopup.visible = !this.quitPopup.visible;
         this.eventManager.emit('pause');
-        this.disableUiMenu();
     };
 
     /**
@@ -330,7 +366,6 @@
         this.sounds.cancelQuit.play();
         this.quitPopup.visible = !this.quitPopup.visible;
         this.eventManager.emit('unPause');
-        this.enableUiMenu();
     };
 
     /**
@@ -340,11 +375,13 @@
     Ui.prototype.disableUiMenu = function disableUiMenu() {
 
         this.quitButton.inputEnabled = false;
-        this.quitButton.frameName = 'ile_OFF';
+        this.quitButton.frameName = 'GardenScreenButton0004.png';
         this.conchButton.inputEnabled = false;
-        this.conchButton.frameName = 'conque-OFF';
+        this.conchButton.frameName = 'ShellButton0004.png';
+        this.pauseButton.inputEnabled = false;
+        this.pauseButton.frameName = 'PauseButton0004.png';
         this.kaluluButton.inputEnabled = false;
-        this.kaluluButton.frameName = 'toucan_OFF';
+        this.kaluluButton.frameName = 'KaluluButton0004.png';
     };
 
     /**
@@ -354,22 +391,26 @@
     Ui.prototype.enableUiMenu = function enableUiMenu() {
 
         this.quitButton.inputEnabled = true;
-        this.quitButton.frameName = 'ile_ON';
+        this.quitButton.frameName = 'GardenScreenButton0001.png';
+
+        this.pauseButton.inputEnabled = true;
+        this.pauseButton.frameName = 'PauseButton0001.png';
+
         if (this.features.conch) {
             this.conchButton.inputEnabled = true;
-            this.conchButton.frameName = 'conque-ON';
+            this.conchButton.frameName = 'ShellButton0001.png';
         }
         else {
             this.conchButton.inputEnabled = false;
-            this.conchButton.frameName = 'conque-OFF';
+            this.conchButton.frameName = 'ShellButton0004.png';
         }
         if (this.features.kalulu) {
             this.kaluluButton.inputEnabled = true;
-            this.kaluluButton.frameName = 'toucan_ON';
+            this.kaluluButton.frameName = 'KaluluButton0001.png';
         }
         else {
             this.kaluluButton.inputEnabled = false;
-            this.kaluluButton.frameName = 'toucan_OFF';
+            this.kaluluButton.frameName = 'KaluluButton0004.png';
         }
     };
 
@@ -382,6 +423,30 @@
 
         this.eventManager.emit('playCorrectSound');
     };
+
+    /**
+     * pause button function
+     * emit 'pauseButton'; listenned by remediation script
+     * @private
+     **/
+    Ui.prototype.onClickOnPauseButton = function onClickOnPauseButton() {
+        this.sounds.openQuitPopup.play();
+        this.blackOverlay.visible = true;
+        this.parent.game.world.bringToTop(this);
+        this.pausePopup.visible = !this.pausePopup.visible;
+        this.eventManager.emit('pause');
+    };
+
+    /**
+     * pause button function
+     * emit 'playButton'; listenned by remediation script
+     * @private
+     **/
+    Ui.prototype.onClickOnPlayButton = function onClickOnPlayButton() {
+        this.sounds.cancelQuit.play();
+        this.pausePopup.visible = !this.pausePopup.visible;
+        this.eventManager.emit('unPause');
+    }
 
     /**
      * centralConch button function
@@ -462,9 +527,9 @@
     Ui.prototype.reset = function reset() {
         if (this.features.centralConch) {
 
-            this.centralConchButton.x = this.parent.game.width / 2 - 325;
-            this.centralConchButton.width = 650;
-            this.centralConchButton.height = 560;
+            this.centralConchButton.x = this.centralConchButton.originalX;
+            this.centralConchButton.width = CONCH_DIM;
+            this.centralConchButton.height = CONCH_DIM;
             this.centralConchButton.inputEnabled = true;
 
             for (var i = 0; i < this.scoreBar.children.length ; i++) {
@@ -483,9 +548,10 @@
 
             if (this.moveCentralConch) {
                 if (this.centralConchButton.x > this.conchButton.x) {
-                    this.centralConchButton.x = -(this.parent.game.width / 2 - 325) * this.time + (this.parent.game.width / 2 - 325);
-                    this.centralConchButton.width = (BUTTON_DIM - this.centralConchButton.originalWidth) * this.time + this.centralConchButton.originalWidth;
-                    this.centralConchButton.height = (BUTTON_DIM - this.centralConchButton.originalHeight) * this.time + this.centralConchButton.originalHeight;
+                    this.centralConchButton.x = this.centralConchButton.originalX - (this.centralConchButton.originalX - this.conchButton.x) * this.time;
+                    this.centralConchButton.y = this.centralConchButton.originalY - (this.centralConchButton.originalY - this.conchButton.y) * this.time;
+                    this.centralConchButton.width = (BUTTON_DIM_LITTLE - this.centralConchButton.originalWidth) * this.time + this.centralConchButton.originalWidth;
+                    this.centralConchButton.height = (BUTTON_DIM_LITTLE - this.centralConchButton.originalHeight) * this.time + this.centralConchButton.originalHeight;
                     this.time += 1 / 60;
                 }
                 else {

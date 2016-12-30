@@ -71,7 +71,7 @@ define([
 
         //console.log(this);
 
-        //var mask = new PIXI3.Sprite(this._anim._texture);
+        var mask = new PIXI3.Sprite(this._anim._texture);
         
         if(this._id < 10) this._stringId = "0" + this._id;
         else this._stringId = this.id;
@@ -106,7 +106,7 @@ define([
 
         notStartedGardenButton = this;
 
-        //console.log("NOT STARTED");
+        // console.log("NOT STARTED");
     };
 
     GardenButton.prototype.setModeInProgress = function setModeInProgress () {
