@@ -30,15 +30,12 @@ var ModuleUtils = function(){
 			"value"				: value_,
 			"correctResponse"	: isCorrect,
 			"stimuli_type"		: dataobject,
-			"apparitions"		: this.addFakeApparitions(isCorrect,1, 'perfect_all') //perfect_nothing
+			"apparitions"		: this.addFakeApparitions(isCorrect,1, 'prod') //perfect_nothing
 		}
 		if(value_ !=='' && dataset[value_]){
-			// console.log(dataset[value_])
-			st.nonSymbolicImage	= 'todo/'+dataobject+'/data/'+value_+'.jpg'
-		 	
-
-		 	st.soundPath =  'assets/sounds/maths/number_'+value_+'.ogg'
-		 	// dataset[value_].soundPath
+			 console.log(dataset[value_])
+			st.nonSymbolicImage	= 'assets/images/number_'+value_+'.jpg'
+		 	st.soundPath 		=  'assets/sounds/maths/number_'+value_+'.ogg'
 		}
 
 		// complex soundpath..
@@ -52,7 +49,6 @@ var ModuleUtils = function(){
 
 		if(dataobject == 'sum' && path){
 			st.path = path
-			
 			st.nonSymbolicImage	= 'number_'+path.number+''+path.sign+''+path.xnumber_value+'.jpg'
 
 			//st.soundPath = path.xnumber+'/'+path.sign+'/'+path.side+'/'+path.number+'.ogg'
@@ -70,11 +66,12 @@ var ModuleUtils = function(){
 	ModuleUtils.prototype.addFakeApparitions = function (isCorrect, count, mode) {
 		// console.log('addFakeApparitions')
 
+	
 		var out = []
-		
 		if(mode == 'prod'){
 				return out
 		}
+
 
 		while(out.length < count  ){ 
 			var rand_click = Math.random() >= 0.5;

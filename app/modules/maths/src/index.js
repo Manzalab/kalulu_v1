@@ -219,6 +219,7 @@
         var result = results._results.data.rounds;
         console.log(result)
 
+        var flawlessGame = true;
         var score ={}
         if(this._userProfile){
             score = this._userProfile.Maths.numbers;
@@ -269,29 +270,27 @@
 
 
               
-                        if(apparition._isClicked == true && apparition._isCorrect == true){
-                          //console.log('win case')
-                         // apparition.wrong = false
+                  
 
-                        }
-                        if(apparition._isClicked == true && apparition._isCorrect == false){
-                         // console.log('loose case')
-                         // apparition.wrong = true
-                          perfect_step = false
-                        }
-
-                         if (!apparition._exitTime) { // the stimuli that had not the opportunity to complete their appearance (game end happened) have no exit time
-                           //   continue;
+                         if (!apparition.exitTime) { // the stimuli that had not the opportunity to complete their appearance (game end happened) have no exit time
+                           //  continue;
                          }
 
                           //var elapsed = apparition.exitTime - apparition.apparitionTime;
                           // var elapsed = apparition.exitTime - apparition.apparitionTime;
                           
                           var scoreObject = {
-                              elapsedTime :  apparition._elapsedTime, 
+                              elapsedTime :  apparition.elapsedTime, 
                               //ref       : currentStimulus.value,
-                              score : apparition._isCorrect === apparition._isClicked ? 1 : 0
+                              score : apparition.isCorrect === apparition.isClicked ? 1 : 0
                           };
+
+                           if (!apparition.isCorrect && scoreObject.score == 0) {
+                            console.log("flawwless set to false");
+
+                            flawlessGame = false;
+                            console.log("value : " + currentStimulus.value + ", isCR : " + apparition.isCorrect + ", clicked : " + apparition._isClicked);
+                        }
                           
 
                           this._addRecordOnNotion(currentStimulus,scoreObject, gameGroup )
@@ -303,6 +302,60 @@
                      
                     // console.log(currentStimulus.correctResponse)
 
+                }
+            }
+        }
+
+
+
+        results.flawless = flawlessGame;
+        if (flawlessGame) console.info("##############################\n###### FLAWLESS GAME !! ######\n##############################");
+      ///  record.correctResponseShare = totalCorrectClicks / totalClicks;
+        var isPreviousGameFlawless, isPreviousGameWon;
+        if (!this._userProfile.Maths.minigamesRecords.hasOwnProperty(currentProgressionNode.activityType)) {
+            console.log('flawless case 1')
+
+            this._userProfile[currentProgressionNode.discipline.type].minigamesRecords[currentProgressionNode.activityType] = {
+                currentLevel : 3,
+                currentStage : 3,
+                records : []
+            };
+            isPreviousGameFlawless = false;
+        }
+        else {
+                      console.log('flawless case 2')
+
+            var records = this._userProfile.Maths.minigamesRecords[currentProgressionNode.activityType].records;
+            isPreviousGameWon = records[records.length - 1].hasWon;
+            isPreviousGameFlawless = records[records.length - 1].flawless;
+
+        }
+        
+        if (results.hasWon) {
+                      console.log('flawless case 1B')
+
+            currentProgressionNode.isCompleted = true;
+
+            if (isPreviousGameFlawless && results.flawless) {
+                          console.log('flawless case 2B')
+
+                if (++this._userProfile[currentProgressionNode.discipline.type].minigamesRecords[currentProgressionNode.activityType].currentLevel > 5) {
+                                         console.log('flawless case 3B')
+
+                    this._userProfile[currentProgressionNode.discipline.type].minigamesRecords[currentProgressionNode.activityType].currentLevel = 5;
+               
+                }
+            }
+        } else {
+                                    console.log('flawless case 4B')
+
+            if (!isPreviousGameWon) {
+                                        console.log('flawless case 5B')
+
+                if (--this._userProfile[currentProgressionNode.discipline.type].minigamesRecords[currentProgressionNode.activityType].currentLevel <1) {
+                                             console.log('flawless case 6B')
+
+                    this._userProfile[currentProgressionNode.discipline.type].minigamesRecords[currentProgressionNode.activityType].currentLevel = 1;
                 }
             }
         }
@@ -507,6 +560,12 @@
             params.groupGameType      = 'decimal'  
 
           }
+          if(progressionNode.activityType == 'monkeys'){
+            params.groupGameType      = 'sum'  
+
+          }
+
+          
           
           this._currentActivityParams = params;
           //var pool_type = 'recognition';
@@ -779,10 +838,14 @@ var record_not_av   = [
         };
 
         var roundIndex = null;
+        console.log(staticData.filling)
 
         for (var i = 0 ; i < staticData.filling.length ; i++) {
 
             var row = staticData.filling[i];
+                    console.log( row)
+
+
             if(row.GROUP !== roundIndex) {
                 roundIndex = row.GROUP;
                 refined.data.rounds.push({
@@ -792,8 +855,10 @@ var record_not_av   = [
                 });
             }
             refined.data.rounds[roundIndex - 1].steps[0].stimuli.push({
-               //sentence: row.ORTHOGRAPHY,
-               // wordIndex: words.indexOf(row.WORD)
+               id         : row["SYMBOLIC NUMBER"],
+               value      : row["SYMBOLIC NUMBER"],
+               soundPath  : 'assets/sounds/maths/number_'+row["SYMBOLIC NUMBER"]+'.ogg'
+
            });
         }
           console.log(refined);

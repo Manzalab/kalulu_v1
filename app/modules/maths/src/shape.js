@@ -11,7 +11,7 @@ var ShapeDistractor = require('./shape_distractor.js')
 var ModuleUtils 	= require('./module_utils.js')
 
 
-var Shape = function(shape, stimuli_type, available_shapes, count, shapes_data){
+var Shape = function(shape, stimuli_type, available_shapes, count, shapes_data, lang){
 	var that = this;			
 	
 	var moduleutils = new ModuleUtils()

@@ -45,7 +45,7 @@ var score = new FakeScore()
             roundsCount                     : 4,           // the amount of rounds, (Rafiki will provide one target per round)
             stepDistracterCount             : 2,             //
             language 						: config.language,
-            groupGameType  					: 'counting'    
+            groupGameType  					: 'sum'    
       }
     
 
