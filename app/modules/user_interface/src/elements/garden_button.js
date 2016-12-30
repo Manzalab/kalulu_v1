@@ -36,7 +36,7 @@ define([
             height : this.height
         };
 
-        this.setText(this._id);
+        if (Config.displayGardenIdsOnBrainScreen) this.setText(this._id);
         this.addChild(this._txt);
 
         //console.log(this);

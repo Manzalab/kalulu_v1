@@ -1,5 +1,4 @@
 module.exports = {
-    "gameId": "DummyGame",
     "gameGroup": "sum",
     "discipline": "maths",
     "language": "debug_config",
@@ -23,8 +22,8 @@ module.exports = {
                                         "isClicked": true
                                     }
                                 ],
-                                "nonSymbolicImage": "todo/sum/data/0.jpg",
-                                "soundPath": "xnine/+/right/0.ogg",
+                                "nonSymbolicImage": "assets/images/maths/number_0.jpg",
+                                "soundPath": "assets/sounds/maths/number_0.ogg",
                                 "path": {
                                     "xnumber": "xnine",
                                     "number": 0,
@@ -45,8 +44,8 @@ module.exports = {
                                         "isClicked": false
                                     }
                                 ],
-                                "nonSymbolicImage": "todo/sum/data/3.jpg",
-                                "soundPath": "xnine/+/right/0.ogg",
+                                "nonSymbolicImage": "assets/images/maths/number_3.jpg",
+                                "soundPath": "assets/sounds/maths/number_3.ogg",
                                 "path": {
                                     "xnumber": "xnine",
                                     "number": 0,
@@ -67,8 +66,8 @@ module.exports = {
                                         "isClicked": false
                                     }
                                 ],
-                                "nonSymbolicImage": "todo/sum/data/4.jpg",
-                                "soundPath": "xnine/+/right/0.ogg",
+                                "nonSymbolicImage": "assets/images/maths/number_4.jpg",
+                                "soundPath": "assets/sounds/maths/number_4.ogg",
                                 "path": {
                                     "xnumber": "xnine",
                                     "number": 0,
@@ -104,8 +103,8 @@ module.exports = {
                                         "isClicked": true
                                     }
                                 ],
-                                "nonSymbolicImage": "todo/sum/data/1.jpg",
-                                "soundPath": "xtwo/+/right/1.ogg",
+                                "nonSymbolicImage": "assets/images/maths/number_1.jpg",
+                                "soundPath": "assets/sounds/maths/number_1.ogg",
                                 "path": {
                                     "xnumber": "xtwo",
                                     "number": 1,
@@ -126,8 +125,8 @@ module.exports = {
                                         "isClicked": false
                                     }
                                 ],
-                                "nonSymbolicImage": "todo/sum/data/6.jpg",
-                                "soundPath": "xtwo/+/right/1.ogg",
+                                "nonSymbolicImage": "assets/images/maths/number_6.jpg",
+                                "soundPath": "assets/sounds/maths/number_6.ogg",
                                 "path": {
                                     "xnumber": "xtwo",
                                     "number": 1,
@@ -148,8 +147,8 @@ module.exports = {
                                         "isClicked": false
                                     }
                                 ],
-                                "nonSymbolicImage": "todo/sum/data/4.jpg",
-                                "soundPath": "xtwo/+/right/1.ogg",
+                                "nonSymbolicImage": "assets/images/maths/number_4.jpg",
+                                "soundPath": "assets/sounds/maths/number_4.ogg",
                                 "path": {
                                     "xnumber": "xtwo",
                                     "number": 1,
@@ -185,8 +184,8 @@ module.exports = {
                                         "isClicked": true
                                     }
                                 ],
-                                "nonSymbolicImage": "todo/sum/data/2.jpg",
-                                "soundPath": "xtwo/+/left/2.ogg",
+                                "nonSymbolicImage": "assets/images/maths/number_2.jpg",
+                                "soundPath": "assets/sounds/maths/number_2.ogg",
                                 "path": {
                                     "xnumber": "xtwo",
                                     "number": 2,
@@ -207,8 +206,8 @@ module.exports = {
                                         "isClicked": false
                                     }
                                 ],
-                                "nonSymbolicImage": "todo/sum/data/6.jpg",
-                                "soundPath": "xtwo/+/left/2.ogg",
+                                "nonSymbolicImage": "assets/images/maths/number_6.jpg",
+                                "soundPath": "assets/sounds/maths/number_6.ogg",
                                 "path": {
                                     "xnumber": "xtwo",
                                     "number": 2,
@@ -229,8 +228,8 @@ module.exports = {
                                         "isClicked": false
                                     }
                                 ],
-                                "nonSymbolicImage": "todo/sum/data/1.jpg",
-                                "soundPath": "xtwo/+/left/2.ogg",
+                                "nonSymbolicImage": "assets/images/maths/number_1.jpg",
+                                "soundPath": "assets/sounds/maths/number_1.ogg",
                                 "path": {
                                     "xnumber": "xtwo",
                                     "number": 2,
@@ -266,8 +265,8 @@ module.exports = {
                                         "isClicked": true
                                     }
                                 ],
-                                "nonSymbolicImage": "todo/sum/data/3.jpg",
-                                "soundPath": "xzero/+/left/3.ogg",
+                                "nonSymbolicImage": "assets/images/maths/number_3.jpg",
+                                "soundPath": "assets/sounds/maths/number_3.ogg",
                                 "path": {
                                     "xnumber": "xzero",
                                     "number": 3,
@@ -288,8 +287,8 @@ module.exports = {
                                         "isClicked": false
                                     }
                                 ],
-                                "nonSymbolicImage": "todo/sum/data/8.jpg",
-                                "soundPath": "xzero/+/left/3.ogg",
+                                "nonSymbolicImage": "assets/images/maths/number_8.jpg",
+                                "soundPath": "assets/sounds/maths/number_8.ogg",
                                 "path": {
                                     "xnumber": "xzero",
                                     "number": 3,
@@ -310,8 +309,8 @@ module.exports = {
                                         "isClicked": false
                                     }
                                 ],
-                                "nonSymbolicImage": "todo/sum/data/7.jpg",
-                                "soundPath": "xzero/+/left/3.ogg",
+                                "nonSymbolicImage": "assets/images/maths/number_7.jpg",
+                                "soundPath": "assets/sounds/maths/number_7.ogg",
                                 "path": {
                                     "xnumber": "xzero",
                                     "number": 3,
@@ -347,8 +346,8 @@ module.exports = {
                                         "isClicked": true
                                     }
                                 ],
-                                "nonSymbolicImage": "todo/sum/data/4.jpg",
-                                "soundPath": "xzero/+/left/4.ogg",
+                                "nonSymbolicImage": "assets/images/maths/number_4.jpg",
+                                "soundPath": "assets/sounds/maths/number_4.ogg",
                                 "path": {
                                     "xnumber": "xzero",
                                     "number": 4,
@@ -369,8 +368,8 @@ module.exports = {
                                         "isClicked": false
                                     }
                                 ],
-                                "nonSymbolicImage": "todo/sum/data/8.jpg",
-                                "soundPath": "xzero/+/left/4.ogg",
+                                "nonSymbolicImage": "assets/images/maths/number_8.jpg",
+                                "soundPath": "assets/sounds/maths/number_8.ogg",
                                 "path": {
                                     "xnumber": "xzero",
                                     "number": 4,
@@ -391,8 +390,8 @@ module.exports = {
                                         "isClicked": false
                                     }
                                 ],
-                                "nonSymbolicImage": "todo/sum/data/9.jpg",
-                                "soundPath": "xzero/+/left/4.ogg",
+                                "nonSymbolicImage": "assets/images/maths/number_9.jpg",
+                                "soundPath": "assets/sounds/maths/number_9.ogg",
                                 "path": {
                                     "xnumber": "xzero",
                                     "number": 4,
@@ -428,8 +427,8 @@ module.exports = {
                                         "isClicked": true
                                     }
                                 ],
-                                "nonSymbolicImage": "todo/sum/data/5.jpg",
-                                "soundPath": "xone/+/left/5.ogg",
+                                "nonSymbolicImage": "assets/images/maths/number_5.jpg",
+                                "soundPath": "assets/sounds/maths/number_5.ogg",
                                 "path": {
                                     "xnumber": "xone",
                                     "number": 5,
@@ -450,8 +449,8 @@ module.exports = {
                                         "isClicked": false
                                     }
                                 ],
-                                "nonSymbolicImage": "todo/sum/data/9.jpg",
-                                "soundPath": "xone/+/left/5.ogg",
+                                "nonSymbolicImage": "assets/images/maths/number_9.jpg",
+                                "soundPath": "assets/sounds/maths/number_9.ogg",
                                 "path": {
                                     "xnumber": "xone",
                                     "number": 5,
@@ -472,8 +471,8 @@ module.exports = {
                                         "isClicked": false
                                     }
                                 ],
-                                "nonSymbolicImage": "todo/sum/data/4.jpg",
-                                "soundPath": "xone/+/left/5.ogg",
+                                "nonSymbolicImage": "assets/images/maths/number_4.jpg",
+                                "soundPath": "assets/sounds/maths/number_4.ogg",
                                 "path": {
                                     "xnumber": "xone",
                                     "number": 5,
@@ -509,8 +508,8 @@ module.exports = {
                                         "isClicked": true
                                     }
                                 ],
-                                "nonSymbolicImage": "todo/sum/data/6.jpg",
-                                "soundPath": "xtwo/+/left/6.ogg",
+                                "nonSymbolicImage": "assets/images/maths/number_6.jpg",
+                                "soundPath": "assets/sounds/maths/number_6.ogg",
                                 "path": {
                                     "xnumber": "xtwo",
                                     "number": 6,
@@ -531,8 +530,8 @@ module.exports = {
                                         "isClicked": false
                                     }
                                 ],
-                                "nonSymbolicImage": "todo/sum/data/10.jpg",
-                                "soundPath": "xtwo/+/left/6.ogg",
+                                "nonSymbolicImage": "assets/images/maths/number_10.jpg",
+                                "soundPath": "assets/sounds/maths/number_10.ogg",
                                 "path": {
                                     "xnumber": "xtwo",
                                     "number": 6,
@@ -553,8 +552,8 @@ module.exports = {
                                         "isClicked": false
                                     }
                                 ],
-                                "nonSymbolicImage": "todo/sum/data/10.jpg",
-                                "soundPath": "xtwo/+/left/6.ogg",
+                                "nonSymbolicImage": "assets/images/maths/number_10.jpg",
+                                "soundPath": "assets/sounds/maths/number_10.ogg",
                                 "path": {
                                     "xnumber": "xtwo",
                                     "number": 6,
@@ -590,8 +589,8 @@ module.exports = {
                                         "isClicked": true
                                     }
                                 ],
-                                "nonSymbolicImage": "todo/sum/data/7.jpg",
-                                "soundPath": "xfour/+/left/7.ogg",
+                                "nonSymbolicImage": "assets/images/maths/number_7.jpg",
+                                "soundPath": "assets/sounds/maths/number_7.ogg",
                                 "path": {
                                     "xnumber": "xfour",
                                     "number": 7,
@@ -612,8 +611,8 @@ module.exports = {
                                         "isClicked": false
                                     }
                                 ],
-                                "nonSymbolicImage": "todo/sum/data/1.jpg",
-                                "soundPath": "xfour/+/left/7.ogg",
+                                "nonSymbolicImage": "assets/images/maths/number_1.jpg",
+                                "soundPath": "assets/sounds/maths/number_1.ogg",
                                 "path": {
                                     "xnumber": "xfour",
                                     "number": 7,
@@ -634,8 +633,8 @@ module.exports = {
                                         "isClicked": false
                                     }
                                 ],
-                                "nonSymbolicImage": "todo/sum/data/6.jpg",
-                                "soundPath": "xfour/+/left/7.ogg",
+                                "nonSymbolicImage": "assets/images/maths/number_6.jpg",
+                                "soundPath": "assets/sounds/maths/number_6.ogg",
                                 "path": {
                                     "xnumber": "xfour",
                                     "number": 7,
@@ -671,8 +670,8 @@ module.exports = {
                                         "isClicked": true
                                     }
                                 ],
-                                "nonSymbolicImage": "todo/sum/data/8.jpg",
-                                "soundPath": "xseven/+/left/8.ogg",
+                                "nonSymbolicImage": "assets/images/maths/number_8.jpg",
+                                "soundPath": "assets/sounds/maths/number_8.ogg",
                                 "path": {
                                     "xnumber": "xseven",
                                     "number": 8,
@@ -693,8 +692,8 @@ module.exports = {
                                         "isClicked": false
                                     }
                                 ],
-                                "nonSymbolicImage": "todo/sum/data/7.jpg",
-                                "soundPath": "xseven/+/left/8.ogg",
+                                "nonSymbolicImage": "assets/images/maths/number_7.jpg",
+                                "soundPath": "assets/sounds/maths/number_7.ogg",
                                 "path": {
                                     "xnumber": "xseven",
                                     "number": 8,
@@ -715,8 +714,8 @@ module.exports = {
                                         "isClicked": false
                                     }
                                 ],
-                                "nonSymbolicImage": "todo/sum/data/2.jpg",
-                                "soundPath": "xseven/+/left/8.ogg",
+                                "nonSymbolicImage": "assets/images/maths/number_2.jpg",
+                                "soundPath": "assets/sounds/maths/number_2.ogg",
                                 "path": {
                                     "xnumber": "xseven",
                                     "number": 8,
@@ -752,8 +751,8 @@ module.exports = {
                                         "isClicked": true
                                     }
                                 ],
-                                "nonSymbolicImage": "todo/sum/data/9.jpg",
-                                "soundPath": "xone/+/left/9.ogg",
+                                "nonSymbolicImage": "assets/images/maths/number_9.jpg",
+                                "soundPath": "assets/sounds/maths/number_9.ogg",
                                 "path": {
                                     "xnumber": "xone",
                                     "number": 9,
@@ -774,8 +773,8 @@ module.exports = {
                                         "isClicked": false
                                     }
                                 ],
-                                "nonSymbolicImage": "todo/sum/data/7.jpg",
-                                "soundPath": "xone/+/left/9.ogg",
+                                "nonSymbolicImage": "assets/images/maths/number_7.jpg",
+                                "soundPath": "assets/sounds/maths/number_7.ogg",
                                 "path": {
                                     "xnumber": "xone",
                                     "number": 9,
@@ -796,8 +795,8 @@ module.exports = {
                                         "isClicked": false
                                     }
                                 ],
-                                "nonSymbolicImage": "todo/sum/data/2.jpg",
-                                "soundPath": "xone/+/left/9.ogg",
+                                "nonSymbolicImage": "assets/images/maths/number_2.jpg",
+                                "soundPath": "assets/sounds/maths/number_2.ogg",
                                 "path": {
                                     "xnumber": "xone",
                                     "number": 9,
@@ -833,8 +832,8 @@ module.exports = {
                                         "isClicked": true
                                     }
                                 ],
-                                "nonSymbolicImage": "todo/sum/data/10.jpg",
-                                "soundPath": "xfive/+/left/10.ogg",
+                                "nonSymbolicImage": "assets/images/maths/number_10.jpg",
+                                "soundPath": "assets/sounds/maths/number_10.ogg",
                                 "path": {
                                     "xnumber": "xfive",
                                     "number": 10,
@@ -855,8 +854,8 @@ module.exports = {
                                         "isClicked": false
                                     }
                                 ],
-                                "nonSymbolicImage": "todo/sum/data/8.jpg",
-                                "soundPath": "xfive/+/left/10.ogg",
+                                "nonSymbolicImage": "assets/images/maths/number_8.jpg",
+                                "soundPath": "assets/sounds/maths/number_8.ogg",
                                 "path": {
                                     "xnumber": "xfive",
                                     "number": 10,
@@ -877,8 +876,8 @@ module.exports = {
                                         "isClicked": false
                                     }
                                 ],
-                                "nonSymbolicImage": "todo/sum/data/9.jpg",
-                                "soundPath": "xfive/+/left/10.ogg",
+                                "nonSymbolicImage": "assets/images/maths/number_9.jpg",
+                                "soundPath": "assets/sounds/maths/number_9.ogg",
                                 "path": {
                                     "xnumber": "xfive",
                                     "number": 10,

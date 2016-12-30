@@ -71,6 +71,7 @@
 
                         stimulus = data.rounds[i].steps[j].stimuli[k];
                         if (stimulus.value !== "") {
+                            console.log(stimulus.value, stimulus.soundPath);
                             this.game.load.audio(stimulus.value, stimulus.soundPath);
                         }
                     }

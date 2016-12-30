@@ -93,9 +93,11 @@ define([
         this._createFertilizerText();
 
         // Rewards
+        this._rewardChapter = [];
         this._rewardLessonLanguage = [];
         this._rewardLessonMaths = [];
 
+        this.getDynamicRewardsBoth();
         this.getDynamicRewardsLanguage();
         this.getDynamicRewardsMaths();
 
@@ -117,6 +119,7 @@ define([
         }
 
         this.unlockBonusPath();
+        this.undrawBonusPath();
 
         // back
         this._backButton.onClick = this._onClickOnBackButton.bind(this);
@@ -233,8 +236,36 @@ define([
         }
     };
 
-    GardenScreen.prototype.unlockStarMiddle = function unlockStarMiddle() {
+    GardenScreen.prototype.undrawBonusPath = function undrawBonusPath() {
+        var chapterIndex, i, bonusPathA, bonusPathB;
+        var chapterCount = 20;
+        var rewardCount = this._rewardChapter.length;
+        var bonusChapter = false;
 
+        console.log(rewardCount);
+
+        for(chapterIndex = 1; chapterIndex < chapterCount; chapterIndex++) {
+            for(i = 0; i < rewardCount; i++) {
+                if(this._rewardChapter[i] == chapterIndex) bonusChapter = true;
+            }
+            if(!bonusChapter) {
+                bonusPathA = this._bonusPathA[chapterIndex];
+                bonusPathB = this._bonusPathB[chapterIndex];
+
+                this._bonusPathA[chapterIndex] = null;
+                this._bonusPathB[chapterIndex] = null;
+
+                bonusPathA.parent.removeChild(bonusPathA);
+                bonusPathB.parent.removeChild(bonusPathB);
+
+                bonusPathA.destroy();
+                bonusPathB.destroy();
+            }
+            bonusChapter = false;
+        }
+    }
+
+    GardenScreen.prototype.unlockStarMiddle = function unlockStarMiddle() {
         var id = this._focusedGarden.id;
         
         if(this._bonusPathA[id].state === "On" && this._bonusPathB[id].state === "On") {
@@ -247,6 +278,17 @@ define([
         else if(this._bonusPathA[id].state === "On" || this._bonusPathB[id].state === "On") this._focusedGarden.starMiddle.setModeMedium();
         else this._focusedGarden.starMiddle.setModeSmall();
     };
+
+    GardenScreen.prototype.getDynamicRewardsBoth = function getDynamicRewardsBoth() {
+        var chapterIndex;
+        var chapterCount = 20;
+
+        for(chapterIndex = 1; chapterIndex <= chapterCount; chapterIndex++) {
+            if(DynamicRewards.levelRewards.both[chapterIndex] != null) {
+                this._rewardChapter.push(chapterIndex);
+            }
+        }
+    }
 
     GardenScreen.prototype.getDynamicRewardsLanguage = function getDynamicRewardsLanguage() {
         var lessonIndex = 1;
@@ -393,7 +435,7 @@ define([
 
         this._focusedGarden.undraw(this._lessonDotContainer);
         this._focusedGarden.undrawPlant();
-        this._focusedGarden.undrawStar();
+        if(this._focusedGarden.starMiddle) this._focusedGarden.undrawStar();
 
         this._removeSlideFunctions();
     };
@@ -409,10 +451,12 @@ define([
 
         this._focusedGarden.draw(this._data.data.language[targetGardenId - 1], this._data.data.maths[targetGardenId - 1], this._lessonDotContainer, this._lessonsNumber, this._rewardLessonLanguage, this._rewardLessonMaths);
         this._focusedGarden.drawPlant();
-        this._focusedGarden.drawStar();
+        this._focusedGarden.drawStar(this._rewardChapter);
 
         this.unlockPlants();
-        this.unlockStarMiddle();
+        if(this._focusedGarden.starMiddle) {
+            this.unlockStarMiddle();
+        }
     };
 
     GardenScreen.prototype._removeSlideFunctions = function _removeSlideFunctions () {
@@ -562,7 +606,7 @@ define([
     }
 
     GardenScreen.prototype._onClickOnBackButton = function _onClickOnBackButton (eventData) {
-        
+        if (this._interfaceManager.kaluluCharacter.isTalking) return;
         SoundManager.getSound("click").play();
         this._interfaceManager.requestBrainScreen();
     };

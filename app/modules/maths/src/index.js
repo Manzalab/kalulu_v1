@@ -713,6 +713,11 @@ var record_not_av   = [
                     globalLevel : 1,
                     records :[]
                 },
+                lookandlearn : {
+                    localLevel  : 1,
+                    globalLevel : 1,
+                    records :[]
+                },
                 monkeys : {
                     localLevel  : 1,
                     globalLevel : 1,

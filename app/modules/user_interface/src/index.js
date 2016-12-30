@@ -50,6 +50,7 @@
         this._renderingManager = null;
         this._screensManager   = null;
         this._loadingManager   = null;
+        this._debugPanel       = null;
 
         /**
          * A lists of screen instances by Name
@@ -60,6 +61,7 @@
 
         this._init();
         this.kaluluCharacter = KaluluCharacter;
+        if (!Config.skipKalulu) this.kaluluCharacter.initEvents(eventSystem);
         this.rewards = Reward;
         this.unlockedRewards = ["Mamba_mwenye_njaa"];
         this._eventSystem.on(Events.GAME.UNLOCK_REWARD_TOYCHEST, this._onRewardUnlocked.bind(this));
@@ -133,12 +135,8 @@
 
     UserInterface.prototype.requestMinigame = function requestMinigame (node) {
         this._eventSystem.once(Events.GAME.GOTO_ACTIVITY, this._onGotoActivity, this);
-        if (Config.enableQAControls) {
-            this._eventSystem.emit(Events.COMMANDS.GOTO_ACTIVITY_REQUEST, node, this._debugPanel);
-        }
-        else {
-            this._eventSystem.emit(Events.COMMANDS.GOTO_ACTIVITY_REQUEST, node);
-        }
+        this._eventSystem.emit(Events.COMMANDS.GOTO_ACTIVITY_REQUEST, node, this._debugPanel);
+        this._eventSystem.emit(Events.COMMANDS.GOTO_ACTIVITY_REQUEST, node);
     };
 
     UserInterface.prototype.requestBonusMinigame = function requestBonusMinigame (data) {
@@ -190,18 +188,18 @@
         this._loadingManager = new LoadingManager(this._eventSystem);
         
         // debug && tuning
-        if (Config.enableTransitionsTuning || Config.enableMinigameTuning || Config.enableQAControls) {
+        if (Config.enableTransitionsTuning || Config.enableMinigameTuning || Config.enableQAControls || !Config.skipKalulu) {
             this._debugPanel = new Dat.GUI();
+            this._debugPanelFolderNames = {};
         }
 
-        if (Config.enableQAControls) {
-            this._initQADebugPanel();
-        }
+        this._addDebugFolders();
+
         // start listening to Events
         this._eventSystem.on(Events.APPLICATION.MAIN_LOOP, this._renderingLoop, this);
         
         // debug to remove
-        this._eventSystem.once(Events.GAME.GOTO_ACTIVITY, this._onGotoActivity, this);   
+        //this._eventSystem.once(Events.GAME.GOTO_ACTIVITY, this._onGotoActivity, this);   
         
         this._eventSystem.once(Events.GAME.GOTO_TITLE_CARD, this._onGotoTitleCard, this);
         this._eventSystem.once(Events.GAME.START_PRELOAD, this._startPreload, this);
@@ -347,12 +345,14 @@
     UserInterface.prototype._onGotoActivity = function _onGotoActivity (eventData) {
         console.log(eventData);
         if (eventData.shouldRemoveRenderer) this._renderingManager.removeRenderer();
+        if (this._debugPanel) this._clearDebugPanelFolders();
         // SoundManager.stopAllAmbiances();
         this._eventSystem.once(Events.GAME.BACK_FROM_ACTIVITY, this._onBackFromActivity, this);
     };
 
     UserInterface.prototype._onBackFromActivity = function _onBackFromActivity (eventData, chaptersProgression, userProfile) {
-        console.log(eventData.children[0]);
+        console.log(eventData);
+        if (this._debugPanel) this._addDebugFolders();
         //SoundManager.startAmbiance("Bird");
         this._dataForLesson = eventData;
         if (!this._renderingManager.rendererIsDisplayed) this._renderingManager.addRenderer();
@@ -380,8 +380,8 @@
         if (this._userProfile.kaluluTalks.toyChestScreen)
         {
             this.kaluluCharacter.startTalk("kalulu_intro_toychest", ["kalulu_tuto_toychest01"]);
-            this.kaluluCharacter.x = this.kaluluCharacter.width/2;
-            this.kaluluCharacter.y = -this.kaluluCharacter.height/3;
+            this.kaluluCharacter.x = 0;
+            this.kaluluCharacter.y = 0;
             this._screens.toyChestScreen.addChild(this.kaluluCharacter); // j'addchild dans le toychestScreen pcq je n'ai pas de hud BL ainsi qu'un kalulubutton pour l'instant
             this._userProfile.kaluluTalks.toyChestScreen = false;
         }
@@ -418,29 +418,61 @@
     // ###  DEBUG METHODS  ########################################################################################################################
     // ##############################################################################################################################################
 
-    UserInterface.prototype._initQADebugPanel = function _initQADebugPanel () {
-        this._debugPanelQAName = "QA";
-        this._debugPanelQA = this._debugPanel.addFolder(this._debugPanelQAName);
+    /**
+     * Called at initialisation. Setup the appropriate groups of debug functions depending on Config.
+    **/
+    UserInterface.prototype._addDebugFolders = function _addDebugFolders () {
+        console.log('adding debug Folders');
+        if (Config.enableQAControls) {
+            this._initQADebugPanel();
+        }
+        if (!Config.skipKalulu) {
+            this._initKaluluDebugPanel();
+        }
+    }
 
+    UserInterface.prototype._initQADebugPanel = function _initQADebugPanel () {
+
+        this._debugPanelFolderNames.QA = 'QA'; // for easier cleaning of panel. see function _clearDebugPanelFolders
+
+        this._debugPanelQA = this._debugPanel.addFolder(this._debugPanelFolderNames.QA);
+        
         this.unlockUpToChapter = 1;
         this._debugPanelQA.add(this, "unlockUpToChapter").min(1).max(20).step(1).listen();
         this._debugPanelQA.add(this, "executeUnlock");
 
-        this.unlockNeuroEnergy = 10;
-        this._debugPanelQA.add(this, "unlockNeuroEnergy").min(0).max(300).step(1).listen();
-        this._debugPanelQA.add(this, "executeUnlockNeuroEnergy");
+        this.requireNeuroEnergy = 10;
+        this._debugPanelQA.add(this, "requireNeuroEnergy").min(0).max(300).step(1).listen();
+        this._debugPanelQA.add(this, "sendRequire");
+        this._debugPanelQA.open();
     };
 
-    UserInterface.prototype._clearQADebugPanel = function _initQADebugPanel () {
-        this._debugPanel.removeFolder(this._debugPanelQAName);
+    UserInterface.prototype._initKaluluDebugPanel = function _initKaluluDebugPanel () {
+        
+        this._debugPanelFolderNames.Tuto = 'Kalulu Tuto';
+
+        this._debugPanelKalulu = this._debugPanel.addFolder(this._debugPanelFolderNames.Tuto);
+        this._debugPanelKalulu.add(this, "skipKaluluOnClick");
+        this._debugPanelKalulu.open();
+    };
+    
+    UserInterface.prototype.skipKaluluOnClick = function skipKaluluOnClick() {
+        this._eventSystem.emit(Events.DEBUG.SKIP_KALULU);
+    };
+
+    UserInterface.prototype._clearDebugPanelFolders = function _clearDebugPanelFolders () {
+        for (var folderName in this._debugPanelFolderNames) {
+            if (!this._debugPanelFolderNames.hasOwnProperty(folderName)) continue;
+            this._debugPanel.removeFolder(this._debugPanelFolderNames[folderName]);
+        }
     };
 
     UserInterface.prototype.executeUnlock = function executeUnlock () {
         this._eventSystem.emit(Events.DEBUG.UNLOCK_DEBUG, this.unlockUpToChapter);
     };
 
-    UserInterface.prototype.executeUnlockNeuroEnergy = function executeUnlockNeuroEnergy () {
-        this._eventSystem.emit(Events.DEBUG.UNLOCK_NEUROENERGY_DEBUG, this.unlockNeuroEnergy);
+    UserInterface.prototype.sendRequire = function sendRequire () {
+        this._eventSystem.emit(Events.DEBUG.UNLOCK_NEUROENERGY_DEBUG, this.requireNeuroEnergy);
     };
     
     module.exports = UserInterface;

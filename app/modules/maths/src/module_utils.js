@@ -37,7 +37,7 @@ var ModuleUtils = function(){
 			st.nonSymbolicImage	= 'todo/'+dataobject+'/data/'+value_+'.jpg'
 		 	
 
-		 	st.soundPath =  'assets/'+lang+'/sounds/number_'+value_+'.ogg'
+		 	st.soundPath =  'assets/sounds/maths/number_'+value_+'.ogg'
 		 	// dataset[value_].soundPath
 		}
 

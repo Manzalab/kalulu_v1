@@ -17,6 +17,7 @@
             params.localRemediationStage = difficultyParams.localStage; // The player's level is stored within Kalulu Player Profile.
 
             this.game.pedagogicData = rafiki.getPedagogicData(params.getGlobalParams()); // The global parameters contains the pedagogic data parameters.
+            this.game.discipline = this.game.pedagogicData.discipline;
             console.info("[Setup State] New Data gathered from Rafiki");
             this.state.start('Game');
         }

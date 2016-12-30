@@ -31,14 +31,29 @@
 function patchDat () {
 
     Dat.GUI.prototype.removeFolder =  function removeFolder (name) {
-    var folder = this.__folders[name];
-    if (!folder) {
-      return;
-    }
-    folder.close();
-    this.__ul.removeChild(folder.domElement.parentNode);
-    delete this.__folders[name];
-    this.onResize();
+        
+        // console.log('[Dat.GUI] Trying to remove Dat.gui folder <' + name + '> : ');
+        
+        var folder = this.__folders[name];
+        if (!folder) {
+          return;
+        }
+        folder.close();
+        this.__ul.removeChild(folder.domElement.parentNode);
+        delete this.__folders[name];
+        
+        // console.log(name + ' : ' + this.__folders[name]);
+        
+        // var removed = true;
+        // for (var folderName in this.__folders) {
+        //     if (!this.__folders.hasOwnProperty(folderName)) continue;
+        //     if (folderName === name) {
+        //         removes = false;
+        //         console.log('[Dat.GUI] Error : Ther was an issue and it has revealed impossible to remove the folder <' + name + '>.');
+        //     }
+        // }
+        // if (removed) console.log('[Dat.GUI] Success. The folder <' + name + '> has correctly been removed.');
+        this.onResize();
   };
 }
 

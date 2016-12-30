@@ -1,5 +1,5 @@
 ﻿module.exports = {
-    "discipline": "normal",
+    "discipline": "language",
     "data": {
         "rounds": [
         {

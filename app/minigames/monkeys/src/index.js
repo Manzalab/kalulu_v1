@@ -5,7 +5,7 @@
     var Boot               = require('common/src/boot');
     var Setup              = require('common/src/setup');
     var MinigameParameters = require('common/src/minigame_parameters');
-    var Config             = require('common/src/minigame_config');
+    var Config             = require('./config');
 
     var Preloader          = require('./preloader');
     var Game               = require('./game');
@@ -24,8 +24,14 @@
     function GameLauncher (rafiki) {
 
         this._rafiki = rafiki;
-        this._config = new Config();
-        this._config.request('minigames/monkeys/assets/data', this.onConfigLoaded.bind(this));
+        if (typeof Config === 'function') {
+            this._config = new Config();
+            this._config.request('minigames/caterpillar/assets/data', this.onConfigLoaded.bind(this));
+        }
+        else {
+            this._config = Config;
+            this.onConfigLoaded();
+        }
     }   
     
     GameLauncher.prototype.onConfigLoaded = function onConfigLoaded () {

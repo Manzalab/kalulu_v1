@@ -23,6 +23,7 @@
         StateGraphic.call(this);
         this._assetName = "Kalulu";
         this._factory = new MovieClipAnimFactory();
+
         /**
          * Description of the member
          * @type {string}
@@ -43,7 +44,6 @@
         this.isTalking = false;
         this._kaluluSpeech = null;
         this._nextSpeechs = [];
-
     }
 
     KaluluCharacter.prototype = Object.create(StateGraphic.prototype);
@@ -64,7 +64,11 @@
     // ###  METHODS  ################################################################################################################################
     // ##############################################################################################################################################
 
-
+    KaluluCharacter.prototype.initEvents = function initEvents(eventSystem)
+    {
+        this._eventSystem = eventSystem;
+        this._eventSystem.on(Events.DEBUG.SKIP_KALULU, this.skip.bind(this));
+    }
     /**
      * Returns something
      * @param paramName {Type} description of the parameter
@@ -85,8 +89,9 @@
 
     KaluluCharacter.prototype.startTalk = function startTalk(talkName, nextTalks, shouldStay)
     {
+        if (Config.skipKalulu) return;
         this.alpha = 1;
-        this._isStaying = typeof shouldStay==='undefined'? false:true;
+        this._isStaying = typeof shouldStay==='undefined'?false:true;
         if (this.kaluluButton!==undefined) this.kaluluButton.visible = false;
         if (this._kaluluSpeech && this.isTalking) this._kaluluSpeech.stop();
         this._kaluluSpeech = SoundManager.getSound(talkName);
@@ -129,19 +134,21 @@
     {
         var isSpeechEnded = this._nextSpeechs.length<=1;
         this._kaluluSpeech = SoundManager.getSound(this._nextSpeechs.shift());
-        this._kaluluSpeech.on("end", isSpeechEnded?this.disappear.bind(this):this.keepTalking.bind(this));
+        this._kaluluSpeech.once("end", isSpeechEnded?this.disappear.bind(this):this.keepTalking.bind(this));
         this._setState(this.IDLE_2_STATE, true);
-        this._anim.onComplete = this.setAnimEnd.bind(this);
+        
         this.isTalking = false;
-        setTimeout(function(){
+        this._nextSpeechTimeout = setTimeout(function(){
             this.isTalking = true;
             this._setState(this.TALK_3_STATE);
+            this._anim.onComplete = this.setAnimEnd.bind(this);
             this._kaluluSpeech.play();
         }.bind(this),1618);
     }
 
     KaluluCharacter.prototype.update = function update()
     {
+        //console.log(this.isTalking);
         if (this.isTalking && this.hasAnimEnded()) //remplacer this._anim.isAnimEnd par un isAnimEnd qui fonctionne et ça devrait marcher
         {
             var lRandom = Math.random();
@@ -161,6 +168,7 @@
                 this._fade = false;
                 this.alpha = 0;
                 if (this.kaluluButton!==undefined) this.kaluluButton.visible = true;
+                this.isTalking = false;
             }  
         }
     }
@@ -171,11 +179,12 @@
 
     KaluluCharacter.prototype.disappear = function disappear()
     {
-        this.isTalking = false;
+        
         this._anim.onComplete = null;
         if (this._isStaying) 
         {
             this._setState(this.IDLE_1_STATE, true);
+            this.isTalking= false;
             return;
         }
         SoundManager.getSound("kaluluOff").play();
@@ -190,6 +199,14 @@
         this.isTalking = false;
     }
 
+    KaluluCharacter.prototype.skip = function skip()
+    {
+        if (this.parent) this.parent.removeChild(this);
+        if (this._kaluluSpeech) this._kaluluSpeech.stop();
+        this.isTalking = false;
+        if (!this.kaluluButton.visible) this.kaluluButton.visible = true;
+        if (this._nextSpeechTimeout)  clearTimeout(this._nextSpeechTimeout);
+    }
 
     module.exports = new KaluluCharacter();
 })();
