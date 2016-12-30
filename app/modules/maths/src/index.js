@@ -198,21 +198,25 @@
 
 
     MathsModule.prototype._processCountingResults = function _processCountingResults(currentProgressionNode, results, hasWon) {
-      
-      var gameGroup= results.setup.gameGroup
+       console.log('_processCountingResults')
+       console.log(currentProgressionNode)
+       console.log(hasWon)
 
 
-      console.log(results)
+       var gameGroup = results._results.gameGroup
+
+
+       console.log(results)
 
 
        console.log('_process '+gameGroup+' Results')
       
         // console.log(hasWon);
        
-        if(!results.setup.data || !results.setup.data.rounds){
+        if(!results._results.data || !results._results.data.rounds){
             return false;
         }
-        var result = results.setup.data.rounds;
+        var result = results._results.data.rounds;
         console.log(result)
 
         var score ={}
@@ -265,18 +269,18 @@
 
 
               
-                        if(apparition.isClicked == true && apparition.isCorrect == true){
+                        if(apparition._isClicked == true && apparition._isCorrect == true){
                           //console.log('win case')
                          // apparition.wrong = false
 
                         }
-                        if(apparition.isClicked == true && apparition.isCorrect == false){
+                        if(apparition._isClicked == true && apparition._isCorrect == false){
                          // console.log('loose case')
                          // apparition.wrong = true
                           perfect_step = false
                         }
 
-                         if (!apparition.exitTime) { // the stimuli that had not the opportunity to complete their appearance (game end happened) have no exit time
+                         if (!apparition._exitTime) { // the stimuli that had not the opportunity to complete their appearance (game end happened) have no exit time
                            //   continue;
                          }
 
@@ -284,9 +288,9 @@
                           // var elapsed = apparition.exitTime - apparition.apparitionTime;
                           
                           var scoreObject = {
-                              elapsedTime :  apparition.elapsedTime, 
+                              elapsedTime :  apparition._elapsedTime, 
                               //ref       : currentStimulus.value,
-                              score : apparition.isCorrect === apparition.isClicked ? 1 : 0
+                              score : apparition._isCorrect === apparition._isClicked ? 1 : 0
                           };
                           
 
@@ -344,7 +348,7 @@
             var side_     = stimuli.path.side
             var sign_     = stimuli.path.sign
             var xnumber_  = stimuli.path.xnumber
-            var number_    = stimuli.path.number 
+            var number_   = stimuli.path.number 
             var group_    = 'sum'
 
             if(sign_ == '+'){
