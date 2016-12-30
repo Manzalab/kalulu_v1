@@ -71,11 +71,11 @@ var ModuleUtils = function(){
 		// console.log('addFakeApparitions')
 
 	
-		
+		var out = []
 		if(mode == 'prod'){
-				return 
+				return out
 		}
-			var out = []
+
 
 		while(out.length < count  ){ 
 			var rand_click = Math.random() >= 0.5;
