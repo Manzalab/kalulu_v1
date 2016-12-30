@@ -32,7 +32,7 @@ var ModuleUtils = function(){
 			"stimuli_type"		: dataobject,
 			"apparitions"		: this.addFakeApparitions(isCorrect,1, 'perfect_all') //perfect_nothing
 		}
-		if(value_ !==null && dataset[value_]){
+		if(value_ !=='' && dataset[value_]){
 			// console.log(dataset[value_])
 			st.nonSymbolicImage	= 'todo/'+dataobject+'/data/'+value_+'.jpg'
 		 	
@@ -84,20 +84,20 @@ var ModuleUtils = function(){
 			// each clicked on incorrect / notclicked on correct
 			
 			var apparition ={
-				'elapsedTime'	: 1000,
-				'isCorrect'		: isCorrect,
-				'isClosed'		: true,
-				'exitTime'		: 1566
+				'_elapsedTime'	: 1000,
+				'_isCorrect'	: isCorrect,
+				'_isClosed'		: true,
+				'_exitTime'		: 1566
 			}
 
 			if(mode == 'perfect_nothing'){
-				apparition.isClicked = !isCorrect; 
+				apparition._isClicked = !isCorrect; 
 			}
 			else if(mode == 'perfect_all'){
-				apparition.isClicked = isCorrect;
+				apparition._isClicked = isCorrect;
 			}
 			else{
-				apparition.isClicked = rand_click
+				apparition._isClicked = rand_click
 			}	
 			out.push(apparition)		
 		}

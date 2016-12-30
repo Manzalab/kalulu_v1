@@ -146,7 +146,7 @@ var Distractor = function (number, distractors_available, count, decimal) {
 	while(out.length < count){
 		var distractor_d = {
 			'correctResponse': false,
-			'value': null
+			'value': ''
 		}
 		out.push(distractor_d)
 	}
