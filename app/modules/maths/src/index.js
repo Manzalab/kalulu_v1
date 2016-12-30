@@ -801,7 +801,7 @@ var record_not_av   = [
     MathsModule.prototype._initNotionsListByLesson = function _initNotionsListByLesson (notionsList) {
         var lNotionListByLesson = {};
         var lNotion;
-        console.log(notionsList)
+        if (Config.debugMathsModule) console.log(notionsList)
         for (var notionId in notionsList) {
             if (!notionsList.hasOwnProperty(notionId)) continue;
 
