@@ -39,19 +39,22 @@ define([
 
         if (!this._data) this._createSave();
         if (Config.enableGlobalVars) window.kalulu.userProfile = this;
-        /*if (this._data.kaluluTalks===undefined)*/ this._data.kaluluTalks = {
+        if (!this._data.kaluluTalks) this._data.kaluluTalks = {
                 brainScreen : true,
                 firstTreasure : true,
                 gardenScreen : true,
                 gardenLetter : true,
                 gardenLesson : true,
+                firstPlantEvolve : true,
+                lastPlantEvolve : true,
                 gardenPlant : true,
                 firstStar : true,
                 lesson1 : true,
                 lessonGame1 : true,
                 lessonGame2 : true,
                 lesson2 : true,
-                toyChestScreen : true
+                toyChestScreen : true,
+                lastReward : ""
         };
     }
 

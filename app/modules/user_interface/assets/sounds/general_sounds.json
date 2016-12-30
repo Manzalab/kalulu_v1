@@ -12,6 +12,12 @@
 	
 	"fxs": {
 		"click":10,
+		"fertilizer_01":100,
+		"fertilizer_02":100,
+		"fertilizer_03":100,
+		"fertilizer_04":100,
+		"fertilizer_05":100,
+		"fertilizer_06":100,
 		"bird_1":100,
 		"bird_2":100,
 		"bird_3":100,
@@ -68,10 +74,16 @@
 		"kalulu_menu_toychest02":				100,
 		"kalulu_videomenu_toychest":			100,
 		"kalulu_bookmenu_toychest":				100,
-		"kalulu_gamemenu_toychest":				100
+		"kalulu_gamemenu_toychest":				100,
+		"kalulu_leaves_transition":				100
 	},
 
 	"musics": {
+		"kalulu_amb_gardenscreen":				100,
+		"kalulu_amb_gardenscreen2":				100,
+		"kalulu_amb_startscreen":				100,
+		"kalulu_music_brainintro":				100,
+		"kalulu_music_gameintro":				100
 		
 	}
 }

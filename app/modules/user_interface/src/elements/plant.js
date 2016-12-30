@@ -5,13 +5,17 @@
 define([
 	'../elements/animation_plant',
 	'../utils/ui/button',
-	'../utils/events/mouse_event_type'
+	'../utils/events/mouse_event_type',
+	'./kalulu_character'
 ], function (
 	AnimationPlant,
 	Button,
-	MouseEventType
+	MouseEventType,
+	Kalulu
 ) {
 	'use strict';
+
+	var SoundManager            = require ('../utils/sound/sound_manager');
 
 	function Plant (description, assetName) {
 		
@@ -63,7 +67,7 @@ define([
 
 	Plant.prototype.setModeLarge = function setModeLarge () {
 		this._setState(this._LARGE);
-
+		
 		this.interactive = false;
 		this.buttonMode = false;
 	};
@@ -102,11 +106,11 @@ define([
 	}
 
 	Plant.prototype.setGardenScreenReference = function setGardenScreenReference (gardenScreen) {
-		this._gardenScreen = gardenScreen
+		this._gardenScreen = gardenScreen;
 	}
 
 	Plant.prototype._checkFertilizer = function _checkFertilizer() {
-
+		if (Kalulu.isTalking) return;
 		var animation;
 
 		if(this._userProfile) {
@@ -114,6 +118,15 @@ define([
 				switch(this._state){
 					case this._NOT_STARTED:
 					this.setModeSmall();
+					if (this._userProfile.kaluluTalks.firstPlantEvolve)
+					{
+						Kalulu.x = Kalulu.width/2;
+						Kalulu.y = -Kalulu.height/3-10;
+						this._gardenScreen._hud.bottomLeft.addChild(Kalulu);
+						Kalulu.startTalk("kalulu_tuto_endstep03_gardenscreen");
+						this._userProfile.kaluluTalks.firstPlantEvolve = false;
+						this._gardenScreen._interfaceManager._eventSystem.emit(Events.APPLICATION.SET_SAVE, this._userProfile.data);	
+					}
 					break;
 
 					case this._SMALL:
@@ -122,9 +135,18 @@ define([
 
 					case this._MEDIUM:
 					this.setModeLarge();
+					if (this._userProfile.kaluluTalks.lastPlantEvolve)
+					{
+						Kalulu.x = Kalulu.width/2;
+						Kalulu.y = -Kalulu.height/3-10;
+						this._gardenScreen._hud.bottomLeft.addChild(Kalulu);
+						Kalulu.startTalk("kalulu_tuto_end_gardenscreen");
+						this._userProfile.kaluluTalks.lastPlantEvolve = false;
+						this._gardenScreen._interfaceManager._eventSystem.emit(Events.APPLICATION.SET_SAVE, this._userProfile.data);	
+					}
 					break;
 				}
-
+				SoundManager.getSound("fertilizer_0"+Math.floor(Math.random()*6 + 1)).play();
 				this._setPositionY();
 				
 				this._userProfile.fertilizer -= 1;
@@ -137,7 +159,12 @@ define([
 
 				animation.position.set(this.x, this.y);
 			}
-			else console.log("No fertilizer !");
+			else{
+				Kalulu.x = Kalulu.width/2;
+				Kalulu.y = -Kalulu.height/3 - 50;
+				this._gardenScreen._hud.bottomLeft.addChild(Kalulu);
+				Kalulu.startTalk("kalulu_info_nobrainpower");
+			} 
 		}
 	}
 
