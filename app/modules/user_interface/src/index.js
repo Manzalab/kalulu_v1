@@ -24,6 +24,7 @@
     var ToyChestActivityScreen  = require ('./screens/toy_chest_activity_screen');
 
     var KaluluCharacter         = require ('./elements/kalulu_character');
+    var GardenButton            = require ('./elements/garden_button');
 
     var Timer                   = require ('../../../src/game_logic/timer');
 
@@ -208,7 +209,7 @@
     UserInterface.prototype._renderingLoop = function _renderingLoop (frameId) {
         
         //console.log(GardenButton.notStartedGardenButton);
-        // if (GardenButton.notStartedGardenButton) GardenButton.notStartedGardenButton.doHighlight();
+        if (GardenButton.notStartedGardenButton) GardenButton.notStartedGardenButton.doHighlight();
         
         // rendering on 1 frame out of 2
         if (frameId % 2 === 0) this._renderingManager.render();
