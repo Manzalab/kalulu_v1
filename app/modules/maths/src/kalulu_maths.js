@@ -113,8 +113,8 @@ var loop_on_array = params[loop_on]
 		if(temp_rounds_results.length == 0){
 			console.log('Score completed, no round anymore, loop on already valid targets (force)')
 			var temp_rounds_results = pool_loop(2)
-			out.tries_results[tries] = temp_rounds_results
-			out.forced_pool = 2		
+			//out.tries_results[tries] = temp_rounds_results
+			// out.forced_pool = 2		
 		}
 		
 		//if(temp_rounds_results.length == 0){

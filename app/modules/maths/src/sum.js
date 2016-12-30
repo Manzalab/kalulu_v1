@@ -15,7 +15,7 @@ var ModuleUtils 	= require('./module_utils.js')
 // a round object
 // 
 
-var Sum = function(number, xnumber, side, sign, numbers_data, numbers_available, count){
+var Sum = function(number, xnumber, side, sign, numbers_data, numbers_available, count, lang){
 
 	this.number 		= parseInt(number) ? parseInt(number) : 0
 	this.xnumber 		= xnumber ? parseInt(xnumber) : 0
@@ -104,7 +104,8 @@ var Sum = function(number, xnumber, side, sign, numbers_data, numbers_available,
 		gameType       : 'sum',
 		sequence 	   : resolve_true,
 		targetNumber   : this.number,
-		numberIndex    : lx
+		numberIndex    : lx,
+		targetSequence : resolve_true
 	}
 	
   	this.round = round

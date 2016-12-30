@@ -90,6 +90,7 @@
     KaluluCharacter.prototype.startTalk = function startTalk(talkName, nextTalks, shouldStay)
     {
         if (Config.skipKalulu) return;
+        this.isTalking = true;
         this.alpha = 1;
         this._isStaying = typeof shouldStay==='undefined'?false:true;
         if (this.kaluluButton!==undefined) this.kaluluButton.visible = false;
@@ -126,7 +127,7 @@
     {
         this._hasAnimEnded = true;
         this._anim.onComplete = this.setAnimEnd.bind(this);
-        this.isTalking = true;
+        
         this._kaluluSpeech.play();
     }
 
@@ -137,9 +138,7 @@
         this._kaluluSpeech.once("end", isSpeechEnded?this.disappear.bind(this):this.keepTalking.bind(this));
         this._setState(this.IDLE_2_STATE, true);
         
-        this.isTalking = false;
         this._nextSpeechTimeout = setTimeout(function(){
-            this.isTalking = true;
             this._setState(this.TALK_3_STATE);
             this._anim.onComplete = this.setAnimEnd.bind(this);
             this._kaluluSpeech.play();

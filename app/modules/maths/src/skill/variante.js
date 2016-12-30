@@ -207,7 +207,7 @@ SkillVariante.prototype.toRound = function (params) {
 		}
 	}
 	else if(this.group == 'recognition'){
-		var recognition_round = new Recognition(this.number,this.stimuli_type,this.gameType, params.available_numbers, params.stepDistracterCount, numbers_data)
+		var recognition_round = new Recognition(this.number,this.stimuli_type,this.gameType, params.available_numbers, params.stepDistracterCount, numbers_data, this.lang)
 
 		var tround = {
 			target : this.number,
@@ -218,7 +218,7 @@ SkillVariante.prototype.toRound = function (params) {
 	 }
 	 else if(this.group == 'decimal'){
 				
-		var decimal_round = new Decimal(this.number,this.stimuli_type,  params.available_numbers, params.stepDistracterCount, numbers_data)
+		var decimal_round = new Decimal(this.number,this.stimuli_type,  params.available_numbers, params.stepDistracterCount, numbers_data, this.lang)
 		var tround = {
 			target : this.number,
 			size: 1,
@@ -241,7 +241,7 @@ SkillVariante.prototype.toRound = function (params) {
 		//  console.log(this)
 
 		
-		var s 	= new Sum(this.number,this.xnumber,_side, this.sign, numbers_data, params.available_numbers, params.stepDistracterCount)
+		var s 	= new Sum(this.number,this.xnumber,_side, this.sign, numbers_data, params.available_numbers, params.stepDistracterCount, this.lang)
 		var tround  = {
 			target : this.number,
 			size: 1,
@@ -250,7 +250,7 @@ SkillVariante.prototype.toRound = function (params) {
 		}
 	}
 	else if(this.group == 'shape'){
-		var shape_round = new Shape(this.shape, this.stimuli_type, params.available_shapes, params.stepDistracterCount, params.shapes_data)
+		var shape_round = new Shape(this.shape, this.stimuli_type, params.available_shapes, params.stepDistracterCount, params.shapes_data, this.lang)
 		var tround = {
 			target : this.shape,
 			// shape_score : this.score,
