@@ -1,17 +1,19 @@
 {
     "debug" : {
-        "enableGlobalVars"        : true,
-        "stats"                   : true,
-        "logGameStates"           : false,
-        "authoritativeSystemInfo" : false,
-        "logLoading"              : false,
-        "screenManagerLog"        : false,
-        "debugPlanConstruction"   : false,
-        "enableTransitionsTuning" : true,
-        "enableMinigameTuning"    : true,
-        "enableQAControls"        : true,
-        "skipKalulu"              : false,
-        "displayGardenIdsOnBrainScreen" : false
+        "enableGlobalVars"              : true,
+        "stats"                         : true,
+        "logGameStates"                 : false,
+        "authoritativeSystemInfo"       : false,
+        "logLoading"                    : false,
+        "screenManagerLog"              : false,
+        "debugPlanConstruction"         : false,
+        "enableTransitionsTuning"       : true,
+        "enableMinigameTuning"          : true,
+        "enableQAControls"              : true,
+        "skipKalulu"                    : true,
+        "displayGardenIdsOnBrainScreen" : false,
+        "debugLanguageModule"           : true,
+        "debugMathsModule"              : false
     },
     "paths" : {
         "imagesPath" : "assets/images/",
