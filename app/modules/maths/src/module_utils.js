@@ -34,11 +34,8 @@ var ModuleUtils = function(){
 		}
 		if(value_ !=='' && dataset[value_]){
 			// console.log(dataset[value_])
-			st.nonSymbolicImage	= 'todo/'+dataobject+'/data/'+value_+'.jpg'
-		 	
-
-		 	st.soundPath =  'assets/sounds/maths/number_'+value_+'.ogg'
-		 	// dataset[value_].soundPath
+			st.nonSymbolicImage	= 'assets/images/number_'+value_+'.jpg'
+		 	st.soundPath 		=  'assets/sounds/number_'+value_+'.ogg'
 		}
 
 		// complex soundpath..
@@ -52,7 +49,6 @@ var ModuleUtils = function(){
 
 		if(dataobject == 'sum' && path){
 			st.path = path
-			
 			st.nonSymbolicImage	= 'number_'+path.number+''+path.sign+''+path.xnumber_value+'.jpg'
 
 			//st.soundPath = path.xnumber+'/'+path.sign+'/'+path.side+'/'+path.number+'.ogg'
