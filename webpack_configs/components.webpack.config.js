@@ -70,7 +70,8 @@ exports.generateHtml = function() {
         plugins: [
             
             new HtmlWebpackPlugin({
-                title: process.env.htmlTitle
+                title: process.env.htmlTitle,
+                template : './webpack_configs/index.template.ejs'
             })
         ]
     };

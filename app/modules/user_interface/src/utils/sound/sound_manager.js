@@ -19,8 +19,13 @@ define([], function () {
 		this.stopAmbiance = stopAmbiance;
 		this.stopAllAmbiances = stopAllAmbiances;
 		this.stopAllSounds = stopAllSounds;
+		this.isPlaying = isPlaying;
 
 		// FUNCTIONS
+		function isPlaying(pSoundName)
+		{
+			return getSound(pSoundName).playing(pSoundName);
+		}
 
 		function addSound (pName, pSound) {
 			list[pName] = pSound;

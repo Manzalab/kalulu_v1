@@ -158,7 +158,7 @@ define([
     **/
     Rafiki.prototype.savePedagogicResults = function savePedagogicResults (currentProgressionNode, data) {
         console.log(data);
-        var lastRecord
+        var lastRecord;
         if (data) {
             lastRecord = {
                 elapsedTime : data.endTime - data.startTime,
@@ -168,9 +168,11 @@ define([
         }
         else lastRecord = {};
         
-        this._currentUserProfile[currentProgressionNode.discipline.type].minigamesRecords[currentProgressionNode.activityType].localLevel = lastRecord.finalLocalStage;
-        this._currentUserProfile[currentProgressionNode.discipline.type].minigamesRecords[currentProgressionNode.activityType].records.push(lastRecord);
-
+        if(this._currentUserProfile[currentProgressionNode.discipline]) {
+            this._currentUserProfile[currentProgressionNode.discipline.type].minigamesRecords[currentProgressionNode.activityType].localLevel = lastRecord.finalLocalStage;
+            this._currentUserProfile[currentProgressionNode.discipline.type].minigamesRecords[currentProgressionNode.activityType].records.push(lastRecord);
+        }
+        
         if (currentProgressionNode.constructor.name === "Lecture") {
             currentProgressionNode.isCompleted = true;
             for (var i = 0 ; i < currentProgressionNode.targetNotions.length ; i++) {

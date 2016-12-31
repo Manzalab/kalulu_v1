@@ -76,34 +76,34 @@
 
         this.gameUI = game.add.group(this, 'ButtonsContainer');
 
-        this.quitButton = game.add.button(0, 0, 'ui', this.onClickOnQuitPopupButton, this, 'ile_ON', 'ile_ON', 'ile_OFF', 'ile_ON');
-        this.quitButton.frameName = 'ile_OFF';
+        this.quitButton = game.add.button(0, 0, 'ui', this.onClickOnQuitPopupButton, this, 'GardenScreenButton0001.png', 'GardenScreenButton0002.png', 'GardenScreenButton0003.png', 'GardenScreenButton0004.png');
+        this.quitButton.frameName = 'GardenScreenButton0004.png';
         this.quitButton.height = BUTTON_DIM;
         this.quitButton.width = BUTTON_DIM;
         this.quitButton.anchor.setTo(0, 0);
         this.gameUI.add(this.quitButton);
 
-        this.phonemeButton = game.add.button(0, game.height / 2, 'ui', this.onClickOnPhonemeButton, this, 'conque-ON', 'conque-ON', 'conque-OFF', 'conque-ON');
-        this.phonemeButton.frameName = 'conque-OFF';
+        this.phonemeButton = game.add.button(0, game.height / 2, 'ui', this.onClickOnPhonemeButton, this, 'ShellButton0001.png', 'ShellButton0002.png', 'ShellButton0003.png', 'ShellButton0001.png');
+        this.phonemeButton.frameName = 'ShellButton0004.png';
         this.phonemeButton.height = BUTTON_DIM;
         this.phonemeButton.width = BUTTON_DIM;
         this.phonemeButton.anchor.setTo(0, 0.5);
         this.gameUI.add(this.phonemeButton);
 
-        this.kaluluButton = game.add.button(0, game.height, 'ui', this.onClickOnKaluluButton, this, 'toucan_ON', 'toucan_ON', 'toucan_OFF', 'toucan_ON');
-        this.kaluluButton.frameName = 'toucan_OFF';
+        this.kaluluButton = game.add.button(0, game.height, 'ui', this.onClickOnKaluluButton, this, 'KaluluButton0001.png', 'KaluluButton0002.png', 'KaluluButton0003.png', 'KaluluButton0004.png');
+        this.kaluluButton.frameName = 'KaluluButton0004.png';
         this.kaluluButton.height = BUTTON_DIM;
         this.kaluluButton.width = BUTTON_DIM;
         this.kaluluButton.anchor.setTo(0, 1);
         this.gameUI.add(this.kaluluButton);
 
 
-        this.nextButton = game.add.button(game.width, game.height, 'ui', this.onClickOnNextButton, this, 'suite_ON', 'suite_ON', 'suite_OFF', 'suite_ON');
+        this.nextButton = game.add.button(game.width, game.height, 'ui', this.onClickOnNextButton, this, 'NextButton0001.png', 'NextButton0002.png', 'NextButton0003.png', 'NextButton0004.png');
         this.nextButton.height = BUTTON_DIM;
         this.nextButton.width = BUTTON_DIM;
         this.nextButton.anchor.setTo(1, 1);
         this.nextButton.inputEnabled = false;
-        this.nextButton.frameName = 'suite_OFF';
+        this.nextButton.frameName = 'NextButton0004.png';
         this.gameUI.add(this.nextButton);
 
         /** Starting central conch
@@ -111,7 +111,7 @@
          * @private
          **/
         if (this.features.isIntroPhonemeButtonEnabled) {
-            this.centralConchButton = game.add.button(game.width / 2, game.height / 2, 'ui', this.onClickOnCentralConchButton, this, 'conque', 'conque', 'conque', 'conque');
+            this.centralConchButton = game.add.button(game.width / 2, game.height / 2, 'ui', this.onClickOnCentralConchButton, this, 'ShellBigButton0001.png', 'ShellBigButton0002.png', 'ShellBigButton0003.png', 'ShellBigButton0004.png');
             this.centralConchButton.x -= this.centralConchButton.width / 2;
             this.centralConchButton.anchor.setTo(0, 0.5);
             this.centralConchButton.visible = false;
@@ -156,20 +156,20 @@
         this.quitPopup.x = game.world.centerX;
         this.quitPopup.y = game.world.centerY;
 
-        this.quitPopupBackground = this.quitPopup.create(0, 0, 'ui', 'fond_validation');
+        this.quitPopupBackground = this.quitPopup.create(0, 0, 'ui', 'fond_validation.png');
         this.quitPopupBackground.anchor.setTo(0.5, 0.5);
         this.quitPopupBackground.width = 1280;
         this.quitPopupBackground.height = 800;
 
-        this.quitPopupValidateButton = game.add.button(this.quitPopupBackground.width / 2 - 30, this.quitPopupBackground.height / 2 - 20, 'ui', this.onClickOnQuitButton, this);
-        this.quitPopupValidateButton.frameName = 'retour_valider';
+        this.quitPopupValidateButton = game.add.button(this.quitPopupBackground.width / 2 - 30, this.quitPopupBackground.height / 2 - 20, 'ui', this.onClickOnQuitButton, this, 'TickButton0001.png', 'TickButton0002.png', 'TickButton0003.png', 'TickButton0004.png');
+        this.quitPopupValidateButton.frameName = 'TickButton0001.png';
         this.quitPopupValidateButton.height = BUTTON_DIM;
         this.quitPopupValidateButton.width = BUTTON_DIM;
         this.quitPopupValidateButton.anchor.setTo(1, 1);
         this.quitPopup.add(this.quitPopupValidateButton);
 
-        this.quitPopupCancelButton = game.add.button(-this.quitPopupBackground.width / 2 + 30, this.quitPopupBackground.height / 2 - 20, 'ui', this.onClickOnQuitPopupCancelButton, this);
-        this.quitPopupCancelButton.frameName = 'retour_annuler';
+        this.quitPopupCancelButton = game.add.button(-this.quitPopupBackground.width / 2 + 30, this.quitPopupBackground.height / 2 - 20, 'ui', this.onClickOnQuitPopupCancelButton, this, 'CrossButton0001.png', 'CrossButton0002.png', 'CrossButton0003.png', 'CrossButton0004.png');
+        this.quitPopupCancelButton.frameName = 'CrossButton0001.png';
         this.quitPopupCancelButton.height = BUTTON_DIM;
         this.quitPopupCancelButton.width = BUTTON_DIM;
         this.quitPopupCancelButton.anchor.setTo(0, 1);
@@ -187,16 +187,16 @@
         this.gameOverScreen.x = game.width;
         this.gameOverScreen.y = game.height;
 
-        this.gameOverScreenQuitButton = game.add.button(0, 0, 'ui', this.onClickOnQuitButton, this, 'suite_ON', 'suite_ON', 'suite_OFF', 'suite_ON');
-        this.gameOverScreenQuitButton.frameName = 'suite_ON';
+        this.gameOverScreenQuitButton = game.add.button(0, 0, 'ui', this.onClickOnQuitButton, this, 'NextButton0001.png', 'NextButton0002.png', 'NextButton0003.png', 'NextButton0004.png');
+        this.gameOverScreenQuitButton.frameName = 'NextButton0001.png';
         this.gameOverScreenQuitButton.height = BUTTON_DIM;
         this.gameOverScreenQuitButton.width = BUTTON_DIM;
         this.gameOverScreenQuitButton.anchor.setTo(1, 1);
         this.gameOverScreen.add(this.gameOverScreenQuitButton);
 
         if (this.features.isReplayEnabled) {
-            this.gameOverScreenReplayButton = game.add.button(-BUTTON_DIM, 0, 'ui', this.onClickOnGameOverScreenReplayButton, this, 'replay_ON', 'replay_ON', 'replay_OFF', 'replay_ON');
-            this.gameOverScreenReplayButton.frameName = 'replay_ON';
+            this.gameOverScreenReplayButton = game.add.button(-BUTTON_DIM, 0, 'ui', this.onClickOnGameOverScreenReplayButton, this, 'ReplayButton0001.png', 'ReplayButton0002.png', 'ReplayButton0003.png', 'ReplayButton0004.png');
+            this.gameOverScreenReplayButton.frameName = 'ReplayButton0001.png';
             this.gameOverScreenReplayButton.visible = false;
             this.gameOverScreenReplayButton.height = BUTTON_DIM;
             this.gameOverScreenReplayButton.width = BUTTON_DIM;
@@ -340,13 +340,13 @@
     Ui.prototype.disableUiMenu = function disableUiMenu() {
 
         this.quitButton.inputEnabled = false;
-        this.quitButton.frameName = 'ile_OFF';
+        this.quitButton.frameName = 'GardenScreenButton0004.png';
         this.phonemeButton.inputEnabled = false;
-        this.phonemeButton.frameName = 'conque-OFF';
+        this.phonemeButton.frameName = 'ShellButton0004.png';
         this.kaluluButton.inputEnabled = false;
-        this.kaluluButton.frameName = 'toucan_OFF';
+        this.kaluluButton.frameName = 'KaluluButton0004.png';
         this.nextButton.inputEnabled = false;
-        this.nextButton.frameName = 'suite_OFF';
+        this.nextButton.frameName = 'NextButton0004.png';
     };
 
     /**
@@ -356,31 +356,31 @@
     Ui.prototype.enableUiMenu = function enableUiMenu() {
 
         this.quitButton.inputEnabled = true;
-        this.quitButton.frameName = 'ile_ON';
+        this.quitButton.frameName = 'GardenScreenButton0001.png';
 
         if (this.features.isPhonemeButtonEnabled) {
             this.phonemeButton.inputEnabled = true;
-            this.phonemeButton.frameName = 'conque-ON';
+            this.phonemeButton.frameName = 'ShellButton0001.png';
         }
         else {
             this.phonemeButton.inputEnabled = false;
-            this.phonemeButton.frameName = 'conque-OFF';
+            this.phonemeButton.frameName = 'ShellButton0004.png';
         }
         if (this.features.isKaluluEnabled) {
             this.kaluluButton.inputEnabled = true;
-            this.kaluluButton.frameName = 'toucan_ON';
+            this.kaluluButton.frameName = 'KaluluButton0001.png';
         }
         else {
             this.kaluluButton.inputEnabled = false;
-            this.kaluluButton.frameName = 'toucan_OFF';
+            this.kaluluButton.frameName = 'KaluluButton0004.png';
         }
         if (this.isNextButtonEnabled) {
             this.nextButton.inputEnabled = true;
-            this.nextButton.frameName = 'suite_ON';
+            this.nextButton.frameName = 'NextButton0001.png';
         }
         else {
             this.nextButton.inputEnabled = false;
-            this.nextButton.frameName = 'suite_OFF';
+            this.nextButton.frameName = 'NextButton0004.png';
         }
     };
 

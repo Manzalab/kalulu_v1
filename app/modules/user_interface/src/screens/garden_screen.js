@@ -8,12 +8,14 @@ define([
     '../elements/star_bg',
     '../utils/ui/screen',
     '../utils/sound/sound_manager',
-    'assets/data/' + KALULU_LANGUAGE + '/dynamic_rewards'
+    'assets/data/' + KALULU_LANGUAGE + '/dynamic_rewards',
+    '../elements/kalulu_character'
 ], function (
     StarBackground,
     Screen,
     SoundManager,
-    DynamicRewards
+    DynamicRewards,
+    Kalulu
 ) {
 
     'use strict';
@@ -606,15 +608,41 @@ define([
     }
 
     GardenScreen.prototype._onClickOnBackButton = function _onClickOnBackButton (eventData) {
-        if (this._interfaceManager.kaluluCharacter.isTalking) return;
+        if (Kalulu.isTalking) return;
         SoundManager.getSound("click").play();
         this._interfaceManager.requestBrainScreen();
     };
 
     GardenScreen.prototype._onClickOnKaluluButton = function _onClickOnKaluluButton (eventData) {
-        
-        SoundManager.getSound("click").play();
-        console.log("[GardenScreen] Kalulu Button click received. Not yet Implemented");
+        eventData.stopPropagation();
+        var lPlantLevel = 0;
+        var lFertilizer = this._userProfile.fertilizer;
+
+        for (var i = 0; i < this.plants.length; i++) {
+            switch (this.plants[i]._state)
+            {
+                case "Large":
+                    lPlantLevel +=3;
+                break;
+                case "Medium":
+                    lPlantLevel+=2;
+                break;
+                case "Small":
+                    lPlantLevel+=1;
+                break;
+                case "NotStarted":
+                break;
+            }
+        }
+
+        Kalulu.x = Kalulu.width/2;
+        Kalulu.y = -Kalulu.height/3 - 50;
+        this._hud.bottomLeft.addChild(Kalulu);
+
+        if (lPlantLevel===0 && lFertilizer===0)     Kalulu.startTalk("kalulu_info_gardenscreen03");
+        else if (lPlantLevel<=7 && lFertilizer>0)   Kalulu.startTalk("kalulu_info_gardenscreen01");
+        else if (lPlantLevel>7)                     Kalulu.startTalk("kalulu_info_gardenscreen02");
+        else                                        Kalulu.startTalk("kalulu_info_gardenscreen03");
     };
 
     return GardenScreen;

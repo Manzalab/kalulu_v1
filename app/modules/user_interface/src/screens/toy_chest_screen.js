@@ -55,11 +55,13 @@
 	 * Manage the transition after click on a garden button, emits the relevant events.
 	**/
 	ToyChestScreen.prototype._onClickOnActivityButton = function _onClickOnActivityButton (pEventData) {
+		if (this._interfaceManager.kaluluCharacter.isTalking) return;
 		this._interfaceManager.requestToyChestActivityScreen(pEventData.target._assetName.replace("Button",""));
 		
 	};
 
 	ToyChestScreen.prototype._onClickOnBackButton = function _onClickOnBackButton (pEventData) {
+		if (this._interfaceManager.kaluluCharacter.isTalking) return;
 		this._interfaceManager.requestBrainScreen();
 	};
 

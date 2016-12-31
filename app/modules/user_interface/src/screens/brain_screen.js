@@ -124,7 +124,7 @@ define([
         
 
         this._kalulu.x = this._kalulu.width/2;
-        this._kalulu.y = -this._kalulu.height/3;
+        this._kalulu.y = -this._kalulu.height/3 - 50;
 
         this._hud.bottomLeft.addChild(this._kalulu);
         
@@ -132,14 +132,6 @@ define([
         else if (this._interfaceManager.isToyChestLocked)  this._kalulu.startTalk("kalulu_info_brainscreen_02");
         else if (this._unlockedChapter>8)                  this._kalulu.startTalk("kalulu_info_brainscreen_04");
         else                                               this._kalulu.startTalk("kalulu_info_brainscreen_03");
-        // else if (this._interfaceManager._userProfile.pedagogicData.currentChapter)
-        console.log(this._unlockedChapter);
-        // else if (this._interfaceManager.)
-        // this._kalulu.startTalk("kalulu_info_brainscreen_01");
-        
-        // 
-        // 
-        //SoundManager.getSound("kalulu_intro_brainScreen").play();
     };
 
     BrainScreen.prototype.removeOnClickOnGargenButton = function removeOnClickOnGargenButton (){
@@ -170,6 +162,7 @@ define([
     **/
     BrainScreen.prototype._onClickOnGardenButton = function _onClickOnGardenButton (pEventData) {
         if (this._kalulu.isTalking) return;
+        SoundManager.getSound("kalulu_leaves_transition").play();
         this.removeOnClickOnGargenButton();
 
         // concerned gardens

@@ -240,9 +240,9 @@ define([], function () {
 
         toTrace : { get : function () { return this._toTrace; } },
         
-        video1 : { get : function () { return Config.videoPath + 'language/L' + this.lesson + '.mp4'; } },
+        video1 : { get : function () { return Config.videoPath + 'language/phoneme_' + this._phonemeName + '.mp4'; } },
         
-        video2 : { get : function () { return Config.videoPath + 'language/S' + this.lesson + '.mp4'; } },
+        video2 : { get : function () { return Config.videoPath + 'language/phoneme_' + this._phonemeName + '_closeup.mp4'; } },
 
         traceUppercase : { get : function () { return this.value.length === 1 ? true : false; } },
 

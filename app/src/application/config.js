@@ -9,18 +9,20 @@
 
     Object.defineProperties(Config.prototype, {
         // debug
-        enableGlobalVars        : { get : function () { return this._config.debug.enableGlobalVars; }},
-        stats                   : { get : function () { return this._config.debug.stats; }},
-        logGameStates           : { get : function () { return this._config.debug.logGameStates; }},
-        authoritativeSystemInfo : { get : function () { return this._config.debug.authoritativeSystemInfo; }},
-        logLoading              : { get : function () { return this._config.debug.logLoading; }},
-        screenManagerLog        : { get : function () { return this._config.debug.screenManagerLog; }},
-        debugPlanConstruction   : { get : function () { return this._config.debug.debugPlanConstruction; }},
-        enableTransitionsTuning : { get : function () { return this._config.debug.enableTransitionsTuning; }},
-        enableMinigameTuning    : { get : function () { return this._config.debug.enableMinigameTuning; }},
-        enableQAControls        : { get : function () { return this._config.debug.enableQAControls; }},
-        skipKalulu              : { get : function () { return this._config.debug.skipKalulu; }},
+        enableGlobalVars              : { get : function () { return this._config.debug.enableGlobalVars; }},
+        stats                         : { get : function () { return this._config.debug.stats; }},
+        logGameStates                 : { get : function () { return this._config.debug.logGameStates; }},
+        authoritativeSystemInfo       : { get : function () { return this._config.debug.authoritativeSystemInfo; }},
+        logLoading                    : { get : function () { return this._config.debug.logLoading; }},
+        screenManagerLog              : { get : function () { return this._config.debug.screenManagerLog; }},
+        debugPlanConstruction         : { get : function () { return this._config.debug.debugPlanConstruction; }},
+        enableTransitionsTuning       : { get : function () { return this._config.debug.enableTransitionsTuning; }},
+        enableMinigameTuning          : { get : function () { return this._config.debug.enableMinigameTuning; }},
+        enableQAControls              : { get : function () { return this._config.debug.enableQAControls; }},
+        skipKalulu                    : { get : function () { return this._config.debug.skipKalulu; }},
         displayGardenIdsOnBrainScreen : { get : function () { return this._config.debug.displayGardenIdsOnBrainScreen; }},
+        debugLanguageModule           : { get : function () { return this._config.debug.debugLanguageModule; }},
+        debugMathsModule              : { get : function () { return this._config.debug.debugMathsModule; }},
         
         // paths
         paths                   : { get : function () { return this._config.paths; }},
