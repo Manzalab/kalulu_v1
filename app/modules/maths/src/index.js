@@ -270,7 +270,16 @@
 
 
               
-                  
+                        if(apparition._isClicked == true && apparition._isCorrect == true){
+                          //console.log('win case')
+                         // apparition.wrong = false
+
+                        }
+                        if(apparition.isClicked == true && apparition._isCorrect == false){
+                         // console.log('loose case')
+                         // apparition.wrong = true
+                          perfect_step = false
+                        }
 
                          if (!apparition.exitTime) { // the stimuli that had not the opportunity to complete their appearance (game end happened) have no exit time
                            //  continue;
@@ -282,14 +291,14 @@
                           var scoreObject = {
                               elapsedTime :  apparition.elapsedTime, 
                               //ref       : currentStimulus.value,
-                              score : apparition.isCorrect === apparition.isClicked ? 1 : 0
+                              score : apparition._isCorrect === apparition._isClicked ? 1 : 0
                           };
 
-                           if (!apparition.isCorrect && scoreObject.score == 0) {
+                           if (!apparition._isCorrect && scoreObject.score === 0) {
                             console.log("flawwless set to false");
 
                             flawlessGame = false;
-                            console.log("value : " + currentStimulus.value + ", isCR : " + apparition.isCorrect + ", clicked : " + apparition._isClicked);
+                            console.log("value : " + currentStimulus.value + ", isCR : " + apparition._isCorrect + ", clicked : " + apparition._isClicked);
                         }
                           
 
@@ -383,7 +392,10 @@
           //console.log(score)
           if(score && score[stimuli.value] &&  score[stimuli.value][p] && score[stimuli.value][p][r]){
                console.log('score[value][p][r]')
-               
+                              console.log(p)
+                              console.log(r)
+
+               console.log(score[stimuli.value][p][r])
                score[stimuli.value][p][r].push(record)
                var tscore = score[stimuli.value][p][r]
 
