@@ -4,6 +4,7 @@ Module main entry file
 
 Generate a "tree of skills" and returns rounds 
 
+
 */
 var _ 					= require('underscore')
 var  SkillTree 			= require('./skill/tree.js')
@@ -117,11 +118,11 @@ var loop_on_array = params[loop_on]
 			// out.forced_pool = 2		
 		}
 		
-		//if(temp_rounds_results.length == 0){
+		if(temp_rounds_results.length == 0){
 			
-		//		var end = {'norounds': true}	
-		//		return end
-		// }
+			var end = {'norounds': true}	
+				return end
+		}
 		else{
 			while(game.data.rounds.length <= params.roundsCount  ){ //  && tries < 4
 				tries++
