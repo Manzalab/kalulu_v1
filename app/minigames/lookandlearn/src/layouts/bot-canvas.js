@@ -6,6 +6,14 @@ var Tracing = require('../tracing');
 var Emitter = require('../events/emitter');
 var Events = require('../events/events');
 
+
+/**
+ * This Layout should be used to display an automatic drawing.
+ * It reacts to the following events : NEW_LETTER, TRIGGER_LAYOUT, and NEED_HELP_2
+ *  - NEW_LETTER clears the painter and set new letterId and model
+ *  - TRIGGER_LAYOUT enables the layout if the event bears the correct eventData (cf. settings.waitedId)
+ *  - NEED_HELP_2 emits a REDO_LETTER event for this.letterId and this.model
+**/
 function BotCanvasLayout(game, settings){
 
     Layout.call(this, game, settings);
@@ -49,6 +57,7 @@ function BotCanvasLayout(game, settings){
 
 BotCanvasLayout.prototype = Object.create(Layout.prototype);
 BotCanvasLayout.prototype.constructor = BotCanvasLayout;
+
 BotCanvasLayout.prototype.update = function BotCanvasLayoutUpdate(){
     //Layout.prototype.update.call(this);
     //console.log(this.triggered);

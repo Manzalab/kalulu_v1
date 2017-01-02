@@ -52,7 +52,7 @@ define([
     };
     
     PhaseVideo.prototype.create = function phaseVideoCreate () {
-        if (this.game.load.hasLoaded) console.info("PhaseVideo State has correctly completed loading.");
+        if (this.game.load.hasLoaded) console.info("PhaseVideo State has completed loading.");
 
         // #### Init
         if (!this.game.eventManager) {

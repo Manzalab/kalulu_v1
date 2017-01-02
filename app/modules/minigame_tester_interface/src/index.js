@@ -29,7 +29,7 @@
 
         this.options =  {
             LANGUAGE    : KALULU_LANGUAGE, // cannot be changed post build, presence for information only.
-            minigame    : 'turtles',
+            minigame    : 'lookandlearn',
             discipline  : 'maths',
             globalLevel : 1,
             localLevel  : 1,

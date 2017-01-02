@@ -6,5 +6,6 @@
     "skipKaluluFinal" 	: false,
     "debugPanel" 		: true,
     "globalVars" 		: true,
-    "debugPencil" 		: false
+    "debugPencil"       : true,
+    "debugLayouts" 		: true
 }

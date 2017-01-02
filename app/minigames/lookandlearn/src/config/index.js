@@ -2,18 +2,20 @@ var staticCallback = null;
 
 function MinigameConfig () {
 
-    this.gameId = "";     // the module build will export to this foldername. lowercase for the filesystem
-    this.skipKalulu = false; // do not play kalulu speeches for faster debug. incomplete implementation
+    this.gameId          = "";     // the module build will export to this foldername. lowercase for the filesystem
+    this.skipKalulu      = false; // do not play kalulu speeches for faster debug. incomplete implementation
     this.skipKaluluIntro = false; // do not play kalulu speeches for faster debug. incomplete implementation
-    this.skipKaluluHelp = false; // do not play kalulu speeches for faster debug. incomplete implementation
+    this.skipKaluluHelp  = false; // do not play kalulu speeches for faster debug. incomplete implementation
     this.skipKaluluFinal = false; // do not play kalulu speeches for faster debug. incomplete implementation
-    this.debugPanel = false;
-    this.globalVars = false;
-    this.initDone = false;
-    this.disciplines = {
-        language : "reading",
+    this.debugPanel      = false;
+    this.globalVars      = false;
+    this.debugPencil     = false;
+    this.debugLayouts    = false;
+    this.initDone        = false;
+    this.disciplines     = {
+        language    : "reading",
         arithmetics : "maths",
-        geometry : "geo"
+        geometry    : "geo"
     };
 }
 
@@ -54,6 +56,7 @@ MinigameConfig.prototype.init = function init (config) {
     this.debugPanel      = config.debugPanel;
     this.globalVars      = config.globalVars;
     this.debugPencil     = config.debugPencil;
+    this.debugLayouts    = config.debugLayouts;
     this.initDone        = true;
     staticCallback();
 };

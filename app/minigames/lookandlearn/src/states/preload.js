@@ -88,14 +88,15 @@ define([
         this.game.add.audio(this.game.gameConfig.pedagogicData.sound);
         console.log('after');
 
-        var discipline = this.game.gameConfig.pedagogicData.discipline;
+        var discipline = this.game.discipline = this.game.gameConfig.pedagogicData.discipline;
         if (discipline === 'language') {
             console.info("Preload Complete, Starting Phase1Video...");
             this.state.start('Phase1Video');
         }
         else if (discipline === 'maths') {
             console.info("Preload Complete, Starting Phase1Maths...");
-            this.state.start('Phase1Maths');            
+            // this.state.start('Phase1Maths');            
+            this.state.start('Phase2Image');            
         }
     };
     
