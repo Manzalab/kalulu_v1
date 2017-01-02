@@ -307,7 +307,7 @@
             isTargetValue = false;
         }
         else {
-            isTargetValue = Math.round(Math.random());
+            isTargetValue = Math.round(Math.random()) === 0 ? false : true;
         }
 
         // determination of value
