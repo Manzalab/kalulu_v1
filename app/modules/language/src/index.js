@@ -1,5 +1,7 @@
 (function () {
+
     'use strict';
+    
     var _                = require ('underscore');
 
     var DisciplineModule = require ('game_logic/core/discipline_module');
@@ -9,7 +11,6 @@
     var StimuliFactory   = require ('./stimuli_factory');
     
     var constants        = require ('../config/config');
-
     var staticData = {
         name              : KALULU_LANGUAGE,
         language          : KALULU_LANGUAGE.toLowerCase(),
@@ -23,18 +24,6 @@
         words             : require ('../assets/data/' + KALULU_LANGUAGE + '/words_list.csv')
     };
     
-    // MINIGAME SETTINGS CSV HEADERS
-    // var h_id                    = "ID";
-    // var h_description           = "DESCRIPTION";
-    // var h_roundsCount           = "ROUNDS COUNT";
-    // var h_currentLessonShare    = "CURRENT LESSON SHARE IN TARGETS";
-    // var h_roundTargetClass      = "ROUND TARGET CLASS";
-    // var h_steptargetClass       = "STEP TARGET CLASS";
-    // var h_stepsToPlay           = "STEPS TO PLAY";
-    // var h_stepTargetCount       = "STEP TARGET STIMULI COUNT";
-    // var h_stepDistractorCount   = "STEP DISTRACTOR STIMULI COUNT";
-    // var h_stepRequiredCrCount   = "STEP REQUIRED CR COUNT";
-
     //SKILLS
     var graphemeReco = 'graphemeRecognition';
     var vowelsReco = 'vowelsRecognition';
@@ -46,7 +35,7 @@
      * It is used to provide initialisation data to language minigames.
      * @class
      * @extends DisciplineModule
-     * @memberof Rafiki.Pedagogy.Language
+     * @memberof Modules.Language
     **/
     function LanguageModule (rafiki, userProfile) {
         
@@ -659,7 +648,7 @@
                 if (!lNotion.hasOwnProperty(id)) continue;
                 
                 var stimulus = lNotion[id];
-                console.log('assessing revision :');
+                console.log('assessing revision for stimulus ' + stimulus + ' :');
                 console.log(this._getNotionRecord(stimulus));
                 console.log(constants.revisionTreshold);
                 if (this._getNotionRecord(stimulus) < constants.revisionTreshold) {
@@ -1052,9 +1041,20 @@
         var lessonNumber = progressionNode.parent.lessonNumber;
         var nbStimuliToProvide = params.roundsCount; // counter intuitive but we use the roundsCount for the nb of Pairs for this type of game, which has always one round.
         var lGameInitData = {
-            rounds : [{
-                stimuli : []
-            }]
+
+            "discipline" : 'language',
+
+            "language"   : KALULU_LANGUAGE,
+
+            "data"       : {
+
+                "rounds" : [{
+
+                    "steps" : [{
+                        stimuli : []
+                    }]
+                }]
+            }
         };
 
         var firstChoiceGP, secondChoiceGP; // we filter 2 lists : the first with all the GP where user has a big enough score, then a second with GP to be revised.
@@ -1077,7 +1077,7 @@
 
         var length = selectedNotions.length;
         for (var i = 0 ; i < length ; i++) {
-            lGameInitData.rounds[0].stimuli.push(StimuliFactory.fromGP(selectedNotions[i], [], false, true));
+            lGameInitData.data.rounds[0].steps[0].stimuli.push(StimuliFactory.fromGP(selectedNotions[i], [], false, true));
         }
         console.log(lGameInitData);
         return lGameInitData;
@@ -1109,7 +1109,8 @@
     LanguageModule.prototype._getNotionRecord = function _getNotionRecord (notion, windowSize) {
         
         windowSize = windowSize || constants.scoreWindowSize ;
-        
+        console.log('getting record for notion object :');
+        console.log(notion);
         if (notion.constructor.name === "GP") {
             if (!this._userProfile.Language.gp[notion.id]) this._userProfile.Language.gp[notion.id] = [];
             return this._computeAverageScore(this._userProfile.Language.gp[notion.id], windowSize);
@@ -1124,8 +1125,11 @@
     };
 
     LanguageModule.prototype._computeAverageScore = function _computeAverageScore (userRecord, windowSize) {
-
+        console.log(userRecord);
+        console.log(windowSize);
         var responseCount = Math.min(windowSize, userRecord.length);
+        if (responseCount === 0) return 0;
+        console.log('averaging ' + responseCount + ' latest responses');
         var index = userRecord.length - responseCount;
         var latestResults = userRecord.slice(index); // shallow copy
         var sum = 0;
@@ -1133,8 +1137,8 @@
         for (var i = 0 ; i < responseCount; i++) {
             sum += latestResults[i].score;
         }
-
-        return responseCount > 0 ? sum/responseCount * 100 : 0;
+        console.log('sum : ' + sum);
+        return Math.round(sum / responseCount * 100);
     };
 
 
@@ -1152,17 +1156,17 @@
         var flawlessGame = true;
 
         for (var r = 0; r < results.data.rounds.length ; r++) {
-            if (Config.debugLanguageModule) console.info("[LangugaeModule] Processing Results of Minigame for Round " + r);
+            if (Config.debugLanguageModule) console.info("[LanguageModule] Processing Results of Minigame for Round " + r);
             var stimuli = results.data.rounds[r].steps[0].stimuli;
             
             for (var s = 0 ; s < stimuli.length ; s++) {
                 
                 var stimulus = stimuli[s];
                 if (Config.debugLanguageModule) console.log(stimulus);
-                var notion = this.getWordbyId(stimulus.value.toLowerCase());
+                var notion = this.getWordbyId(stimulus.id);
                 
                 if (notion) { // if it is a blank stimulus we wont save scores on its notion or on underlying notions
-                    if (Config.debugLanguageModule) console.info("[LangugaeModule] Processing Results of Minigame for Notion " + notion.id);
+                    if (Config.debugLanguageModule) console.info("[LanguageModule] Processing Results of Minigame for Notion " + notion.id);
                     if (!stimulus.apparitions) {
                         if (Config.debugLanguageModule) {
                             console.warn("LanguageModule : stimulus has no apparitions :");
@@ -1214,12 +1218,8 @@
         if (Config.debugLanguageModule && flawlessGame) console.info("##############################\n###### FLAWLESS GAME !! ######\n##############################");
         record.correctResponseShare = totalCorrectClicks / totalClicks;
         var isPreviousGameFlawless, isPreviousGameWon;
-        if (!this._userProfile.Language.minigamesRecords.hasOwnProperty(currentProgressionNode.activityType)) {
-            this._userProfile[currentProgressionNode.discipline.type].minigamesRecords[currentProgressionNode.activityType] = {
-                currentLevel : 3,
-                currentStage : 3,
-                records : []
-            };
+        if (this._userProfile.Language.minigamesRecords[currentProgressionNode.activityType].records.length === 0) {
+
             isPreviousGameFlawless = false;
         }
         else {
