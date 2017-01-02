@@ -1,28 +1,28 @@
 define([
-	'../progression/plan'
+    '../progression/plan'
 ], function (
-	Plan
+    Plan
 ) {
-	'use strict';
-	
-	/**
-	 * The DisciplineModule class is the base class for all discipline modules.
-	 * 
-	 * @class
-	 * @alias DisciplineModule
-	 * @memberof Kalulu.GameLogic.Core
-	**/
-	function 
-	DisciplineModule (rafiki, staticData, userProfile) { //toto
-		
+    'use strict';
+    
+    /**
+     * The DisciplineModule class is the base class for all discipline modules.
+     * 
+     * @class
+     * @alias DisciplineModule
+     * @memberof Kalulu.GameLogic.Core
+    **/
+    function 
+    DisciplineModule (rafiki, staticData, userProfile) { //toto
+        
         //console.log(staticData);
-		
+        
         /**
-	     * id of the module
-	     * @type {string}
-	     * @private
-	    **/
-		this._id = staticData.name.toLowerCase();
+         * id of the module
+         * @type {string}
+         * @private
+        **/
+        this._id = staticData.name.toLowerCase();
         
         /**
          * The User Profile
@@ -31,28 +31,33 @@ define([
         **/
         this._userProfile = userProfile;
 
-		/**
-	     * Reference to the plan object
-	     * @type {Plan}
-	     * @private
-	    **/
-		this._plan = new Plan(userProfile, staticData.plan, this);
+        /**
+         * The list of activity types for each assessment
+        **/
+        this._assessments = this._initAssessmentsList(staticData.assessments);
 
-		/**
-		 * Reference to Rafiki, the remediation engine
-		 * @private
-		**/
+        /**
+         * Reference to the plan object
+         * @type {Plan}
+         * @private
+        **/
+        this._plan = new Plan(userProfile, staticData.plan, this);
+
+        /**
+         * Reference to Rafiki, the remediation engine
+         * @private
+        **/
         this._rafiki = rafiki;
 
         /**
          * List of matrices used by the module
          * @private
         **/
-		this._matrices = null;
+        this._matrices = null;
 
-		/**
-		 * The player stored difficulty level. Defaults to 3 first time.
-		**/
+        /**
+         * The player stored difficulty level. Defaults to 3 first time.
+        **/
         this._difficultyLevel = 3;
 
         /**
@@ -61,61 +66,61 @@ define([
         this._currentActivityParams = null;
 
         this._minigamesRecords = {};
-	}
+    }
 
 
 
-	// ###############################################################################################################################################
-	// ###  GETTERS & SETTERS  #######################################################################################################################
-	// ###############################################################################################################################################
+    // ###############################################################################################################################################
+    // ###  GETTERS & SETTERS  #######################################################################################################################
+    // ###############################################################################################################################################
 
 
-	Object.defineProperties(DisciplineModule.prototype, {
-	    
-	    /**
-	     * Returns the id of the Discipline Module
-	     * @type {string}
-	     * @memberof Kalulu.GameLogic.Core.DisciplineModule#
-	    **/
-	    id: { get: function () { return this._id; } },
+    Object.defineProperties(DisciplineModule.prototype, {
+        
+        /**
+         * Returns the id of the Discipline Module
+         * @type {string}
+         * @memberof Kalulu.GameLogic.Core.DisciplineModule#
+        **/
+        id: { get: function () { return this._id; } },
 
-	    /**
-	     * Returns the pedagogic plan of the Discipline Module
-	     *
-	     * @type {Plan}
-	     * @memberof Kalulu.GameLogic.Core.DisciplineModule#
-	    **/
-	    plan: {
-	        get: function () {
-				if (this._plan === null) {
-					console.error("[Discipline Module] Impossible to provide Plan. Please initialise DisciplineModule first.");
-					return null;
-				}
-				return this._plan;
-	        }
-	    },
+        /**
+         * Returns the pedagogic plan of the Discipline Module
+         *
+         * @type {Plan}
+         * @memberof Kalulu.GameLogic.Core.DisciplineModule#
+        **/
+        plan: {
+            get: function () {
+                if (this._plan === null) {
+                    console.error("[Discipline Module] Impossible to provide Plan. Please initialise DisciplineModule first.");
+                    return null;
+                }
+                return this._plan;
+            }
+        },
 
-	    /**
-	     * Returns the list of exercise types indexed by id
-	     * @type {Object.<string, ExerciseType>}
-	     * @memberof Kalulu.GameLogic.Core.DisciplineModule#
-	    **/
-	    //exerciseTypes : { get: function () { return this._exerciseTypes; } },
+        /**
+         * Returns the list of exercise types indexed by id
+         * @type {Object.<string, ExerciseType>}
+         * @memberof Kalulu.GameLogic.Core.DisciplineModule#
+        **/
+        //exerciseTypes : { get: function () { return this._exerciseTypes; } },
 
-	    matrices : { get: function () { return this._matrices; } }
-	});
+        matrices : { get: function () { return this._matrices; } }
+    });
 
 
-	// ##############################################################################################################################################
-	// ###  PUBLIC METHODS  #########################################################################################################################
-	// ##############################################################################################################################################
+    // ##############################################################################################################################################
+    // ###  PUBLIC METHODS  #########################################################################################################################
+    // ##############################################################################################################################################
 
-	/**
-	 * @param progressionNode {ProgressionNode} the node for which we need a setup (necessary an activity node)
-	 * @return {object} A populated setup object for the minigame
-	**/
+    /**
+     * @param progressionNode {ProgressionNode} the node for which we need a setup (necessary an activity node)
+     * @return {object} A populated setup object for the minigame
+    **/
     DisciplineModule.prototype.getActivitySetup = function getActivitySetup (progressionNode) {
-    	return null;
+        return null;
     };
 
     /**
@@ -168,11 +173,11 @@ define([
     };
 
     DisciplineModule.prototype.getLatestRecord = function getLatestRecord (progressionNode) {
-    	var arrayRecord = this._userProfile[progressionNode.discipline.type].minigamesRecords.records;
+        var arrayRecord = this._userProfile[progressionNode.discipline.type].minigamesRecords.records;
 
-    	if(arrayRecord)
-    		if(arrayRecord.length > 0) return arrayRecord[arrayRecord.length - 1];
-    	else return null;
+        if(arrayRecord)
+            if(arrayRecord.length > 0) return arrayRecord[arrayRecord.length - 1];
+        else return null;
     };
 
     DisciplineModule.prototype.getNotionsForLesson = function getNotionsForLesson (lessonNumber) {
@@ -187,5 +192,29 @@ define([
         return null;
     };
 
-	return DisciplineModule;
+    DisciplineModule.prototype.getAssessmentActivity = function getAssessmentActivity (chapterNumber) {
+        // console.log('[DisciplineModule] Looking for activity type for chapter ' + chapterNumber + '\'s assessment');
+        // console.log(this._assessments);
+        return this._assessments[chapterNumber];
+    };
+
+
+    // ##############################################################################################################################################
+    // ###  PROVATE METHODS  ########################################################################################################################
+    // ##############################################################################################################################################
+
+    DisciplineModule.prototype._initAssessmentsList = function _initAssessmentsList (csvData) {
+
+        var assessments = {};
+
+        for (var i = 0 ; i < csvData.length ; i++) {
+            var datarow = csvData[i];
+            assessments[datarow.CHAPTER] = [datarow.MINIGAME_1, datarow.MINIGAME_2];
+        }
+
+        return assessments;
+
+    };
+
+    return DisciplineModule;
 });

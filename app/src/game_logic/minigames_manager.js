@@ -58,7 +58,7 @@ define([
      * @param progressionNode {ProgressionNode} the node of the activity we want to start (i.e. a Lecture or a Minigame)
     **/
     MinigamesManager.prototype.startActivity = function startActivity (progressionNode, debugPanel) {
-
+        console.log(progressionNode);
         // DEBUG TOOL TO REMOVE :
         if (progressionNode.discipline.id === "maths") {
             console.log("debug maths here");
@@ -69,6 +69,20 @@ define([
         this._debugPanel = debugPanel;
 
         var functionName = 'start' + progressionNode.activityType.capitalise();
+        this[functionName]();
+    };
+
+    MinigamesManager.prototype.startAssessment = function startAssessment (progressionNode, debugPanel) {
+        console.log("[MinigamesManager] Starting Assessment");
+        console.log(progressionNode);
+
+        this._currentProgressionNode = progressionNode;
+        this._debugPanel = debugPanel;
+
+        var activities = progressionNode.activityType;
+        
+        console.log(activities);
+        var functionName = 'start' + activities[0].capitalise();
         this[functionName]();
     };
 
