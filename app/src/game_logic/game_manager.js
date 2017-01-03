@@ -104,9 +104,7 @@
         this._eventSystem.emit(Events.APPLICATION.SET_SAVE, this._currentUserProfile.data);
     };
 
-    /**
-     * DOES NOT WORK WHEN BACK FROM ASSESSMENT
-    **/
+
     GameManager.prototype.onCloseActivity = function onCloseActivity (progressionNode) {
         
         if(progressionNode) {
@@ -119,6 +117,7 @@
                 this._eventSystem.emit(Events.GAME.BACK_FROM_ACTIVITY, nextNode);
             }
             else if (nextScreenName === "Chapter") {
+                console.log('here');
                 var pedagogicData = {
                     currentChapter : nextNode.chapterNumber,
                     data : this._rafiki.getChaptersData(),
@@ -131,6 +130,16 @@
                     this.emit(Events.GAME.UNLOCK_REWARD_TOYCHEST, Reward.levelRewards[progressionNode.discipline.type.toLowerCase()][progressionNode.lessonNumber]);
                 }
             }
+            else if (nextScreenName === "Plan") {
+                console.log('Back from Assessment');
+                if (progressionNode.isCompleted) {
+
+                }
+                else {
+                    
+                }
+            }
+
             this.save();
         }
         else {
@@ -229,6 +238,7 @@
         this._eventSystem.on(Events.COMMANDS.GOTO_TOYCHEST_SCREEN_REQUEST, this._onToyChestScreenRequest, this);
         this._eventSystem.on(Events.COMMANDS.GOTO_TOYCHEST_ACTIVITY_SCREEN_REQUEST, this._onToyChestActivityScreenRequest, this);
         this._eventSystem.on(Events.COMMANDS.GOTO_ACTIVITY_REQUEST, this._onActivityRequest, this);
+        this._eventSystem.on(Events.COMMANDS.GOTO_ASSESSMENT_REQUEST, this._onAssessmentRequest, this);
         // this._onToyChestScreenRequest();
         this._onTitleCardRequest();
     };
@@ -242,6 +252,8 @@
         this._eventSystem.off(Events.COMMANDS.GOTO_TOYCHEST_SCREEN_REQUEST, this._onToyChestScreenRequest, this);
         this._eventSystem.off(Events.COMMANDS.GOTO_TOYCHEST_ACTIVITY_SCREEN_REQUEST, this._onToyChestActivityScreenRequest, this);
         this._eventSystem.off(Events.COMMANDS.GOTO_ACTIVITY_REQUEST, this._onActivityRequest, this);
+        this._eventSystem.off(Events.COMMANDS.GOTO_ASSESSMENT_REQUEST, this._onAssessmentRequest, this);
+        
         this._eventSystem.emit(Events.GAME.GOTO_ACTIVITY, {shouldRemoveRenderer : true});
     };
     
@@ -315,6 +327,12 @@
 
     GameManager.prototype._onActivityRequest = function _onActivityRequest (activityNode, debugPanel) {
         this._minigamesManager.startActivity(activityNode, debugPanel);
+        this.setState(GameStates.ACTIVITY);
+        this._eventSystem.emit(Events.GAME.GOTO_ACTIVITY, {shouldRemoveRenderer : true});
+    };
+
+    GameManager.prototype._onAssessmentRequest = function _onAssessmentRequest (activityNode, debugPanel) {
+        this._minigamesManager.startAssessment(activityNode, debugPanel);
         this.setState(GameStates.ACTIVITY);
         this._eventSystem.emit(Events.GAME.GOTO_ACTIVITY, {shouldRemoveRenderer : true});
     };

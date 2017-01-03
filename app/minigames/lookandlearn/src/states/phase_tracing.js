@@ -35,7 +35,7 @@ define([
         var notion = this.notion = this.game.gameConfig.pedagogicData.data.notions[0];
         
         // the notion sound
-        //this.game.load.audio(this.game.gameConfig.pedagogicData.sound, this.game.gameConfig.pedagogicData.sound);
+        this.game.load.audio(this.game.gameConfig.pedagogicData.sound, this.game.gameConfig.pedagogicData.sound);
 
         // 3 Kalulu speeches 
         this.game.load.audio('kaluluIntro',         'minigames/lookandlearn/assets/audio/kalulu/kalulu_intro_commoncore03_' + this.game.gameConfig.pedagogicData.discipline + '.ogg');
