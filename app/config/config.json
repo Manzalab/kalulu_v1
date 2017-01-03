@@ -22,5 +22,8 @@
         "pdfPath"    : "assets/pdf/",
         "txtPath"    : "assets/data/",
         "fontsPath"  : "assets/fonts/"
+    },
+    "ftpParameters" : {
+        "ftpSaveInterval" : 20000
     }
 }

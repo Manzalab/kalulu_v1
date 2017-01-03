@@ -32,6 +32,9 @@
         pdfPath                 : { get : function () { return this._config.paths.pdfPath; }},
         txtPath                 : { get : function () { return this._config.paths.txtPath; }},
         fontsPath               : { get : function () { return this._config.paths.fontsPath; }},
+
+        // ftpParameters
+        FTP_SAVE_INTERVAL         : { get : function () { return this._config.ftpParameters.ftpSaveInterval; }}
     });
 
     // ###########################################################################

@@ -9,6 +9,7 @@
     var Timer               = require('./timer');
     var UserProfile         = require('./core/user_profile');
     var Reward              = require('application/dynamic_rewards');
+    var ftpAutoSaver        = require('application/ftp_autosaver');
 
     // ###############################################################################################################################################
     // ###  CONSTRUCTOR  #############################################################################################################################
@@ -179,7 +180,6 @@
         
         this._initRemediation(userData);
         this._initFTPAutoSave(userData);
- 
     };
     
     GameManager.prototype._initRemediation = function _initRemediation (userData) {
@@ -189,8 +189,10 @@
         this._rafiki = new Rafiki(this, this._currentUserProfile);
     };
 
-    GameManager.prototype._initFTPAutoSave = function _initFTPAutoSave (userData) {
-        // TODO
+    GameManager.prototype._initFTPAutoSave = function _initFTPAutoSave (saveObject) {
+
+        ftpAutoSaver.init(saveObject);
+        ftpAutoSaver.start(Config.FTP_SAVE_INTERVAL);
     };
 
 
