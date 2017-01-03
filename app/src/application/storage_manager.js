@@ -10,9 +10,9 @@ define([], function () {
 	}
 
 
-	StorageManager.prototype.getUsersData = function getUsersData () {
-		return this._storageStrategy.getUsersData();
-	};
+	// StorageManager.prototype.getUsersData = function getUsersData () {
+	// 	return this._storageStrategy.getUsersData();
+	// };
 
 
 	/**
@@ -27,8 +27,8 @@ define([], function () {
 	 * @param key {string} the id of the user for which the data is requested
 	 * @param value {object} the data to be stored. the object must be stringifiable (no circular references)
 	**/
-	StorageManager.prototype.saveUserData = function saveUserData (key, value) {
-		this._storageStrategy.saveUserData(key, value);
+	StorageManager.prototype.saveUserData = function saveUserData (value) {
+		this._storageStrategy.saveUserData(value);
 	};
 
 	return StorageManager;
