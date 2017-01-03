@@ -15,6 +15,7 @@
         sorting           : require ('../assets/data/sorting.csv')
     };
 
+
     // ###############################################################################################################################################
     // ###  CONSTRUCTOR  #############################################################################################################################
     // ###############################################################################################################################################
@@ -54,6 +55,8 @@
                 this._initUserData();
                 this._plan.isUnlocked = true;
             }
+
+
         if (Config.enableGlobalVars) window.kalulu.mathsModule = this;
            
     }
@@ -266,7 +269,8 @@
                     apparitions:
                     for (var iap = 0 ; iap < currentStimulus.apparitions.length ; iap++) { //cannot read length of undefined in a crabs catcher.
                         var apparition = currentStimulus.apparitions[iap];
-                        // console.log(apparition)
+                    
+                        console.log(apparition)
 
 
               
@@ -288,17 +292,22 @@
                           //var elapsed = apparition.exitTime - apparition.apparitionTime;
                           // var elapsed = apparition.exitTime - apparition.apparitionTime;
                           
+                          var sc = 0
+                          if(apparition.isCorrect === true &&  apparition.isClicked === true ){
+                            sc = 1
+                          }
                           var scoreObject = {
                               elapsedTime :  apparition.elapsedTime, 
                               //ref       : currentStimulus.value,
-                              score : apparition._isCorrect === apparition._isClicked ? 1 : 0
+                              score       :  sc
                           };
 
-                           if (!apparition._isCorrect && scoreObject.score === 0) {
+                           if (scoreObject.score === 0) {
                             console.log("flawwless set to false");
 
                             flawlessGame = false;
-                            console.log("value : " + currentStimulus.value + ", isCR : " + apparition._isCorrect + ", clicked : " + apparition._isClicked);
+                            console.log(currentStimulus)
+                            console.log("value : " + currentStimulus.value + ", isCR : " + apparition.isCorrect + ", clicked : " + apparition._isClicked);
                         }
                           
 
