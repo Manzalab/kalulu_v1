@@ -26,7 +26,9 @@
             INTERFACE_MANAGER_READY : { get: function () { return "interfaceManagerReady"; } },
             GET_SAVE                : { get: function () { return "getSave"; } },
             SET_SAVE                : { get: function () { return "setSave"; } },
-            SAVED_DATA_SENT         : { get: function () { return "savedDataSent"; } }
+            SAVED_DATA_SENT         : { get: function () { return "savedDataSent"; } },
+            RESET_SAVE              : { get: function () { return "resetSave"; } },
+            SAVE_RESET              : { get: function () { return "saveReset"; } }
         });
 
 
@@ -85,9 +87,10 @@
              * @type {boolean}
              * @memberof Namespace.LoadingManager#
             **/
-            UNLOCK_DEBUG            : { get: function () { return "unlockDebug"; } },
-            UNLOCK_NEUROENERGY_DEBUG: { get: function () { return "unlockNeuroEnergyDebug"; } },
-            SKIP_KALULU             : { get: function () { return "skipKalulu"; } }
+            UNLOCK_DEBUG             : { get: function () { return "unlockDebug"; } },
+            UNLOCK_NEUROENERGY_DEBUG : { get: function () { return "unlockNeuroEnergyDebug"; } },
+            SKIP_KALULU              : { get: function () { return "skipKalulu"; } },
+            RESET_SAVE_REQUEST       : { get: function () { return "resetSaveRequest"; } }
         });
 
 

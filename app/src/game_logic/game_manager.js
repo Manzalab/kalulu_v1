@@ -172,6 +172,7 @@
         if (Config.enableQAControls) {
             this._eventSystem.on(Events.DEBUG.UNLOCK_DEBUG, this._onDebugUnlockRequest, this);
             this._eventSystem.on(Events.DEBUG.UNLOCK_NEUROENERGY_DEBUG, this._onDebugUnlockNeuroEnergyRequest, this);
+            this._eventSystem.on(Events.DEBUG.RESET_SAVE_REQUEST, this._onResetSaveRequest, this);
         }
     };
     
@@ -338,15 +339,27 @@
     // ###  PRIVATE METHODS  ########################################################################################################################
     // ##############################################################################################################################################
 
-    GameManager.prototype._onDebugUnlockRequest = function _onDebugUnlockRequest (eventData) {
+    GameManager.prototype._onDebugUnlockRequest = function onDebugUnlockRequest (eventData) {
         console.info("UNLOCKING REQUEST RECEIVED");
         this._rafiki.unlockAllNodesUpToChapter(eventData);
     };
 
-    GameManager.prototype._onDebugUnlockNeuroEnergyRequest = function _onDebugUnlockNeuroEnergyRequest (eventData) {
+    GameManager.prototype._onDebugUnlockNeuroEnergyRequest = function onDebugUnlockNeuroEnergyRequest (eventData) {
         console.info("UNLOCKING NEURO ENERGY REQUEST RECEIVED");
         this._currentUserProfile.unlockNeuroEnergy(eventData);
     };
 
+    GameManager.prototype._onResetSaveRequest = function onResetSaveRequest (eventData) {
+        console.info("RESET_SAVE REQUEST RECEIVED");
+        this._eventSystem.once(Events.APPLICATION.SAVE_RESET, this._onSaveReset, this);
+        this._eventSystem.emit(Events.APPLICATION.RESET_SAVE);
+    };
+
+    GameManager.prototype._onSaveReset = function onSaveReset (eventData) {
+        console.info("RESET_SAVE DONE");
+        window.location.reload();
+    };
+
+    
     module.exports = GameManager;
 })();

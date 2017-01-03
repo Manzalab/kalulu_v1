@@ -15,4 +15,6 @@
     <platform name="android">
         <allow-intent href="market:*" />
     </platform>
+    <preference name="Fullscreen" value="true" />
+    <preference name="Orientation" value="landscape" />
 </widget>

@@ -172,6 +172,7 @@
         
         this._eventSystem.on(Events.APPLICATION.GET_SAVE, this._onGetSave, this); //@ TODO removeListener
         this._eventSystem.on(Events.APPLICATION.SET_SAVE, this._onSetSave, this); //@ TODO removeListener
+        this._eventSystem.once(Events.APPLICATION.RESET_SAVE, this._onResetSave, this); //@ TODO removeListener
     };
 
     /**
@@ -198,6 +199,11 @@
 
     Application.prototype._onSetSave = function _onSetSave (userData) {
         this._eventSystem.emit(Events.APPLICATION.USER_DATA_SAVED, this._storageManager.saveUserData(userData));
+    };
+
+    Application.prototype._onResetSave = function onResetSave (userData) {
+        this._storageManager.resetSave();
+        this._eventSystem.emit(Events.APPLICATION.SAVE_RESET);
     };
 
     Application.prototype._doActionVoid = function _doActionVoid () {};
