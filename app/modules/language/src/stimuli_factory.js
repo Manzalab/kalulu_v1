@@ -34,7 +34,7 @@ define([], function () {
             correctResponse     : isCorrectResponse,
             skills              : skills,
             syllabicStructure   : word.syllabicStructure,
-            notionId            : word.id
+            id                  : word.id
         };
     };
 
@@ -46,7 +46,7 @@ define([], function () {
             correctResponse     : isCorrectResponse,
             skills              : skills,
             syllabicStructure   : gp.syllabicStructure,
-            notionId            : gp.id
+            id                  : gp.id
         };
     };
 

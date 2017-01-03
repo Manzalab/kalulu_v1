@@ -3,6 +3,7 @@
     "lowerCaseTargetsShare"    : 50,
     "strongDistractorTreshold" : 35,
     "similarityTreshold"       : 35,
+    "scoreWindowSize"          : 10,
     "syllablesGames"           : {
         "revisionShareInTargets" : 20
     },

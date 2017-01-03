@@ -101,12 +101,12 @@ define([
     LessonScreen.prototype.stringifyTargetNotions = function stringifyTargetNotions (lessonNode) {
         var string ="";
         
-        for (var notionId in lessonNode.targetNotions) {
-            if (!lessonNode.targetNotions.hasOwnProperty(notionId)) continue;
-            var targetNotion = lessonNode.children[0].targetNotions[notionId];
+        for (var i = 0 ; i < lessonNode.targetNotions.length ; i++) {
+
+            var targetNotion = lessonNode.targetNotions[i];
 
             if (string.length > 0) string += " & ";
-            string += targetNotion.upperCase;
+            string += targetNotion.upperCase || targetNotion.VALUE;
         }
 
         return string;

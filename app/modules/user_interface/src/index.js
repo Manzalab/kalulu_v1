@@ -137,7 +137,6 @@
     UserInterface.prototype.requestMinigame = function requestMinigame (node) {
         this._eventSystem.once(Events.GAME.GOTO_ACTIVITY, this._onGotoActivity, this);
         this._eventSystem.emit(Events.COMMANDS.GOTO_ACTIVITY_REQUEST, node, this._debugPanel);
-        this._eventSystem.emit(Events.COMMANDS.GOTO_ACTIVITY_REQUEST, node);
     };
 
     UserInterface.prototype.requestBonusMinigame = function requestBonusMinigame (data) {
@@ -152,7 +151,8 @@
 
     UserInterface.prototype.requestAssessment = function requestAssessment (node) {
         console.log("[UserInterface] Player requested Assessment for Chapter/Garden " + node.chapterNumber);
-        this._eventSystem.emit(Events.COMMANDS.GOTO_ASSESSMENT_REQUEST, node);
+        this._eventSystem.once(Events.GAME.GOTO_ACTIVITY, this._onGotoActivity, this);
+        this._eventSystem.emit(Events.COMMANDS.GOTO_ASSESSMENT_REQUEST, node, this._debugPanel);
     };
 
     UserInterface.prototype.destroy = function destroy () {

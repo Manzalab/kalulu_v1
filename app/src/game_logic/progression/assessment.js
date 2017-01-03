@@ -20,13 +20,6 @@ define([
     **/
     function Assessment (userProfile, setup, parent) {
         
-        //console.log(setup);
-
-        //@param setup.id {string} id of the node
-        //@param setup.discipline {DisciplineModule} if parent is not provided, the discipline module of the node.
-        //@param setup.parent {ProgressionNode} The parent node
-        //@param setup.children {object.<string, object>} The raw data needed to instanciate children
-        //@param setup.targetNotions {GP[]} The list of identifiers for the node's own notions
         var assessment = {
             id : "Assessment" + parent.chapterNumber,
             discipline : parent.discipline,
@@ -35,10 +28,10 @@ define([
             targetNotions : 0
         };
 
+        this._activityType = parent.discipline.getAssessmentActivity(parent.chapterNumber);
+        
         ProgressionNode.call(this, userProfile, assessment);
 
-        //if (!Config.languageModule.assessments[parent.chapterNumber - 1]) console.warn(assessment);
-        //this._activityType = Config.languageModule.assessments[parent.chapterNumber - 1].MINIGAME;
         this._chapterNumber = parent.chapterNumber;
     }
 

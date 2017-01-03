@@ -72,7 +72,8 @@
             GOTO_TOYCHEST_ACTIVITY_SCREEN_REQUEST : { get: function () { return "goToToyChestActivityScreenRequest"; } },
             GOTO_GARDEN_SCREEN_REQUEST            : { get: function () { return "goToGardenScreenRequest"; } },
             GOTO_LESSON_SCREEN_REQUEST            : { get: function () { return "goToLessonScreenRequest"; } },
-            GOTO_ACTIVITY_REQUEST                 : { get: function () { return "goToActivityRequest"; } }
+            GOTO_ACTIVITY_REQUEST                 : { get: function () { return "goToActivityRequest"; } },
+            GOTO_ASSESSMENT_REQUEST               : { get: function () { return "goToAssessmentRequest"; } }
         });
 
         // ## COMMANDS ADDRESSED TO GAME LOGIC
