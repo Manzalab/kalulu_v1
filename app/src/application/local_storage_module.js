@@ -51,5 +51,10 @@ define([], function () {
 		var a = this.store.setItem(USER_PROFILES, save);
 	};
 
+	LocalStorageModule.prototype.resetSave = function resetSave () {
+		this.store.removeItem(USER_PROFILES);
+	};
+
+
 	return LocalStorageModule;
 });

@@ -490,6 +490,8 @@
         this._debugPanelQA.add(this, "requireNeuroEnergy").min(0).max(300).step(1).listen();
         this._debugPanelQA.add(this, "sendRequire");
         this._debugPanelQA.open();
+
+        this._debugPanelQA.add(this, "resetSave");
     };
 
     UserInterface.prototype._initKaluluDebugPanel = function _initKaluluDebugPanel () {
@@ -520,6 +522,10 @@
         this._eventSystem.emit(Events.DEBUG.UNLOCK_NEUROENERGY_DEBUG, this.requireNeuroEnergy);
     };
     
+    UserInterface.prototype.resetSave = function resetSave () {
+        this._eventSystem.emit(Events.DEBUG.RESET_SAVE_REQUEST);
+    };
+
     module.exports = UserInterface;
 
 })();
