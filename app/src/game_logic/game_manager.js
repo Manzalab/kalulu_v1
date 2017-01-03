@@ -178,8 +178,8 @@
     GameManager.prototype._onSaveReady = function _onSaveReady (userData) {
         
         this._initRemediation(userData);
-        this._initAsyncFTPAutoSave(userData);
-
+        this._initFTPAutoSave(userData);
+ 
     };
     
     GameManager.prototype._initRemediation = function _initRemediation (userData) {
