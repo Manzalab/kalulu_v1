@@ -3,7 +3,7 @@ define([
     '../ui',
     'eventemitter3',
     '../layouts',
-    '../layouts/bot-canvas',
+    '../layouts/tracer-bot',
     '../tracing',
     '../events/emitter',
     '../events/events',
@@ -13,7 +13,7 @@ define([
     UI,
     EventEmitter,
     loadLayouts,
-    BotCanvasLayout,
+    TracerBotLayout,
     Tracing,
     Emitter,
     Events,
@@ -76,6 +76,7 @@ define([
     PhaseImage.prototype._initPhase = function initImagePhase () {
         
         //GamePhase._init.call(this);
+        if(this.game.gameConfig.globalVars) window.lookandlearn.imagePhase = this;
 
         if (!this.game.eventManager) {
             this.game.eventManager = new EventEmitter();
@@ -131,7 +132,7 @@ define([
 
         this._setTracerPositionToNotionX1(this._currentNotion);
 
-        this._setupTracer(this.tracerPosX, this.tracerPosX);
+        this._setupTracer(this._tracerPositions[this._currentNotion.id].x1, this._tracerPositions[this._currentNotion.id].y);
 
         this.progression = new Tracing.ProgressionHandler(this.game.gameConfig.progression, this.game);
         this.tracingOn = false;
@@ -230,9 +231,9 @@ define([
             this._framesCoords[lNotion.id] = lCoords;
 
             var lPos = {
-                x1 : lCoords.x,
+                x1 : lCoords.x, // the left of the white box, for a test.
                 x2 : lCoords.x,
-                y : 720
+                y  : lCoords.y  // the top of the white box, for a test.
             };
             this._tracerPositions[lNotion.id] = lPos;
         }
@@ -249,7 +250,7 @@ define([
         this.secondsOfDelay = 0.8;
         var tracerScaleRatio = this.scaleRatio = 0.8;
 
-        this.game.layouts = [new BotCanvasLayout(this.game, this.game.gameConfig.layouts.phase1Uppercase)];
+        this.game.layouts = [new TracerBotLayout(this.game, this.game.gameConfig.layouts.tracerBotLayout)];
         //Emitter.emit(Events.TRIGGER_LAYOUT, -1);
 
         this.tracingLayout = this.game.layouts[0];
@@ -264,6 +265,7 @@ define([
 
         this.tracingLayout.group.position.set(x, y);
         //this.lowercase.group.position.set(1020, 850);
+        // this.tracingLayout.group.position.set(0, 0);
     };
 
     PhaseImage.prototype.onFirstTime = function onFirstTime () {

@@ -26,21 +26,7 @@ function Layout(game, settings, group){
   console.log(settings);
   this.group = group || new Phaser.Group(game, null, 'LayoutGroup_' + settings.name);
   
-  this.bitmap = new Phaser.BitmapData(this.game, 'bitmapForImage_' + settings.name, settings.w, settings.h);
-  this.image  = new Phaser.Image(this.game, settings.x, settings.y, this.bitmap);
-  
-  if (this.game.gameConfig.debugLayouts) {
-    this.debugBitmap = new Phaser.BitmapData(this.game, 'debugBG_' + settings.name, settings.w, settings.h);
-    this.debugBitmap.fill(255, 0, 255, 0.6);
-    this.debugBG = new Phaser.Image(game, 0, 0, this.debugBitmap);
-  }
-  
-  this.context = this.game.add.bitmapData(settings.w, settings.h).ctx;
-  this.context.width = settings.w;
-  this.context.height = settings.h;
-
-  if (this.game.gameConfig.debugLayouts) this.group.add(this.debugBG);
-  this.group.add(this.image);
+  this.setupCanvas(settings);
 
   if (settings.enabled) {
     this.enable();
@@ -50,6 +36,31 @@ function Layout(game, settings, group){
     console.log("disable");
   }
 }
+
+/**
+ * @param settings {object} fields : name, x, y, w, h
+**/
+Layout.prototype.setupCanvas = function setupCanvas (settings) {
+  
+  if (this.debugBG && this.game.gameConfig.debugLayouts) this.group.remove(this.debugBG);
+  if (this.image) this.group.remove(this.image);
+
+  this.bitmap = new Phaser.BitmapData(this.game, 'bitmapForImage_' + settings.name, settings.w, settings.h);
+  this.image  = new Phaser.Image(this.game, settings.x, settings.y, this.bitmap);
+  
+  if (this.game.gameConfig.debugLayouts) {
+    this.debugBitmap = new Phaser.BitmapData(this.game, 'debugBG_' + settings.name, settings.w, settings.h);
+    this.debugBitmap.fill(255, 0, 255, 0.6);
+    this.debugBG = new Phaser.Image(this.game, 0, 0, this.debugBitmap);
+  }
+  
+  this.context = this.game.add.bitmapData(settings.w, settings.h).ctx;
+  this.context.width = settings.w;
+  this.context.height = settings.h;
+
+  if (this.game.gameConfig.debugLayouts) this.group.add(this.debugBG);
+  this.group.add(this.image);
+};
 
 /**
  * To be overriden by subclasses. Should be called if this.enabled is set to true.

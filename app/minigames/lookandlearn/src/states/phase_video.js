@@ -96,7 +96,7 @@ define([
         this.startTracingDelay = null;
         this.secondsOfDelay = 0.8;
 
-        this.game.layouts = [new BotCanvasLayout(this.game, this.game.gameConfig.layouts.phase1Uppercase)];
+        this.game.layouts = [new BotCanvasLayout(this.game, this.game.gameConfig.layouts.tracerBotLayout)];
         //Emitter.emit(Events.TRIGGER_LAYOUT, -1);
 
         this.tracingLayout = this.game.layouts[0];

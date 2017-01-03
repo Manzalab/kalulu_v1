@@ -1,15 +1,15 @@
 {
-    "phase1Uppercase": {
+    "tracerBotLayout": {
         "name" : "botDemo",
         "enabled": true,
         "pencilStyle" : {"stroke": "0x000000", "width": "30"},
         "x": 0,
         "y": 0,
-        "w": 1000,
-        "h": 900,
+        "w": 600,
+        "h": 600,
         "id": 4,
         "waitedId": 5,
-        "drawOffset": {"x": 40, "y":40},
+        "drawOffset": {"x": 40, "y": 40},
         "callSounds": false,
         "isTouchSensitive": false
     },

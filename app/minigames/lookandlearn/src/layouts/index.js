@@ -19,7 +19,7 @@ function layoutsLoader(game, config, options){
         console.log('Loading the layout Bot');
     }
     if (options.isPhaseOne) {
-        layouts.push(new BotCanvasLayout(game, config.layouts.phase1Uppercase));
+        layouts.push(new BotCanvasLayout(game, config.layouts.tracerBotLayout));
         layouts.push(new BotCanvasLayout(game, config.layouts.phase1Lowercase));
         console.log('Loading the layout PhaseOne');
     }
