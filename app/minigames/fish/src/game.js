@@ -1,7 +1,7 @@
 ﻿define([
     'common/src/ui',
     './remediation',
-    'common/src/kalulu',
+    './kalulu',
     'eventemitter3',
 ], function (
     Ui,
