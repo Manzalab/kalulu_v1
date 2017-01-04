@@ -3,3 +3,4 @@ stats.json
 npm-debug.log.*
 www/
 platforms/
+.idea/
