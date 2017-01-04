@@ -1,10 +1,10 @@
 ﻿(function () {
     'use strict';
 
-    var Phaser = require ('phaser-bundle');
-    var Crab   = require ('./crab');
-    var Fx     = require ('common/src/fx');
-    var Dat    = require ('dat.gui');
+    var Phaser = require('phaser-bundle');
+    var Crab = require('./crab');
+    var Fx = require('common/src/fx');
+    var Dat = require('dat.gui');
 
     // CONSTRUCTOR
     var Remediation = function (game) {
@@ -60,6 +60,9 @@
 
         this.framesToWaitBeforeNextSpawn = 0;
         this.timerCorrectResponse = 0;
+        this.timeWithoutClick = 0;
+
+        this.highlightNextSpawn = false;
 
         this.totalRounds = params.getGlobalParams().roundsCount;
         this.currentRound = 0;
@@ -146,6 +149,17 @@
             this.paused = false;
         }, this);
 
+        this.eventManager.on('help', function () {
+            this.highlightNextSpawn = true;
+            for (var i = 0; i < this.crabs.length; i++) {
+                if (this.crabs[i].isCorrectResponse) {
+                    this.crabs[i].highlight.visible = true;
+                }
+            }
+        }, this);
+
+        
+
         this.eventManager.on('exitGame', function () {
             this.eventManager.removeAllListeners();
             this.eventManager = null;
@@ -204,7 +218,7 @@
         }
     };
     Remediation.prototype.onClickOnCrab = function (crab) {
-        
+        this.timeWithoutClick = 0;
         this.triesRemaining--;
         console.log("tries remaining :" + this.triesRemaining);
         crab.apparition.close(true, 1000); // @TODO : ADD CUSTOM TIMER FOR ELAPSED TIME
@@ -264,7 +278,7 @@
         if (this.lives > 0) {
             if (this.triesRemaining > 0) {
                 if (this.consecutiveMistakes % 2 === 0) {
-                    this.eventManager.emit('help');
+                    this.eventManager.emit('help');                    
                     if (this.game.gameConfig.debugPanel) this.cleanLocalPanel();
                     this.game.params.decreaseLocalDifficulty();
                     if (this.game.gameConfig.debugPanel) this.setLocalPanel();
@@ -319,7 +333,7 @@
                     value.text = this.correctResponse.alternativeValue;
                     if (Math.random() <= localParams.mathsAlternativePicturePercentage) value.alternativePicture = this.correctResponse.alternativePicture;
                 }
-            }            
+            }
         }
         else {
             if (this.falseResponsesCurrentPool.length === 0) {
@@ -335,7 +349,7 @@
                     value.text = falseResponse.alternativeValue;
                     if (Math.random() <= localParams.mathsAlternativePicturePercentage) value.alternativePicture = falseResponse.alternativePicture;
                 }
-            }             
+            }
         }
 
 
@@ -344,6 +358,10 @@
         randomCrab.enabled = true;
         randomCrab.setValue(value.text, value.value, value.alternativePicture);
         randomCrab.isCorrectResponse = isTargetValue;
+        if (this.highlightNextSpawn && isTargetValue) {
+            randomCrab.highlight.visible = true;
+            this.highlightNextSpawn = false;
+        }
 
         j = 0;
         console.log(this.results);
@@ -402,6 +420,13 @@
 
         if (!this.paused) {
             this.manageCrabsAppearances();
+            this.timeWithoutClick++;
+
+            if (this.timeWithoutClick > 60 * 20) {
+                this.timeWithoutClick = 0;
+                this.eventManager.emit('help');
+            }
+
         }
     };
 
