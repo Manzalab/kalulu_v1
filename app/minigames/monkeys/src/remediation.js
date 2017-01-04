@@ -37,12 +37,13 @@
         this.framesToWaitBeforeNewSound = 0;
         this.roundIndex = 0;
         this.stepIndex = 0;
-        
+        this.timeWithoutClick = 0;
+
         this.initGame();
 
         if (this.game.gameConfig.globalVars) window.cocolision.cocolision = this.cocolision;
 
-               	
+
         if (this.game.gameConfig.debugPanel) {
 
             this.debug = new Dat.GUI(/*{ autoPlace: false }*/);
@@ -72,6 +73,7 @@
 
             debugPanel.add(this, "AutoWin");
             debugPanel.add(this, "AutoLose");
+            debugPanel.add(this, "skipKalulu");
         }
         this.initSounds(game);
         this.initEvents();
@@ -130,6 +132,7 @@
         }, this);
 
         this.eventManager.on('swipe', function (object) {
+            this.timeWithoutClick = 0;
             this.eventManager.emit('pause');
             object.apparition.close(true, 0);
             object.flyTo(this.trees.kingTree.monkey.x, this.trees.kingTree.monkey.y - 40, 1.4);
@@ -174,7 +177,7 @@
             this.game.state.start('Setup');
         }, this);
     };
-	
+
     /**
      * Init a new game with remediation parameters from Rafiki.
     **/
@@ -194,7 +197,7 @@
         this.won = false;
     };
 
-       
+
     /**
      * Initialise parameters for the required round with data contained in this.pedagogicData
      **/
@@ -306,7 +309,7 @@
             this.trees.kingTree.monkey.sounds.sendRight.play();
             object.tween.stop();
             if (this.game.discipline != 'maths') object.moveTo(this.board.x + this.stepIndex * (this.board.text.fontSize - 40), this.game.height - 100, 0.7);
-            else object.moveTo(this.board.x - (Math.floor(this.board.text.text.length/2) - this.sequence.numberIndex) * (this.board.text.fontSize - 40), this.game.height - 100, 0.7);
+            else object.moveTo(this.board.x - (Math.floor(this.board.text.text.length / 2) - this.sequence.numberIndex) * (this.board.text.fontSize - 40), this.game.height - 100, 0.7);
             this.eventManager.once('finishedMoving', function () {
                 object.break();
                 if (this.game.discipline != 'maths') this.board.text.text += this.correctResponses[this.stepIndex].value;
@@ -434,6 +437,15 @@
 
     Remediation.prototype.update = function () {
         if (this.framesToWaitBeforeNewSound > 0) this.framesToWaitBeforeNewSound--;
+
+        if (!this.paused) {
+            this.timeWithoutClick++;
+
+            if (this.timeWithoutClick > 60 * 20) {
+                this.timeWithoutClick = 0;
+                this.eventManager.emit('help');
+            }
+        }
     };
 
     Remediation.prototype.gameOverWin = function gameOverWin() {
@@ -582,6 +594,10 @@
         this.eventManager.emit('exitGame');
     };
 
+    Remediation.prototype.skipKalulu = function skipKalulu() {
+
+        this.eventManager.emit("skipKalulu");
+    };
 
     return Remediation;
 });

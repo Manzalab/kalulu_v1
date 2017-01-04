@@ -204,7 +204,7 @@
         }
     };
     Remediation.prototype.onClickOnCrab = function (crab) {
-
+        
         this.triesRemaining--;
         console.log("tries remaining :" + this.triesRemaining);
         crab.apparition.close(true, 1000); // @TODO : ADD CUSTOM TIMER FOR ELAPSED TIME

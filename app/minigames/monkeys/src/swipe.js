@@ -41,7 +41,7 @@ define([
 
         this.game.input.onUp.add(function () {
             self.swiping = false;
-        })
+        });
     }
 
     Swipe.prototype.check = function () {
@@ -50,6 +50,7 @@ define([
             this.eventManager.emit('swipe', this.object.parent);
             return true;
         }
+        
         if (!this.swiping) return null;
 
         if (Phaser.Point.distance(this.game.input.activePointer.position, this.game.input.activePointer.positionDown) < this.dragLength) return null;
@@ -80,6 +81,7 @@ define([
             this.eventManager.emit('swipe', this.object.parent);
             return true;
         }
+        
         return null;
     }
 

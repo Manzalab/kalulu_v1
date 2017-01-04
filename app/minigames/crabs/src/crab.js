@@ -41,7 +41,7 @@
         this.events = this.crabSprite.events;
 
         this.events.onInputDown.add(function () {
-            if (this.clickable) {
+            if (this.clickable && !this.paused) {
                 this.enabled = false;
                 this.clickable = false;
                 this.crabSprite.animations.play('hit');
@@ -120,6 +120,7 @@
     Crab.prototype.initEvents = function () {
         this.eventManager.on('pause', function () {
             this.paused = true;
+            
         }, this);
 
         this.eventManager.on('unPause', function () {
