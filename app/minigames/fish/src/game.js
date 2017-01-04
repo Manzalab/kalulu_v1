@@ -48,14 +48,8 @@
 
     Game.prototype = {
         preload: function(){
-            if (this.game.pedagogicData.discipline != "maths") {
-                this.game.load.atlasJSONHash('buoyRed', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/Animation_Bateau/buoyRed.png', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/Animation_Bateau/buoyRed.json');
-                this.game.load.atlasJSONHash('buoyGreen', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/Animation_Bateau/buoyGreen.png', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/Animation_Bateau/buoyGreen.json');
-            }
-            else {
-                this.game.load.atlasJSONHash('buoyRed', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/Animation_Bateau/buoyRedMaths.png', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/Animation_Bateau/buoyRedMaths.json');
-                this.game.load.atlasJSONHash('buoyGreen', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/Animation_Bateau/buoyGreenMaths.png', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/Animation_Bateau/buoyGreenMaths.json');
-            }
+            this.game.load.atlasJSONHash('buoyRed', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/Animation_Bateau/buoyred_' + this.game.rafiki.discipline + '.png', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/Animation_Bateau/buoyred_' + this.game.rafiki.discipline + '.json');
+            this.game.load.atlasJSONHash('buoyGreen', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/Animation_Bateau/buoygreen_' + this.game.rafiki.discipline + '.png', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/Animation_Bateau/buoygreen_' + this.game.rafiki.discipline + '.json');
         },
 
         /**
