@@ -48,13 +48,13 @@
                     gameTimerVisible                : false,
                     stepDistracterCount             : 3, //
                     totalTriesCount                 : 4, //
-                    jellyfishesOnScreen             : 4, //
-                    columnCount                     : 2  //
+                    jellyfishesOnScreen             : 8, //
+                    columnCount                     : 3  //
                 },
                 localRemediation : {
-                    minimumCorrectStimuliOnScreen   : {min : 3, max : 2}, //
-                    maximumCorrectStimuliOnScreen   : {min : 4, max : 3}, //
-                    respawnTime                     : {min : 4, max : 3}, //
+                    minimumCorrectStimuliOnScreen   : {min : 2, max : 1}, //
+                    maximumCorrectStimuliOnScreen   : {min : 3, max : 2}, //
+                    respawnTime                     : {min : 3.5, max : 3}, //
                     speed                           : {min : 2, max : 4}  //
                 }
             },
@@ -64,13 +64,13 @@
                     gameTimerVisible                : false,
                     stepDistracterCount             : 4,
                     totalTriesCount                 : 6,
-                    jellyfishesOnScreen             : 5,
-                    columnCount                     : 2
+                    jellyfishesOnScreen             : 10,
+                    columnCount                     : 3
                 },
                 localRemediation : {
                     minimumCorrectStimuliOnScreen   : {min : 2, max : 1},
                     maximumCorrectStimuliOnScreen   : {min : 3, max : 2},
-                    respawnTime                     : {min : 3.5, max : 2.5},
+                    respawnTime                     : {min : 3, max : 2.5},
                     speed                           : {min : 4, max : 6}
                 }
             },
@@ -80,14 +80,14 @@
                     gameTimerVisible                : false,
                     stepDistracterCount             : 5,
                     totalTriesCount                 : 8,
-                    jellyfishesOnScreen             : 6,
-                    columnCount                     : 3
+                    jellyfishesOnScreen             : 14,
+                    columnCount                     : 5
                 },
                 localRemediation : {
                     minimumCorrectStimuliOnScreen   : {min : 2, max : 1},
                     maximumCorrectStimuliOnScreen   : {min : 3, max : 1},
-                    respawnTime                     : {min : 2, max : 1},
-                    speed                           : {min : 5, max : 10}
+                    respawnTime                     : {min : 2.5, max : 2},
+                    speed                           : {min : 6, max : 8}
                 }
             }, 
             { // LEVEL 4
@@ -96,13 +96,13 @@
                     gameTimerVisible                : false,
                     stepDistracterCount             : 7,
                     totalTriesCount                 : 10,
-                    jellyfishesOnScreen             : 8,
-                    columnCount                     : 4
+                    jellyfishesOnScreen             : 16,
+                    columnCount                     : 5
                 },
                 localRemediation : {
-                    minimumCorrectStimuliOnScreen   : {min : 3, max : 1},
-                    maximumCorrectStimuliOnScreen   : {min : 5, max : 3},
-                    respawnTime                     : {min : 2.5, max : 1.5},
+                    minimumCorrectStimuliOnScreen   : {min : 2, max : 1},
+                    maximumCorrectStimuliOnScreen   : {min : 3, max : 1},
+                    respawnTime                     : {min : 2, max : 1.5},
                     speed                           : {min : 6, max : 8}
                 }
             },
@@ -112,13 +112,13 @@
                     gameTimerVisible                : false,
                     stepDistracterCount             : 9,
                     totalTriesCount                 : 12,
-                    jellyfishesOnScreen             : 10,
-                    columnCount                     : 5
+                    jellyfishesOnScreen             : 18,
+                    columnCount                     : 6
                 },
                 localRemediation : {
-                    minimumCorrectStimuliOnScreen   : {min : 4, max : 1},
-                    maximumCorrectStimuliOnScreen   : {min : 6, max : 4},
-                    respawnTime                     : {min : 2, max : 1},
+                    minimumCorrectStimuliOnScreen   : {min : 2, max : 1},
+                    maximumCorrectStimuliOnScreen   : {min : 3, max : 1},
+                    respawnTime                     : {min : 1.5, max : 1},
                     speed                           : {min : 8, max : 10}
                 }
             }
