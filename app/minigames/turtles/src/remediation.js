@@ -253,8 +253,8 @@
 
         this.sounds.wrong.play();
         this.fx.hit((turtle1.x + turtle2.x)/2, (turtle1.y + turtle2.y)/2, false);
-        //this.eventManager.emit("pause");
-        //this.fail();
+        this.eventManager.emit("pause");
+        this.fail();
     };
 
     Remediation.prototype.collisionIsland = function (turtle1, island) {
