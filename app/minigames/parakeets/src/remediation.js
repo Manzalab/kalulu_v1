@@ -121,7 +121,7 @@
         var roundData = this.game.pedagogicData.data.rounds[0].steps[0];
         var roundType = roundData.type;
         console.log(roundData);
-        var pairsCount = roundData.stimuli.length;
+        var pairsCount = globalParams.parakeetPairs;
         console.log(this.game.discipline);
         if (this.game.discipline != "maths")
             for (var i = 0; i < pairsCount; i++) {
