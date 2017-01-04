@@ -23,6 +23,9 @@
 
         this.eventManager = game.eventManager;
 
+        var data = this.game.pedagogicData;
+        this.discipline = data.discipline;
+
         this.game = game;
         this.paused = false;
         this.won = false;
@@ -72,13 +75,15 @@
         }
         this.initSounds(game);
         this.initEvents();
-  
+
         this.trees = [];
         this.initTrees(game);
 
         this.board = new Board(550, game.height - 50, game);
 
         this.initRound(this.roundIndex);
+        console.log(this.sequence)
+        if (this.game.discipline == 'maths') this.board.setTextMaths(this.sequence.sequence, this.sequence.numberIndex);
         this.setTexts();
         this.fx = new Fx(game);
     };
@@ -92,6 +97,8 @@
     Remediation.prototype.initSounds = function (game) {
         this.sounds = {};
 
+        this.sounds.right = game.add.audio('right');
+        this.sounds.wrong = game.add.audio('wrong');
         this.sounds.winGame = game.add.audio('winGame');
         this.sounds.loseGame = game.add.audio('loseGame');
     }
@@ -105,23 +112,22 @@
 
         this.eventManager.on('unPause', function () {
         }, this);
-        console.log(this.game.discipline)
-        if (this.game.discipline === 'language') {
-            this.eventManager.on('playCorrectSound', function () {
-                this.eventManager.emit('unPause');
-                if (this.framesToWaitBeforeNewSound <= 0) {
-                    this.sounds.correctRoundAnswer.play();
-                    this.framesToWaitBeforeNewSound = Math.floor((this.sounds.correctRoundAnswer.totalDuration + 0.5) * 60);
-                }
-            }, this);
 
-            this.eventManager.on('playCorrectSoundNoUnPause', function () {
+        this.eventManager.on('playCorrectSound', function () {
+            this.eventManager.emit('unPause');
+            if (this.game.discipline != "maths")
                 if (this.framesToWaitBeforeNewSound <= 0) {
                     this.sounds.correctRoundAnswer.play();
                     this.framesToWaitBeforeNewSound = Math.floor((this.sounds.correctRoundAnswer.totalDuration + 0.5) * 60);
                 }
-            }, this);
-        }
+        }, this);
+
+        this.eventManager.on('playCorrectSoundNoUnPause', function () {
+            if (this.framesToWaitBeforeNewSound <= 0) {
+                this.sounds.correctRoundAnswer.play();
+                this.framesToWaitBeforeNewSound = Math.floor((this.sounds.correctRoundAnswer.totalDuration + 0.5) * 60);
+            }
+        }, this);
 
         this.eventManager.on('swipe', function (object) {
             this.eventManager.emit('pause');
@@ -203,8 +209,13 @@
         this.falseResponses = [];
         this.correctResponses = [];
         this.falseStepResponsesCurrentPool = [];
-        this.target = roundData.word || roundData.targetSequence;
-        if (this.game.discipline === 'language') this.sounds.correctRoundAnswer = this.game.add.audio(roundData.word.value);
+        if (this.game.discipline != "maths") {
+            this.correctWord = roundData.word;
+            this.sounds.correctRoundAnswer = this.game.add.audio(roundData.word.value);
+        }
+        else {
+            this.sequence = roundData.targetSequence;
+        }
         var stepsLength = roundData.steps.length;
 
         var stimuliLength, stimulus;
@@ -294,11 +305,14 @@
             this.trees.kingTree.monkey.monkeySprite.animations.play('right');
             this.trees.kingTree.monkey.sounds.sendRight.play();
             object.tween.stop();
-            object.moveTo(this.board.x + this.stepIndex * (this.board.text.fontSize - 40), this.game.height - 100, 0.7);
+            if (this.game.discipline != 'maths') object.moveTo(this.board.x + this.stepIndex * (this.board.text.fontSize - 40), this.game.height - 100, 0.7);
+            else object.moveTo(this.board.x - (Math.floor(this.board.text.text.length/2) - this.sequence.numberIndex) * (this.board.text.fontSize - 40), this.game.height - 100, 0.7);
             this.eventManager.once('finishedMoving', function () {
                 object.break();
-                this.board.text.text += this.correctResponses[this.stepIndex].value;
+                if (this.game.discipline != 'maths') this.board.text.text += this.correctResponses[this.stepIndex].value;
+                else this.board.setTextMaths(this.sequence.sequence);
                 this.eventManager.once('finishedBreaking', function () {
+                    this.sounds.right.play();
                     this.success();
                 }, this);
             }, this);
@@ -317,6 +331,7 @@
                     object.monkeyRef.stunStars.animations.play('stun');
                     object.monkeyRef.stunStars.visible = true;
                 }, object);
+                this.sounds.wrong.play();
                 this.fail();
             }, this);
 
@@ -345,6 +360,9 @@
                 setTimeout(function () {
                     context.initRound(context.roundIndex);
                     context.board.text.text = "";
+                    if (context.game.discipline == 'maths') {
+                        context.board.setTextMaths(context.sequence.sequence, context.sequence.numberIndex);
+                    }
                     context.getNewCoconuts();
                     context.eventManager.emit('playCorrectSound');
                 }, 3 * 1000);

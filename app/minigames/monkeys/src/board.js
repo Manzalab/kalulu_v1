@@ -51,6 +51,13 @@
         this.text.text = value;
     };
 
+    Board.prototype.setTextMaths = function (valueArray, index) {
+        this.text.text = "";
+        for (var i = 0; i < valueArray.length; i++) {
+            if (typeof index != 'undefined' && i == index) this.text.text += '_ ';
+            else this.text.text += valueArray[i] + ' ';
+        }
+    }
     
 
     return Board;

@@ -66,13 +66,13 @@
             console.info("[Game State] Preloading new game");
 
             // load audiofiles for the current data
-
             var data = this.game.pedagogicData.data;
+            this.game.discipline = this.game.pedagogicData.discipline;
             var roundsCount = data.rounds.length;
             var stepsCount, stimuliCount, stimulus;
-
+            console.log(this.game.discipline)
             for (var i = 0; i < roundsCount; i++) {
-                if (this.game.discipline === 'language') this.game.load.audio(data.rounds[i].word.value, data.rounds[i].word.soundPath);
+                if (this.game.discipline != "maths") this.game.load.audio(data.rounds[i].word.value, data.rounds[i].word.soundPath);
                 stepsCount = data.rounds[i].steps.length;
                 for (var j = 0; j < data.rounds[i].steps.length; j++) {
                     stimuliCount = data.rounds[i].steps[j].stimuli.length;
