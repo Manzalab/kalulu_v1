@@ -56,6 +56,7 @@
                 this._plan.isUnlocked = true;
             }
 
+            this._sortingGamesListByChapter = this._initSortingGamesList();
 
         if (Config.enableGlobalVars) window.kalulu.mathsModule = this;
            
@@ -75,7 +76,36 @@
      * @param paramName {Type} description of the parameter
      * @return {Type} description of the returned object
     **/
+    MathsModule.prototype._initSortingGamesList = function _initSortingGamesList () {
+        var data = staticData.sorting;
+        var listByChapter = {};
+        for (var i = 0 ; i < data.length ; i++) {
+            var lItem = data[i];
 
+            if (!listByChapter.hasOwnProperty(lItem.CHAPTER)) listByChapter[lItem.CHAPTER] = [];
+
+            listByChapter[lItem.CHAPTER].push({
+                "value" : lItem["HIGHER NUM"],
+                "categorie": "HIGHER NUM"
+              
+            });
+            listByChapter[lItem.CHAPTER].push({
+                "value"  : lItem["OTHER NUM"],
+                 "categorie": "OTHER NUM"
+            });
+
+
+
+
+
+           
+
+        }
+
+        console.log(listByChapter)
+
+        return listByChapter;
+    };
     MathsModule.prototype.getNotionsById = function getNotionsById (id) {
         // console.log('getNotionsById'+id)
        //@ console.log(this._numberList[id])
@@ -549,6 +579,7 @@
           var params = {
             gameType                        : progressionNode.activityType, 
             roundsCount                     : params.roundsCount,           // the amount of rounds, (Rafiki will provide one target per round)
+            parakeetPairs                   : (progressionNode.activityType == 'parakeets' && params.parakeetPairs) ? params.parakeetPairs : null,
             stepDistracterCount             : params.stepDistracterCount,             // 
             available_skills                : this._notionsInLesson[lessonNumber].skills,
             available_shapes                : this._notionsInLesson[lessonNumber].skills,  
@@ -558,6 +589,8 @@
             params.groupGameType      = 'recognition'  
 
           }
+
+        
 
           if(progressionNode.activityType == 'caterpillar' || progressionNode.activityType == 'frog'){
             params.groupGameType      = 'counting'  
@@ -577,16 +610,14 @@
 
           }
 
-          if(progressionNode.activityType == 'fish'){
-            params.groupGameType      = 'decimal'  
-
-          }
+         
           if(progressionNode.activityType == 'monkeys'){
             params.groupGameType      = 'sum'  
 
           }
 
-          
+            console.log(params)
+
           
           this._currentActivityParams = params;
           //var pool_type = 'recognition';
@@ -613,10 +644,18 @@
           return this._currentExerciseSetup;
       }
     MathsModule.prototype.getPedagogicData = function getPedagogicData (progressionNode, params) {
-      // console.log(progressionNode.activityType)
+      alert(progressionNode.activityType)
       
       if (progressionNode.activityType === "lookandlearn") {
           return this.getPedagogicDataForLookAndLearn(progressionNode);
+      }
+      else if (progressionNode.activityType === "assessment") {
+        alert('qs')
+          return this.getPedagogicDataForAssessment(progressionNode);
+      }
+      else if (progressionNode.activityType === "fish") {
+        alert('fish case')
+         // return this._populateGapFillGame(progressionNode, params);
       }
       else if (progressionNode.activityType === "ants") {
           return this._populateGapFillGame(progressionNode, params);
@@ -627,6 +666,41 @@
       else{
         return this.getPedagogicDataForGame(progressionNode, params);
       }    
+    };
+    MathsModule.prototype.getPedagogicDataForAssessment = function getPedagogicDataForAssessment (progressionNode) {
+        var constants = constants.assessments;
+       //  var setup = {'yo':'boo'}
+       alert('zeee')
+        var stimuli_for_chapter = this._sortingGamesListByChapter[progressionNode.chapterNumber]
+        _.each(stimuli_for_chapter, function(st){
+
+            console.log(st)
+
+        })
+
+        var setup = {
+            categories : ['HIGHER NUM', 'OTHER NUM'],
+            timer : constants.timer,
+            minimumWordsSorted : constants.minimumWordsSorted,
+            minimumCorrectSortRatio : constants.minimumCorrectSortRatio,
+            stimuli: stimuli_for_chapter
+        };
+/*
+        return {
+          discipline : 'maths',
+          language   : KALULU_LANGUAGE, // can be : english, french, swahili
+          data       : {
+          categories : ['HIGHER NUM', 'OTHER NUM'],
+            rounds   : [
+                          { steps : this._sortingGamesListByChapter[progressionNode.chapterNumber]}
+                       ]
+          }
+        }
+    */
+
+        
+        console.log(setup)
+        return setup;
     };
 
 
@@ -844,7 +918,7 @@ var record_not_av   = [
         return Object.keys(this._notionsListByLesson[lessonNumber]);
     };
 
-     MathsModule.prototype._populateGapFillGame = function _populateGapFillGame () {
+    MathsModule.prototype._populateGapFillGame = function _populateGapFillGame () {
         
         // if (!data) console.error('link data here');
         
