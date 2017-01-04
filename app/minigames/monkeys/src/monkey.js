@@ -109,6 +109,7 @@
     }
 
     Monkey.prototype.initEvents = function () {
+
         this.eventManager.on('pause', function () {
             this.clickable = false;
         }, this);
@@ -117,6 +118,8 @@
             this.clickable = true;
         }, this);
     }
+    
+    
 
     Monkey.prototype.getNewCoconut = function () {
         if (!this.king) {

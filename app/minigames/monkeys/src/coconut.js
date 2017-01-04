@@ -61,6 +61,8 @@
         this.tween.to({ y: y + 10 }, 450, Phaser.Easing.Default, true, 0, -1, true);
 
         this.flying = false;
+
+        
     };
 
     Coconut.prototype = Object.create(Phaser.Group.prototype);
