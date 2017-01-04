@@ -6,8 +6,6 @@ document.addEventListener('deviceready', function () {
         var Application = require('application/application');
         
         console.info('Kalulu Application is starting.');
-        console.info('FileTransfer', FileTransfer);
-        console.info('FileUploadOptions', FileUploadOptions);
 
         // adding 2 useful values for rotation tweens
         Math.DEG2RAD = Math.PI / 180;
