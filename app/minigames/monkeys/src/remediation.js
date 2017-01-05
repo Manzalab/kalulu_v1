@@ -137,6 +137,7 @@
             object.apparition.close(true, 0);
             object.flyTo(this.trees.kingTree.monkey.x, this.trees.kingTree.monkey.y - 40, 1.4);
             object.clickable = false;
+            object.monkeyRef.clickable = false;
             object.monkeyRef.coconut.bool = false;
             object.monkeyRef.monkeySprite.animations.play('throw');
             object.monkeyRef.sounds.send.play();
@@ -519,7 +520,7 @@
             for (var j = 0 ; j < stepsCount ; j++) {
 
                 currentStep = this.results.data.rounds[i].steps[j];
-                stimuliCount = currentsteps.stimuli.length;
+                stimuliCount = currentStep.stimuli.length;
 
                 for (var k = 0 ; k < stimuliCount ; k++) {
 

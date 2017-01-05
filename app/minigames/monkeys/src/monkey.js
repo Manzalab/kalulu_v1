@@ -15,6 +15,7 @@
         this.y = y;
         this.timerSound = 0;
         this.clickable = true;
+        this.paused = false;
         this.coconut = {};
         this.eventManager = game.eventManager;
 
@@ -62,7 +63,7 @@
             this.coconut.sprite = null;
             this.coconut.bool = false;
         }
-        
+
         this.monkeySprite.scale.x = 1.6;
         this.monkeySprite.scale.y = 1.6;
 
@@ -71,7 +72,7 @@
         if (!this.king) {
             this.monkeySprite.inputEnabled = true;
             this.monkeySprite.events.onInputDown.add(function () {
-                if (this.clickable && this.coconut.sprite.text.text != "")
+                if (!this.paused && this.clickable && this.coconut.sprite.text.text != "")
                     if (this.timerSound <= 0) {
                         this.monkeySprite.animations.play('speak');
                         this.sounds.coconut = game.add.audio(this.coconut.sprite.text.text);
@@ -99,7 +100,7 @@
             this.sounds.send = game.add.audio('send');
             this.sounds.receiveHead = game.add.audio('receiveHeadCoco');
         }
-        
+
         else {
             this.sounds.sendRight = game.add.audio('sendRight');
             this.sounds.sendWrong = game.add.audio('sendWrong');
@@ -111,15 +112,15 @@
     Monkey.prototype.initEvents = function () {
 
         this.eventManager.on('pause', function () {
-            this.clickable = false;
+            this.paused = true;
         }, this);
 
         this.eventManager.on('unPause', function () {
-            this.clickable = true;
+            this.paused = false;
         }, this);
     }
-    
-    
+
+
 
     Monkey.prototype.getNewCoconut = function () {
         if (!this.king) {
@@ -139,6 +140,7 @@
             this.monkeySprite.animations.currentAnim.onComplete.addOnce(function () {
                 this.coconut.sprite.visible = true;
                 this.coconut.bool = true;
+                this.clickable = true;
             }, this);
         }
     }
