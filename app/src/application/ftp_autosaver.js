@@ -27,17 +27,9 @@ define([], function () {
         init : init,
         add  : add,
         startConnecting : startFTPConnecting,
-        stopConnecting : stopFTPConnecting,
-
-        // Be careful (stopConnecting => new-init => SAFE => re-init => startConnecting)
-        writeLocalFile : _write,
-        getLocalFile : _getFile
+        stopConnecting : stopFTPConnecting
 
     };
-
-    window.ftpAutoSaver = ftpAutoSaver;
-    window.ftpAutoSaver._sendFile = _sendFile;
-    window.ftpAutoSaver._doActionSave = _doActionSave;
 
     // ##############################################################################################################################################
     // ###  PUBLIC METHODS  #########################################################################################################################
