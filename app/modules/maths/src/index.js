@@ -5,6 +5,10 @@
     var DisciplineModule = require ('game_logic/core/discipline_module');
     var Kalulu_maths     = require ('./kalulu_maths');
     var _                = require ('underscore');
+
+    var kconstants        = require ('../config/config.json');
+    console.log(kconstants)
+    
     var staticData = {
         name              : 'maths',
         language          : KALULU_LANGUAGE.toLowerCase(),
@@ -654,8 +658,8 @@
           return this._currentExerciseSetup;
       }
     MathsModule.prototype.getPedagogicData = function getPedagogicData (progressionNode, params) {
-      alert(progressionNode.activityType)
-      
+      // alert(progressionNode.activityType)
+      console.log(progressionNode)
       if (progressionNode.activityType === "lookandlearn") {
           return this.getPedagogicDataForLookAndLearn(progressionNode);
       }
@@ -663,9 +667,9 @@
         alert('qs')
           return this.getPedagogicDataForAssessment(progressionNode);
       }
-      else if (progressionNode.activityType === "fish") {
-        alert('fish case')
-         // return this._populateGapFillGame(progressionNode, params);
+      else if (progressionNode.activityType[0] === "fish") {
+     
+       return this.getPedagogicDataForAssessment(progressionNode)
       }
       else if (progressionNode.activityType === "ants") {
           return this._populateGapFillGame(progressionNode, params);
@@ -678,9 +682,9 @@
       }    
     };
     MathsModule.prototype.getPedagogicDataForAssessment = function getPedagogicDataForAssessment (progressionNode) {
-        var constants = constants.assessments;
+       // var constants = constants.assessments;
        //  var setup = {'yo':'boo'}
-       alert('zeee')
+       //alert('zeee')
         var stimuli_for_chapter = this._sortingGamesListByChapter[progressionNode.chapterNumber]
         _.each(stimuli_for_chapter, function(st){
 
@@ -690,10 +694,14 @@
 
         var setup = {
             categories : ['HIGHER NUM', 'OTHER NUM'],
-            timer : constants.timer,
-            minimumWordsSorted : constants.minimumWordsSorted,
-            minimumCorrectSortRatio : constants.minimumCorrectSortRatio,
-            stimuli: stimuli_for_chapter
+            timer : 20,
+            minimumWordsSorted : 10,
+            minimumCorrectSortRatio : 0.5,
+            stimuli: stimuli_for_chapter,
+            data       : {
+                 categories : ['HIGHER NUM', 'OTHER NUM'],
+                 rounds: [ {steps: [ {stimuli: stimuli_for_chapter} ]}]
+            }
         };
 /*
         return {
