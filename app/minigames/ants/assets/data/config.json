@@ -1,0 +1,11 @@
+﻿{
+    "version" : 1.0,
+    "gameId": "ants",     
+    "discipline": "maths",
+    "skipKalulu" : false, 
+    "skipKaluluIntro" : false, 
+    "skipKaluluHelp" : false, 
+    "skipKaluluFinal" : false, 
+    "debugPanel" : true,
+    "globalVars" : false
+}

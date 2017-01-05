@@ -87,27 +87,28 @@
             var lItem = data[i];
 
             if (!listByChapter.hasOwnProperty(lItem.CHAPTER)) listByChapter[lItem.CHAPTER] = [];
-
-            listByChapter[lItem.CHAPTER].push({
-                "value" : lItem["HIGHER NUM"],
-                "categorie": "HIGHER NUM"
-              
-            });
-            listByChapter[lItem.CHAPTER].push({
-                "value"  : lItem["OTHER NUM"],
-                 "categorie": "OTHER NUM"
-            });
-
-
-
-
+            var st_array = {'stimuli': []}
 
            
+
+            st_array.stimuli.push({
+                "value" : lItem["HIGHER NUM"],
+               // "category": "HIGHER NUM",
+                "correctResponse": true,
+              
+            });
+            st_array.stimuli.push({
+                "value"  : lItem["OTHER NUM"],
+              //  "category": "OTHER NUM",
+                "correctResponse": false,
+            });
+
+             listByChapter[lItem.CHAPTER].push(st_array)
+         
 
         }
 
         console.log(listByChapter)
-
         return listByChapter;
     };
     MathsModule.prototype.getNotionsById = function getNotionsById (id) {
@@ -154,7 +155,7 @@
                   }
                   // IS A SKILL OR A SHAPE
                   else{
-                    var static_skills_array = ['forward', 'backward', 'oneby', 'twoby', 'fiveby', 'tenby', 'recognition']
+                    var static_skills_array = ['forward', 'backward', 'oneby', 'twoby', 'fiveby', 'tenby', 'recognition', 'addition', 'substraction']
 
                     if( _.contains(static_skills_array, notionID) ){
 
@@ -693,6 +694,8 @@
         })
 
         var setup = {
+            discipline : 'maths',
+            language   : KALULU_LANGUAGE, // can be : english, french, swahili
             categories : ['HIGHER NUM', 'OTHER NUM'],
             timer : 20,
             minimumWordsSorted : 10,
@@ -700,7 +703,7 @@
             stimuli: stimuli_for_chapter,
             data       : {
                  categories : ['HIGHER NUM', 'OTHER NUM'],
-                 rounds: [ {steps: [ {stimuli: stimuli_for_chapter} ]}]
+                 rounds: [ {steps:  stimuli_for_chapter }]
             }
         };
 /*

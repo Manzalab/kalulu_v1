@@ -3,7 +3,7 @@ LESSON;CHAPTER;NOTION ID;LECTURE VIDEO;LECTURE IMAGE;LECTURE TRACING;MINIGAME 1 
 2;1;2;true;true;true;crabs;parakeets;crabs
 3;1;3;true;true;true;crabs;parakeets;crabs
 4;2;0;true;true;true;crabs;parakeets;caterpillar
-5;2;count backwards;true;true;true;crabs;parakeets;caterpillar
+5;2;backward;true;true;true;crabs;parakeets;caterpillar
 6;3;4;true;true;true;crabs;parakeets;caterpillar
 7;3;5;true;true;true;crabs;parakeets;frog
 8;3;6;true;true;true;parakeets;frog;caterpillar
@@ -21,9 +21,9 @@ LESSON;CHAPTER;NOTION ID;LECTURE VIDEO;LECTURE IMAGE;LECTURE TRACING;MINIGAME 1 
 20;7;18;true;true;true;jellyfish;frog;turtles
 21;7;19;true;true;true;crabs;caterpillar;frog
 22;7;20;true;true;true;jellyfish;ants;turtles
-23;8;count by 2s;true;false;false;crabs;frog;caterpillar
-24;8;add1;true;true;true;monkeys;caterpillar;monkeys
-25;8;sub1;true;true;true;monkeys;turtles;monkeys
+23;8;twoby;true;false;false;crabs;frog;caterpillar
+24;8;addition;true;true;true;monkeys;caterpillar;monkeys
+25;8;substraction;true;true;true;monkeys;turtles;monkeys
 27;9;25;true;true;true;ants;monkeys;turtles
 28;10;30;true;true;true;crabs;frog;turtles
 29;10;36;true;true;true;ants;caterpillar;turtles
@@ -40,8 +40,8 @@ LESSON;CHAPTER;NOTION ID;LECTURE VIDEO;LECTURE IMAGE;LECTURE TRACING;MINIGAME 1 
 40;16;90;true;true;true;frog;frog;turtles
 41;16;96;true;true;true;ants;caterpillar;monkeys
 42;16;100;true;true;true;ants;monkeys;monkeys
-43;17;counting 10by10 (forwards and backwards);true;false;false;frog;monkeys;turtles
-44;17;counting 5by5(forwards and backwards);true;false;false;caterpillar;monkeys;turtles
+43;17;tenby;true;false;false;frog;monkeys;turtles
+44;17;fiveby;true;false;false;caterpillar;monkeys;turtles
 45;18;line;false;true;true;crabs;jellyfish;parakeets
 46;18;square;false;true;true;jellyfish;crabs;parakeets
 47;18;triangle;false;true;true;jellyfish;jellyfish;parakeets
