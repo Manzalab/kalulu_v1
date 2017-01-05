@@ -520,7 +520,7 @@
             for (var j = 0 ; j < stepsCount ; j++) {
 
                 currentStep = this.results.data.rounds[i].steps[j];
-                stimuliCount = currentsteps.stimuli.length;
+                stimuliCount = currentStep.stimuli.length;
 
                 for (var k = 0 ; k < stimuliCount ; k++) {
 

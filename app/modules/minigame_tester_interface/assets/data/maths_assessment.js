@@ -1,335 +1,312 @@
 module.exports = {
-    "discipline": "normal",
+    "discipline": "maths",
     "data": {
-        "categories": ['notWord', 'word'],
-        "rounds": [{
-            "steps":[
-                {
+        "rounds": [
+            {
+                "steps": [
+                    {
                     "stimuli": [
-                        {
-                            "id": "rafiki",
-                            "value": "rafiki",
-                            "category": "word",
-                        },
+                            {
+                                "correctResponse": false,
+                                "value": "0",
+                            },
+                            {
+                                "value": "1",
+                                "correctResponse": true
+                            }
                     ]
-                },
-                {
-                    "stimuli": [
-                        {
-                            "id": "phoned",
-                            "value": "phoned",
-                            "category": "notWord",
-                        },
-                    ]
-                },
-                {
-                    "stimuli": [
-                        {
-                            "id": "rafiki",
-                            "value": "rafiki",
-                            "category": "word",
-                        },
-                    ]
-                },
-                {
-                    "stimuli": [
-                        {
-                            "id": "trueWord",
-                            "value": "trueWord",
-                            "category": "word",
-                        },
-                    ]
-                },
-                {
-                    "stimuli": [
-                        {
-                            "id": "trueWord2",
-                            "value": "trueWord2",
-                            "category": "word",
-                        },
-                    ]
-                },
-                {
-                    "stimuli": [
-                        {
-                            "id": "notWord1",
-                            "value": "notWord1",
-                            "category": "notWord",
-                        },
-                    ]
-                },
-                {
-                    "stimuli": [
-                        {
-                            "id": "rafiki",
-                            "value": "rafiki",
-                            "category": "word",
-                        },
-                    ]
-                },
-                {
-                    "stimuli": [
-                        {
-                            "id": "rafiki",
-                            "value": "rafiki",
-                            "category": "word",
-                        },
-                    ]
-                },
-                {
-                    "stimuli": [
-                        {
-                            "id": "rafiki",
-                            "value": "rafiki",
-                            "category": "word",
-                        },
-                    ]
-                },
-                {
-                    "stimuli": [
-                        {
-                            "id": "rafiki",
-                            "value": "rafiki",
-                            "category": "word",
-                        },
-                    ]
-                },
-                {
-                    "stimuli": [
-                        {
-                            "id": "rafiki",
-                            "value": "rafiki",
-                            "category": "word",
-                        },
-                    ]
-                },
-                {
-                    "stimuli": [
-                        {
-                            "id": "rafiki",
-                            "value": "rafiki",
-                            "category": "word",
-                        },
-                    ]
-                },
-                {
-                    "stimuli": [
-                        {
-                            "id": "rafiki",
-                            "value": "rafiki",
-                            "category": "word",
-                        },
-                    ]
-                },
-                {
-                    "stimuli": [
-                        {
-                            "id": "rafiki",
-                            "value": "rafiki",
-                            "category": "word",
-                        },
-                    ]
-                },
-                {
-                    "stimuli": [
-                        {
-                            "id": "rafiki",
-                            "value": "rafiki",
-                            "category": "word",
-                        },
-                    ]
-                },
-                {
-                    "stimuli": [
-                        {
-                            "id": "rafiki",
-                            "value": "rafiki",
-                            "category": "word",
-                        },
-                    ]
-                },
-                {
-                    "stimuli": [
-                        {
-                            "id": "rafiki",
-                            "value": "rafiki",
-                            "category": "word",
-                        },
-                    ]
-                },
-                {
-                    "stimuli": [
-                        {
-                            "id": "rafiki",
-                            "value": "rafiki",
-                            "category": "word",
-                        },
-                    ]
-                },
-                {
-                    "stimuli": [
-                        {
-                            "id": "rafiki",
-                            "value": "rafiki",
-                            "category": "word",
-                        },
-                    ]
-                },
-                {
-                    "stimuli": [
-                        {
-                            "id": "rafiki",
-                            "value": "rafiki",
-                            "category": "word",
-                        },
-                    ]
-                },
-                {
-                    "stimuli": [
-                        {
-                            "id": "rafiki",
-                            "value": "rafiki",
-                            "category": "word",
-                        },
-                    ]
-                },
-                {
-                    "stimuli": [
-                        {
-                            "id": "rafiki",
-                            "value": "rafiki",
-                            "category": "word",
-                        },
-                    ]
-                },
-                {
-                    "stimuli": [
-                        {
-                            "id": "rafiki",
-                            "value": "rafiki",
-                            "category": "word",
-                        },
-                    ]
-                },
-                {
-                    "stimuli": [
-                        {
-                            "id": "rafiki",
-                            "value": "rafiki",
-                            "category": "word",
-                        },
-                    ]
-                },
-                {
-                    "stimuli": [
-                        {
-                            "id": "rafiki",
-                            "value": "rafiki",
-                            "category": "word",
-                        },
-                    ]
-                },
-                {
-                    "stimuli": [
-                        {
-                            "id": "rafiki",
-                            "value": "rafiki",
-                            "category": "word",
-                        },
-                    ]
-                },
-                {
-                    "stimuli": [
-                        {
-                            "id": "rafiki",
-                            "value": "rafiki",
-                            "category": "word",
-                        },
-                    ]
-                },
-                {
-                    "stimuli": [
-                        {
-                            "id": "rafiki",
-                            "value": "rafiki",
-                            "category": "word",
-                        },
-                    ]
-                },
-                {
-                    "stimuli": [
-                        {
-                            "id": "rafiki",
-                            "value": "rafiki",
-                            "category": "word",
-                        },
-                    ]
-                },
-                {
-                    "stimuli": [
-                        {
-                            "id": "rafiki",
-                            "value": "rafiki",
-                            "category": "word",
-                        },
-                    ]
-                },
-                {
-                    "stimuli": [
-                        {
-                            "id": "rafiki",
-                            "value": "rafiki",
-                            "category": "word",
-                        },
-                    ]
-                },
-                {
-                    "stimuli": [
-                        {
-                            "id": "rafiki",
-                            "value": "rafiki",
-                            "category": "word",
-                        },
-                    ]
-                },
-                {
-                    "stimuli": [
-                        {
-                            "id": "rafiki",
-                            "value": "rafiki",
-                            "category": "word",
-                        },
-                    ]
-                },
-                {
-                    "stimuli": [
-                        {
-                            "id": "rafiki",
-                            "value": "rafiki",
-                            "category": "word",
-                        },
-                    ]
-                },
-                {
-                    "stimuli": [
-                        {
-                            "id": "rafiki",
-                            "value": "rafiki",
-                            "category": "word",
-                        },
-                    ]
-                },
-                {
-                    "stimuli": [
-                        {
-                            "id": "rafiki",
-                            "value": "rafiki",
-                            "category": "word",
-                        },
-                    ]
-                }
-            ]
-        }]
-    }
+                    },
+                    {
+                        "stimuli": [
+                                {
+                                    "correctResponse": true,
+                                    "value": "2",
+                                },
+                                {
+                                    "correctResponse": false,
+                                    "value": "1",
+                                }
+                        ]
+                    },
+                    {
+                        "stimuli": [
+                                {
+                                    "correctResponse": true,
+                                    "value": "3",
+                                },
+                                {
+                                    "correctResponse": false,
+                                    "value": "1",
+                                }
+                        ]
+                    },
+                    {
+                        "stimuli": [
+                                {
+                                    "correctResponse": true,
+                                    "value": "3",
+                                },
+                                {
+                                    "correctResponse": false,
+                                    "value": "2",
+                                }
+                        ]
+                    },
+                    {
+                        "stimuli": [
+                                {
+                                    "correctResponse": false,
+                                    "value": "0",
+                                },
+                                {
+                                    "correctResponse": true,
+                                    "value": "1",
+                                }
+                        ]
+                    },
+                    {
+                        "stimuli": [
+                                {
+                                    "correctResponse": true,
+                                    "value": "3",
+                                },
+                                {
+                                    "correctResponse": false,
+                                    "value": "0",
+                                }
+                        ]
+                    },
+                    {
+                        "stimuli": [
+                                {
+                                    "correctResponse": true,
+                                    "value": "2",
+                                },
+                                {
+                                    "correctResponse": false,
+                                    "value": "0",
+                                }
+                        ]
+                    },
+                    {
+                        "stimuli": [
+                                {
+                                    "correctResponse": false,
+                                    "value": "0",
+                                },
+                                {
+                                    "correctResponse": true,
+                                    "value": "1",
+                                }
+                        ]
+                    },
+                    {
+                        "stimuli": [
+                                {
+                                    "correctResponse": false,
+                                    "value": "0",
+                                },
+                                {
+                                    "correctResponse": true,
+                                    "value": "1",
+                                }
+                        ]
+                    },
+                    {
+                        "stimuli": [
+                                {
+                                    "correctResponse": false,
+                                    "value": "0",
+                                },
+                                {
+                                    "correctResponse": true,
+                                    "value": "1",
+                                }
+                        ]
+                    },
+                    {
+                        "stimuli": [
+                                {
+                                    "correctResponse": false,
+                                    "value": "0",
+                                },
+                                {
+                                    "correctResponse": true,
+                                    "value": "1",
+                                }
+                        ]
+                    },
+                    {
+                        "stimuli": [
+                                {
+                                    "correctResponse": false,
+                                    "value": "0",
+                                },
+                                {
+                                    "correctResponse": true,
+                                    "value": "1",
+                                }
+                        ]
+                    },
+                    {
+                        "stimuli": [
+                                {
+                                    "correctResponse": false,
+                                    "value": "0",
+                                },
+                                {
+                                    "correctResponse": true,
+                                    "value": "1",
+                                }
+                        ]
+                    },
+                    {
+                        "stimuli": [
+                                {
+                                    "correctResponse": false,
+                                    "value": "0",
+                                },
+                                {
+                                    "correctResponse": true,
+                                    "value": "1",
+                                }
+                        ]
+                    },
+                    {
+                        "stimuli": [
+                                {
+                                    "correctResponse": false,
+                                    "value": "0",
+                                },
+                                {
+                                    "correctResponse": true,
+                                    "value": "1",
+                                }
+                        ]
+                    },
+                    {
+                        "stimuli": [
+                                {
+                                    "correctResponse": false,
+                                    "value": "0",
+                                },
+                                {
+                                    "correctResponse": true,
+                                    "value": "1",
+                                }
+                        ]
+                    },
+                    {
+                        "stimuli": [
+                                {
+                                    "correctResponse": false,
+                                    "value": "0",
+                                },
+                                {
+                                    "correctResponse": true,
+                                    "value": "1",
+                                }
+                        ]
+                    },
+                    {
+                        "stimuli": [
+                                {
+                                    "correctResponse": false,
+                                    "value": "0",
+                                },
+                                {
+                                    "correctResponse": true,
+                                    "value": "1",
+                                }
+                        ]
+                    },
+                    {
+                        "stimuli": [
+                                {
+                                    "correctResponse": false,
+                                    "value": "0",
+                                },
+                                {
+                                    "correctResponse": true,
+                                    "value": "1",
+                                }
+                        ]
+                    },
+                    {
+                        "stimuli": [
+                                {
+                                    "correctResponse": false,
+                                    "value": "0",
+                                },
+                                {
+                                    "correctResponse": true,
+                                    "value": "1",
+                                }
+                        ]
+                    },
+                    {
+                        "stimuli": [
+                                {
+                                    "correctResponse": false,
+                                    "value": "0",
+                                },
+                                {
+                                    "correctResponse": true,
+                                    "value": "1",
+                                }
+                        ]
+                    },
+                    {
+                        "stimuli": [
+                                {
+                                    "correctResponse": false,
+                                    "value": "0",
+                                },
+                                {
+                                    "correctResponse": true,
+                                    "value": "1",
+                                }
+                        ]
+                    },
+                    {
+                        "stimuli": [
+                                {
+                                    "correctResponse": false,
+                                    "value": "0",
+                                },
+                                {
+                                    "correctResponse": true,
+                                    "value": "1",
+                                }
+                        ]
+                    },
+                    {
+                        "stimuli": [
+                                {
+                                    "correctResponse": false,
+                                    "value": "0",
+                                },
+                                {
+                                    "correctResponse": true,
+                                    "value": "1",
+                                }
+                        ]
+                    },
+                    {
+                        "stimuli": [
+                                {
+                                    "correctResponse": false,
+                                    "value": "0",
+                                },
+                                {
+                                    "correctResponse": true,
+                                    "value": "1",
+                                }
+                        ]
+                    }
 
+                ]
+            }            
+        ]
+    }
 };

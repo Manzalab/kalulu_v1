@@ -957,18 +957,20 @@
         var lessonNumber = progressionNode.parent.lessonNumber;
         var roundsCount = params.roundsCount;
         
-        var lSetup = { rounds : [] };
+        var lSetup = {
+            discipline : 'language',
+            data : {
+                rounds : []
+            }
+        };
 
         var totalTargets = this._selectTargets(params, lessonNumber, stimuliPool);
 
         // CONSTRUCTION OF SETUP OBJECT
         rounds:
         for (var r = 0 ; r < roundsCount ; r++) {
-            
-            var lRound = {
-                stepRequiredCrCount : params.stepRequiredCrCount || 1, // amount of correct responses to validate the step (or round if 1 step only)
-                stimuli : []
-            };
+
+            var lRound = {};
 
             var lTarget = totalTargets.pop();
             console.log(lTarget);
@@ -976,7 +978,6 @@
 
             if (lTarget.lettersCount > 1) skills.push(leftToRightReading);
             lRound.word = StimuliFactory.fromWord(lTarget, skills, false, true);
-            lRound.soundPath = lRound.word.soundPath; // deprecated
             lRound.steps = [];
 
             steps:
@@ -1023,11 +1024,9 @@
                 lStep.stimuli = lStep.stimuli.concat(selectedDistractorsStimuli);
                 lRound.steps.push(lStep);
             }
-            lRound.step = lRound.steps; // for the deprecated use of "step" in minigames
-            lSetup.rounds.push(lRound);
+            lSetup.data.rounds.push(lRound);
         }
-
-        lSetup.round = lSetup.rounds; // for the deprecated use of "round" in minigames
+        
         this._currentExerciseSetup = lSetup;
         console.log(lSetup);
         return this._currentExerciseSetup;
