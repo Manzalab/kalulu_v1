@@ -1,0 +1,18 @@
+{
+    "revisionTreshold"         : 80,
+    "lowerCaseTargetsShare"    : 50,
+    "strongDistractorTreshold" : 35,
+    "similarityTreshold"       : 35,
+    "scoreWindowSize"          : 10,
+    "syllablesGames"           : {
+        "revisionShareInTargets" : 20
+    },
+    "wordsGames" : {
+        "revisionShareInTargets" : 0
+    },
+    "assessments" : {
+        "timer"                   : 20,
+        "minimumWordsSorted"      : 10,
+        "minimumCorrectSortRatio" : 0.5
+    }
+}

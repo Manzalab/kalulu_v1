@@ -174,7 +174,15 @@
     }
 
     Remediation.prototype.initEvents = function (game) {
-        this.game.eventManager.on('start', function () {
+        this.eventManager.on('pause', function () {
+            this.paused = true;
+        }, this);
+
+        this.eventManager.on('unPause', function () {
+            this.paused = false;
+        }, this);
+
+        this.eventManager.on('start', function () {
             var context = this;
             setTimeout(function () {
                 context.returnAll();
@@ -373,6 +381,7 @@
     }
 
     Remediation.prototype.tenSecRemediation = function () {
+        this.paused = true;
         if (this.clickCount % 2 == 0) {
             if (!this.highlightedParakeet) {
                 var context = this;
@@ -440,10 +449,11 @@
         if (!this.paused) {
             this.timeWithoutClick++;
 
-            if (this.timeWithoutClick > 60 * 15) {
-                this.timeWithoutClick = 0;
+            if (this.timeWithoutClick % (60 * 15) == 0) {
                 this.tenSecRemediation();
             }
+            else if (this.timeWithoutClick % (60 * 20) == 0)
+                this.eventManager.emit('help');
         }
     };
 

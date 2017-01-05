@@ -37,12 +37,13 @@
          * @type {EventEmitter}
          **/
         this.eventManager = game.eventManager;
-
-        this.blackOverlay = this.create(0, 0, 'pause');
+        var blackBitmap = new Phaser.BitmapData(this.game, 'pause', 10, 10);
+        blackBitmap.fill(0, 0, 0, 0.4);
+        this.blackOverlay = this.create(0, 0, blackBitmap);
         this.blackOverlay.width = game.width;
         this.blackOverlay.height = game.height;
         this.blackOverlay.visible = true;
-        this.blackOverlay.alpha = 0.4;
+        // this.blackOverlay.alpha = 0.4;
 
         this.initScoreBar(game, lives); // the score bar located on the right of the screen
 

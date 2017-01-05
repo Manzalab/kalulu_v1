@@ -13,7 +13,7 @@ var _ 			= require('underscore')
 var Distractor 	= require('./distractor.js')
 var ModuleUtils = require('./module_utils.js')
 
-var Decimal = function(number,  stimuli_type, numbers_available, count,  numbers_data){
+var Decimal = function(number,  stimuli_type, numbers_available, count,  numbers_data, lang){
 	 
 	 this.moduleutils 	= new ModuleUtils()
 	 this.number 		= number
