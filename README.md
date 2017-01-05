@@ -1,6 +1,6 @@
 # kalulu-the-gathering
 
-Clone puis,
+Cloner puis :
 
 > npm install
 

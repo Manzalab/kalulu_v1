@@ -373,9 +373,19 @@
         else {
                       console.log('flawless case 2')
 
+
             var records = this._userProfile.Maths.minigamesRecords[currentProgressionNode.activityType].records;
-            isPreviousGameWon = records[records.length - 1].hasWon;
-            isPreviousGameFlawless = records[records.length - 1].flawless;
+             console.log(records.length-1)
+             console.log(records)
+             if(records.length>0){
+                isPreviousGameWon = records[records.length - 1].hasWon;
+               isPreviousGameFlawless = records[records.length - 1].flawless;
+
+             }
+             else{
+            isPreviousGameWon = false;
+            isPreviousGameFlawless = false;
+          }
 
         }
         

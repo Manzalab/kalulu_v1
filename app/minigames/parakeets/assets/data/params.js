@@ -54,7 +54,7 @@
                  globalRemediation : {
                     gameTimer                       : Infinity,
                     gameTimerVisible                : false,
-                    parakeetPairs                   : 2, //
+                    parakeetPairs                   : 3, //
                     branchesCount                   : 2  //
                 },
                 localRemediation : {

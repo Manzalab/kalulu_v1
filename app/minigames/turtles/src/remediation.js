@@ -253,8 +253,8 @@
 
         this.sounds.wrong.play();
         this.fx.hit((turtle1.x + turtle2.x)/2, (turtle1.y + turtle2.y)/2, false);
-        this.eventManager.emit("pause");
-        this.fail();
+        //this.eventManager.emit("pause");
+        //this.fail();
     };
 
     Remediation.prototype.collisionIsland = function (turtle1, island) {
@@ -317,9 +317,9 @@
                 var context = this;
                 setTimeout(function () {
                     context.sounds.correctRoundAnswer.play();
-                    if (this.game.gameConfig.debugPanel) context.cleanLocalPanel();
+                    if (context.game.gameConfig.debugPanel) context.cleanLocalPanel();
                     context.game.params.increaseLocalDifficulty();
-                    if (this.game.gameConfig.debugPanel) context.setLocalPanel();
+                    if (context.game.gameConfig.debugPanel) context.setLocalPanel();
                     setTimeout(function () {
                         context.initRound(context.roundIndex);
                         context.island.reset(context.correctResponses.length);
