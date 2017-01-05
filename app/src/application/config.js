@@ -34,7 +34,16 @@
         fontsPath               : { get : function () { return this._config.paths.fontsPath; }},
 
         // ftpParameters
-        FTP_SAVE_INTERVAL         : { get : function () { return this._config.ftpParameters.ftpSaveInterval; }}
+        FTP_SAVE_INTERVAL       : { get : function () { return this._config.ftpParameters.ftpSaveInterval; }},
+        SAVE_FOLDER_NAME        : { get : function () { return this._config.ftpParameters.saveFolderName; }},
+        SAVE_FILE_SUFFIX          : { get : function () { return this._config.ftpParameters.saveFileSuffix; }},
+        SAVE_EXT                : { get : function () { return this._config.ftpParameters.saveExt; }},
+
+        // ftpParameters - Connection
+        FTP_ADDRESS                : { get : function () { return this._config.ftpParameters.address; }},
+        FTP_USERNAME                : { get : function () { return this._config.ftpParameters.username; }},
+        FTP_PASSWORD                : { get : function () { return this._config.ftpParameters.password; }}
+
     });
 
     // ###########################################################################

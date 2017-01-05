@@ -167,8 +167,6 @@
 
         this._minigamesManager = new MinigamesManager(this);
 
-        this._initFTPAutoSave();
-
         this._eventSystem.once(Events.APPLICATION.SAVED_DATA_SENT, this._onSaveReady, this);
         
         this._eventSystem.emit(Events.APPLICATION.GET_SAVE, 'UserData');
@@ -182,6 +180,7 @@
     GameManager.prototype._onSaveReady = function _onSaveReady (userData) {
         
         this._initRemediation(userData);
+        this._initFTPAutoSave(userData.userId);
     };
     
     GameManager.prototype._initRemediation = function _initRemediation (userData) {
@@ -191,9 +190,14 @@
         this._rafiki = new Rafiki(this, this._currentUserProfile);
     };
 
-    GameManager.prototype._initFTPAutoSave = function _initFTPAutoSave () {
+    GameManager.prototype._initFTPAutoSave = function _initFTPAutoSave (uuid) {
 
-        ftpAutoSaver.init('MANZALAB_SAVES', 'save', 'txt');
+        ftpAutoSaver.init(uuid, Config.SAVE_FOLDER_NAME, Config.SAVE_FILE_SUFFIX, Config.SAVE_EXT, {
+            address  : Config.FTP_ADDRESS,
+            username : Config.FTP_USERNAME,
+            password : Config.FTP_PASSWORD
+        });
+
         ftpAutoSaver.startConnecting(Config.FTP_SAVE_INTERVAL)
     };
 
