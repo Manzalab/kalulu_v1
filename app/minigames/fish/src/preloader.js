@@ -84,6 +84,9 @@
             
             this.game.load.audio('right'    , 'minigames/common/assets/audio/sfx/ResponseCorrect.ogg');
             this.game.load.audio('wrong'    , 'minigames/common/assets/audio/sfx/ResponseIncorrect.ogg');
+
+            this.game.load.audio('winGame', 'minigames/common/assets/audio/sfx/GameOverWin.ogg');
+            this.game.load.audio('loseGame', 'minigames/common/assets/audio/sfx/GameOverLose.ogg');
             
             this.game.load.audio('kaluluOn' , 'minigames/common/assets/audio/sfx/KaluluOn.ogg');
             this.game.load.audio('kaluluOff', 'minigames/common/assets/audio/sfx/KaluluOff.ogg');
