@@ -4,6 +4,7 @@ Module main entry file
 
 Generate a "tree of skills" and returns rounds 
 
+
 */
 var _ 					= require('underscore')
 var  SkillTree 			= require('./skill/tree.js')
@@ -112,7 +113,9 @@ var loop_on_array = params[loop_on]
 		//// patch 
 		if(temp_rounds_results.length == 0){
 			console.log('Score completed, no round anymore, loop on already valid targets (force)')
-			var temp_rounds_results = pool_loop(2)
+			temp_rounds_results = pool_loop(2)
+				console.log('Score completed force results'+temp_rounds_results.length)
+
 			//out.tries_results[tries] = temp_rounds_results
 			// out.forced_pool = 2		
 		}
@@ -120,21 +123,47 @@ var loop_on_array = params[loop_on]
 		//if(temp_rounds_results.length == 0){
 			
 		//		var end = {'norounds': true}	
-		//		return end
-		// }
-		else{
-			while(game.data.rounds.length <= params.roundsCount  ){ //  && tries < 4
-				tries++
-				console.log(temp_rounds_results)
-				// refill with the same.
+			//	return end
+		//}
+		//else{
+
+
+			if(params___.gameType == 'parakeets'){
+
+				/* MIXING STEPS (from each number) to a single round with multi STEPS */
+				// PICKS first index stimuli for each..
+				// PUSH to round[0].steps
+				console.log('parakeets mixin function =!!')
+				var mixed_steps = {steps: [ { "type": "audioToNonSymbolic", "stimuli": []}]}
+				console.log(params___.parakeetPairs)
 				_.each(temp_rounds_results, function(r){
-					game.data.rounds.push(r)
-				})	
+
+					if(mixed_steps.steps[0].stimuli.length < params___.parakeetPairs){
+						mixed_steps.steps[0].stimuli.push(r.steps[0].stimuli[0])
+
+					}
+				
+				
+				})
+				game.data.rounds.push(mixed_steps)
+
 			}
-		}
+			else{
+
+				while(game.data.rounds.length < params.roundsCount  ){ //  && tries < 4
+					tries++
+					console.log(params.roundsCount)
+					console.log(temp_rounds_results)
+					// refill with the same.
+					_.each(temp_rounds_results, function(r){
+						game.data.rounds.push(r)
+					})	
+				}
+			}
+		//}
 		// console.log('try round lenght : '+temp_rounds_results.length)
 	// 
-	game.data.rounds = _.sample(game.data.rounds, params.roundsCount)
+	///game.data.rounds = _.sample(game.data.rounds, params.roundsCount)
 	console.log('rounds length : '+game.data.rounds.length)
 	return game;
 }

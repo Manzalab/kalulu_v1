@@ -51,17 +51,17 @@
                 globalRemediation : {
                     gameTimer                       : Infinity,
                     gameTimerVisible                : false,
-                    roundsCount                     : 5,
+                    roundsCount                     : 4,
                     stepDistracterCount             : 3,
                     totalTriesCount                 : 3,
                     holesCount                      : 3
                 },
                 localRemediation : {
-                    apparitionsDuration             : {min : 2.5, max : 3.5},
+                    apparitionsDuration             : {min : 2.5, max : 3},
                     maxCrabsOnScreen                : {min : 1, max : 1},
                     minimumCorrectStimuliOnScreen   : {min : 0, max : 0}, 
                     maximumCorrectStimuliOnScreen   : {min : 1, max : 1},
-                    respawnTime                     : {min : 2, max : 1.5},
+                    respawnTime                     : {min : 2.5, max : 2},
                     mathsAlternativePercentage      : {min : 0, max : 0},
                     mathsAlternativePicturePercentage : {min : 1, max : 1}
                 }
@@ -70,17 +70,17 @@
                 globalRemediation : {
                     gameTimer                       : Infinity,
                     gameTimerVisible                : false,
-                    roundsCount                     : 5,
+                    roundsCount                     : 6,
                     stepDistracterCount             : 4,
                     totalTriesCount                 : 3,
                     holesCount                      : 5
                 },
                 localRemediation : {
-                    apparitionsDuration             : {min : 2, max : 3},
+                    apparitionsDuration             : {min : 2, max : 2.5},
                     maxCrabsOnScreen                : {min : 1, max : 1},
                     minimumCorrectStimuliOnScreen   : {min : 0, max : 0}, 
                     maximumCorrectStimuliOnScreen   : {min : 1, max : 1},
-                    respawnTime                     : {min : 1.5, max : 1},
+                    respawnTime                     : {min : 2, max : 1},
                     mathsAlternativePercentage      : {min : 0, max : 0.2},
                     mathsAlternativePicturePercentage : {min : 1, max : 0.8}
                 }
@@ -89,17 +89,17 @@
                 globalRemediation : {
                     gameTimer                       : Infinity,
                     gameTimerVisible                : false,
-                    roundsCount                     : 7,
-                    stepDistracterCount             : 5,
+                    roundsCount                     : 8,
+                    stepDistracterCount             : 7,
                     totalTriesCount                 : 3,
-                    holesCount                      : 5
+                    holesCount                      : 7
                 },
                 localRemediation : {
-                    apparitionsDuration             : {min : 1, max : 2},
+                    apparitionsDuration             : {min : 1.5, max : 2},
                     maxCrabsOnScreen                : {min : 1, max : 2},
                     minimumCorrectStimuliOnScreen   : {min : 0, max : 0}, 
                     maximumCorrectStimuliOnScreen   : {min : 1, max : 2},
-                    respawnTime                     : {min : 1, max : 1},
+                    respawnTime                     : {min : 1.5, max : 1},
                     mathsAlternativePercentage      : {min : 0.2, max : 0.4},
                     mathsAlternativePicturePercentage : {min : 1, max : 0.7}
                 }
@@ -108,17 +108,17 @@
                 globalRemediation : {
                     gameTimer                       : Infinity,
                     gameTimerVisible                : false,
-                    roundsCount                     : 9,
+                    roundsCount                     : 10,
                     stepDistracterCount             : 7,
                     totalTriesCount                 : 3,
                     holesCount                      : 7
                 },
                 localRemediation : {
-                    apparitionsDuration             : {min : 1, max : 2},
+                    apparitionsDuration             : {min : 1, max : 1.5},
                     maxCrabsOnScreen                : {min : 2, max : 2},
-                    minimumCorrectStimuliOnScreen   : {min : 0, max : 0}, 
-                    maximumCorrectStimuliOnScreen   : {min : 2, max : 2},
-                    respawnTime                     : {min : 1, max : 0.5},
+                    minimumCorrectStimuliOnScreen   : {min : 1, max : 1}, 
+                    maximumCorrectStimuliOnScreen   : {min : 1, max : 2},
+                    respawnTime                     : {min : 1.5, max : 1},
                     mathsAlternativePercentage      : {min : 0.4, max : 0.5},
                     mathsAlternativePicturePercentage : {min : 0.7, max : 0.5}
                 }
@@ -133,11 +133,11 @@
                     holesCount                      : 9
                 },
                 localRemediation : {
-                    apparitionsDuration             : {min : 0.8, max : 1.5},
-                    maxCrabsOnScreen                : {min : 2, max : 3},
+                    apparitionsDuration             : {min : 1, max : 1},
+                    maxCrabsOnScreen                : {min : 3, max : 3},
                     minimumCorrectStimuliOnScreen   : {min : 0, max : 0},
-                    maximumCorrectStimuliOnScreen   : {min : 2, max : 3},
-                    respawnTime                     : {min : 0.8, max : 0.4},
+                    maximumCorrectStimuliOnScreen   : {min : 1, max : 3},
+                    respawnTime                     : {min : 1, max : 0.8},
                     mathsAlternativePercentage      : {min : 0.5, max : 0.7},
                     mathsAlternativePicturePercentage : {min : 0.5, max : 0.3}
                 }

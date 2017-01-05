@@ -27,6 +27,7 @@
         this.lives = 0;
         this.consecutiveMistakes = 0;
         this.consecutiveSuccess = 0;
+        this.timeWithoutClick = 0;
         this.framesToWaitBeforeNextSpawn = 0;
         this.framesToWaitBeforeNewSound = 0;
         this.jellyfishes = [];
@@ -78,6 +79,7 @@
         this.eventManager.on('clicked', function (jellyfish) {
             // console.log("clicked");
             // console.log(jellyfish);
+            this.timeWithoutClick = 0;
             this.addClick(jellyfish);
             this.paused = true;
             this.game.world.bringToTop(this.fx);
@@ -403,6 +405,13 @@
                     this.distracterJellyfishesSpawned++;
                 }
             }
+        }
+
+        this.timeWithoutClick++;
+
+        if (this.timeWithoutClick > 60 * 20) {
+            this.timeWithoutClick = 0;
+            this.eventManager.emit('help');
         }
 
         // var str = "####\n"+

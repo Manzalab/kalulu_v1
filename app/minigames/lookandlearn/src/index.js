@@ -107,6 +107,7 @@ define([
 
     GameLauncher.prototype.quit = function quit () {
         this.game.eventManager.off("exitGame", this.quit, this);
+        this.clearDebugPanel();
         this.game.rafiki.close();
         this.game.destroy();
     };
@@ -119,7 +120,7 @@ define([
 
     GameLauncher.prototype.setupDebugPanel = function setupDebugPanel() {
         
-        console.log("LookAndLearn Setupping debug Panel");
+        console.info("LookAndLearn Setupping debug Panel");
         var debugPanel = null;
         if (this.game.debugPanel) {
             debugPanel = this.game.debugPanel;
@@ -143,15 +144,17 @@ define([
 
     GameLauncher.prototype.clearDebugPanel = function clearDebugPanel() {
         if (this.game.gameConfig.rafikiDebugPanel) {
+            console.info("LookAndLearn Cleaning debug Panel");
             this.game.debugPanel.removeFolder(this.game.debugFolderNames.functions);
         }
         else {
+            console.info("LookAndLearn Destroying debug Panel");
             this.game.debugPanel.destroy();
         }
     };
 
     GameLauncher.prototype.AutoWin = function AutoWin() {
-        this.clearDebugPanel();
+        
         this.game.rafiki.save();
         this.game.eventManager.emit("exitGame");
     };

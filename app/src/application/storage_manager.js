@@ -14,6 +14,13 @@ define([], function () {
 	// 	return this._storageStrategy.getUsersData();
 	// };
 
+	/**
+	 * @param key {string} the key at which the data is stored
+	 * @return {object} the parsed saved data
+	**/
+	StorageManager.prototype.resetSave = function resetSave () {
+		return this._storageStrategy.resetSave();
+	};
 
 	/**
 	 * @param key {string} the key at which the data is stored
