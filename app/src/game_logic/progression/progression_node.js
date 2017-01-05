@@ -107,11 +107,11 @@ define([], function(){
                 return this._userProfile[this._discipline.type].plan[this.id].isUnlocked;
             },
             set : function (isUnlocked) {
-                if (isUnlocked) console.log("Unlocking " + this.id);
+                // if (isUnlocked) console.log("Unlocking " + this.id);
                 this._userProfile[this._discipline.type].plan[this._id].isUnlocked = isUnlocked;
                 if (isUnlocked && this._children && this.children.length > 0) {
-                    console.log("Trying to unlock " + this._children[0].id);
-                    console.log(this._children[0].isUnlocked);
+                    // console.log("Trying to unlock " + this._children[0].id);
+                    // console.log(this._children[0].isUnlocked);
                     this._children[0].isUnlocked = isUnlocked;
                 }
                 this._userProfile.save();
