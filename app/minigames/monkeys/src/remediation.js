@@ -137,6 +137,7 @@
             object.apparition.close(true, 0);
             object.flyTo(this.trees.kingTree.monkey.x, this.trees.kingTree.monkey.y - 40, 1.4);
             object.clickable = false;
+            object.monkeyRef.clickable = false;
             object.monkeyRef.coconut.bool = false;
             object.monkeyRef.monkeySprite.animations.play('throw');
             object.monkeyRef.sounds.send.play();
