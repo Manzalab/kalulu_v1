@@ -124,6 +124,7 @@
         }
         else {
             this.picture = this.game.add.sprite(0, -this.parakeetSprite.height / 5, 'maths', value);
+            console.log(value)
             this.picture.height = this.parakeetSprite.width/3;
             this.picture.scale.x = this.picture.scale.y;
             this.picture.anchor.setTo(0.5, 1);
