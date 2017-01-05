@@ -10,7 +10,7 @@
         "enableTransitionsTuning"       : true,
         "enableMinigameTuning"          : true,
         "enableQAControls"              : true,
-        "skipKalulu"                    : true,
+        "skipKalulu"                    : false,
         "displayGardenIdsOnBrainScreen" : false,
         "debugLanguageModule"           : true,
         "debugMathsModule"              : false
