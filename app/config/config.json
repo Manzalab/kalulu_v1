@@ -25,12 +25,12 @@
     },
     "ftpParameters" : {
         "ftpSaveInterval" : 20000,
-        "saveFolderName"  : "KALULU_SAVES",
+        "saveFolderName"  : "KALULU_DATA",
         "saveFileSuffix"    : "save",
         "saveExt"         : "txt",
 
-        "address"       : "ftp.manzaphp.eu",
-        "username"      : "manzaphpkv",
-        "password"      : "vMazu7b7"
+        "address"       : "192.168.0.1",
+        "username"      : "anonymous",
+        "password"      : ""
     }
 }
