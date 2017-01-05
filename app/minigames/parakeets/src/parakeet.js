@@ -1,7 +1,9 @@
 ﻿define([
-    './feather'
-], function (
-    Feather
+    './feather',
+    'common/src/mathSprite'
+], function (    
+    Feather,
+    MathSprite
 ) {
 
     'use strict';
@@ -123,8 +125,7 @@
             this.text.text = text;
         }
         else {
-            this.picture = this.game.add.sprite(0, -this.parakeetSprite.height / 5, 'maths', value);
-            console.log(value)
+            this.picture = this.game.add.sprite(0, -this.parakeetSprite.height / 5, 'maths',value.toString());
             this.picture.height = this.parakeetSprite.width/3;
             this.picture.scale.x = this.picture.scale.y;
             this.picture.anchor.setTo(0.5, 1);
