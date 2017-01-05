@@ -20,6 +20,8 @@
         this.initSounds(game);
 
         this.initGame();
+        console.log("game"+this.game)
+        console.log("Current Round"+this.currentRound)
         this.initRound(this.currentRound);
         this.initEvents();
 
