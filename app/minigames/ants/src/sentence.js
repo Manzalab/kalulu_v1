@@ -48,8 +48,9 @@
         var textX = xOffset;
 
         this.words = [];
-
-        for (var i = 0 ; i < words.length; i++) {
+        var length = words.length;
+        if (picture) length = 1;
+        for (var i = 0 ; i < length; i++) {
             if (textX + words[i].length * TEXTFONTSIZE > this.game.width) {
                 textX = xOffset;
                 textY += yOffset;
@@ -57,8 +58,9 @@
 
             var temp = game.add.text(textX, textY, "- phaser -\nrocking with\ngoogle web fonts");
             temp.font = "Arial";
-            temp.text = words[i];
-            if (i == this.wordIndex) temp.visible = false;
+            if (!picture) temp.text = words[i];
+            else temp.text = words;
+            if (i == this.wordIndex || picture) temp.visible = false;
 
             temp.fill = "black";
             temp.fontSize = TEXTFONTSIZE;
@@ -70,6 +72,7 @@
             textX += temp.width + TEXTFONTSIZE;
         }
 
+
         this.holeBackground = game.add.sprite(this.words[this.wordIndex].x + this.words[this.wordIndex].width / 2, this.words[this.wordIndex].y, 'hole' + Math.floor(Math.random() * 2 + 2));
         this.holeBackground.anchor.setTo(0.5, 0.5);
         //this.holeBackground.width = (this.words[this.wordIndex].text.length + 1) * TEXTFONTSIZE;
@@ -79,7 +82,7 @@
         this.add(this.holeBackground);
 
         if (picture) {
-            this.picture = new MathSprite(this.game.world.centerX - 600, this.holeBackground.y, words[0], this.game, 1000,height);
+            this.picture = new MathSprite(this.game.world.centerX - 600, this.holeBackground.y, words, this.game, 1000, height);
 
             this.add(this.picture);
 

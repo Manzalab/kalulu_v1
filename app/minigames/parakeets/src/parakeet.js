@@ -13,7 +13,7 @@
 
         this.game = game;
         this.eventManager = game.eventManager;
-
+        
         this.x = x;
         this.y = y;
         this.feather = new Feather(game);
@@ -39,6 +39,7 @@
 
         this.events.onInputDown.add(function () {
             if (this.clickable) {
+                this.clickable = false;
                 this.sounds.click[Math.floor(Math.random() * (this.sounds.click.length))].play();
                 this.return(true);
                 this.sound.play();
