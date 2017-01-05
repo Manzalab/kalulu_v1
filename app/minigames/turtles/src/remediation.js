@@ -39,6 +39,8 @@
          **/
         this.framesToWaitBeforeNextSpawn = 0;
 
+        this.timeWithoutClick = 0;
+
         /**
          * framesToWaitBeforeNextSpawn timer for the correct response sound
          * @type {int}
@@ -184,6 +186,10 @@
      * Initalize game events
      **/
     Remediation.prototype.initEvents = function () {
+
+        this.game.input.onDown.add(function () {
+            this.timeWithoutClick = 0;
+        },this);
 
         this.eventManager.on('destroyTurtle', function (turtle) {
             this.collisionHandler.destroyDistances(turtle);
@@ -507,6 +513,13 @@
             this.correctStepResponseApparitionsCount = 0;
 
             if (this.framesToWaitBeforeNewSound === 0) this.correctResponses[this.stepIndex].sound.play();
+        }
+
+        this.timeWithoutClick++;
+
+        if (this.timeWithoutClick > 60 * 20) {
+            this.timeWithoutClick = 0;
+            this.eventManager.emit('help');
         }
 
     };

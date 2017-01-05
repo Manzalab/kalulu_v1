@@ -39,7 +39,7 @@
         this.initSounds(game);
 
         this.validateRoundButton = game.add.button(this.game.world.centerX, this.game.height, 'ui', this.onClickValidateRound, this);
-        this.validateRoundButton.frameName = 'retour_valider';
+        this.validateRoundButton.frameName = 'TickButton0001.png';
         this.validateRoundButton.height = 300;
         this.validateRoundButton.width = 300;
         this.validateRoundButton.anchor.setTo(0.5, 1);

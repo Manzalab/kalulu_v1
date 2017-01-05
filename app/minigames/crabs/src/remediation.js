@@ -353,7 +353,7 @@
                 }
             }
         }
-
+        console.log(this.falseResponsesCurrentPool,this.correctResponse)
 
         var disabledCrabs = this.getDisabledCrabs();
         randomCrab = disabledCrabs[Math.floor(Math.random() * this.getDisabledCrabs().length)];
