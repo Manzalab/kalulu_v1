@@ -9,6 +9,9 @@
     "installed_plugins": {
         "cordova-plugin-file-transfer": {
             "PACKAGE_NAME": "com.manzalab.kalulu"
+        },
+        "cordova-plugin-ftp": {
+            "PACKAGE_NAME": "com.manzalab.kalulu"
         }
     },
     "dependent_plugins": {
