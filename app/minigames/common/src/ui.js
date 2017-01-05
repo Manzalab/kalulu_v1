@@ -17,12 +17,13 @@
      * @param lives {int} number of lives to display
 	 * @param game {Phaser.Game} game instance
 	**/
-    function Ui(lives, game, centralConch, replay, conch, kalulu) {
+    function Ui(lives, game, centralConch, replay, conch, kalulu,pause) {
 
         kalulu = (typeof kalulu !== 'undefined') ? kalulu : true;
         centralConch = (typeof centralConch !== 'undefined') ? centralConch : true;
         replay = (typeof replay !== 'undefined') ? replay : true;
         conch = (typeof conch !== 'undefined') ? conch : true;
+        pause = (typeof pause !== 'undefined') ? pause : true;
 
         Phaser.Group.call(this, game);
 
@@ -31,6 +32,7 @@
         this.features.conch = conch;
         this.features.replay = replay;
         this.features.kalulu = kalulu;
+        this.features.pause = pause;
 
         /**
          * game.eventManager
@@ -412,6 +414,14 @@
         else {
             this.kaluluButton.inputEnabled = false;
             this.kaluluButton.frameName = 'KaluluButton0004.png';
+        }
+        if (this.features.pause) {
+            this.pauseButton.inputEnabled = true;
+            this.pauseButton.frameName = 'PauseButton0001.png';
+        }
+        else {
+            this.pauseButton.inputEnabled = false;
+            this.pauseButton.frameName = 'PauseButton0004.png';
         }
     };
 
