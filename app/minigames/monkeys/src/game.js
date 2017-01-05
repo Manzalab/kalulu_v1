@@ -68,6 +68,7 @@
             // load audiofiles for the current data
             var data = this.game.pedagogicData.data;
             this.game.discipline = this.game.pedagogicData.discipline;
+            console.log( data.rounds.length);
             var roundsCount = data.rounds.length;
             var stepsCount, stimuliCount, stimulus;
             console.log(this.game.discipline)

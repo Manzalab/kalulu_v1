@@ -203,7 +203,7 @@
      * Initialise parameters for the required round with data contained in this.pedagogicData
      **/
     Remediation.prototype.initRound = function initRound(roundIndex) {
-
+         console.log(this.game.pedagogicData.data.rounds);
         var roundData = this.game.pedagogicData.data.rounds[roundIndex];
 
         this.apparitionsCount = 0;
@@ -214,6 +214,7 @@
         this.correctResponses = [];
         this.falseStepResponsesCurrentPool = [];
         if (this.game.discipline != "maths") {
+            console.log(roundData);
             this.correctWord = roundData.word;
             this.sounds.correctRoundAnswer = this.game.add.audio(roundData.word.value);
         }
