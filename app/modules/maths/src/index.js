@@ -90,23 +90,19 @@
 
             listByChapter[lItem.CHAPTER].push({
                 "value" : lItem["HIGHER NUM"],
-                "categorie": "HIGHER NUM"
+               // "category": "HIGHER NUM",
+                "correctResponse": true,
               
             });
             listByChapter[lItem.CHAPTER].push({
                 "value"  : lItem["OTHER NUM"],
-                 "categorie": "OTHER NUM"
+              //  "category": "OTHER NUM",
+                "correctResponse": false,
             });
-
-
-
-
-
-           
 
         }
 
-        console.log(listByChapter)
+        //console.log(listByChapter)
 
         return listByChapter;
     };
@@ -154,7 +150,7 @@
                   }
                   // IS A SKILL OR A SHAPE
                   else{
-                    var static_skills_array = ['forward', 'backward', 'oneby', 'twoby', 'fiveby', 'tenby', 'recognition']
+                    var static_skills_array = ['forward', 'backward', 'oneby', 'twoby', 'fiveby', 'tenby', 'recognition', 'addition', 'substraction']
 
                     if( _.contains(static_skills_array, notionID) ){
 
@@ -693,6 +689,8 @@
         })
 
         var setup = {
+            discipline : 'maths',
+            language   : KALULU_LANGUAGE, // can be : english, french, swahili
             categories : ['HIGHER NUM', 'OTHER NUM'],
             timer : 20,
             minimumWordsSorted : 10,
