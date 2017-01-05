@@ -1,7 +1,9 @@
 ﻿define([
-    './feather'
-], function (
-    Feather
+    './feather',
+    'common/src/mathSprite'
+], function (    
+    Feather,
+    MathSprite
 ) {
 
     'use strict';
@@ -13,7 +15,7 @@
 
         this.game = game;
         this.eventManager = game.eventManager;
-
+        
         this.x = x;
         this.y = y;
         this.feather = new Feather(game);
@@ -39,6 +41,7 @@
 
         this.events.onInputDown.add(function () {
             if (this.clickable) {
+                this.clickable = false;
                 this.sounds.click[Math.floor(Math.random() * (this.sounds.click.length))].play();
                 this.return(true);
                 this.sound.play();
@@ -122,7 +125,7 @@
             this.text.text = text;
         }
         else {
-            this.picture = this.game.add.sprite(0, -this.parakeetSprite.height / 5, 'maths', value);
+            this.picture = this.game.add.sprite(0, -this.parakeetSprite.height / 5, 'maths',value.toString());
             this.picture.height = this.parakeetSprite.width/3;
             this.picture.scale.x = this.picture.scale.y;
             this.picture.anchor.setTo(0.5, 1);
