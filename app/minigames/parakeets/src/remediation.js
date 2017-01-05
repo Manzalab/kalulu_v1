@@ -114,10 +114,14 @@
     }
 
     Remediation.prototype.newGame = function (game) {
+
         var globalParams = this.game.params.getGlobalParams();
         var localParams = this.game.params.getLocalParams();
+ 
+        console.log(globalParams);
 
         var arrayStimuli = [];
+        console.log(this.game.pedagogicData.data.rounds)
         var roundData = this.game.pedagogicData.data.rounds[0].steps[0];
         var roundType = roundData.type;
         console.log(roundData);
@@ -137,7 +141,9 @@
                 arrayStimuli.push(upperCase);
             }
         else {
+          
             for (var i = 0; i < pairsCount; i++) {
+                console.log(roundData.stimuli);
                 var stimuli = roundData.stimuli[i];
 
                 for (var j = 0; j < 2; j++) {
