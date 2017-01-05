@@ -34,18 +34,18 @@ var score = new FakeScore()
 //console.log(numbers_data)
 
 //var target_group = ['sum']
-	  var available_numbers  = [0,1,2,3]
+	  var available_numbers  = [1]
  	  var params = {
  	  		available_numbers 				: available_numbers,
            	available_skills				: ['forward', 'oneby'],
             available_shapes				: ['circle', 'square', 'triangle'],
             shapes_data						: new FakeShapesData(config.language),
             numbers_data 					: new FakeNumbersData(config.language),
-            gameType                        : "DummyGame", // "identification", "composition", "pairing", or "other"
-            roundsCount                     : 4,           // the amount of rounds, (Rafiki will provide one target per round)
-            stepDistracterCount             : 2,             //
+            gameType                        : "ca", // "identification", "composition", "pairing", or "other"
+            roundsCount                     : 3,           // the amount of rounds, (Rafiki will provide one target per round)
+            stepDistracterCount             : 0,             //
             language 						: config.language,
-            groupGameType  					: 'sum'    
+            groupGameType  					: 'recognition'    
       }
     
 
@@ -129,24 +129,72 @@ function pool_loop(tries){
 	if(temp_rounds_results.length == 0){
 		var temp_rounds_results = pool_loop(2)
 		out.tries_results[tries] = temp_rounds_results
-		out.forced_pool = 2		
+		out.forced_pool = 2	
+		game.dataforced = true
 	}
 
 
 	if(temp_rounds_results.length == 0){
-				var end = {'norounds': true}	
+			var end = {'norounds': true}	
 				return end
 
 	}
 	else{
-		while(game.data.rounds.length < params.roundsCount  ){ //  && tries < 4
-				tries++
+
+			if(params.gameType == 'pairing'){
+				var mixed_steps = {steps: [ { "type": "audioToNonSymbolic", "stimuli": []}]}
 
 				_.each(temp_rounds_results, function(r){
-					game.data.rounds.push(r)
-					out.count_rounds++
+					
+					// console.log(r.steps)
+					// parakeetPairs
 
-				})	
+					mixed_steps.steps[0].stimuli.push(r.steps[0].stimuli[0])
+
+					// game.data.rounds.push(r)
+					//out.count_rounds++
+
+				})
+				game.data.rounds.push(mixed_steps)
+			    console.log('mixed_steps')
+				// console.log(mixed_steps)
+
+			}
+			else if(params.gameType == 'turtless'){
+				var mixed_steps = []
+				_.each(temp_rounds_results, function(r){
+					
+					// console.log(r.steps)
+					mixed_steps.push(r.steps[0].stimuli[0])
+					game.data.rounds.push(r)
+					//	out.count_rounds++
+
+				})
+				game.data.rounds[0].steps[0].stimuli = mixed_steps
+				//	console.log(mixed_steps)
+
+
+
+			}
+			else{
+
+
+
+				while(game.data.rounds.length < params.roundsCount  ){ //  && tries < 4
+					tries++
+
+					//if(gameType == 'pairing'){
+
+
+					// }
+
+					_.each(temp_rounds_results, function(r){
+						game.data.rounds.push(r)
+						out.count_rounds++
+
+					})	
+				}
+
 			}
 
 	}
