@@ -87,23 +87,28 @@
             var lItem = data[i];
 
             if (!listByChapter.hasOwnProperty(lItem.CHAPTER)) listByChapter[lItem.CHAPTER] = [];
+            var st_array = {'stimuli': []}
 
-            listByChapter[lItem.CHAPTER].push({
+           
+
+            st_array.stimuli.push({
                 "value" : lItem["HIGHER NUM"],
                // "category": "HIGHER NUM",
                 "correctResponse": true,
               
             });
-            listByChapter[lItem.CHAPTER].push({
+            st_array.stimuli.push({
                 "value"  : lItem["OTHER NUM"],
               //  "category": "OTHER NUM",
                 "correctResponse": false,
             });
 
+             listByChapter[lItem.CHAPTER].push(st_array)
+         
+
         }
 
-        //console.log(listByChapter)
-
+        console.log(listByChapter)
         return listByChapter;
     };
     MathsModule.prototype.getNotionsById = function getNotionsById (id) {
@@ -698,7 +703,7 @@
             stimuli: stimuli_for_chapter,
             data       : {
                  categories : ['HIGHER NUM', 'OTHER NUM'],
-                 rounds: [ {steps: [ {stimuli: stimuli_for_chapter} ]}]
+                 rounds: [ {steps:  stimuli_for_chapter }]
             }
         };
 /*
