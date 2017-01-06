@@ -215,7 +215,7 @@
      * @return the setup object needed by the Minigame
     **/
     LanguageModule.prototype.getPedagogicData = function getPedagogicData (progressionNode, params) {
-
+         console.log("salut je passe par la");
         this._currentActivityParams = params;
 
         if (progressionNode.activityType === "lookandlearn") {
@@ -272,7 +272,7 @@
      * It should provide a setup freshly updated with the latest player data available.
     **/
     LanguageModule.prototype.getPedagogicDataForExercise = function getPedagogicDataForExercise (progressionNode, params) {
-        
+       
         var gameType = params.gameType;
 
         switch (gameType) {
@@ -746,6 +746,8 @@
      * @return {(Word[] | GP[])}
     **/
     LanguageModule.prototype._selectTargets = function _selectTargets (params, lessonNumber, stimuliPool) {
+        console.log(stimuliPool);
+        console.log(lessonNumber);
         if (Config.debugLanguageModule) console.log(params);
         if (!stimuliPool.hasOwnProperty(lessonNumber)) {
             throw new Error("No Syllables available for this lesson (n° " + lessonNumber + ")");
@@ -786,7 +788,7 @@
         var stimuliPool = this._syllablesGamesStimuli; // Note : this is one of the words sublists. It has to be words, not GP. To make dynamic = f(minigameSetup)
         var lessonNumber = progressionNode.parent.lessonNumber;
         var lRoundsCount = params.roundsCount;
-
+        console.log("progressionNode"+ progressionNode)
         var totalTargets = this._selectTargets(params, lessonNumber, stimuliPool);
         
         var lSetup = { 
