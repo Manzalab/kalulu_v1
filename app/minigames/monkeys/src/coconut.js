@@ -28,8 +28,19 @@
         this.scale.x = SCALE;
         this.scale.y = SCALE;
 
+        this.highlight = game.add.sprite(0, 20, 'fx', 'FX_02');
+        this.highlight.anchor.setTo(0.5, 0.5);
+        this.highlight.scale.x = 0.3;
+        this.highlight.scale.y = 0.3;
+        this.highlight.visible = false;
+        this.highlight.scale.tween = this.game.add.tween(this.highlight.scale);
+        this.highlight.scale.tween.to({ x: 0.6, y:0.6 }, 750, Phaser.Easing.Default, true, 0, -1, true);
+        this.add(this.highlight);
+
         this.sprite = game.add.sprite(0, 0, 'coconut','coconut');
         this.sprite.anchor.setTo(0.5, 1);
+
+        this.highlight.y -= this.sprite.height / 2;
 
         this.add(this.sprite);
 
@@ -79,11 +90,12 @@
     };
 
     Coconut.prototype.setText = function (value) {
-        this.text.text = value;
+        this.text.text = value.toString();
         this.sound = this.parent.game.add.audio(value);
     };
 
-    Coconut.prototype.flyTo = function (newX, newY,time) {
+    Coconut.prototype.flyTo = function (newX, newY, time) {
+        this.highlight = false;
         this.tween.stop();
         this.time = time;
         this.newX = newX;

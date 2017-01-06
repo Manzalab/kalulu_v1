@@ -149,18 +149,7 @@
 
         this.eventManager.on('unPause', function () {
             this.paused = false;
-        }, this);
-
-        this.eventManager.on('help', function () {
-            this.highlightNextSpawn = true;
-            for (var i = 0; i < this.crabs.length; i++) {
-                if (this.crabs[i].isCorrectResponse) {
-                    this.crabs[i].highlight.visible = true;
-                }
-            }
-        }, this);
-
-        
+        }, this);       
 
         this.eventManager.on('exitGame', function () {
             this.eventManager.removeAllListeners();
@@ -264,6 +253,7 @@
     };
 
     Remediation.prototype.fail = function () {
+        var params = this.game.params.getGeneralParams();
 
         this.lives--;
         console.log("Lives remaining : " + this.lives);
@@ -272,8 +262,14 @@
 
         if (this.lives > 0) {
             if (this.triesRemaining > 0) {
-                if (this.consecutiveMistakes % 2 === 0) {
-                    this.eventManager.emit('help');                    
+                if (this.consecutiveMistakes === params.incorrectResponseCountTriggeringSecondRemediation) {
+                    this.eventManager.emit('help');
+                    this.highlightNextSpawn = true;
+                    for (var i = 0; i < this.crabs.length; i++) {
+                        if (this.crabs[i].isCorrectResponse) {
+                            this.crabs[i].highlight.visible = true;
+                        }
+                    }
                     if (this.game.gameConfig.debugPanel) this.cleanLocalPanel();
                     this.game.params.decreaseLocalDifficulty();
                     if (this.game.gameConfig.debugPanel) this.setLocalPanel();
