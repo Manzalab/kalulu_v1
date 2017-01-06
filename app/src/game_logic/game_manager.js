@@ -133,10 +133,11 @@
             else if (nextScreenName === "Plan") {
                 console.log('Back from Assessment');
                 if (progressionNode.isCompleted) {
-
+                    console.log('Assessment Complete ! Going to next Chapter, back to brain screen !');
+                    this._eventSystem.emit(Events.GAME.BACK_FROM_ACTIVITY, 'brainScreen', this._rafiki.getChaptersProgression(), this._currentUserProfile);
                 }
                 else {
-                    
+                    console.log('Assessment Not Complete !');
                 }
             }
 
