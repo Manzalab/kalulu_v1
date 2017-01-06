@@ -183,11 +183,11 @@
         }, this);
 
         this.eventManager.on('exitGame', function () {
+            this.game.rafiki.close();
+            if (this.game.gameConfig.debugPanel) this.clearDebugPanel();
+            this.game.destroy();
             this.eventManager.removeAllListeners();
             this.eventManager = null;
-            this.game.rafiki.close();
-            this.game.destroy();
-            if (this.game.gameConfig.debugPanel) this.clearDebugPanel();
         }, this);
      
         this.eventManager.on('pause', function () {
@@ -490,6 +490,7 @@
 
 
     Remediation.prototype.clearDebugPanel = function clearDebugPanel () {
+        console.log("Parakeets clearing its debugPanel");
         if(this.game.debugPanel) {
             for (var folderName in this.debugFolderNames) {
                 this.debugPanel.removeFolder(this.debugFolderNames[folderName]);
