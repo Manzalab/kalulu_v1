@@ -1344,7 +1344,15 @@
     };
 
 
-    LanguageModule.prototype._populateGapFillGame = function _populateGapFillGame () {
+    LanguageModule.prototype._populateGapFillGame = function _populateGapFillGame (progressionNode, params) {
+        
+        console.log(progressionNode);
+        var data = staticData.filling;
+        console.log(data);
+
+        data = _.filter(data, function(row){ return row.LESSON === progressionNode.parent.lessonNumber.toString(); });
+
+        console.log(data);
         
         if (!data) console.error('link data here');
         
