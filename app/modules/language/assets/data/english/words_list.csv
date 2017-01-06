@@ -4,12 +4,12 @@ LESSON;ORTHOGRAPHY;PHONOLOGY;GPMATCH;NB GRAPH;NB LET;NB SYLL;AUDIOFILE NAME;IS W
 3;i;I;i-I;1;1;1;phoneme_capital_i;0;V;0;;;i;I;capital_i
 4;o;o;o-o;1;1;1;phoneme_o;0;V;0;;;o;o;o
 5;u;V;u-V;1;1;1;phoneme_capital_v;0;V;0;;;u;V;capital_v
-6;in;In;i-I.n-n;2;2;1;syl_in;1;VC;0;;;;;
-6;on;on;o-o.n-n.;2;2;1;syl_on;1;VC;0;;;;;
-6;an;an;a-a.n-n;2;2;1;syl_an;1;VC;0;;;;;
+6;in;In;i-I.n-n;2;2;1;word_in;1;VC;0;;;;;
+6;on;on;o-o.n-n.;2;2;1;word_on;1;VC;0;;;;;
+6;an;an;a-a.n-n;2;2;1;word_an;1;VC;0;;;;;
 6;nun;nVn;n-n.u-V.n-n;3;3;1;word_nun;1;CVC;0;;;;;
 6;Ann;an;a-a.n-n.n-n;3;3;1;word_Ann;0;VC;1;;;;;
-7;am;am;a-a.m-m;2;2;1;syl_am;1;VC;0;;;;;
+7;am;am;a-a.m-m;2;2;1;word_am;1;VC;0;;;;;
 7;mom;mom;m-m.o-o.m-m;3;3;1;word_mom;1;CVC;0;;;;;
 7;man;man;m-m.a-a.n-n;3;3;1;word_man;1;CVC;0;;;;;
 8;us;Vs;u-V.s-s;2;2;1;word_us;1;VC;0;;;;;
