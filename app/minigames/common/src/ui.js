@@ -18,7 +18,7 @@
 	 * @param game {Phaser.Game} game instance
 	**/
     function Ui(lives, game, centralConch, replay, conch, kalulu,pause) {
-
+        console.log("[UI] constructor called");
         kalulu = (typeof kalulu !== 'undefined') ? kalulu : true;
         centralConch = (typeof centralConch !== 'undefined') ? centralConch : true;
         replay = (typeof replay !== 'undefined') ? replay : true;
@@ -39,9 +39,9 @@
          * @type {EventEmitter}
          **/
         this.eventManager = game.eventManager;
-        var blackBitmap = new Phaser.BitmapData(this.game, 'pause', 10, 10);
-        blackBitmap.fill(0, 0, 0, 0.4);
-        this.blackOverlay = this.create(0, 0, blackBitmap);
+        this.blackBitmap = new Phaser.BitmapData(this.game, 'pause', 10, 10);
+        this.blackBitmap.fill(0, 0, 0, 0.4);
+        this.blackOverlay = this.create(0, 0, this.blackBitmap);
         this.blackOverlay.width = game.width;
         this.blackOverlay.height = game.height;
         this.blackOverlay.visible = true;
@@ -572,6 +572,10 @@
                 }
             }
     };
+
+    Ui.prototype.destroy = function destroy() {
+        this.blackBitmap.destroy();
+    }
 
     module.exports = Ui;
 })();

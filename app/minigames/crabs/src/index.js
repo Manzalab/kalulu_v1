@@ -54,11 +54,5 @@
         this.game.state.start('Boot');
     };
 
-    GameLauncher.prototype.destroy = function destroy () {
-        
-        this.game.destroy();
-        this.game = null;
-    };
-
     module.exports = GameLauncher;
 })();
