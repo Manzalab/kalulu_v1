@@ -42,9 +42,9 @@
             { // LEVEL 1
                 globalRemediation : {
                     stepDistracterCount             : 3, //
-                    roundsCount                     : 3, //
+                    roundsCount                     : 5, // MUST equal totalTriesCount
                     lillypadsPerColumn              : 3,
-                    totalTriesCount                 : 5
+                    totalTriesCount                 : 5 // MUST equal roundsCount
                 },
                 localRemediation : {
                     minimumCorrectStimuliOnColumn   : {min : 2, max : 1}, //
@@ -55,7 +55,7 @@
             { // LEVEL 2
                 globalRemediation: {
                    stepDistracterCount             : 3, //
-                   roundsCount                     : 3, //
+                   roundsCount                     : 5, //
                    lillypadsPerColumn              : 3,
                    totalTriesCount                 : 5
                 },
@@ -68,7 +68,7 @@
             { // LEVEL 3
                 globalRemediation: {
                    stepDistracterCount             : 3, //
-                   roundsCount                     : 5, //
+                   roundsCount                     : 6, //
                    lillypadsPerColumn              : 4,
                    totalTriesCount                 : 6
                 },
