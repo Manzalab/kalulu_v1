@@ -6,8 +6,8 @@
     var Kalulu_maths     = require ('./kalulu_maths');
     var _                = require ('underscore');
 
-    var kconstants        = require ('../config/config.json');
-    console.log(kconstants)
+    // var constants        = require ('../config/config.json');
+    // console.log(constants)
     
     var staticData = {
         name              : 'maths',
@@ -89,26 +89,19 @@
             if (!listByChapter.hasOwnProperty(lItem.CHAPTER)) listByChapter[lItem.CHAPTER] = [];
             var st_array = {'stimuli': []}
 
-           
-
             st_array.stimuli.push({
                 "value" : lItem["HIGHER NUM"],
-               // "category": "HIGHER NUM",
                 "correctResponse": true,
               
             });
             st_array.stimuli.push({
                 "value"  : lItem["OTHER NUM"],
-              //  "category": "OTHER NUM",
                 "correctResponse": false,
             });
-
-             listByChapter[lItem.CHAPTER].push(st_array)
-         
-
+            listByChapter[lItem.CHAPTER].push(st_array)
         }
 
-        console.log(listByChapter)
+        // console.log(listByChapter)
         return listByChapter;
     };
     MathsModule.prototype.getNotionsById = function getNotionsById (id) {
@@ -210,7 +203,15 @@
 
      MathsModule.prototype.processResults = function processResults (currentProgressionNode, results, hasWon) { // TODO : move in a save module
             
-            console.log(this._currentActivityParams);
+            console.log(currentProgressionNode);
+
+            if(currentProgressionNode._activityType=='ants'){
+              this._processAntsResults(currentProgressionNode, results, hasWon);
+            }
+            else{
+                this._processCountingResults(currentProgressionNode, results, hasWon);
+
+            }
 
            // if (this._currentActivityParams.gameType === "caterpillar") {
                 this._processCountingResults(currentProgressionNode, results, hasWon);
@@ -232,8 +233,22 @@
         */
     };
 
-    
+    MathsModule.prototype._processAntsResults = function _processAntsResults(currentProgressionNode, results, hasWon) {
 
+        if (results.hasWon) {
+            console.log('flawless case ants')
+            currentProgressionNode.isCompleted = true;
+        }
+
+    }
+     MathsModule.prototype._processFishResults = function _processFishResults(currentProgressionNode, results, hasWon) {
+
+        if (results.hasWon) {
+            console.log('flawless case ants')
+            currentProgressionNode.isCompleted = true;
+        }
+
+    }
 
     MathsModule.prototype._processCountingResults = function _processCountingResults(currentProgressionNode, results, hasWon) {
        console.log('_processCountingResults')
@@ -602,14 +617,10 @@
 
           if(progressionNode.activityType == 'crabs' || progressionNode.activityType == 'jellyfish' ||  progressionNode.activityType == 'parakeets' ){
             params.groupGameType      = 'recognition'  
-
           }
-
-        
-
+         
           if(progressionNode.activityType == 'caterpillar' || progressionNode.activityType == 'frog'){
             params.groupGameType      = 'counting'  
-
           }
           if(progressionNode.activityType == 'turtles'){
             params.groupGameType      = 'decimal'  
@@ -664,20 +675,12 @@
       if (progressionNode.activityType === "lookandlearn") {
           return this.getPedagogicDataForLookAndLearn(progressionNode);
       }
-      else if (progressionNode.activityType === "assessment") {
-        alert('qs')
-          return this.getPedagogicDataForAssessment(progressionNode);
-      }
       else if (progressionNode.activityType[0] === "fish") {
-     
-       return this.getPedagogicDataForAssessment(progressionNode)
+          return this.getPedagogicDataForAssessment(progressionNode)
       }
       else if (progressionNode.activityType === "ants") {
           return this._populateGapFillGame(progressionNode, params);
       }
-
-
-    
       else{
         return this.getPedagogicDataForGame(progressionNode, params);
       }    
@@ -687,44 +690,23 @@
        //  var setup = {'yo':'boo'}
        //alert('zeee')
         var stimuli_for_chapter = this._sortingGamesListByChapter[progressionNode.chapterNumber]
-        _.each(stimuli_for_chapter, function(st){
-
-            console.log(st)
-
-        })
-
+       
         var setup = {
             discipline : 'maths',
             language   : KALULU_LANGUAGE, // can be : english, french, swahili
             categories : ['HIGHER NUM', 'OTHER NUM'],
-            timer : 20,
+            timer : 99999920,
             minimumWordsSorted : 10,
             minimumCorrectSortRatio : 0.5,
-            stimuli: stimuli_for_chapter,
+            // stimuli: stimuli_for_chapter,
             data       : {
                  categories : ['HIGHER NUM', 'OTHER NUM'],
-                 rounds: [ {steps:  stimuli_for_chapter }]
+                 rounds: [ { steps:  stimuli_for_chapter }]
             }
         };
-/*
-        return {
-          discipline : 'maths',
-          language   : KALULU_LANGUAGE, // can be : english, french, swahili
-          data       : {
-          categories : ['HIGHER NUM', 'OTHER NUM'],
-            rounds   : [
-                          { steps : this._sortingGamesListByChapter[progressionNode.chapterNumber]}
-                       ]
-          }
-        }
-    */
-
-        
         console.log(setup)
         return setup;
     };
-
-
 
     MathsModule.prototype.getPedagogicDataForLookAndLearn = function getPedagogicDataForLookAndLearn (progressionNode) {
        console.log(progressionNode);
@@ -959,7 +941,7 @@ var record_not_av   = [
         for (var i = 0 ; i < staticData.filling.length ; i++) {
 
             var row = staticData.filling[i];
-                    console.log( row)
+            //console.log( row)
 
 
             if(row.GROUP !== roundIndex) {
@@ -977,8 +959,8 @@ var record_not_av   = [
 
            });
         }
-          console.log(refined);
-        console.log('done');
+        // console.log(refined);
+        // console.log('done');
         return refined;
     };
 

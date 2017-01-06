@@ -118,6 +118,15 @@
          **/
         render: function () {
             this.game.debug.text(this.game.time.fps, 2, 14, "#00ff00");
+        },
+
+        shutdown: function() {
+            this.ui.destroy();
+            this.background = null;
+            this.eventManager = null;
+            this.ui = null;
+            this.kalulu = null;
+            this.remediation = null;
         }
     };
     return Game;

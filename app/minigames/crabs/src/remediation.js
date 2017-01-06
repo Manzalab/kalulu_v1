@@ -213,12 +213,6 @@
         }
     };
 
-    Remediation.prototype.deleteCrabs = function () {
-        var length = this.crabs.length;
-        for (var i = 0 ; i < length ; i++) {
-            this.crabs.pop().destroy();
-        }
-    };
     Remediation.prototype.onClickOnCrab = function (crab) {
         this.timeWithoutClick = 0;
         this.triesRemaining--;
@@ -244,7 +238,6 @@
     };
 
     Remediation.prototype.success = function () {
-
         this.currentRound++;
         this.consecutiveSuccess++;
         this.consecutiveMistakes = 0;
