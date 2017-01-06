@@ -40,9 +40,9 @@
             { // LEVEL 1
                 globalRemediation : {
                     stepDistracterCount             : 3, //
-                    roundsCount                     : 3, //
+                    roundsCount                     : 5, // must equal totalTriesCount
                     monkeyOnScreen                  : 2,
-                    totalTriesCount                 : 5
+                    totalTriesCount                 : 5 // must equal roundsCount
                 },
                 localRemediation : {
                     minimumCorrectStimuliOnColumn   : {min : 1, max : 1}, //
@@ -52,7 +52,7 @@
             { // LEVEL 2
                 globalRemediation: {
                    stepDistracterCount             : 3, //
-                   roundsCount                     : 3, //
+                   roundsCount                     : 5, //
                    monkeyOnScreen                  : 2,
                    totalTriesCount                 : 5
                 },
@@ -64,7 +64,7 @@
             { // LEVEL 3
                 globalRemediation: {
                    stepDistracterCount             : 3, //
-                   roundsCount                     : 4, //
+                   roundsCount                     : 6, //
                    monkeyOnScreen                  : 3,
                    totalTriesCount                 : 6
                 },
@@ -76,7 +76,7 @@
             { // LEVEL 4
                  globalRemediation: {
                    stepDistracterCount             : 3, //
-                   roundsCount                     : 4, //
+                   roundsCount                     : 6, //
                    monkeyOnScreen                  : 3,
                    totalTriesCount                 : 6
                 },
@@ -88,7 +88,7 @@
             { // LEVEL 5
                 globalRemediation: {
                    stepDistracterCount             : 3, //
-                   roundsCount                     : 5, //
+                   roundsCount                     : 7, //
                    monkeyOnScreen                  : 4,
                    totalTriesCount                 : 7
                 },

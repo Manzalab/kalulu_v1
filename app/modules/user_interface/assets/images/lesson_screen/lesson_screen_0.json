@@ -747,7 +747,7 @@
 	"sourceSize": {"w":210,"h":210},
 	"pivot": {"x":0.5,"y":0.5}
 },
-"MinigameButtonParakeets_compeleted0001.png":
+"MinigameButtonParakeets_completed0001.png":
 {
 	"frame": {"x":431,"y":1494,"w":210,"h":210},
 	"rotated": false,
@@ -756,7 +756,7 @@
 	"sourceSize": {"w":210,"h":210},
 	"pivot": {"x":0.5,"y":0.5}
 },
-"MinigameButtonParakeets_compeleted0002.png":
+"MinigameButtonParakeets_completed0002.png":
 {
 	"frame": {"x":431,"y":1494,"w":210,"h":210},
 	"rotated": false,
@@ -765,7 +765,7 @@
 	"sourceSize": {"w":210,"h":210},
 	"pivot": {"x":0.5,"y":0.5}
 },
-"MinigameButtonParakeets_compeleted0003.png":
+"MinigameButtonParakeets_completed0003.png":
 {
 	"frame": {"x":645,"y":1667,"w":210,"h":210},
 	"rotated": false,

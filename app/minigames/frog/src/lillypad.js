@@ -16,7 +16,7 @@ define([
 	 * @param scale {scale} default 1
 	**/
     function Lillypad(x, y, game, text, scale) {
-        text = text || "";
+        if (typeof text === 'undefined') text = "";
         scale = scale || 0.5;
 
         Phaser.Group.call(this, game);

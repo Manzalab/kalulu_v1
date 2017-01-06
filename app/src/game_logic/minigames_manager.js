@@ -194,7 +194,7 @@ define([
      * @private
     */
     MinigamesManager.prototype._closeMiniGame = function _closeMiniGame () {
-        
+        this._currentMinigame.game = null;
         this._currentMinigame = null;
         this._gameManager.onCloseActivity(this._currentProgressionNode);
         Timer.stop();
