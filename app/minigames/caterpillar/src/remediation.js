@@ -235,7 +235,7 @@
 
         if (value !== "") obj2.parent.sound.play();
 
-        if (value == this.correctResponses[this.stepIndex].value) {
+        if (value.toString() == this.correctResponses[this.stepIndex].value.toString()) {
             this.fx.hit(this.caterpillar.head.x, this.caterpillar.head.y, true);
             this.sounds.right.play();
             this.caterpillar.head.eat();

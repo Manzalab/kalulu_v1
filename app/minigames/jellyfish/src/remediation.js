@@ -174,7 +174,6 @@
         
         var roundData = this.game.pedagogicData.data.rounds[roundIndex];
         this.roundType = roundData.steps[0].type;
-        console.log(this.roundType, roundData);
         this.apparitionsCount = 0;
         this.framesToWaitBeforeNextSpawn = 0;
         this.framesToWaitBeforeNewSound = 0;
