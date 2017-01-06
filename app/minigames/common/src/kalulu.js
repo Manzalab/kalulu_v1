@@ -39,13 +39,19 @@
          * Sprite host of kalulu's animations
 	     * @type {Phaser.Sprite}
 	    **/
-        this.kaluluSprite = game.add.sprite(0, 1500, 'kaluluIntro');
+        this.kaluluSprite = this.create(0, 1500, 'kaluluIntro');
         this.kaluluSprite.anchor.x = 0;
         this.kaluluSprite.anchor.y = 1;
         this.kaluluSprite.visible = false;
         
         this.kaluluSprite.animations.add('introAnim', Phaser.Animation.generateFrameNames('Kalulu_Apparition_', 0, 15, '', 4), 15, false, false);
-        
+        this.frameNames = {
+            'introAnim' : Phaser.Animation.generateFrameNames('Kalulu_Apparition_', 0, 15, '', 4),
+            'idleAnim1' : Phaser.Animation.generateFrameNames('Kalulu_Attente01_', 0, 11, '', 4),
+            'outroAnim' : Phaser.Animation.generateFrameNames('Kalulu_Disparition_', 0, 11, '', 4),
+            'speakingAnim1' : Phaser.Animation.generateFrameNames('Kalulu_Parle02_', 0, 11, '', 4),
+            'speakingAnim2' : Phaser.Animation.generateFrameNames('Kalulu_Parle02_', 0, 11, '', 4)
+        };
         /**
          * speaking state
 	     * @type {boolean}
@@ -65,7 +71,7 @@
     
     Kalulu.prototype = Object.create(Phaser.Group.prototype);
     Kalulu.prototype.constructor = Kalulu;
-    
+
     /**
 	 * Initialize all Kalulu events
      * 
@@ -96,11 +102,11 @@
             this.parent.bringToTop(this.kaluluSprite);
             this.kaluluSprite.visible = true;
             this.kaluluSprite.loadTexture('kaluluIntro', 0);
-            this.kaluluSprite.animations.add('introAnim', Phaser.Animation.generateFrameNames('Kalulu_Apparition_', 0, 15, '', 4), 15, false, false);
+            this.kaluluSprite.animations.add('introAnim', this.frameNames['introAnim'], 15, false, false);
             this.kaluluSprite.animations.play('introAnim');
             this.kaluluSprite.animations.currentAnim.onComplete.addOnce(function () {
                 this.kaluluSprite.loadTexture('kaluluIdle1', 0);
-                this.kaluluSprite.animations.add('idleAnim1', Phaser.Animation.generateFrameNames('Kalulu_Attente01_', 0, 11, '', 4), 15, false, false);
+                this.kaluluSprite.animations.add('idleAnim1', this.frameNames['idleAnim1'], 15, false, false);
                 this.kaluluSprite.animations.play('idleAnim1');
             }, this);
 
@@ -113,7 +119,7 @@
                     this.sounds.off.play();
                     this.speaking = false;
                     this.kaluluSprite.loadTexture('kaluluOutro', 0);
-                    this.kaluluSprite.animations.add('outroAnim', Phaser.Animation.generateFrameNames('Kalulu_Disparition_', 0, 11, '', 4), 15, false, false);
+                    this.kaluluSprite.animations.add('outroAnim', this.frameNames['outroAnim'], 15, false, false);
                     this.kaluluSprite.animations.play('outroAnim');
                     this.kaluluSprite.animations.currentAnim.onComplete.addOnce(function () {
                         this.kaluluSprite.visible = false;
@@ -138,11 +144,11 @@
             this.parent.bringToTop(this.kaluluSprite);
             this.kaluluSprite.visible = true;
             this.kaluluSprite.loadTexture('kaluluIntro', 0);
-            this.kaluluSprite.animations.add('introAnim', Phaser.Animation.generateFrameNames('Kalulu_Apparition_', 0, 15, '', 4), 15, false, false);
+            this.kaluluSprite.animations.add('introAnim', this.frameNames['introAnim'], 15, false, false);
             this.kaluluSprite.animations.play('introAnim');
             this.kaluluSprite.animations.currentAnim.onComplete.addOnce(function () {
                 this.kaluluSprite.loadTexture('kaluluIdle1', 0);
-                this.kaluluSprite.animations.add('idleAnim1', Phaser.Animation.generateFrameNames('Kalulu_Attente01_', 0, 11, '', 4), 15, false, false);
+                this.kaluluSprite.animations.add('idleAnim1', this.frameNames['idleAnim1'], 15, false, false);
                 this.kaluluSprite.animations.play('idleAnim1');
             }, this);
             this.sounds.on.onStop.addOnce(function () {
@@ -154,7 +160,7 @@
                     this.sounds.off.play();
                     this.speaking = false;
                     this.kaluluSprite.loadTexture('kaluluOutro', 0);
-                    this.kaluluSprite.animations.add('outroAnim', Phaser.Animation.generateFrameNames('Kalulu_Disparition_', 0, 11, '', 4), 15, false, false);
+                    this.kaluluSprite.animations.add('outroAnim', this.frameNames['outroAnim'], 15, false, false);
                     this.kaluluSprite.animations.play('outroAnim');
                     this.kaluluSprite.animations.currentAnim.onComplete.addOnce(function () {
                         this.kaluluSprite.visible = false;
@@ -220,11 +226,11 @@
         this.parent.bringToTop(this.kaluluSprite);
         this.kaluluSprite.visible = true;
         this.kaluluSprite.loadTexture('kaluluIntro', 0);
-        this.kaluluSprite.animations.add('introAnim', Phaser.Animation.generateFrameNames('Kalulu_Apparition_', 0, 15, '', 4), 15, false, false);
+        this.kaluluSprite.animations.add('introAnim', this.frameNames['introAnim'], 15, false, false);
         this.kaluluSprite.animations.play('introAnim');
         this.kaluluSprite.animations.currentAnim.onComplete.addOnce(function () {
             this.kaluluSprite.loadTexture('kaluluIdle1', 0);
-            this.kaluluSprite.animations.add('idleAnim1', Phaser.Animation.generateFrameNames('Kalulu_Attente01_', 0, 11, '', 4), 15, false, false);
+            this.kaluluSprite.animations.add('idleAnim1', this.frameNames['idleAnim1'], 15, false, false);
             this.kaluluSprite.animations.play('idleAnim1');
         }, this);
         this.sounds.on.onStop.addOnce(function () {
@@ -239,7 +245,7 @@
                 this.sounds.off.play();
                 this.speaking = false;
                 this.kaluluSprite.loadTexture('kaluluOutro', 0);
-                this.kaluluSprite.animations.add('outroAnim', Phaser.Animation.generateFrameNames('Kalulu_Disparition_', 0, 11, '', 4), 15, false, false);
+                this.kaluluSprite.animations.add('outroAnim', this.frameNames['outroAnim'], 15, false, false);
                 this.kaluluSprite.animations.play('outroAnim');
                 this.kaluluSprite.animations.currentAnim.onComplete.addOnce(function () {
                     this.kaluluSprite.visible = false;
