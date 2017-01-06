@@ -955,6 +955,19 @@
 
         var stimuliPool = this._wordsGamesStimuli;
         var lessonNumber = progressionNode.parent.lessonNumber;
+
+        if (!lessonNumber && progressionNode.constructor.name === 'Assessment') {
+            var chapter = progressionNode.parent;
+            var lessonCount = chapter.children.length - 1;
+            lessonNumber = chapter.children[lessonCount - 1].lessonNumber;
+            console.log(params);
+            var tweakedParams = {};
+            Object.assign(tweakedParams, params);
+            // params = params.slice();
+
+            tweakedParams.currentLessonShareInTargetsTargets = 1/lessonCount;
+            console.log(lessonNumber, tweakedParams);
+        }
         var roundsCount = params.roundsCount;
         
         var lSetup = {
