@@ -91,20 +91,21 @@
         this.falseResponses = [];
         this.falseResponsesCurrentPool = [];
         this.correctResponse = {};
+        
 
         var length = roundData.steps[0].stimuli.length;
-        var stimulus;
+        var stimulus,type;
 
         for (var i = 0; i < length; i++) {
             stimulus = roundData.steps[0].stimuli[i];
+            type = roundData.steps[0].type;
             if (stimulus.correctResponse === true) {
                 this.sounds.correctRoundAnswer = this.game.add.audio(stimulus.value.toString().toLowerCase());
                 console.log("adding target sound");
                 console.log(this.sounds.correctRoundAnswer);
                 this.correctResponse.value = stimulus.value;
-                if (this.game.discipline == "maths") {
-                    this.correctResponse.alternativeValue = stimulus.alternative;
-                    this.correctResponse.alternativePicture = stimulus.alternativePicture;
+                if (this.game.discipline == "maths" && type === 'audioToNonSymbolic') {
+                    this.correctResponse.alternativePicture = true;
                 }
             }
 
@@ -112,9 +113,8 @@
                 var falseReponse = {};
 
                 falseReponse.value = stimulus.value;
-                if (this.game.discipline == "maths") {
-                    falseReponse.alternativeValue = stimulus.alternative;
-                    falseReponse.alternativePicture = stimulus.alternativePicture;
+                if (this.game.discipline == "maths" && type === 'audioToNonSymbolic') {
+                    falseReponse.alternativePicture = true;
                 }
 
                 this.falseResponses.push(falseReponse);
@@ -323,11 +323,8 @@
         if (isTargetValue) {
             value.value = this.correctResponse.value;
             value.text = this.correctResponse.value;
-            if (this.game.discipline == "maths") {
-                if (Math.random() <= localParams.mathsAlternativePercentage) {
-                    value.text = this.correctResponse.alternativeValue;
-                    if (Math.random() <= localParams.mathsAlternativePicturePercentage) value.alternativePicture = this.correctResponse.alternativePicture;
-                }
+            if (this.game.discipline == "maths" && this.correctResponse.alternativePicture) {
+                    value.alternativePicture = true;
             }
         }
         else {
@@ -339,15 +336,10 @@
             var falseResponse = this.falseResponsesCurrentPool.splice(Math.floor(Math.random() * this.falseResponsesCurrentPool.length), 1)[0];
             value.value = falseResponse.value; // Picks a random value in all the false response values
             value.text = falseResponse.value;
-            if (this.game.discipline == "maths") {
-                if (Math.random() <= localParams.mathsAlternativePercentage) {
-                    value.text = falseResponse.alternativeValue;
-                    if (Math.random() <= localParams.mathsAlternativePicturePercentage) value.alternativePicture = falseResponse.alternativePicture;
-                }
+            if (this.game.discipline == "maths" && falseResponse.alternativePicture) {
+                value.alternativePicture = true;
             }
         }
-        console.log(this.falseResponsesCurrentPool,this.correctResponse)
-
         var disabledCrabs = this.getDisabledCrabs();
         randomCrab = disabledCrabs[Math.floor(Math.random() * this.getDisabledCrabs().length)];
         randomCrab.enabled = true;
@@ -359,7 +351,6 @@
         }
 
         j = 0;
-        console.log(this.results);
         while (this.results.data.rounds[this.currentRound].steps[0].stimuli[j].value != value.value) { //finds the value in the results to add one apparition
             j++;
         }
