@@ -32,6 +32,13 @@
         this.crab.y = 0;
         this.crab.inputEnabled = true;
 
+        this.highlight = game.add.sprite(0, 0, 'fx', 'FX_02');
+        this.highlight.anchor.setTo(0.5, 0.5);
+        this.highlight.scale.x = 0.5;
+        this.highlight.scale.y = 0.5;
+        this.highlight.visible = false;
+        this.add(this.highlight);
+
         this.crabSprite = this.crab.create(0, 0, 'crab', 'CRABE_Idle01_0000');
         this.crabSprite.anchor.setTo(0.5, 0.5);
         this.crabSprite.width = CRAB_DIAMETER;
@@ -41,7 +48,7 @@
         this.events = this.crabSprite.events;
 
         this.events.onInputDown.add(function () {
-            if (this.clickable) {
+            if (this.clickable && !this.paused) {
                 this.enabled = false;
                 this.clickable = false;
                 this.crabSprite.animations.play('hit');
@@ -72,6 +79,7 @@
         mask.beginFill(0xffffff);
         mask.drawRect(0, 0, HOLE_WIDTH + 200, y - HOLE_HEIGHT / 4 - 20);
         this.crab.mask = mask;
+        this.highlight.mask = mask;
 
 
         this.add(this.crab);
@@ -120,6 +128,7 @@
     Crab.prototype.initEvents = function () {
         this.eventManager.on('pause', function () {
             this.paused = true;
+            
         }, this);
 
         this.eventManager.on('unPause', function () {
@@ -145,7 +154,7 @@
         }
         else {
             this.text.visible = false;
-            this.picture.frameName = value;
+            this.picture.frameName = value.toString();
             this.picture.visible = true;
         }
     };
@@ -157,6 +166,7 @@
         this.clickable = false;
         this.displayed = false;
         this.countdownClickable = 0;
+        this.highlight.visible = false;
 
         this.crab.rotation = 0;
         this.crab.y = this.holeOver.y;
@@ -208,6 +218,7 @@
                     this.spawned = false;
                     this.displayed = false;
                     this.enabled = false;
+                    this.highlight.visible = false;
                 }
             }
 
@@ -264,6 +275,7 @@
 
 
         if (!this.paused) {
+            this.highlight.y = this.crab.y;
             this.normalAnimation();
 
             if (this.success === true) {

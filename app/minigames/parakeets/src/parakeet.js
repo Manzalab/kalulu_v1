@@ -1,7 +1,9 @@
 ﻿define([
-    './feather'
+    './feather',
+    'common/src/mathSprite'
 ], function (
-    Feather
+    Feather,
+    MathSprite
 ) {
 
     'use strict';
@@ -38,7 +40,9 @@
         this.events = this.parakeetSprite.events;
 
         this.events.onInputDown.add(function () {
+            console.log(this.clickable);
             if (this.clickable) {
+                this.clickable = false;
                 this.sounds.click[Math.floor(Math.random() * (this.sounds.click.length))].play();
                 this.return(true);
                 this.sound.play();
@@ -85,7 +89,10 @@
         }, this);
 
         this.eventManager.on('clickable', function () {
-            if (!this.front) this.clickable = true;
+            if (!this.front)
+                this.parakeetSprite.animations.currentAnim.onComplete.addOnce(function () {
+                    this.clickable = true;
+                }, this);
         }, this);
 
         this.eventManager.on('pause', function () {
@@ -122,8 +129,8 @@
             this.text.text = text;
         }
         else {
-            this.picture = this.game.add.sprite(0, -this.parakeetSprite.height / 5, 'maths', value);
-            this.picture.height = this.parakeetSprite.width/3;
+            this.picture = this.game.add.sprite(0, -this.parakeetSprite.height / 5, 'maths', value.toString());
+            this.picture.height = this.parakeetSprite.width / 3;
             this.picture.scale.x = this.picture.scale.y;
             this.picture.anchor.setTo(0.5, 1);
             this.add(this.picture);
@@ -176,13 +183,14 @@
         }
     };
 
-    Parakeet.prototype.return = function (bool) {
+    Parakeet.prototype.return = function (bool, clickable) {
+        if (typeof clickable === 'undefined') clickable = true;
         this.front = bool;
 
         this.parakeetSprite.animations.play('rotate');
         if (!bool)
             this.parakeetSprite.animations.currentAnim.onComplete.addOnce(function () {
-                this.clickable = true;
+                this.clickable = clickable;
             }, this);
         else
             this.clickable = false;

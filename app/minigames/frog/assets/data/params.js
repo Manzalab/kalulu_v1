@@ -42,66 +42,66 @@
             { // LEVEL 1
                 globalRemediation : {
                     stepDistracterCount             : 3, //
-                    roundsCount                     : 3, //
-                    lillypadsPerColumn              : 2,
-                    totalTriesCount                 : 5
+                    roundsCount                     : 5, // MUST equal totalTriesCount
+                    lillypadsPerColumn              : 3,
+                    totalTriesCount                 : 5 // MUST equal roundsCount
                 },
                 localRemediation : {
-                    minimumCorrectStimuliOnColumn   : {min : 1, max : 1}, //
+                    minimumCorrectStimuliOnColumn   : {min : 2, max : 1}, //
                     correctResponsePercentage       : { min: 0.90, max: 0.75 }, //
-                    speed                           : {min : 2, max : 3},  //
+                    speed                           : {min : 2, max : 2.5},  //
                 }
             },
             { // LEVEL 2
                 globalRemediation: {
                    stepDistracterCount             : 3, //
-                   roundsCount                     : 3, //
-                   lillypadsPerColumn                 : 3,
+                   roundsCount                     : 5, //
+                   lillypadsPerColumn              : 3,
                    totalTriesCount                 : 5
                 },
                 localRemediation: {
-                    minimumCorrectStimuliOnColumn   : {min : 1, max : 1}, //
+                    minimumCorrectStimuliOnColumn   : {min : 2, max : 1}, //
                     correctResponsePercentage       : { min: 0.75, max: 0.60 }, //
-                    speed                           : {min : 3, max : 4},  //
+                    speed                           : {min : 2.5, max : 3},  //
                 }
             },
             { // LEVEL 3
                 globalRemediation: {
                    stepDistracterCount             : 3, //
-                   roundsCount                     : 4, //
+                   roundsCount                     : 6, //
                    lillypadsPerColumn              : 4,
                    totalTriesCount                 : 6
                 },
                 localRemediation: {
-                    minimumCorrectStimuliOnColumn   : {min : 1, max : 1}, //
+                    minimumCorrectStimuliOnColumn   : {min : 2, max : 1}, //
                     correctResponsePercentage       : { min: 0.60, max: 0.45 }, //
-                    speed                           : {min : 3, max : 4},  //
+                    speed                           : {min : 3, max : 3.5},  //
                 }
             }, 
             { // LEVEL 4
                  globalRemediation: {
                    stepDistracterCount             : 3, //
-                   roundsCount                     : 4, //
+                   roundsCount                     : 6, //
                    lillypadsPerColumn              : 5,
                    totalTriesCount                 : 6
                 },
                 localRemediation: {
                     minimumCorrectStimuliOnColumn   : {min : 1, max : 1}, //
                     correctResponsePercentage       : { min: 0.45, max: 0.30 }, //
-                    speed                           : {min : 4, max : 5},  //
+                    speed                           : {min : 4, max : 4.5},  //
                 }
             },
             { // LEVEL 5
                 globalRemediation: {
                    stepDistracterCount             : 3, //
-                   roundsCount                     : 5, //
-                   lillypadsPerColumn              : 6,
+                   roundsCount                     : 7, //
+                   lillypadsPerColumn              : 5,
                    totalTriesCount                 : 7
                 },
                 localRemediation: {
                     minimumCorrectStimuliOnColumn   : {min : 1, max : 1}, //
                     correctResponsePercentage       : { min: 0.30, max: 0.10 }, //
-                    speed                           : {min : 4, max : 5},  //
+                    speed                           : {min : 4, max : 4.5},  //
                 }
             }
         ]

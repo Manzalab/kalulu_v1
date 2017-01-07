@@ -27,6 +27,7 @@
         this.lives = 0;
         this.consecutiveMistakes = 0;
         this.consecutiveSuccess = 0;
+        this.timeWithoutClick = 0;
         this.framesToWaitBeforeNextSpawn = 0;
         this.framesToWaitBeforeNewSound = 0;
         this.jellyfishes = [];
@@ -78,6 +79,7 @@
         this.eventManager.on('clicked', function (jellyfish) {
             // console.log("clicked");
             // console.log(jellyfish);
+            this.timeWithoutClick = 0;
             this.addClick(jellyfish);
             this.paused = true;
             this.game.world.bringToTop(this.fx);
@@ -172,7 +174,6 @@
         
         var roundData = this.game.pedagogicData.data.rounds[roundIndex];
         this.roundType = roundData.steps[0].type;
-        console.log(this.roundType, roundData);
         this.apparitionsCount = 0;
         this.framesToWaitBeforeNextSpawn = 0;
         this.framesToWaitBeforeNewSound = 0;
@@ -405,6 +406,13 @@
             }
         }
 
+        this.timeWithoutClick++;
+
+        if (this.timeWithoutClick > 60 * 20) {
+            this.timeWithoutClick = 0;
+            this.eventManager.emit('help');
+        }
+
         // var str = "####\n"+
         // "+ " + this.targetJellyfishesSpawned + "\n" +
         // "+ " + this.distracterJellyfishesSpawned + "\n" +
@@ -494,6 +502,7 @@
         this._debugFunctions.add(this, "AutoWin");
         this._debugFunctions.add(this, "AutoLose");
         this._debugFunctions.add(this, "skipKalulu");
+        this._debugFunctions.open();
     };
 
     Remediation.prototype.clearDebugPanel = function clearDebugPanel () {

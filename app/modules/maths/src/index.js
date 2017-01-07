@@ -5,6 +5,10 @@
     var DisciplineModule = require ('game_logic/core/discipline_module');
     var Kalulu_maths     = require ('./kalulu_maths');
     var _                = require ('underscore');
+
+    // var constants        = require ('../config/config.json');
+    // console.log(constants)
+    
     var staticData = {
         name              : 'maths',
         language          : KALULU_LANGUAGE.toLowerCase(),
@@ -14,6 +18,7 @@
         plan              : require ('../assets/data/plan.csv'),
         sorting           : require ('../assets/data/sorting.csv')
     };
+
 
     // ###############################################################################################################################################
     // ###  CONSTRUCTOR  #############################################################################################################################
@@ -54,6 +59,9 @@
                 this._initUserData();
                 this._plan.isUnlocked = true;
             }
+
+            this._sortingGamesListByChapter = this._initSortingGamesList();
+
         if (Config.enableGlobalVars) window.kalulu.mathsModule = this;
            
     }
@@ -72,7 +80,30 @@
      * @param paramName {Type} description of the parameter
      * @return {Type} description of the returned object
     **/
+    MathsModule.prototype._initSortingGamesList = function _initSortingGamesList () {
+        var data = staticData.sorting;
+        var listByChapter = {};
+        for (var i = 0 ; i < data.length ; i++) {
+            var lItem = data[i];
 
+            if (!listByChapter.hasOwnProperty(lItem.CHAPTER)) listByChapter[lItem.CHAPTER] = [];
+            var st_array = {'stimuli': []}
+
+            st_array.stimuli.push({
+                "value" : lItem["HIGHER NUM"],
+                "correctResponse": true,
+              
+            });
+            st_array.stimuli.push({
+                "value"  : lItem["OTHER NUM"],
+                "correctResponse": false,
+            });
+            listByChapter[lItem.CHAPTER].push(st_array)
+        }
+
+        // console.log(listByChapter)
+        return listByChapter;
+    };
     MathsModule.prototype.getNotionsById = function getNotionsById (id) {
         // console.log('getNotionsById'+id)
        //@ console.log(this._numberList[id])
@@ -117,7 +148,7 @@
                   }
                   // IS A SKILL OR A SHAPE
                   else{
-                    var static_skills_array = ['forward', 'backward', 'oneby', 'twoby', 'fiveby', 'tenby', 'recognition']
+                    var static_skills_array = ['forward', 'backward', 'oneby', 'twoby', 'fiveby', 'tenby', 'recognition', 'addition', 'substraction']
 
                     if( _.contains(static_skills_array, notionID) ){
 
@@ -172,7 +203,15 @@
 
      MathsModule.prototype.processResults = function processResults (currentProgressionNode, results, hasWon) { // TODO : move in a save module
             
-            console.log(this._currentActivityParams);
+            console.log(currentProgressionNode);
+
+            if(currentProgressionNode._activityType=='ants'){
+              this._processAntsResults(currentProgressionNode, results, hasWon);
+            }
+            else{
+                this._processCountingResults(currentProgressionNode, results, hasWon);
+
+            }
 
            // if (this._currentActivityParams.gameType === "caterpillar") {
                 this._processCountingResults(currentProgressionNode, results, hasWon);
@@ -194,8 +233,22 @@
         */
     };
 
-    
+    MathsModule.prototype._processAntsResults = function _processAntsResults(currentProgressionNode, results, hasWon) {
 
+        if (results.hasWon) {
+            console.log('flawless case ants')
+            currentProgressionNode.isCompleted = true;
+        }
+
+    }
+     MathsModule.prototype._processFishResults = function _processFishResults(currentProgressionNode, results, hasWon) {
+
+        if (results.hasWon) {
+            console.log('flawless case ants')
+            currentProgressionNode.isCompleted = true;
+        }
+
+    }
 
     MathsModule.prototype._processCountingResults = function _processCountingResults(currentProgressionNode, results, hasWon) {
        console.log('_processCountingResults')
@@ -266,11 +319,21 @@
                     apparitions:
                     for (var iap = 0 ; iap < currentStimulus.apparitions.length ; iap++) { //cannot read length of undefined in a crabs catcher.
                         var apparition = currentStimulus.apparitions[iap];
-                        // console.log(apparition)
+                    
+                        console.log(apparition)
 
 
               
-                  
+                        if(apparition._isClicked == true && apparition._isCorrect == true){
+                          //console.log('win case')
+                         // apparition.wrong = false
+
+                        }
+                        if(apparition.isClicked == true && apparition._isCorrect == false){
+                         // console.log('loose case')
+                         // apparition.wrong = true
+                          perfect_step = false
+                        }
 
                          if (!apparition.exitTime) { // the stimuli that had not the opportunity to complete their appearance (game end happened) have no exit time
                            //  continue;
@@ -279,16 +342,21 @@
                           //var elapsed = apparition.exitTime - apparition.apparitionTime;
                           // var elapsed = apparition.exitTime - apparition.apparitionTime;
                           
+                          var sc = 0
+                          if(apparition.isCorrect === true &&  apparition.isClicked === true ){
+                            sc = 1
+                          }
                           var scoreObject = {
                               elapsedTime :  apparition.elapsedTime, 
                               //ref       : currentStimulus.value,
-                              score : apparition.isCorrect === apparition.isClicked ? 1 : 0
+                              score       :  sc
                           };
 
-                           if (!apparition.isCorrect && scoreObject.score == 0) {
+                           if (scoreObject.score === 0) {
                             console.log("flawwless set to false");
 
                             flawlessGame = false;
+                            console.log(currentStimulus)
                             console.log("value : " + currentStimulus.value + ", isCR : " + apparition.isCorrect + ", clicked : " + apparition._isClicked);
                         }
                           
@@ -325,9 +393,19 @@
         else {
                       console.log('flawless case 2')
 
+
             var records = this._userProfile.Maths.minigamesRecords[currentProgressionNode.activityType].records;
-            isPreviousGameWon = records[records.length - 1].hasWon;
-            isPreviousGameFlawless = records[records.length - 1].flawless;
+             console.log(records.length-1)
+             console.log(records)
+             if(records.length>0){
+                isPreviousGameWon = records[records.length - 1].hasWon;
+               isPreviousGameFlawless = records[records.length - 1].flawless;
+
+             }
+             else{
+            isPreviousGameWon = false;
+            isPreviousGameFlawless = false;
+          }
 
         }
         
@@ -383,7 +461,10 @@
           //console.log(score)
           if(score && score[stimuli.value] &&  score[stimuli.value][p] && score[stimuli.value][p][r]){
                console.log('score[value][p][r]')
-               
+                              console.log(p)
+                              console.log(r)
+
+               console.log(score[stimuli.value][p][r])
                score[stimuli.value][p][r].push(record)
                var tscore = score[stimuli.value][p][r]
 
@@ -528,6 +609,7 @@
           var params = {
             gameType                        : progressionNode.activityType, 
             roundsCount                     : params.roundsCount,           // the amount of rounds, (Rafiki will provide one target per round)
+            parakeetPairs                   : (progressionNode.activityType == 'parakeets' && params.parakeetPairs) ? params.parakeetPairs : null,
             stepDistracterCount             : params.stepDistracterCount,             // 
             available_skills                : this._notionsInLesson[lessonNumber].skills,
             available_shapes                : this._notionsInLesson[lessonNumber].skills,  
@@ -535,12 +617,10 @@
 
           if(progressionNode.activityType == 'crabs' || progressionNode.activityType == 'jellyfish' ||  progressionNode.activityType == 'parakeets' ){
             params.groupGameType      = 'recognition'  
-
           }
-
+         
           if(progressionNode.activityType == 'caterpillar' || progressionNode.activityType == 'frog'){
             params.groupGameType      = 'counting'  
-
           }
           if(progressionNode.activityType == 'turtles'){
             params.groupGameType      = 'decimal'  
@@ -556,16 +636,14 @@
 
           }
 
-          if(progressionNode.activityType == 'fish'){
-            params.groupGameType      = 'decimal'  
-
-          }
+         
           if(progressionNode.activityType == 'monkeys'){
             params.groupGameType      = 'sum'  
 
           }
 
-          
+            console.log(params)
+
           
           this._currentActivityParams = params;
           //var pool_type = 'recognition';
@@ -592,23 +670,43 @@
           return this._currentExerciseSetup;
       }
     MathsModule.prototype.getPedagogicData = function getPedagogicData (progressionNode, params) {
-      // console.log(progressionNode.activityType)
-      
+      // alert(progressionNode.activityType)
+      console.log(progressionNode)
       if (progressionNode.activityType === "lookandlearn") {
           return this.getPedagogicDataForLookAndLearn(progressionNode);
+      }
+      else if (progressionNode.activityType[0] === "fish") {
+          return this.getPedagogicDataForAssessment(progressionNode)
       }
       else if (progressionNode.activityType === "ants") {
           return this._populateGapFillGame(progressionNode, params);
       }
-
-
-    
       else{
         return this.getPedagogicDataForGame(progressionNode, params);
       }    
     };
-
-
+    MathsModule.prototype.getPedagogicDataForAssessment = function getPedagogicDataForAssessment (progressionNode) {
+       // var constants = constants.assessments;
+       //  var setup = {'yo':'boo'}
+       //alert('zeee')
+        var stimuli_for_chapter = this._sortingGamesListByChapter[progressionNode.chapterNumber]
+       
+        var setup = {
+            discipline : 'maths',
+            language   : KALULU_LANGUAGE, // can be : english, french, swahili
+            categories : ['HIGHER NUM', 'OTHER NUM'],
+            timer : 99999920,
+            minimumWordsSorted : 10,
+            minimumCorrectSortRatio : 0.5,
+            // stimuli: stimuli_for_chapter,
+            data       : {
+                 categories : ['HIGHER NUM', 'OTHER NUM'],
+                 rounds: [ { steps:  stimuli_for_chapter }]
+            }
+        };
+        console.log(setup)
+        return setup;
+    };
 
     MathsModule.prototype.getPedagogicDataForLookAndLearn = function getPedagogicDataForLookAndLearn (progressionNode) {
        console.log(progressionNode);
@@ -823,7 +921,7 @@ var record_not_av   = [
         return Object.keys(this._notionsListByLesson[lessonNumber]);
     };
 
-     MathsModule.prototype._populateGapFillGame = function _populateGapFillGame () {
+    MathsModule.prototype._populateGapFillGame = function _populateGapFillGame () {
         
         // if (!data) console.error('link data here');
         
@@ -843,7 +941,7 @@ var record_not_av   = [
         for (var i = 0 ; i < staticData.filling.length ; i++) {
 
             var row = staticData.filling[i];
-                    console.log( row)
+            //console.log( row)
 
 
             if(row.GROUP !== roundIndex) {
@@ -861,8 +959,8 @@ var record_not_av   = [
 
            });
         }
-          console.log(refined);
-        console.log('done');
+        // console.log(refined);
+        // console.log('done');
         return refined;
     };
 

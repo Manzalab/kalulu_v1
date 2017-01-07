@@ -39,7 +39,7 @@
         this.initSounds(game);
 
         this.validateRoundButton = game.add.button(this.game.world.centerX, this.game.height, 'ui', this.onClickValidateRound, this);
-        this.validateRoundButton.frameName = 'retour_valider';
+        this.validateRoundButton.frameName = 'TickButton0001.png';
         this.validateRoundButton.height = 300;
         this.validateRoundButton.width = 300;
         this.validateRoundButton.anchor.setTo(0.5, 1);
@@ -231,7 +231,7 @@
         var localParams = this.game.params.getLocalParams();
 
         for (var i = 0 ; i < this.sentences.length ; i++) {
-            if (ant.newY > this.sentences[i].y && ant.newY < this.sentences[i].y + this.sentences[i].screenShare && origin && this.sentences[i].associatedAnt === null) {
+            if (ant.newY > this.sentences[i].y && ant.newY < this.sentences[i].y + this.sentences[i].screenShare && origin && (this.sentences[i].associatedAnt === null || this.sentences[i].associatedAnt === ant)) {
                 origin = false;
                 if (ant.associatedSentence !== null) {
                     ant.associatedSentence.associatedAnt = null;
@@ -461,14 +461,18 @@
         var apparition;
         for (var i = 0 ; i < this.results.rounds.length ; i++) {
 
-            for (var j = 0 ; j < this.results.rounds[i].stimuli.length ; j++) {
+            // console.log(this.results.rounds[i].steps[0])
 
-                if (this.results.rounds[i].stimuli[j].correctResponse) {
+            for (var j = 0 ; j < this.results.rounds[i].steps[0].stimuli.length ; j++) {
+                console.log( this.results.rounds[i].steps[0].stimuli[j] )
+
+               
+                if (this.results.rounds[i].steps[0].stimuli[j].correctResponse) {
 
                     for (var k = 0 ; k < this.triesRemaining ; k++) {
                         apparition = new this.game.rafiki.StimulusApparition(true);
                         apparition.close(true, 3);
-                        this.results.rounds[i].stimuli[j].apparitions.push(apparition);
+                        this.results.rounds[i].steps[0].stimuli[j].apparitions.push(apparition);
                     }
                 }
                 else {
@@ -476,10 +480,12 @@
 
                         apparition = new this.game.rafiki.StimulusApparition(false);
                         apparition.close(false);
-                        this.results.rounds[i].stimuli[j].apparitions.push(apparition);
+                        this.results.rounds[i].steps[0].stimuli[j].apparitions.push(apparition);
                     }
                 }
+                
             }
+            
         }
 
         this.gameOverWin();
@@ -490,14 +496,14 @@
         var apparition;
         for (var i = 0 ; i < this.results.rounds.length ; i++) {
 
-            for (var j = 0 ; j < this.results.rounds[i].stimuli.length ; j++) {
+            for (var j = 0 ; j < this.results.rounds[i].steps[0].stimuli.length ; j++) {
 
-                if (this.results.rounds[i].stimuli[j].correctResponse) {
+                if (this.results.rounds[i].steps[0].stimuli[j].correctResponse) {
 
                     for (var k = 0 ; k < this.triesRemaining ; k++) {
                         apparition = new this.game.rafiki.StimulusApparition(true);
                         apparition.close(false);
-                        this.results.rounds[i].stimuli[j].apparitions.push(apparition);
+                        this.results.rounds[i].steps[0].stimuli[j].apparitions.push(apparition);
                     }
                 }
                 else {
@@ -505,7 +511,7 @@
 
                         apparition = new this.game.rafiki.StimulusApparition(false);
                         apparition.close(true, 3);
-                        this.results.rounds[i].stimuli[j].apparitions.push(apparition);
+                        this.results.rounds[i].steps[0].stimuli[j].apparitions.push(apparition);
                     }
                 }
             }

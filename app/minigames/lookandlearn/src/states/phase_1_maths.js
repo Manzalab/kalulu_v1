@@ -78,7 +78,7 @@
         this.imagePhaseStage.add(this.lettersFrame);
 
         // #### Image & Sound
-        var scale = 1.5;
+        var scale = 1.75;
         this.board = new Phaser.Sprite(this.game, this.game.width/2, 400, 'board');
         this.cell = new Phaser.Sprite(this.game, 0, 0, 'cell');
         this.figures = new Phaser.Sprite(this.game, this.game.width/2, 400, 'figures');

@@ -51,7 +51,7 @@
                     minimumCorrectStimuliOnScreen   : {min : 1, max : 1}, //
                     correctResponsePercentage       : { min: 0.90, max: 0.75 }, //
                     respawnTime                     : {min : 3, max : 2}, //
-                    speed                           : {min : 1, max : 2}  //
+                    speed                           : {min : 1.5, max : 2}  //
                 }
             },
             { // LEVEL 2
@@ -66,7 +66,7 @@
                     minimumCorrectStimuliOnScreen   : {min : 1, max : 1},
                     correctResponsePercentage       : { min: 0.75, max: 0.60 }, //
                     respawnTime                     : {min : 3, max : 2},
-                    speed                           : {min : 2, max : 3}
+                    speed                           : {min : 1.5, max : 2}
                 }
             },
             { // LEVEL 3
@@ -80,8 +80,8 @@
                 localRemediation : {
                     minimumCorrectStimuliOnScreen   : {min : 1, max : 1},
                     correctResponsePercentage       : { min: 0.60, max: 0.45 }, //
-                    respawnTime                     : {min : 3, max : 2},
-                    speed                           : {min : 3, max : 4}
+                    respawnTime                     : {min : 2, max : 2},
+                    speed                           : {min : 2, max : 2.5}
                 }
             }, 
             { // LEVEL 4
@@ -96,7 +96,7 @@
                     minimumCorrectStimuliOnScreen   : {min : 1, max : 1},
                     correctResponsePercentage       : { min: 0.45, max: 0.30 }, //
                     respawnTime                     : {min : 2, max : 1},
-                    speed                           : {min : 4, max : 5}
+                    speed                           : {min : 2.5, max : 3}
                 }
             },
             { // LEVEL 5
@@ -110,8 +110,8 @@
                 localRemediation : {
                     minimumCorrectStimuliOnScreen   : {min : 1, max : 1},
                     correctResponsePercentage       : { min: 0.30, max: 0.10 }, //
-                    respawnTime                     : {min : 2, max : 1},
-                    speed                           : {min : 5, max : 8}
+                    respawnTime                     : {min : 1, max : 1},
+                    speed                           : {min : 3, max : 4}
                 }
             }
         ]

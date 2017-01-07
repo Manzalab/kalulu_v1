@@ -39,6 +39,8 @@
          **/
         this.framesToWaitBeforeNextSpawn = 0;
 
+        this.timeWithoutClick = 0;
+
         /**
          * framesToWaitBeforeNextSpawn timer for the correct response sound
          * @type {int}
@@ -185,6 +187,10 @@
      **/
     Remediation.prototype.initEvents = function () {
 
+        this.game.input.onDown.add(function () {
+            this.timeWithoutClick = 0;
+        },this);
+
         this.eventManager.on('destroyTurtle', function (turtle) {
             this.collisionHandler.destroyDistances(turtle);
             for (var i = 0 ; i < this.turtles.length; i++) {
@@ -253,8 +259,8 @@
 
         this.sounds.wrong.play();
         this.fx.hit((turtle1.x + turtle2.x)/2, (turtle1.y + turtle2.y)/2, false);
-        this.eventManager.emit("pause");
-        this.fail();
+        //this.eventManager.emit("pause");
+        //this.fail();
     };
 
     Remediation.prototype.collisionIsland = function (turtle1, island) {
@@ -317,9 +323,9 @@
                 var context = this;
                 setTimeout(function () {
                     context.sounds.correctRoundAnswer.play();
-                    if (this.game.gameConfig.debugPanel) context.cleanLocalPanel();
+                    if (context.game.gameConfig.debugPanel) context.cleanLocalPanel();
                     context.game.params.increaseLocalDifficulty();
-                    if (this.game.gameConfig.debugPanel) context.setLocalPanel();
+                    if (context.game.gameConfig.debugPanel) context.setLocalPanel();
                     setTimeout(function () {
                         context.initRound(context.roundIndex);
                         context.island.reset(context.correctResponses.length);
@@ -507,6 +513,13 @@
             this.correctStepResponseApparitionsCount = 0;
 
             if (this.framesToWaitBeforeNewSound === 0) this.correctResponses[this.stepIndex].sound.play();
+        }
+
+        this.timeWithoutClick++;
+
+        if (this.timeWithoutClick > 60 * 20) {
+            this.timeWithoutClick = 0;
+            this.eventManager.emit('help');
         }
 
     };

@@ -46,7 +46,7 @@
     Grapheme.prototype.constructor = Grapheme;
 
     Grapheme.prototype.setText = function (value) {
-        // console.log(value);
+        value = value.toString();
         this.text.text = value;
         if (value !== "") {
             this.sound = this.gameRef.add.audio(value);

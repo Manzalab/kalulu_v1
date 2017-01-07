@@ -59,8 +59,7 @@
          **/
         loadSharedAssets: function () {
 
-            //UI 
-            this.load.image('pause', 'minigames/common/assets/images/ui/pause.png');
+            //UI
             this.game.load.atlasJSONHash('ui', 'minigames/common/assets/images/ui/ui.png', 'minigames/common/assets/images/ui/ui.json');
 
             //FX 

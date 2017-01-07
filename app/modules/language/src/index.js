@@ -215,7 +215,7 @@
      * @return the setup object needed by the Minigame
     **/
     LanguageModule.prototype.getPedagogicData = function getPedagogicData (progressionNode, params) {
-
+         console.log("salut je passe par la");
         this._currentActivityParams = params;
 
         if (progressionNode.activityType === "lookandlearn") {
@@ -272,7 +272,7 @@
      * It should provide a setup freshly updated with the latest player data available.
     **/
     LanguageModule.prototype.getPedagogicDataForExercise = function getPedagogicDataForExercise (progressionNode, params) {
-        
+       
         var gameType = params.gameType;
 
         switch (gameType) {
@@ -746,6 +746,8 @@
      * @return {(Word[] | GP[])}
     **/
     LanguageModule.prototype._selectTargets = function _selectTargets (params, lessonNumber, stimuliPool) {
+        console.log(stimuliPool);
+        console.log(lessonNumber);
         if (Config.debugLanguageModule) console.log(params);
         if (!stimuliPool.hasOwnProperty(lessonNumber)) {
             throw new Error("No Syllables available for this lesson (n° " + lessonNumber + ")");
@@ -786,7 +788,7 @@
         var stimuliPool = this._syllablesGamesStimuli; // Note : this is one of the words sublists. It has to be words, not GP. To make dynamic = f(minigameSetup)
         var lessonNumber = progressionNode.parent.lessonNumber;
         var lRoundsCount = params.roundsCount;
-
+        console.log("progressionNode"+ progressionNode)
         var totalTargets = this._selectTargets(params, lessonNumber, stimuliPool);
         
         var lSetup = { 
@@ -955,20 +957,35 @@
 
         var stimuliPool = this._wordsGamesStimuli;
         var lessonNumber = progressionNode.parent.lessonNumber;
+
+        if (!lessonNumber && progressionNode.constructor.name === 'Assessment') {
+            var chapter = progressionNode.parent;
+            var lessonCount = chapter.children.length - 1;
+            lessonNumber = chapter.children[lessonCount - 1].lessonNumber;
+            console.log(params);
+            var tweakedParams = {};
+            Object.assign(tweakedParams, params);
+            // params = params.slice();
+
+            tweakedParams.currentLessonShareInTargetsTargets = 1/lessonCount;
+            console.log(lessonNumber, tweakedParams);
+        }
         var roundsCount = params.roundsCount;
         
-        var lSetup = { rounds : [] };
+        var lSetup = {
+            discipline : 'language',
+            data : {
+                rounds : []
+            }
+        };
 
         var totalTargets = this._selectTargets(params, lessonNumber, stimuliPool);
 
         // CONSTRUCTION OF SETUP OBJECT
         rounds:
         for (var r = 0 ; r < roundsCount ; r++) {
-            
-            var lRound = {
-                stepRequiredCrCount : params.stepRequiredCrCount || 1, // amount of correct responses to validate the step (or round if 1 step only)
-                stimuli : []
-            };
+
+            var lRound = {};
 
             var lTarget = totalTargets.pop();
             console.log(lTarget);
@@ -976,7 +993,6 @@
 
             if (lTarget.lettersCount > 1) skills.push(leftToRightReading);
             lRound.word = StimuliFactory.fromWord(lTarget, skills, false, true);
-            lRound.soundPath = lRound.word.soundPath; // deprecated
             lRound.steps = [];
 
             steps:
@@ -1023,11 +1039,9 @@
                 lStep.stimuli = lStep.stimuli.concat(selectedDistractorsStimuli);
                 lRound.steps.push(lStep);
             }
-            lRound.step = lRound.steps; // for the deprecated use of "step" in minigames
-            lSetup.rounds.push(lRound);
+            lSetup.data.rounds.push(lRound);
         }
-
-        lSetup.round = lSetup.rounds; // for the deprecated use of "round" in minigames
+        
         this._currentExerciseSetup = lSetup;
         console.log(lSetup);
         return this._currentExerciseSetup;
@@ -1332,7 +1346,15 @@
     };
 
 
-    LanguageModule.prototype._populateGapFillGame = function _populateGapFillGame () {
+    LanguageModule.prototype._populateGapFillGame = function _populateGapFillGame (progressionNode, params) {
+        
+        console.log(progressionNode);
+        var data = staticData.filling;
+        console.log(data);
+
+        data = _.filter(data, function(row){ return row.LESSON === progressionNode.parent.lessonNumber.toString(); });
+
+        console.log(data);
         
         if (!data) console.error('link data here');
         

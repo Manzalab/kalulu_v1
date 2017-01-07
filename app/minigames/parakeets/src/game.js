@@ -80,6 +80,7 @@
             if (this.game.discipline == "maths") this.game.load.atlasJSONHash('maths', 'minigames/common/assets/images/maths/maths.png', 'minigames/common/assets/images/maths/maths.json');
 
 
+
         },
 
         create: function () {
@@ -102,7 +103,7 @@
             this.game.eventManager = new EventEmitter();
             this.remediation = new Remediation(this.game);
             this.game.world.bringToTop(this.backgroundTree);
-            this.ui = new Ui(this.game.pedagogicData.data.rounds[0].steps[0].stimuli.length, this.game, false, false, false);
+            this.ui = new Ui(this.game.params.getGlobalParams().parakeetPairs, this.game, false, false, false, true, false);
             this.kalulu = new Kalulu(this.game);
             this.game.kalulu = this.kalulu;
 

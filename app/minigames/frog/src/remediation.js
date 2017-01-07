@@ -38,9 +38,9 @@
         this.initGame();
 
 
-        if (this.game.gameConfig.globalVars) window.frogger.frogger = this.frogger;
+        if (Config.globalVars) window.frogger.frogger = this.frogger;
 
-        if (this.game.gameConfig.debugPanel) {
+        if (Config.debugPanel) {
 
             this.debug = new Dat.GUI(/*{ autoPlace: false }*/);
 
@@ -57,7 +57,7 @@
             infoPanel.add(this.game.params, "_currentGlobalLevel").listen();
             infoPanel.add(this.game.params, "_currentLocalRemediationStage").listen();
 
-            
+
             generalParamsPanel.add(this.game.params._settingsByLevel[globalLevel].generalParameters, "incorrectResponseCountTriggeringFirstRemediation").min(1).max(5).step(1).listen();
             generalParamsPanel.add(this.game.params._settingsByLevel[globalLevel].generalParameters, "incorrectResponseCountTriggeringSecondRemediation").min(1).max(5).step(1).listen();
             generalParamsPanel.add(this.game.params._settingsByLevel[globalLevel].generalParameters, "lives").min(1).max(5).step(1).listen();
@@ -104,7 +104,7 @@
         // Setting up the recording of the game for Rafiki
         this.game.record = new this.game.rafiki.MinigameDstRecord();
 
-        this.results = this.game.pedagogicData; // for convenience we reference also the pedagogicData object under the name 'results' because we will add response data directly on it.
+        this.results = this.game.pedagogicData.data; // for convenience we reference also the pedagogicData object under the name 'results' because we will add response data directly on it.
         this.consecutiveMistakes = 0;
         this.consecutiveSuccess = 0;
         this.triesRemaining = params.getGlobalParams().totalTriesCount;
@@ -131,7 +131,7 @@
      **/
     Remediation.prototype.initRound = function initRound(roundIndex) {
 
-        var roundData = this.game.pedagogicData.rounds[roundIndex];
+        var roundData = this.game.pedagogicData.data.rounds[roundIndex];
 
         this.apparitionsCount = 0;
         this.framesToWaitBeforeNextSpawn = 0;
@@ -140,9 +140,11 @@
         this.falseResponses = [];
         this.correctResponses = [];
         this.falseStepResponsesCurrentPool = [];
-        this.correctWord = roundData.word;
-        this.sounds.correctRoundAnswer = this.game.add.audio(roundData.word.value);
-        var stepsLength = roundData.step.length;
+        if (this.game.discipline != "maths") {
+            this.correctWord = roundData.word;
+            this.sounds.correctRoundAnswer = this.game.add.audio(roundData.word.value);
+        }
+        var stepsLength = roundData.steps.length;
 
         var stimuliLength, stimulus;
         var falseStepResponses, correctStepResponses;
@@ -150,9 +152,9 @@
         for (var i = 0; i < stepsLength; i++) {
             falseStepResponses = [];
             correctStepResponses = {};
-            stimuliLength = roundData.step[i].stimuli.length;
+            stimuliLength = roundData.steps[i].stimuli.length;
             for (var j = 0; j < stimuliLength; j++) {
-                stimulus = roundData.step[i].stimuli[j];
+                stimulus = roundData.steps[i].stimuli[j];
                 if (stimulus.correctResponse === true) {
                     correctStepResponses.value = stimulus.value;
                 }
@@ -279,25 +281,25 @@
         this.eventManager.on('apparition', function (lillypad) {
             var value = lillypad.text.text;
             var j = 0;
-            while (this.results.rounds[this.roundIndex].step[this.stepIndex].stimuli[j].value != value) { //finds the value in the results to add one apparition
+            while (this.results.rounds[this.roundIndex].steps[this.stepIndex].stimuli[j].value != value) { //finds the value in the results to add one apparition
                 j++;
             }
-            var apparition = new this.game.rafiki.StimulusApparition(this.results.rounds[this.roundIndex].step[this.stepIndex].stimuli[j].correctResponse);
+            var apparition = new this.game.rafiki.StimulusApparition(this.results.rounds[this.roundIndex].steps[this.stepIndex].stimuli[j].correctResponse);
 
-            this.results.rounds[this.roundIndex].step[this.stepIndex].stimuli[j].apparitions.push(apparition);
+            this.results.rounds[this.roundIndex].steps[this.stepIndex].stimuli[j].apparitions.push(apparition);
             lillypad.apparition = apparition;
         }, this);
 
         this.eventManager.on('playCorrectSound', function () {
             this.eventManager.emit('unPause');
-            if (this.framesToWaitBeforeNewSound <= 0) {
+            if (this.framesToWaitBeforeNewSound <= 0 && this.game.discipline != "maths") {
                 this.sounds.correctRoundAnswer.play();
                 this.framesToWaitBeforeNewSound = Math.floor((this.sounds.correctRoundAnswer.totalDuration + 0.5) * 60);
             }
         }, this);
 
         this.eventManager.on('playCorrectSoundNoUnPause', function () {
-            if (this.framesToWaitBeforeNewSound <= 0) {
+            if (this.framesToWaitBeforeNewSound <= 0 && this.game.discipline != "maths") {
                 this.sounds.correctRoundAnswer.play();
                 this.framesToWaitBeforeNewSound = Math.floor((this.sounds.correctRoundAnswer.totalDuration + 0.5) * 60);
             }
@@ -315,7 +317,7 @@
         }, this);
 
         this.eventManager.on('replay', function () {
-            if (this.game.gameConfig.debugPanel) {
+            if (Config.debugPanel) {
                 document.getElementsByClassName("dg main a")[0].remove();
                 this.debug = null;
             }
@@ -332,7 +334,7 @@
         var positions = {};
         positions.x = lillypad.x;
         positions.y = lillypad.y;
-        positions.lillypad = lillypad
+        positions.lillypad = lillypad;
         this.frogJumpPositions.push(positions);
 
         this.columns[this.stepIndex].enabled = false;
@@ -360,16 +362,16 @@
 
         if (this.triesRemaining > 0) {
             if (this.consecutiveSuccess % 2 == 0) { // Increment difficulty
-                if (this.game.gameConfig.debugPanel) this.cleanLocalPanel();
+                if (Config.debugPanel) this.cleanLocalPanel();
                 this.game.params.increaseLocalDifficulty();
-                if (this.game.gameConfig.debugPanel) this.setLocalPanel();
+                if (Config.debugPanel) this.setLocalPanel();
             }
 
             this.frogJumpManager("playCorrectSound");
 
         }
         else {
-            this.frogJumpManager("toucanWin", true);
+            this.frogJumpManager("GameOverWin", true);
         }
     }
 
@@ -407,7 +409,7 @@
                 context.sounds.right.play();
                 context.sounds.right.onStop.add(function () {
                     context.sounds.right.onStop.removeAll();
-                    context.sounds.correctRoundAnswer.play();
+                    if (this.game.discipline != "maths") context.sounds.correctRoundAnswer.play();
                 }, context);
                 setTimeout(function () {
                     context.transition(endEvent);
@@ -473,16 +475,16 @@
                     context.eventManager.emit('playCorrectSound');//listened here; check initEvents
                 }, 1000);
 
-                if (this.game.gameConfig.debugPanel) this.cleanLocalPanel();
+                if (Config.debugPanel) this.cleanLocalPanel();
                 this.game.params.decreaseLocalDifficulty();
-                if (this.game.gameConfig.debugPanel) this.setLocalPanel();
+                if (Config.debugPanel) this.setLocalPanel();
             }
             else if (this.consecutiveMistakes === params.incorrectResponseCountTriggeringSecondRemediation) {
 
                 this.eventManager.emit('help'); // listened by Kalulu to start the help speech; pauses the game in kalulu
-                if (this.game.gameConfig.debugPanel) this.cleanLocalPanel();
+                if (Config.debugPanel) this.cleanLocalPanel();
                 this.game.params.decreaseLocalDifficulty();
-                if (this.game.gameConfig.debugPanel) this.setLocalPanel();
+                if (Config.debugPanel) this.setLocalPanel();
                 this.consecutiveMistakes = 0; // restart the remediation
             }
         }
@@ -502,7 +504,7 @@
         var length = this.columns.length;
         for (var i = 0; i < length; i++) {
             this.columns[0].deleteLillypads();
-            this.columns.splice(0, 1);
+            this.columns.splice(0, 1)[0].destroy();
         }
 
     }
@@ -581,16 +583,16 @@
                 success: true
             };
 
-            stepsCount = currentRound.step.length;
+            stepsCount = currentRound.steps.length;
 
             for (var j = 0 ; j < stepsCount ; j++) {
 
-                currentStep = this.results.rounds[i].step[j];
+                currentStep = this.results.rounds[i].steps[j];
                 stimuliCount = currentStep.stimuli.length;
 
                 for (var k = 0 ; k < stimuliCount ; k++) {
 
-                    currentStimulus = this.results.rounds[i].step[j].stimuli[k];
+                    currentStimulus = this.results.rounds[i].steps[j].stimuli[k];
 
                     apparitionStats = {
                         apparitionTime: Date.now() - 3000,
@@ -629,16 +631,16 @@
                 success: false
             };
 
-            stepsCount = currentRound.step.length;
+            stepsCount = currentRound.steps.length;
 
             for (var j = 0 ; j < stepsCount ; j++) {
 
-                currentStep = this.results.rounds[i].step[j];
+                currentStep = this.results.rounds[i].steps[j];
                 stimuliCount = currentStep.stimuli.length;
 
                 for (var k = 0 ; k < stimuliCount ; k++) {
 
-                    currentStimulus = this.results.rounds[i].step[j].stimuli[k];
+                    currentStimulus = this.results.rounds[i].steps[j].stimuli[k];
 
                     apparitionStats = {
                         apparitionTime: Date.now() - 3000,

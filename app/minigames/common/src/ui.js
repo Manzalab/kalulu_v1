@@ -17,12 +17,13 @@
      * @param lives {int} number of lives to display
 	 * @param game {Phaser.Game} game instance
 	**/
-    function Ui(lives, game, centralConch, replay, conch, kalulu) {
-
+    function Ui(lives, game, centralConch, replay, conch, kalulu,pause) {
+        console.log("[UI] constructor called");
         kalulu = (typeof kalulu !== 'undefined') ? kalulu : true;
         centralConch = (typeof centralConch !== 'undefined') ? centralConch : true;
         replay = (typeof replay !== 'undefined') ? replay : true;
         conch = (typeof conch !== 'undefined') ? conch : true;
+        pause = (typeof pause !== 'undefined') ? pause : true;
 
         Phaser.Group.call(this, game);
 
@@ -31,18 +32,20 @@
         this.features.conch = conch;
         this.features.replay = replay;
         this.features.kalulu = kalulu;
+        this.features.pause = pause;
 
         /**
          * game.eventManager
          * @type {EventEmitter}
          **/
         this.eventManager = game.eventManager;
-
-        this.blackOverlay = this.create(0, 0, 'pause');
+        this.blackBitmap = new Phaser.BitmapData(this.game, 'pause', 10, 10);
+        this.blackBitmap.fill(0, 0, 0, 0.4);
+        this.blackOverlay = this.create(0, 0, this.blackBitmap);
         this.blackOverlay.width = game.width;
         this.blackOverlay.height = game.height;
         this.blackOverlay.visible = true;
-        this.blackOverlay.alpha = 0.4;
+        // this.blackOverlay.alpha = 0.4;
 
         this.initScoreBar(game, lives); // the score bar located on the right of the screen
 
@@ -412,6 +415,14 @@
             this.kaluluButton.inputEnabled = false;
             this.kaluluButton.frameName = 'KaluluButton0004.png';
         }
+        if (this.features.pause) {
+            this.pauseButton.inputEnabled = true;
+            this.pauseButton.frameName = 'PauseButton0001.png';
+        }
+        else {
+            this.pauseButton.inputEnabled = false;
+            this.pauseButton.frameName = 'PauseButton0004.png';
+        }
     };
 
     /**
@@ -561,6 +572,10 @@
                 }
             }
     };
+
+    Ui.prototype.destroy = function destroy() {
+        this.blackBitmap.destroy();
+    }
 
     module.exports = Ui;
 })();

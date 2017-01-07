@@ -1,10 +1,10 @@
 ﻿(function () {
     'use strict';
 
-    var Phaser = require ('phaser-bundle');
-    var Crab   = require ('./crab');
-    var Fx     = require ('common/src/fx');
-    var Dat    = require ('dat.gui');
+    var Phaser = require('phaser-bundle');
+    var Crab = require('./crab');
+    var Fx = require('common/src/fx');
+    var Dat = require('dat.gui');
 
     // CONSTRUCTOR
     var Remediation = function (game) {
@@ -20,6 +20,8 @@
         this.initSounds(game);
 
         this.initGame();
+        console.log("game"+this.game)
+        console.log("Current Round"+this.currentRound)
         this.initRound(this.currentRound);
         this.initEvents();
 
@@ -60,6 +62,9 @@
 
         this.framesToWaitBeforeNextSpawn = 0;
         this.timerCorrectResponse = 0;
+        this.timeWithoutClick = 0;
+
+        this.highlightNextSpawn = false;
 
         this.totalRounds = params.getGlobalParams().roundsCount;
         this.currentRound = 0;
@@ -86,20 +91,21 @@
         this.falseResponses = [];
         this.falseResponsesCurrentPool = [];
         this.correctResponse = {};
+        
 
         var length = roundData.steps[0].stimuli.length;
-        var stimulus;
+        var stimulus,type;
 
         for (var i = 0; i < length; i++) {
             stimulus = roundData.steps[0].stimuli[i];
+            type = roundData.steps[0].type;
             if (stimulus.correctResponse === true) {
                 this.sounds.correctRoundAnswer = this.game.add.audio(stimulus.value.toString().toLowerCase());
                 console.log("adding target sound");
                 console.log(this.sounds.correctRoundAnswer);
                 this.correctResponse.value = stimulus.value;
-                if (this.game.discipline == "maths") {
-                    this.correctResponse.alternativeValue = stimulus.alternative;
-                    this.correctResponse.alternativePicture = stimulus.alternativePicture;
+                if (this.game.discipline == "maths" && type === 'audioToNonSymbolic') {
+                    this.correctResponse.alternativePicture = true;
                 }
             }
 
@@ -107,9 +113,8 @@
                 var falseReponse = {};
 
                 falseReponse.value = stimulus.value;
-                if (this.game.discipline == "maths") {
-                    falseReponse.alternativeValue = stimulus.alternative;
-                    falseReponse.alternativePicture = stimulus.alternativePicture;
+                if (this.game.discipline == "maths" && type === 'audioToNonSymbolic') {
+                    falseReponse.alternativePicture = true;
                 }
 
                 this.falseResponses.push(falseReponse);
@@ -144,7 +149,7 @@
 
         this.eventManager.on('unPause', function () {
             this.paused = false;
-        }, this);
+        }, this);       
 
         this.eventManager.on('exitGame', function () {
             this.eventManager.removeAllListeners();
@@ -197,14 +202,8 @@
         }
     };
 
-    Remediation.prototype.deleteCrabs = function () {
-        var length = this.crabs.length;
-        for (var i = 0 ; i < length ; i++) {
-            this.crabs.pop().destroy();
-        }
-    };
     Remediation.prototype.onClickOnCrab = function (crab) {
-
+        this.timeWithoutClick = 0;
         this.triesRemaining--;
         console.log("tries remaining :" + this.triesRemaining);
         crab.apparition.close(true, 1000); // @TODO : ADD CUSTOM TIMER FOR ELAPSED TIME
@@ -228,7 +227,6 @@
     };
 
     Remediation.prototype.success = function () {
-
         this.currentRound++;
         this.consecutiveSuccess++;
         this.consecutiveMistakes = 0;
@@ -255,6 +253,7 @@
     };
 
     Remediation.prototype.fail = function () {
+        var params = this.game.params.getGeneralParams();
 
         this.lives--;
         console.log("Lives remaining : " + this.lives);
@@ -263,8 +262,14 @@
 
         if (this.lives > 0) {
             if (this.triesRemaining > 0) {
-                if (this.consecutiveMistakes % 2 === 0) {
+                if (this.consecutiveMistakes === params.incorrectResponseCountTriggeringSecondRemediation) {
                     this.eventManager.emit('help');
+                    this.highlightNextSpawn = true;
+                    for (var i = 0; i < this.crabs.length; i++) {
+                        if (this.crabs[i].isCorrectResponse) {
+                            this.crabs[i].highlight.visible = true;
+                        }
+                    }
                     if (this.game.gameConfig.debugPanel) this.cleanLocalPanel();
                     this.game.params.decreaseLocalDifficulty();
                     if (this.game.gameConfig.debugPanel) this.setLocalPanel();
@@ -314,12 +319,9 @@
         if (isTargetValue) {
             value.value = this.correctResponse.value;
             value.text = this.correctResponse.value;
-            if (this.game.discipline == "maths") {
-                if (Math.random() <= localParams.mathsAlternativePercentage) {
-                    value.text = this.correctResponse.alternativeValue;
-                    if (Math.random() <= localParams.mathsAlternativePicturePercentage) value.alternativePicture = this.correctResponse.alternativePicture;
-                }
-            }            
+            if (this.game.discipline == "maths" && this.correctResponse.alternativePicture) {
+                    value.alternativePicture = true;
+            }
         }
         else {
             if (this.falseResponsesCurrentPool.length === 0) {
@@ -330,23 +332,21 @@
             var falseResponse = this.falseResponsesCurrentPool.splice(Math.floor(Math.random() * this.falseResponsesCurrentPool.length), 1)[0];
             value.value = falseResponse.value; // Picks a random value in all the false response values
             value.text = falseResponse.value;
-            if (this.game.discipline == "maths") {
-                if (Math.random() <= localParams.mathsAlternativePercentage) {
-                    value.text = falseResponse.alternativeValue;
-                    if (Math.random() <= localParams.mathsAlternativePicturePercentage) value.alternativePicture = falseResponse.alternativePicture;
-                }
-            }             
+            if (this.game.discipline == "maths" && falseResponse.alternativePicture) {
+                value.alternativePicture = true;
+            }
         }
-
-
         var disabledCrabs = this.getDisabledCrabs();
         randomCrab = disabledCrabs[Math.floor(Math.random() * this.getDisabledCrabs().length)];
         randomCrab.enabled = true;
         randomCrab.setValue(value.text, value.value, value.alternativePicture);
         randomCrab.isCorrectResponse = isTargetValue;
+        if (this.highlightNextSpawn && isTargetValue) {
+            randomCrab.highlight.visible = true;
+            this.highlightNextSpawn = false;
+        }
 
         j = 0;
-        console.log(this.results);
         while (this.results.data.rounds[this.currentRound].steps[0].stimuli[j].value != value.value) { //finds the value in the results to add one apparition
             j++;
         }
@@ -402,6 +402,13 @@
 
         if (!this.paused) {
             this.manageCrabsAppearances();
+            this.timeWithoutClick++;
+
+            if (this.timeWithoutClick > 60 * 20) {
+                this.timeWithoutClick = 0;
+                this.eventManager.emit('help');
+            }
+
         }
     };
 

@@ -5,7 +5,7 @@
     var Boot = require('common/src/boot');
     var Setup = require('common/src/setup');
     var MinigameParameters = require('common/src/minigame_parameters');
-    var Config = require('./config');
+    var Config = require('common/src/minigame_config');
 
     var Preloader = require('./preloader');
     var Game = require('./game');
@@ -24,14 +24,8 @@
     function GameLauncher(rafiki) {
 
         this._rafiki = rafiki;
-        if (typeof Config === 'function') {
-            this._config = new Config();
-            this._config.request('minigames/caterpillar/assets/data', this.onConfigLoaded.bind(this));
-        }
-        else {
-            this._config = Config;
-            this.onConfigLoaded();
-        }
+        this._config = new Config();
+        this._config.request('minigames/parakeets/assets/data', this.onConfigLoaded.bind(this));
     }
 
     GameLauncher.prototype.onConfigLoaded = function onConfigLoaded() {
@@ -45,7 +39,6 @@
 
         // Setting Up the Remediation
         this.game.gameConfig = this._config;
-        console.log(this.game)
         this.game.params = new MinigameParameters(params);
         this.game.rafiki = this._rafiki;
         // debug Panel from Kalulu

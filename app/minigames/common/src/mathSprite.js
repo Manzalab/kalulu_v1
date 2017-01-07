@@ -38,6 +38,7 @@
         for (var i = 0; i < this.mathSprites.length; i++) {
             this.mathSprites.splice(0, 1)[0].destroy();
         }
+        value = value.toString();
         if (value > 0)
             if (value <= 6) {
                 var mathSprite = this.game.add.sprite(this.w / 2, 0, 'maths', value);
@@ -60,6 +61,7 @@
             else if (value < 100) {
                 var dec_10 = Math.floor(value / 10);
                 var dec_1 = value % 10;
+                console.log(dec_10);
                 for (var i = 0 ; i < dec_10 ; i++) {
                     var mathSprite = this.game.add.sprite(i * this.w / (dec_10 + dec_1) - 10 * (dec_10 + dec_1), 0, 'maths', 'dec_10');
                     mathSprite.anchor.setTo(0.5, 0.5);
