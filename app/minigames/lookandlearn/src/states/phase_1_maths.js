@@ -4,11 +4,11 @@
     
     var UI              = require('../ui');
     var EventEmitter    = require('eventemitter3');
-    var loadLayouts     = require('../layouts');
-    var BotCanvasLayout = require('../layouts/bot-canvas');
-    var Tracing         = require('../tracing');
-    var Emitter         = require('../events/emitter');
-    var Events          = require('../events/events');
+    var loadLayouts     = require('../tracing-logic/layouts');
+    var BotCanvasLayout = require('../tracing-logic/layouts/bot-canvas');
+    var Tracing         = require('../tracing-logic/tracing');
+    var Emitter         = require('../tracing-logic/events/emitter');
+    var Events          = require('../tracing-logic/events/events');
 
     /**
      * PhaseOneMaths is a game phase where a 100-cells-gameboard is used to show the value of numbers

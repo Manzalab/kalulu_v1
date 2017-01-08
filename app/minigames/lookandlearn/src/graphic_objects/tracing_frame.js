@@ -1,31 +1,26 @@
 (function () {
     'use strict';
     
-    function TracingFrame (game, x, y, width, height, color) {
+    function TracingFrame (game, notionId, rectangle, color) {
 
         color = color || { r : 255, g : 255, b : 255, a : 1 };       
 
         this.game = game;
-        this._texture = new Phaser.BitmapData(this.game, 'lettersFrame', width, height);
+        this.name = "Tracing Frame";
+        this.notionId = notionId;
+
+        this._texture = new Phaser.BitmapData(this.game, 'lettersFrame', rectangle.width, rectangle.height);
         this._texture.fill(color.r, color.g, color.b, color.a);
 
-        Phaser.Sprite.call(this, this.game, x, y, this._texture);
-        // this.lettersFrame = new Phaser.Sprite(this.game, x, y, this._texture);
-        this.name = "Tracing Frame";
+        Phaser.Sprite.call(this, this.game, rectangle.x, rectangle.y, this._texture);
+        
         this.anchor.set(0.5, 0.5);
         this.scale.set(0, 0);
+        this.inputEnabled = true;
     }
 
     TracingFrame.prototype = Object.create(Phaser.Sprite.prototype);
     TracingFrame.prototype.constructor = TracingFrame;
-
-
-    TracingFrame.prototype.easeIn = function easeIn (delay) {
-        
-        delay = typeof delay === 'undefined' ? 800 : delay;
-
-        this.game.add.tween(this.scale).to({x: 1.0, y: 1.0}, delay, Phaser.Easing.Bounce.Out, true);
-    };
 
     TracingFrame.prototype.bounce = function bounce (delay) {
         

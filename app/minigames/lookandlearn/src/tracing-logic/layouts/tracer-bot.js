@@ -1,11 +1,12 @@
 /**
  * Created by Cyprien on 02/08/2016.
  */
-var Layout = require('./layout');
-var Tracing = require('../tracing');
-var Emitter = require('../events/emitter');
-var Events = require('../events/events');
-var stats = require('../../assets/config/graph-stats.json');
+var Layout     = require('./layout');
+var Tracing    = require('../tracing');
+var Emitter    = require('../events/emitter');
+var Events     = require('../events/events');
+var stats      = require('../../../assets/config/graph-stats.json');
+var graphsData = require('../../../assets/config/letters-descriptor.json');
 
 /**
  * This Layout should be used to display an automatic drawing.
@@ -31,18 +32,8 @@ function TracerBotLayout(game, settings){
 
     var that = this;
 
-    Emitter.on(Events.NEW_LETTER, function(model, letter){
-        // if(!that.settings.isTouchSensitive){
-        //     that.disable();
-        // }
-
-        that.letterID = letter;
-        that.model = model;
-        that.updateLayout(letter);
-        that.clear();
-
-        that.painter.setup(model);
-    });
+    this.setModelForPainter = this.setModelForPainter.bind(this);
+    // Emitter.on(Events.NEW_LETTER, this.setModelForPainter);
 
     Emitter.on(Events.TRIGGER_LAYOUT, function(id){
         if(that.settings.waitedId === id){
@@ -54,9 +45,33 @@ function TracerBotLayout(game, settings){
         Emitter.emit(Events.REDO_LETTER, that.model, that.letterID);
     });
 }
+    
+
 
 TracerBotLayout.prototype = Object.create(Layout.prototype);
 TracerBotLayout.prototype.constructor = TracerBotLayout;
+
+TracerBotLayout.prototype.setModelForPainter = function setModelForPainter (model, letter){
+
+    this.updateLayout(letter);
+    this.clear();
+    this.painter.setup(model);
+
+};
+
+TracerBotLayout.prototype.getBitmap = function getBitmap (letter){
+    
+    var model = graphsData.letters[letter];
+
+    this.setModelForPainter(model, letter);
+    while(!this.painter.finished) this.painter.update(this.game);
+
+    var bmp = new Phaser.BitmapData(this.game, 'bitmap_' + letter, this.graphSettings.w, this.graphSettings.h);
+    console.log(this.graphSettings);
+    bmp.copy(this.bitmap, 0, 0, this.graphSettings.w, this.graphSettings.h, 0, 0, this.graphSettings.w, this.graphSettings.h);
+
+    return bmp;
+};
 
 TracerBotLayout.prototype.update = function TracerBotLayoutUpdate(){
     //Layout.prototype.update.call(this);
@@ -115,7 +130,7 @@ TracerBotLayout.prototype.redoDrawing = function TracerBotLayoutRedoDrawing(){
 TracerBotLayout.prototype.updateLayout = function updateLayout (graphId) {
 
     console.log('updating Layout');
-    var settings = {
+    this.graphSettings = {
         name : this.name,
         x : 0,
         y : 0,
@@ -130,8 +145,8 @@ TracerBotLayout.prototype.updateLayout = function updateLayout (graphId) {
             y: stats[graphId].offsetY
         }
     }
-    this.setupCanvas(settings);
-    this.painter = createPainter(this.context, this.bitmap, settings, this.game);
+    this.setupCanvas(this.graphSettings);
+    this.painter = createPainter(this.context, this.bitmap, this.graphSettings, this.game);
 };
 
 // TracerBotLayout.prototype.setModel = function TracerBotLayoutSetModel(letter){

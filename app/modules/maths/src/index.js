@@ -724,7 +724,8 @@
                 textValue         : lNotion.VALUE,
                 sound             : Config.soundsPath + this.id + "/number_" + lNotion.VALUE + '.ogg',
                 illustrativeSound : Config.soundsPath + this.id + "/number_" + lNotion.VALUE + '.ogg',
-                image             : Config.imagesPath + this.id + "/" + lNotion.IMAGE.toLowerCase() + '.jpg'
+                image             : Config.imagesPath + this.id + "/" + lNotion.IMAGE.toLowerCase() + '.jpg',
+                toTrace           : lNotion['TO TRACE']
             });
         }
 

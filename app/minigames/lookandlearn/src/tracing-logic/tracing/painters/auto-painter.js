@@ -27,8 +27,10 @@ AutoPainter.prototype.reset = function AutoPainterReset(){
 };
 
 AutoPainter.prototype.update = function AutoPainterUpdate(){
+    console.log('tracing');
     if(!this.finished && this.path != null && this.waitingFrame <= 0){
         if(this.waitForEnd === true){
+            console.log('finished');
             this.finished = true;
             this.waitForEnd = false;
         }
@@ -66,6 +68,7 @@ AutoPainter.prototype.update = function AutoPainterUpdate(){
 
             if(this.currentStep >= this.path.length){
                 this.waitForEnd = true;
+                console.log('waiting for end');
                 this.waitingFrame = this.frameSkip*20;
             }else{
                 this.waitingFrame = this.frameSkip*10;

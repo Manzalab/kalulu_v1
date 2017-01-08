@@ -1,6 +1,6 @@
 ﻿define([
     'phaser-bundle',
-    './kalulu'
+    './graphic_objects/kalulu'
 ], function (
     Phaser,
     Kalulu

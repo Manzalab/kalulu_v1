@@ -1,14 +1,12 @@
 define([
-    'phaser-bundle',
     '../ui',
     'eventemitter3',
-    '../layouts',
-    '../layouts/bot-canvas',
-    '../tracing',
-    '../events/emitter',
-    '../events/events'
+    '../tracing-logic/layouts',
+    '../tracing-logic/layouts/bot-canvas',
+    '../tracing-logic/tracing',
+    '../tracing-logic/events/emitter',
+    '../tracing-logic/events/events'
 ], function (
-    Phaser,
     UI,
     EventEmitter,
     loadLayouts,

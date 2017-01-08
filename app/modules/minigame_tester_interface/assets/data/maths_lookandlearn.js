@@ -9,7 +9,8 @@ module.exports = {
                 "textValue"         : "50",
                 "image"             : "assets/images/maths/number_50.jpg",
                 "sound"             : "assets/sounds/maths/number_50.ogg",
-                "illustrativeSound" : "assets/sounds/maths/number_50.ogg"
+                "illustrativeSound" : "assets/sounds/maths/number_50.ogg",
+                "toTrace"           : true
             },
             {
                 "id"                : 51,
@@ -17,7 +18,8 @@ module.exports = {
                 "textValue"         : "51",
                 "image"             : "assets/images/maths/number_51.jpg",
                 "sound"             : "assets/sounds/maths/number_51.ogg",
-                "illustrativeSound" : "assets/sounds/maths/number_51.ogg"
+                "illustrativeSound" : "assets/sounds/maths/number_51.ogg",
+                "toTrace"           : false
             },
             {
                 "id"                : 52,
@@ -25,7 +27,8 @@ module.exports = {
                 "textValue"         : "52",
                 "image"             : "assets/images/maths/number_52.jpg",
                 "sound"             : "assets/sounds/maths/number_52.ogg",
-                "illustrativeSound" : "assets/sounds/maths/number_52.ogg"
+                "illustrativeSound" : "assets/sounds/maths/number_52.ogg",
+                "toTrace"           : false
             },
             {
                 "id"                : 53,
@@ -33,7 +36,8 @@ module.exports = {
                 "textValue"         : "53",
                 "image"             : "assets/images/maths/number_53.jpg",
                 "sound"             : "assets/sounds/maths/number_53.ogg",
-                "illustrativeSound" : "assets/sounds/maths/number_53.ogg"
+                "illustrativeSound" : "assets/sounds/maths/number_53.ogg",
+                "toTrace"           : false
             },
             {
                 "id"                : 54,
@@ -41,7 +45,8 @@ module.exports = {
                 "textValue"         : "54",
                 "image"             : "assets/images/maths/number_54.jpg",
                 "sound"             : "assets/sounds/maths/number_54.ogg",
-                "illustrativeSound" : "assets/sounds/maths/number_54.ogg"
+                "illustrativeSound" : "assets/sounds/maths/number_54.ogg",
+                "toTrace"           : false
             }
         ]
     }

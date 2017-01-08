@@ -16,7 +16,8 @@ module.exports = components.mergeConfigs(
                 Config       : 'application/config'
             }),
             new CopyWebpackPlugin([
-                { from: 'app/config', to: 'config' }
+                { from: 'app/config', to: 'config' },
+                { from: 'app/assets', to: 'assets' }
             ]),
             new webpack.DefinePlugin({
               KALULU_MINIGAMES_LIST : JSON.stringify(fs.readdirSync('app/minigames'))

@@ -1,16 +1,7 @@
-define([
-    'phaser-bundle'
-], function (
-    Phaser
-) {
+define([], function () {
+    
     'use strict';
     
-    /**
-	 * Boot is in charge of the boot options
-	 * @class
-     * @memberof Template
-	 * @param game {Phaser.Game} game instance
-	**/
     function PreloadState (game) {
         this.game = game;
     }
@@ -19,6 +10,11 @@ define([
      * Load assets to be used later in the preloader
     **/
     PreloadState.prototype.preload = function preloadStatePreload() {
+        
+        this._pedagogicData = this.game.rafiki.getPedagogicData();
+        
+        this.game.gameConfig.pedagogicData = this._pedagogicData;
+        this.game.discipline = this._pedagogicData.discipline;
 
         this.loadSpecificAssets();
         this.loadSharedAssets();
@@ -35,6 +31,7 @@ define([
         this.game.load.json('audio'             , 'minigames/lookandlearn/assets/config/audio.json');            
         this.game.load.json('config'            , 'minigames/lookandlearn/assets/config/config.json');            
         this.game.load.json('letters-descriptor', 'minigames/lookandlearn/assets/config/letters-descriptor.json');
+
         console.log(this.game.gameConfig);
         this.game.load.audio(this.game.gameConfig.pedagogicData.sound, this.game.gameConfig.pedagogicData.sound);
     };
@@ -84,19 +81,17 @@ define([
         this.game.gameConfig.game         = this.game.cache.getJSON('game');
         this.game.gameConfig.audio        = this.game.cache.getJSON('audio');
         this.game.gameConfig.letters      = this.game.cache.getJSON('letters-descriptor');
-        console.log('before');
-        this.game.add.audio(this.game.gameConfig.pedagogicData.sound);
-        console.log('after');
+        
+        this.game.add.audio(this._pedagogicData.sound);
 
-        var discipline = this.game.discipline = this.game.gameConfig.pedagogicData.discipline;
-        if (discipline === 'language') {
+        if (this._pedagogicData.discipline === 'language') {
             console.info("Preload Complete, Starting Phase1Video...");
             this.state.start('Phase1Video');
         }
-        else if (discipline === 'maths') {
+        else if (this._pedagogicData.discipline === 'maths') {
             console.info("Preload Complete, Starting Phase1Maths...");
-            // this.state.start('Phase1Maths');            
-            this.state.start('Phase2Image');            
+            // this.state.start('Phase1Maths');         
+            this.state.start('Phase2Image');
         }
     };
     

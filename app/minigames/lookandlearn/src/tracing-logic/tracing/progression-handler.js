@@ -14,7 +14,7 @@ function ProgressionHandler(settings, game){
     this.currentStep = 0;
     this.letterID = "";
     this.series = []; // contain the keys for the serie
-    this.paramaters = {}; // contain the series information
+    this.parameters = {}; // contain the series information
     this.currentModelIndex = 0;
     this.alreadyDoneSeries = {};
 

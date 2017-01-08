@@ -12,7 +12,8 @@ module.exports = {
                 "sound"             : "assets/sounds/language/phoneme_b.ogg",
                 "image"             : "assets/images/language/lookandlearn/bottle.jpg",
                 "illustrativeSound" : "assets/sounds/language/phoneme_illustration_bottle.ogg",
-                "traceUppercase"    : true
+                "traceUppercase"    : true,
+                "toTrace"           : true
             }
         ]
     }

@@ -253,7 +253,8 @@
             image             : selectedNotion.illustrationPath,
             value             : selectedNotion.value,
             textValue         : selectedNotion.value,
-            traceUppercase    : selectedNotion.traceUppercase
+            traceUppercase    : selectedNotion.traceUppercase,
+            toTrace           : selectedNotion.toTrace
         };
         
         console.log(pedagogicData);

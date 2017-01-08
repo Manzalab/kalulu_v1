@@ -1,6 +1,6 @@
 {
     "debug" : {
-        "enableGlobalVars"              : true,
+        "enableGlobalVars"              : false,
         "stats"                         : true,
         "logGameStates"                 : false,
         "authoritativeSystemInfo"       : false,

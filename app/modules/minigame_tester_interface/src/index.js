@@ -2,11 +2,11 @@
     'use strict';
 
     var MinigamesManager   = require('game_logic/minigames_manager');
-    var MinigameDstRecord  = require ('game_logic/core/minigame_dst_record');
-    var StimulusApparition = require ('game_logic/core/stimulus_apparition');
-    var Dat                = require ('dat.gui');
-
-
+    var MinigameDstRecord  = require('game_logic/core/minigame_dst_record');
+    var StimulusApparition = require('game_logic/core/stimulus_apparition');
+    var Dat                = require('dat.gui');
+    var opentype           = require('opentype.js');
+    var muliFont           = null;
     console.info('#######################################\n###### Minigame Tester Interface ######\n#######################################\n');
     
     String.prototype.capitalise = function capitalise () {
@@ -46,11 +46,11 @@
         this.minigamesManager = new MinigamesManager();
         this.minigamesManager.launchGame = launchGame;
 
-        console.log(Dat);
-        window.dat = Dat;
+        // console.log(Dat);
 
         var gui = this.gui = new Dat.GUI();
-        
+        // window.gui = gui;
+
         this.guiFolderName = 'Launcher GUI';
         var LauncherGUI = gui.addFolder(this.guiFolderName);
         LauncherGUI.add(this.options, 'LANGUAGE');
@@ -72,6 +72,14 @@
 
     var tester = new MinigamesTester();
     Config.request('../config', tester.openDatGUI.bind(tester));
+    opentype.load('assets/fonts/muli.regular.ttf', function(err, font) {
+        if (err) {
+            console.error('Could not load font: ' + err);
+        } else {
+            console.info('font available');
+            muliFont = font;
+        }
+    });
 
     function getPedagogicData (params) {
         
@@ -101,6 +109,7 @@
     function close () {
     
         console.log("Game is Finished, Kalulu Will reopen the Lesson Screen Now.");
+        tester.minigamesManager._currentMinigame = null;
     }
     
     function launchGame (Launcher) {
@@ -192,10 +201,12 @@
             close              : close,
             debugPanel         : tester.gui,
             MinigameDstRecord  : MinigameDstRecord,
-            StimulusApparition : StimulusApparition
+            StimulusApparition : StimulusApparition,
+            font               : muliFont
         };
         
         tester.gui.removeFolder(tester.guiFolderName);
+
         this._currentMinigame = new Launcher(rafiki);
     }
 

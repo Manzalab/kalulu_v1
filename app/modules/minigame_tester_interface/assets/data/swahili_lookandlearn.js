@@ -12,7 +12,8 @@ module.exports = {
                 "sound"             : "assets/sounds/language/phoneme_a.ogg",
                 "image"             : "assets/images/language/lookandlearn/diamond.png",
                 "illustrativeSound" : "assets/sounds/language/phoneme_illustration_almasi.ogg",
-                "traceUppercase"    : true
+                "traceUppercase"    : true,
+                "toTrace"           : true
             }
         ]
     }
