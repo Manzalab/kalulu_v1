@@ -109,7 +109,7 @@ define([
         this.game.eventManager.off("exitGame", this.quit, this);
         this.clearDebugPanel();
         this.game.rafiki.close();
-        this.game.destroy();
+        this.destroy();
     };
 
     GameLauncher.prototype.destroy = function destroy () {
