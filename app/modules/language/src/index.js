@@ -248,7 +248,7 @@
         pedagogicData = {
             video1            : selectedNotion.video1,
             video2            : selectedNotion.video2,
-            sound             : selectedNotion.soundPath,
+            sound             : [selectedNotion.soundPath],
             illustrativeSound : selectedNotion.illustrativeSoundPath,
             image             : selectedNotion.illustrationPath,
             value             : selectedNotion.value,
