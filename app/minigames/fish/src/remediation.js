@@ -165,6 +165,7 @@
             else {
                 console.log(this.buoys.right.stimuli.apparitions)
                 if (this.direction == "right") {
+                    console.log(this)
                     if (!this.tutorial1 && !this.tutorial2) {
                         this.buoys.right.stimuli.apparitions[this.buoys.right.stimuli.apparitions.length - 1].close(true, 0);
                         this.buoys.left.stimuli.apparitions[this.buoys.left.stimuli.apparitions.length - 1].close(false, 0);
@@ -178,6 +179,7 @@
 
                 }
                 else {
+                    console.log(this)
                     if (!this.tutorial1 && !this.tutorial2) {
                         this.buoys.left.stimuli.apparitions[this.buoys.left.stimuli.apparitions.length - 1].close(true, 0);
                         this.buoys.right.stimuli.apparitions[this.buoys.right.stimuli.apparitions.length - 1].close(false, 0);
