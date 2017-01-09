@@ -334,7 +334,7 @@
         var positions = {};
         positions.x = lillypad.x;
         positions.y = lillypad.y;
-        positions.lillypad = lillypad
+        positions.lillypad = lillypad;
         this.frogJumpPositions.push(positions);
 
         this.columns[this.stepIndex].enabled = false;
@@ -371,7 +371,7 @@
 
         }
         else {
-            this.frogJumpManager("toucanWin", true);
+            this.frogJumpManager("GameOverWin", true);
         }
     }
 

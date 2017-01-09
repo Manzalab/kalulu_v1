@@ -113,7 +113,7 @@
         }, this);
 
         this.eventManager.on('unPause', function () {
-        }, this);
+        }, this);    
 
         this.eventManager.on('playCorrectSound', function () {
             this.eventManager.emit('unPause');
@@ -203,7 +203,7 @@
      * Initialise parameters for the required round with data contained in this.pedagogicData
      **/
     Remediation.prototype.initRound = function initRound(roundIndex) {
-
+         console.log(this.game.pedagogicData.data.rounds);
         var roundData = this.game.pedagogicData.data.rounds[roundIndex];
 
         this.apparitionsCount = 0;
@@ -214,6 +214,7 @@
         this.correctResponses = [];
         this.falseStepResponsesCurrentPool = [];
         if (this.game.discipline != "maths") {
+            console.log(roundData);
             this.correctWord = roundData.word;
             this.sounds.correctRoundAnswer = this.game.add.audio(roundData.word.value);
         }
@@ -305,7 +306,7 @@
         var j = 0;
         if (value != "") object.sound.play();
 
-        if (value == this.correctResponses[this.stepIndex].value) {
+        if (value.toString() == this.correctResponses[this.stepIndex].value.toString()) {
             this.trees.kingTree.monkey.monkeySprite.animations.play('right');
             this.trees.kingTree.monkey.sounds.sendRight.play();
             object.tween.stop();
@@ -402,7 +403,11 @@
                 if (this.game.gameConfig.debugPanel) this.setLocalPanel();
             }
             else if (this.consecutiveMistakes === params.incorrectResponseCountTriggeringSecondRemediation) {
-
+                for (var i = 0; i < this.trees.normalTree.monkey.length; i++) {
+                    if (this.correctResponses[this.stepIndex].value.toString() == this.trees.normalTree.monkey[i].coconut.sprite.text.text.toString()) {
+                        this.trees.normalTree.monkey[i].coconut.sprite.highlight.visible = true;
+                    }
+                }
                 this.eventManager.emit('help'); // listened by Kalulu to start the help speech; pauses the game in kalulu
                 if (this.game.gameConfig.debugPanel) this.cleanLocalPanel();
                 this.game.params.decreaseLocalDifficulty();

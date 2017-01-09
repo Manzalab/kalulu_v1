@@ -94,6 +94,7 @@
      * @private
      **/
     Fish.prototype.initEvents = function () {
+
         this.eventManager.on('pause', function () {
             this.paused = true;
         }, this);

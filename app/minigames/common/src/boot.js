@@ -26,6 +26,16 @@
         this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL; // Scaling the game for developping purposes; Feel free to remove it if you feel the need
         this.game.stage.backgroundColor = 'rgb(0, 12, 71)';
         this.state.start('Preloader');
+
+        this.state.states.Game.shutdown = function() {
+            var game = this.state.states.Game;
+            game.ui.destroy();
+            game.background = null;
+            game.eventManager = null;
+            game.ui = null;
+            game.kalulu = null;
+            game.remediation = null;
+        }
     };
 
     module.exports = Boot;

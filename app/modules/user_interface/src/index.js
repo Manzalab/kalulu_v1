@@ -386,6 +386,9 @@
         else if (eventData && eventData.hasOwnProperty('currentChapter')) {
             this._onGotoGardenScreen(eventData, chaptersProgression, userProfile);
         }
+        else if (eventData === 'brainScreen') {
+            this._onGotoBrainScreen(chaptersProgression, userProfile);
+        }
         else {
            console.warn("[UserInterface] not implemented");
            this._onGotoToyChestScreen();
