@@ -154,7 +154,7 @@
         }
         else {
             this.text.visible = false;
-            this.picture.frameName = value;
+            this.picture.frameName = value.toString();
             this.picture.visible = true;
         }
     };

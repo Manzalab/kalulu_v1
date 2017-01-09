@@ -231,7 +231,7 @@
         var localParams = this.game.params.getLocalParams();
 
         for (var i = 0 ; i < this.sentences.length ; i++) {
-            if (ant.newY > this.sentences[i].y && ant.newY < this.sentences[i].y + this.sentences[i].screenShare && origin && this.sentences[i].associatedAnt === null) {
+            if (ant.newY > this.sentences[i].y && ant.newY < this.sentences[i].y + this.sentences[i].screenShare && origin && (this.sentences[i].associatedAnt === null || this.sentences[i].associatedAnt === ant)) {
                 origin = false;
                 if (ant.associatedSentence !== null) {
                     ant.associatedSentence.associatedAnt = null;

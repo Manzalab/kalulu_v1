@@ -19,7 +19,7 @@
                 capitalLettersShare                                 : 0.4
             },
             globalRemediation : {   // the global remediation settings are invariable inside a game but can evolve depending on globalLevel from one game to the next
-                gameType                        : "identification", // "identification", "composition", "pairing", or "other"
+                gameType                        : "filling", // "identification", "composition", "pairing", or "other"
                 gameTimer                       : Infinity,     // should the game end after a certain amount of seconds ?
                 gameTimerVisible                : false,        // is this Timer visible ?
                 roundTimer                      : Infinity,     // should each round end after a certain amount of seconds ?
@@ -42,7 +42,7 @@
                     gameTimer                       : Infinity,
                     gameTimerVisible                : false,
                     roundsCount                     : 3,   
-                    totalTriesCount                 : 5,
+                    totalTriesCount                 : 3,
                 },
                 localRemediation : {
                     sentencesCount                  : { min: 2, max: 2 }
@@ -53,7 +53,7 @@
                     gameTimer                       : Infinity,
                     gameTimerVisible                : false,
                     roundsCount                     : 4,
-                    totalTriesCount                 : 6,
+                    totalTriesCount                 : 4,
                 },
                 localRemediation: {
                     sentencesCount                  : { min: 2, max: 2 }
@@ -64,7 +64,7 @@
                     gameTimer                       : Infinity,
                     gameTimerVisible                : false,
                     roundsCount                     : 5,
-                    totalTriesCount                 : 7,
+                    totalTriesCount                 : 5,
 
                 },
                 localRemediation: {
@@ -75,8 +75,8 @@
                 globalRemediation: {
                     gameTimer                       : Infinity,
                     gameTimerVisible                : false,
-                    roundsCount                     : 5,
-                    totalTriesCount                 : 7,
+                    roundsCount                     : 6,
+                    totalTriesCount                 : 6,
 
                 },
                 localRemediation: {
@@ -88,7 +88,7 @@
                     gameTimer                       : Infinity,
                     gameTimerVisible                : false,
                     roundsCount                     : 7,
-                    totalTriesCount                 : 9,
+                    totalTriesCount                 : 7,
                 },
                 localRemediation: {
                     sentencesCount                  : { min: 3, max: 3 }

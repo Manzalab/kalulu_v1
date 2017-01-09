@@ -85,6 +85,7 @@
         this.score = 0;
         this.consecutiveMistakes = 0;
         this.won = false;
+        this.timerFinished = false;
 
         this.triesRemaining = params.getGlobalParams().totalTriesCount;
 
@@ -115,6 +116,7 @@
         var globalParams = this.game.params.getGlobalParams();
 
         this.eventManager.on('timerFinished', function () {
+            this.timerFinished = true;
             if (this.score >= globalParams.minimumSortedWords && this.score / (globalParams.totalTriesCount - this.triesRemaining) >= globalParams.minimumWinRatio) {
                 this.gameOverWin();
             }
@@ -302,7 +304,7 @@
                     this.tutorial2 = false;
                     this.eventManager.emit('secondTryWin');
                 }
-                else
+                else if (!this.timerFinished)
                     this.eventManager.emit('unPause');
 
                 this.newStep();
@@ -349,7 +351,8 @@
                     this.tutorial2 = false;
                     this.eventManager.emit('secondTryLoose');
                 }
-                else this.eventManager.emit('unPause');
+                else if(!this.timerFinished)
+                    this.eventManager.emit('unPause');
             }, this);
         }
         else {
