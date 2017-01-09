@@ -148,7 +148,7 @@
     Crab.prototype.setValue = function (text, value, picture) {
         picture = (typeof picture !== 'undefined') ? picture : false;
         if (!picture) {
-            this.text.text = text;
+            this.text.text = text.toString();
             this.text.visible = true;
             this.picture.visible = false;
         }
@@ -226,7 +226,8 @@
     };
 
     Crab.prototype.successAnimation = function () {
-        this.enabled = false;
+        this.reset = true;
+        this.enabled = true;
 
         if (this.crabSprite.animations.currentAnim.isFinished == true || this.crabSprite.animations.currentAnim.isPlaying == false) {
             this.crabSprite.animations.play('rotation');
