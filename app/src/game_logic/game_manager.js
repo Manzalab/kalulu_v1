@@ -106,20 +106,16 @@
 
 
     GameManager.prototype.onCloseActivity = function onCloseActivity (progressionNode) {
-        
         if(progressionNode) {
             this.setState(GameStates.MENUS);
             console.log("next node : " + progressionNode.nextNode().constructor.name);
             console.log("next node's parent : " + progressionNode.nextNode().parent.constructor.name);
             var nextScreenName = progressionNode.nextNode().parent.constructor.name;
             var nextNode = progressionNode.nextNode().parent;
-            if (nextScreenName === "Lesson") {
-                this._eventSystem.emit(Events.GAME.BACK_FROM_ACTIVITY, nextNode);
-            }
-            else if (nextScreenName === "Chapter") {
+            if (progressionNode.parent.isCompleted) {
                 console.log('here');
                 var pedagogicData = {
-                    currentChapter : nextNode.chapterNumber,
+                    currentChapter : progressionNode.parent.parent.chapterNumber,
                     data : this._rafiki.getChaptersData(),
                 };
                 this._eventSystem.emit(Events.GAME.BACK_FROM_ACTIVITY, pedagogicData, this._rafiki.getChaptersProgression(), this._currentUserProfile);
@@ -129,6 +125,9 @@
                     // envoyer ce nom dans l'interface manager avec un event pour push le nom du reward dans ToyChestActivityScreen._unlockedActivities
                     this.emit(Events.GAME.UNLOCK_REWARD_TOYCHEST, Reward.levelRewards[progressionNode.discipline.type.toLowerCase()][progressionNode.lessonNumber]);
                 }
+            }
+            else if (nextScreenName === "Lesson") {
+                this._eventSystem.emit(Events.GAME.BACK_FROM_ACTIVITY, nextNode);
             }
             else if (nextScreenName === "Plan") {
                 console.log('Back from Assessment');

@@ -111,8 +111,12 @@ define([
         this.clearDebugPanel();
          console.log(this.game)
         this.game.rafiki.close();
+<<<<<<< HEAD
         console.log(this.game)
         this.game.destroy();
+=======
+        this.destroy();
+>>>>>>> c8142464d7afe4985fd41c2b5bb22130e1f39567
     };
 
     GameLauncher.prototype.destroy = function destroy () {

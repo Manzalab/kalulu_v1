@@ -44,13 +44,13 @@
 
         this.add(this.backgroundTop)
 
-        this.boat = game.add.sprite(game.world.centerX, game.world.centerY, 'boat', 'Bateau_Idle_0000');
-        this.boat.anchor.setTo(0.5, 0.5);
+        //this.boat = game.add.sprite(game.world.centerX, game.world.centerY, 'boat', 'Bateau_Idle_0000');
+        //this.boat.anchor.setTo(0.5, 0.5);
 
-        this.boat.animations.add('idle', Phaser.Animation.generateFrameNames('Bateau_Idle_', 0, 11, '', 4), 6, true, true);
-        this.boat.animations.play('idle');
+        //this.boat.animations.add('idle', Phaser.Animation.generateFrameNames('Bateau_Idle_', 0, 11, '', 4), 6, true, true);
+        //this.boat.animations.play('idle');
 
-        this.add(this.boat)
+        //this.add(this.boat)
 
         this.initEvents();
         this.sunTrajectory(1600, 340);
