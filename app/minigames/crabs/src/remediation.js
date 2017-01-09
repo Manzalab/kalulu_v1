@@ -292,6 +292,10 @@
         this.framesToWaitBeforeNextSpawn--;
 
         var localParams = this.game.params.getLocalParams();
+        this.crabEnabled = 0;
+        for (var i = 0 ; i < this.crabs.length; i++) {
+            if (this.crabs[i].enabled) this.crabEnabled++;
+        }
         var crabsToSpawn = localParams.maxCrabsOnScreen - this.crabEnabled;
 
         if (crabsToSpawn > 0 && this.framesToWaitBeforeNextSpawn <= 0) {
