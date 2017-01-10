@@ -57,7 +57,6 @@
             //console.info(this.httpRequest);
             this._init(JSON.parse(this.httpRequest.responseText));
             this._onRequestSuccess();
-            this._onRequestSuccess = onConfigRequestSuccess;
           } else {
             this._onRequestFailure();
           }
