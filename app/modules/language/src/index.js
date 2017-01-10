@@ -524,27 +524,27 @@
     **/
     LanguageModule.prototype._initSyllablesGamesStimuli = function _initSyllablesGamesStimuli (wordList) {
         var syllablesList = {};
-        var lDistractorSyllable;
+        var lWord;
         var lessonNumber;
         
         for (var wordId in wordList) {
             if (!wordList.hasOwnProperty(wordId)) continue;
 
-            lDistractorSyllable = wordList[wordId];
-            //console.log('processing <' + lDistractorSyllable.gpMatch + '>');
-            if (lDistractorSyllable.syllableCount === 1 && (
-                lDistractorSyllable.syllabicStructure === "CV" || 
-                lDistractorSyllable.syllabicStructure === "VC" || 
-                lDistractorSyllable.syllabicStructure === "V" ))
+            lWord = wordList[wordId];
+            //console.log('processing <' + lWord.gpMatch + '>');
+            if (lWord.syllableCount === 1 && (
+                lWord.syllabicStructure === "CV" || 
+                lWord.syllabicStructure === "VC" || 
+                lWord.syllabicStructure === "V" ))
             {
                 // console.log('match');
-                // console.log(lDistractorSyllable);
+                // console.log(lWord);
                 lessonNumber = 0;
-                for (var i = 0 ; i < lDistractorSyllable.graphemeCount ; i++) {
-                    lessonNumber = Math.max(lessonNumber, lDistractorSyllable.gpList[i].lesson);
+                for (var i = 0 ; i < lWord.graphemeCount ; i++) {
+                    lessonNumber = Math.max(lessonNumber, lWord.gpList[i].lesson);
                 }
                 if (!syllablesList[lessonNumber]) syllablesList[lessonNumber] = {};
-                syllablesList[lessonNumber][lDistractorSyllable.id] = lDistractorSyllable;
+                syllablesList[lessonNumber][lWord.id] = lWord;
             }
         }
         
@@ -746,8 +746,11 @@
      * @return {(Word[] | GP[])}
     **/
     LanguageModule.prototype._selectTargets = function _selectTargets (params, lessonNumber, stimuliPool) {
-        if (Config.debugLanguageModule) console.log(params);
+        if (Config.debugLanguageModule) {
+            console.log(params);
+        }
         if (!stimuliPool.hasOwnProperty(lessonNumber)) {
+            console.log(stimuliPool);
             throw new Error("No Syllables available for this lesson (n° " + lessonNumber + ")");
         }
 
