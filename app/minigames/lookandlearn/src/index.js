@@ -106,17 +106,11 @@ define([
     };
 
     GameLauncher.prototype.quit = function quit () {
-         console.log("passe par ici deja")
+        
         this.game.eventManager.off("exitGame", this.quit, this);
         this.clearDebugPanel();
-         console.log(this.game)
-        this.game.rafiki.close();
-<<<<<<< HEAD
-        console.log(this.game)
-        this.game.destroy();
-=======
+
         this.destroy();
->>>>>>> c8142464d7afe4985fd41c2b5bb22130e1f39567
     };
 
     GameLauncher.prototype.destroy = function destroy () {
