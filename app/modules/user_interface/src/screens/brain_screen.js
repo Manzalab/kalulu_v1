@@ -6,11 +6,13 @@
  * It must be reworked if Discipline Modules are modified.
 **/
 define([
+    '../elements/anim_background',
     '../utils/ui/screen',
     '../utils/sound/sound_manager',
     '../elements/kalulu_character',
     'victor'
 ], function (
+    AnimBackground,
     Screen,
     SoundManager,
     Kalulu,
@@ -28,7 +30,12 @@ define([
         this.build();
         
         // Reference auto-built parts :
-        this._background = this.getChildByName("mcBrainScreenBg");
+        this._backgroundContainer = this.getChildByName("mcBrainScreenBg");
+        this._background = new AnimBackground("NightGardenBg", 6);
+
+        this._backgroundContainer.addChild(this._background);
+        this._background.position.set(0,0);
+
         this._gardenButtons = this.getChildByName("mcButtonsContainer");
         this._childHead = this._gardenButtons.getChildByName("mcChildHead");
         this._hud = {

@@ -1,0 +1,21 @@
+{"frames": {
+
+"BurrowScreenBg0003.png":
+{
+	"frame": {"x":3,"y":3,"w":2430,"h":1536},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":2430,"h":1536},
+	"sourceSize": {"w":2430,"h":1536},
+	"pivot": {"x":0.5,"y":0.5}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "burrow_background_2.png",
+	"format": "RGBA8888",
+	"size": {"w":2436,"h":1542},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:64fcad204d9981caf29f49a402e82e19:76b9a07e519576f653e2f4c4ae62f203:be12c57812975f8395cfe26b54ea3a5e$"
+}
+}

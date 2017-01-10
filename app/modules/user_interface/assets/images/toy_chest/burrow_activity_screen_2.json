@@ -1,0 +1,21 @@
+{"frames": {
+
+"StoryIcon.png":
+{
+	"frame": {"x":3,"y":3,"w":1451,"h":1228},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":1451,"h":1228},
+	"sourceSize": {"w":1451,"h":1228},
+	"pivot": {"x":0.5,"y":0.5}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "burrow_activity_screen_2.png",
+	"format": "RGBA8888",
+	"size": {"w":1457,"h":1234},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:2f1c253c77aaa87f183b517721a4a16b:2a75d5194208e15b2ecb2f2794e88966:478c3a0d041794aadfc5685e72020faf$"
+}
+}

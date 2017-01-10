@@ -2,12 +2,14 @@
  * This module returns the TitleCard class constructor.
 **/
 define([
+    '../elements/anim_background',
     '../utils/ui/screen',
     '../utils/events/mouse_event_type',
     '../utils/events/touch_event_type',
     '../utils/sound/sound_manager',
     'dat.gui'
 ], function (
+    AnimBackground,
     Screen,
     MouseEventType,
     TouchEventType,
@@ -33,7 +35,12 @@ define([
         this.name = "mcTitleCard";
         this.build();
 
-        this._background = this.getChildByName("mcTitleCardBg");
+        this._backgroundContainer = this.getChildByName("mcTitleCardBg");
+        this._background = new AnimBackground("NightGardenBg", 6);
+
+        this._backgroundContainer.addChild(this._background);
+        this._background.position.set(0,0);
+
         this._playButton = this.getChildByName("mcPlayButton");
         this._playButton.onClick = this.onClick.bind(this);
 

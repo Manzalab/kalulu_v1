@@ -5,13 +5,13 @@
  * a few Lessons (1 to 4) for each discipline, displayed on a separate Path.
 **/
 define([
-    '../elements/star_bg',
+    '../elements/anim_background',
     '../utils/ui/screen',
     '../utils/sound/sound_manager',
     'assets/data/' + KALULU_LANGUAGE + '/dynamic_rewards',
     '../elements/kalulu_character'
 ], function (
-    StarBackground,
+    AnimBackground,
     Screen,
     SoundManager,
     DynamicRewards,
@@ -53,7 +53,7 @@ define([
         
         // Reference the built elements
         this._backgroundContainer = this.getChildByName("mcGardenScreenBackground");
-        this._background = new StarBackground();
+        this._background = new AnimBackground("StarBg", 6);
 
         this._backgroundContainer.addChild(this._background);
         this._background.position.set(0,0);
