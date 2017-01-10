@@ -2,7 +2,7 @@
 
 "PlayButtonTC0001.png":
 {
-	"frame": {"x":0,"y":0,"w":650,"h":650},
+	"frame": {"x":3,"y":201,"w":650,"h":650},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":650,"h":650},
@@ -11,7 +11,7 @@
 },
 "PlayButtonTC0002.png":
 {
-	"frame": {"x":650,"y":0,"w":650,"h":650},
+	"frame": {"x":3,"y":201,"w":650,"h":650},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":650,"h":650},
@@ -20,7 +20,7 @@
 },
 "PlayButtonTC0003.png":
 {
-	"frame": {"x":1300,"y":0,"w":650,"h":650},
+	"frame": {"x":3,"y":201,"w":650,"h":650},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":650,"h":650},
@@ -29,20 +29,20 @@
 },
 "PlayButtonTC0004.png":
 {
-	"frame": {"x":1950,"y":0,"w":650,"h":650},
+	"frame": {"x":3,"y":201,"w":650,"h":650},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":650,"h":650},
 	"sourceSize": {"w":650,"h":650},
 	"pivot": {"x":0.5,"y":0.5}
 },
-"TitleCardBg.png":
+"TCTitle.png":
 {
-	"frame": {"x":0,"y":650,"w":2430,"h":1536},
+	"frame": {"x":3,"y":3,"w":706,"h":194},
 	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":2430,"h":1536},
-	"sourceSize": {"w":2430,"h":1536},
+	"trimmed": true,
+	"spriteSourceSize": {"x":4,"y":3,"w":706,"h":194},
+	"sourceSize": {"w":714,"h":200},
 	"pivot": {"x":0.5,"y":0.5}
 }},
 "meta": {
@@ -50,8 +50,8 @@
 	"version": "1.0",
 	"image": "title_card.png",
 	"format": "RGBA8888",
-	"size": {"w":2600,"h":2186},
+	"size": {"w":712,"h":854},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:6b7f296f2fc90e1df06a66c5894b2d9f:85b4cf25905efadfc84e7f9efea5333b:a0991e85ef348923f90559b51e89001f$"
+	"smartupdate": "$TexturePacker:SmartUpdate:cab56fc36acb2360f5db3ee51d29be48:51d9e8470c402e088109f8eee0eaf1fe:a0991e85ef348923f90559b51e89001f$"
 }
 }

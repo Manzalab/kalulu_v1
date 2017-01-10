@@ -44,6 +44,8 @@
         this.isTalking = false;
         this._kaluluSpeech = null;
         this._nextSpeechs = [];
+
+        this._repeatSpeech;
     }
 
     KaluluCharacter.prototype = Object.create(StateGraphic.prototype);
@@ -121,6 +123,7 @@
         if (this._nextSpeechs.length===0)   this._kaluluSpeech.once( "end", this.disappear.bind(this));
         else   this._kaluluSpeech.once( "end", this.keepTalking.bind(this));
 
+        if (this._isStaying && !this._repeatSpeech) this._repeatSpeech = setInterval(function(){ this.startTalk(talkName,this._nextSpeechs,true);}.bind(this),10000);
     }
 
     KaluluCharacter.prototype.talk = function talk()
@@ -205,6 +208,11 @@
         this.isTalking = false;
         if (!this.kaluluButton.visible) this.kaluluButton.visible = true;
         if (this._nextSpeechTimeout)  clearTimeout(this._nextSpeechTimeout);
+    }
+
+    KaluluCharacter.prototype.clearRepeat = function clearRepeat()
+    {
+        if (this._repeatSpeech) clearInterval(this._repeatSpeech);
     }
 
     module.exports = new KaluluCharacter();
