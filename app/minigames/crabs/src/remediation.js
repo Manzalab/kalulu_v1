@@ -155,7 +155,9 @@
             this.eventManager.removeAllListeners();
             this.eventManager = null;
             this.game.rafiki.close();
-            if (this.game.gameConfig.debugPanel) this.clearDebugPanel();
+            if (this.game.gameConfig.debugPanel) {
+                this.clearDebugPanel();
+            }
             this.game.destroy();
         }, this);
 
@@ -449,9 +451,10 @@
     Remediation.prototype.onClickOnReplay = function onClickOnReplay() {
 
         if (this.game.gameConfig.debugPanel) {
-            document.getElementsByClassName("dg main a")[0].remove();
-            this.debug = null;
+            this.clearDebugPanel();
         }
+        this.game.eventManager.removeAllListeners();
+        this.game.eventManager = null;
         this.game.state.start('Setup');
     };
 

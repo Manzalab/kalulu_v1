@@ -56,7 +56,7 @@
 
         preload: function preloadGame() {
             console.info("[Game State] Preloading new game");
-            this.game.discipline = this.game.pedagogicData.discipline;
+            
             var data = this.game.pedagogicData.data;
             var roundsCount = data.rounds.length;
             var stimuliCount, stimulus;

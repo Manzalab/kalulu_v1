@@ -679,7 +679,8 @@ define([
         Kalulu.y = -Kalulu.height/3 - 50;
         this._hud.bottomLeft.addChild(Kalulu);
 
-        if (lPlantLevel===0 && lFertilizer===0)     Kalulu.startTalk("kalulu_info_gardenscreen03");
+        if (!this._userProfile.kaluluTalks.lesson)  Kalulu.startTalk("kalulu_tuto_introstep01_gardenscreen");
+        else if (lPlantLevel===0 && lFertilizer===0)Kalulu.startTalk("kalulu_info_gardenscreen03");
         else if (lPlantLevel<=7 && lFertilizer>0)   Kalulu.startTalk("kalulu_info_gardenscreen01");
         else if (lPlantLevel>7)                     Kalulu.startTalk("kalulu_info_gardenscreen02");
         else                                        Kalulu.startTalk("kalulu_info_gardenscreen03");

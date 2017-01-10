@@ -89,7 +89,7 @@
         this.columns[0].enabled = true;
         this.columns[0].setVisibleText(true);
         this.fx = new Fx(game);
-    };
+    }
 
     Remediation.prototype = Object.create(Phaser.Group.prototype);
     Remediation.prototype.constructor = Remediation;
@@ -124,7 +124,7 @@
         this.sounds.wrong = game.add.audio('wrong');
         this.sounds.winGame = game.add.audio('winGame');
         this.sounds.loseGame = game.add.audio('loseGame');
-    }
+    };
 
     /**
      * Initialise parameters for the required round with data contained in this.pedagogicData
@@ -308,19 +308,20 @@
         this.eventManager.on('exitGame', function () {
             this.eventManager.removeAllListeners();
             this.eventManager = null;
+            if (this.game.gameConfig.debugPanel) {
+                this.clearDebugPanel();
+            }
             this.game.rafiki.close();
             this.game.destroy();
-            if (this.debug) {
-                this.debug.destroy();
-                this.debug = null;
-            }
+
         }, this);
 
         this.eventManager.on('replay', function () {
-            if (Config.debugPanel) {
-                document.getElementsByClassName("dg main a")[0].remove();
-                this.debug = null;
+            if (this.game.gameConfig.debugPanel) {
+                this.clearDebugPanel();
             }
+            this.game.eventManager.removeAllListeners();
+            this.game.eventManager = null;
             this.game.state.start('Setup');
         }, this);
     }
