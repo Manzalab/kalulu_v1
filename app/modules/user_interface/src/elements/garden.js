@@ -54,6 +54,7 @@ define([
         this._dots = [];
         this._plants = [];
         this._starsPath = [];
+        this._starLessonState = [];
         this._starMiddle;
     }
     
@@ -70,6 +71,14 @@ define([
     Object.defineProperties(Garden.prototype, {
         starMiddle : {
             get : function () { return this._starMiddle; }
+        },
+
+        starPath : {
+            get : function () {return this._starsPath; }
+        },
+
+        starLessonState : {
+            get : function ()  {return this._starLessonState; }
         }
     });
 
@@ -155,6 +164,7 @@ define([
                 createjs.Tween.get(star).to({alpha: 1}, 1000, createjs.Ease.linear);
 
                 this._starsPath.push(star);
+                this._starLessonState.push(lNode);
                 star = null;
             }
         }
@@ -207,6 +217,7 @@ define([
                 createjs.Tween.get(star).to({alpha: 1}, 1000, createjs.Ease.linear);
 
                 this._starsPath.push(star);
+                this._starLessonState.push(lNode);
                 star = null;
             }
         }
@@ -239,6 +250,8 @@ define([
                 lDot.destroy();
             }.bind(this));
         }
+
+        this._starLessonState = [];
 
         this.undrawStarPath(container);
     };
