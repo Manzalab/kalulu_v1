@@ -18,7 +18,7 @@
 	 * @memberof Namespace (e.g. Kalulu.Remediation)
 	 * @param parameter {Object} Description of the parameter
 	**/
-	function VideoPlayer (videoId, interfaceManager) {
+	function VideoPlayer (videoName, interfaceManager) {
 		
 		this._interfaceManager = interfaceManager;
 
@@ -48,7 +48,7 @@
 		this._videoBar = this._videoBarGroup.getChildByName("mcVideoBar");
 
 		// video source
-		this._videoTexture = new PIXI3.Texture(PIXI3.VideoBaseTexture.fromUrl({ src: Config.videoPath + "Akili"+ videoId +".ogv", mime: 'video/ogg' }));
+		this._videoTexture = new PIXI3.Texture(PIXI3.VideoBaseTexture.fromUrl({ src: Config.videoPath + videoName +".webm", mime: 'video/webm' }));
 		this._videoSprite = new PIXI3.Sprite(this._videoTexture);
 		this._videoSprite.anchor.set(0.5,0.5);
 		this._videoSprite.interactive = true;

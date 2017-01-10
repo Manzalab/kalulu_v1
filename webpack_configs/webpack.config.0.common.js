@@ -23,7 +23,7 @@ module.exports = components.mergeConfigs(
 
         resolve : {
             root : path.resolve(__dirname, '../app'),
-            modulesDirectories : ['node_modules', 'app/modules', 'app/libs', 'app/minigames', 'app/src']
+            modulesDirectories : ['node_modules', 'app/assets', 'app/modules', 'app/libs', 'app/minigames', 'app/src']
         },
         module: {
             loaders: [

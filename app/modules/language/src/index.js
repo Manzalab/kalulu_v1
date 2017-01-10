@@ -215,7 +215,7 @@
      * @return the setup object needed by the Minigame
     **/
     LanguageModule.prototype.getPedagogicData = function getPedagogicData (progressionNode, params) {
-         console.log("salut je passe par la");
+
         this._currentActivityParams = params;
 
         if (progressionNode.activityType === "lookandlearn") {
@@ -248,7 +248,7 @@
         pedagogicData = {
             video1            : selectedNotion.video1,
             video2            : selectedNotion.video2,
-            sound             : selectedNotion.soundPath,
+            sound             : [selectedNotion.soundPath],
             illustrativeSound : selectedNotion.illustrativeSoundPath,
             image             : selectedNotion.illustrationPath,
             value             : selectedNotion.value,
@@ -272,7 +272,7 @@
      * It should provide a setup freshly updated with the latest player data available.
     **/
     LanguageModule.prototype.getPedagogicDataForExercise = function getPedagogicDataForExercise (progressionNode, params) {
-       
+        
         var gameType = params.gameType;
 
         switch (gameType) {
@@ -746,8 +746,6 @@
      * @return {(Word[] | GP[])}
     **/
     LanguageModule.prototype._selectTargets = function _selectTargets (params, lessonNumber, stimuliPool) {
-        console.log(stimuliPool);
-        console.log(lessonNumber);
         if (Config.debugLanguageModule) console.log(params);
         if (!stimuliPool.hasOwnProperty(lessonNumber)) {
             throw new Error("No Syllables available for this lesson (n° " + lessonNumber + ")");
@@ -788,7 +786,7 @@
         var stimuliPool = this._syllablesGamesStimuli; // Note : this is one of the words sublists. It has to be words, not GP. To make dynamic = f(minigameSetup)
         var lessonNumber = progressionNode.parent.lessonNumber;
         var lRoundsCount = params.roundsCount;
-        console.log("progressionNode"+ progressionNode)
+
         var totalTargets = this._selectTargets(params, lessonNumber, stimuliPool);
         
         var lSetup = { 
@@ -1201,8 +1199,8 @@
                             elapsedTime : apparition.elapsedTime,
                             score : apparition.isCorrect === apparition.isClicked ? 1 : 0
                         };
-
-                        if (!apparition.isCorrect && scoreObject.score === 0) {
+                        
+                        if (!scoreObject.score) {
                             flawlessGame = false;
                             if (Config.debugLanguageModule) console.log("value : " + stimulus.value.toLowerCase() + ", isCR : " + apparition.isCorrect + ", clicked : " + apparition.isClicked);
                         }
@@ -1346,15 +1344,7 @@
     };
 
 
-    LanguageModule.prototype._populateGapFillGame = function _populateGapFillGame (progressionNode, params) {
-        
-        console.log(progressionNode);
-        var data = staticData.filling;
-        console.log(data);
-
-        data = _.filter(data, function(row){ return row.LESSON === progressionNode.parent.lessonNumber.toString(); });
-
-        console.log(data);
+    LanguageModule.prototype._populateGapFillGame = function _populateGapFillGame () {
         
         if (!data) console.error('link data here');
         

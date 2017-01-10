@@ -106,9 +106,10 @@ define([
     };
 
     GameLauncher.prototype.quit = function quit () {
+        
         this.game.eventManager.off("exitGame", this.quit, this);
         this.clearDebugPanel();
-        this.game.rafiki.close();
+
         this.destroy();
     };
 
