@@ -35,7 +35,7 @@ define([
 
         this._background = this.getChildByName("mcTitleCardBg");
         this._playButton = this.getChildByName("mcPlayButton");
-        this._playButton.onClick = this.onClick.bind(this);
+        this._playButton.once("click", this.onClick.bind(this));
 
         // PlayButton Tween Config
         // for (var i = 0; i < this.children.length ; i++) {
@@ -88,7 +88,12 @@ define([
     TitleCard.prototype.constructor = TitleCard;
 
     TitleCard.prototype.onClick = function onClick (pEventData) {
-        if (this._userInterface.kaluluCharacter.isTalking) return;
+        if (this._userInterface.kaluluCharacter.isTalking)
+        {        
+            this._playButton.once("click", this.onClick.bind(this));
+            return;
+        } 
+        this._userInterface.kaluluCharacter.clearRepeat();
         SoundManager.getSound("kalulu_end_startscreen").play();
         
         // SoundManager.addAmbiance("Bird", ["bird_1","bird_2","bird_3","bird_4","bird_5","bird_6","bird_7","bird_8","bird_9"]);

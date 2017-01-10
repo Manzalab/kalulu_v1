@@ -85,9 +85,11 @@
         **/
         debugPanel: { get: function () { return this._debugPanel; } },
 
-        isToyChestLocked: { get: function() { return Timer.elapsedTime < Config.minutesRequiredToUnlockToyChest;}},
+        isToyChestLocked: { get: function() { return !(Timer.elapsedTime < Config.minutesRequiredToUnlockToyChest);}},
 
-        isTutorialCompleted : { get: function() { return this._userProfile.kaluluTalks.lesson2; }}
+        isTutorialCompleted : { get: function() { return !this._userProfile.kaluluTalks.lesson2; }},
+
+        firstTimeOnBrainScreen : { get: function() { return this._userProfile.kaluluTalks.gardenScreen; }}
     });
 
     // ##############################################################################################################################################
@@ -247,6 +249,7 @@
         // SoundManager.addAmbiance("Bird", ["bird_1","bird_2","bird_3","bird_4","bird_5","bird_6","bird_7","bird_8","bird_9"]);
         // SoundManager.startAmbiance("Bird");
         // SoundManager.stopAllAmbiances();
+        if (SoundManager.isPlaying("kalulu_music_brainintro")) SoundManager.getSound("kalulu_music_brainintro").stop();
         if (!SoundManager.isPlaying("kalulu_music_gameintro"))  SoundManager.getSound("kalulu_music_gameintro").play();
         if (!SoundManager.isPlaying("kalulu_amb_startscreen"))  SoundManager.getSound("kalulu_amb_startscreen").play();
         

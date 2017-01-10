@@ -121,9 +121,9 @@
 
             if (pIsListening) lButton.onClick = this._onClickOnActivitiesButton.bind(this);
             else lButton.removeChildAt(lButton.children.length - 1);
-            var lCover = new PIXI3.Sprite(PIXI3.Texture.fromImage(Config.imagesPath + "activity_covers/" + this._activityType.toLowerCase() + "/" + lButton.name + ".jpg"));
+            var lCover = new PIXI3.Sprite(PIXI3.Texture.fromImage(Config.imagesPath + "activity_covers/" + this._activityType.toLowerCase() + "/" + lButton.name + ".png"));
             lCover.anchor.set(0.5);
-            if (this._activityType !== "Video") lCover.scale.set(0.33);
+            // if (this._activityType !== "Video") lCover.scale.set(0.33);
             lButton.addChild(lCover);
             if (lButton.locked) {
                 lCover.filters = [colorFilter];

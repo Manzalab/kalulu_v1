@@ -127,12 +127,16 @@ define([
         this._kalulu.y = -this._kalulu.height/3 - 50;
 
         this._hud.bottomLeft.addChild(this._kalulu);
-        
-        if (this._interfaceManager.isTutorialCompleted)    this._kalulu.startTalk("kalulu_info_brainscreen_01");
-        else if (this._interfaceManager.isToyChestLocked)  this._kalulu.startTalk("kalulu_info_brainscreen_02");
-        else if (this._unlockedChapter>8)                  this._kalulu.startTalk("kalulu_info_brainscreen_04");
-        else                                               this._kalulu.startTalk("kalulu_info_brainscreen_03");
-    };
+
+        var speechName = "";
+        if (this._unlockedChapter>8)                            speechName = "kalulu_info_brainscreen_04";
+        else if (this._interfaceManager.firstTimeOnBrainScreen) speechName = "kalulu_tuto_brainscreen";
+        else if (this._interfaceManager.isTutorialCompleted)    speechName = "kalulu_info_brainscreen_02";
+        else if (!this._interfaceManager.isToyChestLocked)      speechName = "kalulu_info_brainscreen_03";
+        else                                                    speechName = "kalulu_info_brainscreen_01";
+
+        this._kalulu.startTalk(speechName);
+    };  
 
     BrainScreen.prototype.removeOnClickOnGargenButton = function removeOnClickOnGargenButton (){
         var length = this._arrayGardenButtons.length;
