@@ -17,10 +17,7 @@
 	     * @type {EventEmitter}
          * @private
 	    **/
-        this.eventManager = game.eventManager;
         this.game = game;
-        console.log(this.game.gameConfig)
-        console.log(this.game)
         
         /**
          * All kalulu's sounds  
@@ -90,13 +87,13 @@
 	**/
     Kalulu.prototype.initEvents = function () {
         
-        this.eventManager.on('startGame', function () {
+        this.game.eventManager.on('startGame', function () {
             if (this.game.gameConfig.skipKalulu || this.game.gameConfig.skipKaluluIntro) {
-                this.eventManager.emit('pause');
-                this.eventManager.emit('startUi');
+                this.game.eventManager.emit('pause');
+                this.game.eventManager.emit('startUi');
                 return;
             }
-            this.eventManager.emit('pause');
+            this.game.eventManager.emit('pause');
             this.sounds.currentSound = this.sounds.on;
             this.sounds.on.play();
             this.parent.bringToTop(this.kaluluSprite);
@@ -123,22 +120,22 @@
                     this.kaluluSprite.animations.play('outroAnim');
                     this.kaluluSprite.animations.currentAnim.onComplete.addOnce(function () {
                         this.kaluluSprite.visible = false;
-                        this.eventManager.emit('startUi');
+                        this.game.eventManager.emit('startUi');
                     }, this);
                 }, this);
             }, this);
         }, this);
         
         
-        this.eventManager.on('help', function () { // emitted on click on kalulu button in the main game UI
+        this.game.eventManager.on('help', function () { // emitted on click on kalulu button in the main game UI
             if (this.game.gameConfig.skipKalulu || this.game.gameConfig.skipKaluluHelp) {
-                this.eventManager.emit('pause');
-                this.eventManager.emit('offUi');
-                this.eventManager.emit('unPause');
+                this.game.eventManager.emit('pause');
+                this.game.eventManager.emit('offUi');
+                this.game.eventManager.emit('unPause');
                 return;
             }
-            this.eventManager.emit('pause');
-            this.eventManager.emit('offUi');
+            this.game.eventManager.emit('pause');
+            this.game.eventManager.emit('offUi');
             this.sounds.currentSound = this.sounds.on;
             this.sounds.on.play();
             this.parent.bringToTop(this.kaluluSprite);
@@ -164,15 +161,15 @@
                     this.kaluluSprite.animations.play('outroAnim');
                     this.kaluluSprite.animations.currentAnim.onComplete.addOnce(function () {
                         this.kaluluSprite.visible = false;
-                        this.eventManager.emit('unPause');
+                        this.game.eventManager.emit('unPause');
                     }, this);
                 }, this);
             }, this);
         }, this);
         
-        this.eventManager.on('GameOverWin', this.onGameOverWin, this);
-        this.eventManager.on('GameOverLose', this.onGameOverLose, this);
-        this.eventManager.on('skipKalulu', this.skip, this);
+        this.game.eventManager.on('GameOverWin', this.onGameOverWin, this);
+        this.game.eventManager.on('GameOverLose', this.onGameOverLose, this);
+        this.game.eventManager.on('skipKalulu', this.skip, this);
     };
     /**
      * Animation loop when speaking
@@ -215,12 +212,12 @@
         this.playingFinalSpeech = true;
         this.finalResult = isWin;
         if (this.game.gameConfig.skipKalulu || this.game.gameConfig.skipKaluluFinal) {
-            this.eventManager.emit('pause');
-            if (isWin) this.eventManager.emit('GameOverWinScreen'); // remediation reacts by launching its GameOverWin Script
-            else this.eventManager.emit('GameOverLoseScreen'); // remediation reacts by launching its GameOverLose Script
+            this.game.eventManager.emit('pause');
+            if (isWin) this.game.eventManager.emit('GameOverWinScreen'); // remediation reacts by launching its GameOverWin Script
+            else this.game.eventManager.emit('GameOverLoseScreen'); // remediation reacts by launching its GameOverLose Script
             return;
         }
-        this.eventManager.emit('pause'); // ui react by disabling the menu, jellyfishes pause, and remediation pause
+        this.game.eventManager.emit('pause'); // ui react by disabling the menu, jellyfishes pause, and remediation pause
         this.sounds.currentSound = this.sounds.on;
         this.sounds.on.play();
         this.parent.bringToTop(this.kaluluSprite);
@@ -251,11 +248,11 @@
                     this.kaluluSprite.visible = false;
                     if (isWin) {
                         console.log("Kalulu finished to speak, about to request GameOver WinScreen");
-                        this.eventManager.emit('GameOverWinScreen'); // listened by UI to display GameOver Screen
+                        this.game.eventManager.emit('GameOverWinScreen'); // listened by UI to display GameOver Screen
                     } 
                     else {
                         console.log("Kalulu finished to speak, about to request GameOver LoseScreen");
-                        this.eventManager.emit('GameOverLoseScreen'); // listened by UI to display GameOver Screen
+                        this.game.eventManager.emit('GameOverLoseScreen'); // listened by UI to display GameOver Screen
                     }
                 }, this);
             }, this);
@@ -268,11 +265,11 @@
         this.speaking = false;
         this.kaluluSprite.visible = false;
         if (this.playingFinalSpeech) {
-            if (this.finalResult) this.eventManager.emit('GameOverWinScreen');
-            else this.eventManager.emit('GameOverLoseScreen');
+            if (this.finalResult) this.game.eventManager.emit('GameOverWinScreen');
+            else this.game.eventManager.emit('GameOverLoseScreen');
         }
         else {
-            this.eventManager.emit('startUi');
+            this.game.eventManager.emit('startUi');
         }
     };
     
