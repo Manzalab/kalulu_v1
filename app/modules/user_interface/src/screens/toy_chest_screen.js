@@ -9,6 +9,7 @@
 	'use strict';
 
 	var Screen 			= require ('../utils/ui/screen');
+	var AnimBackground	= require ('../elements/anim_background');
 	var Kalulu 			= require ('../elements/kalulu_character');
 
 	function ToyChestScreen (interfaceManager) {
@@ -19,7 +20,12 @@
 		this._interfaceManager = interfaceManager;
 		this.build();
 		// Reference auto-built parts :
-		this._background = this.getChildByName("mcBurrowScreenBg");
+		this._backgroundContainer = this.getChildByName("mcBurrowScreenBg");
+        this._background = new AnimBackground("BurrowScreenBg", 6);
+
+        this._backgroundContainer.addChild(this._background);
+        this._background.position.set(0,0);
+
 		this._toyChestButtons = this.getChildByName("mcButtonsContainer");
 		this._videoButton = this._toyChestButtons.getChildByName("mcVideoButton");
 		this._miniGameButton = this._toyChestButtons.getChildByName("mcMiniGameButton");

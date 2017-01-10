@@ -1,0 +1,102 @@
+{"frames": {
+
+"ActivitiesButton0001.png":
+{
+	"frame": {"x":1458,"y":329,"w":310,"h":310},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":6,"y":6,"w":310,"h":310},
+	"sourceSize": {"w":322,"h":322},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"ActivitiesButton0002.png":
+{
+	"frame": {"x":1458,"y":329,"w":310,"h":310},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":6,"y":6,"w":310,"h":310},
+	"sourceSize": {"w":322,"h":322},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"ActivitiesButton0003.png":
+{
+	"frame": {"x":1458,"y":3,"w":322,"h":322},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":322,"h":322},
+	"sourceSize": {"w":322,"h":322},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"ActivitiesButton0004.png":
+{
+	"frame": {"x":1458,"y":643,"w":310,"h":310},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":6,"y":6,"w":310,"h":310},
+	"sourceSize": {"w":322,"h":322},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"ActivityIcon.png":
+{
+	"frame": {"x":1458,"y":957,"w":300,"h":300},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":300,"h":300},
+	"sourceSize": {"w":300,"h":300},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"ArrowButton0001.png":
+{
+	"frame": {"x":1772,"y":329,"w":192,"h":192},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":54,"y":54,"w":192,"h":192},
+	"sourceSize": {"w":300,"h":300},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"ArrowButton0002.png":
+{
+	"frame": {"x":1772,"y":329,"w":192,"h":192},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":54,"y":54,"w":192,"h":192},
+	"sourceSize": {"w":300,"h":300},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"ArrowButton0003.png":
+{
+	"frame": {"x":1772,"y":525,"w":192,"h":192},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":54,"y":54,"w":192,"h":192},
+	"sourceSize": {"w":300,"h":300},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"ArrowButton0004.png":
+{
+	"frame": {"x":1772,"y":721,"w":189,"h":190},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":55,"y":56,"w":189,"h":190},
+	"sourceSize": {"w":300,"h":300},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"MiniGameIcon.png":
+{
+	"frame": {"x":3,"y":3,"w":1451,"h":1229},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":1451,"h":1229},
+	"sourceSize": {"w":1451,"h":1229},
+	"pivot": {"x":0.5,"y":0.5}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "burrow_activity_screen_0.png",
+	"format": "RGBA8888",
+	"size": {"w":1967,"h":1260},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:2f1c253c77aaa87f183b517721a4a16b:2a75d5194208e15b2ecb2f2794e88966:478c3a0d041794aadfc5685e72020faf$"
+}
+}

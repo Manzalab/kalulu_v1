@@ -12,7 +12,10 @@
 	var Screen 		= require ('../utils/ui/screen');
     var VideoPlayer = require ('../elements/video_player');
     var Story 		= require ('../elements/story');
+    var AnimBackground	= require ('../elements/anim_background');
     var Kalulu 		= require ('../elements/kalulu_character');
+
+    var Button 		= require ('../utils/ui/button');
 
 
 	function ToyChestActivityScreen (interfaceManager, activityType) {
@@ -24,11 +27,23 @@
 		this.build();
 		
 		// Reference auto-built parts :
-		this._background = this.getChildByName("mcBurrowScreenBg");
+		this._backgroundContainer = this.getChildByName("mcBurrowScreenBg");
+        this._background = new AnimBackground("BurrowScreenBg", 6);
+
+        this._backgroundContainer.addChild(this._background);
+        this._background.position.set(0,0);
+
 		this._activitiesButtons = this.getChildByName("mcButtonsContainer");
 		this._currActivitiesPage = 0;
-		this._nextActivitiesButton = this.getChildByName("mcActivitiesNext");
-		this._prevActivitiesButton = this.getChildByName("mcActivitiesPrev");
+		this._nextActivitiesButtonContainer = this.getChildByName("mcActivitiesNext");
+		this._nextActivitiesButton = new Button("ArrowButton")
+		this._nextActivitiesButtonContainer.addChild(this._nextActivitiesButton);
+        this._nextActivitiesButton.position.set(0,0);
+
+		this._prevActivitiesButtonContainer = this.getChildByName("mcActivitiesPrev");
+		this._prevActivitiesButton = new Button("ArrowButton")
+		this._prevActivitiesButtonContainer.addChild(this._prevActivitiesButton);
+        this._prevActivitiesButton.position.set(0,0);
 
 		this._prevActivitiesButton.onClick = this._onClickOnPrevActivities.bind(this);
 		this._nextActivitiesButton.onClick = this._onClickOnNextActivities.bind(this);
