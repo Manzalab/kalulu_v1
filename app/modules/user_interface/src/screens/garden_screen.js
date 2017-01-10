@@ -53,7 +53,7 @@ define([
         
         // Reference the built elements
         this._backgroundContainer = this.getChildByName("mcGardenScreenBackground");
-        this._background = new AnimBackground("StarBg", 6);
+        this._background = new AnimBackground("StarBg", 4);
 
         this._backgroundContainer.addChild(this._background);
         this._background.position.set(0,0);

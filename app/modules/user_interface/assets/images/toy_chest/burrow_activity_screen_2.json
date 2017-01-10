@@ -1,12 +1,12 @@
 {"frames": {
 
-"StoryIcon.png":
+"MiniGameIcon.png":
 {
-	"frame": {"x":3,"y":3,"w":1451,"h":1228},
+	"frame": {"x":3,"y":3,"w":1451,"h":1229},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":1451,"h":1228},
-	"sourceSize": {"w":1451,"h":1228},
+	"spriteSourceSize": {"x":0,"y":0,"w":1451,"h":1229},
+	"sourceSize": {"w":1451,"h":1229},
 	"pivot": {"x":0.5,"y":0.5}
 }},
 "meta": {
@@ -14,8 +14,8 @@
 	"version": "1.0",
 	"image": "burrow_activity_screen_2.png",
 	"format": "RGBA8888",
-	"size": {"w":1457,"h":1234},
+	"size": {"w":1457,"h":1235},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:2f1c253c77aaa87f183b517721a4a16b:2a75d5194208e15b2ecb2f2794e88966:478c3a0d041794aadfc5685e72020faf$"
+	"smartupdate": "$TexturePacker:SmartUpdate:50453750fd013788266f4927d02edcab:3488096faa10480e471caf2b1049030d:478c3a0d041794aadfc5685e72020faf$"
 }
 }
