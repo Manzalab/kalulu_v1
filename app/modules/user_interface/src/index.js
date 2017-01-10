@@ -64,9 +64,7 @@
         this.kaluluCharacter = KaluluCharacter;
         if (!Config.skipKalulu) this.kaluluCharacter.initEvents(eventSystem);
         this.rewards = Reward;
-        this.unlockedRewards = ["CIRKAFRICA1 MASTER PARTIE 01",
-            "Mamba_mwenye_njaa",
-            "Listen"];
+        this.unlockedRewards = [];
         this._eventSystem.on(Events.GAME.UNLOCK_REWARD_TOYCHEST, this._onRewardUnlocked.bind(this));
     }
 
