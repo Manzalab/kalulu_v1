@@ -711,18 +711,34 @@
     MathsModule.prototype.getPedagogicDataForLookAndLearn = function getPedagogicDataForLookAndLearn (progressionNode) {
        console.log(progressionNode);
         var notionsData = [];
+        var sounds = [];
+        var value;
+        var composeNumberSounds = false;
+        if (KALULU_LANGUAGE === 'swahili') composeNumberSounds = true;
 
         for (var notionId in progressionNode.targetNotions) {
             if (!progressionNode.targetNotions.hasOwnProperty(notionId)) continue;
+
             var lNotion = progressionNode.targetNotions[notionId];
+            value = parseInt(lNotion.VALUE, 10);
             //console.log(lNotion);
             //var lTexture = new PIXI3.Texture.fromFrame(lNotion.illustrationName + ".jpg");
 
+            if (composeNumberSounds && value > 10 && value%10 !== 0) {
+              sounds = [
+                Config.soundsPath + this.id + "/number_" + Math.floor(value/10)*10 + '.ogg',
+                Config.soundsPath + this.id + "/number_and_" + value%10 + '.ogg'
+              ];
+            }
+            else {
+              sounds = [Config.soundsPath + this.id + "/number_" + lNotion.VALUE + '.ogg'];
+            } 
+
             notionsData.push({
-                id                : parseInt(lNotion.VALUE, 10),
-                value             : parseInt(lNotion.VALUE, 10),
-                textValue         : lNotion.VALUE,
-                sound             : Config.soundsPath + this.id + "/number_" + lNotion.VALUE + '.ogg',
+                id                : value,
+                value             : value,
+                textValue         : lNotion.VALUE.toString(),
+                sounds            : sounds,
                 illustrativeSound : Config.soundsPath + this.id + "/number_" + lNotion.VALUE + '.ogg',
                 image             : Config.imagesPath + this.id + "/" + lNotion.IMAGE.toLowerCase() + '.jpg'
             });

@@ -137,7 +137,7 @@
                     maxCrabsOnScreen                : {min : 3, max : 3},
                     minimumCorrectStimuliOnScreen   : {min : 0, max : 0},
                     maximumCorrectStimuliOnScreen   : {min : 1, max : 3},
-                    respawnTime                     : {min : 1, max : 0.8},
+                    respawnTime                     : {min : 1, max : 0.3},
                     mathsAlternativePercentage      : {min : 0.5, max : 0.7},
                     mathsAlternativePicturePercentage : {min : 0.5, max : 0.3}
                 }
