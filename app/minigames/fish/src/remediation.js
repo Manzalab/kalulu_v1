@@ -218,9 +218,8 @@
             this.eventManager = null;
             this.game.rafiki.close();
             this.game.destroy();
-            if (this.debug) {
-                this.debug.destroy();
-                this.debug = null;
+            if (this.game.gameConfig.debugPanel) {
+                this.clearDebugPanel();
             }
         }, this);
     };
