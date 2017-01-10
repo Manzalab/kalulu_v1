@@ -24,7 +24,6 @@
         this.timeWithoutClick = 0;
         this.highlightedParakeet = null;
 
-        this.eventManager = game.eventManager;
         console.log("before init");
         this.initGame();
         console.log("after init");
@@ -152,32 +151,32 @@
     }
 
     Remediation.prototype.initEvents = function (game) {
-        this.eventManager.on('pause', function () {
+        this.game.eventManager.on('pause', function () {
             this.paused = true;
         }, this);
 
-        this.eventManager.on('unPause', function () {
+        this.game.eventManager.on('unPause', function () {
             this.paused = false;
         }, this);
 
-        this.eventManager.on('start', function () {
+        this.game.eventManager.on('start', function () {
             var context = this;
             setTimeout(function () {
                 context.returnAll();
             }, 5000);
         }, this);
 
-        this.eventManager.on('clicked', function (parakeet) {
+        this.game.eventManager.on('clicked', function (parakeet) {
             this.timeWithoutClick = 0;
             this.click(parakeet);
         }, this);
 
-        this.eventManager.on('success', function (para1, para2) {
+        this.game.eventManager.on('success', function (para1, para2) {
             this.sounds.right.play();
             this.success(para1, para2);
         }, this);
 
-        this.eventManager.on('parakeetOutOfBound', function (parakeet) {
+        this.game.eventManager.on('parakeetOutOfBound', function (parakeet) {
             for (var i = 0; i < this.branches.length; i++) {
                 for (var j = 0; j < this.branches[i].parakeet.length; j++) {
                     if (this.branches[i].parakeet[j] == parakeet) {
@@ -188,22 +187,22 @@
             }
         }, this);
 
-        this.eventManager.on('exitGame', function () {
+        this.game.eventManager.on('exitGame', function () {
             this.game.rafiki.close();
             if (this.game.gameConfig.debugPanel) this.clearDebugPanel();
             this.game.destroy();
-            this.eventManager.removeAllListeners();
-            this.eventManager = null;
+            this.game.eventManager.removeAllListeners();
+            this.game.eventManager = null;
         }, this);
      
-        this.eventManager.on('pause', function () {
+        this.game.eventManager.on('pause', function () {
             this.pause(true);
         }, this);
 
-        this.eventManager.on('unPause', function () {
+        this.game.eventManager.on('unPause', function () {
             this.pause(false);
         }, this);
-    }
+    };
 
     Remediation.prototype.pause = function (bool) {
         this.paused = bool;
@@ -211,20 +210,20 @@
         for (var i = 0; i < this.branches.length; i++) {
             this.branches[i].pause(bool);
         }
-    }
+    };
 
     Remediation.prototype.click = function (parakeet) {
         this.clickCount++;
 
         this.highlightedParakeet = null;
 
-        if (this.clickCount % 2 == 0) {
+        if (this.clickCount % 2 === 0) {
             this.clickCount = 0;
 
-            this.eventManager.emit('unClickable');
-			this.eventManager.emit('pause');
+            this.game.eventManager.emit('unClickable');
+			this.game.eventManager.emit('pause');
             if (this.clickValue.value == parakeet.value) {
-                this.eventManager.emit('success', this.clickValue, parakeet);
+                this.game.eventManager.emit('success', this.clickValue, parakeet);
             }
             else {
                 this.sounds.wrong.play();
@@ -234,7 +233,7 @@
         else {
             this.clickValue = parakeet;
         }
-    }
+    };
 
     Remediation.prototype.success = function (para1, para2) {
         this.consecutiveMistakes = 0;
@@ -295,7 +294,7 @@
         para2.sad(true);
 
         var context = this;
-        this.eventManager.emit('unClickable');
+        this.game.eventManager.emit('unClickable');
         if (this.consecutiveMistakes == this.game.params.getGeneralParams().incorrectResponseCountTriggeringFirstRemediation) {
             for (var i = 0; i < context.branches.length; i++) {
                 for (var j = 0; j < context.branches[i].parakeet.length; j++) {
@@ -359,7 +358,7 @@
 
     Remediation.prototype.tenSecRemediation = function () {
         this.paused = true;
-        this.eventManager.emit('unClickable');
+        this.game.eventManager.emit('unClickable');
         if (this.clickCount % 2 == 0) {
             if (!this.highlightedParakeet) {
                 var context = this;
@@ -430,7 +429,7 @@
                 this.tenSecRemediation();
             }
             else if (this.timeWithoutClick % (60 * 20) == 0)
-                this.eventManager.emit('help');
+                this.game.eventManager.emit('help');
         }
     };
 
@@ -440,11 +439,11 @@
 
         this.game.won = true;
         this.sounds.winGame.play();
-        this.eventManager.emit('offUi');// listened by ui
+        this.game.eventManager.emit('offUi');// listened by ui
 
         this.sounds.winGame.onStop.add(function () {
             this.sounds.winGame.onStop.removeAll();
-            this.eventManager.emit('GameOverWin');//listened by Ui (toucan = kalulu)
+            this.game.eventManager.emit('GameOverWin');//listened by Ui (toucan = kalulu)
             this.saveGameRecord();
         }, this);
     };
@@ -533,7 +532,7 @@
     };
 
     Remediation.prototype.skipKalulu = function skipKalulu () {
-        this.eventManager.emit("skipKalulu");
+        this.game.eventManager.emit("skipKalulu");
     };
 
     return Remediation;

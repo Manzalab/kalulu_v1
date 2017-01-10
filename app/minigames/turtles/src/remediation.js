@@ -235,21 +235,21 @@
         }, this);
 
         this.eventManager.on('exitGame', function () {
-            this.eventManager.removeAllListeners();
-            this.eventManager = null;
+            if (this.game.gameConfig.debugPanel) {
+                this.clearDebugPanel();
+            }
+            this.game.eventManager.removeAllListeners();
+            this.game.eventManager = null;
             this.game.rafiki.close();
             this.game.destroy();
-            if (this.debug) {
-                this.debug.destroy();
-                this.debug = null;
-            }
         }, this);
 
         this.eventManager.on('replay', function () {
             if (this.game.gameConfig.debugPanel) {
-                document.getElementsByClassName("dg main a")[0].remove();
-                this.debug = null;
+                this.clearDebugPanel();
             }
+            this.game.eventManager.removeAllListeners();
+            this.game.eventManager = null;
             this.game.state.start('Setup');
         }, this);
     };

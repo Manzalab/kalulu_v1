@@ -109,7 +109,7 @@ define([
         
         this.game.eventManager.off("exitGame", this.quit, this);
         this.clearDebugPanel();
-
+        this.rafiki.close();
         this.destroy();
     };
 

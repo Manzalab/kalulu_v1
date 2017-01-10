@@ -58,7 +58,7 @@
 	     * @type {Remediation}
 	    **/
         this.remediation = null;
-    };
+    }
 
     Game.prototype = {
 
@@ -68,7 +68,6 @@
             // load audiofiles for the current data
 
             var data = this.game.pedagogicData.data;
-            this.game.discipline = this.game.pedagogicData.discipline;
             var roundsCount = data.rounds.length;
             var stepsCount, stimuliCount, stimulus;
 
