@@ -83,7 +83,7 @@
         this._unlockedActivities = this._interfaceManager.unlockedRewards;
 
 		this._prevActivitiesButton.visible = false;
-		if (this._activitiesCount<=10) this._nextActivitiesButton.visible = false;
+		if (this._activitiesCount<=6) this._nextActivitiesButton.visible = false;
 		if (this._activitiesButtons!=null)	this._updateActivitiesButtons(true);
 
 
@@ -122,12 +122,12 @@
         colorFilter.greyscale(0.3);
         for (var k = 0; k < this._activitiesButtons.children.length; k++) {
             var lButton = this._activitiesButtons.children[k];
-            var lNum = (k + 1) + (10 * this._currActivitiesPage);
+            var lNum = k + (6 * this._currActivitiesPage);
             // lButton._txt.text = this._lockedActivities[k].replace("_"," ");
-            lButton.name = this._lockedActivities[k];
-            lButton.locked = !this._unlockedActivities.includes(this._lockedActivities[k]);
+            lButton.name = this._lockedActivities[lNum];
+            lButton.locked = !this._unlockedActivities.includes(this._lockedActivities[lNum]);
 
-            if (lNum > this._activitiesCount)
+            if (lNum >= this._activitiesCount)
             {
             	lButton.visible = false;
             	continue;	
@@ -138,7 +138,7 @@
             else lButton.removeChildAt(lButton.children.length - 1);
             var lCover = new PIXI3.Sprite(PIXI3.Texture.fromImage(Config.imagesPath + "activity_covers/" + this._activityType.toLowerCase() + "/" + lButton.name + ".png"));
             lCover.anchor.set(0.5);
-            // if (this._activityType !== "Video") lCover.scale.set(0.33);
+            lCover.scale.set(0.7);
             lButton.addChild(lCover);
             if (lButton.locked) {
                 lCover.filters = [colorFilter];
