@@ -129,6 +129,9 @@
             else if (nextScreenName === "Lesson") {
                 this._eventSystem.emit(Events.GAME.BACK_FROM_ACTIVITY, nextNode);
             }
+            else if (nextScreenName === "Chapter") { // fail on last node of the lesson
+                this._eventSystem.emit(Events.GAME.BACK_FROM_ACTIVITY, progressionNode.parent);
+            }
             else if (nextScreenName === "Plan") {
                 console.log('Back from Assessment');
                 if (progressionNode.isCompleted) {
