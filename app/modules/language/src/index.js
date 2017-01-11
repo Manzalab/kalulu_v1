@@ -1264,21 +1264,21 @@
     };
     
 
-    LanguageModule.prototype._processCompositionResults = function _processCompositionResults (currentProgressionNode, results, hasWon) {
+    LanguageModule.prototype._processCompositionResults = function _processCompositionResults (currentProgressionNode, record, hasWon) {
         
-        if (Config.debugLanguageModule) console.log(results);
-
+        if (Config.debugLanguageModule) console.log(record);
+        var results = record.results;
         var totalDistractorSyllablesCompleted = 0;
 
         var roundsCount, stepsCount, stimuliCount, apparitionsCount; // length of loops to avoid recalculation at each iteration.
         var currentRound, currentWordData, currentWord, currentStep, currentStimulus, notion, apparition, scoreObject; //temps for loops
         var r, s, st, a; // indices for loops (rounds, steps, stimuli, apparitions)
         
-        roundsCount = results.rounds.length;
+        roundsCount = record.results.data.rounds.length;
         rounds:
         for (r = 0; r < roundsCount ; r++) {
             
-            currentRound = results.rounds[r];
+            currentRound = results.data.rounds[r];
             currentWordData = currentRound.word;
             console.log(currentWordData);
             scoreObject = {
@@ -1291,7 +1291,7 @@
                 totalDistractorSyllablesCompleted++;
             }
 
-            currentWord = this.getWordbyId(currentWordData.notionId);
+            currentWord = this.getWordbyId(currentWordData.id);
             this._addRecordOnNotion(currentWord, scoreObject);
             console.log("Record added on word " + currentWordData.value + " : elapsedTime was " + (scoreObject.elapsedTime/1000) + " seconds with a score of " + scoreObject.score + ".");
             stepsCount = currentRound.steps.length;
@@ -1338,7 +1338,7 @@
 
         //lSettings.addRecord(finalScore); // TO DO record minigame result
         
-        if (hasWon) {
+        if (record.hasWon) {
             currentProgressionNode.isCompleted = true;
         }
     };
