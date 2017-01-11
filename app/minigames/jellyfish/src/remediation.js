@@ -133,7 +133,7 @@
             this.eventManager.removeAllListeners();
             this.eventManager = null;
             this.game.destroy();
-            console.info("PLhaser Game has been destroyed");
+            console.info("Phaser Game has been destroyed");
             this.game = null;
         }, this);
 
@@ -485,7 +485,7 @@
         this._debugGlobalParams  = this.debugPanel.addFolder(this.debugFolderNames.global);
         this._debugLocalParams   = this.debugPanel.addFolder(this.debugFolderNames.local);
         this._debugFunctions     = this.debugPanel.addFolder(this.debugFolderNames.functions);
-
+        
         this._debugInfo.add(this.game.params, "_currentGlobalLevel").listen();
         this._debugInfo.add(this.game.params, "_currentLocalRemediationStage").listen();
 
@@ -534,7 +534,7 @@
         
         var globalLevel = this.game.params.globalLevel;
         var localStage = this.game.params.localRemediationStage;
-
+        
         this._debugLocalParams.items = {};
         this._debugLocalParams.items.param1 = this._debugLocalParams.add(this.game.params._settingsByLevel[globalLevel].localRemediation[localStage], "minimumCorrectStimuliOnScreen").min(0).max(20).step(1).listen();
         this._debugLocalParams.items.param2 = this._debugLocalParams.add(this.game.params._settingsByLevel[globalLevel].localRemediation[localStage], "maximumCorrectStimuliOnScreen").min(0).max(20).step(1).listen();
