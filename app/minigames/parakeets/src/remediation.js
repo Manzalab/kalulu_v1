@@ -70,7 +70,7 @@
         this.consecutiveSuccess = 0;
         this.triesRemaining = params.getGlobalParams().totalTriesCount;
         this.lives = params.getGeneralParams().lives;
-        this.parakeetPairsRemaining = params.getGlobalParams().parakeetPairs;
+        this.parakeetPairsRemaining = params.getGlobalParams().pairsCount;
 
         this.won = false;
     };
@@ -96,7 +96,7 @@
         var roundData = this.game.pedagogicData.data.rounds[0].steps[0];
         var roundType = roundData.type;
         console.log(roundData);
-        var pairsCount = globalParams.parakeetPairs;
+        var pairsCount = globalParams.pairsCount;
         console.log(this.game.discipline);
         if (this.game.discipline != "maths")
             for (var i = 0; i < pairsCount; i++) {
@@ -268,8 +268,8 @@
                 setTimeout(function () {
                     para1.flyTo(para1.parent.width * 4 / 3, para1.parent.height - 100);
                     para2.flyTo(para2.parent.width * 4 / 3, para2.parent.height);
-                    context.eventManager.emit('clickable');
-					context.eventManager.emit('unPause');
+                    context.game.eventManager.emit('clickable');
+					context.game.eventManager.emit('unPause');
 					if (context.parakeetPairsRemaining == 0) {
 					    context.gameOverWin();
                     }
@@ -312,8 +312,8 @@
                     para1.return(false);
                     temp.highlight.visible = true;
                     context.highlightedParakeet = temp;
-                    context.eventManager.emit('clickable');
-					context.eventManager.emit('unPause');
+                    context.game.eventManager.emit('clickable');
+					context.game.eventManager.emit('unPause');
                 }, 5 * 1000);
             }, 1000);
         }
@@ -331,7 +331,7 @@
 
                 setTimeout(function () {
                     context.returnAll(false, false);
-                    context.eventManager.emit('clickable');
+                    context.game.eventManager.emit('clickable');
                 }, context.game.params.getLocalParams().showTime * 1000);
             }, 1000);
         }
@@ -339,7 +339,7 @@
             setTimeout(function () {
                 para1.return(false,false);
                 para2.return(false,false);
-                context.eventManager.emit('clickable');
+                context.game.eventManager.emit('clickable');
             }, 1000);
             this.consecutiveMistakes = 0;
         }
@@ -381,8 +381,8 @@
                     para.return(false);
                     temp.highlight.visible = true;
                     context.highlightedParakeet = temp;
-                    context.eventManager.emit('clickable');
-					context.eventManager.emit('unPause');
+                    context.game.eventManager.emit('clickable');
+					context.game.eventManager.emit('unPause');
                 }, 5 * 1000);
             }
             else {
@@ -403,8 +403,8 @@
                 setTimeout(function () {
                     temp.return(false);
                     para.return(false);
-                    context.eventManager.emit('clickable');
-					context.eventManager.emit('unPause');
+                    context.game.eventManager.emit('clickable');
+					context.game.eventManager.emit('unPause');
                 }, 5 * 1000);
             }
         }
@@ -483,7 +483,7 @@
         this._debugGeneralParams.add(this.game.params._settingsByLevel[globalLevel].generalParameters, "incorrectResponseCountTriggeringSecondRemediation").min(1).max(5).step(1).listen();
         this._debugGeneralParams.add(this.game.params._settingsByLevel[globalLevel].generalParameters, "lives").min(1).max(5).step(1).listen();
 
-        this._debugGlobalParams.add(this.game.params._settingsByLevel[globalLevel].globalRemediation, "parakeetPairs").min(1).max(30).step(1).listen();
+        this._debugGlobalParams.add(this.game.params._settingsByLevel[globalLevel].globalRemediation, "pairsCount").min(1).max(30).step(1).listen();
         this._debugGlobalParams.add(this.game.params._settingsByLevel[globalLevel].globalRemediation, "branchesCount").min(1).max(10).step(1).listen();
 
         this.setLocalPanel();

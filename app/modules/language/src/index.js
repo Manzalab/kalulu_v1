@@ -633,7 +633,7 @@
     **/
     LanguageModule.prototype._selectNotionsForRevision = function _selectNotionsForRevision (notionsListByLesson, lessonNumber) { 
         
-        if (Config.debugLanguageModule) console.log(notionsListByLesson);
+        // if (Config.debugLanguageModule) console.log(notionsListByLesson);
         
         var selectionArray = [];
         
@@ -648,9 +648,9 @@
                 if (!lNotion.hasOwnProperty(id)) continue;
                 
                 var stimulus = lNotion[id];
-                console.log('assessing revision for stimulus ' + stimulus + ' :');
-                console.log(this._getNotionRecord(stimulus));
-                console.log(constants.revisionTreshold);
+                console.log('assessing revision for stimulus ' + stimulus.value + ' :');
+                console.log('user record : ' + this._getNotionRecord(stimulus));
+                console.log('vs. treshold : ' + constants.revisionTreshold);
                 if (this._getNotionRecord(stimulus) < constants.revisionTreshold) {
                     
                     selectionArray.push(stimulus);
@@ -668,8 +668,8 @@
     **/
     LanguageModule.prototype._selectNotionsForDistraction = function _selectNotionsForDistraction (notionsList, lessonNumber, includeCurrentLesson) {
 
-        console.log(notionsList);
-        console.log(lessonNumber);
+        // console.log(notionsList);
+        // console.log(lessonNumber);
         var selectionArray = [];
         var lessonStimuli;
         var stimuliId;
@@ -1050,11 +1050,11 @@
 
     // MEMORY
     LanguageModule.prototype._populatePairingSetupWithGP = function _populatePairingSetupWithGP (progressionNode, params) {
-        // console.log(params);
-        // console.log(progressionNode);
+        console.log(params);
+        console.log(progressionNode);
 
         var lessonNumber = progressionNode.parent.lessonNumber;
-        var nbStimuliToProvide = params.roundsCount; // counter intuitive but we use the roundsCount for the nb of Pairs for this type of game, which has always one round.
+        var nbStimuliToProvide = params.pairsCount; // counter intuitive but we use the roundsCount for the nb of Pairs for this type of game, which has always one round.
         var lGameInitData = {
 
             "discipline" : 'language',
@@ -1075,10 +1075,10 @@
         var firstChoiceGP, secondChoiceGP; // we filter 2 lists : the first with all the GP where user has a big enough score, then a second with GP to be revised.
         firstChoiceGP = this._selectNotionsForDistraction(this._gpListByLesson, lessonNumber, false);
         secondChoiceGP = this._selectNotionsForRevision(this._gpListByLesson, lessonNumber);
-        // console.log("1st choice : ");
-        // console.log(firstChoiceGP);
-        // console.log("2nd choice : ");
-        // console.log(secondChoiceGP);
+        console.log("1st choice : ");
+        console.log(firstChoiceGP);
+        console.log("2nd choice : ");
+        console.log(secondChoiceGP);
         var selectedNotions = _.toArray(progressionNode.targetNotions);
 
         this._selectRandomElements(nbStimuliToProvide - selectedNotions.length, firstChoiceGP, selectedNotions, false);
@@ -1087,13 +1087,15 @@
             this._selectRandomElements((nbStimuliToProvide - selectedNotions.length), secondChoiceGP, selectedNotions, false);
         }
 
-        // console.log("found " + selectedNotions.length + " elements vs. " + nbStimuliToProvide + " expected : ");
-        // console.log(selectedNotions);
+        console.log("found " + selectedNotions.length + " elements vs. " + nbStimuliToProvide + " expected : ");
+        console.log(selectedNotions);
 
         var length = selectedNotions.length;
         for (var i = 0 ; i < length ; i++) {
             lGameInitData.data.rounds[0].steps[0].stimuli.push(StimuliFactory.fromGP(selectedNotions[i], [], false, true));
         }
+
+        if (lGameInitData.data.rounds[0].steps[0].stimuli.length < 2) throw new Error('[LanguageModule] Not enough targets to launch a pairing game');
         console.log(lGameInitData);
         return lGameInitData;
     };
@@ -1124,8 +1126,8 @@
     LanguageModule.prototype._getNotionRecord = function _getNotionRecord (notion, windowSize) {
         
         windowSize = windowSize || constants.scoreWindowSize ;
-        console.log('getting record for notion object :');
-        console.log(notion);
+        // console.log('getting record for notion object :');
+        // console.log(notion);
         if (notion.constructor.name === "GP") {
             if (!this._userProfile.Language.gp[notion.id]) this._userProfile.Language.gp[notion.id] = [];
             return this._computeAverageScore(this._userProfile.Language.gp[notion.id], windowSize);
@@ -1140,11 +1142,11 @@
     };
 
     LanguageModule.prototype._computeAverageScore = function _computeAverageScore (userRecord, windowSize) {
-        console.log(userRecord);
-        console.log(windowSize);
+        // console.log(userRecord);
+        // console.log(windowSize);
         var responseCount = Math.min(windowSize, userRecord.length);
         if (responseCount === 0) return 0;
-        console.log('averaging ' + responseCount + ' latest responses');
+        // console.log('averaging ' + responseCount + ' latest responses');
         var index = userRecord.length - responseCount;
         var latestResults = userRecord.slice(index); // shallow copy
         var sum = 0;
@@ -1152,7 +1154,7 @@
         for (var i = 0 ; i < responseCount; i++) {
             sum += latestResults[i].score;
         }
-        console.log('sum : ' + sum);
+        // console.log('sum : ' + sum);
         return Math.round(sum / responseCount * 100);
     };
 

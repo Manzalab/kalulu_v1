@@ -609,7 +609,7 @@
           var params = {
             gameType                        : progressionNode.activityType, 
             roundsCount                     : params.roundsCount,           // the amount of rounds, (Rafiki will provide one target per round)
-            parakeetPairs                   : (progressionNode.activityType == 'parakeets' && params.parakeetPairs) ? params.parakeetPairs : null,
+            parakeetPairs                   : (progressionNode.activityType == 'parakeets' && params.pairsCount) ? params.pairsCount : null,
             stepDistracterCount             : params.stepDistracterCount,             // 
             available_skills                : this._notionsInLesson[lessonNumber].skills,
             available_shapes                : this._notionsInLesson[lessonNumber].skills,  

@@ -103,7 +103,7 @@
             this.game.eventManager = new EventEmitter();
             this.remediation = new Remediation(this.game);
             this.game.world.bringToTop(this.backgroundTree);
-            this.ui = new Ui(this.game.params.getGlobalParams().parakeetPairs, this.game, false, false, false, true, false);
+            this.ui = new Ui(this.game.params.getGlobalParams().pairsCount, this.game, false, false, false, true, false);
             this.kalulu = new Kalulu(this.game);
             this.game.kalulu = this.kalulu;
 
