@@ -26,11 +26,6 @@
 	    **/
         this.background = null;
         
-        /**
-	     * In charge of all the game events
-	     * @type {EventEmitter}
-	    **/
-        this.eventManager = null;
         
         /**
          * User interface 

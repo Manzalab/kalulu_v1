@@ -11,8 +11,7 @@
 
         Phaser.Group.call(this, game);
 
-        this.eventManager = game.eventManager;
-        this.game = game;
+                this.game = game;
 
         y += 80;
 
@@ -52,7 +51,7 @@
                 this.enabled = false;
                 this.clickable = false;
                 this.crabSprite.animations.play('hit');
-                this.eventManager.emit('clicked', this);
+                this.game.eventManager.emit('clicked', this);
             }
         }, this);
 
@@ -126,20 +125,20 @@
     };
 
     Crab.prototype.initEvents = function () {
-        this.eventManager.on('pause', function () {
+        this.game.eventManager.on('pause', function () {
             this.paused = true;
             
         }, this);
 
-        this.eventManager.on('unPause', function () {
+        this.game.eventManager.on('unPause', function () {
             this.paused = false;
         }, this);
 
-        this.eventManager.on('fail', function (crab) {
+        this.game.eventManager.on('fail', function (crab) {
             if (crab != this && this.enabled) this.reset = true;
         }, this);
 
-        this.eventManager.on('success', function (crab) {
+        this.game.eventManager.on('success', function (crab) {
             if (crab != this && this.enabled) this.reset = true;
         }, this);
     };

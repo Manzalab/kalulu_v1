@@ -33,13 +33,6 @@
 	    **/
         this.ground = null;
 
-        /**
-	     * In charge of all the game events
-         * WARNING : NEEDED FOR UI AND KALULU
-         * Go to init events in kalulu and ui scripts to see the differents events in place
-	     * @type {EventEmitter}
-	    **/
-        this.eventManager = null;
 
         /**
          * User interface 

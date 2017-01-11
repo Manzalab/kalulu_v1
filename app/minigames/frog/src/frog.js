@@ -28,8 +28,7 @@ define([
         this.time = 0.65; //12 is the number of frames of the animations;8 corresponds to the speed of the animations
         this.jumping = false;
         this.outOfScreen = false;
-        this.eventManager = game.eventManager;
-
+        
 
         this.frogSprite = game.add.sprite(0, 0, 'frog', 'FROGGER_Face_Idle01_0000');
         this.frogSprite.anchor.setTo(0.5, 0.5);
@@ -75,11 +74,11 @@ define([
      * @private
      **/
     Frog.prototype.initEvents = function () {
-        this.eventManager.on('pause', function () {
+        this.game.eventManager.on('pause', function () {
             this.paused = true;
         }, this);
 
-        this.eventManager.on('unPause', function () {
+        this.game.eventManager.on('unPause', function () {
             this.paused = false;
         }, this);
     }

@@ -40,8 +40,7 @@
         this.paused = false;
         this.walking = false;
         this.clicked = false;
-        this.eventManager = game.eventManager;
-
+        
         this.antSprite = game.add.sprite(20, 10, 'ant', 'Fourmi_Idle_0000');
         this.antSprite.anchor.setTo(0.5, 0.5);
         this.antSprite.scale.x = scale;
@@ -86,7 +85,7 @@
         this.game.input.onUp.add(function () {
             if (this.clicked) {
                 this.clicked = false;
-                this.eventManager.emit("droppedAnt", this);
+                this.game.eventManager.emit("droppedAnt", this);
             }
         }, this);
 
@@ -120,11 +119,11 @@
      * @private
      **/
     Ant.prototype.initEvents = function () {
-        this.eventManager.on('pause', function () {
+        this.game.eventManager.on('pause', function () {
             this.paused = true;
         }, this);
 
-        this.eventManager.on('unPause', function () {
+        this.game.eventManager.on('unPause', function () {
             this.paused = false;
         }, this);
     }
@@ -202,7 +201,7 @@
             this.y = this.slopeY * this.t + this.oldY;
 
             if (this.t > this.time) {
-                this.eventManager.emit('reachedDestination', this);
+                this.game.eventManager.emit('reachedDestination', this);
                 this.walking = false;
             }
 

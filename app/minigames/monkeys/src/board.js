@@ -9,8 +9,7 @@
     function Board(x, y, game) {
         Phaser.Group.call(this, game);
 
-        this.eventManager = game.eventManager;
-
+        
 
         this.x = x;
         this.y = y;
@@ -40,10 +39,10 @@
     Board.constructor = Board;
 
     Board.prototype.initEvents = function () {
-        this.eventManager.on('pause', function () {
+        this.game.eventManager.on('pause', function () {
         }, this);
 
-        this.eventManager.on('unPause', function () {
+        this.game.eventManager.on('unPause', function () {
         }, this);
     };
 

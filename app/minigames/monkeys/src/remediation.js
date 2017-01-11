@@ -21,8 +21,7 @@
     function Remediation(game) {
         Phaser.Group.call(this, game);
 
-        this.eventManager = game.eventManager;
-
+        
         var data = this.game.pedagogicData;
         this.discipline = data.discipline;
 
@@ -83,14 +82,14 @@
      * Initalize game events
      **/
     Remediation.prototype.initEvents = function () {
-        this.eventManager.on('pause', function () {
+        this.game.eventManager.on('pause', function () {
         }, this);
 
-        this.eventManager.on('unPause', function () {
+        this.game.eventManager.on('unPause', function () {
         }, this);    
 
-        this.eventManager.on('playCorrectSound', function () {
-            this.eventManager.emit('unPause');
+        this.game.eventManager.on('playCorrectSound', function () {
+            this.game.eventManager.emit('unPause');
             if (this.game.discipline != "maths")
                 if (this.framesToWaitBeforeNewSound <= 0) {
                     this.sounds.correctRoundAnswer.play();
@@ -98,16 +97,16 @@
                 }
         }, this);
 
-        this.eventManager.on('playCorrectSoundNoUnPause', function () {
+        this.game.eventManager.on('playCorrectSoundNoUnPause', function () {
             if (this.framesToWaitBeforeNewSound <= 0) {
                 this.sounds.correctRoundAnswer.play();
                 this.framesToWaitBeforeNewSound = Math.floor((this.sounds.correctRoundAnswer.totalDuration + 0.5) * 60);
             }
         }, this);
 
-        this.eventManager.on('swipe', function (object) {
+        this.game.eventManager.on('swipe', function (object) {
             this.timeWithoutClick = 0;
-            this.eventManager.emit('pause');
+            this.game.eventManager.emit('pause');
             object.apparition.close(true, 0);
             object.flyTo(this.trees.kingTree.monkey.x, this.trees.kingTree.monkey.y - 40, 1.4);
             object.clickable = false;
@@ -133,17 +132,17 @@
 
         }, this);
 
-        this.eventManager.on('exitGame', function () {
+        this.game.eventManager.on('exitGame', function () {
             if (this.game.gameConfig.debugPanel) this.clearDebugPanel();
             this.game.rafiki.close();
-            this.eventManager.removeAllListeners();
-            this.eventManager = null;
+            this.game.eventManager.removeAllListeners();
+            this.game.eventManager = null;
             this.game.destroy();
             console.info("PLhaser Game has been destroyed");
             this.game = null;
         }, this);
 
-        this.eventManager.on('replay', function () {
+        this.game.eventManager.on('replay', function () {
             if (this.game.gameConfig.debugPanel) {
                 this.clearDebugPanel();
             }
@@ -286,11 +285,11 @@
             object.tween.stop();
             if (this.game.discipline != 'maths') object.moveTo(this.board.x + this.stepIndex * (this.board.text.fontSize - 40), this.game.height - 100, 0.7);
             else object.moveTo(this.board.x - (Math.floor(this.board.text.text.length / 2) - this.sequence.numberIndex) * (this.board.text.fontSize - 40), this.game.height - 100, 0.7);
-            this.eventManager.once('finishedMoving', function () {
+            this.game.eventManager.once('finishedMoving', function () {
                 object.break();
                 if (this.game.discipline != 'maths') this.board.text.text += this.correctResponses[this.stepIndex].value;
                 else this.board.setTextMaths(this.sequence.sequence);
-                this.eventManager.once('finishedBreaking', function () {
+                this.game.eventManager.once('finishedBreaking', function () {
                     this.sounds.right.play();
                     this.success();
                 }, this);
@@ -302,7 +301,7 @@
             this.trees.kingTree.monkey.sounds.sendWrong.play();
             object.active = false;
             object.flyTo(object.origin.x, object.origin.y, 1);
-            this.eventManager.once('finishedFlying', function () {
+            this.game.eventManager.once('finishedFlying', function () {
                 object.monkeyRef.sounds.receiveHead.play();
                 object.monkeyRef.monkeySprite.animations.play('impact');
                 object.monkeyRef.monkeySprite.animations.currentAnim.onComplete.addOnce(function () {
@@ -324,13 +323,13 @@
 
         if (this.stepIndex < this.correctResponses.length) {
             this.getNewCoconuts();
-            this.eventManager.emit('unPause');
+            this.game.eventManager.emit('unPause');
         }
         else {
             this.stepIndex = 0;
             this.roundIndex++;
             this.triesRemaining--;
-            this.eventManager.emit('success');
+            this.game.eventManager.emit('success');
             if (this.triesRemaining > 0) {
                 if (this.game.discipline === 'language') this.sounds.correctRoundAnswer.play();
                 if (this.game.gameConfig.debugPanel) this.cleanLocalPanel();
@@ -359,7 +358,7 @@
         this.triesRemaining--;
         this.consecutiveMistakes++;
         this.consecutiveSuccess = 0;
-        this.eventManager.emit('fail');
+        this.game.eventManager.emit('fail');
 
         console.log(this.lives)
         console.log(this.triesRemaining)
@@ -382,7 +381,7 @@
                         this.trees.normalTree.monkey[i].coconut.sprite.highlight.visible = true;
                     }
                 }
-                this.eventManager.emit('help'); // listened by Kalulu to start the help speech; pauses the game in kalulu
+                this.game.eventManager.emit('help'); // listened by Kalulu to start the help speech; pauses the game in kalulu
                 if (this.game.gameConfig.debugPanel) this.cleanLocalPanel();
                 this.game.params.decreaseLocalDifficulty();
                 if (this.game.gameConfig.debugPanel) this.setLocalPanel();
@@ -423,7 +422,7 @@
 
             if (this.timeWithoutClick > 60 * 20) {
                 this.timeWithoutClick = 0;
-                this.eventManager.emit('help');
+                this.game.eventManager.emit('help');
             }
         }
     };
@@ -432,11 +431,11 @@
 
         this.game.won = true;
         this.sounds.winGame.play();
-        this.eventManager.emit('offUi');// listened by ui
+        this.game.eventManager.emit('offUi');// listened by ui
 
         this.sounds.winGame.onStop.add(function () {
             this.sounds.winGame.onStop.removeAll();
-            this.eventManager.emit('GameOverWin');//listened by Ui (toucan = kalulu)
+            this.game.eventManager.emit('GameOverWin');//listened by Ui (toucan = kalulu)
             this.saveGameRecord();
         }, this);
     };
@@ -445,11 +444,11 @@
 
         this.game.won = false;
         this.sounds.loseGame.play();
-        this.eventManager.emit('offUi');// listened by ui
+        this.game.eventManager.emit('offUi');// listened by ui
 
         this.sounds.loseGame.onStop.add(function () {
             this.sounds.loseGame.onStop.removeAll();
-            this.eventManager.emit('GameOverLose');// listened by ui
+            this.game.eventManager.emit('GameOverLose');// listened by ui
             this.saveGameRecord();
         }, this);
     };
@@ -632,7 +631,7 @@
 
     Remediation.prototype.skipKalulu = function skipKalulu() {
 
-        this.eventManager.emit("skipKalulu");
+        this.game.eventManager.emit("skipKalulu");
     };
 
     return Remediation;

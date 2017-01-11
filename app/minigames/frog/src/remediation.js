@@ -22,8 +22,7 @@
     function Remediation(game) {
         Phaser.Group.call(this, game);
 
-        this.eventManager = game.eventManager;
-
+        
         this.game = game;
         this.paused = false;
         this.won = false;
@@ -223,7 +222,7 @@
      * Initalize game events
      **/
     Remediation.prototype.initEvents = function () {
-        this.eventManager.on('clicked', function (lillypad) {
+        this.game.eventManager.on('clicked', function (lillypad) {
             lillypad.apparition.close(true, 0);
             if (lillypad.text.text == this.correctResponses[this.stepIndex].value) {
                 this.sounds.right.play();
@@ -235,7 +234,7 @@
             }
             else {
                 this.sounds.wrong.play();
-                this.eventManager.emit('fail');
+                this.game.eventManager.emit('fail');
                 this.fx.hit(lillypad.x, lillypad.y, false);
                 this.sounds.wrong.onStop.add(function () {
                     this.sounds.wrong.onStop.removeAll();
@@ -244,15 +243,15 @@
             }
         }, this);
 
-        this.eventManager.on('pause', function () {
+        this.game.eventManager.on('pause', function () {
             this.paused = true;
         }, this);
 
-        this.eventManager.on('unPause', function () {
+        this.game.eventManager.on('unPause', function () {
             this.paused = false;
         }, this);
 
-        this.eventManager.on('apparition', function (lillypad) {
+        this.game.eventManager.on('apparition', function (lillypad) {
             var value = lillypad.text.text;
             var j = 0;
             while (this.results.data.rounds[this.roundIndex].steps[this.stepIndex].stimuli[j].value != value) { //finds the value in the results to add one apparition
@@ -264,32 +263,32 @@
             lillypad.apparition = apparition;
         }, this);
 
-        this.eventManager.on('playCorrectSound', function () {
-            this.eventManager.emit('unPause');
+        this.game.eventManager.on('playCorrectSound', function () {
+            this.game.eventManager.emit('unPause');
             if (this.framesToWaitBeforeNewSound <= 0 && this.game.discipline != "maths") {
                 this.sounds.correctRoundAnswer.play();
                 this.framesToWaitBeforeNewSound = Math.floor((this.sounds.correctRoundAnswer.totalDuration + 0.5) * 60);
             }
         }, this);
 
-        this.eventManager.on('playCorrectSoundNoUnPause', function () {
+        this.game.eventManager.on('playCorrectSoundNoUnPause', function () {
             if (this.framesToWaitBeforeNewSound <= 0 && this.game.discipline != "maths") {
                 this.sounds.correctRoundAnswer.play();
                 this.framesToWaitBeforeNewSound = Math.floor((this.sounds.correctRoundAnswer.totalDuration + 0.5) * 60);
             }
         }, this);
 
-        this.eventManager.on('exitGame', function () {
+        this.game.eventManager.on('exitGame', function () {
             if (this.game.gameConfig.debugPanel) this.clearDebugPanel();
             this.game.rafiki.close();
-            this.eventManager.removeAllListeners();
-            this.eventManager = null;
+            this.game.eventManager.removeAllListeners();
+            this.game.eventManager = null;
             this.game.destroy();
             console.info("Phaser Game has been destroyed");
             this.game = null;
         }, this);
 
-        this.eventManager.on('replay', function () {
+        this.game.eventManager.on('replay', function () {
             if (this.game.gameConfig.debugPanel) {
                 this.clearDebugPanel();
             }
@@ -318,7 +317,7 @@
         if (this.stepIndex < this.correctResponses.length) {
             this.columns[this.stepIndex].enabled = true;
             this.columns[this.stepIndex].setVisibleText(true);
-            this.eventManager.emit('unPause');
+            this.game.eventManager.emit('unPause');
         }
         else {
             this.successRound();
@@ -456,7 +455,7 @@
             }
             else if (this.consecutiveMistakes === params.incorrectResponseCountTriggeringSecondRemediation) {
 
-                this.eventManager.emit('help'); // listened by Kalulu to start the help speech; pauses the game in kalulu
+                this.game.eventManager.emit('help'); // listened by Kalulu to start the help speech; pauses the game in kalulu
                 if (Config.debugPanel) this.cleanLocalPanel();
                 this.game.params.decreaseLocalDifficulty();
                 if (Config.debugPanel) this.setLocalPanel();
@@ -488,11 +487,11 @@
 
         this.game.won = true;
         this.sounds.winGame.play();
-        this.eventManager.emit('offUi');// listened by ui
+        this.game.eventManager.emit('offUi');// listened by ui
 
         this.sounds.winGame.onStop.add(function () {
             this.sounds.winGame.onStop.removeAll();
-            this.eventManager.emit('GameOverWin');//listened by Ui (toucan = kalulu)
+            this.game.eventManager.emit('GameOverWin');//listened by Ui (toucan = kalulu)
             this.saveGameRecord();
         }, this);
     };
@@ -501,11 +500,11 @@
 
         this.game.won = false;
         this.sounds.loseGame.play();
-        this.eventManager.emit('offUi');// listened by ui
+        this.game.eventManager.emit('offUi');// listened by ui
 
         this.sounds.loseGame.onStop.add(function () {
             this.sounds.loseGame.onStop.removeAll();
-            this.eventManager.emit('GameOverLose');// listened by ui
+            this.game.eventManager.emit('GameOverLose');// listened by ui
             this.saveGameRecord();
         }, this);
     };
@@ -704,7 +703,7 @@
     };
 
     Remediation.prototype.skipKalulu = function skipKalulu() {
-        this.eventManager.emit("skipKalulu");
+        this.game.eventManager.emit("skipKalulu");
     };
 
     return Remediation;

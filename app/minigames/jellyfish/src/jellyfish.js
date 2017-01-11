@@ -31,8 +31,7 @@
         this.paused = false;
         this.spawned = true;
         this.hasExitedScreen = false;
-        this.eventManager = game.eventManager;
-
+        
         var rand = Math.floor(Math.random() * 2 + 1);// Used only to chose between the two jellyfish graph
 
         this.jellyfishSprite = game.add.sprite(0, 0, 'jellyfish' + rand, 'Meduse_Idle_0000');
@@ -85,9 +84,9 @@
                     this.clickable = false;
                     this.paused = true;
                     this.jellyfishSprite.animations.play('hit');
-                    this.eventManager.emit('pause');
+                    this.game.eventManager.emit('pause');
                     this.jellyfishSprite.animations.currentAnim.onComplete.addOnce(function () {
-                        this.eventManager.emit('clicked', this); //listened by Remediation
+                        this.game.eventManager.emit('clicked', this); //listened by Remediation
                     }, this);
                 }
         }, this);
@@ -125,11 +124,11 @@
      * @private
      **/
     Jellyfish.prototype.initEvents = function () {
-        this.eventManager.on('pause', function () {
+        this.game.eventManager.on('pause', function () {
             this.paused = true;
         }, this);
 
-        this.eventManager.on('unPause', function () {
+        this.game.eventManager.on('unPause', function () {
             this.paused = false;
         }, this);
     };

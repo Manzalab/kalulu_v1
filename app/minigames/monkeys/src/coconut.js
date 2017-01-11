@@ -12,8 +12,7 @@
     function Coconut(x, y, game) {
         Phaser.Group.call(this, game);
 
-        this.eventManager = game.eventManager;
-
+        
         this.origin = {};
 
         this.x = x;
@@ -80,11 +79,11 @@
     Coconut.constructor = Coconut;
 
     Coconut.prototype.initEvents = function () {
-        this.eventManager.on('pause', function () {
+        this.game.eventManager.on('pause', function () {
             this.clickable = false;
         }, this);
 
-        this.eventManager.on('unPause', function () {
+        this.game.eventManager.on('unPause', function () {
             this.clickable = true;
         }, this);
     };
@@ -135,7 +134,7 @@
             this.tween = this.game.add.tween(this);
             this.tween.to({ y: this.y + 10 }, 450, Phaser.Easing.Default, true, 0, -1, true);
             this.tween.start();
-            this.eventManager.emit('finishedMoving', this);
+            this.game.eventManager.emit('finishedMoving', this);
         }, this);
 
         this.parent.game.world.bringToTop(this);
@@ -148,7 +147,7 @@
             this.x = this.slopeX * this.t + this.oldX;
 
             if (this.t > this.time) {
-                this.eventManager.emit('finishedFlying', this);
+                this.game.eventManager.emit('finishedFlying', this);
                 this.flying = false;
             }
 

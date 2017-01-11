@@ -12,8 +12,7 @@
         Phaser.Group.call(this, game);
 
         this.game = game;
-        this.eventManager = game.eventManager;
-
+        
         // Initialisation
 
         this.fx = new Fx(game);
@@ -126,34 +125,34 @@
     };
 
     Remediation.prototype.initEvents = function () {
-        this.eventManager.on('clicked', this.onClickOnCrab, this);
+        this.game.eventManager.on('clicked', this.onClickOnCrab, this);
 
-        this.eventManager.on('playCorrectSound', function () {
-            this.eventManager.emit('unPause');
+        this.game.eventManager.on('playCorrectSound', function () {
+            this.game.eventManager.emit('unPause');
             if (this.timerCorrectResponse <= 0) {
                 this.sounds.correctRoundAnswer.play();
                 this.timerCorrectResponse = Math.floor((this.sounds.correctRoundAnswer.totalDuration + 0.5) * 60);
             }
         }, this);
 
-        this.eventManager.on('playCorrectSoundNoUnPause', function () {
+        this.game.eventManager.on('playCorrectSoundNoUnPause', function () {
             if (this.timerCorrectResponse <= 0) {
                 this.sounds.correctRoundAnswer.play();
                 this.timerCorrectResponse = Math.floor((this.sounds.correctRoundAnswer.totalDuration + 0.5) * 60);
             }
         }, this);
 
-        this.eventManager.on('pause', function () {
+        this.game.eventManager.on('pause', function () {
             this.paused = true;
         }, this);
 
-        this.eventManager.on('unPause', function () {
+        this.game.eventManager.on('unPause', function () {
             this.paused = false;
         }, this);       
 
-        this.eventManager.on('exitGame', function () {
-            this.eventManager.removeAllListeners();
-            this.eventManager = null;
+        this.game.eventManager.on('exitGame', function () {
+            this.game.eventManager.removeAllListeners();
+            this.game.eventManager = null;
             this.game.rafiki.close();
             if (this.game.gameConfig.debugPanel) {
                 this.clearDebugPanel();
@@ -161,7 +160,7 @@
             this.game.destroy();
         }, this);
 
-        this.eventManager.on('replay', this.onClickOnReplay, this);
+        this.game.eventManager.on('replay', this.onClickOnReplay, this);
     };
 
     Remediation.prototype.initCrabs = function (game) {
@@ -213,14 +212,14 @@
         this.game.world.bringToTop(this.fx);
 
         if (crab.isCorrectResponse) {
-            this.eventManager.emit('success', crab);
+            this.game.eventManager.emit('success', crab);
             this.fx.hit(crab.crabSprite.world.x, crab.crabSprite.world.y, true);
             this.sounds.right.play();
             this.success();
             crab.success = true;
         }
         else {
-            this.eventManager.emit('fail', crab);
+            this.game.eventManager.emit('fail', crab);
             this.fx.hit(crab.crabSprite.world.x, crab.crabSprite.world.y, false);
             this.sounds.wrong.play();
             this.fail();
@@ -246,7 +245,7 @@
 
             setTimeout(function () {
                 this.initRound(this.currentRound);
-                this.eventManager.emit('playCorrectSound');
+                this.game.eventManager.emit('playCorrectSound');
             }.bind(this), 500);
         }
         else {
@@ -265,7 +264,7 @@
         if (this.lives > 0) {
             if (this.triesRemaining > 0) {
                 if (this.consecutiveMistakes === params.incorrectResponseCountTriggeringSecondRemediation) {
-                    this.eventManager.emit('help');
+                    this.game.eventManager.emit('help');
                     this.highlightNextSpawn = true;
                     for (var i = 0; i < this.crabs.length; i++) {
                         if (this.crabs[i].isCorrectResponse) {
@@ -277,7 +276,7 @@
                     if (this.game.gameConfig.debugPanel) this.setLocalPanel();
                 }
                 else {
-                    this.eventManager.emit('playCorrectSound');
+                    this.game.eventManager.emit('playCorrectSound');
                 }
             }
             else {
@@ -412,7 +411,7 @@
 
             if (this.timeWithoutClick > 60 * 20) {
                 this.timeWithoutClick = 0;
-                this.eventManager.emit('help');
+                this.game.eventManager.emit('help');
             }
 
         }
@@ -422,11 +421,11 @@
     Remediation.prototype.gameOverWon = function gameOverWon() {
         this.game.won = true;
         this.sounds.winGame.play();
-        this.eventManager.emit('offUi');// listened by ui to disble UI Buttons and add a black overlay
+        this.game.eventManager.emit('offUi');// listened by ui to disble UI Buttons and add a black overlay
 
         this.sounds.winGame.onStop.add(function () {
             this.sounds.winGame.onStop.removeAll();
-            this.eventManager.emit('GameOverWin'); // listened by UI to disable kaluluButton and by Kalulu to start final Speech
+            this.game.eventManager.emit('GameOverWin'); // listened by UI to disable kaluluButton and by Kalulu to start final Speech
             this.saveGameRecord();
         }, this);
     };
@@ -434,11 +433,11 @@
     Remediation.prototype.gameOverLose = function gameOverLose() {
         this.game.won = false;
         this.sounds.loseGame.play();
-        this.eventManager.emit('offUi');// listened by ui to disble UI Buttons and add a black overlay
+        this.game.eventManager.emit('offUi');// listened by ui to disble UI Buttons and add a black overlay
 
         this.sounds.loseGame.onStop.add(function () {
             this.sounds.loseGame.onStop.removeAll();
-            this.eventManager.emit('GameOverLose'); // listened by UI to disable kaluluButton and by Kalulu to start final Speech
+            this.game.eventManager.emit('GameOverLose'); // listened by UI to disable kaluluButton and by Kalulu to start final Speech
             this.saveGameRecord();
         }, this);
     };
@@ -605,7 +604,7 @@
 
     Remediation.prototype.skipKalulu = function skipKalulu() {
 
-        this.eventManager.emit("skipKalulu");
+        this.game.eventManager.emit("skipKalulu");
     };
 
     module.exports = Remediation;

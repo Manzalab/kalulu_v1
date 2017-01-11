@@ -16,7 +16,6 @@
         this.background = null;
         this.remediation = null;
         this.ui = null;
-        this.eventManager = null;
         this.kalulu = null;
     }
 

@@ -41,8 +41,7 @@
         this.clickable = true;
         this.paused = false;
         this.spawned = true;
-        this.eventManager = game.eventManager;
-
+        
         this.turtleSprite = game.add.sprite(0, 0, 'turtle', 'Tortue_nage01_0000');
         this.turtleSprite.anchor.setTo(0.5, 0.5);
         this.turtleSprite.scale.x = scale;
@@ -171,11 +170,11 @@
      * @private
      **/
     Turtle.prototype.initEvents = function () {
-        this.eventManager.on('pause', function () {
+        this.game.eventManager.on('pause', function () {
             this.paused = true;
         }, this);
 
-        this.eventManager.on('unPause', function () {
+        this.game.eventManager.on('unPause', function () {
             if (this.spawned)
                 this.paused = false;
         }, this);
@@ -201,7 +200,7 @@
         this.turtleSprite.animations.play('hit');
         this.warning.toggle(false);
         this.turtleSprite.animations.currentAnim.onComplete.add(function () {
-            this.eventManager.emit('destroyTurtle', this);
+            this.game.eventManager.emit('destroyTurtle', this);
             this.visible = false;
         }, this);
     }
@@ -242,17 +241,17 @@
 
             if (this.x < -this.turtleSprite.width / 2) {
                 if ((this.vAngle <= 45 && this.vAngle >= 0) || (this.vAngle >= 315 && this.vAngle <= 360)) {
-                    this.eventManager.emit('destroyTurtle', this);
+                    this.game.eventManager.emit('destroyTurtle', this);
                 }
             }
             else if (this.x > this.gameRef.width + this.turtleSprite.width / 2 && this.vAngle <= 225 && this.vAngle >= 135) {
-                this.eventManager.emit('destroyTurtle', this);
+                this.game.eventManager.emit('destroyTurtle', this);
             }
             else if (this.y < -this.turtleSprite.height / 2 && this.vAngle <= 315 && this.vAngle >= 225) {
-                this.eventManager.emit('destroyTurtle', this);
+                this.game.eventManager.emit('destroyTurtle', this);
             }
             else if (this.y > this.gameRef.height + this.turtleSprite.height / 2 && this.vAngle <= 135 && this.vAngle >= 45) {
-                this.eventManager.emit('destroyTurtle', this);
+                this.game.eventManager.emit('destroyTurtle', this);
             }
 
         }

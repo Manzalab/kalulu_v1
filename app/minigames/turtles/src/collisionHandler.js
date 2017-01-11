@@ -13,8 +13,7 @@
 	**/
     function CollisionHandler(objectArray, island, game) {
         Phaser.Group.call(this, game);
-        this.eventManager = game.eventManager;
-        this.gameRef = game;
+                this.gameRef = game;
 
         this.paused = false;
 
@@ -33,11 +32,11 @@
      * @private
      **/
     CollisionHandler.prototype.initEvents = function () {
-        this.eventManager.on('pause', function () {
+        this.game.eventManager.on('pause', function () {
             this.paused = true;
         }, this);
 
-        this.eventManager.on('unPause', function () {
+        this.game.eventManager.on('unPause', function () {
             this.paused = false;
         }, this);
 
@@ -78,13 +77,13 @@
     }
 
     CollisionHandler.prototype.collisionTurtleHandler = function (object1, object2) {
-        this.eventManager.emit('collisionTurtle', object1.parent, object2.parent);
+        this.game.eventManager.emit('collisionTurtle', object1.parent, object2.parent);
         object1.parent.hit();
         object2.parent.hit();
     }
 
     CollisionHandler.prototype.collisionIslandHandler = function (object1) {
-        this.eventManager.emit('collisionIsland', object1.parent);
+        this.game.eventManager.emit('collisionIsland', object1.parent);
         object1.parent.hit();
     }
 
