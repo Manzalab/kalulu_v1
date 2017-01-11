@@ -120,14 +120,17 @@ var SkillTree = function(el,depth, tries, params){
 
 			subarray = recognition_types
 
-			if(params.gameType == 'crabs'){
+			if( (params.gameType == 'crabs' || params.gameType == 'jellyfish') && this.number > 6){
 				
 				subarray = _.without(subarray,recognition_types[0])
 				subarray = _.without(subarray,recognition_types[1])
 				
 				console.log('filter sub_array stimuliToStimuli target for '+params.gameType)
-				console.log(subarray)
+				console.log(subarray.length+' for value '+this.number)
 			}
+			
+							console.log(subarray.length+' for value '+this.number)
+
 			
 
 

@@ -208,6 +208,9 @@
             if(currentProgressionNode._activityType=='ants'){
               this._processAntsResults(currentProgressionNode, results, hasWon);
             }
+            else if(currentProgressionNode._activityType[0]=='fish'){
+              this._processFishResults(currentProgressionNode, results, hasWon);
+            }
             else{
                 this._processCountingResults(currentProgressionNode, results, hasWon);
 
@@ -236,15 +239,15 @@
     MathsModule.prototype._processAntsResults = function _processAntsResults(currentProgressionNode, results, hasWon) {
 
         if (results.hasWon) {
-            console.log('flawless case ants')
+            console.log('results.hasWon ants')
             currentProgressionNode.isCompleted = true;
         }
-
     }
-     MathsModule.prototype._processFishResults = function _processFishResults(currentProgressionNode, results, hasWon) {
+
+    MathsModule.prototype._processFishResults = function _processFishResults(currentProgressionNode, results, hasWon) {
 
         if (results.hasWon) {
-            console.log('flawless case ants')
+            console.log('results.hasWon fishs')
             currentProgressionNode.isCompleted = true;
         }
 
@@ -651,14 +654,15 @@
           // console.log('score?')
           var score ={}
           if(this._userProfile){
-          score = this._userProfile.Maths.numbers;
+            score = this._userProfile.Maths.numbers;
           }
           //console.log(score)
           console.log(this._notionsInLesson[lessonNumber].numbers)
           console.log(this._notionsInLesson[lessonNumber].skills)
 
           var available_numbers = this._notionsInLesson[lessonNumber].numbers;
-
+          console.log(lessonNumber)
+          console.log(available_numbers)
           var game = new Kalulu_maths(available_numbers,score,this._numberList, params, staticData);
           if(!game.data){
             // alert('finished !')
@@ -953,9 +957,10 @@ var record_not_av   = [
                 });
             }
             refined.data.rounds[roundIndex - 1].steps[0].stimuli.push({
-               id         : row["SYMBOLIC NUMBER"],
-               value      : row["SYMBOLIC NUMBER"],
-               soundPath  : 'assets/sounds/maths/number_'+row["SYMBOLIC NUMBER"]+'.ogg'
+               id             : row["SYMBOLIC NUMBER"],
+               value          : row["SYMBOLIC NUMBER"],
+               correctResponse: true,
+               soundPath      : 'assets/sounds/maths/number_'+row["SYMBOLIC NUMBER"]+'.ogg'
 
            });
         }

@@ -47,6 +47,8 @@ var Kalulu_maths = function(available_numbers, score, numbers_data__, params___,
             stepDistracterCount             : params___.stepDistracterCount,             // 
             groupGameType  					: params___.groupGameType, // 'recognition'    
       		language 						: config.language,
+      		parakeetPairs					: params___.parakeetPairs ? params___.parakeetPairs : null
+
       }
 
 
@@ -111,46 +113,44 @@ var loop_on_array = params[loop_on]
 		var temp_rounds_results = pool_loop(tries)
 		//console.log(temp_rounds_results)
 		//// patch 
-		if(temp_rounds_results.length == 0){
-			console.log('Score completed, no round anymore, loop on already valid targets (force)')
-			temp_rounds_results = pool_loop(2)
+
+
+		if(params.gameType == 'parakeets'){
+
+
+			console.log('params___.parakeetPairs ='+params.parakeetPairs)
+			console.log(temp_rounds_results.length)
+
+			if(temp_rounds_results.length < params.parakeetPairs){
+				console.log('not enough parakeets')
+				var temp_rounds_results = pool_loop(2)
+				console.log('parakeets after re-pool:'+temp_rounds_results.length)
+			}
+
+			var mixed_steps = {steps: [ { "type": "mixed", "stimuli": []}]}
+
+			_.each(temp_rounds_results, function(r, ri){
+				if(ri<params.parakeetPairs ){
+				 	console.log(r.steps[0].stimuli)
+					// parakeetPairs
+					mixed_steps.steps[0].stimuli.push(r.steps[0].stimuli[0])
+				}	
+			})
+			game.data.rounds.push(mixed_steps)
+
+
+		}
+		else{
+
+			if(temp_rounds_results.length == 0){
+				console.log('Score completed, no round anymore, loop on already valid targets (force)')
+				temp_rounds_results = pool_loop(2)
 				console.log('Score completed force results'+temp_rounds_results.length)
 
-			//out.tries_results[tries] = temp_rounds_results
-			// out.forced_pool = 2		
-		}
-		
-		//if(temp_rounds_results.length == 0){
-			
-		//		var end = {'norounds': true}	
-			//	return end
-		//}
-		//else{
-
-
-			if(params___.gameType == 'parakeets'){
-
-				/* MIXING STEPS (from each number) to a single round with multi STEPS */
-				// PICKS first index stimuli for each..
-				// PUSH to round[0].steps
-				console.log('parakeets mixin function =!!')
-				var mixed_steps = {steps: [ { "type": "audioToNonSymbolic", "stimuli": []}]}
-				console.log(params___.parakeetPairs)
-				_.each(temp_rounds_results, function(r){
-
-					if(mixed_steps.steps[0].stimuli.length < params___.parakeetPairs){
-						mixed_steps.steps[0].stimuli.push(r.steps[0].stimuli[0])
-
-					}
-				
-				
-				})
-				game.data.rounds.push(mixed_steps)
-
+				//out.tries_results[tries] = temp_rounds_results
+				// out.forced_pool = 2		
 			}
-			else{
-
-				while(game.data.rounds.length < params.roundsCount  ){ //  && tries < 4
+			while(game.data.rounds.length < params.roundsCount  ){ //  && tries < 4
 					tries++
 					console.log(params.roundsCount)
 					console.log(temp_rounds_results)
@@ -158,12 +158,11 @@ var loop_on_array = params[loop_on]
 					_.each(temp_rounds_results, function(r){
 						game.data.rounds.push(r)
 					})	
-				}
 			}
-		//}
-		// console.log('try round lenght : '+temp_rounds_results.length)
+			game.data.rounds = _.sample(game.data.rounds, params.roundsCount)
+		}
+
 	// 
-	///game.data.rounds = _.sample(game.data.rounds, params.roundsCount)
 	console.log('rounds length : '+game.data.rounds.length)
 	return game;
 }

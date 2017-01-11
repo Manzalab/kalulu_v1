@@ -67,7 +67,7 @@ var record_not_av   = [
                 'rights': {'xzero':record,'xone':record,'xtwo':record, 'xthree': record, 'xfour': record, 'xfive': record, 'xsix':record, 'xseven': record, 'xeight': record, 'xnine': record, 'xten':record}
                }
           },
-          'recognition': {'audioToNonSymbolic': [], 'nonSymbolicToSymbolic':[], 'audio_symbolic':[]}, 
+          'recognition': {'audioToNonSymbolic': record, 'nonSymbolicToSymbolic':record, 'audio_symbolic':record}, 
           'decimal'  : {'audioToNonSymbolic': record, 'nonSymbolicToSymbolic':record, 'audio_symbolic':[]}  
           
       },
