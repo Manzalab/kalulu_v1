@@ -28,7 +28,7 @@
 		
 		// Reference auto-built parts :
 		this._backgroundContainer = this.getChildByName("mcBurrowScreenBg");
-        this._background = new AnimBackground("BurrowScreenBg", 6);
+        this._background = new AnimBackground("BurrowScreenBg", 2);
 
         this._backgroundContainer.addChild(this._background);
         this._background.position.set(0,0);

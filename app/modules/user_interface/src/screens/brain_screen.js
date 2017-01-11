@@ -31,7 +31,7 @@ define([
         
         // Reference auto-built parts :
         this._backgroundContainer = this.getChildByName("mcBrainScreenBg");
-        this._background = new AnimBackground("NightGardenBg", 6);
+        this._background = new AnimBackground("NightGardenBg", 2);
 
         this._backgroundContainer.addChild(this._background);
         this._background.position.set(0,0);
