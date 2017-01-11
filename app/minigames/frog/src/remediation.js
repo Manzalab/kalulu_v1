@@ -39,37 +39,11 @@
 
 
         if (Config.globalVars) window.frogger.frogger = this.frogger;
-
-        if (Config.debugPanel) {
-
-            this.debug = new Dat.GUI(/*{ autoPlace: false }*/);
-
-            var globalLevel = this.game.params.globalLevel;
-
-            var infoPanel = this.debug.addFolder("Level Info");
-
-            var generalParamsPanel = this.debug.addFolder("General Parameters");
-            var globalParamsPanel = this.debug.addFolder("Global Parameters");
-            this._localParamsPanel = this.debug.addFolder("Local Parameters");
-
-            var debugPanel = this.debug.addFolder("Debug Functions");
-
-            infoPanel.add(this.game.params, "_currentGlobalLevel").listen();
-            infoPanel.add(this.game.params, "_currentLocalRemediationStage").listen();
-
-
-            generalParamsPanel.add(this.game.params._settingsByLevel[globalLevel].generalParameters, "incorrectResponseCountTriggeringFirstRemediation").min(1).max(5).step(1).listen();
-            generalParamsPanel.add(this.game.params._settingsByLevel[globalLevel].generalParameters, "incorrectResponseCountTriggeringSecondRemediation").min(1).max(5).step(1).listen();
-            generalParamsPanel.add(this.game.params._settingsByLevel[globalLevel].generalParameters, "lives").min(1).max(5).step(1).listen();
-            generalParamsPanel.add(this.game.params._settingsByLevel[globalLevel].generalParameters, "capitalLettersShare").min(0).max(1).step(0.05).listen();
-
-            globalParamsPanel.add(this.game.params._settingsByLevel[globalLevel].globalRemediation, "lillypadsPerColumn").min(1).max(5).step(1).listen();
-
-            this.setLocalPanel();
-
-            debugPanel.add(this, "AutoWin");
-            debugPanel.add(this, "AutoLose");
+        
+        if (this.game.gameConfig.debugPanel) {
+            this.setupDebugPanel();
         }
+
 
         this.initSounds(game);
         this.initEvents();
@@ -104,7 +78,7 @@
         // Setting up the recording of the game for Rafiki
         this.game.record = new this.game.rafiki.MinigameDstRecord();
 
-        this.results = this.game.pedagogicData.data; // for convenience we reference also the pedagogicData object under the name 'results' because we will add response data directly on it.
+        this.results = this.game.pedagogicData; // for convenience we reference also the pedagogicData object under the name 'results' because we will add response data directly on it.
         this.consecutiveMistakes = 0;
         this.consecutiveSuccess = 0;
         this.triesRemaining = params.getGlobalParams().totalTriesCount;
@@ -281,12 +255,12 @@
         this.eventManager.on('apparition', function (lillypad) {
             var value = lillypad.text.text;
             var j = 0;
-            while (this.results.rounds[this.roundIndex].steps[this.stepIndex].stimuli[j].value != value) { //finds the value in the results to add one apparition
+            while (this.results.data.rounds[this.roundIndex].steps[this.stepIndex].stimuli[j].value != value) { //finds the value in the results to add one apparition
                 j++;
             }
-            var apparition = new this.game.rafiki.StimulusApparition(this.results.rounds[this.roundIndex].steps[this.stepIndex].stimuli[j].correctResponse);
+            var apparition = new this.game.rafiki.StimulusApparition(this.results.data.rounds[this.roundIndex].steps[this.stepIndex].stimuli[j].correctResponse);
 
-            this.results.rounds[this.roundIndex].steps[this.stepIndex].stimuli[j].apparitions.push(apparition);
+            this.results.data.rounds[this.roundIndex].steps[this.stepIndex].stimuli[j].apparitions.push(apparition);
             lillypad.apparition = apparition;
         }, this);
 
@@ -306,25 +280,25 @@
         }, this);
 
         this.eventManager.on('exitGame', function () {
+            if (this.game.gameConfig.debugPanel) this.clearDebugPanel();
+            this.game.rafiki.close();
             this.eventManager.removeAllListeners();
             this.eventManager = null;
-            if (this.game.gameConfig.debugPanel) {
-                this.clearDebugPanel();
-            }
-            this.game.rafiki.close();
             this.game.destroy();
-
+            console.info("Phaser Game has been destroyed");
+            this.game = null;
         }, this);
 
         this.eventManager.on('replay', function () {
             if (this.game.gameConfig.debugPanel) {
                 this.clearDebugPanel();
             }
+            
             this.game.eventManager.removeAllListeners();
-            this.game.eventManager = null;
+            this.game.eventManager = undefined;            
             this.game.state.start('Setup');
         }, this);
-    }
+    };
 
     /**
      * 
@@ -542,11 +516,76 @@
     };
 
     // DEBUG
+
+
+    
+    Remediation.prototype.setupDebugPanel = function setupDebugPanel() {
+            
+        if (this.game.debugPanel) {
+            this.debugPanel = this.game.debugPanel;
+            this.rafikiDebugPanel = true;
+        }
+        else {
+            this.debugPanel = new Dat.GUI();
+            this.rafikiDebugPanel = false;
+        }
+
+        var globalLevel = this.game.params.globalLevel;
+
+        this.debugFolderNames = {
+            info      : "Level Info",
+            general   : "General Parameters",
+            global    : "Global Parameters",
+            local     : "Local Parameters",
+            functions : "Debug Functions",
+        };
+        
+        this._debugInfo          = this.debugPanel.addFolder(this.debugFolderNames.info);
+        this._debugGeneralParams = this.debugPanel.addFolder(this.debugFolderNames.general);
+        this._debugGlobalParams  = this.debugPanel.addFolder(this.debugFolderNames.global);
+        this._debugLocalParams   = this.debugPanel.addFolder(this.debugFolderNames.local);
+        this._debugFunctions     = this.debugPanel.addFolder(this.debugFolderNames.functions);
+        
+        this._debugInfo.add(this.game.params, "_currentGlobalLevel").listen();
+        this._debugInfo.add(this.game.params, "_currentLocalRemediationStage").listen();
+
+        // SPECIFIC
+        this._debugGeneralParams.add(this.game.params._settingsByLevel[globalLevel].generalParameters, "incorrectResponseCountTriggeringFirstRemediation").min(1).max(5).step(1).listen();
+        this._debugGeneralParams.add(this.game.params._settingsByLevel[globalLevel].generalParameters, "incorrectResponseCountTriggeringSecondRemediation").min(1).max(5).step(1).listen();
+        this._debugGeneralParams.add(this.game.params._settingsByLevel[globalLevel].generalParameters, "lives").min(1).max(5).step(1).listen();
+        this._debugGeneralParams.add(this.game.params._settingsByLevel[globalLevel].generalParameters, "capitalLettersShare").min(0).max(1).step(0.05).listen();
+
+        this._debugGlobalParams.add(this.game.params._settingsByLevel[globalLevel].globalRemediation, "lillypadsPerColumn").min(1).max(5).step(1).listen();
+
+        this.setLocalPanel();
+        // END OF SPECIFIC
+
+
+        this._debugFunctions.add(this, "AutoWin");
+        this._debugFunctions.add(this, "AutoLose");
+        this._debugFunctions.add(this, "skipKalulu");
+        this._debugFunctions.open();
+    };
+
+    Remediation.prototype.clearDebugPanel = function clearDebugPanel () {
+        if(this.rafikiDebugPanel) {
+            this.debugPanel.removeFolder(this.debugFolderNames.info);
+            this.debugPanel.removeFolder(this.debugFolderNames.general);
+            this.debugPanel.removeFolder(this.debugFolderNames.global);
+            this.debugPanel.removeFolder(this.debugFolderNames.local);
+            this.debugPanel.removeFolder(this.debugFolderNames.functions);
+        }
+        else {
+            this.debugPanel.destroy();
+        }
+    };
+
+
     Remediation.prototype.cleanLocalPanel = function cleanLocalPanel() {
 
-        for (var element in this._localParamsPanel.items) {
-            if (!this._localParamsPanel.items.hasOwnProperty(element)) continue;
-            this._localParamsPanel.remove(this._localParamsPanel.items[element]);
+        for (var element in this._debugLocalParams.items) {
+            if (!this._debugLocalParams.items.hasOwnProperty(element)) continue;
+            tthis._debugLocalParams.remove(this._debugLocalParams.items[element]);
         }
     };
 
@@ -555,10 +594,10 @@
         var globalLevel = this.game.params.globalLevel;
         var localStage = this.game.params.localRemediationStage;
 
-        this._localParamsPanel.items = {};
-        this._localParamsPanel.items.param1 = this._localParamsPanel.add(this.game.params._settingsByLevel[globalLevel].localRemediation[localStage], "minimumCorrectStimuliOnColumn").min(0).max(20).step(1).listen();
-        this._localParamsPanel.items.param2 = this._localParamsPanel.add(this.game.params._settingsByLevel[globalLevel].localRemediation[localStage], "correctResponsePercentage").min(0).max(1).step(0.1).listen();
-        this._localParamsPanel.items.param4 = this._localParamsPanel.add(this.game.params._settingsByLevel[globalLevel].localRemediation[localStage], "speed").min(1).max(5).step(0.5).listen();
+        this._debugLocalParams.items = {};
+        this._debugLocalParams.items.param1 = this._debugLocalParams.add(this.game.params._settingsByLevel[globalLevel].localRemediation[localStage], "minimumCorrectStimuliOnColumn").min(0).max(20).step(1).listen();
+        this._debugLocalParams.items.param2 = this._debugLocalParams.add(this.game.params._settingsByLevel[globalLevel].localRemediation[localStage], "correctResponsePercentage").min(0).max(1).step(0.1).listen();
+        this._debugLocalParams.items.param4 = this._debugLocalParams.add(this.game.params._settingsByLevel[globalLevel].localRemediation[localStage], "speed").min(1).max(5).step(0.5).listen();
     };
 
     /**
@@ -573,11 +612,11 @@
         var apparitionStats;
         var roundsCount, stepsCount, stimuliCount, currentRound, currentStep, currentStimulus;
 
-        roundsCount = this.results.rounds.length;
+        roundsCount = this.results.data.rounds.length;
 
         for (var i = 0 ; i < roundsCount ; i++) {
 
-            currentRound = this.results.rounds[i];
+            currentRound = this.results.data.rounds[i];
             currentRound.word.stats = {
                 apparitionTime: Date.now() - 10000,
                 exitTime: Date.now(),
@@ -588,12 +627,12 @@
 
             for (var j = 0 ; j < stepsCount ; j++) {
 
-                currentStep = this.results.rounds[i].steps[j];
+                currentStep = this.results.data.rounds[i].steps[j];
                 stimuliCount = currentStep.stimuli.length;
 
                 for (var k = 0 ; k < stimuliCount ; k++) {
 
-                    currentStimulus = this.results.rounds[i].steps[j].stimuli[k];
+                    currentStimulus = this.results.data.rounds[i].steps[j].stimuli[k];
 
                     apparitionStats = {
                         apparitionTime: Date.now() - 3000,
@@ -613,7 +652,7 @@
         }
 
         this.won = true;
-        this.eventManager.emit("exitGame");
+        this.gameOverWin();
     };
 
     Remediation.prototype.AutoLose = function LoseGame() {
@@ -621,11 +660,11 @@
         var apparitionStats;
         var roundsCount, stepsCount, stimuliCount, currentRound, currentStep, currentStimulus;
 
-        roundsCount = this.results.rounds.length;
+        roundsCount = this.results.data.rounds.length;
 
         for (var i = 0 ; i < roundsCount ; i++) {
 
-            currentRound = this.results.rounds[i];
+            currentRound = this.results.data.rounds[i];
             currentRound.word.stats = {
                 apparitionTime: Date.now() - 20000,
                 exitTime: Date.now(),
@@ -636,12 +675,12 @@
 
             for (var j = 0 ; j < stepsCount ; j++) {
 
-                currentStep = this.results.rounds[i].steps[j];
+                currentStep = this.results.data.rounds[i].steps[j];
                 stimuliCount = currentStep.stimuli.length;
 
                 for (var k = 0 ; k < stimuliCount ; k++) {
 
-                    currentStimulus = this.results.rounds[i].steps[j].stimuli[k];
+                    currentStimulus = this.results.data.rounds[i].steps[j].stimuli[k];
 
                     apparitionStats = {
                         apparitionTime: Date.now() - 3000,
@@ -661,7 +700,11 @@
         }
 
         this.won = false;
-        this.eventManager.emit('exitGame');
+        this.gameOverLose();
+    };
+
+    Remediation.prototype.skipKalulu = function skipKalulu() {
+        this.eventManager.emit("skipKalulu");
     };
 
     return Remediation;
