@@ -6,5 +6,5 @@
     "skipKaluluHelp" : false, 
     "skipKaluluFinal" : false, 
     "debugPanel" : true,
-    "globalVars" : false
+    "globalVars" : true
 }

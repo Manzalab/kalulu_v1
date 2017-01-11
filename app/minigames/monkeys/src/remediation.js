@@ -46,35 +46,9 @@
 
         if (this.game.gameConfig.debugPanel) {
 
-            this.debug = new Dat.GUI(/*{ autoPlace: false }*/);
-
-            var globalLevel = this.game.params.globalLevel;
-
-            var infoPanel = this.debug.addFolder("Level Info");
-
-            var generalParamsPanel = this.debug.addFolder("General Parameters");
-            var globalParamsPanel = this.debug.addFolder("Global Parameters");
-            this._localParamsPanel = this.debug.addFolder("Local Parameters");
-
-            var debugPanel = this.debug.addFolder("Debug Functions");
-
-            infoPanel.add(this.game.params, "_currentGlobalLevel").listen();
-            infoPanel.add(this.game.params, "_currentLocalRemediationStage").listen();
-
-
-            generalParamsPanel.add(this.game.params._settingsByLevel[globalLevel].generalParameters, "incorrectResponseCountTriggeringFirstRemediation").min(1).max(5).step(1).listen();
-            generalParamsPanel.add(this.game.params._settingsByLevel[globalLevel].generalParameters, "incorrectResponseCountTriggeringSecondRemediation").min(1).max(5).step(1).listen();
-            generalParamsPanel.add(this.game.params._settingsByLevel[globalLevel].generalParameters, "lives").min(1).max(5).step(1).listen();
-            generalParamsPanel.add(this.game.params._settingsByLevel[globalLevel].generalParameters, "capitalLettersShare").min(0).max(1).step(0.05).listen();
-
-            globalParamsPanel.add(this.game.params._settingsByLevel[globalLevel].globalRemediation, "monkeyOnScreen").min(1).max(4).step(1).listen();
-
-            this.setLocalPanel();
-
-            debugPanel.add(this, "AutoWin");
-            debugPanel.add(this, "AutoLose");
-            debugPanel.add(this, "skipKalulu");
+            this.setupDebugPanel();
         }
+
         this.initSounds(game);
         this.initEvents();
 
@@ -160,21 +134,21 @@
         }, this);
 
         this.eventManager.on('exitGame', function () {
+            if (this.game.gameConfig.debugPanel) this.clearDebugPanel();
+            this.game.rafiki.close();
             this.eventManager.removeAllListeners();
             this.eventManager = null;
-            this.game.rafiki.close();
             this.game.destroy();
-            if (this.debug) {
-                this.debug.destroy();
-                this.debug = null;
-            }
+            console.info("PLhaser Game has been destroyed");
+            this.game = null;
         }, this);
 
         this.eventManager.on('replay', function () {
             if (this.game.gameConfig.debugPanel) {
-                document.getElementsByClassName("dg main a")[0].remove();
-                this.debug = null;
+                this.clearDebugPanel();
             }
+            this.game.eventManager.removeAllListeners();
+            this.game.eventManager = undefined;            
             this.game.state.start('Setup');
         }, this);
     };
@@ -486,6 +460,62 @@
     };
 
     // DEBUG
+
+
+    Remediation.prototype.setupDebugPanel = function setupDebugPanel() {
+            this.debugPanel = this.game.debugPanel || new Dat.GUI();
+
+            var globalLevel = this.game.params.globalLevel;
+
+            this.debugFolderNames = {
+                info      : "Level Info",
+                general   : "General Parameters",
+                global    : "Global Parameters",
+                local     : "Local Parameters",
+                functions : "Debug Functions",
+            };
+
+            var infoPanel = this.debugPanel.addFolder(this.debugFolderNames.info);
+
+            var generalParamsPanel = this.debugPanel.addFolder(this.debugFolderNames.general);
+            var globalParamsPanel = this.debugPanel.addFolder(this.debugFolderNames.global);
+            this._localParamsPanel = this.debugPanel.addFolder(this.debugFolderNames.local);
+
+            this.debugFunctions = this.debugPanel.addFolder(this.debugFolderNames.functions);
+
+            infoPanel.add(this.game.params, "_currentGlobalLevel").listen();
+            infoPanel.add(this.game.params, "_currentLocalRemediationStage").listen();
+
+
+            generalParamsPanel.add(this.game.params._settingsByLevel[globalLevel].generalParameters, "incorrectResponseCountTriggeringFirstRemediation").min(1).max(5).step(1).listen();
+            generalParamsPanel.add(this.game.params._settingsByLevel[globalLevel].generalParameters, "incorrectResponseCountTriggeringSecondRemediation").min(1).max(5).step(1).listen();
+            generalParamsPanel.add(this.game.params._settingsByLevel[globalLevel].generalParameters, "lives").min(1).max(5).step(1).listen();
+            generalParamsPanel.add(this.game.params._settingsByLevel[globalLevel].generalParameters, "capitalLettersShare").min(0).max(1).step(0.05).listen();
+
+            globalParamsPanel.add(this.game.params._settingsByLevel[globalLevel].globalRemediation, "monkeyOnScreen").min(1).max(4).step(1).listen();
+
+            this.setLocalPanel();
+
+            this.debugFunctions.add(this, "AutoWin");
+            this.debugFunctions.add(this, "AutoLose");
+            this.debugFunctions.add(this, "skipKalulu");
+            this.debugFunctions.open();
+    };
+
+    Remediation.prototype.clearDebugPanel = function clearDebugPanel() {
+        console.log("Monkeys clearing its debugPanel");
+        if(this.game.debugPanel) {
+            for (var folderName in this.debugFolderNames) {
+                this.debugPanel.removeFolder(this.debugFolderNames[folderName]);
+            }
+        }
+        else {
+            this.debugPanel.destroy();
+        }
+    };
+
+
+
     Remediation.prototype.cleanLocalPanel = function cleanLocalPanel() {
 
         for (var element in this._localParamsPanel.items) {
@@ -549,7 +579,7 @@
         }
 
         this.won = true;
-        this.eventManager.emit("exitGame");
+        this.gameOverWin();
     };
 
     Remediation.prototype.AutoLose = function LoseGame() {
@@ -597,7 +627,7 @@
         }
 
         this.won = false;
-        this.eventManager.emit('exitGame');
+        this.gameOverLose();
     };
 
     Remediation.prototype.skipKalulu = function skipKalulu() {

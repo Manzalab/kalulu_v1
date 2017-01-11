@@ -155,7 +155,9 @@
             this.eventManager.removeAllListeners();
             this.eventManager = null;
             this.game.rafiki.close();
-            if (this.game.gameConfig.debugPanel) this.clearDebugPanel();
+            if (this.game.gameConfig.debugPanel) {
+                this.clearDebugPanel();
+            }
             this.game.destroy();
         }, this);
 
@@ -292,6 +294,10 @@
         this.framesToWaitBeforeNextSpawn--;
 
         var localParams = this.game.params.getLocalParams();
+        this.crabEnabled = 0;
+        for (var i = 0 ; i < this.crabs.length; i++) {
+            if (this.crabs[i].enabled) this.crabEnabled++;
+        }
         var crabsToSpawn = localParams.maxCrabsOnScreen - this.crabEnabled;
 
         if (crabsToSpawn > 0 && this.framesToWaitBeforeNextSpawn <= 0) {
@@ -445,9 +451,10 @@
     Remediation.prototype.onClickOnReplay = function onClickOnReplay() {
 
         if (this.game.gameConfig.debugPanel) {
-            document.getElementsByClassName("dg main a")[0].remove();
-            this.debug = null;
+            this.clearDebugPanel();
         }
+        this.game.eventManager.removeAllListeners();
+        this.game.eventManager = null;
         this.game.state.start('Setup');
     };
 
@@ -502,6 +509,7 @@
         this._debugFunctions.add(this, "AutoWin");
         this._debugFunctions.add(this, "AutoLose");
         this._debugFunctions.add(this, "skipKalulu");
+        this._debugFunctions.open();
     };
 
     Remediation.prototype.clearDebugPanel = function clearDebugPanel() {

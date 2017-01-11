@@ -123,9 +123,13 @@ exports.copyCommonAssets = function (language) {
             // Enable multi-pass compilation for enhanced performance in larger projects. Good default.
             new CopyWebpackPlugin([
                 { from: 'app/assets/images',                    to: 'assets/images',    ignore : ignore },
-                { from: 'app/assets/images/' + language + '/',  to: 'assets/images'                     },
-                { from: 'app/assets/pdf',                       to: 'assets/images',    ignore : ignore },
-                { from: 'app/assets/pdf/' + language + '/',     to: 'assets/images'                     }
+                { from: 'app/assets/images/'+ language + '/',   to: 'assets/images'                     },
+                { from: 'app/assets/pdf',                       to: 'assets/pdf',       ignore : ignore },
+                { from: 'app/assets/pdf/'   + language + '/',   to: 'assets/pdf'                        },
+                { from: 'app/assets/data/',                     to: 'assets/data',      ignore : ignore },
+                { from: 'app/assets/data/'  + language + '/',   to: 'assets/data'                       },
+                { from: 'app/assets/video/',                    to: 'assets/video',     ignore : ignore },
+                { from: 'app/assets/video/' + language + '/',   to: 'assets/video'                      }
             ])
         ]
     };

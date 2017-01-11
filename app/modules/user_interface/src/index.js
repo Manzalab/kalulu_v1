@@ -13,7 +13,7 @@
     var RenderingManager        = require ('./rendering_manager');
     var ScreensManager          = require ('./screens_manager');
     var LoadingManager          = require ('./loading_manager');
-    var Reward                  = require ('./dynamic_rewards');
+    var Reward                  = require ('assets/data/'+KALULU_LANGUAGE+'/dynamic_rewards');
     
     var GraphicLoader           = require ('./screens/graphic_loader');
     var TitleCard               = require ('./screens/title_card');
@@ -64,7 +64,7 @@
         this.kaluluCharacter = KaluluCharacter;
         if (!Config.skipKalulu) this.kaluluCharacter.initEvents(eventSystem);
         this.rewards = Reward;
-        this.unlockedRewards = ["Mamba_mwenye_njaa"];
+        this.unlockedRewards = [];
         this._eventSystem.on(Events.GAME.UNLOCK_REWARD_TOYCHEST, this._onRewardUnlocked.bind(this));
     }
 
@@ -83,9 +83,11 @@
         **/
         debugPanel: { get: function () { return this._debugPanel; } },
 
-        isToyChestLocked: { get: function() { return Timer.elapsedTime < Config.minutesRequiredToUnlockToyChest;}},
+        isToyChestLocked: { get: function() { return !(Timer.elapsedTime < Config.minutesRequiredToUnlockToyChest);}},
 
-        isTutorialCompleted : { get: function() { return this._userProfile.kaluluTalks.lesson2; }}
+        isTutorialCompleted : { get: function() { return !this._userProfile.kaluluTalks.lesson2; }},
+
+        firstTimeOnBrainScreen : { get: function() { return this._userProfile.kaluluTalks.gardenScreen; }}
     });
 
     // ##############################################################################################################################################
@@ -242,15 +244,14 @@
     };
 
     UserInterface.prototype._onGotoTitleCard = function _onGotoTitleCard () {
-        // SoundManager.addAmbiance("Bird", ["bird_1","bird_2","bird_3","bird_4","bird_5","bird_6","bird_7","bird_8","bird_9"]);
-        // SoundManager.startAmbiance("Bird");
-        // SoundManager.stopAllAmbiances();
+
+        if (SoundManager.isPlaying("kalulu_music_brainintro")) SoundManager.getSound("kalulu_music_brainintro").stop();
         if (!SoundManager.isPlaying("kalulu_music_gameintro"))  SoundManager.getSound("kalulu_music_gameintro").play();
         if (!SoundManager.isPlaying("kalulu_amb_startscreen"))  SoundManager.getSound("kalulu_amb_startscreen").play();
         
         this._screens.titleCard = new TitleCard(this);
         this._screensManager.openScreen(this._screens.titleCard);
-        // SoundManager.stopAllSounds();
+        
     };
 
 
@@ -398,12 +399,15 @@
     UserInterface.prototype._onGotoToyChestActivityScreen = function _onGotoToyChestActivityScreen (activityType) {
         this._screens.toyChestActivityScreen = new ToyChestActivityScreen(this, activityType);
         this._screensManager.openScreen(this._screens.toyChestActivityScreen);
+        this.kaluluCharacter.kaluluButton = this._screens.toyChestActivityScreen._kaluluButton;
+
     };
 
     UserInterface.prototype._onGotoToyChestScreen = function _onGotoToyChestScreen () {
         this._screens.toyChestScreen = new ToyChestScreen(this);
         this._screensManager.openScreen(this._screens.toyChestScreen);
         var lLastReward = this._userProfile.kaluluTalks.lastReward;
+        this.kaluluCharacter.kaluluButton = this._screens.toyChestScreen._kaluluButton;
         if (this._userProfile.kaluluTalks.toyChestScreen)
         {
             if (lLastReward === "")    this.kaluluCharacter.startTalk("kalulu_intro_toychest", ["kalulu_tuto_toychest01"]);
@@ -411,17 +415,17 @@
                 this.kaluluCharacter.startTalk("kalulu_intro_toychest", ["kalulu_tuto_toychest01", "kalulu_new"+lLastReward+"_toychest"]);
                 this._userProfile.kaluluTalks.lastReward = "";
             } 
-            this.kaluluCharacter.x = 0;
-            this.kaluluCharacter.y = 0;
-            this._screens.toyChestScreen.addChild(this.kaluluCharacter); // j'addchild dans le toychestScreen pcq je n'ai pas de hud BL ainsi qu'un kalulubutton pour l'instant
+            this.kaluluCharacter.x = this.kaluluCharacter.width/2;
+            this.kaluluCharacter.y = -this.kaluluCharacter.height/3-50;
+            this._screens.toyChestScreen._hud.bottomLeft.addChild(this.kaluluCharacter); // j'addchild dans le toychestScreen pcq je n'ai pas de hud BL ainsi qu'un kalulubutton pour l'instant
             this._userProfile.kaluluTalks.toyChestScreen = false;
             this._eventSystem.emit(Events.APPLICATION.SET_SAVE, this._userProfile.data);
         }
         else if (lLastReward !== "")
         {
-            this.kaluluCharacter.x = 0;
-            this.kaluluCharacter.y = 0;
-            this._screens.toyChestScreen.addChild(this.kaluluCharacter);
+            this.kaluluCharacter.x = this.kaluluCharacter.width/2;
+            this.kaluluCharacter.y = -this.kaluluCharacter.height/3-50;
+            this._screens.toyChestScreen._hud.bottomLeft.addChild(this.kaluluCharacter);
             this.kaluluCharacter.startTalk("kalulu_new"+lLastReward+"_toychest");
             this._userProfile.kaluluTalks.lastReward = "";
             this._eventSystem.emit(Events.APPLICATION.SET_SAVE, this._userProfile.data);

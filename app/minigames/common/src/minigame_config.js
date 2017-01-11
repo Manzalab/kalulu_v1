@@ -57,7 +57,6 @@
             //console.info(this.httpRequest);
             this._init(JSON.parse(this.httpRequest.responseText));
             this._onRequestSuccess();
-            this._onRequestSuccess = onConfigRequestSuccess;
           } else {
             this._onRequestFailure();
           }
@@ -80,12 +79,12 @@
     MinigameConfig.prototype._onRequestSuccess = function onConfigRequestSuccess () {
         
         console.info('MinigameConfig was properly initialised !');
-    }
+    };
 
     MinigameConfig.prototype._onRequestFailure = function onConfigRequestFailure () {
         
         console.error('There was a problem with the MinigameConfig request.');
-    }
+    };
 
     module.exports = MinigameConfig;
 })();

@@ -9,6 +9,8 @@
 	'use strict';
 
 	var Screen 			= require ('../utils/ui/screen');
+	var AnimBackground	= require ('../elements/anim_background');
+	var Kalulu 			= require ('../elements/kalulu_character');
 
 	function ToyChestScreen (interfaceManager) {
 		
@@ -18,15 +20,24 @@
 		this._interfaceManager = interfaceManager;
 		this.build();
 		// Reference auto-built parts :
-		this._background = this.getChildByName("mcBurrowScreenBg");
+		this._backgroundContainer = this.getChildByName("mcBurrowScreenBg");
+        this._background = new AnimBackground("BurrowScreenBg", 2);
+
+        this._backgroundContainer.addChild(this._background);
+        this._background.position.set(0,0);
+
 		this._toyChestButtons = this.getChildByName("mcButtonsContainer");
 		this._videoButton = this._toyChestButtons.getChildByName("mcVideoButton");
 		this._miniGameButton = this._toyChestButtons.getChildByName("mcMiniGameButton");
 		this._storyButton = this._toyChestButtons.getChildByName("mcStoryButton");
 		this._hud = {
-			topLeft : this.getChildByName("mcBurrowTLHud")
+			topLeft : this.getChildByName("mcBurrowTLHud"),
+			bottomLeft: this.getChildByName("mcBurrowBLHud")
 		};
 		this._backButton = this._hud.topLeft.getChildByName("mcBackButton");
+		this._kaluluButton = this._hud.bottomLeft.getChildByName("mcKaluluButton");
+		this._kaluluButton.onClick = this._onClickOnKaluluButton.bind(this);
+		
 		this._buttonsContainerOffset = this._toyChestButtons.position.clone();
 
 		// Buttons Management :
@@ -38,7 +49,8 @@
 
 		this._backButton.onClick = this._onClickOnBackButton.bind(this);
 
-
+		this._kalulu = Kalulu;
+		this.kaluluFirstTalk = true;
 		// Transition FX :
 		// this._blurFilter = new PIXI3.filters.BlurFilter();
 		// this._blurFilter.blur = 0;
@@ -59,6 +71,21 @@
 		this._interfaceManager.requestToyChestActivityScreen(pEventData.target._assetName.replace("Button",""));
 		
 	};
+
+	ToyChestScreen.prototype._onClickOnKaluluButton = function _onClickOnKaluluButton (pEventData) {
+        
+        this._kalulu.x = this._kalulu.width/2;
+        this._kalulu.y = -this._kalulu.height/3 - 50;
+
+        this._hud.bottomLeft.addChild(this._kalulu);
+
+        if (this.kaluluFirstTalk)
+        {
+        	this.kaluluFirstTalk = false;
+        	this._kalulu.startTalk("kalulu_menu_toychest01");
+        }
+        else this._kalulu.startTalk("kalulu_menu_toychest02");
+    };
 
 	ToyChestScreen.prototype._onClickOnBackButton = function _onClickOnBackButton (pEventData) {
 		if (this._interfaceManager.kaluluCharacter.isTalking) return;

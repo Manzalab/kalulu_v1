@@ -5,13 +5,13 @@
  * a few Lessons (1 to 4) for each discipline, displayed on a separate Path.
 **/
 define([
-    '../elements/star_bg',
+    '../elements/anim_background',
     '../utils/ui/screen',
     '../utils/sound/sound_manager',
     'assets/data/' + KALULU_LANGUAGE + '/dynamic_rewards',
     '../elements/kalulu_character'
 ], function (
-    StarBackground,
+    AnimBackground,
     Screen,
     SoundManager,
     DynamicRewards,
@@ -53,7 +53,7 @@ define([
         
         // Reference the built elements
         this._backgroundContainer = this.getChildByName("mcGardenScreenBackground");
-        this._background = new StarBackground();
+        this._background = new AnimBackground("StarBg", 4);
 
         this._backgroundContainer.addChild(this._background);
         this._background.position.set(0,0);
@@ -135,6 +135,8 @@ define([
         this._tweenDestinationPoint = new PIXI3.Point(this._targetPosition.x, this._targetPosition.y);
 
         this._interactiveObject = [];
+
+        console.log(this);
     }
 
     GardenScreen.prototype = Object.create(Screen.prototype);
@@ -265,7 +267,7 @@ define([
             }
             bonusChapter = false;
         }
-    }
+    };
 
     GardenScreen.prototype.unlockStarMiddle = function unlockStarMiddle() {
         var id = this._focusedGarden.id;
@@ -281,6 +283,40 @@ define([
         else this._focusedGarden.starMiddle.setModeSmall();
     };
 
+    GardenScreen.prototype.unlockStarPath = function unlockStarPath() {
+        var id = this._focusedGarden.id;
+        var starPathSave = this._userProfile.starPath[id];
+        var starPath = this._focusedGarden.starPath;
+        var starLessonState = this._focusedGarden.starLessonState;
+        var lObject = {
+            idChapter : id,
+            value : [null, null]
+        }
+        var lStar, lState;
+
+        for(var i = 0; i < 2; i++) {
+            if(starPath[i]){
+
+                lState = starLessonState[i];
+                lStar = starPath[i];
+
+                if (lState.isCompleted){
+                    lObject.value[i] = true;
+                    lStar.setModeLarge();
+                    if(!starPathSave[i]) this._tweenStar(lStar);
+                }
+                else if (lState.isStarted){
+                    lObject.value[i] = false;
+                    lStar.setModeMedium();
+                }
+                else
+                    lStar.setModeSmall();
+            }
+        }
+        
+        this._userProfile.starPath = lObject;
+    };
+
     GardenScreen.prototype.getDynamicRewardsBoth = function getDynamicRewardsBoth() {
         var chapterIndex;
         var chapterCount = 20;
@@ -290,7 +326,7 @@ define([
                 this._rewardChapter.push(chapterIndex);
             }
         }
-    }
+    };
 
     GardenScreen.prototype.getDynamicRewardsLanguage = function getDynamicRewardsLanguage() {
         var lessonIndex = 1;
@@ -300,7 +336,7 @@ define([
             }
             lessonIndex++;
         }
-    }
+    };
 
     GardenScreen.prototype.getDynamicRewardsMaths = function getDynamicRewardsMaths() {
         var lessonIndex = 1;
@@ -310,7 +346,7 @@ define([
             }
             lessonIndex++;
         }
-    }
+    };
 
     // ###############################################################################################################################################
     // ###  GETTERS & SETTERS  #######################################################################################################################
@@ -458,6 +494,10 @@ define([
         this.unlockPlants();
         if(this._focusedGarden.starMiddle) {
             this.unlockStarMiddle();
+        }
+
+        if(this._focusedGarden.starPath.length > 0) {
+            this.unlockStarPath();
         }
     };
 
@@ -639,7 +679,8 @@ define([
         Kalulu.y = -Kalulu.height/3 - 50;
         this._hud.bottomLeft.addChild(Kalulu);
 
-        if (lPlantLevel===0 && lFertilizer===0)     Kalulu.startTalk("kalulu_info_gardenscreen03");
+        if (!this._userProfile.kaluluTalks.lesson)  Kalulu.startTalk("kalulu_tuto_introstep01_gardenscreen");
+        else if (lPlantLevel===0 && lFertilizer===0)Kalulu.startTalk("kalulu_info_gardenscreen03");
         else if (lPlantLevel<=7 && lFertilizer>0)   Kalulu.startTalk("kalulu_info_gardenscreen01");
         else if (lPlantLevel>7)                     Kalulu.startTalk("kalulu_info_gardenscreen02");
         else                                        Kalulu.startTalk("kalulu_info_gardenscreen03");
