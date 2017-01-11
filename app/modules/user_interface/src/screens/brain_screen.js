@@ -207,7 +207,7 @@ define([
         createjs.Tween.get(this._blurFilter).to({blur : this._exitTweenSettings.blur}, this._exitTweenSettings.duration * this._exitTweenSettings.time, createjs.Ease.linear());
 
         if (Config.tuning) this._gui.destroy();
-        this._interfaceManager.requestGardenScreen(selectedGarden.id, (this._exitTweenSettings.duration/3)*1000);
+        this._interfaceManager.requestGardenScreen(selectedGarden.id, (this._exitTweenSettings.duration/6)*1000);
     };
 
     BrainScreen.prototype._onClickOnBackButton = function _onClickOnBackButton (pEventData) {
