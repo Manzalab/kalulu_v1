@@ -128,11 +128,13 @@
         // }, this);
 
         this.eventManager.on('exitGame', function () {
+            if (this.game.gameConfig.debugPanel) this.clearDebugPanel();
+            this.game.rafiki.close();
             this.eventManager.removeAllListeners();
             this.eventManager = null;
-            this.game.rafiki.close();
-            if (this.game.gameConfig.debugPanel) this.clearDebugPanel();
             this.game.destroy();
+            console.info("PLhaser Game has been destroyed");
+            this.game = null;
         }, this);
 
         this.eventManager.on('replay', function () {
