@@ -509,6 +509,7 @@
         this._debugFunctions.add(this, "AutoWin");
         this._debugFunctions.add(this, "AutoLose");
         this._debugFunctions.add(this, "skipKalulu");
+        this._debugFunctions.open();
     };
 
     Remediation.prototype.clearDebugPanel = function clearDebugPanel() {
