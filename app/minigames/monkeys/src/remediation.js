@@ -134,9 +134,13 @@
 
         this.game.eventManager.on('exitGame', function () {
             if (this.game.gameConfig.debugPanel) this.clearDebugPanel();
+            console.info("clearDebugPanel ok");
             this.game.rafiki.close();
+            console.info("rafiki closed");
             this.game.eventManager.removeAllListeners();
+            console.info("removeAllListeners ok");
             this.game.eventManager = null;
+            console.info("eventManager null");
             this.game.destroy();
             console.info("PLhaser Game has been destroyed");
             this.game = null;
@@ -435,7 +439,7 @@
 
         this.sounds.winGame.onStop.add(function () {
             this.sounds.winGame.onStop.removeAll();
-            this.game.eventManager.emit('GameOverWin');//listened by Ui (toucan = kalulu)
+            this.game.eventManager.emit('GameOverWin');//listened by Ui
             this.saveGameRecord();
         }, this);
     };
