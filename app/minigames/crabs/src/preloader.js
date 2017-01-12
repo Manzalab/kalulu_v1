@@ -13,11 +13,15 @@
         this.preloadBar = null;
     }
 
-    Preloader.prototype = {
+    Preloader.prototype = 
+	{
         /**
 	     * Load all the game assets
 	    **/
         preload: function () {
+			
+			this.loadError = false;
+			
             this.preloadBar = this.add.sprite(this.game.world.centerX - 490, this.game.height / 2, 'preloaderBar');
             this.load.setPreloadSprite(this.preloadBar);
 
@@ -81,6 +85,9 @@
             this.game.load.atlasJSONHash('kaluluSpeaking2', animPath + 'kaluluSpeaking2.png', animPath + 'kaluluSpeaking2.json');
 
             var sfxPath = 'minigames/common/assets/audio/sfx/';
+			
+			this.game.load.onFileError.add(this.onFileError);			
+			
             //General Audio
             this.game.load.audio('menuNo'            , sfxPath + 'ButtonCancel.ogg');
             this.game.load.audio('menuYes'           , sfxPath + 'ButtonOK.ogg');
@@ -98,14 +105,29 @@
 
             this.game.load.audio('kaluluGameOverLose', 'minigames/common/assets/audio/kalulu/kalulu_lose_minigame.ogg');
         },
+		
+		/**
+		 * File loading error handler.
+		 *
+		 **/
+		onFileError: function (fileKey, file) {
+			this.loadError = true;
+			console.log("onFileError called. Will restart preload");
+		},
 
         /**
-         * Starts next state
+         * Starts next state: Preload or Setup whether Preload failed or not.
          * @private
          **/
         create: function () {
-            //call next state, used to load the pedagogic data for a first game.
-            this.state.start('Setup');
+			
+			this.game.load.onFileError.removeAll();
+			
+			//call next state, used to load the pedagogic data for a first game.            
+			if(this.loadError)
+				this.state.start('Preload');
+			else
+				this.state.start('Setup');
         }
     };
 

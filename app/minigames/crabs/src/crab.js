@@ -146,7 +146,7 @@
 
     Crab.prototype.setValue = function (text, value, picture) {
         picture = (typeof picture !== 'undefined') ? picture : false;
-        if (!picture) {
+        if (!picture || value.toString() === "") {
             this.text.text = text.toString();
             this.text.visible = true;
             this.picture.visible = false;
