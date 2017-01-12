@@ -148,7 +148,7 @@ define([
             console.info("LookAndLearn Cleaning debug Panel");
             this.game.debugPanel.removeFolder(this.game.debugFolderNames.functions);
         }
-        else {
+        else if (this.game.gameConfig.debugPanel) {
             console.info("LookAndLearn Destroying debug Panel");
             this.game.debugPanel.destroy();
         }

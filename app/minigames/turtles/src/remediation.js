@@ -330,7 +330,7 @@
                         context.initRound(context.roundIndex);
                         context.island.reset(context.correctResponses.length);
                         if (context.game.discipline == 'maths') context.island.picture.setValue(context.correctWord.value);
-                        context.eventManager.emit('playCorrectSound');
+                        context.game.eventManager.emit('playCorrectSound');
                     }, 3 * 1000);
                 }, 1000);              
             }
