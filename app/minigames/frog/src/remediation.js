@@ -373,7 +373,7 @@
             }, (context.frog.time + 0.3) * 1000 * (i));
         }
         setTimeout(function () {
-            context.eventManager.emit('success');
+            context.game.eventManager.emit('success');
             for (var i = 0; i < context.frogJumpPositions.length - 1; i++) {
                 context.frogJumpPositions[i].lillypad.tween = context.game.add.tween(context.frogJumpPositions[i].lillypad);
                 context.frogJumpPositions[i].lillypad.tween.to({ y: context.game.height / 2 }, 500, Phaser.Easing.Default, true, 0, 0, false);
@@ -397,10 +397,10 @@
                 }, context);
                 setTimeout(function () {
                     context.sounds.winGame.play();
-                    context.eventManager.emit('offUi'); //listened by Ui
+                    context.game.eventManager.emit('offUi'); //listened by Ui
                     context.sounds.winGame.onStop.add(function () {
                         context.sounds.winGame.onStop.removeAll();
-                        context.eventManager.emit(endEvent);//listened by Ui (toucan = kalulubutton)
+                        context.game.eventManager.emit(endEvent);//listened by Ui (toucan = kalulubutton)
                     }, this);
                 }, 3000)
             }
@@ -425,7 +425,7 @@
             context.initColumns(context.game);
             context.columns[0].enabled = true;
             context.columns[0].setVisibleText(true);
-            context.eventManager.emit(endEvent);
+            context.game.eventManager.emit(endEvent);
         }, (context.frog.time - 0.2) * 1000);
 
     }
@@ -446,7 +446,7 @@
 
                 var context = this;
                 setTimeout(function () {
-                    context.eventManager.emit('playCorrectSound');//listened here; check initEvents
+                    context.game.eventManager.emit('playCorrectSound');//listened here; check initEvents
                 }, 1000);
 
                 if (Config.debugPanel) this.cleanLocalPanel();

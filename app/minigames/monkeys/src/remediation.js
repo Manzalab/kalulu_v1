@@ -342,7 +342,7 @@
                         context.board.setTextMaths(context.sequence.sequence, context.sequence.numberIndex);
                     }
                     context.getNewCoconuts();
-                    context.eventManager.emit('playCorrectSound');
+                    context.game.eventManager.emit('playCorrectSound');
                 }, 3 * 1000);
             }
             else {
@@ -368,7 +368,7 @@
 
                 var context = this;
                 setTimeout(function () {
-                    context.eventManager.emit('playCorrectSound');//listened here; check initEvents
+                    context.game.eventManager.emit('playCorrectSound');//listened here; check initEvents
                 }, 1000);
 
                 if (this.game.gameConfig.debugPanel) this.cleanLocalPanel();

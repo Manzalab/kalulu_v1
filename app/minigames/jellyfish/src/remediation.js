@@ -231,7 +231,7 @@
 
             var context = this;
             setTimeout(function () { // Not ideal because cannot be paused
-                context.eventManager.emit('unPause');
+                context.game.eventManager.emit('unPause');
             }, 1500);
 
         }
@@ -256,7 +256,7 @@
                 
                 var context = this;
                 setTimeout(function () {
-                    context.eventManager.emit('playCorrectSound');//listened here; check initEvents
+                    context.game.eventManager.emit('playCorrectSound');//listened here; check initEvents
                 }, 1000);
                 
                 if (this.game.gameConfig.debugPanel) this.cleanLocalPanel();

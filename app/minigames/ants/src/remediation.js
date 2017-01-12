@@ -320,7 +320,7 @@
                     context.deleteSentences();
                     context.roundIndex++;
                     context.initRound(context.roundIndex);
-                    context.eventManager.emit('unPause');
+                    context.game.eventManager.emit('unPause');
                 }, context);
             }, 1500);
 

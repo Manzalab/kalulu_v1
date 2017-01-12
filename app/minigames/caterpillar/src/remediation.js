@@ -291,7 +291,7 @@
                     context.destroyGraph();
                     context.caterpillar.reset(context.lines[1].y);
                     context.caterpillar.branch = 2;
-                    context.eventManager.emit('playCorrectSound');
+                    context.game.eventManager.emit('playCorrectSound');
                 }, 3 * 1000);
             }
             else {
