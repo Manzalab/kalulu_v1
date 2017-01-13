@@ -28,6 +28,7 @@
         this.stepCount = 0;
         this.consecutiveMistakes = 0;
         this.consecutiveSuccess = 0;
+        this.timeWithoutClick = 0;
         this.sentences = [];
         this.ants = [];
 
@@ -104,8 +105,14 @@
      **/
     Remediation.prototype.initEvents = function () {
         this.game.eventManager.on('droppedAnt', function (ant) {
+			this.timeWithoutClick = 0;
             this.manageAnts(ant);
         }, this);
+		
+		this.game.eventManager.on("antClicked", function () {
+			this.timeWithoutClick = 0;
+			this.stopHighlight();
+		}, this);	
 
         this.game.eventManager.on('playCorrectSound', function () {
             this.game.eventManager.emit('unPause'); //listenned by Ui and Jellyfish
@@ -139,6 +146,10 @@
             if (this.game.gameConfig.debugPanel) {
                 this.clearDebugPanel();
             }
+        }, this);
+		
+		 this.game.eventManager.on('help', function () {
+            this.timeWithoutClick = 0;
         }, this);
 
         this.game.eventManager.on('replay', function () {
@@ -400,10 +411,7 @@
 				// TEMP: Highlight
 								
 				this.startHighlight();				
-					
-				this.game.eventManager.once("antClicked", function () {
-					this.stopHighlight();
-				}, this);					
+									
 				
 				//
 				
@@ -461,7 +469,14 @@
 
 
     Remediation.prototype.update = function () {
+		if (!this.paused) {
+            this.timeWithoutClick++;
 
+            if (this.timeWithoutClick > 60 * 20) {
+                this.timeWithoutClick = 0;
+                this.game.eventManager.emit('help');
+            }
+        }
     };
 
 
