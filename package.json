@@ -13,6 +13,8 @@
     "build"                : "node npm_scripts/build.js",
     "buildEnglish"         : "node npm_scripts/build.js",
     "buildSwahili"         : "node npm_scripts/build.js",
+    "buildProdEnglish"     : "node npm_scripts/build.js",
+    "buildProdSwahili"     : "node npm_scripts/build.js",
     "buildFrench"          : "node npm_scripts/build.js",
     "stats"                : "node npm_scripts/stats.js",
     "testAll"              : "node npm_scripts/test_all.js",
