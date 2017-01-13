@@ -27,6 +27,8 @@
     var GardenButton            = require ('./elements/garden_button');
 
     var Timer                   = require ('../../../src/game_logic/timer');
+	
+    var Reward              = require('assets/data/' + KALULU_LANGUAGE + '/dynamic_rewards');
 
 
     // ###############################################################################################################################################
@@ -446,6 +448,12 @@
         this.kaluluCharacter.startTalk("kalulu_info_toychestnotavailable");
         
     };
+	
+	UserInterface.prototype._onRewardUnlockedDebug = function _onRewardUnlockedDebug (pRewardName) {
+        this.unlockedRewards.push(pRewardName);
+		console.log("test " + this.unlockedRewards);
+		
+		}
 
     UserInterface.prototype._onRewardUnlocked = function _onRewardUnlocked (pRewardName) {
         this.unlockedRewards.push(pRewardName);
@@ -499,6 +507,8 @@
         this._debugPanelQA.open();
 
         this._debugPanelQA.add(this, "resetSave");
+		
+		this._debugPanelQA.add(this, "unlockAllRewards");
     };
 
     UserInterface.prototype._initKaluluDebugPanel = function _initKaluluDebugPanel () {
@@ -531,6 +541,24 @@
     
     UserInterface.prototype.resetSave = function resetSave () {
         this._eventSystem.emit(Events.DEBUG.RESET_SAVE_REQUEST);
+    };
+	
+	UserInterface.prototype.unlockAllRewards = function unlockAllRewards () {
+        for (var lessonNumber in Reward.levelRewards.language) {
+			var lRewardName = Reward.levelRewards.language[lessonNumber];
+			this.unlockedRewards.push(lRewardName);
+		}
+		for (var lessonNumber in Reward.levelRewards.maths) {
+			var lRewardName = Reward.levelRewards.maths[lessonNumber];
+			this.unlockedRewards.push(lRewardName);
+		}
+		for (var lessonNumber in Reward.levelRewards.both) {
+			var lRewardName = Reward.levelRewards.both[lessonNumber];
+			this.unlockedRewards.push(lRewardName);
+			
+		}
+		console.log(this.unlockedRewards);
+		console.info("UNLOCK_ALL_REWARDS REQUEST RECEIVED");
     };
 
     module.exports = UserInterface;
