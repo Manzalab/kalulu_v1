@@ -74,7 +74,7 @@
             this.caterpillarBody[0].setText(value);
         }
         else if (this.caterpillarBody.length < 7) {
-            var temp = new CaterpillarBody(this.caterpillarBody[this.caterpillarBody.length - 1].x + this.caterpillarBody[0].width - 10, this.tail[2].y, this.game);
+            var temp = new CaterpillarBody(this.caterpillarBody[this.caterpillarBody.length - 1].x + this.caterpillarBody[0].width - 10, this.head.y, this.game);
             temp.scale.x = 0.9;
             temp.scale.y = 0.9;
             temp.setText(value);
@@ -84,7 +84,7 @@
             this.game.world.bringToTop(this.head);
         }
         else {
-            var temp = new CaterpillarBody(this.caterpillarBody[this.caterpillarBody.length - 1].x, this.tail[2].y, this.game);
+            var temp = new CaterpillarBody(this.caterpillarBody[this.caterpillarBody.length - 1].x, this.head.y, this.game);
             for (var i = 0; i < this.caterpillarBody.length; i++) {
                 this.caterpillarBody[i].x -= this.caterpillarBody[0].width - 10;
             }
