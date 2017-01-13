@@ -181,6 +181,11 @@
      * @private
      **/
     Ant.prototype.update = function () {
+		
+		 if (this.highlight.visible) {
+            this.highlight.rotation += 0.01;
+        }
+		
         if (this.walking && !this.paused)
 		{
             if (this.vx < 0 ) 
@@ -208,6 +213,7 @@
             }
         }
         if (this.clicked) {
+			this.game.eventManager.emit('antClicked', this);
             this.walkToVectorial(this.game.input.activePointer.position.x, this.game.input.activePointer.position.y);
         }
         if (this.walking && !this.clicked) {

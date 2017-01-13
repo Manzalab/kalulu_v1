@@ -105,7 +105,12 @@
     Sentence.prototype = Object.create(Phaser.Group.prototype);
     Sentence.constructor = Sentence;
 
-
+	Sentence.prototype.update = function () {
+		
+		 if (this.highlight.visible) {
+            this.highlight.rotation += 0.01;
+        }
+	};
 
     /**
      * init all events

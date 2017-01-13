@@ -397,23 +397,33 @@
                 if (this.game.gameConfig.debugPanel) this.setLocalPanel();
 				
 				// TODO: Second remediation (ghost)
+				// TEMP: Highlight
+								
+				this.startHighlight();				
+					
+				this.game.eventManager.once("antClicked", function () {
+					this.stopHighlight();
+				}, this);					
+				
+				//
 				
                 this.consecutiveMistakes = 0; // restart the remediation
             }
-			else if(this.consecutiveMistakes === params.incorrectResponseCountTriggeringFirstRemediation) {
-								
-				this.startHighlight();				
+			else 
+			{				
+				if(this.consecutiveMistakes === params.incorrectResponseCountTriggeringFirstRemediation) 
+				{									
+					this.startHighlight();				
+					
+					this.game.eventManager.once("antClicked", function () {
+						this.stopHighlight();
+					}, this);							
+				}
 				
-				 this.game.eventManager.once("reachedDestination", function () {
-                    this.game.eventManager.emit("unPause");
-                }, this);
+				this.game.eventManager.once("reachedDestination", function () {
+					this.game.eventManager.emit("unPause");
+				}, this);				  
 			}
-            else 
-			{
-                this.game.eventManager.once("reachedDestination", function () {
-                    this.game.eventManager.emit("unPause");
-                }, this);
-            }        
 
             this.stepCount = 0;
         }
