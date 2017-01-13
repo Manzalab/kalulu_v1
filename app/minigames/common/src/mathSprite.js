@@ -38,7 +38,7 @@
         for (var i = 0; i < this.mathSprites.length; i++) {
             this.mathSprites.splice(0, 1)[0].destroy();
         }
-        value = value.toString();
+        //  value = value.toString();
         if (value > 0)
             if (value <= 6) {
                 var mathSprite = this.game.add.sprite(this.w / 2, 0, 'maths', value);
