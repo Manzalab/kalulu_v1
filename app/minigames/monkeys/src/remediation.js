@@ -85,6 +85,10 @@
         this.game.eventManager.on('pause', function () {
         }, this);
 
+        this.game.eventManager.on('help', function () {
+            this.timeWithoutClick = 0;
+        }, this);
+
         this.game.eventManager.on('unPause', function () {
         }, this);    
 

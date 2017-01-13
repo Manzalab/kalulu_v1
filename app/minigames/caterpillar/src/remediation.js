@@ -212,8 +212,7 @@
         }
     };
 
-    Remediation.prototype.eat = function (obj1, obj2) {
-
+    Remediation.prototype.eat = function (obj1, obj2) {        
         this.caterpillar.head.eat();
         this.caterpillar.head.head.animations.currentAnim.onComplete.addOnce(function () {
             this.collisionHandler(obj1, obj2);
@@ -221,9 +220,7 @@
     };
 
     Remediation.prototype.collisionHandler = function (obj1, obj2) {
-        // console.log(obj1);
-        // console.log(obj2);
-
+        this.game.eventManager.emit('disableUi');
         this.caterpillar.clickable = false;
         var value = obj2.parent.text.text;
         obj2.parent.apparition.close(true, 0);

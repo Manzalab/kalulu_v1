@@ -268,7 +268,7 @@
         }, this);
 
         this.game.eventManager.on('offUi', function () { // emitted from various places, when we need to disable the UI
-            this.parent.game.world.bringToTop(this);
+            //this.parent.game.world.bringToTop(this);
             this.parent.game.world.bringToTop(this.blackOverlay);
             this.blackOverlay.visible = true;
             this.disableUiMenu();
@@ -299,6 +299,10 @@
         }, this);
 
         this.game.eventManager.on('pause', function () {
+            this.disableUiMenu();
+        }, this);
+
+        this.game.eventManager.on('disableUi', function () {
             this.disableUiMenu();
         }, this);
 
@@ -336,7 +340,7 @@
 
         this.sounds.openQuitPopup.play();
         this.blackOverlay.visible = true;
-        this.parent.game.world.bringToTop(this);
+        this.parent.game.world.bringToTop(this.pausePopup);
         this.quitPopup.visible = !this.quitPopup.visible;
         this.game.eventManager.emit('pause');
     };
@@ -442,7 +446,7 @@
     Ui.prototype.onClickOnPauseButton = function onClickOnPauseButton() {
         this.sounds.openQuitPopup.play();
         this.blackOverlay.visible = true;
-        this.parent.game.world.bringToTop(this);
+        this.parent.game.world.bringToTop(this.pausePopup);
         this.pausePopup.visible = !this.pausePopup.visible;
         this.game.eventManager.emit('pause');
     };
