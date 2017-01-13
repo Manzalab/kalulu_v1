@@ -19,6 +19,7 @@
         this.lives = 0;
         this.parakeetPairsRemaining = 0;
         this.clickCount = 0;
+		this.firstParakeetSelected = null;
         this.consecutiveMistakes = 0;
         this.won = false;
         this.timeWithoutClick = 0;
@@ -151,13 +152,6 @@
     }
 
     Remediation.prototype.initEvents = function (game) {
-        this.game.eventManager.on('pause', function () {
-            this.paused = true;
-        }, this);
-
-        this.game.eventManager.on('unPause', function () {
-            this.paused = false;
-        }, this);
 
         this.game.eventManager.on('start', function () {
             var context = this;
@@ -204,6 +198,25 @@
         this.game.eventManager.on('unPause', function () {
             this.pause(false);
         }, this);
+		
+		this.game.eventManager.on('help', function () {
+			
+			var parakeetsArrayTemp = [];
+			for (var i = 0; i < this.branches.length; i++) {
+                for (var j = 0; j < this.branches[i].parakeet.length; j++) {
+					if (!this.branches[i].parakeet[j].isVisible())
+					{
+						parakeetsArrayTemp.push(this.branches[i].parakeet[j]);
+						this.branches[i].parakeet[j].return(true);
+					}
+                }
+            }
+			this.game.eventManager.once('unPause', function() {
+				for (var i = 0; i < parakeetsArrayTemp.length; i++) {
+						parakeetsArrayTemp[i].return(false);
+				}
+			}, this);
+		}, this);
     };
 
     Remediation.prototype.pause = function (bool) {
@@ -215,25 +228,24 @@
     };
 
     Remediation.prototype.click = function (parakeet) {
-        this.clickCount++;
 
         this.highlightedParakeet = null;
 
-        if (this.clickCount % 2 === 0) {
-            this.clickCount = 0;
-
+        if (this.firstParakeetSelected != null && this.firstParakeetSelected != parakeet) {
+            
             this.game.eventManager.emit('unClickable');
 			this.game.eventManager.emit('pause');
-            if (this.clickValue.value == parakeet.value) {
-                this.game.eventManager.emit('success', this.clickValue, parakeet);
+            if (this.firstParakeetSelected.value == parakeet.value) {
+                this.game.eventManager.emit('success', this.firstParakeetSelected, parakeet);
             }
             else {
                 this.sounds.wrong.play();
-                this.fail(this.clickValue, parakeet);
+                this.fail(this.firstParakeetSelected, parakeet);
             }
+			this.firstParakeetSelected = null;
         }
         else {
-            this.clickValue = parakeet;
+            this.firstParakeetSelected = parakeet;
         }
     };
 
@@ -334,6 +346,7 @@
                 setTimeout(function () {
                     context.returnAll(false, false);
                     context.game.eventManager.emit('clickable');
+					context.game.eventManager.emit('unPause');
                 }, context.game.params.getLocalParams().showTime * 1000);
             }, 1000);
         }
@@ -342,6 +355,7 @@
                 para1.return(false,false);
                 para2.return(false,false);
                 context.game.eventManager.emit('clickable');
+				context.game.eventManager.emit('unPause');
             }, 1000);
             this.consecutiveMistakes = 0;
         }
@@ -361,7 +375,7 @@
     Remediation.prototype.tenSecRemediation = function () {
         this.paused = true;
         this.game.eventManager.emit('unClickable');
-        if (this.clickCount % 2 == 0) {
+        if (this.firstParakeetSelected == null) {
             if (!this.highlightedParakeet) {
                 var context = this;
 
@@ -378,6 +392,7 @@
                 }
 
                 temp.return(true);
+				this.game.eventManager.emit('disableUi');
                 setTimeout(function () {
                     temp.return(false);
                     para.return(false);
@@ -402,6 +417,7 @@
                 }
                 para = this.highlightedParakeet;
                 temp.return(true);
+				this.game.eventManager.emit('disableUi');
                 setTimeout(function () {
                     temp.return(false);
                     para.return(false);
@@ -413,7 +429,7 @@
         else {
             for (var i = 0; i < this.branches.length; i++) {
                 for (var j = 0; j < this.branches[i].parakeet.length; j++) {
-                    if (this.branches[i].parakeet[j].value == this.clickValue.value && this.branches[i].parakeet[j] != this.clickValue) {
+                    if (this.branches[i].parakeet[j].value == this.firstParakeetSelected.value && this.branches[i].parakeet[j] != this.firstParakeetSelected) {
                         var temp = this.branches[i].parakeet[j];
                     }
                 }
