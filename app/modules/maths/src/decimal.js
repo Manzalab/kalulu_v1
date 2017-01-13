@@ -31,16 +31,22 @@ var Decimal = function(number,  stimuli_type, numbers_available, count,  numbers
 	var dec 	= parseInt(n[0])
 	var unit 	= parseInt(n[1])
 	var that 	= this
+
+	var dec_d   = new Distractor(dec, numbers_available, count, true)
+	console.log(numbers_available)
+	console.log(count)
+
+	console.log(dec_d)
 	var out 	= { 
 					'pre_round' : [ 
 						{
 							'name': 'decimal',
-							'value': dec*10, 
+							'value': (dec*10).toString(), 
 							'realValue' :this.number,
 							'distractors': new Distractor(dec, numbers_available, count, true)
 						},
 						{ 	'name': 'unit',
-							'value': unit,
+							'value': unit.toString(),
 							'realValue' :unit,
 							'distractors': new Distractor(unit, numbers_available, count)
 						}, 
@@ -84,7 +90,7 @@ var Decimal = function(number,  stimuli_type, numbers_available, count,  numbers
 						st.realValue = d.value
 					}
 					if(d.value !==null && r.name == 'decimal' ){
-						st.realValue = that.number
+						st.realValue = that.number.toString()
 					}
 				//st.realValue = that.number
 				st.path = that.stimuli_type
@@ -92,12 +98,19 @@ var Decimal = function(number,  stimuli_type, numbers_available, count,  numbers
 			})
 		})
 		round.steps.push(step)
+		// round.steps.push(step)
 		round.targetSequence = {
 				gameType        : that.stimuli_type, 
-				targetNumber 	: that.number
+				targetNumber 	: that.number.toString()
+		}
+		round.target = {
+				gameType        : that.stimuli_type, 
+				targetNumber 	: that.number.toString(),
+				// soundPath: "assets/sounds/maths/number_54.ogg",
+                correctResponse: true
 		}
 
-		if(round.targetSequence.targetNumber !=='null'){
+		if(round.target.targetNumber !=='null'){
 			out.round = round
 		}
 		

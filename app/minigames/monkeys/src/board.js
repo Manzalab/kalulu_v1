@@ -50,12 +50,19 @@
         this.text.text = value;
     };
 
-    Board.prototype.setTextMaths = function (valueArray, index) {
+    Board.prototype.setTextMaths = function (valueArray,valueHole) {
         this.text.text = "";
+        var holeIndex = 0;
         for (var i = 0; i < valueArray.length; i++) {
-            if (typeof index != 'undefined' && i == index) this.text.text += '_ ';
+            if (valueArray[i].toString() == 'X') {
+                if (typeof valueHole === 'undefined') this.text.text += '_ ';
+                else this.text.text += valueHole + ' ';
+                holeIndex = i;
+            }
             else this.text.text += valueArray[i] + ' ';
         }
+
+        return holeIndex;
     }
     
 

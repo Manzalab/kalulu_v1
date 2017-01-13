@@ -58,7 +58,7 @@
 
         this.initRound(this.roundIndex);
         console.log(this.sequence)
-        if (this.game.discipline == 'maths') this.board.setTextMaths(this.sequence.sequence, this.sequence.numberIndex);
+        if (this.game.discipline == 'maths') this.sequence.numberIndex = this.board.setTextMaths(this.sequence.sequence);
         this.setTexts();
         this.fx = new Fx(game);
     };
@@ -146,7 +146,7 @@
             this.game.eventManager = null;
             console.info("eventManager null");
             this.game.destroy();
-            console.info("PLhaser Game has been destroyed");
+            console.info("Phaser Game has been destroyed");
             this.game = null;
         }, this);
 
@@ -296,7 +296,9 @@
             this.game.eventManager.once('finishedMoving', function () {
                 object.break();
                 if (this.game.discipline != 'maths') this.board.text.text += this.correctResponses[this.stepIndex].value;
-                else this.board.setTextMaths(this.sequence.sequence);
+                else {
+                    this.board.setTextMaths(this.sequence.sequence, this.correctResponses[this.stepIndex].value);
+                    }
                 this.game.eventManager.once('finishedBreaking', function () {
                     this.sounds.right.play();
                     this.success();
@@ -347,7 +349,7 @@
                     context.initRound(context.roundIndex);
                     context.board.text.text = "";
                     if (context.game.discipline == 'maths') {
-                        context.board.setTextMaths(context.sequence.sequence, context.sequence.numberIndex);
+                        context.sequence.numberIndex = context.board.setTextMaths(context.sequence.sequence);
                     }
                     context.getNewCoconuts();
                     context.game.eventManager.emit('playCorrectSound');

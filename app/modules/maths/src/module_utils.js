@@ -27,13 +27,13 @@ var ModuleUtils = function(){
 		value_ = distractorvalue_or_object
 		var out = []
 		var st = {
-			"value"				: value_,
+			"value"				: value_.toString(),
 			"correctResponse"	: isCorrect,
 			"stimuli_type"		: dataobject,
 			"apparitions"		: this.addFakeApparitions(isCorrect,1, 'prod') //perfect_nothing
 		}
 		if(value_ !=='' && dataset[value_]){
-			 console.log(dataset[value_])
+			// console.log(dataset[value_])
 			st.nonSymbolicImage	= 'assets/images/number_'+value_+'.jpg'
 		 	st.soundPath 		=  'assets/sounds/maths/number_'+value_+'.ogg'
 		}

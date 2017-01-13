@@ -1,0 +1,10 @@
+﻿{
+    "version" : 1.0,
+    "gameId": "ants",     
+    "skipKalulu" : false, 
+    "skipKaluluIntro" : false, 
+    "skipKaluluHelp" : false, 
+    "skipKaluluFinal" : false, 
+    "debugPanel" : false,
+    "globalVars" : false
+}

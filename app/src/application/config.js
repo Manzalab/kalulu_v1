@@ -40,7 +40,8 @@
 
     Config.prototype.request = function requestConfig (path, callback) {
         
-        if (path.split('.').pop() !== 'json') path = path + '/config.json';
+        var prefix = KALULU_ENV === 'productionBuild' ? 'production.' : '' ;
+        if (path.split('.').pop() !== 'json') path = path + '/' + prefix + 'config.json';
         console.info("[Config] Requesting config file at " + path);
 
         this._onRequestSuccess = callback;
@@ -59,7 +60,7 @@
     Config.prototype.url = function url (path) {
         return path + '?' + KALULU_VERSION;
     };
-
+    
     // ###########################################################################
     // ###  PRIVATE METHODS  #####################################################
     // ###########################################################################
