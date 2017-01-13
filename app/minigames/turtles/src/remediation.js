@@ -138,9 +138,9 @@
         this.falseResponses = [];
         this.correctResponses = [];
         this.falseStepResponsesCurrentPool = [];
-        console.log("debug ici:"+roundData.word+"  "+roundData.target+ " "+roundData.word || roundData.target)
-        this.correctWord = roundData.word || roundData.target;
-        this.sounds.correctRoundAnswer = this.game.add.audio((roundData.word || roundData.target).value);
+        console.log("debug ici:"+roundData.target.targetNumber)
+        this.correctWord = roundData.target.targetNumber;
+        this.sounds.correctRoundAnswer = this.game.add.audio(roundData.target.targetNumber);
         var stepsLength = roundData.steps.length;
 
         var stimuliLength, stimulus;
@@ -152,6 +152,7 @@
             stimuliLength = roundData.steps[i].stimuli.length;
             for (var j = 0; j < stimuliLength; j++) {
                 stimulus = roundData.steps[i].stimuli[j];
+                console.log(stimulus)
                 if (stimulus.correctResponse === true) {
                     correctStepResponses.value = stimulus.value;
                     correctStepResponses.sound = this.game.add.audio(stimulus.value);

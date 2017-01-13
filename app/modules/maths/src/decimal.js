@@ -57,10 +57,14 @@ var Decimal = function(number,  stimuli_type, numbers_available, count,  numbers
 		 
 		var steps = []
 		var round = {"steps": []}
-		var step = {"type": that.stimuli_type, "stimuli": [] }
+		var step_decimal = {"type": that.stimuli_type, "stimuli": [] }
+		var step_unit 	 = {"type": that.stimuli_type, "stimuli": [] }
+		var step	 = {"type": that.stimuli_type, "stimuli": [] }
 
 		// [dec, unit] 
 		_.each(out.pre_round, function(r){
+
+			
 				
 			var st =  that.moduleutils.addStimuli(true , r.value, 'number',that.numbers_data)
 			st.unitOrDecimal = r.name;
@@ -96,8 +100,17 @@ var Decimal = function(number,  stimuli_type, numbers_available, count,  numbers
 				st.path = that.stimuli_type
 				step.stimuli.push(st)	
 			})
+
+			round.steps.push(step)
 		})
-		round.steps.push(step)
+
+
+
+
+		
+
+
+
 		// round.steps.push(step)
 		round.targetSequence = {
 				gameType        : that.stimuli_type, 
