@@ -146,7 +146,7 @@
             this.game.eventManager = null;
             console.info("eventManager null");
             this.game.destroy();
-            console.info("PLhaser Game has been destroyed");
+            console.info("Phaser Game has been destroyed");
             this.game = null;
         }, this);
 

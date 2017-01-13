@@ -1,0 +1,26 @@
+{
+    "debug" : {
+        "enableGlobalVars"              : false,
+        "stats"                         : false,
+        "logGameStates"                 : false,
+        "authoritativeSystemInfo"       : false,
+        "logLoading"                    : false,
+        "screenManagerLog"              : false,
+        "debugPlanConstruction"         : false,
+        "enableTransitionsTuning"       : false,
+        "enableMinigameTuning"          : false,
+        "enableQAControls"              : false,
+        "skipKalulu"                    : false,
+        "displayGardenIdsOnBrainScreen" : false,
+        "debugLanguageModule"           : false,
+        "debugMathsModule"              : false
+    },
+    "paths" : {
+        "imagesPath" : "assets/images/",
+        "soundsPath" : "assets/sounds/",
+        "videoPath"  : "assets/video/",
+        "pdfPath"    : "assets/pdf/",
+        "txtPath"    : "assets/data/",
+        "fontsPath"  : "assets/fonts/"
+    }
+}

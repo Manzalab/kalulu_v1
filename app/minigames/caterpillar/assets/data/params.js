@@ -15,7 +15,7 @@
                 incorrectResponseCountTriggeringSecondRemediation   : 2,
                 lives                                               : 3,     // at the time when lives reach 0 the game ends, i.e. at the third incorrect response for 3 lives
                 capitalLettersShare                                 : 0.4,
-                caterpillarSpeed                                    : 10
+                caterpillarSpeed                                    : 30
             },
             globalRemediation : {   // the global remediation settings are invariable inside a game but can evolve depending on globalLevel from one game to the next
                 gameType                        : "composition", // "identification", "composition", "pairing", or "other"
@@ -77,7 +77,7 @@
             { // LEVEL 3
                 globalRemediation: {
                    stepDistracterCount             : 3, //
-                   roundsCount                     : 4, //
+                   roundsCount                     : 3, //
                    lineCount                       : 4,
                    berriesOnScreen                 : 3,
                    totalTriesCount                 : 6
@@ -93,7 +93,7 @@
             { // LEVEL 4
                  globalRemediation: {
                    stepDistracterCount             : 3, //
-                   roundsCount                     : 4, //
+                   roundsCount                     : 3, //
                    lineCount                       : 4,
                    berriesOnScreen                 : 4,
                    totalTriesCount                 : 6
@@ -109,7 +109,7 @@
             { // LEVEL 5
                 globalRemediation: {
                    stepDistracterCount             : 3, //
-                   roundsCount                     : 5, //
+                   roundsCount                     : 3, //
                    lineCount                       : 5,
                    berriesOnScreen                 : 5,
                    totalTriesCount                 : 7

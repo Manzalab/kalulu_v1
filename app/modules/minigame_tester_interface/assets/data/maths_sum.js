@@ -1,78 +1,27 @@
 module.exports = {
     "gameGroup": "sum",
     "discipline": "maths",
-    "language": "debug_config",
+    "language": "english",
     "data": {
         "rounds": [
             {
                 "steps": [
                     {
-                        "type": "target__0__sum__right__+__xnine",
+                        "type": "target__0__sum__right__-__xzero",
                         "stimuli": [
                             {
                                 "value": 0,
                                 "correctResponse": true,
                                 "stimuli_type": "sum",
-                                "apparitions": [
-                                    {
-                                        "elapsedTime": 1000,
-                                        "isCorrect": true,
-                                        "isClosed": true,
-                                        "exitTime": 1566,
-                                        "isClicked": true
-                                    }
-                                ],
-                                "nonSymbolicImage": "assets/images/maths/number_0.jpg",
+                                "apparitions": [],
+                                "nonSymbolicImage": "number_0-0.jpg",
                                 "soundPath": "assets/sounds/maths/number_0.ogg",
                                 "path": {
-                                    "xnumber": "xnine",
+                                    "xnumber_value": 0,
+                                    "xnumber_name": "xzero",
                                     "number": 0,
                                     "side": "right",
-                                    "sign": "+"
-                                }
-                            },
-                            {
-                                "value": 3,
-                                "correctResponse": false,
-                                "stimuli_type": "sum",
-                                "apparitions": [
-                                    {
-                                        "elapsedTime": 1000,
-                                        "isCorrect": false,
-                                        "isClosed": true,
-                                        "exitTime": 1566,
-                                        "isClicked": false
-                                    }
-                                ],
-                                "nonSymbolicImage": "assets/images/maths/number_3.jpg",
-                                "soundPath": "assets/sounds/maths/number_3.ogg",
-                                "path": {
-                                    "xnumber": "xnine",
-                                    "number": 0,
-                                    "side": "right",
-                                    "sign": "+"
-                                }
-                            },
-                            {
-                                "value": 4,
-                                "correctResponse": false,
-                                "stimuli_type": "sum",
-                                "apparitions": [
-                                    {
-                                        "elapsedTime": 1000,
-                                        "isCorrect": false,
-                                        "isClosed": true,
-                                        "exitTime": 1566,
-                                        "isClicked": false
-                                    }
-                                ],
-                                "nonSymbolicImage": "assets/images/maths/number_4.jpg",
-                                "soundPath": "assets/sounds/maths/number_4.ogg",
-                                "path": {
-                                    "xnumber": "xnine",
-                                    "number": 0,
-                                    "side": "right",
-                                    "sign": "+"
+                                    "sign": "-"
                                 }
                             }
                         ]
@@ -80,79 +29,30 @@ module.exports = {
                 ],
                 "targetSequence": {
                     "gameType": "sum",
-                    "sequence": "X+9=9",
+                    "sequence": "0-0=X",
+                    "truesequence": "0-0=0",
                     "targetNumber": 0,
-                    "numberIndex": 0
+                    "numberIndex": 0,
+                    "targetSequence": "0-0=0"
                 }
             },
             {
                 "steps": [
                     {
-                        "type": "target__1__sum__right__+__xtwo",
+                        "type": "target__1__sum__left__+__xone",
                         "stimuli": [
                             {
                                 "value": 1,
                                 "correctResponse": true,
                                 "stimuli_type": "sum",
-                                "apparitions": [
-                                    {
-                                        "elapsedTime": 1000,
-                                        "isCorrect": true,
-                                        "isClosed": true,
-                                        "exitTime": 1566,
-                                        "isClicked": true
-                                    }
-                                ],
-                                "nonSymbolicImage": "assets/images/maths/number_1.jpg",
+                                "apparitions": [],
+                                "nonSymbolicImage": "number_1+1.jpg",
                                 "soundPath": "assets/sounds/maths/number_1.ogg",
                                 "path": {
-                                    "xnumber": "xtwo",
+                                    "xnumber_value": 1,
+                                    "xnumber_name": "xone",
                                     "number": 1,
-                                    "side": "right",
-                                    "sign": "+"
-                                }
-                            },
-                            {
-                                "value": 6,
-                                "correctResponse": false,
-                                "stimuli_type": "sum",
-                                "apparitions": [
-                                    {
-                                        "elapsedTime": 1000,
-                                        "isCorrect": false,
-                                        "isClosed": true,
-                                        "exitTime": 1566,
-                                        "isClicked": false
-                                    }
-                                ],
-                                "nonSymbolicImage": "assets/images/maths/number_6.jpg",
-                                "soundPath": "assets/sounds/maths/number_6.ogg",
-                                "path": {
-                                    "xnumber": "xtwo",
-                                    "number": 1,
-                                    "side": "right",
-                                    "sign": "+"
-                                }
-                            },
-                            {
-                                "value": 4,
-                                "correctResponse": false,
-                                "stimuli_type": "sum",
-                                "apparitions": [
-                                    {
-                                        "elapsedTime": 1000,
-                                        "isCorrect": false,
-                                        "isClosed": true,
-                                        "exitTime": 1566,
-                                        "isClicked": false
-                                    }
-                                ],
-                                "nonSymbolicImage": "assets/images/maths/number_4.jpg",
-                                "soundPath": "assets/sounds/maths/number_4.ogg",
-                                "path": {
-                                    "xnumber": "xtwo",
-                                    "number": 1,
-                                    "side": "right",
+                                    "side": "left",
                                     "sign": "+"
                                 }
                             }
@@ -161,80 +61,31 @@ module.exports = {
                 ],
                 "targetSequence": {
                     "gameType": "sum",
-                    "sequence": "1+2=3",
+                    "sequence": "1+X=1",
+                    "truesequence": "1+0=1",
                     "targetNumber": 1,
-                    "numberIndex": 0
+                    "numberIndex": 0,
+                    "targetSequence": "1+0=1"
                 }
             },
             {
                 "steps": [
                     {
-                        "type": "target__2__sum__left__+__xtwo",
+                        "type": "target__2__sum__right__-__xone",
                         "stimuli": [
                             {
                                 "value": 2,
                                 "correctResponse": true,
                                 "stimuli_type": "sum",
-                                "apparitions": [
-                                    {
-                                        "elapsedTime": 1000,
-                                        "isCorrect": true,
-                                        "isClosed": true,
-                                        "exitTime": 1566,
-                                        "isClicked": true
-                                    }
-                                ],
-                                "nonSymbolicImage": "assets/images/maths/number_2.jpg",
+                                "apparitions": [],
+                                "nonSymbolicImage": "number_2-1.jpg",
                                 "soundPath": "assets/sounds/maths/number_2.ogg",
                                 "path": {
-                                    "xnumber": "xtwo",
+                                    "xnumber_value": 1,
+                                    "xnumber_name": "xone",
                                     "number": 2,
-                                    "side": "left",
-                                    "sign": "+"
-                                }
-                            },
-                            {
-                                "value": 6,
-                                "correctResponse": false,
-                                "stimuli_type": "sum",
-                                "apparitions": [
-                                    {
-                                        "elapsedTime": 1000,
-                                        "isCorrect": false,
-                                        "isClosed": true,
-                                        "exitTime": 1566,
-                                        "isClicked": false
-                                    }
-                                ],
-                                "nonSymbolicImage": "assets/images/maths/number_6.jpg",
-                                "soundPath": "assets/sounds/maths/number_6.ogg",
-                                "path": {
-                                    "xnumber": "xtwo",
-                                    "number": 2,
-                                    "side": "left",
-                                    "sign": "+"
-                                }
-                            },
-                            {
-                                "value": 1,
-                                "correctResponse": false,
-                                "stimuli_type": "sum",
-                                "apparitions": [
-                                    {
-                                        "elapsedTime": 1000,
-                                        "isCorrect": false,
-                                        "isClosed": true,
-                                        "exitTime": 1566,
-                                        "isClicked": false
-                                    }
-                                ],
-                                "nonSymbolicImage": "assets/images/maths/number_1.jpg",
-                                "soundPath": "assets/sounds/maths/number_1.ogg",
-                                "path": {
-                                    "xnumber": "xtwo",
-                                    "number": 2,
-                                    "side": "left",
-                                    "sign": "+"
+                                    "side": "right",
+                                    "sign": "-"
                                 }
                             }
                         ]
@@ -242,9 +93,11 @@ module.exports = {
                 ],
                 "targetSequence": {
                     "gameType": "sum",
-                    "sequence": "2+0=2",
+                    "sequence": "2-1=X",
+                    "truesequence": "2-1=1",
                     "targetNumber": 2,
-                    "numberIndex": 0
+                    "numberIndex": 1,
+                    "targetSequence": "2-1=1"
                 }
             },
             {
@@ -256,63 +109,12 @@ module.exports = {
                                 "value": 3,
                                 "correctResponse": true,
                                 "stimuli_type": "sum",
-                                "apparitions": [
-                                    {
-                                        "elapsedTime": 1000,
-                                        "isCorrect": true,
-                                        "isClosed": true,
-                                        "exitTime": 1566,
-                                        "isClicked": true
-                                    }
-                                ],
-                                "nonSymbolicImage": "assets/images/maths/number_3.jpg",
+                                "apparitions": [],
+                                "nonSymbolicImage": "number_3+0.jpg",
                                 "soundPath": "assets/sounds/maths/number_3.ogg",
                                 "path": {
-                                    "xnumber": "xzero",
-                                    "number": 3,
-                                    "side": "left",
-                                    "sign": "+"
-                                }
-                            },
-                            {
-                                "value": 8,
-                                "correctResponse": false,
-                                "stimuli_type": "sum",
-                                "apparitions": [
-                                    {
-                                        "elapsedTime": 1000,
-                                        "isCorrect": false,
-                                        "isClosed": true,
-                                        "exitTime": 1566,
-                                        "isClicked": false
-                                    }
-                                ],
-                                "nonSymbolicImage": "assets/images/maths/number_8.jpg",
-                                "soundPath": "assets/sounds/maths/number_8.ogg",
-                                "path": {
-                                    "xnumber": "xzero",
-                                    "number": 3,
-                                    "side": "left",
-                                    "sign": "+"
-                                }
-                            },
-                            {
-                                "value": 7,
-                                "correctResponse": false,
-                                "stimuli_type": "sum",
-                                "apparitions": [
-                                    {
-                                        "elapsedTime": 1000,
-                                        "isCorrect": false,
-                                        "isClosed": true,
-                                        "exitTime": 1566,
-                                        "isClicked": false
-                                    }
-                                ],
-                                "nonSymbolicImage": "assets/images/maths/number_7.jpg",
-                                "soundPath": "assets/sounds/maths/number_7.ogg",
-                                "path": {
-                                    "xnumber": "xzero",
+                                    "xnumber_value": 0,
+                                    "xnumber_name": "xzero",
                                     "number": 3,
                                     "side": "left",
                                     "sign": "+"
@@ -323,9 +125,11 @@ module.exports = {
                 ],
                 "targetSequence": {
                     "gameType": "sum",
-                    "sequence": "0+3=3",
+                    "sequence": "0+X=3",
+                    "truesequence": "0+3=3",
                     "targetNumber": 3,
-                    "numberIndex": 2
+                    "numberIndex": 3,
+                    "targetSequence": "0+3=3"
                 }
             },
             {
@@ -337,63 +141,12 @@ module.exports = {
                                 "value": 4,
                                 "correctResponse": true,
                                 "stimuli_type": "sum",
-                                "apparitions": [
-                                    {
-                                        "elapsedTime": 1000,
-                                        "isCorrect": true,
-                                        "isClosed": true,
-                                        "exitTime": 1566,
-                                        "isClicked": true
-                                    }
-                                ],
-                                "nonSymbolicImage": "assets/images/maths/number_4.jpg",
+                                "apparitions": [],
+                                "nonSymbolicImage": "number_4+0.jpg",
                                 "soundPath": "assets/sounds/maths/number_4.ogg",
                                 "path": {
-                                    "xnumber": "xzero",
-                                    "number": 4,
-                                    "side": "left",
-                                    "sign": "+"
-                                }
-                            },
-                            {
-                                "value": 8,
-                                "correctResponse": false,
-                                "stimuli_type": "sum",
-                                "apparitions": [
-                                    {
-                                        "elapsedTime": 1000,
-                                        "isCorrect": false,
-                                        "isClosed": true,
-                                        "exitTime": 1566,
-                                        "isClicked": false
-                                    }
-                                ],
-                                "nonSymbolicImage": "assets/images/maths/number_8.jpg",
-                                "soundPath": "assets/sounds/maths/number_8.ogg",
-                                "path": {
-                                    "xnumber": "xzero",
-                                    "number": 4,
-                                    "side": "left",
-                                    "sign": "+"
-                                }
-                            },
-                            {
-                                "value": 9,
-                                "correctResponse": false,
-                                "stimuli_type": "sum",
-                                "apparitions": [
-                                    {
-                                        "elapsedTime": 1000,
-                                        "isCorrect": false,
-                                        "isClosed": true,
-                                        "exitTime": 1566,
-                                        "isClicked": false
-                                    }
-                                ],
-                                "nonSymbolicImage": "assets/images/maths/number_9.jpg",
-                                "soundPath": "assets/sounds/maths/number_9.ogg",
-                                "path": {
-                                    "xnumber": "xzero",
+                                    "xnumber_value": 0,
+                                    "xnumber_name": "xzero",
                                     "number": 4,
                                     "side": "left",
                                     "sign": "+"
@@ -404,80 +157,31 @@ module.exports = {
                 ],
                 "targetSequence": {
                     "gameType": "sum",
-                    "sequence": "0+4=4",
+                    "sequence": "0+X=4",
+                    "truesequence": "0+4=4",
                     "targetNumber": 4,
-                    "numberIndex": 4
+                    "numberIndex": 4,
+                    "targetSequence": "0+4=4"
                 }
             },
             {
                 "steps": [
                     {
-                        "type": "target__5__sum__left__+__xone",
+                        "type": "target__0__sum__right__-__xzero",
                         "stimuli": [
                             {
-                                "value": 5,
+                                "value": 0,
                                 "correctResponse": true,
                                 "stimuli_type": "sum",
-                                "apparitions": [
-                                    {
-                                        "elapsedTime": 1000,
-                                        "isCorrect": true,
-                                        "isClosed": true,
-                                        "exitTime": 1566,
-                                        "isClicked": true
-                                    }
-                                ],
-                                "nonSymbolicImage": "assets/images/maths/number_5.jpg",
-                                "soundPath": "assets/sounds/maths/number_5.ogg",
+                                "apparitions": [],
+                                "nonSymbolicImage": "number_0-0.jpg",
+                                "soundPath": "assets/sounds/maths/number_0.ogg",
                                 "path": {
-                                    "xnumber": "xone",
-                                    "number": 5,
-                                    "side": "left",
-                                    "sign": "+"
-                                }
-                            },
-                            {
-                                "value": 9,
-                                "correctResponse": false,
-                                "stimuli_type": "sum",
-                                "apparitions": [
-                                    {
-                                        "elapsedTime": 1000,
-                                        "isCorrect": false,
-                                        "isClosed": true,
-                                        "exitTime": 1566,
-                                        "isClicked": false
-                                    }
-                                ],
-                                "nonSymbolicImage": "assets/images/maths/number_9.jpg",
-                                "soundPath": "assets/sounds/maths/number_9.ogg",
-                                "path": {
-                                    "xnumber": "xone",
-                                    "number": 5,
-                                    "side": "left",
-                                    "sign": "+"
-                                }
-                            },
-                            {
-                                "value": 4,
-                                "correctResponse": false,
-                                "stimuli_type": "sum",
-                                "apparitions": [
-                                    {
-                                        "elapsedTime": 1000,
-                                        "isCorrect": false,
-                                        "isClosed": true,
-                                        "exitTime": 1566,
-                                        "isClicked": false
-                                    }
-                                ],
-                                "nonSymbolicImage": "assets/images/maths/number_4.jpg",
-                                "soundPath": "assets/sounds/maths/number_4.ogg",
-                                "path": {
-                                    "xnumber": "xone",
-                                    "number": 5,
-                                    "side": "left",
-                                    "sign": "+"
+                                    "xnumber_value": 0,
+                                    "xnumber_name": "xzero",
+                                    "number": 0,
+                                    "side": "right",
+                                    "sign": "-"
                                 }
                             }
                         ]
@@ -485,159 +189,29 @@ module.exports = {
                 ],
                 "targetSequence": {
                     "gameType": "sum",
-                    "sequence": "1+4=5",
-                    "targetNumber": 5,
-                    "numberIndex": 4
+                    "sequence": "0-0=X",
+                    "truesequence": "0-0=0",
+                    "targetNumber": 0,
+                    "numberIndex": 0,
+                    "targetSequence": "0-0=0"
                 }
             },
             {
                 "steps": [
                     {
-                        "type": "target__6__sum__left__+__xtwo",
+                        "type": "target__1__sum__left__+__xone",
                         "stimuli": [
-                            {
-                                "value": 6,
-                                "correctResponse": true,
-                                "stimuli_type": "sum",
-                                "apparitions": [
-                                    {
-                                        "elapsedTime": 1000,
-                                        "isCorrect": true,
-                                        "isClosed": true,
-                                        "exitTime": 1566,
-                                        "isClicked": true
-                                    }
-                                ],
-                                "nonSymbolicImage": "assets/images/maths/number_6.jpg",
-                                "soundPath": "assets/sounds/maths/number_6.ogg",
-                                "path": {
-                                    "xnumber": "xtwo",
-                                    "number": 6,
-                                    "side": "left",
-                                    "sign": "+"
-                                }
-                            },
-                            {
-                                "value": 10,
-                                "correctResponse": false,
-                                "stimuli_type": "sum",
-                                "apparitions": [
-                                    {
-                                        "elapsedTime": 1000,
-                                        "isCorrect": false,
-                                        "isClosed": true,
-                                        "exitTime": 1566,
-                                        "isClicked": false
-                                    }
-                                ],
-                                "nonSymbolicImage": "assets/images/maths/number_10.jpg",
-                                "soundPath": "assets/sounds/maths/number_10.ogg",
-                                "path": {
-                                    "xnumber": "xtwo",
-                                    "number": 6,
-                                    "side": "left",
-                                    "sign": "+"
-                                }
-                            },
-                            {
-                                "value": 10,
-                                "correctResponse": false,
-                                "stimuli_type": "sum",
-                                "apparitions": [
-                                    {
-                                        "elapsedTime": 1000,
-                                        "isCorrect": false,
-                                        "isClosed": true,
-                                        "exitTime": 1566,
-                                        "isClicked": false
-                                    }
-                                ],
-                                "nonSymbolicImage": "assets/images/maths/number_10.jpg",
-                                "soundPath": "assets/sounds/maths/number_10.ogg",
-                                "path": {
-                                    "xnumber": "xtwo",
-                                    "number": 6,
-                                    "side": "left",
-                                    "sign": "+"
-                                }
-                            }
-                        ]
-                    }
-                ],
-                "targetSequence": {
-                    "gameType": "sum",
-                    "sequence": "2+4=6",
-                    "targetNumber": 6,
-                    "numberIndex": 4
-                }
-            },
-            {
-                "steps": [
-                    {
-                        "type": "target__7__sum__left__+__xfour",
-                        "stimuli": [
-                            {
-                                "value": 7,
-                                "correctResponse": true,
-                                "stimuli_type": "sum",
-                                "apparitions": [
-                                    {
-                                        "elapsedTime": 1000,
-                                        "isCorrect": true,
-                                        "isClosed": true,
-                                        "exitTime": 1566,
-                                        "isClicked": true
-                                    }
-                                ],
-                                "nonSymbolicImage": "assets/images/maths/number_7.jpg",
-                                "soundPath": "assets/sounds/maths/number_7.ogg",
-                                "path": {
-                                    "xnumber": "xfour",
-                                    "number": 7,
-                                    "side": "left",
-                                    "sign": "+"
-                                }
-                            },
                             {
                                 "value": 1,
-                                "correctResponse": false,
+                                "correctResponse": true,
                                 "stimuli_type": "sum",
-                                "apparitions": [
-                                    {
-                                        "elapsedTime": 1000,
-                                        "isCorrect": false,
-                                        "isClosed": true,
-                                        "exitTime": 1566,
-                                        "isClicked": false
-                                    }
-                                ],
-                                "nonSymbolicImage": "assets/images/maths/number_1.jpg",
+                                "apparitions": [],
+                                "nonSymbolicImage": "number_1+1.jpg",
                                 "soundPath": "assets/sounds/maths/number_1.ogg",
                                 "path": {
-                                    "xnumber": "xfour",
-                                    "number": 7,
-                                    "side": "left",
-                                    "sign": "+"
-                                }
-                            },
-                            {
-                                "value": 6,
-                                "correctResponse": false,
-                                "stimuli_type": "sum",
-                                "apparitions": [
-                                    {
-                                        "elapsedTime": 1000,
-                                        "isCorrect": false,
-                                        "isClosed": true,
-                                        "exitTime": 1566,
-                                        "isClicked": false
-                                    }
-                                ],
-                                "nonSymbolicImage": "assets/images/maths/number_6.jpg",
-                                "soundPath": "assets/sounds/maths/number_6.ogg",
-                                "path": {
-                                    "xnumber": "xfour",
-                                    "number": 7,
+                                    "xnumber_value": 1,
+                                    "xnumber_name": "xone",
+                                    "number": 1,
                                     "side": "left",
                                     "sign": "+"
                                 }
@@ -647,80 +221,31 @@ module.exports = {
                 ],
                 "targetSequence": {
                     "gameType": "sum",
-                    "sequence": "4+3=7",
-                    "targetNumber": 7,
-                    "numberIndex": 4
+                    "sequence": "1+X=1",
+                    "truesequence": "1+0=1",
+                    "targetNumber": 1,
+                    "numberIndex": 0,
+                    "targetSequence": "1+0=1"
                 }
             },
             {
                 "steps": [
                     {
-                        "type": "target__8__sum__left__+__xseven",
+                        "type": "target__2__sum__right__-__xone",
                         "stimuli": [
-                            {
-                                "value": 8,
-                                "correctResponse": true,
-                                "stimuli_type": "sum",
-                                "apparitions": [
-                                    {
-                                        "elapsedTime": 1000,
-                                        "isCorrect": true,
-                                        "isClosed": true,
-                                        "exitTime": 1566,
-                                        "isClicked": true
-                                    }
-                                ],
-                                "nonSymbolicImage": "assets/images/maths/number_8.jpg",
-                                "soundPath": "assets/sounds/maths/number_8.ogg",
-                                "path": {
-                                    "xnumber": "xseven",
-                                    "number": 8,
-                                    "side": "left",
-                                    "sign": "+"
-                                }
-                            },
-                            {
-                                "value": 7,
-                                "correctResponse": false,
-                                "stimuli_type": "sum",
-                                "apparitions": [
-                                    {
-                                        "elapsedTime": 1000,
-                                        "isCorrect": false,
-                                        "isClosed": true,
-                                        "exitTime": 1566,
-                                        "isClicked": false
-                                    }
-                                ],
-                                "nonSymbolicImage": "assets/images/maths/number_7.jpg",
-                                "soundPath": "assets/sounds/maths/number_7.ogg",
-                                "path": {
-                                    "xnumber": "xseven",
-                                    "number": 8,
-                                    "side": "left",
-                                    "sign": "+"
-                                }
-                            },
                             {
                                 "value": 2,
-                                "correctResponse": false,
+                                "correctResponse": true,
                                 "stimuli_type": "sum",
-                                "apparitions": [
-                                    {
-                                        "elapsedTime": 1000,
-                                        "isCorrect": false,
-                                        "isClosed": true,
-                                        "exitTime": 1566,
-                                        "isClicked": false
-                                    }
-                                ],
-                                "nonSymbolicImage": "assets/images/maths/number_2.jpg",
+                                "apparitions": [],
+                                "nonSymbolicImage": "number_2-1.jpg",
                                 "soundPath": "assets/sounds/maths/number_2.ogg",
                                 "path": {
-                                    "xnumber": "xseven",
-                                    "number": 8,
-                                    "side": "left",
-                                    "sign": "+"
+                                    "xnumber_value": 1,
+                                    "xnumber_name": "xone",
+                                    "number": 2,
+                                    "side": "right",
+                                    "sign": "-"
                                 }
                             }
                         ]
@@ -728,78 +253,29 @@ module.exports = {
                 ],
                 "targetSequence": {
                     "gameType": "sum",
-                    "sequence": "7+1=8",
-                    "targetNumber": 8,
-                    "numberIndex": 4
+                    "sequence": "2-1=X",
+                    "truesequence": "2-1=1",
+                    "targetNumber": 2,
+                    "numberIndex": 1,
+                    "targetSequence": "2-1=1"
                 }
             },
             {
                 "steps": [
                     {
-                        "type": "target__9__sum__left__+__xone",
+                        "type": "target__3__sum__left__+__xzero",
                         "stimuli": [
                             {
-                                "value": 9,
+                                "value": 3,
                                 "correctResponse": true,
                                 "stimuli_type": "sum",
-                                "apparitions": [
-                                    {
-                                        "elapsedTime": 1000,
-                                        "isCorrect": true,
-                                        "isClosed": true,
-                                        "exitTime": 1566,
-                                        "isClicked": true
-                                    }
-                                ],
-                                "nonSymbolicImage": "assets/images/maths/number_9.jpg",
-                                "soundPath": "assets/sounds/maths/number_9.ogg",
+                                "apparitions": [],
+                                "nonSymbolicImage": "number_3+0.jpg",
+                                "soundPath": "assets/sounds/maths/number_3.ogg",
                                 "path": {
-                                    "xnumber": "xone",
-                                    "number": 9,
-                                    "side": "left",
-                                    "sign": "+"
-                                }
-                            },
-                            {
-                                "value": 7,
-                                "correctResponse": false,
-                                "stimuli_type": "sum",
-                                "apparitions": [
-                                    {
-                                        "elapsedTime": 1000,
-                                        "isCorrect": false,
-                                        "isClosed": true,
-                                        "exitTime": 1566,
-                                        "isClicked": false
-                                    }
-                                ],
-                                "nonSymbolicImage": "assets/images/maths/number_7.jpg",
-                                "soundPath": "assets/sounds/maths/number_7.ogg",
-                                "path": {
-                                    "xnumber": "xone",
-                                    "number": 9,
-                                    "side": "left",
-                                    "sign": "+"
-                                }
-                            },
-                            {
-                                "value": 2,
-                                "correctResponse": false,
-                                "stimuli_type": "sum",
-                                "apparitions": [
-                                    {
-                                        "elapsedTime": 1000,
-                                        "isCorrect": false,
-                                        "isClosed": true,
-                                        "exitTime": 1566,
-                                        "isClicked": false
-                                    }
-                                ],
-                                "nonSymbolicImage": "assets/images/maths/number_2.jpg",
-                                "soundPath": "assets/sounds/maths/number_2.ogg",
-                                "path": {
-                                    "xnumber": "xone",
-                                    "number": 9,
+                                    "xnumber_value": 0,
+                                    "xnumber_name": "xzero",
+                                    "number": 3,
                                     "side": "left",
                                     "sign": "+"
                                 }
@@ -809,78 +285,29 @@ module.exports = {
                 ],
                 "targetSequence": {
                     "gameType": "sum",
-                    "sequence": "1+8=9",
-                    "targetNumber": 9,
-                    "numberIndex": 8
+                    "sequence": "0+X=3",
+                    "truesequence": "0+3=3",
+                    "targetNumber": 3,
+                    "numberIndex": 3,
+                    "targetSequence": "0+3=3"
                 }
             },
             {
                 "steps": [
                     {
-                        "type": "target__10__sum__left__+__xfive",
+                        "type": "target__4__sum__left__+__xzero",
                         "stimuli": [
                             {
-                                "value": 10,
+                                "value": 4,
                                 "correctResponse": true,
                                 "stimuli_type": "sum",
-                                "apparitions": [
-                                    {
-                                        "elapsedTime": 1000,
-                                        "isCorrect": true,
-                                        "isClosed": true,
-                                        "exitTime": 1566,
-                                        "isClicked": true
-                                    }
-                                ],
-                                "nonSymbolicImage": "assets/images/maths/number_10.jpg",
-                                "soundPath": "assets/sounds/maths/number_10.ogg",
+                                "apparitions": [],
+                                "nonSymbolicImage": "number_4+0.jpg",
+                                "soundPath": "assets/sounds/maths/number_4.ogg",
                                 "path": {
-                                    "xnumber": "xfive",
-                                    "number": 10,
-                                    "side": "left",
-                                    "sign": "+"
-                                }
-                            },
-                            {
-                                "value": 8,
-                                "correctResponse": false,
-                                "stimuli_type": "sum",
-                                "apparitions": [
-                                    {
-                                        "elapsedTime": 1000,
-                                        "isCorrect": false,
-                                        "isClosed": true,
-                                        "exitTime": 1566,
-                                        "isClicked": false
-                                    }
-                                ],
-                                "nonSymbolicImage": "assets/images/maths/number_8.jpg",
-                                "soundPath": "assets/sounds/maths/number_8.ogg",
-                                "path": {
-                                    "xnumber": "xfive",
-                                    "number": 10,
-                                    "side": "left",
-                                    "sign": "+"
-                                }
-                            },
-                            {
-                                "value": 9,
-                                "correctResponse": false,
-                                "stimuli_type": "sum",
-                                "apparitions": [
-                                    {
-                                        "elapsedTime": 1000,
-                                        "isCorrect": false,
-                                        "isClosed": true,
-                                        "exitTime": 1566,
-                                        "isClicked": false
-                                    }
-                                ],
-                                "nonSymbolicImage": "assets/images/maths/number_9.jpg",
-                                "soundPath": "assets/sounds/maths/number_9.ogg",
-                                "path": {
-                                    "xnumber": "xfive",
-                                    "number": 10,
+                                    "xnumber_value": 0,
+                                    "xnumber_name": "xzero",
+                                    "number": 4,
                                     "side": "left",
                                     "sign": "+"
                                 }
@@ -890,9 +317,11 @@ module.exports = {
                 ],
                 "targetSequence": {
                     "gameType": "sum",
-                    "sequence": "5+5=10",
-                    "targetNumber": 10,
-                    "numberIndex": 5
+                    "sequence": "0+X=4",
+                    "truesequence": "0+4=4",
+                    "targetNumber": 4,
+                    "numberIndex": 4,
+                    "targetSequence": "0+4=4"
                 }
             }
         ]
