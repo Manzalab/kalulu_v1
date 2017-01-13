@@ -475,14 +475,16 @@
      * Called at initialisation. Setup the appropriate groups of debug functions depending on Config.
     **/
     UserInterface.prototype._addDebugFolders = function _addDebugFolders () {
-        console.log('adding debug Folders');
+
         if (Config.enableQAControls) {
+            console.log('adding debug Folders');
             this._initQADebugPanel();
+            if (!Config.skipKalulu) {
+                this._initKaluluDebugPanel();
+            }
         }
-        if (!Config.skipKalulu) {
-            this._initKaluluDebugPanel();
-        }
-    }
+
+    };
 
     UserInterface.prototype._initQADebugPanel = function _initQADebugPanel () {
 
