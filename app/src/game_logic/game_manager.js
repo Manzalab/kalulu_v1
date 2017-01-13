@@ -107,13 +107,19 @@
 
 
     GameManager.prototype.onCloseActivity = function onCloseActivity (progressionNode) {
+        
         console.log(progressionNode);
         console.log("next node : " + progressionNode.nextNode().constructor.name);
         console.log("next node's parent : " + progressionNode.nextNode().parent.constructor.name);
+        console.log(Reward);
         var gardenData;
         if (progressionNode) {
             this.setState(GameStates.MENUS);
-            if (progressionNode.constructor.name === 'Exercise') {
+            if (progressionNode.constructor.name === 'Lecture') {
+                console.log("Lesson Not Yet Complete : back to intial lesson screen");
+                this._eventSystem.emit(Events.GAME.BACK_FROM_ACTIVITY, progressionNode.parent);
+            }
+            else if (progressionNode.constructor.name === 'Exercise') {
                 if (!progressionNode.parent.isCompleted) {
                     console.log("Lesson Not Yet Complete : back to intial lesson screen");
                     this._eventSystem.emit(Events.GAME.BACK_FROM_ACTIVITY, progressionNode.parent);
@@ -126,12 +132,12 @@
                     };
                     
                     this._eventSystem.emit(Events.GAME.BACK_FROM_ACTIVITY, gardenData, this._rafiki.getChaptersProgression(), this._currentUserProfile);
-                }
-                if (progressionNode.isCompleted && Reward.levelRewards[progressionNode.discipline.type.toLowerCase()][progressionNode.lessonNumber]) {
-                    // Reward.levelRewards[progressionNode.discipline.type.toLowerCase()][progressionNode.lessonNumber]
-                    // envoyer ce nom dans l'interface manager avec un event pour push le nom du reward dans ToyChestActivityScreen._unlockedActivities
-                    console.log("Unlocking Toy Chest Reward");
-                    this.emit(Events.GAME.UNLOCK_REWARD_TOYCHEST, Reward.levelRewards[progressionNode.discipline.type.toLowerCase()][progressionNode.lessonNumber]);
+                    if (Reward.levelRewards[progressionNode.discipline.type.toLowerCase()][progressionNode.lessonNumber]) {
+                        // Reward.levelRewards[progressionNode.discipline.type.toLowerCase()][progressionNode.lessonNumber]
+                        // envoyer ce nom dans l'interface manager avec un event pour push le nom du reward dans ToyChestActivityScreen._unlockedActivities
+                        console.log("Unlocking Toy Chest Reward");
+                        this.emit(Events.GAME.UNLOCK_REWARD_TOYCHEST, Reward.levelRewards[progressionNode.discipline.type.toLowerCase()][progressionNode.lessonNumber]);
+                    }
                 }
             }
             else if (progressionNode.constructor.name === 'Assessment') {
@@ -157,11 +163,6 @@
         }
 
         console.info("Minigame should have closed itself now");
-    };
-
-
-    GameManager.prototype.destroy = function destroy () {
-
     };
 
 

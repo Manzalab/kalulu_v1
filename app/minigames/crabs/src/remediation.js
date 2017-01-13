@@ -151,13 +151,13 @@
         }, this);       
 
         this.game.eventManager.on('exitGame', function () {
+            if (this.game.gameConfig.debugPanel) this.clearDebugPanel();
+            this.game.rafiki.close();
             this.game.eventManager.removeAllListeners();
             this.game.eventManager = null;
-            this.game.rafiki.close();
-            if (this.game.gameConfig.debugPanel) {
-                this.clearDebugPanel();
-            }
             this.game.destroy();
+            console.info("Phaser Game has been destroyed");
+            this.game = null;
         }, this);
 
         this.game.eventManager.on('replay', this.onClickOnReplay, this);

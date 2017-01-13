@@ -1,0 +1,9 @@
+{
+  "gameId": "crabs",
+  "skipKalulu": false,
+  "skipKaluluIntro": false,
+  "skipKaluluHelp": false,
+  "skipKaluluFinal": false,
+  "debugPanel": false,
+  "globalVars": false
+}
