@@ -51,6 +51,13 @@
         this.antSprite.animations.add('walk1', Phaser.Animation.generateFrameNames('Fourmi_marche_', 0, 5, '', 4), 8, false, false);
         this.antSprite.animations.add('walk2', Phaser.Animation.generateFrameNames('Fourmi_marche02_', 0, 5, '', 4), 8, false, false);
 
+		this.highlight = game.add.sprite(0, 0, 'fx', 'FX_02');
+        this.highlight.anchor.setTo(0.5, 0.5);
+        this.highlight.scale.x = 0.5;
+        this.highlight.scale.y = 0.5;
+        this.highlight.visible = false;
+        this.add(this.highlight);
+		
 
 
         this.text = game.add.text(0, 0, "- phaser -\nrocking with\ngoogle web fonts");
@@ -175,21 +182,28 @@
      **/
     Ant.prototype.update = function () {
         if (this.walking && !this.paused)
-            if (this.vx < 0 ) this.antSprite.scale.x = -Math.abs(this.antSprite.scale.x);
-            else this.antSprite.scale.x = Math.abs(this.antSprite.scale.x);
-
+		{
+            if (this.vx < 0 ) 
+				this.antSprite.scale.x = -Math.abs(this.antSprite.scale.x);
+            else 
+				this.antSprite.scale.x = Math.abs(this.antSprite.scale.x);
+		}
+		
         if (this.antSprite.animations.currentAnim.isFinished || !this.antSprite.animations.currentAnim.isPlaying) {
             var rand = Math.random();
 
             if (!this.walking || this.paused)
+			{
                 if (rand < 0.7)
                     this.antSprite.animations.play('idle1');
-                else this.antSprite.animations.play('idle2');
+                else 
+					this.antSprite.animations.play('idle2');
+			}
             else {
                 if (rand < 0.7)
                     this.antSprite.animations.play('walk1');
-                else this.antSprite.animations.play('walk2');
-
+                else 
+					this.antSprite.animations.play('walk2');
 
             }
         }

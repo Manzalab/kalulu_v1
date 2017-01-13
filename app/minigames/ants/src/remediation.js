@@ -264,6 +264,9 @@
     }
 
     Remediation.prototype.onClickValidateRound = function () {
+		
+		this.stopHighlight();
+		
         this.game.eventManager.emit("pause");
         this.validateRoundButton.visible = false;
         var success = true;
@@ -329,6 +332,41 @@
             this.gameOverWin();
         }
     };
+	
+	Remediation.prototype.startHighlight = function () {
+		
+		for (var i = 0; i < this.ants.length; i++) 
+		{
+			if (this.ants[i].associatedSentence === null) 
+			{
+				this.ants[i].highlight.visible = true;
+										
+				for (var j = 0 ; j < this.sentences.length; j++)
+				{
+					if (this.sentences[j].words[this.sentences[j].wordIndex].text == this.ants[i].text.text)
+					{
+						this.sentences[j].highlight.visible = true;
+						break;
+					} 							
+				}
+				
+				break;
+			}
+		}
+	},
+	
+	Remediation.prototype.stopHighlight = function () {
+		
+		for (var i = 0; i < this.ants.length; i++) 
+		{			
+			this.ants[i].highlight.visible = false;			
+		}
+		
+		for (var i = 0 ; i < this.sentences.length; i++)
+		{
+			this.sentences[i].highlight.visible = false;						
+		}		
+	},
 
     /**
      * Triggers on fail events
@@ -344,27 +382,38 @@
 
         if (this.lives > 0 && this.triesRemaining > 0) { // game continues, remediation can be triggered
 
+			for (var i = 0; i < this.ants.length ; i++) {
+                this.ants[i].associatedSentence.associatedAnt = null;
+                this.ants[i].associatedSentence = null;
+
+                this.ants[i].walkToSlope(this.ants[i].origin.x, this.ants[i].origin.y);
+            }
+		
             if (this.consecutiveMistakes === params.incorrectResponseCountTriggeringSecondRemediation) {
 
                 this.game.eventManager.emit('help'); // listened by Kalulu to start the help speech; pauses the game in kalulu
                 if (this.game.gameConfig.debugPanel) this.cleanLocalPanel();
                 this.game.params.decreaseLocalDifficulty();
                 if (this.game.gameConfig.debugPanel) this.setLocalPanel();
-                //TODO : implement the highlight of the targetJellys
+				
+				// TODO: Second remediation (ghost)
+				
                 this.consecutiveMistakes = 0; // restart the remediation
             }
-            else {
+			else if(this.consecutiveMistakes === params.incorrectResponseCountTriggeringFirstRemediation) {
+								
+				this.startHighlight();				
+				
+				 this.game.eventManager.once("reachedDestination", function () {
+                    this.game.eventManager.emit("unPause");
+                }, this);
+			}
+            else 
+			{
                 this.game.eventManager.once("reachedDestination", function () {
                     this.game.eventManager.emit("unPause");
                 }, this);
-            }
-
-            for (var i = 0; i < this.ants.length ; i++) {
-                this.ants[i].associatedSentence.associatedAnt = null;
-                this.ants[i].associatedSentence = null;
-
-                this.ants[i].walkToSlope(this.ants[i].origin.x, this.ants[i].origin.y);
-            }
+            }        
 
             this.stepCount = 0;
         }
