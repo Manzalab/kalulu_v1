@@ -39,7 +39,6 @@
         this.events = this.parakeetSprite.events;
 
         this.events.onInputDown.add(function () {
-            console.log("parakeetsClickable: " + this.clickable);
             if (this.clickable) {
                 this.clickable = false;
                 this.sounds.click[Math.floor(Math.random() * (this.sounds.click.length))].play();
@@ -85,32 +84,25 @@
 
     Parakeet.prototype.initEvents = function () {
         this.game.eventManager.on('unClickable', function () {
-			console.log("parakeets: unClickable");
             this.clickable = false;
 			this.animCanSetClickable = false;
         }, this);
 
         this.game.eventManager.on('clickable', function () {
-			console.log("parakeets: clickable");
             if (!this.front)
 				this.animCanSetClickable = true;
-				console.log("parakeets: clickable record anim");
                 this.parakeetSprite.animations.currentAnim.onComplete.addOnce(function () {
                     this.clickable = this.animCanSetClickable;
-					console.log("parakeets: clickable end anim: clickable = " + this.clickable);
                 }, this);
         }, this);
 
         this.game.eventManager.on('pause', function () {
             this.clickable = false;
-			console.log("parakeets: pause: clickable = false");
         }, this);
 
         this.game.eventManager.on('unPause', function () {
-			console.log("parakeets: unPause");
             if (!this.front)
 			{
-				console.log("parakeets: unPause: clickable = true");
 				this.clickable = true;
 			}
         }, this);
