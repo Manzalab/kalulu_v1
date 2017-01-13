@@ -22,6 +22,18 @@
             process.env.kaluluLanguage = "french";
             config = require('../webpack_configs/webpack.config.build.js');
         break;
+        case 'buildProdEnglish':
+            process.env.htmlTitle = "Build Environment - English Version";
+            process.env.kaluluLanguage = "english";
+            process.env.productionBuild = true;
+            config = require('../webpack_configs/webpack.config.build.js');
+        break;
+        case 'buildProdSwahili':
+            process.env.htmlTitle = "Build Environment - Swahili Version";
+            process.env.kaluluLanguage = "swahili";
+            process.env.productionBuild = true;
+            config = require('../webpack_configs/webpack.config.build.js');
+        break;
         default:
             process.env.htmlTitle = "Build Environment - English Version";
             process.env.kaluluLanguage = "english";

@@ -8,7 +8,7 @@
     var Rafiki              = require('./rafiki');
     var Timer               = require('./timer');
     var UserProfile         = require('./core/user_profile');
-    var Reward              = require('assets/data/' + KALULU_LANGUAGE + '/dynamic_rewards');
+    var Reward              = require('application/dynamic_rewards');
 
     // ###############################################################################################################################################
     // ###  CONSTRUCTOR  #############################################################################################################################
@@ -107,13 +107,19 @@
 
 
     GameManager.prototype.onCloseActivity = function onCloseActivity (progressionNode) {
+        
         console.log(progressionNode);
         console.log("next node : " + progressionNode.nextNode().constructor.name);
         console.log("next node's parent : " + progressionNode.nextNode().parent.constructor.name);
+        console.log(Reward);
         var gardenData;
         if (progressionNode) {
             this.setState(GameStates.MENUS);
-            if (progressionNode.constructor.name === 'Exercise') {
+            if (progressionNode.constructor.name === 'Lecture') {
+                console.log("Lesson Not Yet Complete : back to intial lesson screen");
+                this._eventSystem.emit(Events.GAME.BACK_FROM_ACTIVITY, progressionNode.parent);
+            }
+            else if (progressionNode.constructor.name === 'Exercise') {
                 if (!progressionNode.parent.isCompleted) {
                     console.log("Lesson Not Yet Complete : back to intial lesson screen");
                     this._eventSystem.emit(Events.GAME.BACK_FROM_ACTIVITY, progressionNode.parent);
@@ -124,15 +130,15 @@
                         currentChapter : progressionNode.parent.parent.chapterNumber,
                         data : this._rafiki.getChaptersData(),
                     };
-                     if (Reward.levelRewards[progressionNode.discipline.type.toLowerCase()][progressionNode.lessonNumber]) {
-                    // Reward.levelRewards[progressionNode.discipline.type.toLowerCase()][progressionNode.lessonNumber]
-                    // envoyer ce nom dans l'interface manager avec un event pour push le nom du reward dans ToyChestActivityScreen._unlockedActivities
-                    console.log("Unlocking Toy Chest Reward");
-                    this._eventSystem.emit(Events.GAME.UNLOCK_REWARD_TOYCHEST, Reward.levelRewards[progressionNode.discipline.type.toLowerCase()][progressionNode.lessonNumber]);
-					}
+                    
                     this._eventSystem.emit(Events.GAME.BACK_FROM_ACTIVITY, gardenData, this._rafiki.getChaptersProgression(), this._currentUserProfile);
+                    if (Reward.levelRewards[progressionNode.discipline.type.toLowerCase()][progressionNode.lessonNumber]) {
+                        // Reward.levelRewards[progressionNode.discipline.type.toLowerCase()][progressionNode.lessonNumber]
+                        // envoyer ce nom dans l'interface manager avec un event pour push le nom du reward dans ToyChestActivityScreen._unlockedActivities
+                        console.log("Unlocking Toy Chest Reward");
+                        this.emit(Events.GAME.UNLOCK_REWARD_TOYCHEST, Reward.levelRewards[progressionNode.discipline.type.toLowerCase()][progressionNode.lessonNumber]);
+                    }
                 }
-               
             }
             else if (progressionNode.constructor.name === 'Assessment') {
                 if (!progressionNode.isCompleted) {
@@ -160,11 +166,6 @@
     };
 
 
-    GameManager.prototype.destroy = function destroy () {
-
-    };
-
-
 
     // ##############################################################################################################################################
     // ###  PRIVATE METHODS  ########################################################################################################################
@@ -184,7 +185,6 @@
             this._eventSystem.on(Events.DEBUG.UNLOCK_DEBUG, this._onDebugUnlockRequest, this);
             this._eventSystem.on(Events.DEBUG.UNLOCK_NEUROENERGY_DEBUG, this._onDebugUnlockNeuroEnergyRequest, this);
             this._eventSystem.on(Events.DEBUG.RESET_SAVE_REQUEST, this._onResetSaveRequest, this);
-			this._eventSystem.on(Events.DEBUG.UNLOCK_ALL_REWARDS, this._onUnlockAllRewards, this);
         }
     };
     
@@ -365,20 +365,6 @@
         console.info("RESET_SAVE REQUEST RECEIVED");
         this._eventSystem.once(Events.APPLICATION.SAVE_RESET, this._onSaveReset, this);
         this._eventSystem.emit(Events.APPLICATION.RESET_SAVE);
-    };
-	
-	GameManager.prototype._onUnlockAllRewards = function _onUnlockAllRewards (eventData) {
-		
-		//for (var lessonNumber in Reward.levelRewards.maths) {
-		//	var lRewardName = Reward.levelRewards.language[lessonNumber];
-		//	this.emit(Events.GAME.UNLOCK_REWARD_TOYCHEST, lRewardName);
-		//}
-		//for (var lessonNumber in Reward.levelRewards.both) {
-		//	var lRewardName = Reward.levelRewards.language[lessonNumber];
-		//	this.emit(Events.GAME.UNLOCK_REWARD_TOYCHEST, lRewardName);
-		//}
-		
-        console.info("UNLOCK_ALL_REWARDS REQUEST RECEIVED");
     };
 
     GameManager.prototype._onSaveReset = function onSaveReset (eventData) {

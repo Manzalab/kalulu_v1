@@ -193,12 +193,13 @@
         this._loadingManager = new LoadingManager(this._eventSystem);
         
         // debug && tuning
-        if (Config.enableTransitionsTuning || Config.enableMinigameTuning || Config.enableQAControls || !Config.skipKalulu) {
+        if (Config.enableTransitionsTuning || Config.enableMinigameTuning || Config.enableQAControls || Config.skipKalulu) {
             this._debugPanel = new Dat.GUI();
             this._debugPanelFolderNames = {};
+            this._addDebugFolders();
         }
 
-        this._addDebugFolders();
+
 
         // start listening to Events
         this._eventSystem.on(Events.APPLICATION.MAIN_LOOP, this._renderingLoop, this);
@@ -482,14 +483,16 @@
      * Called at initialisation. Setup the appropriate groups of debug functions depending on Config.
     **/
     UserInterface.prototype._addDebugFolders = function _addDebugFolders () {
-        console.log('adding debug Folders');
+
         if (Config.enableQAControls) {
+            console.log('adding debug Folders');
             this._initQADebugPanel();
+            if (!Config.skipKalulu) {
+                this._initKaluluDebugPanel();
+            }
         }
-        if (!Config.skipKalulu) {
-            this._initKaluluDebugPanel();
-        }
-    }
+
+    };
 
     UserInterface.prototype._initQADebugPanel = function _initQADebugPanel () {
 

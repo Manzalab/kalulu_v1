@@ -138,9 +138,11 @@
         this.falseResponses = [];
         this.correctResponses = [];
         this.falseStepResponsesCurrentPool = [];
-        console.log("debug ici:"+roundData.word+"  "+roundData.target+ " "+roundData.word || roundData.target)
-        this.correctWord = roundData.word || roundData.target;
-        this.sounds.correctRoundAnswer = this.game.add.audio((roundData.word || roundData.target).value);
+		if (roundData.target != null)
+			this.correctWord = roundData.target.value;
+		else
+			this.correctWord = roundData.word.value;
+        this.sounds.correctRoundAnswer = this.game.add.audio(this.correctWord);
         var stepsLength = roundData.steps.length;
 
         var stimuliLength, stimulus;
@@ -152,6 +154,7 @@
             stimuliLength = roundData.steps[i].stimuli.length;
             for (var j = 0; j < stimuliLength; j++) {
                 stimulus = roundData.steps[i].stimuli[j];
+                console.log(stimulus)
                 if (stimulus.correctResponse === true) {
                     correctStepResponses.value = stimulus.value;
                     correctStepResponses.sound = this.game.add.audio(stimulus.value);
@@ -330,7 +333,7 @@
                         context.initRound(context.roundIndex);
                         context.island.reset(context.correctResponses.length);
                         if (context.game.discipline == 'maths') context.island.picture.setValue(context.correctWord.value);
-                        context.eventManager.emit('playCorrectSound');
+                        context.game.eventManager.emit('playCorrectSound');
                     }, 3 * 1000);
                 }, 1000);              
             }

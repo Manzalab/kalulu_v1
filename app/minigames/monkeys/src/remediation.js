@@ -58,7 +58,7 @@
 
         this.initRound(this.roundIndex);
         console.log(this.sequence)
-        if (this.game.discipline == 'maths') this.board.setTextMaths(this.sequence.sequence, this.sequence.numberIndex);
+        if (this.game.discipline == 'maths') this.sequence.numberIndex = this.board.setTextMaths(this.sequence.sequence);
         this.setTexts();
         this.fx = new Fx(game);
     };
@@ -83,6 +83,10 @@
      **/
     Remediation.prototype.initEvents = function () {
         this.game.eventManager.on('pause', function () {
+        }, this);
+
+        this.game.eventManager.on('help', function () {
+            this.timeWithoutClick = 0;
         }, this);
 
         this.game.eventManager.on('unPause', function () {
@@ -134,11 +138,15 @@
 
         this.game.eventManager.on('exitGame', function () {
             if (this.game.gameConfig.debugPanel) this.clearDebugPanel();
+            console.info("clearDebugPanel ok");
             this.game.rafiki.close();
+            console.info("rafiki closed");
             this.game.eventManager.removeAllListeners();
+            console.info("removeAllListeners ok");
             this.game.eventManager = null;
+            console.info("eventManager null");
             this.game.destroy();
-            console.info("PLhaser Game has been destroyed");
+            console.info("Phaser Game has been destroyed");
             this.game = null;
         }, this);
 
@@ -288,7 +296,9 @@
             this.game.eventManager.once('finishedMoving', function () {
                 object.break();
                 if (this.game.discipline != 'maths') this.board.text.text += this.correctResponses[this.stepIndex].value;
-                else this.board.setTextMaths(this.sequence.sequence);
+                else {
+                    this.board.setTextMaths(this.sequence.sequence, this.correctResponses[this.stepIndex].value);
+                    }
                 this.game.eventManager.once('finishedBreaking', function () {
                     this.sounds.right.play();
                     this.success();
@@ -339,10 +349,10 @@
                     context.initRound(context.roundIndex);
                     context.board.text.text = "";
                     if (context.game.discipline == 'maths') {
-                        context.board.setTextMaths(context.sequence.sequence, context.sequence.numberIndex);
+                        context.sequence.numberIndex = context.board.setTextMaths(context.sequence.sequence);
                     }
                     context.getNewCoconuts();
-                    context.eventManager.emit('playCorrectSound');
+                    context.game.eventManager.emit('playCorrectSound');
                 }, 3 * 1000);
             }
             else {
@@ -368,7 +378,7 @@
 
                 var context = this;
                 setTimeout(function () {
-                    context.eventManager.emit('playCorrectSound');//listened here; check initEvents
+                    context.game.eventManager.emit('playCorrectSound');//listened here; check initEvents
                 }, 1000);
 
                 if (this.game.gameConfig.debugPanel) this.cleanLocalPanel();
@@ -435,7 +445,7 @@
 
         this.sounds.winGame.onStop.add(function () {
             this.sounds.winGame.onStop.removeAll();
-            this.game.eventManager.emit('GameOverWin');//listened by Ui (toucan = kalulu)
+            this.game.eventManager.emit('GameOverWin');//listened by Ui
             this.saveGameRecord();
         }, this);
     };

@@ -122,7 +122,7 @@
         var context = this;
 
         setTimeout(function () {
-            context.eventManager.emit('finishedBreaking', this);
+            context.game.eventManager.emit('finishedBreaking', this);
         }, this.particles.children[2].lifespan);
     };
 

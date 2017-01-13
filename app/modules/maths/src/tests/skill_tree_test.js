@@ -34,18 +34,20 @@ var score = new FakeScore()
 //console.log(numbers_data)
 
 //var target_group = ['sum']
-	  var available_numbers  = [1]
+	  var available_numbers  = [0,1,2,3,4]
+	  // ,50,60,70,1,3,5,6,7,5,10,54
  	  var params = {
  	  		available_numbers 				: available_numbers,
            	available_skills				: ['forward', 'oneby'],
             available_shapes				: ['circle', 'square', 'triangle'],
             shapes_data						: new FakeShapesData(config.language),
             numbers_data 					: new FakeNumbersData(config.language),
-            gameType                        : "ca", // "identification", "composition", "pairing", or "other"
-            roundsCount                     : 3,           // the amount of rounds, (Rafiki will provide one target per round)
+            gameType                        : "sum", // "identification", "composition", "pairing", or "other"
+            roundsCount                     : 8,           // the amount of rounds, (Rafiki will provide one target per round)
             stepDistracterCount             : 0,             //
             language 						: config.language,
-            groupGameType  					: 'recognition'    
+            groupGameType  					: 'sum',
+            parakeetPairs 					: 3 // extra params for parakeets
       }
     
 
@@ -112,8 +114,8 @@ function pool_loop(tries){
 	})
 	return temp_rounds;
 }
-//var loop_on = available_numbers
 
+//var loop_on = available_numbers
 // game.data.rounds = _.sample(game.data.rounds, 4)
 
 	var temp_rounds_results = [];
@@ -123,88 +125,56 @@ function pool_loop(tries){
 	out.tries_results[tries] = temp_rounds_results
 
 
-	//// patch !!! just a copy not re-pooling ...
-	//game.data.rounds = _.sample(game.data.rounds, 4)
-	// todo check max !!!! 
-	if(temp_rounds_results.length == 0){
-		var temp_rounds_results = pool_loop(2)
-		out.tries_results[tries] = temp_rounds_results
-		out.forced_pool = 2	
-		game.dataforced = true
-	}
+
+	if(params.gameType == 'pairing'){
+
+		console.log('params___.parakeetPairs ='+params.parakeetPairs)
+		console.log(temp_rounds_results.length)
+
+		if(temp_rounds_results.length < params.parakeetPairs){
+			console.log('not enough parakeets')
+			var temp_rounds_results = pool_loop(2)
+			console.log('parakeets after re-pool:'+temp_rounds_results.length)
 
 
-	if(temp_rounds_results.length == 0){
-			var end = {'norounds': true}	
-				return end
+			var mixed_steps = {steps: [ { "type": "mixed", "stimuli": []}]}
+
+				_.each(temp_rounds_results, function(r, ri){
+					if(ri<params.parakeetPairs ){
+					 	console.log(r.steps[0].stimuli)
+						// parakeetPairs
+						mixed_steps.steps[0].stimuli.push(r.steps[0].stimuli[0])
+					}
+					
+
+				})
+				game.data.rounds.push(mixed_steps)
+
+
+		}
 
 	}
 	else{
 
-			if(params.gameType == 'pairing'){
-				var mixed_steps = {steps: [ { "type": "audioToNonSymbolic", "stimuli": []}]}
+		if(temp_rounds_results.length == 0){
+			var temp_rounds_results = pool_loop(2)
+			out.tries_results[tries] = temp_rounds_results
+			out.forced_pool = 2	
+			game.dataforced = true
+		}
 
-				_.each(temp_rounds_results, function(r){
-					
-					// console.log(r.steps)
-					// parakeetPairs
-
-					mixed_steps.steps[0].stimuli.push(r.steps[0].stimuli[0])
-
-					// game.data.rounds.push(r)
-					//out.count_rounds++
-
-				})
-				game.data.rounds.push(mixed_steps)
-			    console.log('mixed_steps')
-				// console.log(mixed_steps)
-
-			}
-			else if(params.gameType == 'turtless'){
-				var mixed_steps = []
-				_.each(temp_rounds_results, function(r){
-					
-					// console.log(r.steps)
-					mixed_steps.push(r.steps[0].stimuli[0])
-					game.data.rounds.push(r)
-					//	out.count_rounds++
-
-				})
-				game.data.rounds[0].steps[0].stimuli = mixed_steps
-				//	console.log(mixed_steps)
-
-
-
-			}
-			else{
-
-
-
-				while(game.data.rounds.length < params.roundsCount  ){ //  && tries < 4
-					tries++
-
-					//if(gameType == 'pairing'){
-
-
-					// }
-
-					_.each(temp_rounds_results, function(r){
-						game.data.rounds.push(r)
-						out.count_rounds++
-
-					})	
-				}
-
-			}
+		while(game.data.rounds.length < params.roundsCount  ){ //  && tries < 4
+			tries++
+			_.each(temp_rounds_results, function(r){
+				game.data.rounds.push(r)
+				out.count_rounds++
+			})	
+		}
+		game.count_rounds = out.count_rounds
 
 	}
 
 
-	// console.log('try round lenght : '+temp_rounds_results.length)
-	 
-console.log('final round lenght : '+game.data.rounds.length+' tries'+tries+' forced pooling'+out.forced_pool)
-
-out.tries = tries;
 
 
 jsonfile.writeFile(filescore,out, function (err) {
