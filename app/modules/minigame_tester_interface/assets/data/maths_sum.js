@@ -80,7 +80,7 @@ module.exports = {
                 ],
                 "targetSequence": {
                     "gameType": "sum",
-                    "sequence": "0+9=9",
+                    "sequence": "X+9=9",
                     "targetNumber": 0,
                     "numberIndex": 0
                 }

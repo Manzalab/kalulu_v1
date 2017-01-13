@@ -6,7 +6,7 @@
             "word": {
                 "value": "wa",
                 "soundPath": [
-                    "assets/sounds/language/syl_wa.ogg"
+                    "assets/sounds/language/word_wa.ogg"
                 ],
                 "correctResponse": true
             },
@@ -58,7 +58,7 @@
             "word": {
                 "value": "wi",
                 "soundPath": [
-                    "assets/sounds/language/syl_wi.ogg"
+                    "assets/sounds/language/word_wi.ogg"
                 ],
                 "correctResponse": true
             },
