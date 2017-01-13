@@ -26,7 +26,7 @@ var Suite = function(n,size,step,from,direction, distractors_count, numbers_data
 	// setting "from" parameters
 
 	if(from == 'zero'){
-		var size = 15
+		var size = 10
 
 	}
 	if(from == 'multiple'){
@@ -58,7 +58,7 @@ var Suite = function(n,size,step,from,direction, distractors_count, numbers_data
 	var available_last_index = -1;
 
 
-	for (var s =0; s < 15; s++) {
+	for (var s =0; s < 10; s++) {
 		// var n_previous = n-((s-1)*step)
 		var v = n-(s*step)
 		if(direction =='backward'){

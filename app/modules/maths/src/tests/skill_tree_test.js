@@ -34,7 +34,7 @@ var score = new FakeScore()
 //console.log(numbers_data)
 
 //var target_group = ['sum']
-	  var available_numbers  = [1,2,3,4,5,6,7]
+	  var available_numbers  = [0,1,2,3,4]
 	  // ,50,60,70,1,3,5,6,7,5,10,54
  	  var params = {
  	  		available_numbers 				: available_numbers,
@@ -42,12 +42,12 @@ var score = new FakeScore()
             available_shapes				: ['circle', 'square', 'triangle'],
             shapes_data						: new FakeShapesData(config.language),
             numbers_data 					: new FakeNumbersData(config.language),
-            gameType                        : "cat", // "identification", "composition", "pairing", or "other"
-            roundsCount                     : 3,           // the amount of rounds, (Rafiki will provide one target per round)
+            gameType                        : "sum", // "identification", "composition", "pairing", or "other"
+            roundsCount                     : 8,           // the amount of rounds, (Rafiki will provide one target per round)
             stepDistracterCount             : 0,             //
             language 						: config.language,
-            groupGameType  					: 'counting',
-            parakeetPairs 					:3
+            groupGameType  					: 'sum',
+            parakeetPairs 					: 3 // extra params for parakeets
       }
     
 
@@ -170,6 +170,7 @@ function pool_loop(tries){
 				out.count_rounds++
 			})	
 		}
+		game.count_rounds = out.count_rounds
 
 	}
 

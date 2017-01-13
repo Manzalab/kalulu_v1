@@ -32,7 +32,7 @@ var Kalulu_maths = function(available_numbers, score, numbers_data__, params___,
 	})
 
 	
-
+console.log('params___.roundsCount'+params___.roundsCount)
 
 	/// RE-SETUP incoming 'params___'  ... progressive fine tuning ..
 
@@ -150,10 +150,14 @@ var loop_on_array = params[loop_on]
 				//out.tries_results[tries] = temp_rounds_results
 				// out.forced_pool = 2		
 			}
+
+			temp_rounds_results = _.shuffle(temp_rounds_results)
+
 			while(game.data.rounds.length < params.roundsCount  ){ //  && tries < 4
 					tries++
 					console.log(params.roundsCount)
 					console.log(temp_rounds_results)
+
 					// refill with the same.
 					_.each(temp_rounds_results, function(r){
 						game.data.rounds.push(r)
