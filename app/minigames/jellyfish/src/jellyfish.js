@@ -65,7 +65,7 @@
             this.add(this.text);
         }
         else {
-            this.picture = this.game.add.sprite(0, 20+this.jellyfishSprite.height / (4 + rand) - (rand - 2) * 10, 'maths', value.value);
+            this.picture = this.game.add.sprite(0, 20+this.jellyfishSprite.height / (4 + rand) - (rand - 2) * 10, 'maths', value.text.toString());
             this.picture.height = this.jellyfishSprite.width / 6;
             this.picture.scale.x = this.picture.scale.y;
             this.picture.anchor.setTo(0.5, 0);

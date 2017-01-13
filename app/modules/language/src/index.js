@@ -1351,7 +1351,7 @@
 
     LanguageModule.prototype._populateGapFillGame = function _populateGapFillGame () {
         
-        if (!data) console.error('link data here');
+        if (!staticData.filling) console.error('link staticData.filling here');
         
         var refined = {
 
@@ -1367,9 +1367,9 @@
 
         var roundIndex = null;
 
-        for (var i = 0 ; i < data.length ; i++) {
+        for (var i = 0 ; i < staticData.filling.length ; i++) {
 
-            var row = data[i];
+            var row = staticData.filling[i];
             if(row.GROUP !== roundIndex) {
                 roundIndex = row.GROUP;
                 refined.data.rounds.push({
