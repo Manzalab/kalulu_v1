@@ -85,7 +85,7 @@ define([
 
         // #### Letters Frame
         this.frameTexture = new Phaser.BitmapData(this.game, 'lettersFrame', 900, 450);
-        this.frameTexture.fill(255, 255, 255, 1);
+        this.frameTexture.fill(239, 241, 255, 1);
         this.lettersFrame = new Phaser.Sprite(this.game, this.game.width/2, 1000, this.frameTexture);
         this.lettersFrame.name = "Letters Frame";
         this.lettersFrame.anchor.set(0.5, 0.5);

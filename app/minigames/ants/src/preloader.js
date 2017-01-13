@@ -51,9 +51,9 @@
             //}
 
             //Kalulu Game Specific audio
-            this.game.load.audio('kaluluIntro', 'minigames/ants/assets/audio/kalulu/kalulu_Intro_Ants_' + this.game.rafiki.discipline + '.ogg');
-            this.game.load.audio('kaluluHelp', 'minigames/ants/assets/audio/kalulu/kalulu_Help_Ants_' + this.game.rafiki.discipline + '.ogg');
-            this.game.load.audio('kaluluGameOverWin', 'minigames/ants/assets/audio/kalulu/kalulu_End_Ants_' + this.game.rafiki.discipline + '.ogg');
+            this.game.load.audio('kaluluIntro', 'minigames/ants/assets/audio/kalulu/kalulu_intro_ants_' + this.game.rafiki.discipline + '.ogg');
+            this.game.load.audio('kaluluHelp', 'minigames/ants/assets/audio/kalulu/kalulu_help_ants_' + this.game.rafiki.discipline + '.ogg');
+            this.game.load.audio('kaluluGameOverWin', 'minigames/ants/assets/audio/kalulu/kalulu_end_ants_' + this.game.rafiki.discipline + '.ogg');
         },
 
         /**

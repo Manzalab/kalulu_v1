@@ -71,13 +71,13 @@ var Sum = function(number, xnumber, side, sign, numbers_data, numbers_available,
     if(this.side =='left'){
  		lx = lb
  		le = 'x'
- 		var resolve_masq = la+''+this.sign+'x='+lc
+ 		var resolve_masq = la+''+this.sign+'X='+lc
 
 
     }
     else{
 		lx = lc
-		 var resolve_masq = la+''+this.sign+''+lb+'=x'
+		 var resolve_masq = la+''+this.sign+''+lb+'=X'
 
 
     }

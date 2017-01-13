@@ -24,8 +24,7 @@
     function Remediation(game) {
         Phaser.Group.call(this, game);
 
-        this.eventManager = game.eventManager;
-
+        
         this.game = game;
         this.won = false;
         this.paused = false;
@@ -192,7 +191,7 @@
             this.timeWithoutClick = 0;
         },this);
 
-        this.eventManager.on('destroyTurtle', function (turtle) {
+        this.game.eventManager.on('destroyTurtle', function (turtle) {
             this.collisionHandler.destroyDistances(turtle);
             for (var i = 0 ; i < this.turtles.length; i++) {
                 if (this.turtles[i] === turtle) {
@@ -203,38 +202,38 @@
             }
         }, this);
 
-        this.eventManager.on('playCorrectSound', function () {
-            this.eventManager.emit('unPause');
+        this.game.eventManager.on('playCorrectSound', function () {
+            this.game.eventManager.emit('unPause');
             if (this.framesToWaitBeforeNewSound <= 0) {
                 this.sounds.correctRoundAnswer.play();
                 this.framesToWaitBeforeNewSound = Math.floor((this.sounds.correctRoundAnswer.totalDuration + 0.5) * 60);
             }
         }, this);
 
-        this.eventManager.on('playCorrectSoundNoUnPause', function () {
+        this.game.eventManager.on('playCorrectSoundNoUnPause', function () {
             if (this.framesToWaitBeforeNewSound <= 0) {
                 this.sounds.correctRoundAnswer.play();
                 this.framesToWaitBeforeNewSound = Math.floor((this.sounds.correctRoundAnswer.totalDuration + 0.5) * 60);
             }
         }, this);
 
-        this.eventManager.on("pause", function () {
+        this.game.eventManager.on("pause", function () {
             this.paused = true;
         }, this);
 
-        this.eventManager.on('unPause', function () {
+        this.game.eventManager.on('unPause', function () {
             this.paused = false;
         }, this);
 
-        this.eventManager.on('collisionTurtle', function (turtle1, turtle2) {
+        this.game.eventManager.on('collisionTurtle', function (turtle1, turtle2) {
             this.collisionTurtle(turtle1, turtle2);
         }, this);
 
-        this.eventManager.on('collisionIsland', function (turtle, island) {
+        this.game.eventManager.on('collisionIsland', function (turtle, island) {
             this.collisionIsland(turtle, island);
         }, this);
 
-        this.eventManager.on('exitGame', function () {
+        this.game.eventManager.on('exitGame', function () {
             if (this.game.gameConfig.debugPanel) {
                 this.clearDebugPanel();
             }
@@ -244,7 +243,7 @@
             this.game.destroy();
         }, this);
 
-        this.eventManager.on('replay', function () {
+        this.game.eventManager.on('replay', function () {
             if (this.game.gameConfig.debugPanel) {
                 this.clearDebugPanel();
             }
@@ -260,7 +259,7 @@
 
         this.sounds.wrong.play();
         this.fx.hit((turtle1.x + turtle2.x)/2, (turtle1.y + turtle2.y)/2, false);
-        //this.eventManager.emit("pause");
+        //this.game.eventManager.emit("pause");
         //this.fail();
     };
 
@@ -275,13 +274,13 @@
         if (value == this.correctResponses[this.stepIndex].value) {
             this.sounds.right.play();
             this.resetTurtles();
-            this.eventManager.emit("pause");
+            this.game.eventManager.emit("pause");
             this.fx.hit(turtle1.x, turtle1.y, true);
             this.success();
         }
         else {
             this.sounds.wrong.play();
-            this.eventManager.emit("pause");
+            this.game.eventManager.emit("pause");
             this.fx.hit(turtle1.x, turtle1.y, false);
             this.fail();
         }
@@ -313,13 +312,13 @@
         this.island.setText(temp);
 
         if (this.stepIndex < this.correctResponses.length) {
-            this.eventManager.emit('unPause');
+            this.game.eventManager.emit('unPause');
         }
         else {
             this.stepIndex = 0;
             this.roundIndex++;
             this.triesRemaining--;
-            this.eventManager.emit('success');
+            this.game.eventManager.emit('success');
             if (this.triesRemaining > 0) {
                 var context = this;
                 setTimeout(function () {
@@ -331,7 +330,7 @@
                         context.initRound(context.roundIndex);
                         context.island.reset(context.correctResponses.length);
                         if (context.game.discipline == 'maths') context.island.picture.setValue(context.correctWord.value);
-                        context.eventManager.emit('playCorrectSound');
+                        context.game.eventManager.emit('playCorrectSound');
                     }, 3 * 1000);
                 }, 1000);              
             }
@@ -356,18 +355,18 @@
         this.lives--;
         this.triesRemaining--;
         this.consecutiveMistakes++;
-        this.eventManager.emit('fail');
+        this.game.eventManager.emit('fail');
 
         if (this.lives > 0 && this.triesRemaining > 0) {
             if (this.consecutiveMistakes == this.game.params.getGeneralParams().incorrectResponseCountTriggeringSecondRemediation) {
                 this.consecutiveMistakes = 0;
-                this.eventManager.emit('help');
+                this.game.eventManager.emit('help');
                 if (this.game.gameConfig.debugPanel) this.cleanLocalPanel();
                 this.game.params.decreaseLocalDifficulty();
                 if (this.game.gameConfig.debugPanel) this.setLocalPanel();
             }
             else {
-                this.eventManager.emit('playCorrectSound');
+                this.game.eventManager.emit('playCorrectSound');
             }
         }
         else if (this.triesRemaining === 0 && this.lives > 0) {
@@ -447,18 +446,18 @@
 
 
         this.framesToWaitBeforeNextSpawn = localParams.respawnTime * 60;
-        this.eventManager.emit('newTurtle');
+        this.game.eventManager.emit('newTurtle');
     };
 
     Remediation.prototype.gameOverWin = function gameOverWin() {
 
         this.game.won = true;
         this.sounds.winGame.play();
-        this.eventManager.emit('offUi');// listened by ui
+        this.game.eventManager.emit('offUi');// listened by ui
 
         this.sounds.winGame.onStop.add(function () {
             this.sounds.winGame.onStop.removeAll();
-            this.eventManager.emit('GameOverWin');//listened by Ui (toucan = kalulu)
+            this.game.eventManager.emit('GameOverWin');//listened by Ui (toucan = kalulu)
             this.saveGameRecord();
         }, this);
     };
@@ -467,11 +466,11 @@
 
         this.game.won = false;
         this.sounds.loseGame.play();
-        this.eventManager.emit('offUi');// listened by ui
+        this.game.eventManager.emit('offUi');// listened by ui
 
         this.sounds.loseGame.onStop.add(function () {
             this.sounds.loseGame.onStop.removeAll();
-            this.eventManager.emit('GameOverLose');// listened by ui
+            this.game.eventManager.emit('GameOverLose');// listened by ui
             this.saveGameRecord();
         }, this);
     };
@@ -520,7 +519,7 @@
 
         if (this.timeWithoutClick > 60 * 20) {
             this.timeWithoutClick = 0;
-            this.eventManager.emit('help');
+            this.game.eventManager.emit('help');
         }
 
     };
@@ -590,7 +589,7 @@
         }
 
         this.won = true;
-        this.eventManager.emit("exitGame");
+        this.game.eventManager.emit("exitGame");
     };
 
     Remediation.prototype.AutoLose = function LoseGame() {
@@ -638,7 +637,7 @@
         }
 
         this.won = false;
-        this.eventManager.emit('exitGame');
+        this.game.eventManager.emit('exitGame');
     };
 
     return Remediation;

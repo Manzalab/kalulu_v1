@@ -25,8 +25,7 @@
         Phaser.Group.call(this, game);
 
         this.game = game;
-        this.eventManager = game.eventManager;
-
+        
         /**
          * wait timer for the correct response sound
          * @type {int}
@@ -115,7 +114,7 @@
     Remediation.prototype.initEvents = function () {
         var globalParams = this.game.params.getGlobalParams();
 
-        this.eventManager.on('timerFinished', function () {
+        this.game.eventManager.on('timerFinished', function () {
             this.timerFinished = true;
             if (this.score >= globalParams.minimumSortedWords && this.score / (globalParams.totalTriesCount - this.triesRemaining) >= globalParams.minimumWinRatio) {
                 this.gameOverWin();
@@ -125,8 +124,8 @@
             }
         }, this);
 
-        this.eventManager.on('swipe', function (object, direction) {
-            this.eventManager.emit('pause');
+        this.game.eventManager.on('swipe', function (object, direction) {
+            this.game.eventManager.emit('pause');
             if (this.background.enabled) this.background.addTime(object.time);
             if (direction == 4) {
                 object.flyTo(this.buoys.left.x, this.buoys.left.y);
@@ -139,7 +138,7 @@
             }
         }, this);
 
-        this.eventManager.on('finishedFlying', function () {
+        this.game.eventManager.on('finishedFlying', function () {
             if (this.game.discipline != "maths") {
                 if(!this.tutorial1 && !this.tutorial2) this.stimuli[this.stepIndex][0].apparitions[this.stimuli[this.stepIndex][0].apparitions.length - 1].close(true, 0);
 
@@ -197,25 +196,25 @@
             }
         }, this);
 
-        this.eventManager.on('pause', function () {
+        this.game.eventManager.on('pause', function () {
             this.paused = true;
         }, this);
 
-        this.eventManager.on('unPause', function () {
+        this.game.eventManager.on('unPause', function () {
             this.paused = false;
         }, this);
 
-        this.eventManager.on('endGameWin', function () {
+        this.game.eventManager.on('endGameWin', function () {
             this.endGameWin();
         }, this);
 
-        this.eventManager.on('endGameLoose', function () {
+        this.game.eventManager.on('endGameLoose', function () {
             this.endGameLoose();
         }, this);
 
-        this.eventManager.on('exitGame', function () {
-            this.eventManager.removeAllListeners();
-            this.eventManager = null;
+        this.game.eventManager.on('exitGame', function () {
+            this.game.eventManager.removeAllListeners();
+            this.game.eventManager = null;
             this.game.rafiki.close();
             this.game.destroy();
             if (this.game.gameConfig.debugPanel) {
@@ -297,14 +296,14 @@
                 
                 if (this.tutorial1) {
                     this.tutorial1 = false;
-                    this.eventManager.emit('firstTryWin');
+                    this.game.eventManager.emit('firstTryWin');
                 }
                 else if (this.tutorial2) {
                     this.tutorial2 = false;
-                    this.eventManager.emit('secondTryWin');
+                    this.game.eventManager.emit('secondTryWin');
                 }
                 else if (!this.timerFinished)
-                    this.eventManager.emit('unPause');
+                    this.game.eventManager.emit('unPause');
 
                 this.newStep();
             }, this);
@@ -344,14 +343,14 @@
                 this.sounds.wrong.onStop.removeAll();
                 if (this.tutorial1) {
                     this.tutorial1 = false;
-                    this.eventManager.emit('firstTryLoose');
+                    this.game.eventManager.emit('firstTryLoose');
                 }
                 else if (this.tutorial2) {
                     this.tutorial2 = false;
-                    this.eventManager.emit('secondTryLoose');
+                    this.game.eventManager.emit('secondTryLoose');
                 }
                 else if(!this.timerFinished)
-                    this.eventManager.emit('unPause');
+                    this.game.eventManager.emit('unPause');
             }, this);
         }
         else {
@@ -382,11 +381,11 @@
 
         this.game.won = true;
         this.sounds.winGame.play();
-        this.eventManager.emit('offUi');// listened by ui
+        this.game.eventManager.emit('offUi');// listened by ui
 
         this.sounds.winGame.onStop.add(function () {
             this.sounds.winGame.onStop.removeAll();
-            this.eventManager.emit('GameOverWin');//listened by Ui (toucan = kalulu)
+            this.game.eventManager.emit('GameOverWin');//listened by Ui (toucan = kalulu)
             this.saveGameRecord();
         }, this);
     };
@@ -395,11 +394,11 @@
 
         this.game.won = false;
         this.sounds.loseGame.play();
-        this.eventManager.emit('offUi');// listened by ui
+        this.game.eventManager.emit('offUi');// listened by ui
 
         this.sounds.loseGame.onStop.add(function () {
             this.sounds.loseGame.onStop.removeAll();
-            this.eventManager.emit('GameOverLose');// listened by ui
+            this.game.eventManager.emit('GameOverLose');// listened by ui
             this.saveGameRecord();
         }, this);
     };
@@ -423,7 +422,7 @@
             });
         }
 
-        this.eventManager.emit("exitGame");
+        this.game.eventManager.emit("exitGame");
     };
 
     Remediation.prototype.saveGameRecord = function saveGameRecord() {
@@ -439,7 +438,7 @@
 
         this.won = false;
 
-        this.eventManager.emit("endGameLoose");
+        this.game.eventManager.emit("endGameLoose");
     };
     return Remediation;
 });

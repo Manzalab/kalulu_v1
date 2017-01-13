@@ -58,7 +58,7 @@
                 },
                 localRemediation : {
                     apparitionsDuration             : {min : 2.5, max : 3},
-                    maxCrabsOnScreen                : {min : 1, max : 1},
+                    maxCrabsOnScreen                : {min : 1, max : 2},
                     minimumCorrectStimuliOnScreen   : {min : 0, max : 0}, 
                     maximumCorrectStimuliOnScreen   : {min : 1, max : 1},
                     respawnTime                     : {min : 2.5, max : 2},
@@ -77,7 +77,7 @@
                 },
                 localRemediation : {
                     apparitionsDuration             : {min : 2, max : 2.5},
-                    maxCrabsOnScreen                : {min : 1, max : 1},
+                    maxCrabsOnScreen                : {min : 2, max : 3},
                     minimumCorrectStimuliOnScreen   : {min : 0, max : 0}, 
                     maximumCorrectStimuliOnScreen   : {min : 1, max : 1},
                     respawnTime                     : {min : 2, max : 1},
@@ -96,7 +96,7 @@
                 },
                 localRemediation : {
                     apparitionsDuration             : {min : 1.5, max : 2},
-                    maxCrabsOnScreen                : {min : 1, max : 2},
+                    maxCrabsOnScreen                : {min : 2, max : 4},
                     minimumCorrectStimuliOnScreen   : {min : 0, max : 0}, 
                     maximumCorrectStimuliOnScreen   : {min : 1, max : 2},
                     respawnTime                     : {min : 1.5, max : 1},
@@ -115,7 +115,7 @@
                 },
                 localRemediation : {
                     apparitionsDuration             : {min : 1, max : 1.5},
-                    maxCrabsOnScreen                : {min : 2, max : 2},
+                    maxCrabsOnScreen                : {min : 2, max : 4},
                     minimumCorrectStimuliOnScreen   : {min : 1, max : 1}, 
                     maximumCorrectStimuliOnScreen   : {min : 1, max : 2},
                     respawnTime                     : {min : 1.5, max : 1},
@@ -134,7 +134,7 @@
                 },
                 localRemediation : {
                     apparitionsDuration             : {min : 1, max : 1},
-                    maxCrabsOnScreen                : {min : 3, max : 3},
+                    maxCrabsOnScreen                : {min : 3, max : 5},
                     minimumCorrectStimuliOnScreen   : {min : 0, max : 0},
                     maximumCorrectStimuliOnScreen   : {min : 1, max : 3},
                     respawnTime                     : {min : 1, max : 0.3},

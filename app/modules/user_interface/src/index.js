@@ -191,12 +191,13 @@
         this._loadingManager = new LoadingManager(this._eventSystem);
         
         // debug && tuning
-        if (Config.enableTransitionsTuning || Config.enableMinigameTuning || Config.enableQAControls || !Config.skipKalulu) {
+        if (Config.enableTransitionsTuning || Config.enableMinigameTuning || Config.enableQAControls || Config.skipKalulu) {
             this._debugPanel = new Dat.GUI();
             this._debugPanelFolderNames = {};
+            this._addDebugFolders();
         }
 
-        this._addDebugFolders();
+
 
         // start listening to Events
         this._eventSystem.on(Events.APPLICATION.MAIN_LOOP, this._renderingLoop, this);

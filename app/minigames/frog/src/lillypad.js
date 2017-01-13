@@ -21,8 +21,7 @@ define([
 
         Phaser.Group.call(this, game);
 
-        this.eventManager = game.eventManager;
-
+        
         this.x = x;
         this.paused = false;
         this.clickable = false;
@@ -68,9 +67,9 @@ define([
                     this.clickable = false;
                     this.onClick();
                     this.sounds.click.play();
-                    this.eventManager.emit('pause');
+                    this.game.eventManager.emit('pause');
                     this.clickSprite.animations.currentAnim.onComplete.addOnce(function () {
-                        this.eventManager.emit('clicked', this); //listened by Remediation
+                        this.game.eventManager.emit('clicked', this); //listened by Remediation
                     }, this);
                 }
         }, this);
@@ -137,11 +136,11 @@ define([
      * @private
      **/
     Lillypad.prototype.initEvents = function () {
-        this.eventManager.on('pause', function () {
+        this.game.eventManager.on('pause', function () {
             this.paused = true;
         }, this);
 
-        this.eventManager.on('unPause', function () {
+        this.game.eventManager.on('unPause', function () {
             this.paused = false;
         }, this);
     }

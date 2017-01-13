@@ -29,7 +29,7 @@ module.exports = {
                 ],
                 "targetSequence": {
                     "gameType": "sum",
-                    "sequence": "0-0=x",
+                    "sequence": "0-0=X",
                     "truesequence": "0-0=0",
                     "targetNumber": 0,
                     "numberIndex": 0,
@@ -61,7 +61,7 @@ module.exports = {
                 ],
                 "targetSequence": {
                     "gameType": "sum",
-                    "sequence": "1+x=1",
+                    "sequence": "1+X=1",
                     "truesequence": "1+0=1",
                     "targetNumber": 1,
                     "numberIndex": 0,
@@ -93,7 +93,7 @@ module.exports = {
                 ],
                 "targetSequence": {
                     "gameType": "sum",
-                    "sequence": "2-1=x",
+                    "sequence": "2-1=X",
                     "truesequence": "2-1=1",
                     "targetNumber": 2,
                     "numberIndex": 1,
@@ -103,18 +103,18 @@ module.exports = {
             {
                 "steps": [
                     {
-                        "type": "target__3__sum__left__+__xone",
+                        "type": "target__3__sum__left__+__xzero",
                         "stimuli": [
                             {
                                 "value": 3,
                                 "correctResponse": true,
                                 "stimuli_type": "sum",
                                 "apparitions": [],
-                                "nonSymbolicImage": "number_3+1.jpg",
+                                "nonSymbolicImage": "number_3+0.jpg",
                                 "soundPath": "assets/sounds/maths/number_3.ogg",
                                 "path": {
-                                    "xnumber_value": 1,
-                                    "xnumber_name": "xone",
+                                    "xnumber_value": 0,
+                                    "xnumber_name": "xzero",
                                     "number": 3,
                                     "side": "left",
                                     "sign": "+"
@@ -125,17 +125,17 @@ module.exports = {
                 ],
                 "targetSequence": {
                     "gameType": "sum",
-                    "sequence": "1+x=3",
-                    "truesequence": "1+2=3",
+                    "sequence": "0+X=3",
+                    "truesequence": "0+3=3",
                     "targetNumber": 3,
-                    "numberIndex": 2,
-                    "targetSequence": "1+2=3"
+                    "numberIndex": 3,
+                    "targetSequence": "0+3=3"
                 }
             },
             {
                 "steps": [
                     {
-                        "type": "target__4__sum__right__+__xzero",
+                        "type": "target__4__sum__left__+__xzero",
                         "stimuli": [
                             {
                                 "value": 4,
@@ -148,7 +148,7 @@ module.exports = {
                                     "xnumber_value": 0,
                                     "xnumber_name": "xzero",
                                     "number": 4,
-                                    "side": "right",
+                                    "side": "left",
                                     "sign": "+"
                                 }
                             }
@@ -157,11 +157,11 @@ module.exports = {
                 ],
                 "targetSequence": {
                     "gameType": "sum",
-                    "sequence": "4+0=x",
-                    "truesequence": "4+0=4",
+                    "sequence": "0+X=4",
+                    "truesequence": "0+4=4",
                     "targetNumber": 4,
                     "numberIndex": 4,
-                    "targetSequence": "4+0=4"
+                    "targetSequence": "0+4=4"
                 }
             },
             {
@@ -189,7 +189,7 @@ module.exports = {
                 ],
                 "targetSequence": {
                     "gameType": "sum",
-                    "sequence": "0-0=x",
+                    "sequence": "0-0=X",
                     "truesequence": "0-0=0",
                     "targetNumber": 0,
                     "numberIndex": 0,
@@ -221,7 +221,7 @@ module.exports = {
                 ],
                 "targetSequence": {
                     "gameType": "sum",
-                    "sequence": "1+x=1",
+                    "sequence": "1+X=1",
                     "truesequence": "1+0=1",
                     "targetNumber": 1,
                     "numberIndex": 0,
@@ -253,7 +253,7 @@ module.exports = {
                 ],
                 "targetSequence": {
                     "gameType": "sum",
-                    "sequence": "2-1=x",
+                    "sequence": "2-1=X",
                     "truesequence": "2-1=1",
                     "targetNumber": 2,
                     "numberIndex": 1,
@@ -263,18 +263,18 @@ module.exports = {
             {
                 "steps": [
                     {
-                        "type": "target__3__sum__left__+__xone",
+                        "type": "target__3__sum__left__+__xzero",
                         "stimuli": [
                             {
                                 "value": 3,
                                 "correctResponse": true,
                                 "stimuli_type": "sum",
                                 "apparitions": [],
-                                "nonSymbolicImage": "number_3+1.jpg",
+                                "nonSymbolicImage": "number_3+0.jpg",
                                 "soundPath": "assets/sounds/maths/number_3.ogg",
                                 "path": {
-                                    "xnumber_value": 1,
-                                    "xnumber_name": "xone",
+                                    "xnumber_value": 0,
+                                    "xnumber_name": "xzero",
                                     "number": 3,
                                     "side": "left",
                                     "sign": "+"
@@ -285,17 +285,17 @@ module.exports = {
                 ],
                 "targetSequence": {
                     "gameType": "sum",
-                    "sequence": "1+x=3",
-                    "truesequence": "1+2=3",
+                    "sequence": "0+X=3",
+                    "truesequence": "0+3=3",
                     "targetNumber": 3,
-                    "numberIndex": 2,
-                    "targetSequence": "1+2=3"
+                    "numberIndex": 3,
+                    "targetSequence": "0+3=3"
                 }
             },
             {
                 "steps": [
                     {
-                        "type": "target__4__sum__right__+__xzero",
+                        "type": "target__4__sum__left__+__xzero",
                         "stimuli": [
                             {
                                 "value": 4,
@@ -308,7 +308,7 @@ module.exports = {
                                     "xnumber_value": 0,
                                     "xnumber_name": "xzero",
                                     "number": 4,
-                                    "side": "right",
+                                    "side": "left",
                                     "sign": "+"
                                 }
                             }
@@ -317,11 +317,11 @@ module.exports = {
                 ],
                 "targetSequence": {
                     "gameType": "sum",
-                    "sequence": "4+0=x",
-                    "truesequence": "4+0=4",
+                    "sequence": "0+X=4",
+                    "truesequence": "0+4=4",
                     "targetNumber": 4,
                     "numberIndex": 4,
-                    "targetSequence": "4+0=4"
+                    "targetSequence": "0+4=4"
                 }
             }
         ]

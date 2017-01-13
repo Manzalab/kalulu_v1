@@ -21,8 +21,7 @@
         
         Phaser.Group.call(this, game);
         
-        this.eventManager = game.eventManager;
-
+        
         // parameters reset
         this.lives = 0;
         this.consecutiveMistakes = 0;
@@ -76,7 +75,7 @@
      **/
     Remediation.prototype.initEvents = function () {
         
-        this.eventManager.on('clicked', function (jellyfish) {
+        this.game.eventManager.on('clicked', function (jellyfish) {
             // console.log("clicked");
             // console.log(jellyfish);
             this.timeWithoutClick = 0;
@@ -85,22 +84,22 @@
             this.game.world.bringToTop(this.fx);
 
             if (jellyfish.apparition.isCorrect) {
-                this.eventManager.emit('success'); //listenned by Ui
+                this.game.eventManager.emit('success'); //listenned by Ui
                 this.fx.hit(jellyfish.x, jellyfish.y + jellyfish.jellyfishSprite.height / 2, true);
                 this.sounds.right.play();
                 this.success();
                 jellyfish.jellyfishSprite.animations.play('happy'); //listenned by Jellyfish
             }
             else {
-                this.eventManager.emit('fail');//listenned by Ui
+                this.game.eventManager.emit('fail');//listenned by Ui
                 this.fx.hit(jellyfish.x, jellyfish.y + jellyfish.jellyfishSprite.height / 2, false);
                 this.sounds.wrong.play();
                 this.fail();
             }
         }, this);
 
-        this.eventManager.on('playCorrectSound', function () {
-            this.eventManager.emit('unPause'); //listenned by Ui and Jellyfish
+        this.game.eventManager.on('playCorrectSound', function () {
+            this.game.eventManager.emit('unPause'); //listenned by Ui and Jellyfish
 
             if (this.framesToWaitBeforeNewSound <= 0) {
                 this.sounds.correctResponse.play();
@@ -108,36 +107,36 @@
             }
         }, this);
 
-        this.eventManager.on('playCorrectSoundNoUnPause', function () {
+        this.game.eventManager.on('playCorrectSoundNoUnPause', function () {
             if (this.framesToWaitBeforeNewSound <= 0) {
                 this.sounds.correctResponse.play();
                 this.framesToWaitBeforeNewSound = Math.floor((this.sounds.correctResponse.totalDuration + 0.5) * 60);
             }
         }, this);
 
-        this.eventManager.on('pause', function () {
+        this.game.eventManager.on('pause', function () {
             this.paused = true;
         }, this);
 
-        this.eventManager.on('unPause', function () {
+        this.game.eventManager.on('unPause', function () {
             this.paused = false;
         }, this);
 
-        // this.eventManager.on('endGameLoose', function () {
+        // this.game.eventManager.on('endGameLoose', function () {
         //     this.endGameLoose();
         // }, this);
 
-        this.eventManager.on('exitGame', function () {
+        this.game.eventManager.on('exitGame', function () {
             if (this.game.gameConfig.debugPanel) this.clearDebugPanel();
             this.game.rafiki.close();
-            this.eventManager.removeAllListeners();
-            this.eventManager = null;
+            this.game.eventManager.removeAllListeners();
+            this.game.eventManager = null;
             this.game.destroy();
-            console.info("PLhaser Game has been destroyed");
+            console.info("Phaser Game has been destroyed");
             this.game = null;
         }, this);
 
-        this.eventManager.on('replay', function () {
+        this.game.eventManager.on('replay', function () {
             if (this.game.gameConfig.debugPanel) {
                 this.clearDebugPanel();
             }
@@ -232,7 +231,7 @@
 
             var context = this;
             setTimeout(function () { // Not ideal because cannot be paused
-                context.eventManager.emit('unPause');
+                context.game.eventManager.emit('unPause');
             }, 1500);
 
         }
@@ -257,7 +256,7 @@
                 
                 var context = this;
                 setTimeout(function () {
-                    context.eventManager.emit('playCorrectSound');//listened here; check initEvents
+                    context.game.eventManager.emit('playCorrectSound');//listened here; check initEvents
                 }, 1000);
                 
                 if (this.game.gameConfig.debugPanel) this.cleanLocalPanel();
@@ -266,7 +265,7 @@
             }
             else if (this.consecutiveMistakes === params.incorrectResponseCountTriggeringSecondRemediation) {
                 
-                this.eventManager.emit('help'); // listened by Kalulu to start the help speech; pauses the game in kalulu
+                this.game.eventManager.emit('help'); // listened by Kalulu to start the help speech; pauses the game in kalulu
                 if (this.game.gameConfig.debugPanel) this.cleanLocalPanel();
                 this.game.params.decreaseLocalDifficulty();
                 if (this.game.gameConfig.debugPanel) this.setLocalPanel();
@@ -414,7 +413,7 @@
 
         if (this.timeWithoutClick > 60 * 20) {
             this.timeWithoutClick = 0;
-            this.eventManager.emit('help');
+            this.game.eventManager.emit('help');
         }
 
         // var str = "####\n"+
@@ -431,11 +430,11 @@
         
         this.game.won = true;
         this.sounds.winGame.play();
-        this.eventManager.emit('offUi');// listened by ui
+        this.game.eventManager.emit('offUi');// listened by ui
 
         this.sounds.winGame.onStop.add(function () {
             this.sounds.winGame.onStop.removeAll();
-            this.eventManager.emit('GameOverWin');//listened by Ui (toucan = kalulu)
+            this.game.eventManager.emit('GameOverWin');//listened by Ui (toucan = kalulu)
             this.saveGameRecord();
         }, this);
     };
@@ -444,11 +443,11 @@
         
         this.game.won = false;
         this.sounds.loseGame.play();
-        this.eventManager.emit('offUi');// listened by ui
+        this.game.eventManager.emit('offUi');// listened by ui
 
         this.sounds.loseGame.onStop.add(function () {
             this.sounds.loseGame.onStop.removeAll();
-            this.eventManager.emit('GameOverLose');// listened by ui
+            this.game.eventManager.emit('GameOverLose');// listened by ui
             this.saveGameRecord();
         }, this);
     };
@@ -485,7 +484,7 @@
         this._debugGlobalParams  = this.debugPanel.addFolder(this.debugFolderNames.global);
         this._debugLocalParams   = this.debugPanel.addFolder(this.debugFolderNames.local);
         this._debugFunctions     = this.debugPanel.addFolder(this.debugFolderNames.functions);
-
+        
         this._debugInfo.add(this.game.params, "_currentGlobalLevel").listen();
         this._debugInfo.add(this.game.params, "_currentLocalRemediationStage").listen();
 
@@ -534,7 +533,7 @@
         
         var globalLevel = this.game.params.globalLevel;
         var localStage = this.game.params.localRemediationStage;
-
+        
         this._debugLocalParams.items = {};
         this._debugLocalParams.items.param1 = this._debugLocalParams.add(this.game.params._settingsByLevel[globalLevel].localRemediation[localStage], "minimumCorrectStimuliOnScreen").min(0).max(20).step(1).listen();
         this._debugLocalParams.items.param2 = this._debugLocalParams.add(this.game.params._settingsByLevel[globalLevel].localRemediation[localStage], "maximumCorrectStimuliOnScreen").min(0).max(20).step(1).listen();
@@ -605,7 +604,7 @@
     };
     
     Remediation.prototype.skipKalulu = function skipKalulu() {
-        this.eventManager.emit("skipKalulu");
+        this.game.eventManager.emit("skipKalulu");
     };
 
     return Remediation;

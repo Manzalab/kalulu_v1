@@ -33,8 +33,7 @@
         this.wordIndex = wordIndex;
         this.y = y;
         this.screenShare = height;
-        this.eventManager = game.eventManager;
-        this.paused = false;
+                this.paused = false;
 
         var lineCount = 1;
         var sentenceLength = 0;
@@ -104,11 +103,11 @@
      * @private
      **/
     Sentence.prototype.initEvents = function () {
-        this.eventManager.on('pause', function () {
+        this.game.eventManager.on('pause', function () {
             this.paused = true;
         }, this);
 
-        this.eventManager.on('unPause', function () {
+        this.game.eventManager.on('unPause', function () {
             this.paused = false;
         }, this);
     }

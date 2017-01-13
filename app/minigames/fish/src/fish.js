@@ -31,8 +31,7 @@
         this.time = 1.5;
         this.flying = false;
 
-        this.eventManager = game.eventManager;
-
+        
         this.fishSprite = game.add.sprite(0, 0, 'fish', 'Poisson_Idle1_0000');
         this.fishSprite.y += this.fishSprite.height / 2;
         this.fishSprite.anchor.setTo(0.5, 0.5);
@@ -95,15 +94,15 @@
      **/
     Fish.prototype.initEvents = function () {
 
-        this.eventManager.on('pause', function () {
+        this.game.eventManager.on('pause', function () {
             this.paused = true;
         }, this);
 
-        this.eventManager.on('unPause', function () {
+        this.game.eventManager.on('unPause', function () {
             this.paused = false;
         }, this);
 
-        this.eventManager.on('swipe', function () {
+        this.game.eventManager.on('swipe', function () {
             this.clickable = false;
         }, this);
     }
@@ -187,7 +186,7 @@
             this.x = this.slopeX * this.t + this.oldX;
             if (this.t > this.time) {
                 this.flying = false;
-                this.eventManager.emit('finishedFlying', this);
+                this.game.eventManager.emit('finishedFlying', this);
                 this.fishSprite.alphaTween = this.gameRef.add.tween(this.fishSprite);
                 this.fishSprite.alphaTween.to({ alpha: 0 }, 100, Phaser.Easing.Default, true, 0, 0, false);
             }

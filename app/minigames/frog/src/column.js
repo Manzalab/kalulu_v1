@@ -30,8 +30,7 @@ define([
         this.enabled = true;
         this.paused = true;
         this.way = way;
-        this.eventManager = game.eventManager;
-        this.dataset = dataset;
+                this.dataset = dataset;
 
         this.lillypads = [];
 
@@ -104,11 +103,11 @@ define([
      * @private
      **/
     Column.prototype.initEvents = function () {
-        this.eventManager.on('pause', function () {
+        this.game.eventManager.on('pause', function () {
             this.paused = true;
         }, this);
 
-        this.eventManager.on('unPause', function () {
+        this.game.eventManager.on('unPause', function () {
             if (this.enabled)
                 this.paused = false;
         }, this);
@@ -138,7 +137,7 @@ define([
                     && this.lillypads[i].y <= (this.parent.game.height + this.space) / 2) {
                     if (!this.lillypads[i].clickable && this.lillypads[i].text.visible) {
                         this.lillypads[i].setClickable(true);
-                        this.eventManager.emit('apparition', this.lillypads[i]);
+                        this.game.eventManager.emit('apparition', this.lillypads[i]);
                     }
                 }
                 else {

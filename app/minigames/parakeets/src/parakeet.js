@@ -14,8 +14,7 @@
         Phaser.Group.call(this, game);
 
         this.game = game;
-        this.eventManager = game.eventManager;
-
+        
         this.x = x;
         this.y = y;
         this.feather = new Feather(game);
@@ -46,7 +45,7 @@
                 this.sounds.click[Math.floor(Math.random() * (this.sounds.click.length))].play();
                 this.return(true);
                 this.sound.play();
-                this.eventManager.emit('clicked', this);
+                this.game.eventManager.emit('clicked', this);
             }
         }, this);
 
@@ -84,26 +83,26 @@
     Parakeet.prototype.constructor = Parakeet;
 
     Parakeet.prototype.initEvents = function () {
-        this.eventManager.on('unClickable', function () {
+        this.game.eventManager.on('unClickable', function () {
             this.clickable = false;
         }, this);
 
-        this.eventManager.on('clickable', function () {
+        this.game.eventManager.on('clickable', function () {
             if (!this.front)
                 this.parakeetSprite.animations.currentAnim.onComplete.addOnce(function () {
                     this.clickable = true;
                 }, this);
         }, this);
 
-        this.eventManager.on('pause', function () {
+        this.game.eventManager.on('pause', function () {
             this.clickable = false;
         }, this);
 
-        this.eventManager.on('unPause', function () {
+        this.game.eventManager.on('unPause', function () {
             if (!this.front) this.clickable = true;
         }, this);
 
-        this.eventManager.on('clicked', function () {
+        this.game.eventManager.on('clicked', function () {
             if (this.highlight.visible) this.highlight.visible = false;
         }, this);
     }
@@ -251,7 +250,7 @@
         }
 
         if (this.x - this.parakeetSprite.width / 2 >= this.game.width || this.x <= 0) {
-            this.eventManager.emit('parakeetOutOfBound', this);
+            this.game.eventManager.emit('parakeetOutOfBound', this);
         }
     };
 
