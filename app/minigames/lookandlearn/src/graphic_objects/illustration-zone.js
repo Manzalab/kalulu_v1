@@ -2,21 +2,20 @@
     
     'use strict';
 
-    function IllustrationZone (game, parent, notions) {
+    function IllustrationZone (game, parent, notionIds) {
         
         Phaser.Group.call(this, game, parent, 'IllustrationZone');
         
-        this._notions = notions;
+        this._notionIds = notionIds;
         this._currentNotion = null;
         
         this._illustrations = {};
-        if (this.game.gameConfig.globalVars) window.lookandlearn.illustrations = this._illustrations;
         
-        var notionsCount = this._notions.length;
+        var notionsCount = this._notionIds.length;
         for (var i = 0 ; i < notionsCount ; i++) {
 
-            var lNotion = this._notions[i];
-            this._addIllustration(lNotion, 960, 400);
+            var lNotionId = this._notionIds[i];
+            this._addIllustration(lNotionId, 960, 400);
         }
     }
 
@@ -24,16 +23,16 @@
     IllustrationZone.prototype.constructor = IllustrationZone;
 
 
-    IllustrationZone.prototype._addIllustration = function addIllustration (notion, x, y) {
+    IllustrationZone.prototype._addIllustration = function addIllustration (notionId, x, y) {
         
-        var lImage = new Phaser.Sprite(this.game, x, y, 'illustrative_image_' + notion.value);
+        var lImage = new Phaser.Sprite(this.game, x, y, 'notion_' + notionId);
         lImage.anchor.set(0.5, 0.5);
         var scaleRatio = 600/lImage.height;
         lImage.scale.set(scaleRatio, scaleRatio);
         lImage.visible = false;
         this.add(lImage);
 
-        this._illustrations[notion.id] = lImage;
+        this._illustrations[notionId] = lImage;
     };
 
     /**
