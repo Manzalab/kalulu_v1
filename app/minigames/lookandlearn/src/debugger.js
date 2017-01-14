@@ -8,7 +8,6 @@
         this._rafiki = rafiki;
         this._config = config;
 
-
         if (config.globalVars) {
             console.info('Debug with global Variables enabled. Everything can be found in global variable "lookandlearn"');
             window.lookandlearn = {};
@@ -62,7 +61,7 @@
         else {
             
             console.info("LookAndLearn Destroying DebugPanel");
-            this._gameInstance.debugPanel.destroy();
+            this._debugPanel.destroy();
         }
     };
 
@@ -75,6 +74,16 @@
     Debugger.prototype.skipKalulu = function skipKalulu() {
 
         this._gameInstance.eventManager.emit("skipKalulu");
+    };
+
+    Debugger.prototype.destroy = function destroyDebugger () {
+        
+        this.clearDebugPanel();
+        this._debugPanel = null;
+        
+        this._config = config;
+        this._rafiki = rafiki;
+        this._gameInstance = game;
     };
 
     module.exports = Debugger;
