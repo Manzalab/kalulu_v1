@@ -11,22 +11,22 @@
     var Events          = require('../tracing-logic/events/events');
 
     /**
-     * PhaseOneMaths is a game phase where a 100-cells-gameboard is used to show the value of numbers
+     * BoardGamePhase is a game phase where a 100-cells-gameboard is used to show the value of numbers
      * @class
     **/
-    function PhaseOneMaths (game) {
+    function BoardGamePhase (game) {
         Phaser.State.call(this);
         this.game = game;
     }
 
-    PhaseOneMaths.prototype = Object.create(Phaser.State.prototype);
-    PhaseOneMaths.prototype.constructor = PhaseOneMaths;
+    BoardGamePhase.prototype = Object.create(Phaser.State.prototype);
+    BoardGamePhase.prototype.constructor = BoardGamePhase;
 
 
     /**
      * This function is called by Phaser
     **/
-    PhaseOneMaths.prototype.preload = function phaseOneMathsPreload () {
+    BoardGamePhase.prototype.preload = function boardGamePhasePreload () {
         
         console.log(this.game.gameConfig.pedagogicData);
         var notion = this.notion = this.game.gameConfig.pedagogicData.data.notions[0];
@@ -43,8 +43,8 @@
         this.game.load.audio('kaluluGameOverWin',   'minigames/lookandlearn/assets/audio/kalulu/kalulu_end_commoncore01_' + this.game.gameConfig.pedagogicData.discipline + '.ogg');
     };
     
-    PhaseOneMaths.prototype.create = function phaseOneMathsCreate () {
-        if (this.game.load.hasLoaded) console.info("PhaseOneMaths State has correctly completed loading.");
+    BoardGamePhase.prototype.create = function boardGamePhaseCreate () {
+        if (this.game.load.hasLoaded) console.info("BoardGamePhase State has correctly completed loading.");
 
         // #### Init
         if (!this.game.eventManager) {
@@ -132,7 +132,7 @@
         this.game.eventManager.emit('startGame');
     };
 
-    PhaseOneMaths.prototype.update = function phaseOneMathsUpdate () {
+    BoardGamePhase.prototype.update = function boardGamePhaseUpdate () {
         
         this.game.ui.update(); // the ui group is not added to world so we have to manually update it.
 
@@ -155,17 +155,17 @@
         // }
     };
 
-    PhaseOneMaths.prototype.onFirstTime = function onFirstTime () {
+    BoardGamePhase.prototype.onFirstTime = function onFirstTime () {
         this.onFirstTime = false;
         console.log("First Time playing a Look & Learn !");
     };
 
-    PhaseOneMaths.prototype.startTracingDemoAfterDelay = function startTracingDemoAfterDelay () {
+    BoardGamePhase.prototype.startTracingDemoAfterDelay = function startTracingDemoAfterDelay () {
         this.startTracingDelay = Math.round(this.secondsOfDelay * 60);
         this.startEaseInOfLettersFrame();
     };
 
-    PhaseOneMaths.prototype.startTracingDemo = function startTracingDemo () {
+    BoardGamePhase.prototype.startTracingDemo = function startTracingDemo () {
         this.startTracingDelay = null;
         console.log("Start Tracing");
         this.tracingOn = true;
@@ -175,16 +175,16 @@
         this.progression.setModel(value);
     };
 
-    PhaseOneMaths.prototype.startEaseInOfLettersFrame = function startEaseInOfLettersFrame () {
+    BoardGamePhase.prototype.startEaseInOfLettersFrame = function startEaseInOfLettersFrame () {
         this.game.add.tween(this.lettersFrame.scale).to({x: 1.0, y: 1.0}, 800, Phaser.Easing.Bounce.Out, true);
     };
 
-    PhaseOneMaths.prototype.makeBounceLettersFrame = function makeBounceLettersFrame () {
+    BoardGamePhase.prototype.makeBounceLettersFrame = function makeBounceLettersFrame () {
         this.lettersFrame.scale.set(1.25, 1.25);
         this.game.add.tween(this.lettersFrame.scale).to({x: 1.0, y: 1.0}, 800, Phaser.Easing.Bounce.Out, true);
     };
 
-    PhaseOneMaths.prototype.onFirstLetterTracingComplete = function onFirstLetterTracingComplete (layoutId) {
+    BoardGamePhase.prototype.onFirstLetterTracingComplete = function onFirstLetterTracingComplete (layoutId) {
         Emitter.off(Events.TRIGGER_LAYOUT, this.onFirstLetterTracingComplete);
 
         if (layoutId === 4) {
@@ -198,7 +198,7 @@
         this.endTracing();
     };
 
-    PhaseOneMaths.prototype.onSecondLetterTracingComplete = function onSecondLetterTracingComplete (layoutId) {
+    BoardGamePhase.prototype.onSecondLetterTracingComplete = function onSecondLetterTracingComplete (layoutId) {
         Emitter.off(Events.TRIGGER_LAYOUT, this.onSecondLetterTracingComplete);
 
         if (layoutId === 4) {
@@ -220,7 +220,7 @@
         
     };
 
-    PhaseOneMaths.prototype.freezeLetter = function PhaseVideoFreezeLetter (x, y) {
+    BoardGamePhase.prototype.freezeLetter = function PhaseVideoFreezeLetter (x, y) {
         if (!this.frozenLetters) this.frozenLetters = [];
 
         var letterBitmapData = new Phaser.BitmapData(this.game, 'frozenLetter' + (this.frozenLetters.length + 1), 600*this.scaleRatio, 900*this.scaleRatio);
@@ -232,7 +232,7 @@
         this.imagePhaseStage.add(lImage);
     };
 
-    PhaseOneMaths.prototype.endTracing = function PhaseOneMathsEndTracing () {
+    BoardGamePhase.prototype.endTracing = function BoardGamePhaseEndTracing () {
         
         this.tracingOn = false;
         console.log('this.tracingOn : ' + this.tracingOn);
@@ -245,7 +245,7 @@
         this.makeBounceLettersFrame();
     };
 
-    PhaseOneMaths.prototype.onClickOnLetters = function (onClickOnLetters) {
+    BoardGamePhase.prototype.onClickOnLetters = function (onClickOnLetters) {
         console.log("here on click");
         this.lettersFrame.inputEnabled = false;
         this.game.ui.disableUiMenu();
@@ -253,7 +253,7 @@
         this.sound.onStop.addOnce(this.moveCell, this);
     };
 
-    PhaseOneMaths.prototype.moveCell = function moveCell () {
+    BoardGamePhase.prototype.moveCell = function moveCell () {
         this.cell.visible = true;
         var x0, y0;
         x0 = this.board.position.x - (4.5 * this.cellSize) ;
@@ -306,15 +306,15 @@
     };
 
 
-    PhaseOneMaths.prototype.enableNextStep = function PhaseOneMathsEnableNextStep () {
+    BoardGamePhase.prototype.enableNextStep = function BoardGamePhaseEnableNextStep () {
         this.lettersFrame.inputEnabled = true;
         this.game.ui.enableNext('Phase2Image');
     };
 
-    PhaseOneMaths.prototype.shutdown = function PhaseOneMathsShutdown () {
+    BoardGamePhase.prototype.shutdown = function BoardGamePhaseShutdown () {
         Emitter.listeners = {};
     };
 
 
-    module.exports = PhaseOneMaths;
+    module.exports = BoardGamePhase;
 })();

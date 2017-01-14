@@ -10,19 +10,19 @@ define([
     'use strict';
 
     /**
-     * PhaseImage is a game phase where images are shown to illustrate notions.
+     * IllustrationPhase is a game phase where images are shown to illustrate notions.
      * @class
     **/
-    function PhaseImage (game) {
+    function IllustrationPhase (game) {
         
         Phaser.State.call(this);
         this.game = game;
     }
 
-    PhaseImage.prototype = Object.create(Phaser.State.prototype);
-    PhaseImage.prototype.constructor = PhaseImage;
+    IllustrationPhase.prototype = Object.create(Phaser.State.prototype);
+    IllustrationPhase.prototype.constructor = IllustrationPhase;
 
-    PhaseImage.prototype.preload = function phaseImagePreload () {
+    IllustrationPhase.prototype.preload = function illustrationPhasePreload () {
         
         this._notions = this.game.gameConfig.pedagogicData.data.notions;
 
@@ -41,9 +41,9 @@ define([
         this.game.load.audio('kaluluGameOverWin',   'minigames/lookandlearn/assets/audio/kalulu/kalulu_end_commoncore02_'   + this.game.gameConfig.pedagogicData.discipline + '.ogg');
     };
     
-    PhaseImage.prototype.create = function phaseImageCreate () {
+    IllustrationPhase.prototype.create = function illustrationPhaseCreate () {
         
-        if (this.game.load.hasLoaded) console.info("PhaseImage State has completed loading.");
+        if (this.game.load.hasLoaded) console.info("IllustrationPhase State has completed loading.");
 
         this._initPhase();
         this._addPhaseStageToWorld();
@@ -52,7 +52,7 @@ define([
         this.game.eventManager.emit('startGame');
     };
 
-    PhaseImage.prototype._initPhase = function initImagePhase () {
+    IllustrationPhase.prototype._initPhase = function initImagePhase () {
         
         //GamePhase._init.call(this);
         if(this.game.gameConfig.globalVars) window.lookandlearn.imagePhase = this;
@@ -76,12 +76,12 @@ define([
         }
     }
 
-    PhaseImage.prototype._addPhaseStageToWorld = function addImagePhaseStageToWorld () {
+    IllustrationPhase.prototype._addPhaseStageToWorld = function addImagePhaseStageToWorld () {
         
         this._imagePhaseStage = new Phaser.Group(this.game, this.game.world, 'ImagePhaseStage');
     }
 
-    PhaseImage.prototype._initPedago = function initPedagoImagePhase () {
+    IllustrationPhase.prototype._initPedago = function initPedagoImagePhase () {
         
         this._illustrationZone = new IllustrationZone(this.game, this._imagePhaseStage, this._notions);
         this._illustrationZone.show(this._notions[0].id);
@@ -92,19 +92,19 @@ define([
     };
 
 
-    PhaseImage.prototype._initInteractiveZone = function _initInteractiveZone () {
-        console.log("[State PhaseImage] Intro Sequence Complete. Starting Interactive Zone.");
+    IllustrationPhase.prototype._initInteractiveZone = function _initInteractiveZone () {
+        console.log("[State IllustrationPhase] Intro Sequence Complete. Starting Interactive Zone.");
         this._interactiveZone.start();
     };
 
 
 
-    PhaseImage.prototype.update = function phaseImageUpdate () {
+    IllustrationPhase.prototype.update = function illustrationPhaseUpdate () {
         
         this.game.ui.update(); // the ui group is not added to world so we have to manually update it.
     };
 
-    PhaseImage.prototype.onClickOnFrame = function onClickOnFrame (eventData) {
+    IllustrationPhase.prototype.onClickOnFrame = function onClickOnFrame (eventData) {
         console.log("here on click on Frame");
         console.log(eventData);
         this._interactiveZone.disableInteractivity();
@@ -114,22 +114,22 @@ define([
         this.sound.onStop.addOnce(this._interactiveZone.enableInteractivity, this._interactiveZone);
     };
 
-    PhaseImage.prototype.enableNextStep = function PhaseImageEnableNextStep () {
+    IllustrationPhase.prototype.enableNextStep = function IllustrationPhaseEnableNextStep () {
         
         this.game.ui.enableNext('Phase3Tracing');
     };
 
-    PhaseImage.prototype.shutdown = function PhaseImageShutdown () {
+    IllustrationPhase.prototype.shutdown = function IllustrationPhaseShutdown () {
         
         Emitter.listeners = {};
     };
     
 
-    // PhaseImage.prototype.onFirstTime = function onFirstTime () {
+    // IllustrationPhase.prototype.onFirstTime = function onFirstTime () {
     //     this.onFirstTime = false;
     //     console.log("First Time playing a Look & Learn !");
     // };
-    // PhaseImage.prototype.onClickOnLetters = function onClickOnLetters () {
+    // IllustrationPhase.prototype.onClickOnLetters = function onClickOnLetters () {
     //     console.log("here on click");
     //     this.game.ui.disableUiMenu();
     //     this.sound = this.game.sound.play('illustrative_sound_'+ this.notion.value);
@@ -137,5 +137,5 @@ define([
     // };
 
 
-    return PhaseImage;
+    return IllustrationPhase;
 });

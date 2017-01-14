@@ -1,19 +1,27 @@
 (function () {
     
     'use strict';
-
+    
     var EventEmitter       = require('eventemitter3');
 
     var minigameConfig     = require('./config');
     var Debugger           = require('./debugger');
+    var stateNames = {
+        BOOT               : "Boot",
+        PRELOAD            : "Preload",
+        BOARD_GAME_PHASE   : "BoardGamePhase",
+        VIDEO_PHASE        : "VideoPhase",
+        ILLUSTRATION_PHASE : "IllustrationPhase",
+        TRACING_PHASE      : "TracingPhase"
+    };
 
     var states = {
-        Boot               : require('./states/boot'),
-        Preloader          : require('./states/preload'),
-        Phase1Maths        : require('./states/phase_1_maths'),
-        Phase1Video         : require('./states/phase_video'),
-        Phase2Image         : require('./states/phase_image'),
-        Phase3Tracing       : require('./states/phase_tracing')
+        stateNames.BOOT               : require('./states/boot'),
+        stateNames.PRELOAD            : require('./states/preload'),
+        stateNames.BOARD_GAME_PHASE   : require('./states/phase_board_game'),
+        stateNames.VIDEO_PHASE        : require('./states/phase_video'),
+        stateNames.ILLUSTRATION_PHASE : require('./states/phase_illustration'),
+        stateNames.TRACING_PHASE      : require('./states/phase_tracing')
     };
 
     /**
@@ -60,7 +68,7 @@
     };
 
     GameLauncher.prototype._addGameStates = function addGameStates (states) {
-        
+        this._gameInstance.stateNames = stateNames;
         for (var stateName in states) {
             this._gameInstance.state.add(stateName, states[stateName]);
         }

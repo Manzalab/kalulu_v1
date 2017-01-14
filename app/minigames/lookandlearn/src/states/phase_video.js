@@ -18,10 +18,10 @@ define([
     'use strict';
 
     /**
-	 * PhaseVideo is a game phase where a video is played to teach something to the player
+	 * VideoPhase is a game phase where a video is played to teach something to the player
 	 * @class
 	**/
-    function PhaseVideo (game) {
+    function VideoPhase (game) {
         console.log(game);
         this.game = game;
         // console.log(this.game);
@@ -29,13 +29,13 @@ define([
         // console.log(game);
         // console.log(this.game);
         this.game = game;
-        if (this.game.gameConfig.globalVars) window.lookandlearn.phaseVideo = this;
+        if (this.game.gameConfig.globalVars) window.lookandlearn.videoPhase = this;
     }
 
-    PhaseVideo.prototype = Object.create(Phaser.State.prototype);
-    PhaseVideo.prototype.constructor = PhaseVideo;
+    VideoPhase.prototype = Object.create(Phaser.State.prototype);
+    VideoPhase.prototype.constructor = VideoPhase;
 
-    PhaseVideo.prototype.preload = function phaseVideoPreload () {
+    VideoPhase.prototype.preload = function videoPhasePreload () {
         
         var notion = this.notion = this.game.gameConfig.pedagogicData.data.notions[0];
 
@@ -49,8 +49,8 @@ define([
         this.game.load.audio('kaluluGameOverWin',   'minigames/lookandlearn/assets/audio/kalulu/kalulu_end_commoncore01_'   + this.game.gameConfig.pedagogicData.discipline + '.ogg');
     };
     
-    PhaseVideo.prototype.create = function phaseVideoCreate () {
-        if (this.game.load.hasLoaded) console.info("PhaseVideo State has completed loading.");
+    VideoPhase.prototype.create = function videoPhaseCreate () {
+        if (this.game.load.hasLoaded) console.info("VideoPhase State has completed loading.");
 
         // #### Init
         if (!this.game.eventManager) {
@@ -137,7 +137,7 @@ define([
         this.game.eventManager.emit('startGame');
     };
 
-    PhaseVideo.prototype.update = function phaseVideoUpdate () {
+    VideoPhase.prototype.update = function videoPhaseUpdate () {
         
         this.game.ui.update(); // the ui group is not added to world so we have to manually update it.
 
@@ -159,18 +159,18 @@ define([
         // }
     };
 
-    PhaseVideo.prototype.onFirstTime = function onFirstTime () {
+    VideoPhase.prototype.onFirstTime = function onFirstTime () {
         this.onFirstTime = false;
         console.log("First Time playing a Look & Learn !");
     };
 
-    PhaseVideo.prototype.startTracingDemoAfterDelay = function startTracingDemoAfterDelay () {
+    VideoPhase.prototype.startTracingDemoAfterDelay = function startTracingDemoAfterDelay () {
         console.log('introSequenceComplete');
         this.startTracingDelay = Math.round(this.secondsOfDelay * 60);
         this.startEaseInOfLettersFrame();
     };
 
-    PhaseVideo.prototype.startTracingDemo = function startTracingDemo () {
+    VideoPhase.prototype.startTracingDemo = function startTracingDemo () {
         this.startTracingDelay = null;
         console.log("Start Tracing");
         this.tracingOn = true;
@@ -188,16 +188,16 @@ define([
         this.progression.setModel(value);
     };
 
-    PhaseVideo.prototype.startEaseInOfLettersFrame = function startEaseInOfLettersFrame () {
+    VideoPhase.prototype.startEaseInOfLettersFrame = function startEaseInOfLettersFrame () {
         this.game.add.tween(this.lettersFrame.scale).to({x: 1.0, y: 1.0}, 800, Phaser.Easing.Bounce.Out, true);
     };
 
-    PhaseVideo.prototype.makeBounceLettersFrame = function makeBounceLettersFrame () {
+    VideoPhase.prototype.makeBounceLettersFrame = function makeBounceLettersFrame () {
         this.lettersFrame.scale.set(1.25, 1.25);
         this.game.add.tween(this.lettersFrame.scale).to({x: 1.0, y: 1.0}, 800, Phaser.Easing.Bounce.Out, true);
     };
 
-    PhaseVideo.prototype.onFirstLetterTracingComplete = function onFirstLetterTracingComplete (layoutId) {
+    VideoPhase.prototype.onFirstLetterTracingComplete = function onFirstLetterTracingComplete (layoutId) {
         Emitter.off(Events.TRIGGER_LAYOUT, this.onFirstLetterTracingComplete);
 
         if (layoutId === 4) {
@@ -232,7 +232,7 @@ define([
         
     };
 
-    PhaseVideo.prototype.onSecondLetterTracingComplete = function onSecondLetterTracingComplete (layoutId) {
+    VideoPhase.prototype.onSecondLetterTracingComplete = function onSecondLetterTracingComplete (layoutId) {
         Emitter.off(Events.TRIGGER_LAYOUT, this.onSecondLetterTracingComplete);
 
         if (layoutId === 4) {
@@ -254,7 +254,7 @@ define([
         
     };
 
-    PhaseVideo.prototype.freezeLetter = function PhaseVideoFreezeLetter (x, y) {
+    VideoPhase.prototype.freezeLetter = function VideoPhaseFreezeLetter (x, y) {
         if (!this.frozenLetters) this.frozenLetters = [];
 
         var letterBitmapData = new Phaser.BitmapData(this.game, 'frozenLetter' + (this.frozenLetters.length + 1), 600*this.scaleRatio, 900*this.scaleRatio);
@@ -266,7 +266,7 @@ define([
         this.videoPhaseStage.add(lImage);
     };
 
-    PhaseVideo.prototype.endTracing = function PhaseVideoEndTracing () {
+    VideoPhase.prototype.endTracing = function VideoPhaseEndTracing () {
         
         this.tracingOn = false;
         console.log('Tracing is OFF');
@@ -279,7 +279,7 @@ define([
         this.makeBounceLettersFrame();
     };
 
-    PhaseVideo.prototype.onClickOnLetters = function (onClickOnLetters) {
+    VideoPhase.prototype.onClickOnLetters = function (onClickOnLetters) {
         console.log("here on click");
         this.game.ui.disableUiMenu();
         this.loadAndPlayVideo(this.videoTexture1, function () {
@@ -288,19 +288,19 @@ define([
         }.bind(this));
     };
 
-    PhaseVideo.prototype.loadAndPlayVideo = function PhaseVideoLoadAndPlayVideo (videoTexture, callback) {
+    VideoPhase.prototype.loadAndPlayVideo = function VideoPhaseLoadAndPlayVideo (videoTexture, callback) {
         this.video.loadTexture(videoTexture, 0);
         videoTexture.onComplete.addOnce(callback, this);
         videoTexture.play(false);
     };
 
-    PhaseVideo.prototype.enableNextStep = function PhaseVideoEnableNextStep () {
+    VideoPhase.prototype.enableNextStep = function VideoPhaseEnableNextStep () {
         this.game.ui.enableNext('Phase2Image');
     };
 
-    PhaseVideo.prototype.shutdown = function PhaseVideoShutdown () {
+    VideoPhase.prototype.shutdown = function VideoPhaseShutdown () {
         Emitter.listeners = {};
     };
 
-    return PhaseVideo;
+    return VideoPhase;
 });

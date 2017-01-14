@@ -18,17 +18,17 @@ define([
     'use strict';
 
     /**
-     * PhaseTracing is a game phase where a video is played to teach something to the player
+     * TracingPhase is a game phase where a video is played to teach something to the player
      * @class
     **/
-    function PhaseTracing (game) {
+    function TracingPhase (game) {
         Phaser.State.call(this);
     }
 
-    PhaseTracing.prototype = Object.create(Phaser.State.prototype);
-    PhaseTracing.prototype.constructor = PhaseTracing;
+    TracingPhase.prototype = Object.create(Phaser.State.prototype);
+    TracingPhase.prototype.constructor = TracingPhase;
 
-    PhaseTracing.prototype.preload = function phaseTracingPreload () {
+    TracingPhase.prototype.preload = function tracingPhasePreload () {
         
         var notion = this.notion = this.game.gameConfig.pedagogicData.data.notions[0];
         
@@ -41,8 +41,8 @@ define([
         this.game.load.audio('kaluluGameOverWin',   'minigames/lookandlearn/assets/audio/kalulu/kalulu_end_commoncore03_' + this.game.gameConfig.pedagogicData.discipline + '.ogg');
     };
     
-    PhaseTracing.prototype.create = function phaseTracingCreate () {
-        if (this.game.load.hasLoaded) console.info("PhaseTracing State has correctly completed loading.");
+    TracingPhase.prototype.create = function tracingPhaseCreate () {
+        if (this.game.load.hasLoaded) console.info("TracingPhase State has correctly completed loading.");
 
         // #### Init
         if (!this.game.eventManager) {
@@ -100,7 +100,7 @@ define([
         this.game.eventManager.emit('startGame');
     };
 
-    PhaseTracing.prototype.prepareSeries = function phaseTracingPrepareSeries () {
+    TracingPhase.prototype.prepareSeries = function tracingPhasePrepareSeries () {
         var series = {};
         var upperCase = this.game.gameConfig.pedagogicData.data.traceUppercase;
         if (upperCase) {
@@ -112,7 +112,7 @@ define([
         return series;
     };
 
-    PhaseTracing.prototype.update = function phaseTracingUpdate () {
+    TracingPhase.prototype.update = function tracingPhaseUpdate () {
         
         this.game.ui.update(); // the ui group is not added to world so we have to manually update it.
 
@@ -137,36 +137,36 @@ define([
         }
     };
 
-    PhaseTracing.prototype.onFirstTime = function onFirstTime () {
+    TracingPhase.prototype.onFirstTime = function onFirstTime () {
         this.onFirstTime = false;
         console.log("First Time playing a Look & Learn !");
     };
 
-    PhaseTracing.prototype.startTracingDemoAfterDelay = function startTracingDemoAfterDelay () {
+    TracingPhase.prototype.startTracingDemoAfterDelay = function startTracingDemoAfterDelay () {
         this.startTracingDelay = Math.round(this.secondsOfDelay * 60);
     };
 
-    PhaseTracing.prototype.startTracingDemo = function startTracingDemo () {
+    TracingPhase.prototype.startTracingDemo = function startTracingDemo () {
         this.startTracingDelay = null;
         console.log("Start Tracing");
         this.tracingOn = true;
         this.progression.setSeries(this.prepareSeries());
     };
 
-    PhaseTracing.prototype.endTracing = function PhaseTracingEndTracing () {
+    TracingPhase.prototype.endTracing = function TracingPhaseEndTracing () {
         console.info("tracingPhase end of Trace");
         this.tracingOn = false;
         this.game.rafiki.save();
         this.game.ui.enableNext();
     };
     
-    PhaseTracing.prototype.enableNextStep = function PhaseTracingEnableNextStep () {
+    TracingPhase.prototype.enableNextStep = function TracingPhaseEnableNextStep () {
         this.game.ui.enableNext();
     };
 
-    PhaseTracing.prototype.shutdown = function PhaseTracingShutdown () {
+    TracingPhase.prototype.shutdown = function TracingPhaseShutdown () {
         Emitter.listeners = {};
     };
 
-    return PhaseTracing;
+    return TracingPhase;
 });

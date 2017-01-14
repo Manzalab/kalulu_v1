@@ -2,14 +2,14 @@ define([], function () {
     
     'use strict';
     
-    function PreloadState (game) {
+    function Preload (game) {
         this.game = game;
     }
 
     /**
      * Load assets to be used later in the preloader
     **/
-    PreloadState.prototype.preload = function preloadStatePreload() {
+    Preload.prototype.preload = function preloadPreload() {
         
         this._pedagogicData = this.game.rafiki.getPedagogicData();
         
@@ -23,7 +23,7 @@ define([], function () {
     /**
      * Add to the loading queue the assets specific to this module
     **/
-    PreloadState.prototype.loadSpecificAssets = function preloadStateLoadSpecificAssets () {
+    Preload.prototype.loadSpecificAssets = function preloadLoadSpecificAssets () {
         
         this.game.load.json('layouts'           , 'minigames/lookandlearn/assets/config/layouts.json');
         this.game.load.json('progression'       , 'minigames/lookandlearn/assets/config/progression.json');
@@ -39,7 +39,7 @@ define([], function () {
     /**
      * Add to the loading queue the assets specific generic to all minigames modules
     **/
-    PreloadState.prototype.loadSharedAssets = function preloadStateLoadSharedAssets() {
+    Preload.prototype.loadSharedAssets = function preloadLoadSharedAssets() {
 
         //UI 
         this.game.load.image('black_overlay', 'minigames/common/assets/images/ui/pause.png');
@@ -72,7 +72,7 @@ define([], function () {
     /**
      * Stores the config Json in the this.game.gameConfig object
     **/
-    PreloadState.prototype.create = function preloadStateCreate () {
+    Preload.prototype.create = function preloadCreate () {
         
         if (this.game.load.hasLoaded) console.info("Preload State has correctly completed loading.");
         
@@ -86,14 +86,14 @@ define([], function () {
 
         if (this._pedagogicData.discipline === 'language') {
             console.info("Preload Complete, Starting Phase1Video...");
-            this.state.start('Phase1Video');
+            this.state.start(this.game.stateNames.VIDEO_PHASE);
         }
         else if (this._pedagogicData.discipline === 'maths') {
-            console.info("Preload Complete, Starting Phase1Maths...");
-            // this.state.start('Phase1Maths');         
-            this.state.start('Phase2Image');
+            console.info("Preload Complete, Starting Phase1Maths...");      
+            // this.state.start(this.game.stateNames.BOARD_GAME_PHASE);
+            this.state.start(this.game.stateNames.ILLUSTRATION_PHASE);
         }
     };
     
-    return PreloadState;
+    return Preload;
 });

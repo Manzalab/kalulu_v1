@@ -11,7 +11,7 @@
      * @memberof Template
 	 * @param game {Phaser.Game} game instance
 	**/
-    function Boot(game) { }
+    function Boot (game) { }
     
     Boot.prototype = {
         /**
@@ -31,7 +31,7 @@
             this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL; // Scaling the game for developping purposes; Feel free to remove it if you feel the need
             this.game.stage.backgroundColor = 'rgb(255, 255, 255)';
             console.info("Boot Complete, Starting Preload...");
-            this.state.start('Preloader');
+            this.state.start(this.game.stateNames.PRELOAD);
         }
     };
     return Boot;
