@@ -61,7 +61,7 @@ define([
     ScreensManager.prototype.openGardenTransition = function openGardenTransition (callback) {
         this._openTransition = this._gardenTransition;
         GameStage.getScreensTransitionsContainer().addChild(this._openTransition);
-        this._openTransition.easeIn(2.6, callback);
+        this._openTransition.easeIn(1.2, callback);
     };
 
     ScreensManager.prototype.closeGardenTransition = function closeGardenTransition () {

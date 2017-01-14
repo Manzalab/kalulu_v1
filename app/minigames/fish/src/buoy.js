@@ -17,8 +17,7 @@
         Phaser.Group.call(this, game);
 
         this.game = game;
-        this.eventManager = game.eventManager;
-        this.y = game.height / 2.5;
+                this.y = game.height / 2.5;
 
         if (side) {
             this.x = game.width / 5;
@@ -61,11 +60,11 @@
      * @private
      **/
     Buoy.prototype.initEvents = function () {
-        this.eventManager.on('pause', function () {
+        this.game.eventManager.on('pause', function () {
             this.paused = true;
         }, this);
 
-        this.eventManager.on('unPause', function () {
+        this.game.eventManager.on('unPause', function () {
             this.paused = false;
         }, this);
 

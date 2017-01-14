@@ -17,7 +17,7 @@
 	 * @memberof Namespace (e.g. Kalulu.Remediation)
 	 * @param parameter {Object} Description of the parameter
 	**/
-	function Story (storyId, interfaceManager) {
+	function Story (storyName, interfaceManager) {
 		
 
 		this._interfaceManager = interfaceManager;
@@ -44,7 +44,7 @@
 		this._buttonNext.onClick = this._openNext.bind(this);
 		this._buttonPrev.onClick = this._openPrev.bind(this);
 		this._openPage = this._openPage.bind(this);
-		PdfJs.getDocument(Config.imagesPath + "stories/story"+storyId+".pdf").then(function(pdfFile)
+		PdfJs.getDocument(Config.pdfPath /*+ "swahili/"*/ + storyName+".pdf").then(function(pdfFile)
 		{
 			this._pdfFile = pdfFile;
 			this._openPage(pdfFile, 1);

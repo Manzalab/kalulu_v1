@@ -75,6 +75,7 @@ var SkillTree = function(el,depth, tries, params){
 	var nonSymbolicToSymbolic	=  {'name':'nonSymbolicToSymbolic'}
 	var audio_symbolic 			=  {'name':'audio_symbolic'}
 	var recognition_types 		=  [audioToNonSymbolic, nonSymbolicToSymbolic, audio_symbolic]
+	var recognition_typesDecimal =  [audioToNonSymbolic, nonSymbolicToSymbolic, audio_symbolic]
 
 
 
@@ -116,11 +117,23 @@ var SkillTree = function(el,depth, tries, params){
 		this.unlocked = true
 		
 		if(this.name == 'recognition'){
+
 			subarray = recognition_types
+
+			if( (params.gameType == 'crabs' || params.gameType == 'jellyfish') && this.number > 6){
+				
+				subarray = _.without(subarray,recognition_types[0])
+				subarray = _.without(subarray,recognition_types[1])
+				
+			//	console.log('filter sub_array stimuliToStimuli target for '+params.gameType)
+			//	console.log(subarray.length+' for value '+this.number)
+			}
+			
+			//console.log(subarray.length+' for value '+this.number)
+
+		
 			this.isleaf = false;
 		}
-		
-
 	
 	}
 	if(this.group == 'decimal' ){
@@ -214,6 +227,9 @@ var SkillTree = function(el,depth, tries, params){
 		var  pa_ = subarray[subarray_i]
 		//console.log('>>this.score'+pa_.name+this.depth )
 		//console.log(this.score)
+
+
+		// MAYBE EXCLUDE SOME Stimuli/stimuli here..
 
 		
 		var root = {

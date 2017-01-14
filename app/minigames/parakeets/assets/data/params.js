@@ -28,7 +28,7 @@
                 stepTargetClass                 : "GP",         // the class of a step Target (if same than round --> identification, if component -> composition)
                 stepsToPlay                     : "All",        // should all the steps be played or are some given ? e.g. [1, 0, 0, 1] 
                 stepDistracterCount             : 0,            // the amount of distracter stimuli to be provided by Rafiki for each round.
-                parakeetPairs                   : 0,            // the number of jellyfishes that the game will tend to generate
+                pairsCount                   : 0,            // the number of jellyfishes that the game will tend to generate
                 branchesCount                   : 0             // the number of columns on which jellyfishes will spawn
             },
             localRemediation : { // the local remediation settings are used to adapt the difficulty inside a game. The game divide the min-max range in 5 stages and starts at the middle one.
@@ -41,7 +41,7 @@
                 globalRemediation : {
                     gameTimer                       : Infinity,
                     gameTimerVisible                : false,
-                    parakeetPairs                   : 2, //
+                    pairsCount                      : 2, //
                     branchesCount                   : 2  //
 
                 },
@@ -54,7 +54,7 @@
                  globalRemediation : {
                     gameTimer                       : Infinity,
                     gameTimerVisible                : false,
-                    parakeetPairs                   : 3, //
+                    pairsCount                      : 3, //
                     branchesCount                   : 2  //
                 },
                 localRemediation : {
@@ -66,7 +66,7 @@
                 globalRemediation : {
                     gameTimer                       : Infinity,
                     gameTimerVisible                : false,
-                    parakeetPairs                   : 3, //
+                    pairsCount                      : 3, //
                     branchesCount                   : 2  //
                 },
                 localRemediation : {
@@ -78,7 +78,7 @@
                 globalRemediation : {
                     gameTimer                       : Infinity,
                     gameTimerVisible                : false,
-                    parakeetPairs                   : 4, //
+                    pairsCount                      : 4, //
                     branchesCount                   : 4  //
                 },
                 localRemediation : {
@@ -90,7 +90,7 @@
                 globalRemediation : {
                     gameTimer                       : Infinity,
                     gameTimerVisible                : false,
-                    parakeetPairs                   : 4, //
+                    pairsCount                      : 4, //
                     branchesCount                   : 4  //
                 },
                 localRemediation : {

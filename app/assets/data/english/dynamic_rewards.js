@@ -15,17 +15,17 @@ define([], function () {
         "73": "Feet_hands_and_head_"
     },
     "maths": {
-        "1": "CIRKAFRICA1 MASTER PARTIE 01",
-        "10": "CIRKAFRICA1 MASTER PARTIE 03",
-        "19": "CIRKAFRICA1 MASTER PARTIE 05",
-        "30": "CIRKAFRICA1 MASTER PARTIE 07",
-        "42": "CIRKAFRICA1 MASTER PARTIE 09"
+        "1": "CIRKAFRICA1_MASTER_PARTIE_01",
+        "10": "CIRKAFRICA1_MASTER_PARTIE_03",
+        "19": "CIRKAFRICA1_MASTER_PARTIE_05",
+        "30": "CIRKAFRICA1_MASTER_PARTIE_07",
+        "42": "CIRKAFRICA1_MASTER_PARTIE_09"
     },
     "both": {
-        "4": "CIRKAFRICA1 MASTER PARTIE 02",
-        "8": "CIRKAFRICA1 MASTER PARTIE 04",
-        "12": "CIRKAFRICA1 MASTER PARTIE 06",
-        "16": "CIRKAFRICA1 MASTER PARTIE 08",
+        "4": "CIRKAFRICA1_MASTER_PARTIE_02",
+        "8": "CIRKAFRICA1_MASTER_PARTIE_04",
+        "12": "CIRKAFRICA1_MASTER_PARTIE_06",
+        "16": "CIRKAFRICA1_MASTER_PARTIE_08",
         "20": "patrimath"
     },
     "bookCount": 10,
@@ -36,15 +36,15 @@ define([], function () {
             "patrimath"
         ],
         "video": [
-            "CIRKAFRICA1 MASTER PARTIE 01",
-            "CIRKAFRICA1 MASTER PARTIE 02",
-            "CIRKAFRICA1 MASTER PARTIE 03",
-            "CIRKAFRICA1 MASTER PARTIE 04",
-            "CIRKAFRICA1 MASTER PARTIE 05",
-            "CIRKAFRICA1 MASTER PARTIE 06",
-            "CIRKAFRICA1 MASTER PARTIE 07",
-            "CIRKAFRICA1 MASTER PARTIE 08",
-            "CIRKAFRICA1 MASTER PARTIE 09"
+            "CIRKAFRICA1_MASTER_PARTIE_01",
+            "CIRKAFRICA1_MASTER_PARTIE_02",
+            "CIRKAFRICA1_MASTER_PARTIE_03",
+            "CIRKAFRICA1_MASTER_PARTIE_04",
+            "CIRKAFRICA1_MASTER_PARTIE_05",
+            "CIRKAFRICA1_MASTER_PARTIE_06",
+            "CIRKAFRICA1_MASTER_PARTIE_07",
+            "CIRKAFRICA1_MASTER_PARTIE_08",
+            "CIRKAFRICA1_MASTER_PARTIE_09"
         ],
         "book": [
             "Listen",

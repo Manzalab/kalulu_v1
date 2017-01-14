@@ -26,11 +26,6 @@
 	    **/
         this.background = null;
         
-        /**
-	     * In charge of all the game events
-	     * @type {EventEmitter}
-	    **/
-        this.eventManager = null;
         
         /**
          * User interface 
@@ -54,7 +49,7 @@
     Game.prototype = {
         preload : function preloadGame () {
             console.info("[Game State] Preloading new game");
-            this.game.discipline = this.game.pedagogicData.discipline;
+            
             var data = this.game.pedagogicData.data;
             var roundsCount = data.rounds.length;
             var stimuliCount, stimulus;
@@ -69,7 +64,7 @@
 
                         stimulus = data.rounds[i].steps[j].stimuli[k];
                         if (stimulus.value !== "") {
-                            console.log("preloading " + stimulus.value + " sound at path " + stimulus.soundPath);
+                            // console.log("preloading " + stimulus.value + " sound at path " + stimulus.soundPath);
                             this.game.load.audio(stimulus.value, stimulus.soundPath);
                         }
                     }

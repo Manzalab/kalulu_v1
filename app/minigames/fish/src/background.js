@@ -20,8 +20,7 @@
         this.time = time;
         this.addedTime = 0;
         this.pace = 1 / 60;
-        this.eventManager = game.eventManager;
-
+        
         this.backgroundBottom = game.add.sprite(game.world.centerX, game.world.centerY, 'BackgroundBottom');
         this.backgroundBottom.anchor.setTo(0.5, 0.5);
         this.backgroundBottom.width = game.width;
@@ -44,13 +43,13 @@
 
         this.add(this.backgroundTop)
 
-        this.boat = game.add.sprite(game.world.centerX, game.world.centerY, 'boat', 'Bateau_Idle_0000');
-        this.boat.anchor.setTo(0.5, 0.5);
+        //this.boat = game.add.sprite(game.world.centerX, game.world.centerY, 'boat', 'Bateau_Idle_0000');
+        //this.boat.anchor.setTo(0.5, 0.5);
 
-        this.boat.animations.add('idle', Phaser.Animation.generateFrameNames('Bateau_Idle_', 0, 11, '', 4), 6, true, true);
-        this.boat.animations.play('idle');
+        //this.boat.animations.add('idle', Phaser.Animation.generateFrameNames('Bateau_Idle_', 0, 11, '', 4), 6, true, true);
+        //this.boat.animations.play('idle');
 
-        this.add(this.boat)
+        //this.add(this.boat)
 
         this.initEvents();
         this.sunTrajectory(1600, 340);
@@ -64,15 +63,15 @@
      * @private
      **/
     Background.prototype.initEvents = function () {
-        this.eventManager.on('startTimer', function () {
+        this.game.eventManager.on('startTimer', function () {
             this.enabled = true;
         }, this);
 
-        //this.eventManager.on('pause', function () {
+        //this.game.eventManager.on('pause', function () {
         //    this.paused = true;
         //}, this);
 
-        //this.eventManager.on('unPause', function () {
+        //this.game.eventManager.on('unPause', function () {
         //    this.paused = false;
         //}, this);
 
@@ -108,7 +107,7 @@
                 this.sun.x = this.slopeX * this.t + this.oldX;
                 if (this.t > this.time) {
                     this.enabled = false;
-                    this.eventManager.emit('timerFinished');
+                    this.game.eventManager.emit('timerFinished');
                 }
                 this.t += this.pace;
             }

@@ -23,10 +23,10 @@ define([], function () {
         "43": "Akili8"
     },
     "both": {
-        "4": "CIRKAFRICA1 MASTER PARTIE 01",
-        "8": "CIRKAFRICA1 MASTER PARTIE 02",
-        "12": "CIRKAFRICA1 MASTER PARTIE 03",
-        "16": "CIRKAFRICA1 MASTER PARTIE 04",
+        "4": "CIRKAFRICA1_MASTER_PARTIE_01",
+        "8": "CIRKAFRICA1_MASTER_PARTIE_02",
+        "12": "CIRKAFRICA1_MASTER_PARTIE_03",
+        "16": "CIRKAFRICA1_MASTER_PARTIE_04",
         "20": "patrimath"
     },
     "bookCount": 10,
@@ -39,13 +39,13 @@ define([], function () {
         "video": [
             "Akili1",
             "Akili2",
-            "CIRKAFRICA1 MASTER PARTIE 01",
+            "CIRKAFRICA1_MASTER_PARTIE_01",
             "Akili3",
-            "CIRKAFRICA1 MASTER PARTIE 02",
+            "CIRKAFRICA1_MASTER_PARTIE_02",
             "Akili4",
-            "CIRKAFRICA1 MASTER PARTIE 03",
+            "CIRKAFRICA1_MASTER_PARTIE_03",
             "Akili6",
-            "CIRKAFRICA1 MASTER PARTIE 04",
+            "CIRKAFRICA1_MASTER_PARTIE_04",
             "Akili8"
         ],
         "book": [

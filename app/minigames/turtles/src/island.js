@@ -24,8 +24,7 @@
         this.x = game.world.centerX;
         this.y = game.world.centerY;
         this.paused = false;
-        this.eventManager = game.eventManager;
-
+        
 
         this.islandSprite = game.add.sprite(0, 0, 'island');
         this.islandSprite.anchor.setTo(0.5, 0.5);
@@ -103,11 +102,11 @@
      * @private
      **/
     Island.prototype.initEvents = function () {
-        this.eventManager.on('pause', function () {
+        this.game.eventManager.on('pause', function () {
             this.paused = true;
         }, this);
 
-        this.eventManager.on('unPause', function () {
+        this.game.eventManager.on('unPause', function () {
             this.paused = false;
         }, this);
     }

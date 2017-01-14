@@ -2,12 +2,14 @@
  * This module returns the TitleCard class constructor.
 **/
 define([
+    '../elements/anim_background',
     '../utils/ui/screen',
     '../utils/events/mouse_event_type',
     '../utils/events/touch_event_type',
     '../utils/sound/sound_manager',
     'dat.gui'
 ], function (
+    AnimBackground,
     Screen,
     MouseEventType,
     TouchEventType,
@@ -33,9 +35,15 @@ define([
         this.name = "mcTitleCard";
         this.build();
 
-        this._background = this.getChildByName("mcTitleCardBg");
+        this._backgroundContainer = this.getChildByName("mcTitleCardBg");
+        this._background = new AnimBackground("NightGardenBg", 2);
+
+        this._backgroundContainer.addChild(this._background);
+        this._background.position.set(0,0);
+
         this._playButton = this.getChildByName("mcPlayButton");
-        this._playButton.onClick = this.onClick.bind(this);
+        this._playButton.once("click", this.onClick.bind(this));
+        this._playButton.once("tap", this.onClick.bind(this));
 
         // PlayButton Tween Config
         // for (var i = 0; i < this.children.length ; i++) {
@@ -51,7 +59,7 @@ define([
         this._tweenDestinationPoint = new PIXI3.Point(this._targetPosition.x, this._targetPosition.y);
 
         // DEBUG
-        if (Config.enableTransitionsTuningControls) {
+        if (Config.enableTransitionsTuning) {
 
             this._guiFolderName = "TitleCard : Play Button Tween";
             this._gui = this._userInterface.debugPanel.addFolder(this._guiFolderName);
@@ -88,7 +96,13 @@ define([
     TitleCard.prototype.constructor = TitleCard;
 
     TitleCard.prototype.onClick = function onClick (pEventData) {
-        if (this._userInterface.kaluluCharacter.isTalking) return;
+        if (this._userInterface.kaluluCharacter.isTalking)
+        {        
+            this._playButton.once("click", this.onClick.bind(this));
+            this._playButton.once("tap", this.onClick.bind(this));
+            return;
+        } 
+        this._userInterface.kaluluCharacter.clearRepeat();
         SoundManager.getSound("kalulu_end_startscreen").play();
         
         // SoundManager.addAmbiance("Bird", ["bird_1","bird_2","bird_3","bird_4","bird_5","bird_6","bird_7","bird_8","bird_9"]);
@@ -121,7 +135,7 @@ define([
     };
 
     TitleCard.prototype.close = function close () {
-        if (Config.enableTransitionsTuningControls) {
+        if (Config.enableTransitionsTuning) {
             this._userInterface.debugPanel.removeFolder(this._guiFolderName);
         }
         Screen.prototype.close.call(this);
@@ -137,7 +151,7 @@ define([
         this._targetPosition.set(this._target.parent.x + this._target.x, this._target.parent.y + this._target.y);
         this._tweenControlPoint.set(this._targetPosition.x, -500);
         this._tweenDestinationPoint.set(this._targetPosition.x, this._targetPosition.y);
-        if (Config.enableTransitionsTuningControls) {
+        if (Config.enableTransitionsTuning) {
             this._redrawTweenCurve();
         }
     };

@@ -35,11 +35,6 @@
 	    **/
         this.backgroundLeef = null;
 
-        /**
-	     * In charge of all the game events
-	     * @type {EventEmitter}
-	    **/
-        this.eventManager = null;
 
         /**
          * User interface 
@@ -67,7 +62,7 @@
             // load audiofiles for the current data
 
             var data = this.game.pedagogicData.data;
-            this.game.discipline = this.game.pedagogicData.discipline;
+            
             console.log(this.game.discipline)
             if (this.game.discipline == "maths") {
                 this.game.load.atlasJSONHash('maths', 'minigames/common/assets/images/maths/maths.png', 'minigames/common/assets/images/maths/maths.json');

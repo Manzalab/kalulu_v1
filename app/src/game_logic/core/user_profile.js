@@ -103,6 +103,18 @@ define([
             }
         },
 
+        starPath : {
+            get : function () {return this._data.starPath; },
+            set : function (object) {
+                var idChapter = object.idChapter;
+                var value = object.value;
+
+                this._data.starPath[idChapter] = value;
+
+                this._gameManager.save();
+                return this._data.starPath;
+            }
+        },
         starMiddle : {
             get : function () {return this._data.starMiddle; },
             set : function (id) {
@@ -163,6 +175,7 @@ define([
             },
             bonusActivitiesData : null,
             starMiddle : null,
+            starPath   : null,
             fertilizer : 0,
             plantsData : null,
             kaluluTalks : {
@@ -184,6 +197,7 @@ define([
             }
         };
         this.getStarMiddle();
+        this.getStarPath();
         this.getPlantsStatus();
     };
 
@@ -206,6 +220,15 @@ define([
         }
         arr[0] = true;
         return arr;
+    };
+
+    UserProfile.prototype.getStarPath = function getStarPath () {
+        var chapterCount = 20;
+        this._data.starPath = [];
+
+        for (var i = 1; i <= chapterCount; i++) {
+            this._data.starPath[i] = [null, null];
+        }
     };
 
     UserProfile.prototype.getStarMiddle = function getStarMiddle () {

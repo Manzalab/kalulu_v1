@@ -37,8 +37,7 @@
          * game.eventManager
          * @type {EventEmitter}
          **/
-        this.eventManager = game.eventManager;
-
+        
         // next Button Callback
         this.doActionNext = this.doActionVoid;
 
@@ -210,60 +209,60 @@
      **/
     Ui.prototype.initEvents = function initEvents() {
 
-        this.eventManager.on('startUi', function () { // emitted by the class Kalulu. It is emitted at game start, right after Kalulu finishes its intro speech.
+        this.game.eventManager.on('startUi', function () { // emitted by the class Kalulu. It is emitted at game start, right after Kalulu finishes its intro speech.
             this.blackOverlay.visible = true;
             this.parent.game.world.bringToTop(this.blackOverlay);
             if (this.features.isIntroPhonemeButtonEnabled) this.centralConchButton.visible = true;
             else {
-                this.eventManager.emit('unPause');
+                this.game.eventManager.emit('unPause');
             }
             this.kaluluButton.visible = true;
         }, this);
 
-        this.eventManager.on('help', function () { // emitted when the players clicks the kalulu button
+        this.game.eventManager.on('help', function () { // emitted when the players clicks the kalulu button
             this.kaluluButton.visible = false;
         }, this);
 
-        this.eventManager.on('startGame', function () { // emitted at the very start of the game
+        this.game.eventManager.on('startGame', function () { // emitted at the very start of the game
             this.kaluluButton.visible = false;
         }, this);
 
-        this.eventManager.on('offUi', function () { // emitted from various places, when we need to disable the UI
+        this.game.eventManager.on('offUi', function () { // emitted from various places, when we need to disable the UI
             this.parent.game.world.bringToTop(this);
             this.parent.game.world.bringToTop(this.blackOverlay);
             this.blackOverlay.visible = true;
             this.disableUiMenu();
         }, this);
 
-        this.eventManager.on('success', function () {
+        this.game.eventManager.on('success', function () {
             this.success();
         }, this);
 
-        this.eventManager.on('fail', function () {
+        this.game.eventManager.on('fail', function () {
             this.fail();
         }, this);
 
-        this.eventManager.on('GameOverWin', function () {
+        this.game.eventManager.on('GameOverWin', function () {
             this.kaluluButton.visible = false;
         }, this);
 
-        this.eventManager.on('GameOverLose', function () {
+        this.game.eventManager.on('GameOverLose', function () {
             this.kaluluButton.visible = false;
         }, this);
 
-        this.eventManager.on('GameOverWinScreen', function () {
+        this.game.eventManager.on('GameOverWinScreen', function () {
             this.displayGameOverWinScreen();
         }, this);
 
-        this.eventManager.on('GameOverLoseScreen', function () {
+        this.game.eventManager.on('GameOverLoseScreen', function () {
             this.displayGameOverLoseScreen();
         }, this);
 
-        this.eventManager.on('pause', function () {
+        this.game.eventManager.on('pause', function () {
             this.disableUiMenu();
         }, this);
 
-        this.eventManager.on('unPause', function () {
+        this.game.eventManager.on('unPause', function () {
             this.blackOverlay.visible = false;
             this.enableUiMenu();
             this.kaluluButton.visible = true;
@@ -299,7 +298,7 @@
         this.blackOverlay.visible = true;
         this.parent.game.world.bringToTop(this);
         this.quitPopup.visible = !this.quitPopup.visible;
-        this.eventManager.emit('pause');
+        this.game.eventManager.emit('pause');
         this.disableUiMenu();
     };
 
@@ -316,7 +315,7 @@
 
         this.sounds.validateQuit.onStop.addOnce(function () {
             this.sounds.validateQuit.onStop.removeAll();
-            this.eventManager.emit('exitGame');
+            this.game.eventManager.emit('exitGame');
         }, this);
     };
 
@@ -329,7 +328,7 @@
 
         this.sounds.cancelQuit.play();
         this.quitPopup.visible = !this.quitPopup.visible;
-        this.eventManager.emit('unPause');
+        this.game.eventManager.emit('unPause');
         this.enableUiMenu();
     };
 
@@ -404,7 +403,7 @@
         
         if (this.features.isIntroPhonemeButtonEnabled) {
             this.time = 0;
-            this.eventManager.emit('playCorrectSoundNoUnPause');
+            this.game.eventManager.emit('playCorrectSoundNoUnPause');
             this.moveCentralConch = true;
             this.centralConchButton.inputEnabled = false;
         }
@@ -419,7 +418,7 @@
     Ui.prototype.onClickOnKaluluButton = function onClickOnKaluluButton() {
         
         this.blackOverlay.visible = true;
-        this.eventManager.emit('help');
+        this.game.eventManager.emit('help');
     };
 
     /**
@@ -431,13 +430,13 @@
      **/
     Ui.prototype.onClickOnGameOverScreenReplayButton = function onClickOnGameOverScreenReplayButton() {
         
-        this.eventManager.emit('replay'); //listened to by 
+        this.game.eventManager.emit('replay'); //listened to by 
         // this.lives = 0;
         // this.enableUiMenu();
         // this.gameOverScreen.visible = false;
         // this.reset();
         // this.parent.game.world.bringToTop(this);
-        // this.eventManager.emit('startGame');
+        // this.game.eventManager.emit('startGame');
     };
 
     /**
@@ -510,7 +509,7 @@
                 else {
                     this.moveCentralConch = false;
                     this.centralConchButton.visible = false;
-                    this.eventManager.emit('unPause');
+                    this.game.eventManager.emit('unPause');
                 }
             }
     };
@@ -529,8 +528,8 @@
         this.assignNextButtonCallback();
         console.info("ENABLING NEXT");
         this.isNextButtonEnabled = true;
-        this.eventManager.emit('closeStep', nextState);
-        this.eventManager.once('nextStep', this.enableUiMenu, this);
+        this.game.eventManager.emit('closeStep', nextState);
+        this.game.eventManager.once('nextStep', this.enableUiMenu, this);
     };
     
     Ui.prototype.assignNextButtonCallback = function assignNextButtonCallback () {
@@ -548,7 +547,7 @@
 
     Ui.prototype.nextButtonQuitCallBack = function nextButtonQuitCallBack () {
         console.log("next button quit callback");
-        this.eventManager.emit('exitGame');
+        this.game.eventManager.emit('exitGame');
     };
 
     Ui.prototype.quitGame = function quitGame () {

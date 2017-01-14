@@ -33,13 +33,6 @@
 	    **/
         this.ground = null;
 
-        /**
-	     * In charge of all the game events
-         * WARNING : NEEDED FOR UI AND KALULU
-         * Go to init events in kalulu and ui scripts to see the differents events in place
-	     * @type {EventEmitter}
-	    **/
-        this.eventManager = null;
 
         /**
          * User interface 
@@ -67,7 +60,7 @@
             console.log(this.game.pedagogicData);
             // load audiofiles for the current data
             var data = this.game.pedagogicData.data;
-            this.game.discipline = this.game.pedagogicData.discipline;
+            
             console.log( data.rounds.length);
             var roundsCount = data.rounds.length;
             var stepsCount, stimuliCount, stimulus;

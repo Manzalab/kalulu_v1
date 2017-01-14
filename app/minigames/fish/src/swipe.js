@@ -20,8 +20,7 @@ define([
     function Swipe(game, object) {
         var self = this;
 
-        this.eventManager = game.eventManager;
-
+        
         self.DIRECTION_LEFT = 4;
         self.DIRECTION_RIGHT = 8;
 
@@ -45,7 +44,7 @@ define([
 
     Swipe.prototype.check = function () {
         if (this.direction !== null) {
-            this.eventManager.emit('swipe', this.object.parent, direction);
+            this.game.eventManager.emit('swipe', this.object.parent, direction);
             this.direction = null;
             return result;
         }
@@ -70,7 +69,7 @@ define([
             }
         }
         if (direction !== null) {
-            this.eventManager.emit('swipe', this.object.parent, direction);
+            this.game.eventManager.emit('swipe', this.object.parent, direction);
             return true;
         }
         return null;

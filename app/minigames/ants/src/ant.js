@@ -40,8 +40,7 @@
         this.paused = false;
         this.walking = false;
         this.clicked = false;
-        this.eventManager = game.eventManager;
-
+        
         this.antSprite = game.add.sprite(20, 10, 'ant', 'Fourmi_Idle_0000');
         this.antSprite.anchor.setTo(0.5, 0.5);
         this.antSprite.scale.x = scale;
@@ -52,6 +51,13 @@
         this.antSprite.animations.add('walk1', Phaser.Animation.generateFrameNames('Fourmi_marche_', 0, 5, '', 4), 8, false, false);
         this.antSprite.animations.add('walk2', Phaser.Animation.generateFrameNames('Fourmi_marche02_', 0, 5, '', 4), 8, false, false);
 
+		this.highlight = game.add.sprite(0, 0, 'fx', 'FX_02');
+        this.highlight.anchor.setTo(0.5, 0.5);
+        this.highlight.scale.x = 0.5;
+        this.highlight.scale.y = 0.5;
+        this.highlight.visible = false;
+        this.add(this.highlight);
+		
 
 
         this.text = game.add.text(0, 0, "- phaser -\nrocking with\ngoogle web fonts");
@@ -86,7 +92,7 @@
         this.game.input.onUp.add(function () {
             if (this.clicked) {
                 this.clicked = false;
-                this.eventManager.emit("droppedAnt", this);
+                this.game.eventManager.emit("droppedAnt", this);
             }
         }, this);
 
@@ -120,11 +126,11 @@
      * @private
      **/
     Ant.prototype.initEvents = function () {
-        this.eventManager.on('pause', function () {
+        this.game.eventManager.on('pause', function () {
             this.paused = true;
         }, this);
 
-        this.eventManager.on('unPause', function () {
+        this.game.eventManager.on('unPause', function () {
             this.paused = false;
         }, this);
     }
@@ -175,26 +181,39 @@
      * @private
      **/
     Ant.prototype.update = function () {
+		
+		 if (this.highlight.visible) {
+            this.highlight.rotation += 0.01;
+        }
+		
         if (this.walking && !this.paused)
-            if (this.vx < 0 ) this.antSprite.scale.x = -Math.abs(this.antSprite.scale.x);
-            else this.antSprite.scale.x = Math.abs(this.antSprite.scale.x);
-
+		{
+            if (this.vx < 0 ) 
+				this.antSprite.scale.x = -Math.abs(this.antSprite.scale.x);
+            else 
+				this.antSprite.scale.x = Math.abs(this.antSprite.scale.x);
+		}
+		
         if (this.antSprite.animations.currentAnim.isFinished || !this.antSprite.animations.currentAnim.isPlaying) {
             var rand = Math.random();
 
             if (!this.walking || this.paused)
+			{
                 if (rand < 0.7)
                     this.antSprite.animations.play('idle1');
-                else this.antSprite.animations.play('idle2');
+                else 
+					this.antSprite.animations.play('idle2');
+			}
             else {
                 if (rand < 0.7)
                     this.antSprite.animations.play('walk1');
-                else this.antSprite.animations.play('walk2');
-
+                else 
+					this.antSprite.animations.play('walk2');
 
             }
         }
         if (this.clicked) {
+			this.game.eventManager.emit('antClicked', this);
             this.walkToVectorial(this.game.input.activePointer.position.x, this.game.input.activePointer.position.y);
         }
         if (this.walking && !this.clicked) {
@@ -202,7 +221,7 @@
             this.y = this.slopeY * this.t + this.oldY;
 
             if (this.t > this.time) {
-                this.eventManager.emit('reachedDestination', this);
+                this.game.eventManager.emit('reachedDestination', this);
                 this.walking = false;
             }
 

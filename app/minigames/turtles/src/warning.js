@@ -23,8 +23,7 @@
         Phaser.Group.call(this, game);
 
         this.gameRef = game;
-        this.eventManager = game.eventManager;
-        this.paused = false;
+                this.paused = false;
 
         this.x = x;
         this.y = y;
@@ -64,11 +63,11 @@
      * @private
      **/
     Warning.prototype.initEvents = function () {
-        this.eventManager.on('pause', function () {
+        this.game.eventManager.on('pause', function () {
             this.paused = true;
         }, this);
 
-        this.eventManager.on('unPause', function () {
+        this.game.eventManager.on('unPause', function () {
             this.paused = false;
         }, this);
     }

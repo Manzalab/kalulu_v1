@@ -9,8 +9,7 @@
     function Board(x, y, game) {
         Phaser.Group.call(this, game);
 
-        this.eventManager = game.eventManager;
-
+        
 
         this.x = x;
         this.y = y;
@@ -40,10 +39,10 @@
     Board.constructor = Board;
 
     Board.prototype.initEvents = function () {
-        this.eventManager.on('pause', function () {
+        this.game.eventManager.on('pause', function () {
         }, this);
 
-        this.eventManager.on('unPause', function () {
+        this.game.eventManager.on('unPause', function () {
         }, this);
     };
 
@@ -51,12 +50,19 @@
         this.text.text = value;
     };
 
-    Board.prototype.setTextMaths = function (valueArray, index) {
+    Board.prototype.setTextMaths = function (valueArray,valueHole) {
         this.text.text = "";
+        var holeIndex = 0;
         for (var i = 0; i < valueArray.length; i++) {
-            if (typeof index != 'undefined' && i == index) this.text.text += '_ ';
+            if (valueArray[i].toString() == 'X') {
+                if (typeof valueHole === 'undefined') this.text.text += '_ ';
+                else this.text.text += valueHole + ' ';
+                holeIndex = i;
+            }
             else this.text.text += valueArray[i] + ' ';
         }
+
+        return holeIndex;
     }
     
 

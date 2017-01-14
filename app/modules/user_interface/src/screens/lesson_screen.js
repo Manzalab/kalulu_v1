@@ -1,9 +1,9 @@
 define([
-    '../elements/star_bg',
+    '../elements/anim_background',
     '../utils/ui/screen',
     '../utils/sound/sound_manager'
 ], function (
-    StarBackground,
+    AnimBackground,
     Screen,
     SoundManager
 ) {
@@ -30,7 +30,7 @@ define([
         // Background
 
         this._backgroundContainer = this.getChildByName("mcLessonBackground");
-        this._background = new StarBackground();
+        this._background = new AnimBackground("StarBg", 4);
 
         this._backgroundContainer.addChild(this._background);
         this._background.position.set(0,0);

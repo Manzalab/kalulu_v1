@@ -47,7 +47,7 @@ define([
     Swipe.prototype.check = function () {
         if (this.direction !== null) {
             this.direction = null;
-            this.eventManager.emit('swipe', this.object.parent);
+            this.game.eventManager.emit('swipe', this.object.parent);
             return true;
         }
         
@@ -78,7 +78,7 @@ define([
             }
         }
         if (direction !== null) {
-            this.eventManager.emit('swipe', this.object.parent);
+            this.game.eventManager.emit('swipe', this.object.parent);
             return true;
         }
         

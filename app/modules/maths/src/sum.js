@@ -52,7 +52,7 @@ var Sum = function(number, xnumber, side, sign, numbers_data, numbers_available,
 	var step			= {"type": 'target__'+this.number+'__sum__'+this.side+'__'+this.sign+'__'+this.xnumber_name, "stimuli": [] }
 	
 
-	var la, lb, lc;
+	var la, lb, lc, le;
 
     li = this.number //la+lb
     var parts = this.picksum(this.number, this.xnumber_value, this.side, this.sign)
@@ -65,15 +65,25 @@ var Sum = function(number, xnumber, side, sign, numbers_data, numbers_available,
 	la = parts.first
     lb = parts.second
     lc = parts.third
+    le = ''
 
     var lx = ''
     if(this.side =='left'){
  		lx = lb
+ 		le = 'x'
+ 		var resolve_masq = la+''+this.sign+'X='+lc
+
+
     }
     else{
 		lx = lc
+		 var resolve_masq = la+''+this.sign+''+lb+'=X'
+
+
     }
     var resolve_true = la+''+this.sign+''+lb+'='+lc
+
+
 
 
   
@@ -102,7 +112,9 @@ var Sum = function(number, xnumber, side, sign, numbers_data, numbers_available,
 	round.steps.push(step)
 	round.targetSequence = {
 		gameType       : 'sum',
-		sequence 	   : resolve_true,
+		sequence 	   : resolve_masq,
+		truesequence   : resolve_true,
+
 		targetNumber   : this.number,
 		numberIndex    : lx,
 		targetSequence : resolve_true

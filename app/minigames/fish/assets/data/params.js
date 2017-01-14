@@ -1,4 +1,4 @@
-﻿define([], function () {
+define([], function () {
 
     /**
      * This configuration object is used to parameter the minigames using the Detection Signal Theory. 
@@ -36,7 +36,7 @@
         levels: [ // the settings for difficulty levels 1 to 5
             { // LEVEL 1
                 globalRemediation: {
-                    gameTimer: 20,
+                    gameTimer: 180,
                     minimumSortedWords: 10,
                     minimumWinRatio: 0.5,
                     totalTriesCount:20
@@ -48,7 +48,7 @@
             },
             { // LEVEL 2
                 globalRemediation: {
-                    gameTimer: 20,
+                    gameTimer: 180,
                     minimumSortedWords: 10,
                     minimumWinRatio: 0.5,
                     totalTriesCount: 20
@@ -59,7 +59,7 @@
             },
             { // LEVEL 3
                 globalRemediation: {
-                    gameTimer: 20,
+                    gameTimer: 180,
                     minimumSortedWords: 10,
                     minimumWinRatio: 0.5,
                     totalTriesCount: 20
@@ -70,7 +70,7 @@
             },
             { // LEVEL 4
                 globalRemediation: {
-                    gameTimer: 20,
+                    gameTimer: 180,
                     minimumSortedWords: 10,
                     minimumWinRatio: 0.5,
                     totalTriesCount: 20
@@ -81,7 +81,7 @@
             },
             { // LEVEL 5
                 globalRemediation: {
-                    gameTimer: 20,
+                    gameTimer: 180,
                     minimumSortedWords: 10,
                     minimumWinRatio: 0.5,
                     totalTriesCount: 20

@@ -73,14 +73,29 @@
         if (this.caterpillarBody.length == 1 && this.caterpillarBody[0].text.text == "") {
             this.caterpillarBody[0].setText(value);
         }
-        else {
-            var temp = new CaterpillarBody(this.caterpillarBody[this.caterpillarBody.length - 1].x + this.caterpillarBody[0].width - 10, this.tail[2].y, this.game);
+        else if (this.caterpillarBody.length < 7) {
+            var temp = new CaterpillarBody(this.caterpillarBody[this.caterpillarBody.length - 1].x + this.caterpillarBody[0].width - 10, this.head.y, this.game);
             temp.scale.x = 0.9;
             temp.scale.y = 0.9;
             temp.setText(value);
             temp.speed = this.speed;
             this.caterpillarBody.push(temp);
-            this.head.x += this.caterpillarBody[0].width;
+            this.head.x += this.caterpillarBody[0].width - 10;
+            this.game.world.bringToTop(this.head);
+        }
+        else {
+            var temp = new CaterpillarBody(this.caterpillarBody[this.caterpillarBody.length - 1].x, this.head.y, this.game);
+            for (var i = 0; i < this.caterpillarBody.length; i++) {
+                this.caterpillarBody[i].x -= this.caterpillarBody[0].width - 10;
+            }
+            for (var i = 0; i < this.tail.length; i++) {
+                this.tail[i].x -= this.caterpillarBody[0].width - 10;
+            }
+            temp.scale.x = 0.9;
+            temp.scale.y = 0.9;
+            temp.setText(value);
+            temp.speed = this.speed;
+            this.caterpillarBody.push(temp);
             this.game.world.bringToTop(this.head);
         }
     };
@@ -99,7 +114,9 @@
         this.parent.game.world.bringToTop(this.caterpillarBody[0]);
         for (var i = 0; i < this.tail.length; i++) {
             this.parent.game.world.bringToTop(this.tail[i]);
+            this.tail[i].x = this.x;
         }
+        this.caterpillarBody[0].x = this.x + this.tail[2].width / 2
         this.parent.game.world.bringToTop(this.head);
         this.moveTo(y);
     };
