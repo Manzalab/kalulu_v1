@@ -28,19 +28,7 @@
     **/
     BoardGamePhase.prototype.preload = function boardGamePhasePreload () {
         
-        console.log(this.game.gameConfig.pedagogicData);
-        var notion = this.notion = this.game.gameConfig.pedagogicData.data.notions[0];
-        
-        // 1 image and 1 sound to be played in this phase
-        this.game.load.audio('illustrative_sound_' + notion.value, notion.sound);
-        this.game.load.image('board', 'minigames/lookandlearn/assets/images/board.png');
-        this.game.load.image('figures', 'minigames/lookandlearn/assets/images/figures.png');
-        this.game.load.image('cell', 'minigames/lookandlearn/assets/images/cell.png');
 
-        // 3 Kalulu speeches 
-        this.game.load.audio('kaluluIntro',         'minigames/lookandlearn/assets/audio/kalulu/kalulu_intro_commoncore01_' + this.game.gameConfig.pedagogicData.discipline + '.ogg');
-        this.game.load.audio('kaluluHelp',          'minigames/lookandlearn/assets/audio/kalulu/kalulu_help_commoncore01_' + this.game.gameConfig.pedagogicData.discipline + '.ogg');
-        this.game.load.audio('kaluluGameOverWin',   'minigames/lookandlearn/assets/audio/kalulu/kalulu_end_commoncore01_' + this.game.gameConfig.pedagogicData.discipline + '.ogg');
     };
     
     BoardGamePhase.prototype.create = function boardGamePhaseCreate () {

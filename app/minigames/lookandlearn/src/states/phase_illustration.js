@@ -11,6 +11,7 @@ define([
 
     /**
      * IllustrationPhase is a game phase where images are shown to illustrate notions.
+     * This class sequences the lifecycle of 2 inter-related zones : the top 'Illustrative' zone and the bottom 'Interactive' zone
      * @class
     **/
     function IllustrationPhase (game) {
@@ -21,35 +22,16 @@ define([
 
     IllustrationPhase.prototype = Object.create(Phaser.State.prototype);
     IllustrationPhase.prototype.constructor = IllustrationPhase;
-
-    IllustrationPhase.prototype.preload = function illustrationPhasePreload () {
-        
-        this._notions = this.game.gameConfig.pedagogicData.data.notions;
-
-        // 1 image and 1 sound to be played in this phase
-        for (var i = 0 ; i < this._notions.length ; i++) {
-            
-            var lNotion = this._notions[i];
-
-            this.game.load.audio('illustrative_sound_'+ lNotion.value, lNotion.illustrativeSound);
-            this.game.load.image('illustrative_image_'+ lNotion.value, lNotion.image);            
-        }
-
-        // 3 Kalulu speeches 
-        this.game.load.audio('kaluluIntro',         'minigames/lookandlearn/assets/audio/kalulu/kalulu_intro_commoncore02_' + this.game.gameConfig.pedagogicData.discipline + '.ogg');
-        this.game.load.audio('kaluluHelp',          'minigames/lookandlearn/assets/audio/kalulu/kalulu_help_commoncore02_'  + this.game.gameConfig.pedagogicData.discipline + '.ogg');
-        this.game.load.audio('kaluluGameOverWin',   'minigames/lookandlearn/assets/audio/kalulu/kalulu_end_commoncore02_'   + this.game.gameConfig.pedagogicData.discipline + '.ogg');
-    };
     
     IllustrationPhase.prototype.create = function illustrationPhaseCreate () {
         
-        if (this.game.load.hasLoaded) console.info("IllustrationPhase State has completed loading.");
-
+        this._notionIds = this._pedagogicData.data.notionIds;
+        
         this._initPhase();
         this._addPhaseStageToWorld();
-        this._initPedago();
+        this._initZones();
     
-        this.game.eventManager.emit('startGame');
+        this._startPhase();
     };
 
     IllustrationPhase.prototype._initPhase = function initImagePhase () {
@@ -74,6 +56,8 @@ define([
         if (this.firstTime) {
             this.onFirstTime();
         }
+
+
     }
 
     IllustrationPhase.prototype._addPhaseStageToWorld = function addImagePhaseStageToWorld () {
@@ -81,23 +65,27 @@ define([
         this._imagePhaseStage = new Phaser.Group(this.game, this.game.world, 'ImagePhaseStage');
     }
 
-    IllustrationPhase.prototype._initPedago = function initPedagoImagePhase () {
+    IllustrationPhase.prototype._initZones = function initPedagoImagePhase () {
         
-        this._illustrationZone = new IllustrationZone(this.game, this._imagePhaseStage, this._notions);
-        this._illustrationZone.show(this._notions[0].id);
+        this._illustrationZone = new IllustrationZone(this.game, this._imagePhaseStage, this._notionIds);
+        this._illustrationZone.show(this._notionIds[0]);
 
-        this._interactiveZone = new InteractiveZone(this.game, this._imagePhaseStage, this._notions, this.onClickOnFrame.bind(this));
-        this.game.eventManager.once('introSequenceComplete', this._initInteractiveZone, this);
-        console.log('Pedago Inited');
+        this._interactiveZone = new InteractiveZone(this.game, this._imagePhaseStage, this._notionIds, this.onClickOnFrame.bind(this));
+        this.game.eventManager.once('introSequenceComplete', this._startInteractiveZone, this);
+
+        console.log('Zones Initialised');
     };
 
-
-    IllustrationPhase.prototype._initInteractiveZone = function _initInteractiveZone () {
-        console.log("[State IllustrationPhase] Intro Sequence Complete. Starting Interactive Zone.");
+    IllustrationPhase.prototype._startInteractiveZone = function startInteractiveZone () {
+        
+        console.log("[IllustrationPhase] Intro Sequence Complete. Starting Interactive Zone.");
         this._interactiveZone.start();
     };
 
-
+    IllustrationPhase.prototype._startPhase = function startPhase () {
+        
+        this.game.eventManager.emit('startGame');
+    }
 
     IllustrationPhase.prototype.update = function illustrationPhaseUpdate () {
         
@@ -105,6 +93,7 @@ define([
     };
 
     IllustrationPhase.prototype.onClickOnFrame = function onClickOnFrame (eventData) {
+        
         console.log("here on click on Frame");
         console.log(eventData);
         this._interactiveZone.disableInteractivity();
@@ -116,19 +105,34 @@ define([
 
     IllustrationPhase.prototype.enableNextStep = function IllustrationPhaseEnableNextStep () {
         
-        this.game.ui.enableNext('Phase3Tracing');
+        this.game.ui.enableNext(this.game.stateNames.TRACING_PHASE);
     };
 
     IllustrationPhase.prototype.shutdown = function IllustrationPhaseShutdown () {
         
+        var count = this._illustrationData.illustrations.length;
+        for (var i = 0; i < count ; i++) {
+            this.game.cache.removeImage('illustration_' + this._notionIds[i], this._illustrationData.illustrations[i].image);
+            this.game.load.removeSound('sound_' + this._notionIds[i], this._illustrationData.illustrations[i].sound);
+        }
+
+        this.game.cache.removeSound('kaluluIntro');
+        this.game.cache.removeSound('kaluluHelp');
+        this.game.cache.removeSound('kaluluGameOverWin');
+        
+        this._notionIds        = null;
+        this._illustrationData = null;
+        this._interactionsData = null;
+
         Emitter.listeners = {};
     };
     
 
-    // IllustrationPhase.prototype.onFirstTime = function onFirstTime () {
-    //     this.onFirstTime = false;
-    //     console.log("First Time playing a Look & Learn !");
-    // };
+    IllustrationPhase.prototype.onFirstTime = function onFirstTime () {
+        
+        this.onFirstTime = false;
+        console.log("First Time playing a Look & Learn !");
+    };
     // IllustrationPhase.prototype.onClickOnLetters = function onClickOnLetters () {
     //     console.log("here on click");
     //     this.game.ui.disableUiMenu();
