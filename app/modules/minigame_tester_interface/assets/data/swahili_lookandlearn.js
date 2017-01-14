@@ -6,7 +6,7 @@ function getSingleGraphemeOneLetter () {
     return {
         "discipline" : "language",
         "data" : {
-            "notionsIds" : ["b-b"],
+            "notionIds" : ["b-b"],
             "videoPhase" :  {
                 "sequence" : [
                     "assets/video/language/phoneme_b.mp4",
@@ -39,7 +39,7 @@ function getSingleGraphemeMultiLetters () {
     return {
         "discipline" : "language",
         "data" : {
-            "notionsIds" : ["ng'-N"],
+            "notionIds" : ["ng'-N"],
             "videoPhase" :  {
                 "sequence" : [
                     "assets/video/language/phoneme_capital_n.mp4",

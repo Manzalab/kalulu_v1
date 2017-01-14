@@ -8,9 +8,9 @@ function getSingleNumber () {
     return {
         "discipline" : "maths",
         "data" : {
-            "notionsIds" : ["8"],
+            "notionIds" : ["8"],
             "boardGamePhase" :  {
-                "checkOnlyFirst" : true
+                "checkOnlyFirst" : true,
                 "sounds" : [
                     "assets/sounds/maths/number_8.ogg"
                 ]
@@ -40,9 +40,9 @@ function getMultiNumbers () {
     return {
         "discipline" : "maths",
         "data" : {
-            "notionsIds" : ["50", "51", "52", "53", "54"],
+            "notionIds" : ["50", "51", "52", "53", "54"],
             "boardGamePhase" :  {
-                "checkOnlyFirst" : false
+                "checkOnlyFirst" : false,
                 "sounds" : [
                     "assets/sounds/maths/number_50.ogg",
                     "assets/sounds/maths/number_51.ogg",
@@ -92,7 +92,7 @@ function getSkill () {
     return {
         "discipline" : "maths",
         "data" : {
-            "notionsIds" : ["add1"],
+            "notionIds" : ["add1"],
             "illustrationPhase" : {
                 "multiPictures" : false,
                 "illustrations" : [
@@ -101,7 +101,7 @@ function getSkill () {
                         "sound" : "assets/sounds/maths/number_add1.ogg"
                     }
                 ]
-            }
+            },
             "interactiveZone" : {
                 "buttons" : [
                     ["8"]
@@ -115,7 +115,7 @@ function getShape () {
     return {
         "discipline" : "maths",
         "data" : {
-            "notionsIds" : ["diamond"],
+            "notionIds" : ["diamond"],
             "illustrationPhase" : {
                 "multiPictures" : false,
                 "illustrations" : [

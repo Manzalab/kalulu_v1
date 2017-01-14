@@ -7,7 +7,7 @@ function getSingleGrapheme () {
     return {
         "discipline" : "language",
         "data" : {
-            "notionsIds" : ["b-b"],
+            "notionIds" : ["b-b"],
             "videoPhase" :  {
                 "sequence" : [
                     "assets/video/language/phoneme_b.mp4",
@@ -40,7 +40,7 @@ function getMultipleGraphemesOneImage () {
     return {
         "discipline" : "language",
         "data" : {
-            "notionsIds" : ["oo-u", "o-u", "ou-u"],
+            "notionIds" : ["oo-u", "o-u", "ou-u"],
             "videoPhase" :  {
                 "sequence" : [
                     "assets/video/language/phoneme_u.mp4",
@@ -76,7 +76,7 @@ function getMultipleGraphemesMultiImages () {
     return {
         "discipline" : "language",
         "data" : {
-            "notionsIds" : ["a-@", "e-@", "o-@"],
+            "notionIds" : ["a-@", "e-@", "o-@"],
             "videoPhase" :  {
                 "sequence" : [
                     "assets/video/language/phoneme_arobase.mp4",
