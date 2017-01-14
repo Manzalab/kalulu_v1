@@ -83,11 +83,7 @@
 
     function getPedagogicData (params) {
         
-        console.info("[DummyRafiki] Received Minigame Params requesting for PedagogicData :"); // TODO update level values depending on results.
-        console.log(params);
-
-
-        console.info("[DummyRafiki] About to send the following pedagogicData in response :");
+        console.info("[DummyRafiki] Pedago Sent :");
         console.log(tester.options.dummyPedagogicData);
 
         return(tester.options.dummyPedagogicData);
