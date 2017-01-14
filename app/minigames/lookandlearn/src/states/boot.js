@@ -27,7 +27,7 @@ define([], function () {
     };
 
     Boot.prototype._onProgress = function onPreloadProgress (progress, cacheKey, success, totalLoaded, totalFiles) {
-        console.log('Loading : ' + progress + '%');
+        // console.log('Loading : ' + progress + '%');
     };
 
     Boot.prototype._onError = function onPreloadError (key, file) {
