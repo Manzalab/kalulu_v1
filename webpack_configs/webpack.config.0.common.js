@@ -39,7 +39,8 @@ module.exports = components.mergeConfigs(
               KALULU_ENV      : process.env.productionBuild
             }),
             new webpack.ProvidePlugin({
-              Phaser  : ('phaser-bundle')
+              Phaser  : ('phaser-bundle'),
+              _       : 'underscore'
             })
         ]
     },

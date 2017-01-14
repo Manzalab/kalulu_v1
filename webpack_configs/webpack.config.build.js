@@ -16,7 +16,6 @@ module.exports = components.mergeConfigs(
                 Events       : 'application/events',
                 PIXI3        : 'modules/user_interface/libs/pixi',
                 createjs     : 'modules/user_interface/libs/tweenjs-0.6.2.combined',
-                _            : 'underscore',
                 Dat          : 'dat.gui'
             }),
             new CopyWebpackPlugin([
