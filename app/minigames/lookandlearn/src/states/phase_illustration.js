@@ -25,7 +25,7 @@ define([
     
     IllustrationPhase.prototype.create = function illustrationPhaseCreate () {
         
-        this._notionIds = this._pedagogicData.data.notionIds;
+        this._notionIds = this.game.gameConfig.pedagogicData.data.notionIds;
         
         this._initPhase();
         this._addPhaseStageToWorld();
@@ -36,7 +36,6 @@ define([
 
     IllustrationPhase.prototype._initPhase = function initImagePhase () {
         
-        //GamePhase._init.call(this);
         if(this.game.gameConfig.globalVars) window.lookandlearn.imagePhase = this;
 
         if (!this.game.ui) {

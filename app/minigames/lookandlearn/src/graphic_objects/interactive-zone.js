@@ -15,23 +15,21 @@
 
 
 
-    function InteractiveZone (game, parent, notions, callback) {
+    function InteractiveZone (game, parent, rawButtonsData, callback) {
         
         Phaser.Group.call(this, game, parent, 'InteractiveZone');
-        
-        this._notions = notions;
         
         this._isStarted = false;
         this._graphemeButtons = {};
 
-        this._buttonsData = this._getButtonListFromNotions(notions);
+        this._buttonsData = this._getButtonsData(rawButtonsData);
         this._setupTracer();
         this._toUpdate = [];
 
         var buttonsCount = this._buttonsData.length;
         for (var i = 0 ; i < buttonsCount ; i++) {
 
-            var lData = this._buttonsData[i];      
+            var lData = this._buttonsData[i];
             var lButton = new GraphemeButton(this.game, this, lData, this.game.rafiki.font, callback);
 
             if (lData.toTrace) {
@@ -39,7 +37,8 @@
                 lButton.draw(this._tracer);
             }
             else lButton.printFromFont();
-            this._graphemeButtons[lData.value] = lButton;
+
+            this._graphemeButtons[lButton.name] = lButton;
         }
 
         // this._setTracerPositionToNotionX1(this._currentNotion);
@@ -55,50 +54,35 @@
     InteractiveZone.prototype = Object.create(Phaser.Group.prototype);
     InteractiveZone.prototype.constructor = InteractiveZone;
 
-    InteractiveZone.prototype._getButtonListFromNotions = function getButtonListFromNotions (notions) {
+    InteractiveZone.prototype._getButtonsData = function getButtonsData (rawButtonsData) {
         
-        var buttonRectangles = this._getButtonRectangles(notions);
-        var notionsCount = notions.length;
+        var buttonRectangles = this._getButtonRectangles(rawButtonsData);
         
-        var buttonsList = [];
+        var buttonsData = [];
 
-        for (var i = 0 ; i < notionsCount ; i++) {
-            var lNotion = this._notions[i];
-
-            if (lNotion.traceUppercase) {
-                console.info("We will trace uppercase and lower case");
-                var lButtonData = this._getFormattedButtonData(lNotion, buttonRectangles[lNotion.id], true);
-                buttonsList.push(lButtonData);
-            }
-
-            var lButtonData = this._getFormattedButtonData(lNotion, buttonRectangles[lNotion.id]);
-            buttonsList.push(lButtonData);
+        for (var id in rawButtonsData) {
+            buttonsData.push({
+                id : id,
+                graphemes : rawButtonsData[id],
+                rectangle : buttonRectangles[id],
+            });
         }
         
-        return buttonsList;
+        return buttonsData;
     };
 
-    InteractiveZone.prototype._getFormattedButtonData = function getFormattedButtonData (notion, rectangle, forceUppercase) {
-        return {
-            value     : forceUppercase ? notion.textValue.toUpperCase() : notion.textValue,
-            toTrace   : notion.toTrace,
-            rectangle : rectangle,
-            clicked   : false,
-            notionData: notion
-        };
-    }
+    InteractiveZone.prototype._getButtonRectangles = function getButtonRectangles (rawButtonsData) {
 
-    InteractiveZone.prototype._getButtonRectangles = function getButtonRectangles (notions) {
-
-        var notionsCount = notions.length;
+        var buttonsCount = _.size(rawButtonsData);
         var availableWidth = this.game.width - 400 // 400 for left and right ui
         var sidesMargin = 30; // the space between grapheme buttons
-        var widthPerNotion = (availableWidth / notionsCount) - 2 * sidesMargin;
+        var widthPerNotion = (availableWidth / buttonsCount) - 2 * sidesMargin;
 
         var buttonRectangles = {};
 
-        for (var i = 0 ; i < notionsCount ; i++) {
-            var lNotion = this._notions[i];
+        var i = 0;
+        for (var id in rawButtonsData) {
+            var graphemesList = rawButtonsData[i];
 
             var buttonRectangle = {
                 x      : 200 + i * (widthPerNotion + 2 * sidesMargin) + (sidesMargin + widthPerNotion/2),
@@ -106,12 +90,12 @@
                 width  : widthPerNotion,
                 height : Math.min(450, widthPerNotion)
             };
-            buttonRectangles[lNotion.id] = buttonRectangle;
+            buttonRectangles[id] = buttonRectangle;
+            i++;
         }
 
         return buttonRectangles;
     };
-
 
     InteractiveZone.prototype._setupTracer = function setupTracerImagePhase () {
 
@@ -206,43 +190,21 @@
     };
 
 
-
-    InteractiveZone.prototype.checkNotion = function checkNotion (notion) {
-        this._notionsChecklist[notion] = true;
-        console.log(notion + ' has been checked : ' + this._notionsChecklist[notion]);
-
-        this._allNotionsChecked = true;
-        for (var lNotion in this._notionsChecklist) {
-            if (!this._notionsChecklist.hasOwnProperty(lNotion)) continue;
-            if (!this._notionsChecklist[lNotion]) {
-                this._allNotionsChecked = false;
-                console.log(lNotion + " has not been checked.");
-                return;
-            }
-        }
-    };
-
-    InteractiveZone.prototype.disableInteractivity = function disableInteractivity (first_argument) {
+    InteractiveZone.prototype.disableInteractivity = function disableInteractivity () {
         this.game.ui.disableUiMenu();
+        
         for (var graphId in this._graphemeButtons) {
             if (!this._graphemeButtons.hasOwnProperty(graphId)) continue;
-            this._graphemeButtons[graphId].inputEnabled = false;
+            this._graphemeButtons[graphId].disableInput();
         }
     };
 
-    InteractiveZone.prototype._enableInteractivity = function enableInteractivity (first_argument) {
-        if (this._allNotionsChecked) {
-            console.log('All Checked !');
-            this.enableNextStep();
-        }
-        else {
-            console.log(this._notionsChecklist);
-            this.game.ui.enableUiMenu();
-        }
+    InteractiveZone.prototype.enableInteractivity = function enableInteractivity () {
+        this.game.ui.enableUiMenu();
 
         for (var graphId in this._graphemeButtons) {
             if (!this._graphemeButtons.hasOwnProperty(graphId)) continue;
-            this._graphemeButtons[graphId].inputEnabled = true;
+            this._graphemeButtons[graphId].enableInput();
         }
     };
 

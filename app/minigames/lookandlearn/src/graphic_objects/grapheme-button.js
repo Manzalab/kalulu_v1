@@ -9,13 +9,13 @@
 
     function GraphemeButton (game, parent, data, font, callback) {
 
-        Phaser.Group.call(this, game, parent, 'GraphemeButton_' + data.value);
+        Phaser.Group.call(this, game, parent, 'GraphemeButton_' + data.id);
         
-        this._graphemeId = data.value;
+        this._graphemes = data.graphemes;
         this._coords = data.rectangle;
         this._font = font;
         this._fontImage = null;
-        this._body = new TracingFrame(this.game, data.value, data.rectangle);
+        this._body = new TracingFrame(this.game, data.id, data.rectangle);
         this.add(this._body);
         if (!callback) {
             console.error('The callback of the Grapheme Button is not a function :');
@@ -68,12 +68,19 @@
     };
 
     GraphemeButton.prototype.printFromFont = function printFromFont () {
+        var count = this._graphemes.length;
+        var str = '';
+
+        for (var i = 0 ; i < count ; i++) {
+            if (i > 0) str += ' - ';
+            str += this._graphemes[i];
+        }
 
         // The parameters are str, x, y, fontSize, Note that y is the position of the baseline.
         var ySize = this._coords.height * 0.8;
-        var path = this._font.getPath(this._graphemeId.toString(), 0, ySize, ySize);
+        var path = this._font.getPath(str, 0, ySize, ySize);
         var rect = getFontRect(path);
-        var bmp = new Phaser.BitmapData(this.game, this._graphemeId + '_fromFont', rect.x + rect.w, rect.y + rect.h);
+        var bmp = new Phaser.BitmapData(this.game, str + '_fromFont', rect.x + rect.w, rect.y + rect.h);
         
         // If you just want to draw the text you can also use font.draw(ctx, text, x, y, fontSize).
         path.draw(bmp.ctx);
@@ -106,6 +113,14 @@
 
     GraphemeButton.prototype.printWithoutDrawing = function printWithoutDrawing (x, y) {
         
+    };
+
+    GraphemeButton.prototype.enableInput = function enableInput () {
+        this._body.inputEnabled = true;
+    };
+
+    GraphemeButton.prototype.disableInput = function disableInput () {
+        this._body.inputEnabled = false;
     };
 
     module.exports = GraphemeButton;

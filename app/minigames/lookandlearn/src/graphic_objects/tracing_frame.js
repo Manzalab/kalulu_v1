@@ -1,13 +1,13 @@
 (function () {
     'use strict';
     
-    function TracingFrame (game, notionId, rectangle, color) {
+    function TracingFrame (game, id, rectangle, color) {
 
-        color = color || { r : 255, g : 255, b : 255, a : 1 };       
+        color = color || { r : 239, g : 241, b : 255, a : 1 };       
 
         this.game = game;
-        this.name = "Tracing Frame";
-        this.notionId = notionId;
+        this.name = 'Tracing Frame_' + id;
+        this.id = id;
 
         this._texture = new Phaser.BitmapData(this.game, 'lettersFrame', rectangle.width, rectangle.height);
         this._texture.fill(color.r, color.g, color.b, color.a);

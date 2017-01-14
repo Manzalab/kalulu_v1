@@ -81,7 +81,11 @@ function getMultiNumbers () {
             },
             "interactiveZone" : {
                 "buttons" : [
-                    ["50", "51", "52", "53", "54"]
+                    ["50"],
+                    ["51"],
+                    ["52"],
+                    ["53"],
+                    ["54"]
                 ]
             }
         }
