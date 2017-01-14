@@ -1,54 +1,29 @@
 (function () {
     
     'use strict';
-    
-    var EventEmitter       = require('eventemitter3');
 
-    var minigameConfig     = require('./config');
-    var Debugger           = require('./debugger');
-    var stateNames = {
-        BOOT               : "Boot",
-        PRELOAD            : "Preload",
-        BOARD_GAME_PHASE   : "BoardGamePhase",
-        VIDEO_PHASE        : "VideoPhase",
-        ILLUSTRATION_PHASE : "IllustrationPhase",
-        TRACING_PHASE      : "TracingPhase"
-    };
+    var EventEmitter = require('eventemitter3');
+    var Debugger = require('./debugger');
 
-    var states = {
-        stateNames.BOOT               : require('./states/boot'),
-        stateNames.PRELOAD            : require('./states/preload'),
-        stateNames.BOARD_GAME_PHASE   : require('./states/phase_board_game'),
-        stateNames.VIDEO_PHASE        : require('./states/phase_video'),
-        stateNames.ILLUSTRATION_PHASE : require('./states/phase_illustration'),
-        stateNames.TRACING_PHASE      : require('./states/phase_tracing')
-    };
+    var config  = require('./config');
+    var states = require('./states');
 
-    /**
-     * GameLauncher is in charge of instancing the Phaser Game with required states, config options and debug.
-     * @class
-     * @param rafiki {Object} the pedagogic interface
-    **/
+
+
     function GameLauncher (rafiki) {
-
-        this._rafiki = rafiki;
-        this._config = minigameConfig;
-
-        this._config.requestMinigameConfig(this._launch.bind(this));
-    }   
-    
-
-    GameLauncher.prototype._launch = function launch () {
         
+        this._gameInstance = null;
+        this._debugger = null;
+
         this._createGameInstance({ gameWidth : 1920, gameHeight : 1350, canvasType: Phaser.CANVAS });
-        
-        this._addConfigToGame(this._rafiki, this._config);
-        this._initDebug(this._rafiki, this._config);
 
-        this._addGameStates(states);
+        this._initDebug(rafiki, config);
         this._initEvents();
 
-        this._requireGameState('Boot');
+        this._addConfigToGame(rafiki, config);
+        this._addGameStates(states);
+
+        this._requireGameState(states.names.BOOT);
     };
 
     GameLauncher.prototype._createGameInstance = function createGameInstance (options) {
@@ -57,7 +32,6 @@
     };
 
     GameLauncher.prototype._addConfigToGame = function addConfigToGame (rafiki, config) {
-        
         this._gameInstance.rafiki = rafiki;
         this._gameInstance.gameConfig = config;
     };
@@ -68,9 +42,9 @@
     };
 
     GameLauncher.prototype._addGameStates = function addGameStates (states) {
-        this._gameInstance.stateNames = stateNames;
-        for (var stateName in states) {
-            this._gameInstance.state.add(stateName, states[stateName]);
+        this._gameInstance.stateNames = states.names;
+        for (var stateName in states.states) {
+            this._gameInstance.state.add(stateName, states.states[stateName]);
         }
     };
 
@@ -81,18 +55,21 @@
     };
 
     GameLauncher.prototype._quit = function quit () {
-        this._gameInstance.eventManager.off("exitGame", this._quit, this);
-        this.clearDebugPanel();
-        this._gameInstance.rafiki.close();
-        this._gameInstance._destroy();
-    };
 
-    GameLauncher.prototype._destroy = function destroy () {
+        this._gameInstance.eventManager.off("exitGame", this._quit, this);
+        this._gameInstance.stateNames = null;
+
+        var rafiki = this._gameInstance.rafiki;
+        this._gameInstance.rafiki = null;
+        this._gameInstance.gameConfig = null;
+        
+        this._debugger.destroy();
+        this._debugger = null;
         
         this._gameInstance.destroy();
         this._gameInstance = null;
-        this._rafiki = null;
-        this._config = null;
+
+        rafiki.close();
     };
 
     GameLauncher.prototype._requireGameState = function requireGameState (stateName) {

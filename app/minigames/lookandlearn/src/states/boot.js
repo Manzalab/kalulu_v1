@@ -1,38 +1,44 @@
-﻿define([
-    'phaser-bundle'
-], function (
-    Phaser
-) {
+define([], function () {
+    
     'use strict';
     
-    /**
-	 * Boot is in charge of the boot options
-	 * @class
-     * @memberof Template
-	 * @param game {Phaser.Game} game instance
-	**/
-    function Boot (game) { }
-    
-    Boot.prototype = {
-        /**
-	     * Load assets to be used later in the preloader
-	    **/
-        preload: function () {
-            this.load.image('preloaderBar', 'minigames/common/assets/images/ui/preloader-bar.png');
-        },
+    function Boot (game) {
+        Phaser.State.call(this);
+        this.game = game;
+    }
 
-        /**
-	     * Put here the scaling options you want while developing
-         * For more information about scaling, see {@link http://phaser.io/docs/2.3.0/Phaser.ScaleManager.html#scaleMode}
-	    **/
-        create: function () {
+    Boot.prototype = Object.create(Phaser.State.prototype);
+    Boot.prototype.constructor = Boot;
 
-            if (this.game.load.hasLoaded) console.info("Boot State has correctly completed loading.");
-            this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL; // Scaling the game for developping purposes; Feel free to remove it if you feel the need
-            this.game.stage.backgroundColor = 'rgb(255, 255, 255)';
-            console.info("Boot Complete, Starting Preload...");
-            this.state.start(this.game.stateNames.PRELOAD);
-        }
+    Boot.prototype.preload = function preloadBoot() {
+
+        this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL; // Scaling the game for developping purposes; Feel free to remove it if you feel the need
+        this.game.stage.backgroundColor = 'rgb(255, 255, 255)';
+        
+        this.game.load.onFileComplete.add(this._onProgress, this);
+        this.game.load.onFileError.add(this._onError, this);
+
+        this.load.image('preloaderBar', 'minigames/common/assets/images/ui/preloader-bar.png');
     };
+
+    Boot.prototype.create = function createBootState () {
+
+        this.game.state.start(this.game.stateNames.PRELOAD);
+    };
+
+    Boot.prototype._onProgress = function onPreloadProgress (progress, cacheKey, success, totalLoaded, totalFiles) {
+        console.log('Loading : ' + progress + '%');
+    };
+
+    Boot.prototype._onError = function onPreloadError (key, file) {
+        console.error('Loading failed for asset ' + key);
+        console.log(file);
+    };
+
+    Boot.prototype.shutdown = function shutdownBoot () {
+        
+        this.game = null;
+    };
+
     return Boot;
 });
