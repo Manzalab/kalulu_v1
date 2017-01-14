@@ -17,25 +17,10 @@
 
         Phaser.Group.call(this, game, parent, 'Kalulu');
         
-        /**
-         * game.eventManager  
-	     * @type {EventEmitter}
-         * @private
-	    **/
-                
-        /**
-         * All kalulu's sounds  
-	     * @type {Phaser.Audio}
-	    **/
         this.sounds = {};       
-
         this.sounds.on = game.add.audio('kaluluOn');
         this.sounds.off = game.add.audio('kaluluOff');
         
-        /**
-         * Sprite host of kalulu's animations
-	     * @type {Phaser.Sprite}
-	    **/
         this.kaluluSprite = game.add.sprite(0, 1500, 'kaluluIntro', undefined, this);
         this.kaluluSprite.anchor.x = 0;
         this.kaluluSprite.anchor.y = 1;
@@ -60,20 +45,12 @@
         var outroFrames = Phaser.Animation.generateFrameNames('Kalulu_Disparition_',      0, 11, '', 4);
         this.kaluluSprite.animations.add('outroAnim',       outroFrames, 15, false, false);
         
-        /**
-         * speaking state
-	     * @type {boolean}
-         * @private
-	    **/
+
         this.speaking = false;
-        
-        /**
-         * idle state
-	     * @type {boolean}
-         * @private
-	    **/
         this.idle = false;
+
         this._step = "";
+
         this.initEvents();
     }
     
@@ -82,7 +59,6 @@
     
 
     Kalulu.prototype.resetSpeeches = function resetSpeeches (step) {
-        console.log(step);
         this._step = step;
 
         if (this.game.tutoEnabled)
@@ -90,22 +66,7 @@
         this.sounds.help = this.game.add.audio('kaluluHelp' + step);
         this.sounds.end = this.game.add.audio('kaluluGameOverWin' + step);
     };
-    /**
-	 * Initialize all Kalulu events
-     * 
-	 * On 'startGame', play animations and intro sound; emit :
-     * - 'pause'
-     * - 'startUi' when all animations and sounds completed; listened by UI
-     * 
-     * On 'help', play animations and help sound; emit :
-     * - 'pause'
-     * - 'offUi'; listened by UI
-     * - 'unPause' when all animations and sounds completed
-     * 
-     * On 'toucanWin', play animations and end sound; emit :
-     * - 'pause'
-     * - 'endGameWin' when all animations and sounds completed ; listened by UI
-	**/
+
     Kalulu.prototype.initEvents = function () {
         
         this.game.eventManager.on('startGame', this.playIntroSequence, this);
@@ -140,7 +101,7 @@
     };
 
     Kalulu.prototype.playIntroSequence = function playIntroSequence () {
-
+        console.log('Kalulu received startGame Event, playingIntroSequence');
         if (!this.game.gameConfig.tutoEnabled || this.game.gameConfig.skipKalulu || this.game.gameConfig.skipKaluluIntro) {
             console.info("[Kalulu] Skipping Intro Speech");
             this.game.eventManager.emit('pause');

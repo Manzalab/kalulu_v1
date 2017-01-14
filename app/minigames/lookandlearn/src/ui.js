@@ -161,15 +161,6 @@
         this.gameOverScreenQuitButton.anchor.setTo(1, 1);
         this.gameOverScreen.add(this.gameOverScreenQuitButton);
 
-        if (this.features.isReplayEnabled) {
-            this.gameOverScreenReplayButton = game.add.button(-BUTTON_DIM, 0, 'ui', this.onClickOnGameOverScreenReplayButton, this, 'ReplayButton0001.png', 'ReplayButton0002.png', 'ReplayButton0003.png', 'ReplayButton0004.png');
-            this.gameOverScreenReplayButton.frameName = 'ReplayButton0001.png';
-            this.gameOverScreenReplayButton.visible = false;
-            this.gameOverScreenReplayButton.height = BUTTON_DIM;
-            this.gameOverScreenReplayButton.width = BUTTON_DIM;
-            this.gameOverScreenReplayButton.anchor.setTo(1, 1);
-            this.gameOverScreen.add(this.gameOverScreenReplayButton);
-        }
     };
     
     Ui.prototype.resetKaluluSpeeches = function resetKaluluSpeeches (step) {
@@ -323,17 +314,6 @@
         
         this.blackOverlay.visible = true;
         this.game.eventManager.emit('help');
-    };
-
-    Ui.prototype.onClickOnGameOverScreenReplayButton = function onClickOnGameOverScreenReplayButton() {
-        
-        this.game.eventManager.emit('replay'); //listened to by 
-        // this.lives = 0;
-        // this.enableUiMenu();
-        // this.gameOverScreen.visible = false;
-        // this.reset();
-        // this.parent.game.world.bringToTop(this);
-        // this.game.eventManager.emit('startGame');
     };
 
     Ui.prototype.displayGameOverWinScreen = function displayGameOverWinScreen() {
