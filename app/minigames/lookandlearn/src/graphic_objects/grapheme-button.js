@@ -1,9 +1,11 @@
 (function () {
     
     'use strict';
-
+    var Emitter      = require('../tracing-logic/events/emitter');
+    var Events       = require('../tracing-logic/events/events');
     var TracingFrame = require('./tracing_frame');
     var getFontRect  = require('../utils/get-font-rect');
+    var graphemeSplines = require('../../assets/config/letters-descriptor').letters;
 
     function GraphemeButton (game, parent, data, font, callback) {
 
@@ -15,6 +17,10 @@
         this._fontImage = null;
         this._body = new TracingFrame(this.game, data.value, data.rectangle);
         this.add(this._body);
+        if (!callback) {
+            console.error('The callback of the Grapheme Button is not a function :');
+            console.log(this);
+        }
         this._body.events.onInputDown.add(callback);
     }
 
@@ -37,32 +43,28 @@
     GraphemeButton.prototype.draw = function drawWith (tracer) {
 
         this._tracer = tracer;
-        this.startTracingDelay = null;
-        this.secondsOfDelay = 0.8;
+        // this.startTracingDelay = null;
+        // this.secondsOfDelay = 0.8;
         var tracerScaleRatio = this.scaleRatio = 0.8;
 
         this.add(tracer.group);
         tracer.group.scale.set(tracerScaleRatio, tracerScaleRatio);
         tracer.group.position.set(this._coords.x, this._coords.y);
-
-        this.draw2();
-    };
-
-
-    GraphemeButton.prototype.draw2 = function startBotTracingDemo () {
         
-        this.startTracingDelay = null;
+
         console.log('Button ' + this._graphemeId + ' starts Tracing its Grapheme');
         this.tracingOn = true;
 
-        Emitter.on(Events.TRIGGER_LAYOUT, this.onFirstLetterTracingComplete);
+        Emitter.on(Events.TRIGGER_LAYOUT, this._onDrawingComplete);
+        Emitter.emit(Events.NEW_LETTER, graphemeSplines[this._graphemeId], this._graphemeId);
+    };
 
-        
-        this._progression.setModel(this._graphemeId);
-        
-        // this.progression = new InstaTrace(this.game, this._tracer);
-        // this.progression.setModel(this._graphemeId);
-        // this.addImage(this._graphemeId);
+    GraphemeButton.prototype.update = function update () {
+        this._tracer.update();
+    }
+
+    GraphemeButton.prototype._onDrawingComplete = function onDrawingComplete () {
+        console.log('[GraphemeButton] Grapheme Complete');
     };
 
     GraphemeButton.prototype.printFromFont = function printFromFont () {
@@ -89,7 +91,7 @@
         this.add(lImage);
     };
 
-    GraphemeButton.prototype.printFromDrawing = function printFromDrawing (x, y) {
+    GraphemeButton.prototype.printAfterDrawing = function printAfterDrawing (x, y) {
         
         if (!this.frozenLetters) this.frozenLetters = [];
 
@@ -100,6 +102,10 @@
         
         this.frozenLetters.push(lImage);
         this.imagePhaseStage.add(lImage);
+    };
+
+    GraphemeButton.prototype.printWithoutDrawing = function printWithoutDrawing (x, y) {
+        
     };
 
     module.exports = GraphemeButton;

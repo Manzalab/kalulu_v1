@@ -4,6 +4,7 @@
     
     var loadLayouts     = require('../tracing-logic/layouts');
     var TracerBotLayout = require('../tracing-logic/layouts/tracer-bot');
+    var BotCanvasLayout = require('../tracing-logic/layouts/bot-canvas');
     var Tracing         = require('../tracing-logic/tracing');
     var Emitter         = require('../tracing-logic/events/emitter');
     var Events          = require('../tracing-logic/events/events');
@@ -25,6 +26,7 @@
 
         this._buttonsData = this._getButtonListFromNotions(notions);
         this._setupTracer();
+        this._toUpdate = [];
 
         var buttonsCount = this._buttonsData.length;
         for (var i = 0 ; i < buttonsCount ; i++) {
@@ -32,7 +34,10 @@
             var lData = this._buttonsData[i];      
             var lButton = new GraphemeButton(this.game, this, lData, this.game.rafiki.font, callback);
 
-            if (lData.toTrace) lButton.draw(this._tracer);
+            if (lData.toTrace) {
+                this._toUpdate.push(lButton);
+                lButton.draw(this._tracer);
+            }
             else lButton.printFromFont();
             this._graphemeButtons[lData.value] = lButton;
         }
@@ -114,8 +119,8 @@
         this.secondsOfDelay = 0.8;
         var tracerScaleRatio = this.scaleRatio = 0.8;
 
-        this._tracer = new TracerBotLayout(this.game, this.game.gameConfig.layouts.tracerBotLayout);
-        this._tracer.name = "ImagePhase-BotLayout";
+        this._tracer = new BotCanvasLayout(this.game, this.game.gameConfig.layouts.tracerBotLayout);
+        this._tracer.name = "InteractiveZone._tracer";
     };
 
 
@@ -131,15 +136,10 @@
     };
 
     InteractiveZone.prototype.update = function updateInteractiveZone () {
-        
-        // if (this._isStarted) {
-        //     if (this._timeBeforeTracing === 0) this.startBotTracing(this._notions[0]);
-        //     else this._timeBeforeTracing--;
-            
-        //     if (this._isDrawing) {
-        //         this.tracingLayout.update();
-        //     }
-        // }
+        if (this._isStarted) {
+            var count = this._toUpdate.length;
+            for (var i = 0 ; i < count ; i++) this._toUpdate[i].update();
+        }
     };
 
 
@@ -207,7 +207,7 @@
 
 
 
-    InteractiveZone.prototype._checkNotion = function checkNotion (notion) {
+    InteractiveZone.prototype.checkNotion = function checkNotion (notion) {
         this._notionsChecklist[notion] = true;
         console.log(notion + ' has been checked : ' + this._notionsChecklist[notion]);
 
@@ -222,7 +222,7 @@
         }
     };
 
-    InteractiveZone.prototype._disableInteractivity = function disableInteractivity (first_argument) {
+    InteractiveZone.prototype.disableInteractivity = function disableInteractivity (first_argument) {
         this.game.ui.disableUiMenu();
         for (var graphId in this._graphemeButtons) {
             if (!this._graphemeButtons.hasOwnProperty(graphId)) continue;

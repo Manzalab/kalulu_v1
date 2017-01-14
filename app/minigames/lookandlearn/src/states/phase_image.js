@@ -93,7 +93,7 @@ define([
 
 
     PhaseImage.prototype._initInteractiveZone = function _initInteractiveZone () {
-
+        console.log("[State PhaseImage] Intro Sequence Complete. Starting Interactive Zone.");
         this._interactiveZone.start();
     };
 
@@ -102,17 +102,16 @@ define([
     PhaseImage.prototype.update = function phaseImageUpdate () {
         
         this.game.ui.update(); // the ui group is not added to world so we have to manually update it.
-        this._interactiveZone.update();
     };
 
     PhaseImage.prototype.onClickOnFrame = function onClickOnFrame (eventData) {
         console.log("here on click on Frame");
         console.log(eventData);
-        this._disableInteractivity();
-        this._checkNotion(eventData.notionId);
+        this._interactiveZone.disableInteractivity();
+        this._interactiveZone.checkNotion(eventData.notionId);
         this._illustrationZone.show(eventData.notionId);
         this.sound = this.game.sound.play('illustrative_sound_'+ eventData.notionId);
-        this.sound.onStop.addOnce(this._enableInteractivity, this);
+        this.sound.onStop.addOnce(this._interactiveZone.enableInteractivity, this._interactiveZone);
     };
 
     PhaseImage.prototype.enableNextStep = function PhaseImageEnableNextStep () {

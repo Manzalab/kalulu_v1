@@ -15,7 +15,7 @@ var graphsData = require('../../../assets/config/letters-descriptor.json');
  *  - TRIGGER_LAYOUT enables the layout if the event bears the correct eventData (cf. settings.waitedId)
  *  - NEED_HELP_2 emits a REDO_LETTER event for this.letterId and this.model
 **/
-function TracerBotLayout(game, settings){
+function TracerBotLayout (game, settings) {
 
     Layout.call(this, game, settings);
     this.name = 'tracerBotLayout';
@@ -33,7 +33,7 @@ function TracerBotLayout(game, settings){
     var that = this;
 
     this.setModelForPainter = this.setModelForPainter.bind(this);
-    // Emitter.on(Events.NEW_LETTER, this.setModelForPainter);
+    Emitter.on(Events.NEW_LETTER, this.setModelForPainter);
 
     Emitter.on(Events.TRIGGER_LAYOUT, function(id){
         if(that.settings.waitedId === id){
@@ -74,27 +74,26 @@ TracerBotLayout.prototype.getBitmap = function getBitmap (letter){
 };
 
 TracerBotLayout.prototype.update = function TracerBotLayoutUpdate(){
-    //Layout.prototype.update.call(this);
-    //console.log(this.triggered);
+
     if(!this.painter.finished){
         this.painter.update(this.game);
-        // console.log(this.name + " : painter not finished with letter " + this.letterID);
+        console.log(this.name + " : painter not finished with letter " + this.letterID);
     }
     else if(!this.triggered){
-        // console.log(this.name + " : trigger for letter " + this.letterID);
+        console.log(this.name + " : trigger for letter " + this.letterID);
         
-        // console.log(this.name + " : setting Triggered. Currently set to " + this.triggered);
+        console.log(this.name + " : setting Triggered. Currently set to " + this.triggered);
         this.triggered = true;
-        // console.log(this.name + " : setting Triggered. Currently set to " + this.triggered);
+        console.log(this.name + " : setting Triggered. Currently set to " + this.triggered);
         Emitter.emit(Events.TRIGGER_LAYOUT, this.settings.id);
     }
     else if(this.settings.isTouchSensitive === true && this.checkTouch()){
-        // console.log(this.name + " : restarting");
+        console.log(this.name + " : restarting");
         this.redoDrawing();
     }
 
     if (this.painter.waitForEnd && this.settings.callSounds === true && !this.soundPlayed && (this.sound === null || !this.sound.isPlaying)) {
-        // console.log(this.name + " : playing sound");
+        console.log(this.name + " : playing sound");
         this.sound = this.game.sound.play(this.game.gameConfig.pedagogicData.sound);
         this.sound.play();
         this.soundPlayed = true;
@@ -148,22 +147,6 @@ TracerBotLayout.prototype.updateLayout = function updateLayout (graphId) {
     this.setupCanvas(this.graphSettings);
     this.painter = createPainter(this.context, this.bitmap, this.graphSettings, this.game);
 };
-
-// TracerBotLayout.prototype.setModel = function TracerBotLayoutSetModel(letter){
-    
-//     this.letterID = letter;
-//     console.log(this);
-//     this.model = this.game.gameConfig.letters.letters[letter];
-
-//     if(!this.settings.isTouchSensitive){
-//         this.disable();
-//     }
-
-//     this.clear();
-
-//     this.painter.setup(this.model);
-// };
-
 
 /**
  * @param settings {object} pencilStyle, drawOffset

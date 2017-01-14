@@ -61,7 +61,7 @@ BotCanvasLayout.prototype.constructor = BotCanvasLayout;
 BotCanvasLayout.prototype.update = function BotCanvasLayoutUpdate(){
     //Layout.prototype.update.call(this);
     //console.log(this.triggered);
-    if(!this.painter.finished){
+    if(!this.painter.finished) {
         this.painter.update(this.game);
         // console.log(this.name + " : painter not finished with letter " + this.letterID);
     }
