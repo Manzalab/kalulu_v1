@@ -1,8 +1,6 @@
 ﻿define([
-    'phaser-bundle',
     './graphic_objects/kalulu'
 ], function (
-    Phaser,
     Kalulu
 ) {
 
@@ -11,14 +9,6 @@
     var BUTTON_DIM = 250;
     var SCORE_DIM = 130;
 
-    /**
-     * Ui is in charge of the user interface
-	 * @class
-     * @extends Phaser.Group
-     * @memberof Jellyfish
-     * @param lives {int} number of lives to display
-	 * @param game {Phaser.Game} game instance
-	**/
     function Ui (lives, game, options) {
         
         Phaser.Group.call(this, game, game.stage, 'uiContainer', true);
@@ -41,25 +31,22 @@
         // next Button Callback
         this.doActionNext = this.doActionVoid;
 
-        this.initGameOverScreen(game); // the game over screen appears on top of the UI when the game ends
-        this.initGameUI(game); // the main game UI Panel, located on the left of the screen, and accessible when the game is playing (quit, conch, & kalulu buttons).
-        this.initBlackOverlay();
-        this.initQuitPopup(game); // the quit popup appears when the player clicks on the quit button of the main Game UI Panel
-        this.initKalulu();
+        this._initGameOverScreen(game); // the game over screen appears on top of the UI when the game ends
+        this._initLeftMenu(game); // the main game UI Panel, located on the left of the screen, and accessible when the game is playing (quit, conch, & kalulu buttons).
+        this._initBlackOverlay();
+        this._initQuitPopup(game); // the quit popup appears when the player clicks on the quit button of the main Game UI Panel
+        this._initKalulu();
 
-        this.initSounds(game);
+        this._initSounds(game);
         this.initEvents();
     }
 
     Ui.prototype = Object.create(Phaser.Group.prototype);
+    
     Ui.prototype.constructor = Ui;
 
-    /**
-     * Initialize all ui sounds
-     * @param game {Phaser.Game} game instance
-     * @private
-     **/
-    Ui.prototype.initSounds = function initSounds(game) {
+
+    Ui.prototype._initSounds = function initSounds (game) {
         this.sounds = {};
 
         this.sounds.openQuitPopup = game.add.audio('menu');
@@ -67,11 +54,7 @@
         this.sounds.cancelQuit = game.add.audio('menuNo');
     };
 
-    /**
-     * Initialize left menu containing the 3 buttons accessible when the game is playing
-     * @param game {Phaser.Game} game instance
-     **/
-    Ui.prototype.initGameUI = function initGameUI(game) {
+    Ui.prototype._initLeftMenu = function initLeftMenu (game) {
 
         this.gameUI = game.add.group(this, 'ButtonsContainer');
 
@@ -121,7 +104,7 @@
         }
     };
 
-    Ui.prototype.initBlackOverlay = function initBlackOverlay () {
+    Ui.prototype._initBlackOverlay = function initBlackOverlay () {
         
         this.blackOverlay = this.create(0, 0, 'black_overlay');
         this.blackOverlay.width = this.game.width;
@@ -130,7 +113,7 @@
         this.blackOverlay.alpha = 0.4;
     };
 
-    Ui.prototype.initKalulu = function initKalulu () {
+    Ui.prototype._initKalulu = function initKalulu () {
         
         if (this.features.isKaluluEnabled && !this.game.kalulu) {
             this.kalulu = new Kalulu(this.game, this);
@@ -138,17 +121,7 @@
         }
     };
 
-    Ui.prototype.resetKaluluSpeeches = function resetKaluluSpeeches () {
-        
-        this.initKalulu();
-        this.kalulu.resetSpeeches();
-    };
-
-    /**
-     * Initialize quit pop-up menu, which opens after a click on the GameUI quitButton
-     * @param game {Phaser.Game} game instance
-     **/
-    Ui.prototype.initQuitPopup = function initQuitPopup(game) {
+    Ui.prototype._initQuitPopup = function initQuitPopup (game) {
 
         this.quitPopup = game.add.group(this, 'QuitPopup Container');
         this.quitPopup.visible = false;
@@ -175,11 +148,7 @@
         this.quitPopup.add(this.quitPopupCancelButton);
     };
 
-    /**
-     * Initialize end pop-up menu
-     * @param game {Phaser.Game} game instance
-     **/
-    Ui.prototype.initGameOverScreen = function initGameOverScreen(game) {
+    Ui.prototype._initGameOverScreen = function initGameOverScreen (game) {
 
         this.gameOverScreen = game.add.group(this, 'GameOver Screen');
         this.gameOverScreen.visible = false;
@@ -203,10 +172,13 @@
             this.gameOverScreen.add(this.gameOverScreenReplayButton);
         }
     };
+    
+    Ui.prototype.resetKaluluSpeeches = function resetKaluluSpeeches () {
+        
+        this._initKalulu();
+        this.kalulu.resetSpeeches();
+    };
 
-    /**
-     * Initialize user interface events
-     **/
     Ui.prototype.initEvents = function initEvents() {
 
         this.game.eventManager.on('startUi', function () { // emitted by the class Kalulu. It is emitted at game start, right after Kalulu finishes its intro speech.
@@ -232,14 +204,6 @@
             this.parent.game.world.bringToTop(this.blackOverlay);
             this.blackOverlay.visible = true;
             this.disableUiMenu();
-        }, this);
-
-        this.game.eventManager.on('success', function () {
-            this.success();
-        }, this);
-
-        this.game.eventManager.on('fail', function () {
-            this.fail();
         }, this);
 
         this.game.eventManager.on('GameOverWin', function () {
@@ -269,29 +233,6 @@
         }, this);
     };
 
-    /**
-     * success button function
-     * @private
-     **/
-    Ui.prototype.success = function success() {
-        this.scoreBar.children[this.lives].loadTexture('uiScoreRight', 0);
-        this.lives++;
-    };
-
-    /**
-     * fail button function
-     * @private
-     **/
-    Ui.prototype.fail = function fail() {
-        this.scoreBar.children[this.lives].loadTexture('uiScoreWrong', 0);
-        this.lives++;
-    };
-
-    /**
-     * Callback of the Quit Button of the main Game UI Panel
-     * emit 'pause' event
-     * @private
-     **/
     Ui.prototype.onClickOnQuitPopupButton = function onClickOnQuitPopupButton() {
 
         this.sounds.openQuitPopup.play();
@@ -302,11 +243,6 @@
         this.disableUiMenu();
     };
 
-    /**
-     * exit button function
-     * emit 'exitGame' event; listenned by remediation script
-     * @private
-     **/
     Ui.prototype.onClickOnQuitButton = function onClickOnQuitButton() {
 
         this.sounds.validateQuit.play();
@@ -319,11 +255,6 @@
         }, this);
     };
 
-    /**
-     * islandCancel button function
-     * emit 'unPause' event
-     * @private
-     **/
     Ui.prototype.onClickOnQuitPopupCancelButton = function onClickOnQuitPopupCancelButton() {
 
         this.sounds.cancelQuit.play();
@@ -332,10 +263,6 @@
         this.enableUiMenu();
     };
 
-    /**
-     * disable all the buttons except island menu buttons
-     * @private
-     **/
     Ui.prototype.disableUiMenu = function disableUiMenu() {
 
         this.quitButton.inputEnabled = false;
@@ -348,10 +275,6 @@
         this.nextButton.frameName = 'NextButton0004.png';
     };
 
-    /**
-     * enable all the buttons except island menu buttons
-     * @private
-     **/
     Ui.prototype.enableUiMenu = function enableUiMenu() {
 
         this.quitButton.inputEnabled = true;
@@ -383,22 +306,11 @@
         }
     };
 
-    /**
-     * conch button function
-     * emit 'playCorrectSound'; listenned by remediation script
-     * @private
-     **/
     Ui.prototype.onClickOnPhonemeButton = function onClickOnPhonemeButton() {
 
         this.game.sound.play(this.game.gameConfig.pedagogicData.sound);
     };
 
-    /**
-     * centralConch button function
-     * start the centralConch movement
-     * emit 'playCorrectSoundNoUnPause'; listenned by remediation script
-     * @private
-     **/
     Ui.prototype.onClickOnCentralConchButton = function onClickOnCentralConchButton() {
         
         if (this.features.isIntroPhonemeButtonEnabled) {
@@ -409,25 +321,12 @@
         }
     };
 
-    /**
-     * toucan button function
-     * call kalulu for help !!
-     * emit 'help'; listenned by Kalulu script
-     * @private
-     **/
     Ui.prototype.onClickOnKaluluButton = function onClickOnKaluluButton() {
         
         this.blackOverlay.visible = true;
         this.game.eventManager.emit('help');
     };
 
-    /**
-     * replay button function
-     * reset lives
-     * emit 'replay'; listenned by Remediation script
-     * emit 'startGame'; listenned by Remediation script
-     * @private
-     **/
     Ui.prototype.onClickOnGameOverScreenReplayButton = function onClickOnGameOverScreenReplayButton() {
         
         this.game.eventManager.emit('replay'); //listened to by 
@@ -439,11 +338,6 @@
         // this.game.eventManager.emit('startGame');
     };
 
-    /**
-     * endGameWin function
-     * only display the next button
-     * @private
-     **/
     Ui.prototype.displayGameOverWinScreen = function displayGameOverWinScreen() {
         
         this.disableUiMenu();
@@ -452,11 +346,6 @@
         if (this.features.isReplayEnabled) this.gameOverScreen.children[1].visible = false;
     };
 
-    /**
-     * endGameLoose function
-     * display the next button and the replay button
-     * @private
-     **/
     Ui.prototype.displayGameOverLoseScreen = function displayGameOverLoseScreen() {
         
         this.disableUiMenu();
@@ -469,11 +358,6 @@
         }
     };
 
-    /**
-     * replace the centralConch on the center
-     * reset lives sprites
-     * @private
-     **/
     Ui.prototype.reset = function reset() {
         if (this.features.isIntroPhonemeButtonEnabled) {
 
@@ -488,11 +372,6 @@
         }
     };
 
-    /**
-     * only used for the centralConch movements
-     * emit 'unPause' when done
-     * @private
-     **/
     Ui.prototype.update = function update() {
         
         Phaser.Group.prototype.update.call(this);
@@ -514,8 +393,8 @@
             }
     };
 
-
     Ui.prototype.onClickOnNextButton = function onClickOnNextButton () {
+        
         this.nextButtonCallback();
     };
 
@@ -543,7 +422,10 @@
         }
     };
     
-    Ui.prototype.nextButtonNoCallBack = function nextButtonNoCallBack () {};
+    Ui.prototype.nextButtonNoCallBack = function nextButtonNoCallBack () {
+
+        //
+    };
 
     Ui.prototype.nextButtonQuitCallBack = function nextButtonQuitCallBack () {
         console.log("next button quit callback");
@@ -552,6 +434,7 @@
 
     Ui.prototype.quitGame = function quitGame () {
 
+        //
     };
 
     Ui.prototype.nextButtonNextStateCallback = function nextButtonNextStateCallback () {
