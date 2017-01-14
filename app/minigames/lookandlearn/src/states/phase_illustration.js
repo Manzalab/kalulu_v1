@@ -48,15 +48,12 @@ define([
 
             this.game.ui = new UI(0, this.game, options);
         }
-        else {
-            this.game.ui.resetKaluluSpeeches(); // may be called ui.prepareForNewPhase()
-        }
+
+        this.game.ui.resetKaluluSpeeches(2); // may be called ui.prepareForNewPhase()
 
         if (this.firstTime) {
             this.onFirstTime();
         }
-
-
     }
 
     IllustrationPhase.prototype._addPhaseStageToWorld = function addImagePhaseStageToWorld () {
@@ -66,10 +63,19 @@ define([
 
     IllustrationPhase.prototype._initZones = function initPedagoImagePhase () {
         
+
         this._illustrationZone = new IllustrationZone(this.game, this._imagePhaseStage, this._notionIds);
         this._illustrationZone.show(this._notionIds[0]);
 
-        this._interactiveZone = new InteractiveZone(this.game, this._imagePhaseStage, this._notionIds, this.onClickOnFrame.bind(this));
+        var data = this.game.gameConfig.pedagogicData.data;
+        var count = data.interactiveZone.buttons.length;
+        var zoneData = {};
+        this._notionsFlags = {};
+        for (var i = 0 ; i < count ; i++) {
+            zoneData[data.notionIds[i]] = data.interactiveZone.buttons[i];
+            this._notionsFlags[data.notionIds[i]] = false;
+        }
+        this._interactiveZone = new InteractiveZone(this.game, this._imagePhaseStage, zoneData, this.onClickOnFrame.bind(this));
         this.game.eventManager.once('introSequenceComplete', this._startInteractiveZone, this);
 
         console.log('Zones Initialised');
@@ -93,13 +99,40 @@ define([
 
     IllustrationPhase.prototype.onClickOnFrame = function onClickOnFrame (eventData) {
         
-        console.log("here on click on Frame");
-        console.log(eventData);
         this._interactiveZone.disableInteractivity();
-        this._interactiveZone.checkNotion(eventData.notionId);
-        this._illustrationZone.show(eventData.notionId);
-        this.sound = this.game.sound.play('illustrative_sound_'+ eventData.notionId);
-        this.sound.onStop.addOnce(this._interactiveZone.enableInteractivity, this._interactiveZone);
+        this._flagNotionAsSeen(eventData.id);
+        this._illustrationZone.show(eventData.id);
+
+        this.sound = this.game.sound.play('notion_'+ eventData.id);
+
+        this.sound.onStop.addOnce(this._checkNotionsFlags, this);
+    };
+
+    IllustrationPhase.prototype._flagNotionAsSeen = function flagNotionAsSeen (notion) {
+        
+        this._notionsFlags[notion] = true;
+
+        this._allNotionsFlaggedAsSeen = true;
+        for (var lNotion in this._notionsFlags) {
+            if (!this._notionsFlags.hasOwnProperty(lNotion)) continue;
+            if (!this._notionsFlags[lNotion]) {
+                this._allNotionsFlaggedAsSeen = false;
+                return;
+            }
+        }
+    };
+
+    IllustrationPhase.prototype._checkNotionsFlags = function checkNotionsFlags () {
+        
+        this._interactiveZone.enableInteractivity();
+
+        if (this._allNotionsFlaggedAsSeen) {
+            this.enableNextStep();
+        }
+        else {
+            console.log(this._notionsFlags);
+            this.game.ui.enableUiMenu();
+        }
     };
 
     IllustrationPhase.prototype.enableNextStep = function IllustrationPhaseEnableNextStep () {

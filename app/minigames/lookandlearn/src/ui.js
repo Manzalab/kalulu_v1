@@ -20,7 +20,6 @@
         options.isPhonemeButtonEnabled = (typeof options.isPhonemeButtonEnabled !== 'undefined') ? options.isPhonemeButtonEnabled : true;
 
         this.features = options;
-        console.info("DISABLING NEXT");
         this.isNextButtonEnabled = false;
 
         /**
@@ -173,10 +172,9 @@
         }
     };
     
-    Ui.prototype.resetKaluluSpeeches = function resetKaluluSpeeches () {
-        
-        this._initKalulu();
-        this.kalulu.resetSpeeches();
+    Ui.prototype.resetKaluluSpeeches = function resetKaluluSpeeches (step) {
+
+        this.kalulu.resetSpeeches(step);
     };
 
     Ui.prototype.initEvents = function initEvents() {

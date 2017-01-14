@@ -29,9 +29,6 @@
 	    **/
         this.sounds = {};       
 
-        this.sounds.intro = game.add.audio('kaluluIntro');
-        this.sounds.help = game.add.audio('kaluluHelp');
-        this.sounds.end = game.add.audio('kaluluGameOverWin');
         this.sounds.on = game.add.audio('kaluluOn');
         this.sounds.off = game.add.audio('kaluluOff');
         
@@ -76,7 +73,7 @@
          * @private
 	    **/
         this.idle = false;
-        
+        this._step = "";
         this.initEvents();
     }
     
@@ -84,11 +81,14 @@
     Kalulu.prototype.constructor = Kalulu;
     
 
-    Kalulu.prototype.resetSpeeches = function resetSpeeches () {
-        this.sounds.intro = this.game.add.audio('kaluluIntro');
-        this.sounds.help = this.game.add.audio('kaluluHelp');
-        this.sounds.gameOverWin = this.game.add.audio('kaluluGameOverWin');
-        this.sounds.gameOverLose = this.game.add.audio('kaluluGameOverLose');
+    Kalulu.prototype.resetSpeeches = function resetSpeeches (step) {
+        console.log(step);
+        this._step = step;
+
+        if (this.game.tutoEnabled)
+            this.sounds.intro = this.game.add.audio('kaluluIntro' + step);
+        this.sounds.help = this.game.add.audio('kaluluHelp' + step);
+        this.sounds.end = this.game.add.audio('kaluluGameOverWin' + step);
     };
     /**
 	 * Initialize all Kalulu events
@@ -141,8 +141,8 @@
 
     Kalulu.prototype.playIntroSequence = function playIntroSequence () {
 
-        if (this.game.gameConfig.skipKalulu || this.game.gameConfig.skipKaluluIntro) {
-            console.info("[Kalulu] Skipping Intro Speech due to debug configuration");
+        if (!this.game.gameConfig.tutoEnabled || this.game.gameConfig.skipKalulu || this.game.gameConfig.skipKaluluIntro) {
+            console.info("[Kalulu] Skipping Intro Speech");
             this.game.eventManager.emit('pause');
             this.game.eventManager.emit('startUi');
             this.game.eventManager.emit('introSequenceComplete');
