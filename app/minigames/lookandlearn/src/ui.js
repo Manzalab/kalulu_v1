@@ -184,10 +184,6 @@
             this.kaluluButton.visible = false;
         }, this);
 
-        this.game.eventManager.on('startGame', function () { // emitted at the very start of the game
-            this.kaluluButton.visible = false;
-        }, this);
-
         this.game.eventManager.on('offUi', function () { // emitted from various places, when we need to disable the UI
             this.parent.game.world.bringToTop(this);
             this.parent.game.world.bringToTop(this.blackOverlay);
@@ -297,7 +293,7 @@
 
     Ui.prototype.onClickOnPhonemeButton = function onClickOnPhonemeButton() {
 
-        this.game.sound.play(this.game.gameConfig.pedagogicData.sound);
+        this.game.sound.play(this.game.currentPhonemeSoundId);
     };
 
     Ui.prototype.onClickOnCentralConchButton = function onClickOnCentralConchButton() {

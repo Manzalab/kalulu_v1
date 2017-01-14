@@ -25,8 +25,9 @@ define([
     
     IllustrationPhase.prototype.create = function illustrationPhaseCreate () {
         
-        this._notionIds = this.game.gameConfig.pedagogicData.data.notionIds;
-        
+        this._notionIds    = this.game.gameConfig.pedagogicData.data.notionIds;
+        this._notionsFlags = {};
+
         this._initPhase();
         this._addPhaseStageToWorld();
         this._initZones();
@@ -49,11 +50,8 @@ define([
             this.game.ui = new UI(0, this.game, options);
         }
 
-        this.game.ui.resetKaluluSpeeches(2); // may be called ui.prepareForNewPhase()
-
-        if (this.firstTime) {
-            this.onFirstTime();
-        }
+        this.game.currentPhonemeSoundId = 'notion_' + this._notionIds[0];
+        this.game.ui.resetKaluluSpeeches(2);
     }
 
     IllustrationPhase.prototype._addPhaseStageToWorld = function addImagePhaseStageToWorld () {
@@ -63,14 +61,13 @@ define([
 
     IllustrationPhase.prototype._initZones = function initPedagoImagePhase () {
         
-
         this._illustrationZone = new IllustrationZone(this.game, this._imagePhaseStage, this._notionIds);
         this._illustrationZone.show(this._notionIds[0]);
 
         var data = this.game.gameConfig.pedagogicData.data;
         var count = data.interactiveZone.buttons.length;
         var zoneData = {};
-        this._notionsFlags = {};
+        
         for (var i = 0 ; i < count ; i++) {
             zoneData[data.notionIds[i]] = data.interactiveZone.buttons[i];
             this._notionsFlags[data.notionIds[i]] = false;
@@ -83,7 +80,6 @@ define([
 
     IllustrationPhase.prototype._startInteractiveZone = function startInteractiveZone () {
         
-        console.log("[IllustrationPhase] Intro Sequence Complete. Starting Interactive Zone.");
         this._interactiveZone.start();
     };
 
@@ -104,6 +100,7 @@ define([
         this._illustrationZone.show(eventData.id);
 
         this.sound = this.game.sound.play('notion_'+ eventData.id);
+        this.game.currentPhonemeSoundId = 'notion_'+ eventData.id;
 
         this.sound.onStop.addOnce(this._checkNotionsFlags, this);
     };
@@ -130,7 +127,6 @@ define([
             this.enableNextStep();
         }
         else {
-            console.log(this._notionsFlags);
             this.game.ui.enableUiMenu();
         }
     };
@@ -141,37 +137,24 @@ define([
     };
 
     IllustrationPhase.prototype.shutdown = function IllustrationPhaseShutdown () {
-        
-        var count = this._illustrationData.illustrations.length;
+        var data = this.game.gameConfig.pedagogicData.data.illustrationPhase.illustrations;
+
+        var count = data.length;
         for (var i = 0; i < count ; i++) {
-            this.game.cache.removeImage('illustration_' + this._notionIds[i], this._illustrationData.illustrations[i].image);
-            this.game.load.removeSound('sound_' + this._notionIds[i], this._illustrationData.illustrations[i].sound);
+            this.game.cache.removeImage('notion_' + this._notionIds[i], true);
+            this.game.load.removeSound('notion_' + this._notionIds[i]);
         }
 
-        this.game.cache.removeSound('kaluluIntro');
-        this.game.cache.removeSound('kaluluHelp');
-        this.game.cache.removeSound('kaluluGameOverWin');
+        if (this.game.tutoEnabled)
+            this.game.cache.removeSound('kaluluIntro2');
+        this.game.cache.removeSound('kaluluHelp2');
+        this.game.cache.removeSound('kaluluGameOverWin2');
         
-        this._notionIds        = null;
-        this._illustrationData = null;
-        this._interactionsData = null;
+        this._notionIds = null;
+        this._notionsFlags = null;
 
         Emitter.listeners = {};
     };
-    
-
-    IllustrationPhase.prototype.onFirstTime = function onFirstTime () {
-        
-        this.onFirstTime = false;
-        console.log("First Time playing a Look & Learn !");
-    };
-    // IllustrationPhase.prototype.onClickOnLetters = function onClickOnLetters () {
-    //     console.log("here on click");
-    //     this.game.ui.disableUiMenu();
-    //     this.sound = this.game.sound.play('illustrative_sound_'+ this.notion.value);
-    //     this.sound.onStop.addOnce(this.enableNextStep, this);
-    // };
-
 
     return IllustrationPhase;
 });
