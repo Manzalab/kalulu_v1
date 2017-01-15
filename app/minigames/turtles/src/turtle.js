@@ -133,7 +133,7 @@
         this.x = xOffset * Math.cos(toRadians(angle)) + this.gameRef.width / 2;
         this.y = -yOffset * Math.sin(toRadians(angle)) + this.gameRef.height / 2;
 
-        this.updateAngle(angle);
+        this.updateAngle(angle+35);
 
         if (text != "") this.sound = this.gameRef.add.audio(text);
         this.turtleSprite.animations.play('emerge');

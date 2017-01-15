@@ -158,7 +158,7 @@ define([
     **/
     Rafiki.prototype.savePedagogicResults = function savePedagogicResults (currentProgressionNode, data) {
         console.log(data);
-        var lastRecord
+        var lastRecord;
         if (data) {
             lastRecord = {
                 elapsedTime : data.endTime - data.startTime,

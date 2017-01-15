@@ -6,7 +6,8 @@
 
     'use strict';
 
-    var GRAVITY = -1700;
+    var GRAVITY = -2000;
+    var SCALE = 2;
 
     /**
      * Fish object
@@ -17,9 +18,8 @@
      * @param game {Phaser.Game} game instance   
 	 * @param scale {scale} default 1
 	**/
-    function Fish(game, text, scale) {
+    function Fish(game, text) {
         text = text || false;
-        scale = scale || 1;
 
         Phaser.Group.call(this, game);
 
@@ -35,8 +35,8 @@
         this.fishSprite = game.add.sprite(0, 0, 'fish', 'Poisson_Idle1_0000');
         this.fishSprite.y += this.fishSprite.height / 2;
         this.fishSprite.anchor.setTo(0.5, 0.5);
-        this.fishSprite.scale.x = scale;
-        this.fishSprite.scale.y = scale;
+        this.fishSprite.scale.x = SCALE;
+        this.fishSprite.scale.y = SCALE;
 
         this.fishSprite.animations.add('idle1', Phaser.Animation.generateFrameNames('Poisson_Idle1_', 0, 3, '', 4), 7, false, false);
         this.fishSprite.animations.add('idle2', Phaser.Animation.generateFrameNames('Poisson_Idle2_', 0, 3, '', 4), 7, false, false);
@@ -50,7 +50,7 @@
          * @private
          **/
         if (text) {
-            this.text = game.add.text(0, this.fishSprite.height / 3 + 20, "- phaser -\nrocking with\ngoogle web fonts");
+            this.text = game.add.text(0, 100, "- phaser -\nrocking with\ngoogle web fonts");
             this.text.font = "Arial";
             this.text.text = "";
             this.text.fill = "black";
@@ -113,7 +113,7 @@
         if (typeof this.text !== 'undefined') this.text.visible = false;
 
         if (newX < this.x) {
-            this.fishSprite.scale.x = -1;
+            this.fishSprite.scale.x = -SCALE;
             this.fishSprite.scale.tween.to({ x: -0.4, y: 0.4 }, this.time * 1000, Phaser.Easing.Default, true, 0, 0, false);
 
         }
@@ -124,7 +124,7 @@
         this.fishSprite.animations.play('jump');
 
         this.newX = newX;
-        this.newY = newY - this.fishSprite.height / 2;
+        this.newY = newY - this.fishSprite.height / 4;
         this.oldX = this.x;
         this.oldY = this.y;
         this.slopeX = (this.newX - this.oldX) / this.time;
@@ -139,8 +139,8 @@
         this.fishSprite.alpha = 1;
         this.fishSprite.angle = 0;
         this.fishSprite.animations.play('idle1');
-        this.fishSprite.scale.x = 1;
-        this.fishSprite.scale.y = 1;
+        this.fishSprite.scale.x = SCALE;
+        this.fishSprite.scale.y = SCALE;
         if (typeof this.text !== 'undefined') {
             this.text.visible = true;
             this.text.text = text;

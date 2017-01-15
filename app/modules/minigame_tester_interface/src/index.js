@@ -29,8 +29,8 @@
 
         this.options =  {
             LANGUAGE    : KALULU_LANGUAGE, // cannot be changed post build, presence for information only.
-            minigame    : 'jellyfish',
-            discipline  : 'language',
+            minigame    : 'fish',
+            discipline  : 'maths',
             globalLevel : 1,
             localLevel  : 1,
             start       : this.startGame.bind(this)

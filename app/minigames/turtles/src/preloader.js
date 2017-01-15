@@ -31,6 +31,7 @@
         loadSpecificAssets: function () {
 
             //Game specific Graphics
+            this.load.image('popup', 'minigames/common/assets/images/ui/popup.png');
             this.game.load.atlasJSONHash('turtle', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/TORTUE_Animations/turtle.png', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/TORTUE_Animations/turtle.json');
             this.load.image('background', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/background/Aiguilleur_Background.png');
             this.load.image('island', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/background/Aiguilleur_Ile.png');
