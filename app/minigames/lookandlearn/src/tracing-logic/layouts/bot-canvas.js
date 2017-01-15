@@ -104,15 +104,31 @@ BotCanvasLayout.prototype.checkTouch = function BotCanvasLayoutCheckTouch(){
     y = this.pointer.position.y;
 
     return (this.pointer.isDown && (x >= this.settings.x && x <= this.settings.w + this.settings.x && y >= this.settings.y && y <= this.settings.h + this.settings.y));
-}
+};
 
 BotCanvasLayout.prototype.redoDrawing = function BotCanvasLayoutRedoDrawing(){
     this.clear();
 
     this.painter.setup(this.model);
-}
+};
 
-BotCanvasLayout.prototype.updateLayout = function updateLayout (settings) {
+BotCanvasLayout.prototype.updateLayout = function updateLayout (graphRect) {
+    
+    var settings = {
+        name : this._tracer.name,
+        x : 0,
+        y : 0,
+        w : graphRect.w,
+        h : graphRect.h,
+        pencilStyle : {
+            stroke: 0x000000,
+            width: 30
+        },
+        drawOffset : {
+            x: graphRect.offsetX,
+            y: graphRect.offsetY
+        }
+    };
 
     console.log('updating Layout');
     this.graphSettings = settings;

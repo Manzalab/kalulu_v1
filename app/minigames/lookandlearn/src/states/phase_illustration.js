@@ -98,10 +98,10 @@ define([
         this._interactiveZone.disableInteractivity();
         this._flagNotionAsSeen(eventData.id);
         this._illustrationZone.show(eventData.id);
-
+        
         this.sound = this.game.sound.play('notion_'+ eventData.id);
         this.game.currentPhonemeSoundId = 'notion_'+ eventData.id;
-
+        
         this.sound.onStop.addOnce(this._checkNotionsFlags, this);
     };
 

@@ -56,24 +56,7 @@
 
 
         var graphRect = graphStats[this._currentGrapheme];
-        console.log(graphRect);
-
-        var settings = {
-            name : this._tracer.name,
-            x : 0,
-            y : 0,
-            w : graphRect.w,
-            h : graphRect.h,
-            pencilStyle : {
-                stroke: 0x000000,
-                width: 30
-            },
-            drawOffset : {
-                x: graphRect.offsetX,
-                y: graphRect.offsetY
-            }
-        };
-        this._tracer.updateLayout(settings);
+        this._tracer.updateLayout(graphRect);
 
         var tracerScaleRatio = this.scaleRatio = this._getScale(this._currentGrapheme, graphRect);
 
