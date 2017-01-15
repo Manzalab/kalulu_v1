@@ -19,6 +19,9 @@ var Kalulu_maths = function(available_numbers, score, numbers_data__, params___,
 	// repool "count"	
 	var tries = 0;
 
+	console.log('available_numbers size '+available_numbers.length)
+	console.log('numbers_data__ size '+numbers_data__.length)
+
 	/// FAKE numbers data.
 	//var numbers_data 	= new FakeNumbersData()
 	
@@ -126,6 +129,7 @@ var loop_on_array = params[loop_on]
 				var temp_rounds_results = pool_loop(2)
 				console.log('parakeets after re-pool:'+temp_rounds_results.length)
 			}
+			temp_rounds_results = _.shuffle(temp_rounds_results)
 
 			var mixed_steps = {steps: [ { "type": "mixed", "stimuli": []}]}
 
@@ -151,14 +155,15 @@ var loop_on_array = params[loop_on]
 				// out.forced_pool = 2		
 			}
 
-			temp_rounds_results = _.shuffle(temp_rounds_results)
 
 			while(game.data.rounds.length < params.roundsCount  ){ //  && tries < 4
 					tries++
-					console.log(params.roundsCount)
-					console.log(temp_rounds_results)
+					//	console.log(params.roundsCount)
+					//	console.log(temp_rounds_results)
+					/// shuffle rounds between loops :) 
+					temp_rounds_results = _.shuffle(temp_rounds_results)
 
-					// refill with the same.
+					// refill with the same N times.
 					_.each(temp_rounds_results, function(r){
 						game.data.rounds.push(r)
 					})	
