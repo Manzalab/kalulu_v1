@@ -35,6 +35,8 @@
         this.distracterBerriesSpawned = 0;
         this.roundIndex = 0;
         this.stepIndex = 0;
+        this.correctStepResponseApparitionsCount = 0;
+        this.highlightNextSpawn = false;
 
         this.popup = new Popup(game);
 
@@ -394,6 +396,16 @@
 
             }
             else if (this.consecutiveMistakes == this.game.params.getGeneralParams().incorrectResponseCountTriggeringSecondRemediation) {
+                this.highlightNextSpawn = true;
+                for (var i = 0; i < this.lines.length; i++) {
+                    for (var j = 0; j < this.lines[i].graph.length; j++) {
+                        if (this.lines[i].graph[j].text.text.toString() == this.correctResponses[this.stepIndex].value.toString()) {
+                            this.lines[i].graph[j].highlight.visible = true;
+                            this.highlightNextSpawn = false;
+                        }
+                    }
+                }
+
                 this.consecutiveMistakes = 0;
                 this.game.eventManager.emit('help');
                 if (this.game.gameConfig.debugPanel) this.cleanLocalPanel();
@@ -526,6 +538,7 @@
 
         lineNumber = Math.floor(Math.random() * globalParams.lineCount);
         lBerry = this.lines[lineNumber].spawnGraph(value);
+        if (isTargetValue && this.highlightNextSpawn) lBerry.highlight.visible = true;
 
         j = 0;
         // console.log(value);
@@ -548,6 +561,13 @@
 
         }
         this.game.world.bringToTop(this.caterpillar.head);
+
+        if (isTargetValue) this.correctStepResponseApparitionsCount++;
+        if (this.correctStepResponseApparitionsCount == 3 && this.game.discipline != "maths") {
+            this.correctStepResponseApparitionsCount = 0;
+
+            if (this.framesToWaitBeforeNewSound === 0 ) this.game.eventManager.emit('playCorrectSoundNoUnPause');
+        }
     };
 
     Remediation.prototype.update = function () {
