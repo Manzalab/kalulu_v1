@@ -73,32 +73,7 @@
         this.initEvents();
 
         if (this.game.gameConfig.debugPanel) {
-
-            this.debug = new Dat.GUI(/*{ autoPlace: false }*/);
-
-            var globalLevel = this.game.params.globalLevel;
-
-            var infoPanel = this.debug.addFolder("Level Info");
-
-            var generalParamsPanel = this.debug.addFolder("General Parameters");
-            var globalParamsPanel = this.debug.addFolder("Global Parameters");
-            this._localParamsPanel = this.debug.addFolder("Local Parameters");
-
-            var debugPanel = this.debug.addFolder("Debug Functions");
-
-            infoPanel.add(this.game.params, "_currentGlobalLevel").listen();
-            infoPanel.add(this.game.params, "_currentLocalRemediationStage").listen();
-
-            generalParamsPanel.add(this.game.params._settingsByLevel[globalLevel].generalParameters, "incorrectResponseCountTriggeringFirstRemediation").min(1).max(5).step(1).listen();
-            generalParamsPanel.add(this.game.params._settingsByLevel[globalLevel].generalParameters, "incorrectResponseCountTriggeringSecondRemediation").min(1).max(5).step(1).listen();
-            generalParamsPanel.add(this.game.params._settingsByLevel[globalLevel].generalParameters, "lives").min(1).max(5).step(1).listen();
-
-            globalParamsPanel.add(this.game.params._settingsByLevel[globalLevel].globalRemediation, "turtlesOnScreen").min(1).max(5).step(1).listen();
-
-            this.setLocalPanel();
-
-            debugPanel.add(this, "AutoWin");
-            debugPanel.add(this, "AutoLose");
+			this.setupDebugPanel();
         }
     }
 
@@ -281,6 +256,7 @@
             this.game.eventManager.emit("pause");
             this.fx.hit(turtle1.x, turtle1.y, true);
             this.success();
+			this.highlightGoodResponses = false;
         }
         else {
             this.sounds.wrong.play();
@@ -373,9 +349,10 @@
                 if (this.game.gameConfig.debugPanel)
 					this.setLocalPanel();
             }
-            // else {
-                // this.game.eventManager.emit('playCorrectSound');
-            // }
+            else {
+				this.game.eventManager.emit('unPause');
+                //this.game.eventManager.emit('playCorrectSound');
+            }
         }
         else if (this.triesRemaining === 0 && this.lives > 0) {
             this.gameOverWin();
@@ -542,24 +519,83 @@
         }
 
     };
+	
+    Remediation.prototype.setupDebugPanel = function setupDebugPanel() {
+			if (this.game.debugPanel) {
+				this.debugPanel = this.game.debugPanel;
+				this.rafikiDebugPanel = true;
+			}
+			else {
+				this.debugPanel = new Dat.GUI();
+				this.rafikiDebugPanel = false;
+			}
+
+            var globalLevel = this.game.params.globalLevel;
+			
+			this.debugFolderNames = {
+				info: "Level Info",
+				general: "General Parameters",
+				global: "Global Parameters",
+				local: "Local Parameters",
+				functions: "Debug Functions",
+			};
+
+			
+			this._debugInfo = this.debugPanel.addFolder(this.debugFolderNames.info);
+			this._debugGeneralParams = this.debugPanel.addFolder(this.debugFolderNames.general);
+			this._debugGlobalParams = this.debugPanel.addFolder(this.debugFolderNames.global);
+			this._debugLocalParams = this.debugPanel.addFolder(this.debugFolderNames.local);
+			this._debugFunctions = this.debugPanel.addFolder(this.debugFolderNames.functions);
+		
+
+            this._debugInfo.add(this.game.params, "_currentGlobalLevel").listen();
+            this._debugInfo.add(this.game.params, "_currentLocalRemediationStage").listen();
+
+            this._debugGeneralParams.add(this.game.params._settingsByLevel[globalLevel].generalParameters, "incorrectResponseCountTriggeringFirstRemediation").min(1).max(5).step(1).listen();
+            this._debugGeneralParams.add(this.game.params._settingsByLevel[globalLevel].generalParameters, "incorrectResponseCountTriggeringSecondRemediation").min(1).max(5).step(1).listen();
+            this._debugGeneralParams.add(this.game.params._settingsByLevel[globalLevel].generalParameters, "lives").min(1).max(5).step(1).listen();
+
+            this._debugGlobalParams.add(this.game.params._settingsByLevel[globalLevel].globalRemediation, "turtlesOnScreen").min(1).max(5).step(1).listen();
+
+            this.setLocalPanel();
+
+            this._debugFunctions.add(this, "AutoWin");
+            this._debugFunctions.add(this, "AutoLose");
+			this._debugFunctions.add(this, "skipKalulu");
+	};
 
     Remediation.prototype.setLocalPanel = function setLocalPanel() {
 
         var globalLevel = this.game.params.globalLevel;
         var localStage = this.game.params.localRemediationStage;
 
-        this._localParamsPanel.items = {};
-        this._localParamsPanel.items.param1 = this._localParamsPanel.add(this.game.params._settingsByLevel[globalLevel].localRemediation[localStage], "minimumCorrectStimuliOnScreen").min(0).max(20).step(1).listen();
-        this._localParamsPanel.items.param2 = this._localParamsPanel.add(this.game.params._settingsByLevel[globalLevel].localRemediation[localStage], "correctResponsePercentage").min(0).max(1).step(0.1).listen();
-        this._localParamsPanel.items.param3 = this._localParamsPanel.add(this.game.params._settingsByLevel[globalLevel].localRemediation[localStage], "respawnTime").min(1).max(5).step(0.1).listen();
-        this._localParamsPanel.items.param4 = this._localParamsPanel.add(this.game.params._settingsByLevel[globalLevel].localRemediation[localStage], "speed").min(1).max(20).step(0.5).listen();
+        this._debugGlobalParams.items = {};
+        this._debugGlobalParams.items.param1 = this._debugGlobalParams.add(this.game.params._settingsByLevel[globalLevel].localRemediation[localStage], "minimumCorrectStimuliOnScreen").min(0).max(20).step(1).listen();
+        this._debugGlobalParams.items.param2 = this._debugGlobalParams.add(this.game.params._settingsByLevel[globalLevel].localRemediation[localStage], "correctResponsePercentage").min(0).max(1).step(0.1).listen();
+        this._debugGlobalParams.items.param3 = this._debugGlobalParams.add(this.game.params._settingsByLevel[globalLevel].localRemediation[localStage], "respawnTime").min(1).max(5).step(0.1).listen();
+        this._debugGlobalParams.items.param4 = this._debugGlobalParams.add(this.game.params._settingsByLevel[globalLevel].localRemediation[localStage], "speed").min(1).max(20).step(0.5).listen();
+		
+		
+    };
+	
+	Remediation.prototype.clearDebugPanel = function clearDebugPanel() {
+        if (this.rafikiDebugPanel) {
+            this.debugPanel.removeFolder(this.debugFolderNames.info);
+            this.debugPanel.removeFolder(this.debugFolderNames.general);
+            this.debugPanel.removeFolder(this.debugFolderNames.global);
+            this.debugPanel.removeFolder(this.debugFolderNames.local);
+            this.debugPanel.removeFolder(this.debugFolderNames.functions);
+        }
+        else {
+            this.debugPanel.destroy();
+        }
     };
 
     Remediation.prototype.cleanLocalPanel = function cleanLocalPanel() {
 
-        for (var element in this._localParamsPanel.items) {
-            if (!this._localParamsPanel.items.hasOwnProperty(element)) continue;
-            this._localParamsPanel.remove(this._localParamsPanel.items[element]);
+        for (var element in this._debugLocalParams.items) {
+            if (!this._debugLocalParams.items.hasOwnProperty(element)) continue;
+            this._debugLocalParams.remove(this._debugLocalParams.items[element]);
         }
     };
 
@@ -657,6 +693,11 @@
 
         this.won = false;
         this.game.eventManager.emit('exitGame');
+    };
+	
+	Remediation.prototype.skipKalulu = function skipKalulu() {
+
+        this.game.eventManager.emit("skipKalulu");
     };
 
     return Remediation;

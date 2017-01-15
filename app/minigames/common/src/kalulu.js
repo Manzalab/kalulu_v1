@@ -86,9 +86,8 @@
      * - 'endGameWin' when all animations and sounds completed ; listened by UI
 	**/
     Kalulu.prototype.initEvents = function () {
-        
         this.game.eventManager.on('startGame', function () {
-            if (this.game.gameConfig.skipKalulu || this.game.gameConfig.skipKaluluIntro) {
+            if (this.game.gameConfig.skipKalulu || this.game.gameConfig.skipKaluluIntro || this.game.latestRecord != undefined) {
                 this.game.eventManager.emit('pause');
                 this.game.eventManager.emit('startUi');
                 return;
