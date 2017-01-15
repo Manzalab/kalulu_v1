@@ -284,6 +284,9 @@
         console.log(score)
 
         var roundsCount = result.length;
+
+        var saved_values = []
+
         
         rounds:
         for (var r = 0; r < roundsCount ; r++) { 
@@ -312,11 +315,16 @@
                      var has_score = null
                      var currentStimulus = currentStep.stimuli[st];
                      //console.log(currentStimulus)
-                    if (!currentStimulus.apparitions) {
+                     if (!currentStimulus.apparitions) {
                         // console.warn("LanguageModule : stimulus has no apparitions :");
                         // console.log(stimulus);
                         continue;
-                    }
+                     }
+                     if (currentStimulus.value == "") {
+                        // console.warn("LanguageModule : stimulus has no apparitions :");
+                        // console.log(stimulus);
+                        continue;
+                     }
                    
                    
                     apparitions:
@@ -363,8 +371,8 @@
                             console.log("value : " + currentStimulus.value + ", isCR : " + apparition.isCorrect + ", clicked : " + apparition._isClicked);
                         }
                           
-
-                          this._addRecordOnNotion(currentStimulus,scoreObject, gameGroup )
+                        saved_values.push(currentStimulus.value)
+                        this._addRecordOnNotion(currentStimulus,scoreObject, gameGroup )
 
 
                     }
@@ -440,11 +448,20 @@
                 }
             }
         }
+        console.log('saved_values')
+
+        console.log(saved_values)
+        _.each(saved_values, function(v){
+
+          console.log(score[v])
+
+        })
 
     }
    MathsModule.prototype._addRecordOnNotion = function addRecordOnNotion (stimuli, record, gameGroup) {
         
        var  windowSize = 10;
+
 
         // console.log('notion'+stimuli.value);
 
@@ -456,16 +473,18 @@
         }
        // console.log(score)
 
-        // recognition only.. here.
+       
 
       if(gameGroup == 'recognition'){
+
+
           var p = stimuli.path[0] 
           var r = stimuli.path[1] 
           //console.log(score)
           if(score && score[stimuli.value] &&  score[stimuli.value][p] && score[stimuli.value][p][r]){
                console.log('score[value][p][r]')
-                              console.log(p)
-                              console.log(r)
+               console.log(p)
+               console.log(r)
 
                console.log(score[stimuli.value][p][r])
                score[stimuli.value][p][r].push(record)
@@ -487,6 +506,11 @@
             var xnumber_  = stimuli.path.xnumber
             var number_   = stimuli.path.number 
             var group_    = 'sum'
+
+
+            console.log(xnumber_)
+            console.log(number_)
+            console.log(stimuli.path)
 
             if(sign_ == '+'){
               sign_ = 'addition'
@@ -657,8 +681,8 @@
             score = this._userProfile.Maths.numbers;
           }
           //console.log(score)
-          console.log(this._notionsInLesson[lessonNumber].numbers)
-          console.log(this._notionsInLesson[lessonNumber].skills)
+        //  console.log(this._notionsInLesson[lessonNumber].numbers)
+         // console.log(this._notionsInLesson[lessonNumber].skills)
 
          //  var available_numbers = this._notionsInLesson[lessonNumber].numbers;
          // console.log(lessonNumber)
@@ -668,7 +692,7 @@
           var available_numbers =[]
 
           _.each(staticData.numbers, function(num){
-          console.log(parseInt(num["VALUE"]))
+             // console.log(parseInt(num["VALUE"]))
               if(_.isFinite( parseInt(num["VALUE"])) && parseInt(num["LESSON"]) <= progressionNode.parent._lessonNumber){
                   available_numbers.push(num)
               }
