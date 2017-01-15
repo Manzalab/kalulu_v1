@@ -6,12 +6,17 @@
     var TracingFrame = require('./tracing_frame');
     var getFontRect  = require('../utils/get-font-rect');
     var graphemeSplines = require('../../assets/config/letters-descriptor').letters;
+    var graphStats = require('../../assets/config/graph-stats.json');
 
     function GraphemeButton (game, parent, data, font, callback) {
 
         Phaser.Group.call(this, game, parent, 'GraphemeButton_' + data.id);
         
+
+        this.isAvailable = false;
+
         this._graphemes = data.graphemes;
+        this._currentGrapheme = this._graphemes[0];
         this._coords = data.rectangle;
         this._font = font;
         this._fontImage = null;
@@ -42,29 +47,59 @@
 
     GraphemeButton.prototype.draw = function drawWith (tracer) {
 
+        var model = graphemeSplines[this._currentGrapheme];
+        if (!model) {
+            this.printFromFont();
+            return false;
+        }
         this._tracer = tracer;
-        // this.startTracingDelay = null;
-        // this.secondsOfDelay = 0.8;
-        var tracerScaleRatio = this.scaleRatio = 0.8;
+
+
+        var graphRect = graphStats[this._currentGrapheme];
+        console.log(graphRect);
+        this._tracer.width = graphRect.w;
+        this._tracer.height = graphRect.h;
+
+
+        var tracerScaleRatio = this.scaleRatio = this._getScale(this._currentGrapheme, graphRect);
 
         this.add(tracer.group);
         tracer.group.scale.set(tracerScaleRatio, tracerScaleRatio);
-        tracer.group.position.set(this._coords.x, this._coords.y);
         
 
-        console.log('Button ' + this._graphemeId + ' starts Tracing its Grapheme');
+        tracer.group.position.set(this._coords.x, this._coords.y);
+        var newPos = {
+            x : tracer.group.x - tracer.group.width/2,
+            y : tracer.group.y - tracer.group.height/2
+        };
+        tracer.group.position.set(newPos.x, newPos.y);
+
+        console.log('Button ' + this.name + ' starts Tracing its Grapheme');
         this.tracingOn = true;
 
-        Emitter.on(Events.TRIGGER_LAYOUT, this._onDrawingComplete);
-        Emitter.emit(Events.NEW_LETTER, graphemeSplines[this._graphemeId], this._graphemeId);
+        Emitter.on(Events.TRIGGER_LAYOUT, this._onDrawingComplete.bind(this));
+        Emitter.emit(Events.NEW_LETTER, model, this._graphemes[0]);
+        return true;
+    };
+
+    GraphemeButton.prototype._getScale = function getScale (graphemeId, graphRect) {
+
+        var lRatioX = this._coords.width / graphRect.w * 0.8;
+        var lRatioY = this._coords.height / graphRect.h * 0.8;
+        return Math.min(lRatioX, lRatioY);
+
     };
 
     GraphemeButton.prototype.update = function update () {
         this._tracer.update();
-    }
+    };
 
     GraphemeButton.prototype._onDrawingComplete = function onDrawingComplete () {
         console.log('[GraphemeButton] Grapheme Complete');
+
+        this.printAfterDrawing(this._tracer.group.position.x, this._tracer.group.position.y);
+        this.remove(this._tracer.group);
+        this.isAvailable = true;
     };
 
     GraphemeButton.prototype.printFromFont = function printFromFont () {
@@ -96,6 +131,7 @@
         // window.image1 = lImage;
         this._fontImage = lImage;
         this.add(lImage);
+        this.isAvailable = true;
     };
 
     GraphemeButton.prototype.printAfterDrawing = function printAfterDrawing (x, y) {
@@ -104,11 +140,11 @@
 
         var letterBitmapData = new Phaser.BitmapData(this.game, 'frozenLetter' + (this.frozenLetters.length + 1), 600*this.scaleRatio, 900*this.scaleRatio);
                                 // source, x, y, width, height, tx, ty, newWidth, newHeight
-        letterBitmapData.copy(this.tracingLayout.bitmap, 0, 0, 600, 900, 0, 0, 600*this.scaleRatio, 900*this.scaleRatio);
+        letterBitmapData.copy(this._tracer.bitmap, 0, 0, 600, 900, 0, 0, 600*this.scaleRatio, 900*this.scaleRatio);
         var lImage = new Phaser.Image(this.game, x, y, letterBitmapData);
         
         this.frozenLetters.push(lImage);
-        this.imagePhaseStage.add(lImage);
+        this.add(lImage);
     };
 
     GraphemeButton.prototype.printWithoutDrawing = function printWithoutDrawing (x, y) {

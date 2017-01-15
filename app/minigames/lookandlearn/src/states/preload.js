@@ -116,7 +116,24 @@ define([], function () {
     };
 
     Preload.prototype._addLanguageAssets = function preloadAddLanguageAssets() {
-        this.game.load.audio(this._pedagogicData.sound, this._pedagogicData.sound);
+        
+        var data = this._pedagogicData.data;
+        var videoSequence = data.videoPhase.sequence;
+        var i = 0;
+        for (i = 0 ; i < videoSequence.length ; i++) {
+            this.game.load.video('video_'+ data.notionIds[0] + '_' + (i+1), videoSequence[i]);
+        }
+
+        var count = this._pedagogicData.data.illustrationPhase.illustrations.length;
+        var key, assetsPaths;
+        for (i = 0; i < count; i++) {
+
+            key = 'notion_' + this._pedagogicData.data.notionIds[i];
+            assetsPaths = this._pedagogicData.data.illustrationPhase.illustrations[i];
+            
+            this.game.load.image(key, assetsPaths.image);
+            this.game.load.audio(key, assetsPaths.sound);
+        }
     };
 
     Preload.prototype._onComplete = function onPreloadComplete () {
@@ -133,7 +150,8 @@ define([], function () {
         var stateName = "";
 
         if (this._pedagogicData.discipline === 'language') {
-            stateName = this.game.stateNames.VIDEO_PHASE;
+            // stateName = this.game.stateNames.VIDEO_PHASE;
+            stateName = this.game.stateNames.ILLUSTRATION_PHASE;
         }
         else if (this._pedagogicData.discipline === 'maths') {
             // stateName = this.game.stateNames.BOARD_GAME_PHASE;
@@ -145,7 +163,7 @@ define([], function () {
 
     Preload.prototype.shutdown = function shutdownPreload () {
         this._pedagogicData = null;
-        this.game.cache.removeImage('preloaderBar')
+        this.game.cache.removeImage('preloaderBar');
         this.game = null;
     };
 

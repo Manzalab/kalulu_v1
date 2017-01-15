@@ -1,6 +1,6 @@
 
-// module.exports = getSingleNumber();
-module.exports = getMultiNumbers();
+module.exports = getSingleNumber();
+// module.exports = getMultiNumbers();
 // module.exports = getSkill();
 // module.exports = getShape();
 
@@ -33,7 +33,7 @@ function getSingleNumber () {
                 ]
             }
         }
-    }
+    };
 }
 
 function getMultiNumbers () {

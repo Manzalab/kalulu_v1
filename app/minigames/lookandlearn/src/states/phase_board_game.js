@@ -61,6 +61,7 @@
         this.frameTexture.fill(239, 241, 255, 1);
         this.lettersFrame = new Phaser.Sprite(this.game, this.game.width/2, 1000, this.frameTexture);
         this.lettersFrame.name = "Letters Frame";
+        this.lettersFrame.id = "Letters Frame";
         this.lettersFrame.anchor.set(0.5, 0.5);
         this.lettersFrame.scale.set(0, 0);
         this.imagePhaseStage.add(this.lettersFrame);
@@ -158,7 +159,7 @@
         console.log("Start Tracing");
         this.tracingOn = true;
         Emitter.on(Events.TRIGGER_LAYOUT, this.onFirstLetterTracingComplete);
-        var value = this.game.gameConfig.pedagogicData.data.notions[0].value;
+        var value = this.game.gameConfig.pedagogicData.data.notionIds[0];
         console.log('[Phase 1 Maths] About to trace <' + value + '>');
         this.progression.setModel(value);
     };
@@ -233,11 +234,12 @@
         this.makeBounceLettersFrame();
     };
 
-    BoardGamePhase.prototype.onClickOnLetters = function (onClickOnLetters) {
+    BoardGamePhase.prototype.onClickOnLetters = function onClickOnLetters (event) {
         console.log("here on click");
+        console.log(event);
         this.lettersFrame.inputEnabled = false;
         this.game.ui.disableUiMenu();
-        this.sound = this.game.sound.play('illustrative_sound_'+ this.notion.value);
+        this.sound = this.game.sound.play('notion_'+ this.notion.value);
         this.sound.onStop.addOnce(this.moveCell, this);
     };
 

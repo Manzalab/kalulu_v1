@@ -143,7 +143,7 @@
                 }, this);
             }, this);
         }, this);
-    }
+    };
 
     Kalulu.prototype.playHelpSequence = function playHelpSequence () { // emitted on click on kalulu button in the main game UI
         

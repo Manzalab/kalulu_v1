@@ -33,22 +33,18 @@
             var lButton = new GraphemeButton(this.game, this, lData, this.game.rafiki.font, callback);
 
             if (lData.toTrace) {
-                this._toUpdate.push(lButton);
-                lButton.draw(this._tracer);
+                if (lButton.draw(this._tracer))
+                    this._toUpdate.push(lButton);
             }
             else lButton.printFromFont();
 
             this._graphemeButtons[lButton.name] = lButton;
         }
 
-        // this._setTracerPositionToNotionX1(this._currentNotion);
-        // this.progression = new Tracing.ProgressionHandler(this.game.gameConfig.progression, this.game);
-        // this.tracingOn = false;
-
-        // this.onFirstLetterTracingComplete = this.onFirstLetterTracingComplete.bind(this);
-        // this.onSecondLetterTracingComplete = this.onSecondLetterTracingComplete.bind(this);
-
         if (this.game.gameConfig.globalVars) window.lookandlearn.interactiveZone = this;
+
+        this.game.eventManager.on('pause', this.disableGraphemeButtons, this);
+        this.game.eventManager.on('unPause', this.enableGraphemeButtons, this);
     }
 
     InteractiveZone.prototype = Object.create(Phaser.Group.prototype);
@@ -62,9 +58,10 @@
 
         for (var id in rawButtonsData) {
             buttonsData.push({
-                id : id,
+                id        : id,
                 graphemes : rawButtonsData[id],
                 rectangle : buttonRectangles[id],
+                toTrace   : true
             });
         }
         
@@ -74,7 +71,7 @@
     InteractiveZone.prototype._getButtonRectangles = function getButtonRectangles (rawButtonsData) {
 
         var buttonsCount = _.size(rawButtonsData);
-        var availableWidth = this.game.width - 400 // 400 for left and right ui
+        var availableWidth = this.game.width - 400; // 400 for left and right ui
         var sidesMargin = 30; // the space between grapheme buttons
         var widthPerNotion = (availableWidth / buttonsCount) - 2 * sidesMargin;
 
@@ -111,6 +108,8 @@
     InteractiveZone.prototype.start = function start () {
         
         console.info('InteractiveZone is now available');
+        this.disableInteractivity();
+
         this._isStarted = true;
 
         // this._timeBeforeTracing = Math.round(this.secondsOfDelay * 60);
@@ -120,9 +119,24 @@
     };
 
     InteractiveZone.prototype.update = function updateInteractiveZone () {
+        
         if (this._isStarted) {
             var count = this._toUpdate.length;
             for (var i = 0 ; i < count ; i++) this._toUpdate[i].update();
+        }
+
+        var allTracingComplete = true;
+        for (var buttonName in this._graphemeButtons) {
+            var lButton = this._graphemeButtons[buttonName];
+            if (!lButton.isAvailable) {
+                allTracingComplete = false;
+                break;
+            }
+        }
+        if (allTracingComplete) {
+            console.log('Complete');
+            this.enableInteractivity();
+            this.update = function () {};
         }
     };
 
@@ -192,6 +206,15 @@
 
     InteractiveZone.prototype.disableInteractivity = function disableInteractivity () {
         this.game.ui.disableUiMenu();
+        this.disableGraphemeButtons();
+    };
+
+    InteractiveZone.prototype.enableInteractivity = function enableInteractivity () {
+        this.game.ui.enableUiMenu();
+        this.enableGraphemeButtons();
+    };
+
+    InteractiveZone.prototype.disableGraphemeButtons = function disableGraphemeButtons () {
         
         for (var graphId in this._graphemeButtons) {
             if (!this._graphemeButtons.hasOwnProperty(graphId)) continue;
@@ -199,13 +222,28 @@
         }
     };
 
-    InteractiveZone.prototype.enableInteractivity = function enableInteractivity () {
-        this.game.ui.enableUiMenu();
+    InteractiveZone.prototype.enableGraphemeButtons = function enableGraphemeButtons () {
 
         for (var graphId in this._graphemeButtons) {
             if (!this._graphemeButtons.hasOwnProperty(graphId)) continue;
             this._graphemeButtons[graphId].enableInput();
         }
+    };
+
+    InteractiveZone.prototype.destroy = function destroy () {
+        this.game.eventManager.off('pause', this.disableGraphemeButtons, this);
+        this.game.eventManager.off('unPause', this.enableGraphemeButtons, this);
+
+        this._isStarted         = null;
+        this._graphemeButtons   = null;
+        
+        this._buttonsData       = null;
+        this._timeBeforeTracing = null;
+        this.secondsOfDelay     = null;
+        this.scaleRatio         = null;
+        
+        this._tracer            = null;
+        this._toUpdate          = null;
     };
 
     module.exports = InteractiveZone;

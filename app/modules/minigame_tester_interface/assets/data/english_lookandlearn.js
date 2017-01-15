@@ -33,7 +33,7 @@ function getSingleGrapheme () {
                 ]
             }
         }
-    }
+    };
 }
 
 function getMultipleGraphemesOneImage () {

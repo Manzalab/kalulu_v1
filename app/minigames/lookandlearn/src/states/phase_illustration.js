@@ -52,12 +52,12 @@ define([
 
         this.game.currentPhonemeSoundId = 'notion_' + this._notionIds[0];
         this.game.ui.resetKaluluSpeeches(2);
-    }
+    };
 
     IllustrationPhase.prototype._addPhaseStageToWorld = function addImagePhaseStageToWorld () {
         
         this._imagePhaseStage = new Phaser.Group(this.game, this.game.world, 'ImagePhaseStage');
-    }
+    };
 
     IllustrationPhase.prototype._initZones = function initPedagoImagePhase () {
         
@@ -86,7 +86,7 @@ define([
     IllustrationPhase.prototype._startPhase = function startPhase () {
         
         this.game.eventManager.emit('startGame');
-    }
+    };
 
     IllustrationPhase.prototype.update = function illustrationPhaseUpdate () {
         
@@ -153,6 +153,7 @@ define([
         this._notionIds = null;
         this._notionsFlags = null;
 
+        this._interactiveZone.destroy();
         // Emitter.listeners = {};
     };
 
