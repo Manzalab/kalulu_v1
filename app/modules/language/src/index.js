@@ -10,7 +10,7 @@
     var GP               = require ('./gp');
     var StimuliFactory   = require ('./stimuli_factory');
     
-    var constants        = require ('../config/config');
+    var constants        = require ('../config/config.json');
     var staticData = {
         name              : KALULU_LANGUAGE,
         language          : KALULU_LANGUAGE.toLowerCase(),
@@ -42,7 +42,7 @@
         // console.log(rafiki);
         // console.log(staticData);
         // console.log(userProfile);
-
+        console.log(constants);
 
         this.type = "Language";
 
@@ -221,7 +221,7 @@
         if (progressionNode.activityType === "lookandlearn") {
             return this.getPedagogicDataForLecture(progressionNode);
         }
-        else if (progressionNode.activityType === "assessment") {
+        else if (progressionNode.constructor.name === "Assessment" && progressionNode.activityType[0] === "fish") {
             return this.getPedagogicDataForAssessment(progressionNode, params);
         }
         else {
@@ -314,15 +314,26 @@
     };
 
     LanguageModule.prototype.getPedagogicDataForAssessment = function getPedagogicDataForAssessment (progressionNode) {
-        var constants = constants.assessments;
+
         var setup = {
             categories : ['WORD', 'NO WORD'],
-            timer : constants.timer,
-            minimumWordsSorted : constants.minimumWordsSorted,
-            minimumCorrectSortRatio : constants.minimumCorrectSortRatio,
-            stimuli: this._sortingGamesListByChapter[progressionNode.chapterNumber]
+            timer : constants.assessments.timer,
+            minimumWordsSorted : constants.assessments.minimumWordsSorted,
+            minimumCorrectSortRatio : constants.assessments.minimumCorrectSortRatio,
+            data : {
+                rounds : [
+                    {
+                        steps : [
+                            
+                        ]
+                    }
+                ]
+            }
         };
 
+        for (var element in this._sortingGamesListByChapter[progressionNode.chapterNumber]) {
+            setup.data.rounds[0].steps.push({stimuli : [this._sortingGamesListByChapter[progressionNode.chapterNumber][element]]});
+        }
         return setup;
     };
 
