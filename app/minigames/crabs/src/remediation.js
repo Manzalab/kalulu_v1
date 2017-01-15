@@ -146,9 +146,14 @@
             this.paused = true;
         }, this);
 
+
         this.game.eventManager.on('unPause', function () {
             this.paused = false;
-        }, this);       
+        }, this);
+
+        this.game.eventManager.on('help', function () {
+            this.timeWithoutClick = 0;
+        }, this);
 
         this.game.eventManager.on('exitGame', function () {
             if (this.game.gameConfig.debugPanel) this.clearDebugPanel();

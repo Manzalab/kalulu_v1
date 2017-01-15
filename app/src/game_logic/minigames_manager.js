@@ -68,6 +68,8 @@ define([
         this._currentProgressionNode = progressionNode;
         this._debugPanel = debugPanel;
 
+        console.clear();
+
         var functionName = 'start' + progressionNode.activityType.capitalise();
         this[functionName]();
     };

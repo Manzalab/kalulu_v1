@@ -124,18 +124,22 @@ define([
                     this.lillypads[i].y -= this.speed;
                     if (this.lillypads[i].y <= -this.lillypads[i].lillypadSprite.height) {
                         this.lillypads[i].y = this.parent.game.height + this.space / 2;
+                        this.lillypads[i].lillypadSprite.alpha = 1;
+                        this.lillypads[i].clicked = false;
                     }
                 }
                 else {
                     this.lillypads[i].y += this.speed;
                     if (this.lillypads[i].y >= this.parent.game.height + this.lillypads[i].lillypadSprite.height) {
                         this.lillypads[i].y = -this.space / 2;
+                        this.lillypads[i].lillypadSprite.alpha = 1;
+                        this.lillypads[i].clicked = false;
                     }
                 }
 
                 if (this.lillypads[i].y >= (this.parent.game.height - this.space) / 2
                     && this.lillypads[i].y <= (this.parent.game.height + this.space) / 2) {
-                    if (!this.lillypads[i].clickable && this.lillypads[i].text.visible) {
+                    if (!this.lillypads[i].clickable && !this.lillypads[i].clicked && this.lillypads[i].text.visible) {
                         this.lillypads[i].setClickable(true);
                         this.game.eventManager.emit('apparition', this.lillypads[i]);
                     }

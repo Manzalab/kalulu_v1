@@ -660,9 +660,23 @@
           console.log(this._notionsInLesson[lessonNumber].numbers)
           console.log(this._notionsInLesson[lessonNumber].skills)
 
-          var available_numbers = this._notionsInLesson[lessonNumber].numbers;
-          console.log(lessonNumber)
-          console.log(available_numbers)
+         //  var available_numbers = this._notionsInLesson[lessonNumber].numbers;
+         // console.log(lessonNumber)
+         // console.log(available_numbers)
+         // console.log(staticData.numbers)
+
+          var available_numbers =[]
+
+          _.each(staticData.numbers, function(num){
+          console.log(parseInt(num["VALUE"]))
+              if(_.isFinite( parseInt(num["VALUE"])) && parseInt(num["LESSON"]) <= progressionNode.parent._lessonNumber){
+                  available_numbers.push(num)
+              }
+
+          })
+         // console.log(real_available_numbers)
+
+
           var game = new Kalulu_maths(available_numbers,score,this._numberList, params, staticData);
           if(!game.data){
             // alert('finished !')
