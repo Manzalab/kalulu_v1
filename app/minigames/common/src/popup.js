@@ -13,7 +13,6 @@ define([
 
         this.x = game.world.centerX;
         this.y = game.world.centerY;
-        console.log(this.x,this.y)
 
         this.scale.x = scale;
         this.scale.y = scale;
