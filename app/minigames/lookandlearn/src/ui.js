@@ -22,12 +22,7 @@
         this.features = options;
         this.isNextButtonEnabled = false;
 
-        /**
-         * game.eventManager
-         * @type {EventEmitter}
-         **/
-        
-        // next Button Callback
+
         this.doActionNext = this.doActionVoid;
 
         this._initGameOverScreen(game); // the game over screen appears on top of the UI when the game ends
@@ -406,10 +401,6 @@
         this.game.eventManager.emit('exitGame');
     };
 
-    Ui.prototype.quitGame = function quitGame () {
-
-        //
-    };
 
     Ui.prototype.nextButtonNextStateCallback = function nextButtonNextStateCallback () {
         console.info("Starting " + this.nextState);

@@ -58,17 +58,18 @@
 
         this._gameInstance.eventManager.off("exitGame", this._quit, this);
         this._gameInstance.stateNames = null;
+        this._gameInstance.ui = null;
 
-        var rafiki = this._gameInstance.rafiki;
-        this._gameInstance.rafiki = null;
-        this._gameInstance.gameConfig = null;
-        
         this._debugger.destroy();
         this._debugger = null;
         
+        var rafiki = this._gameInstance.rafiki;
         this._gameInstance.destroy();
+        this._gameInstance.rafiki = null;
+        this._gameInstance.gameConfig = null;
         this._gameInstance = null;
 
+        console.clear();
         rafiki.close();
     };
 

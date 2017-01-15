@@ -142,18 +142,18 @@ define([
         var count = data.length;
         for (var i = 0; i < count ; i++) {
             this.game.cache.removeImage('notion_' + this._notionIds[i], true);
-            this.game.load.removeSound('notion_' + this._notionIds[i]);
+            this.game.cache.removeSound('notion_' + this._notionIds[i]);
         }
 
         if (this.game.tutoEnabled)
             this.game.cache.removeSound('kaluluIntro2');
         this.game.cache.removeSound('kaluluHelp2');
         this.game.cache.removeSound('kaluluGameOverWin2');
-        
+        this.game.currentPhonemeSoundId = null;
         this._notionIds = null;
         this._notionsFlags = null;
 
-        Emitter.listeners = {};
+        // Emitter.listeners = {};
     };
 
     return IllustrationPhase;

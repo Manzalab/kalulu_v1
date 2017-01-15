@@ -81,9 +81,13 @@
         this.clearDebugPanel();
         this._debugPanel = null;
         
-        this._config = config;
-        this._rafiki = rafiki;
-        this._gameInstance = game;
+        if (this._config.globalVars) {
+            window.lookandlearn = null;
+        }
+
+        this._config = null;
+        this._rafiki = null;
+        this._gameInstance = null;
     };
 
     module.exports = Debugger;
