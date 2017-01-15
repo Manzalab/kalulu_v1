@@ -25,6 +25,7 @@ define([
         this.x = x;
         this.paused = false;
         this.clickable = false;
+        this.clicked = false;
 
         this.clickSprite = game.add.sprite(0, 0, 'lillypad', 'FX_Nenuphar_0000');
         this.clickSprite.anchor.setTo(0.5, 0.5);
@@ -39,6 +40,13 @@ define([
         }, this);
 
         this.add(this.clickSprite);
+
+        this.highlight = game.add.sprite(0, 0, 'fx', 'FX_02');
+        this.highlight.anchor.setTo(0.5, 0.5);
+        this.highlight.scale.x = 0.4;
+        this.highlight.scale.y = 0.4;
+        this.highlight.visible = false;
+        this.add(this.highlight);
 
         this.lillypadSprite = game.add.sprite(0, 0, 'lillypad', 'Nenuphar_non_clicable');
         this.lillypadSprite.anchor.setTo(0.5, 0.5);
@@ -65,6 +73,7 @@ define([
                     if (this.text.text != "") this.sounds.textSound.play();
 
                     this.clickable = false;
+                    this.clicked = true;
                     this.onClick();
                     this.sounds.click.play();
                     this.game.eventManager.emit('pause');
@@ -114,6 +123,7 @@ define([
      * @private
      **/
     Lillypad.prototype.fadeOut = function () {
+        if (this.highlight.visible) this.highlight.visible = false;
         this.lillypadSprite.tween = this.game.add.tween(this.lillypadSprite);
         this.lillypadSprite.tween.to({ alpha: 0 }, 500, Phaser.Easing.Default, true, 0, 0, false);
         this.text.tween = this.game.add.tween(this.text);

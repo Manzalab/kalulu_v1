@@ -490,7 +490,11 @@
                 if (Config.debugPanel) this.setLocalPanel();
             }
             else if (this.consecutiveMistakes === params.incorrectResponseCountTriggeringSecondRemediation) {
-
+                for (var i = 0; i < this.columns[this.stepIndex].lillypads.length; i++) {
+                    if (this.columns[this.stepIndex].lillypads[i].text.text.toString() == this.correctResponses[this.stepIndex].value.toString()) {
+                        this.columns[this.stepIndex].lillypads[i].highlight.visible = true;
+                    }
+                }
                 this.game.eventManager.emit('help'); // listened by Kalulu to start the help speech; pauses the game in kalulu
                 if (Config.debugPanel) this.cleanLocalPanel();
                 this.game.params.decreaseLocalDifficulty();
