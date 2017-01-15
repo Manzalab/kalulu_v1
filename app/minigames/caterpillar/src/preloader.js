@@ -31,6 +31,7 @@
         loadSpecificAssets: function () {
 
             //Game specific Graphics
+            this.load.image('popup', 'minigames/common/assets/images/ui/popup.png');
             this.load.image('leaf', 'minigames/caterpillar/assets/images/Decors/Feuille.png');
             this.load.image('background', 'minigames/caterpillar/assets/images/Decors/Background.png');
             this.load.image('line', 'minigames/caterpillar/assets/images/Decors/Branche_boucle.png');
