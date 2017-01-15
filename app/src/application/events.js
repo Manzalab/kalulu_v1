@@ -55,6 +55,7 @@
             BACK_FROM_ACTIVITY            : { get: function () { return "backFromActivity"; } },
             KALULU_TOYCHEST_LOCKED        : { get: function () { return "kaluluToyChestLocked"; } },
             UNLOCK_REWARD_TOYCHEST        : { get: function () { return "unlockRewardToyChest"; } }
+			
         });
 
 
@@ -90,7 +91,9 @@
             UNLOCK_DEBUG             : { get: function () { return "unlockDebug"; } },
             UNLOCK_NEUROENERGY_DEBUG : { get: function () { return "unlockNeuroEnergyDebug"; } },
             SKIP_KALULU              : { get: function () { return "skipKalulu"; } },
-            RESET_SAVE_REQUEST       : { get: function () { return "resetSaveRequest"; } }
+            RESET_SAVE_REQUEST       : { get: function () { return "resetSaveRequest"; } },
+			UNLOCK_REWARD_TOYCHEST_DEBUG        : { get: function () { return "unlockRewardToyChestDebug"; } },
+			UNLOCK_ALL_REWARDS       : { get: function () { return "UnlockAllRewards"; } }
         });
 
 

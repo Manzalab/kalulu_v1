@@ -36,9 +36,7 @@ LESSON;ORTHOGRAPHY;PHONOLOGY;GPMATCH;NB GRAPH;NB LET;NB SYLL;AUDIOFILE NAME;IS W
 0;hufua;hu.fu.a;h-h.u-u.f-f.u-u.a-a;5;5;3;;0;CV.CV.V;0
 0;mtungi;m.tu.@i;m-m.t-t.u-u.ng-@.i-i;5;6;3;;0;C.CV.CV;0
 0;funguo;fu.@u.o;f-f.u-u.ng-@.u-u.o-o;5;6;3;;0;CV.CV.V;0
-0;mkono
-;m.ko.no
-;m-m.k-k.o-o.n-n.o-o;5;6;3;;0;C.CV.CV;0
+0;mkono;m.ko.no;m-m.k-k.o-o.n-n.o-o;5;6;3;;0;C.CV.CV;0
 0;unauma;u.na.u.ma;u-u.n-n.a-a.u-u.m-m.a-a;6;6;4;;0;V.CV.V.CV;0
 0;kichafu;ki.Ca.fu;k-k.i-i.ch-C.a-a.f-f.u-u;6;7;3;;0;CV.CV.CV;0
 0;mjomba;m.jo.Ba;m-m.j-j.o-o.mb-B.a-a;5;6;3;;0;C.CV.CV;0

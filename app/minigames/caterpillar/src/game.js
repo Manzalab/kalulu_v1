@@ -68,7 +68,7 @@
                 centralConch = false;
             }
 
-            this.ui = new Ui(this.game.params.getGlobalParams().totalTriesCount, this.game, centralConch, true, conch);
+            this.ui = new Ui(this.game.params.getGlobalParams().roundsCount, this.game, centralConch, true, conch);
             this.kalulu = new Kalulu(this.game);
 
             this.game.eventManager.emit('startGame');

@@ -30,7 +30,7 @@
     // ###########################################################################
 
     MinigameConfig.prototype.request = function requestMinigameConfig (path, callback) {
-        var prefix = KALULU_ENV === 'productionBuild' ? 'production.' : '' ;
+        var prefix = KALULU_ENV ? 'production.' : '' ;
         if (path.split('.').pop() !== 'json') path = path + '/' + prefix + 'config.json';
         console.info("[MinigameConfig] Requesting config file at " + path);
 

@@ -39,7 +39,6 @@
         this.events = this.parakeetSprite.events;
 
         this.events.onInputDown.add(function () {
-            console.log(this.clickable);
             if (this.clickable) {
                 this.clickable = false;
                 this.sounds.click[Math.floor(Math.random() * (this.sounds.click.length))].play();
@@ -75,6 +74,7 @@
         this.time = 1.7;
         this.flying = false;
         this.clickable = false;
+		this.animCanSetClickable = true;
         this.paused = false;
 
     };
@@ -85,12 +85,14 @@
     Parakeet.prototype.initEvents = function () {
         this.game.eventManager.on('unClickable', function () {
             this.clickable = false;
+			this.animCanSetClickable = false;
         }, this);
 
         this.game.eventManager.on('clickable', function () {
             if (!this.front)
+				this.animCanSetClickable = true;
                 this.parakeetSprite.animations.currentAnim.onComplete.addOnce(function () {
-                    this.clickable = true;
+                    this.clickable = this.animCanSetClickable;
                 }, this);
         }, this);
 
@@ -99,7 +101,10 @@
         }, this);
 
         this.game.eventManager.on('unPause', function () {
-            if (!this.front) this.clickable = true;
+            if (!this.front)
+			{
+				this.clickable = true;
+			}
         }, this);
 
         this.game.eventManager.on('clicked', function () {
@@ -135,6 +140,9 @@
             this.add(this.picture);
         }
     };
+	Parakeet.prototype.isVisible = function ()	{
+		return this.front;
+	};
 
     Parakeet.prototype.pause = function (bool) {
         this.paused = bool;

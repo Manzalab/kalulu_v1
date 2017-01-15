@@ -139,7 +139,7 @@
         this.results = this.game.pedagogicData.data; // for convenience we reference also the pedagogicData object under the name 'results' because we will add response data directly on it.
         this.consecutiveMistakes = 0;
         this.consecutiveSuccess = 0;
-        this.triesRemaining = params.getGlobalParams().totalTriesCount;
+        this.triesRemaining = params.getGlobalParams().roundsCount;
         this.lives = params.getGeneralParams().lives;
 
         this.won = false;
@@ -438,7 +438,7 @@
         if (this.lines.length === 3) {
             line = 1; branch = 2;
         }
-        else if (this.lines.length === 4 || this.line.length === 5) {
+        else if (this.lines.length === 4 || this.lines.length === 5) {
             line = 2; branch = 3;
         }
 

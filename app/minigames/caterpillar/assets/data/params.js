@@ -48,7 +48,7 @@
                     roundsCount                     : 3, //
                     lineCount                       : 3,
                     berriesOnScreen                 : 2,
-                    totalTriesCount                 : 5
+                    totalTriesCount                 : 3
                 },
                 localRemediation : {
                     minimumCorrectStimuliOnScreen   : {min : 2, max : 1}, //
@@ -64,7 +64,7 @@
                    roundsCount                     : 3, //
                    lineCount                       : 3,
                    berriesOnScreen                 : 2,
-                   totalTriesCount                 : 5
+                   totalTriesCount                 : 3
                 },
                 localRemediation: {
                     minimumCorrectStimuliOnScreen   : {min : 2, max : 1}, //
@@ -77,10 +77,10 @@
             { // LEVEL 3
                 globalRemediation: {
                    stepDistracterCount             : 3, //
-                   roundsCount                     : 3, //
+                   roundsCount                     : 4, //
                    lineCount                       : 4,
                    berriesOnScreen                 : 3,
-                   totalTriesCount                 : 6
+                   totalTriesCount                 : 3
                 },
                 localRemediation: {
                     minimumCorrectStimuliOnScreen   : {min : 2, max : 1}, //
@@ -93,10 +93,10 @@
             { // LEVEL 4
                  globalRemediation: {
                    stepDistracterCount             : 3, //
-                   roundsCount                     : 3, //
+                   roundsCount                     : 5, //
                    lineCount                       : 4,
                    berriesOnScreen                 : 4,
-                   totalTriesCount                 : 6
+                   totalTriesCount                 : 3
                 },
                 localRemediation: {
                     minimumCorrectStimuliOnScreen   : {min : 1, max : 1}, //
@@ -109,10 +109,10 @@
             { // LEVEL 5
                 globalRemediation: {
                    stepDistracterCount             : 3, //
-                   roundsCount                     : 3, //
+                   roundsCount                     : 5, //
                    lineCount                       : 5,
                    berriesOnScreen                 : 5,
-                   totalTriesCount                 : 7
+                   totalTriesCount                 : 3
                 },
                 localRemediation: {
                     minimumCorrectStimuliOnScreen   : {min : 1, max : 1}, //
