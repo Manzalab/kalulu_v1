@@ -50,7 +50,7 @@ define([
 
         this.text = game.add.text(0, 0, "- phaser -\nrocking with\ngoogle web fonts");
         this.text.font = "Arial";
-        this.text.text = text;
+        this.text.text = text.toString();
         this.text.fill = "black";
         this.text.fontSize = this.lillypadSprite.width / 3;
         this.text.anchor.setTo(0.5, 0.5);
@@ -151,7 +151,7 @@ define([
      * @private
      **/
     Lillypad.prototype.setText = function (value) {
-        this.text.text = value;
+        this.text.text = value.toString();
     };
 
     /**

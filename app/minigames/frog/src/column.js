@@ -124,12 +124,14 @@ define([
                     this.lillypads[i].y -= this.speed;
                     if (this.lillypads[i].y <= -this.lillypads[i].lillypadSprite.height) {
                         this.lillypads[i].y = this.parent.game.height + this.space / 2;
+                        this.lillypads[i].lillypadSprite.alpha = 1;
                     }
                 }
                 else {
                     this.lillypads[i].y += this.speed;
                     if (this.lillypads[i].y >= this.parent.game.height + this.lillypads[i].lillypadSprite.height) {
                         this.lillypads[i].y = -this.space / 2;
+                        this.lillypads[i].lillypadSprite.alpha = 1;
                     }
                 }
 

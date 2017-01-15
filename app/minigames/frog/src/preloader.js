@@ -31,6 +31,7 @@
         loadSpecificAssets: function () {
 
             //Game specific Graphics
+            this.load.image('popup', 'minigames/common/assets/images/ui/popup.png');
             this.game.load.atlasJSONHash('frog', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/FROGGER_Animations/frog.png', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/FROGGER_Animations/frog.json');
             this.game.load.atlasJSONHash('background', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/decors/background.png', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/decors/background.json');
             this.game.load.atlasJSONHash('lillypad', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/nenuphar/lillypad.png', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/nenuphar/lillypad.json');
