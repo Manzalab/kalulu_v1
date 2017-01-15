@@ -104,6 +104,10 @@
 
             this.game.time.advancedTiming = true; //Needed for rendering debug fps
         },
+
+        bringToTop: function (element){
+            this.game.world.bringToTop(element);
+        },
         
         /** 
          * Show FPS in top left corner
