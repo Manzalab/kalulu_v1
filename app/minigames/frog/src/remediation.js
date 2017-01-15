@@ -400,9 +400,9 @@
             }
             if (!win) {
 
-                context.sounds.right.play();
-                context.sounds.right.onStop.add(function () {
-                    context.sounds.right.onStop.removeAll();
+                context.sounds.wrong.play();
+                context.sounds.wrong.onStop.add(function () {
+                    context.sounds.wrong.onStop.removeAll();
                     if (this.game.discipline != "maths") context.sounds.correctRoundAnswer.play();                 
                 }, context);
                 context.game.eventManager.emit('offUi');
@@ -413,9 +413,9 @@
                 }, params.popupTimeOnScreen * 1000)
             }
             if (win) {
-                context.sounds.right.play();
-                context.sounds.right.onStop.add(function () {
-                    context.sounds.right.onStop.removeAll();
+                context.sounds.wrong.play();
+                context.sounds.wrong.onStop.add(function () {
+                    context.sounds.wrong.onStop.removeAll();
                     context.sounds.correctRoundAnswer.play();
                 }, context);
                 context.game.eventManager.emit('offUi');
