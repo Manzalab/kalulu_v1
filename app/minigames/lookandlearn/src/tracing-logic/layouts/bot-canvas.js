@@ -112,21 +112,13 @@ BotCanvasLayout.prototype.redoDrawing = function BotCanvasLayoutRedoDrawing(){
     this.painter.setup(this.model);
 }
 
-// BotCanvasLayout.prototype.setModel = function BotCanvasLayoutSetModel(letter){
-    
-//     this.letterID = letter;
-//     console.log(this);
-//     this.model = this.game.gameConfig.letters.letters[letter];
+BotCanvasLayout.prototype.updateLayout = function updateLayout (settings) {
 
-//     if(!this.settings.isTouchSensitive){
-//         this.disable();
-//     }
-
-//     this.clear();
-
-//     this.painter.setup(this.model);
-// };
-
+    console.log('updating Layout');
+    this.graphSettings = settings;
+    this.setupCanvas(this.graphSettings);
+    this.painter = createPainter(this.context, this.bitmap, this.graphSettings, this.game);
+};
 
 function createPainter(context, dest, settings, game){
     var pencil = new Tracing.Pencil(settings.pencilStyle, settings.drawOffset);
