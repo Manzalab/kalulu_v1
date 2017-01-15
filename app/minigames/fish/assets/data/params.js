@@ -38,8 +38,7 @@ define([], function () {
                 globalRemediation: {
                     gameTimer: 180,
                     minimumSortedWords: 10,
-                    minimumWinRatio: 0.5,
-                    totalTriesCount:20
+                    minimumWinRatio: 0.5
                 },
                 localRemediation: {
 
@@ -50,8 +49,7 @@ define([], function () {
                 globalRemediation: {
                     gameTimer: 180,
                     minimumSortedWords: 10,
-                    minimumWinRatio: 0.5,
-                    totalTriesCount: 20
+                    minimumWinRatio: 0.5
                 },
                 localRemediation: {
                    
@@ -61,8 +59,7 @@ define([], function () {
                 globalRemediation: {
                     gameTimer: 180,
                     minimumSortedWords: 10,
-                    minimumWinRatio: 0.5,
-                    totalTriesCount: 20
+                    minimumWinRatio: 0.5
                 },
                 localRemediation: {
                    
@@ -72,8 +69,7 @@ define([], function () {
                 globalRemediation: {
                     gameTimer: 180,
                     minimumSortedWords: 10,
-                    minimumWinRatio: 0.5,
-                    totalTriesCount: 20
+                    minimumWinRatio: 0.5
                 },
                 localRemediation: {
                    
@@ -83,8 +79,7 @@ define([], function () {
                 globalRemediation: {
                     gameTimer: 180,
                     minimumSortedWords: 10,
-                    minimumWinRatio: 0.5,
-                    totalTriesCount: 20
+                    minimumWinRatio: 0.5
                 },
                 localRemediation: {
                     

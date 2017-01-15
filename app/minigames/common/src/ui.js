@@ -17,13 +17,14 @@
      * @param lives {int} number of lives to display
 	 * @param game {Phaser.Game} game instance
 	**/
-    function Ui(lives, game, centralConch, replay, conch, kalulu,pause) {
+    function Ui(lives, game, centralConch, replay, conch, kalulu, pause, island) {
         console.log("[UI] constructor called");
         kalulu = (typeof kalulu !== 'undefined') ? kalulu : true;
         centralConch = (typeof centralConch !== 'undefined') ? centralConch : true;
         replay = (typeof replay !== 'undefined') ? replay : true;
         conch = (typeof conch !== 'undefined') ? conch : true;
         pause = (typeof pause !== 'undefined') ? pause : true;
+        island = (typeof island !== 'undefined') ? island : true;
 
         Phaser.Group.call(this, game);
 
@@ -33,6 +34,7 @@
         this.features.replay = replay;
         this.features.kalulu = kalulu;
         this.features.pause = pause;
+        this.features.island = island;
 
         /**
          * game.eventManager
@@ -426,6 +428,14 @@
             this.pauseButton.inputEnabled = false;
             this.pauseButton.frameName = 'PauseButton0004.png';
         }
+        if (this.features.island) {
+            this.quitButton.inputEnabled = true;
+            this.quitButton.frameName = 'GardenScreenButton0001.png';
+        }
+        else {
+            this.quitButton.inputEnabled = false;
+            this.quitButton.frameName = 'GardenScreenButton0004.png';
+        }
     };
 
     /**
@@ -495,9 +505,8 @@
      * emit 'startGame'; listenned by Remediation script
      * @private
      **/
-    Ui.prototype.onClickOnGameOverScreenReplayButton = function onClickOnGameOverScreenReplayButton() 
-    {
-        if(this.game.eventManager)
+    Ui.prototype.onClickOnGameOverScreenReplayButton = function onClickOnGameOverScreenReplayButton() {
+        if (this.game.eventManager)
             this.game.eventManager.emit('replay'); //listened to by
         console.log("input on replay bouton");
     };
