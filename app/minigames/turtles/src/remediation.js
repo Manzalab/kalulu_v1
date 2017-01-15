@@ -31,6 +31,7 @@
         this.consecutiveMistakes = 0;
         this.consecutiveSuccess = 0;
         this.lives = 0;
+		this.highlightGoodResponses = false;
         /**
          * respawn timer
          * @type {int} 
@@ -364,13 +365,17 @@
             if (this.consecutiveMistakes == this.game.params.getGeneralParams().incorrectResponseCountTriggeringSecondRemediation) {
                 this.consecutiveMistakes = 0;
                 this.game.eventManager.emit('help');
-                if (this.game.gameConfig.debugPanel) this.cleanLocalPanel();
+				this.highlightGoodResponses = true;
+				this.HighlightAllGoodResponses();
+                if (this.game.gameConfig.debugPanel)
+					this.cleanLocalPanel();
                 this.game.params.decreaseLocalDifficulty();
-                if (this.game.gameConfig.debugPanel) this.setLocalPanel();
+                if (this.game.gameConfig.debugPanel)
+					this.setLocalPanel();
             }
-            else {
-                this.game.eventManager.emit('playCorrectSound');
-            }
+            // else {
+                // this.game.eventManager.emit('playCorrectSound');
+            // }
         }
         else if (this.triesRemaining === 0 && this.lives > 0) {
             this.gameOverWin();
@@ -400,6 +405,14 @@
 
         }
     };
+	Remediation.prototype.HighlightAllGoodResponses = function ()
+	{
+		for (var i = 0 ; i < this.turtles.length; i++) {
+			if (this.turtles[i].text.text == this.correctResponses[this.stepIndex].value)
+				this.turtles[i].highlight.visible = true;
+        }
+	}
+	
 
     Remediation.prototype.spawnTurtle = function () {
         var localParams = this.game.params.getLocalParams();
@@ -450,7 +463,10 @@
 
         this.framesToWaitBeforeNextSpawn = localParams.respawnTime * 60;
         this.game.eventManager.emit('newTurtle');
-    };
+		
+		if (this.highlightGoodResponses)
+			this.HighlightAllGoodResponses();
+	};
 
     Remediation.prototype.gameOverWin = function gameOverWin() {
 
