@@ -31,6 +31,7 @@
         loadSpecificAssets: function () {
 
             //Game specific Graphics
+            this.load.image('popup', 'minigames/common/assets/images/ui/popup.png');
             this.load.image('sky', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/decors/CIEL_Background.png');
             this.load.image('ground', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/decors/Ground.png');
             this.load.image('tree', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/decors/Palmier2.png');

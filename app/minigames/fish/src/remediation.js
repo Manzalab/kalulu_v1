@@ -86,7 +86,7 @@
         this.won = false;
         this.timerFinished = false;
 
-        this.triesRemaining = params.getGlobalParams().totalTriesCount;
+        this.triesRemaining = this.game.pedagogicData.data.rounds[0].steps.length;
 
         this.background = new Background(params.getGlobalParams().gameTimer, this.game);
 
@@ -116,7 +116,7 @@
 
         this.game.eventManager.on('timerFinished', function () {
             this.timerFinished = true;
-            if (this.score >= globalParams.minimumSortedWords && this.score / (globalParams.totalTriesCount - this.triesRemaining) >= globalParams.minimumWinRatio) {
+            if (this.score >= globalParams.minimumSortedWords && this.score / (this.game.pedagogicData.data.rounds[0].steps.length - this.triesRemaining) >= globalParams.minimumWinRatio) {
                 this.gameOverWin();
             }
             else {
@@ -134,6 +134,21 @@
             }
             if (direction == 8) {
                 object.flyTo(this.buoys.right.x, this.buoys.right.y);
+                this.direction = "right";
+            }
+        }, this);
+
+        this.game.eventManager.on('click', function (buoy) {
+            this.fish.clickable = false;
+            this.game.eventManager.emit('pause');
+            if (this.background.enabled) this.background.addTime(this.fish.time);
+            if (buoy == this.buoys.left) {
+                this.fish.flyTo(this.buoys.left.x, this.buoys.left.y);
+
+                this.direction = "left";
+            }
+            else {
+                this.fish.flyTo(this.buoys.right.x, this.buoys.right.y);
                 this.direction = "right";
             }
         }, this);
@@ -253,14 +268,19 @@
     /**
     **/
     Remediation.prototype.newStep = function () {
-        this.stepIndex = Math.floor(Math.random() * (this.stimuli.length));
 
-        if (!this.tutorial1 && !this.tutorial2)
+        if (!this.tutorial1 && !this.tutorial2) {
+            this.stepIndex = Math.floor(Math.random() * (this.stimuli.length));
+
             for (var i = 0 ; i < this.stimuli[this.stepIndex].length; i++) {
                 var apparition = new this.game.rafiki.StimulusApparition(this.stimuli[this.stepIndex][i].correctResponse);
                 this.stimuli[this.stepIndex][i].apparitions = [];
                 this.stimuli[this.stepIndex][i].apparitions.push(apparition);
             }
+        }
+        else if (this.tutorial1 && this.tutorial2) this.stepIndex = 0;
+        else this.stepIndex = 1;
+
 
         if (this.game.discipline != "maths") this.fish.reset(this.stimuli[this.stepIndex][0].value);
         else {
@@ -311,7 +331,7 @@
         }
         else {
             var globalParams = this.game.params.getGlobalParams();
-            if (this.score / (globalParams.totalTriesCount - this.triesRemaining) >= globalParams.minimumWinRatio) {
+            if (this.score / (this.game.pedagogicData.data.rounds[0].steps.length - this.triesRemaining) >= globalParams.minimumWinRatio) {
                 this.gameOverWin();
             }
             else {
@@ -354,7 +374,7 @@
             }, this);
         }
         else {
-            if (this.score / (globalParams.totalTriesCount - this.triesRemaining) >= globalParams.minimumWinRatio) {
+            if (this.score / (this.game.pedagogicData.data.rounds[0].steps.length - this.triesRemaining) >= globalParams.minimumWinRatio) {
                 this.gameOverWin();
             }
             else {

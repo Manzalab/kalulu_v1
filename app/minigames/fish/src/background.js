@@ -52,7 +52,7 @@
         //this.add(this.boat)
 
         this.initEvents();
-        this.sunTrajectory(1600, 340);
+        this.sunTrajectory(1600, 550);
     };
 
     Background.prototype = Object.create(Phaser.Group.prototype);

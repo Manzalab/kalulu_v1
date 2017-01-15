@@ -86,9 +86,8 @@
      * - 'endGameWin' when all animations and sounds completed ; listened by UI
 	**/
     Kalulu.prototype.initEvents = function () {
-        
         this.game.eventManager.on('startGame', function () {
-            if (this.game.gameConfig.skipKalulu || this.game.gameConfig.skipKaluluIntro) {
+            if (this.game.gameConfig.skipKalulu || this.game.gameConfig.skipKaluluIntro || this.game.latestRecord != undefined) {
                 this.game.eventManager.emit('pause');
                 this.game.eventManager.emit('startUi');
                 return;
@@ -96,7 +95,7 @@
             this.game.eventManager.emit('pause');
             this.sounds.currentSound = this.sounds.on;
             this.sounds.on.play();
-            this.parent.bringToTop(this.kaluluSprite);
+            this.parent.bringToTop(this);
             this.kaluluSprite.visible = true;
             this.kaluluSprite.loadTexture('kaluluIntro', 0);
             this.kaluluSprite.animations.add('introAnim', this.frameNames['introAnim'], 15, false, false);
@@ -138,7 +137,7 @@
             this.game.eventManager.emit('offUi');
             this.sounds.currentSound = this.sounds.on;
             this.sounds.on.play();
-            this.parent.bringToTop(this.kaluluSprite);
+            this.parent.bringToTop(this);
             this.kaluluSprite.visible = true;
             this.kaluluSprite.loadTexture('kaluluIntro', 0);
             this.kaluluSprite.animations.add('introAnim', this.frameNames['introAnim'], 15, false, false);
@@ -220,7 +219,7 @@
         this.game.eventManager.emit('pause'); // ui react by disabling the menu, jellyfishes pause, and remediation pause
         this.sounds.currentSound = this.sounds.on;
         this.sounds.on.play();
-        this.parent.bringToTop(this.kaluluSprite);
+        this.parent.bringToTop(this);
         this.kaluluSprite.visible = true;
         this.kaluluSprite.loadTexture('kaluluIntro', 0);
         this.kaluluSprite.animations.add('introAnim', this.frameNames['introAnim'], 15, false, false);

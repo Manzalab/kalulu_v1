@@ -31,6 +31,11 @@
         this.paused = false;
         this.spawned = true;
         this.hasExitedScreen = false;
+
+        this.highlight = game.add.sprite(0, 10, 'fx', 'FX_02');
+        this.highlight.anchor.setTo(0.5, 0);        
+        this.highlight.visible = false;
+        this.add(this.highlight);
         
         var rand = Math.floor(Math.random() * 2 + 1);// Used only to chose between the two jellyfish graph
 
@@ -46,6 +51,9 @@
         this.currentFrame = 0; // Indicates on which frame the animations is; used only for the speedFunction
         this.smooth = 0; // Since currentFrame is an int and increments slowly, we need this float to have a smoother speedFunction
         this.add(this.jellyfishSprite);
+
+        this.highlight.width = this.jellyfishSprite.width / 1.5;
+        this.highlight.scale.y = this.highlight.scale.x;
 
         /**
          * TextSprite

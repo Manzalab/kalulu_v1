@@ -2,12 +2,14 @@
     './tree',
     'common/src/fx',
     './board',
-    'dat.gui'
+    'dat.gui',
+    'common/src/popup'
 ], function (
     Tree,
     Fx,
     Board,
-    Dat
+    Dat,
+    Popup
 ) {
     'use strict';
 
@@ -38,6 +40,8 @@
         this.stepIndex = 0;
         this.timeWithoutClick = 0;
 
+        this.popup = new Popup(game);
+
         this.initGame();
 
         if (this.game.gameConfig.globalVars) window.cocolision.cocolision = this.cocolision;
@@ -57,7 +61,6 @@
         this.board = new Board(550, game.height - 50, game);
 
         this.initRound(this.roundIndex);
-        console.log(this.sequence)
         if (this.game.discipline == 'maths') this.sequence.numberIndex = this.board.setTextMaths(this.sequence.sequence);
         this.setTexts();
         this.fx = new Fx(game);
@@ -226,6 +229,8 @@
             this.falseResponses.push(falseStepResponses);
             this.correctResponses.push(correctStepResponses);
         }
+        if (this.game.discipline != 'maths') this.popup.setText(this.correctWord.value);
+        else this.popup.setTextMaths(this.sequence.truesequence);
     };
 
     Remediation.prototype.setTexts = function () {
@@ -340,6 +345,8 @@
             this.roundIndex++;
             this.triesRemaining--;
             this.game.eventManager.emit('success');
+            this.game.eventManager.emit('offUi');
+            this.popup.show(true);
             if (this.triesRemaining > 0) {
                 if (this.game.discipline === 'language') this.sounds.correctRoundAnswer.play();
                 if (this.game.gameConfig.debugPanel) this.cleanLocalPanel();
@@ -351,6 +358,7 @@
                     if (context.game.discipline == 'maths') {
                         context.sequence.numberIndex = context.board.setTextMaths(context.sequence.sequence);
                     }
+                    context.popup.show(false);
                     context.getNewCoconuts();
                     context.game.eventManager.emit('playCorrectSound');
                 }, 3 * 1000);
@@ -378,8 +386,14 @@
 
                 var context = this;
                 setTimeout(function () {
-                    context.game.eventManager.emit('playCorrectSound');//listened here; check initEvents
-                }, 1000);
+                    context.game.eventManager.emit('playCorrectSoundNoUnPause');//listened here; check initEvents
+                    context.game.eventManager.emit('offUi');
+                    context.popup.show(true);
+                    setTimeout(function () {
+                        context.popup.show(false);
+                        context.game.eventManager.emit('unPause');
+                    }, params.popupTimeOnScreen * 1000)
+                }, 200);
 
                 if (this.game.gameConfig.debugPanel) this.cleanLocalPanel();
                 this.game.params.decreaseLocalDifficulty();

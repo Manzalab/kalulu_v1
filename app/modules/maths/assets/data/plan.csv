@@ -22,8 +22,8 @@ LESSON;CHAPTER;NOTION ID;LECTURE VIDEO;LECTURE IMAGE;LECTURE TRACING;MINIGAME 1 
 21;7;19;true;true;true;crabs;caterpillar;frog
 22;7;20;true;true;true;jellyfish;ants;turtles
 23;8;twoby;true;false;false;crabs;frog;caterpillar
-24;8;addition;true;true;true;monkeys;caterpillar;monkeys
-25;8;substraction;true;true;true;monkeys;turtles;monkeys
+24;8;add1;true;true;true;monkeys;caterpillar;monkeys
+25;8;sub1;true;true;true;monkeys;turtles;monkeys
 27;9;25;true;true;true;ants;monkeys;turtles
 28;10;30;true;true;true;crabs;frog;turtles
 29;10;36;true;true;true;ants;caterpillar;turtles
