@@ -282,9 +282,11 @@
                 setTimeout(function () {
                     para1.flyTo(para1.parent.width * 4 / 3, para1.parent.height - 100);
                     para2.flyTo(para2.parent.width * 4 / 3, para2.parent.height);
-                    context.game.eventManager.emit('clickable');
-					context.game.eventManager.emit('unPause');
-					if (context.parakeetPairsRemaining == 0) {
+                    if (context.parakeetPairsRemaining > 0) {
+                        context.game.eventManager.emit('clickable');
+					   context.game.eventManager.emit('unPause');
+                    }
+                    else if (context.parakeetPairsRemaining == 0) {
 					    context.gameOverWin();
                     }
                 }, para2.time * 1000 + 3000);
