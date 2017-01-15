@@ -52,7 +52,12 @@ define([
         
         // Setup Buttons
         this._lookAndLearnButton.setup(this._node.children[0], this._onClickOnActivity.bind(this), true);
+        this._lookAndLearnButton._upStyle       = { font : "140px Arial", fill : "#FFFFFF", align : "center" };
+        this._lookAndLearnButton._overStyle     = { font : "160px Arial", fill : "#FFFFFF", align : "center" };
+        this._lookAndLearnButton._downStyle     = { font : "160px Arial", fill : "#FFFFFF", align : "center" };
+        this._lookAndLearnButton._disabledStyle = { font : "140px Arial", fill : "#777777", align : "center" };
         this._lookAndLearnButton.setText(this.stringifyTargetNotions(this._node));
+        this._lookAndLearnButton._setModeNormal();
         this._topMinigameButton.setup(this._node.children[1], this._onClickOnActivity.bind(this), true);
         this._rightMinigameButton.setup(this._node.children[2], this._onClickOnActivity.bind(this), true);
         this._leftMinigameButton.setup(this._node.children[3], this._onClickOnActivity.bind(this), true);
