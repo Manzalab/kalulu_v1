@@ -95,7 +95,7 @@
             this.game.eventManager.emit('pause');
             this.sounds.currentSound = this.sounds.on;
             this.sounds.on.play();
-            this.parent.bringToTop(this.kaluluSprite);
+            this.parent.bringToTop(this);
             this.kaluluSprite.visible = true;
             this.kaluluSprite.loadTexture('kaluluIntro', 0);
             this.kaluluSprite.animations.add('introAnim', this.frameNames['introAnim'], 15, false, false);
@@ -137,7 +137,7 @@
             this.game.eventManager.emit('offUi');
             this.sounds.currentSound = this.sounds.on;
             this.sounds.on.play();
-            this.parent.bringToTop(this.kaluluSprite);
+            this.parent.bringToTop(this);
             this.kaluluSprite.visible = true;
             this.kaluluSprite.loadTexture('kaluluIntro', 0);
             this.kaluluSprite.animations.add('introAnim', this.frameNames['introAnim'], 15, false, false);
@@ -219,7 +219,7 @@
         this.game.eventManager.emit('pause'); // ui react by disabling the menu, jellyfishes pause, and remediation pause
         this.sounds.currentSound = this.sounds.on;
         this.sounds.on.play();
-        this.parent.bringToTop(this.kaluluSprite);
+        this.parent.bringToTop(this);
         this.kaluluSprite.visible = true;
         this.kaluluSprite.loadTexture('kaluluIntro', 0);
         this.kaluluSprite.animations.add('introAnim', this.frameNames['introAnim'], 15, false, false);

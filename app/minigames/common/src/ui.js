@@ -251,7 +251,7 @@
 
         this.game.eventManager.on('startUi', function () { // emitted by the class Kalulu. It is emitted at game start, right after Kalulu finishes its intro speech.
             this.blackOverlay.visible = true;
-            this.parent.game.world.bringToTop(this.blackOverlay);
+            this.parent.game.world.bringToTop(this);
             if (this.features.centralConch) this.centralConchButton.visible = true;
             else {
                 this.game.eventManager.emit('unPause');
@@ -269,7 +269,7 @@
 
         this.game.eventManager.on('offUi', function () { // emitted from various places, when we need to disable the UI
             //this.parent.game.world.bringToTop(this);
-            this.parent.game.world.bringToTop(this.blackOverlay);
+            this.parent.game.world.bringToTop(this);
             this.blackOverlay.visible = true;
             this.disableUiMenu();
         }, this);
@@ -340,7 +340,7 @@
 
         this.sounds.openQuitPopup.play();
         this.blackOverlay.visible = true;
-        this.parent.game.world.bringToTop(this.pausePopup);
+        this.parent.game.world.bringToTop(this);
         this.quitPopup.visible = !this.quitPopup.visible;
         this.game.eventManager.emit('pause');
     };
@@ -446,7 +446,7 @@
     Ui.prototype.onClickOnPauseButton = function onClickOnPauseButton() {
         this.sounds.openQuitPopup.play();
         this.blackOverlay.visible = true;
-        this.parent.game.world.bringToTop(this.pausePopup);
+        this.parent.game.world.bringToTop(this);
         this.pausePopup.visible = !this.pausePopup.visible;
         this.game.eventManager.emit('pause');
     };

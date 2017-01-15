@@ -95,6 +95,7 @@ define([
             if (this.lillypads[i] != lillypad) {
                 this.lillypads[i].fadeOut();
             }
+            this.lillypads[i].highlight.visible = false;
         }
     }
 

@@ -33,6 +33,7 @@
         this.jellyfishesSpawned = 0;
         this.targetJellyfishesSpawned = 0;
         this.distracterJellyfishesSpawned = 0;
+        this.highlightNextSpawn = false;
         
         this.paused = false;
         this.won = false;
@@ -264,7 +265,15 @@
                 if (this.game.gameConfig.debugPanel) this.setLocalPanel();
             }
             else if (this.consecutiveMistakes === params.incorrectResponseCountTriggeringSecondRemediation) {
-                
+                this.highlightNextSpawn = true;
+                for (var i = 0; i < this.jellyfishes.length; i++) {
+                    if (this.jellyfishes[i].apparition.isCorrect) {
+                        this.jellyfishes[i].highlight.visible = true;
+                        this.highlightNextSpawn = false;
+                    }
+                }
+
+
                 this.game.eventManager.emit('help'); // listened by Kalulu to start the help speech; pauses the game in kalulu
                 if (this.game.gameConfig.debugPanel) this.cleanLocalPanel();
                 this.game.params.decreaseLocalDifficulty();
@@ -361,6 +370,8 @@
         else value.picture = false;
         lJellyfish = new Jellyfish(columnNumber * this.game.width / (globalParams.columnCount + 1), this.game, value, localParams.speed);
         this.jellyfishes.push(lJellyfish);
+
+        if (this.highlightNextSpawn && isTargetValue) lJellyfish.highlight.visible = true;
 
         j = 0;
         console.log(this.results);
