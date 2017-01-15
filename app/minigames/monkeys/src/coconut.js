@@ -89,8 +89,9 @@
     };
 
     Coconut.prototype.setText = function (value) {
+        if (typeof value === 'undefined') value = "";
         this.text.text = value.toString();
-        this.sound = this.parent.game.add.audio(value);
+        this.sound = this.parent.game.add.audio(value.toString());
     };
 
     Coconut.prototype.flyTo = function (newX, newY, time) {
