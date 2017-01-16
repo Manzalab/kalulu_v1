@@ -6,7 +6,7 @@ define([], function () {
 	'strict mode';
 
 	//KEYS
-	var USER_PROFILES = "UserProfiles";
+	var USER_PROFILES = "Kalulu_UserProfiles";
 
 	function LocalStorageModule () {
 		this.store = window.localStorage;
@@ -45,7 +45,7 @@ define([], function () {
 		var save = this.store.getItem(USER_PROFILES);
 		// console.log(save);
 		save = JSON.parse(save);
-		save['user'] = value;
+		save['kalulu_user'] = value;
 		// console.log(save);
 		save = JSON.stringify(save);
 		var a = this.store.setItem(USER_PROFILES, save);
