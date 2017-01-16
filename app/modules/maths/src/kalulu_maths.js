@@ -13,14 +13,15 @@ var FakeScore 			= require('./fakescore.js')
 var FakeShapesData 		= require('./fakeshapesdata.js')
 
 var Kalulu_maths = function(available_numbers, score, numbers_data__, params___, config ){
-	
-	// console.log(config)
+	//console.log('numbers_data__')
+
+	//console.log(numbers_data__)
 	
 	// repool "count"	
 	var tries = 0;
 
 	console.log('available_numbers size '+available_numbers.length)
-	console.log('numbers_data__ size '+numbers_data__.length)
+	//console.log('numbers_data__ size '+numbers_data__.length)
 
 	/// FAKE numbers data.
 	//var numbers_data 	= new FakeNumbersData()
@@ -135,7 +136,7 @@ var loop_on_array = params[loop_on]
 
 			_.each(temp_rounds_results, function(r, ri){
 				if(ri<params.parakeetPairs ){
-				 	console.log(r.steps[0].stimuli)
+				    // console.log(r.steps[0].stimuli)
 					// parakeetPairs
 					mixed_steps.steps[0].stimuli.push(r.steps[0].stimuli[0])
 				}	

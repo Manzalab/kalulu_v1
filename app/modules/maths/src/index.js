@@ -263,6 +263,7 @@
        var gameGroup = results._results.gameGroup
 
 
+
        console.log(results)
 
 
@@ -274,7 +275,7 @@
             return false;
         }
         var result = results._results.data.rounds;
-        console.log(result)
+    //    console.log(result)
 
         var flawlessGame = true;
         var score ={}
@@ -282,7 +283,7 @@
             score = this._userProfile.Maths.numbers;
         }
 
-        console.log(score)
+       //  console.log(score)
 
         var roundsCount = result.length;
 
@@ -291,6 +292,7 @@
         
         rounds:
         for (var r = 0; r < roundsCount ; r++) { 
+          console.log('score at round'+r+'...')
             //var currentRoundPath = result[r].path;
 
             //console.log(result[r].path)
@@ -300,7 +302,10 @@
             var perfect_step = true;
 
             steps:
+
+
             for (var s = 0 ; s < stepsCount ; s++) {
+               console.log('.. at step'+s+'...')
                 var currentStep = currentRound.steps[s];
                 // console.log(currentStep)
                 var stimuliCount = currentStep.stimuli.length;
@@ -313,9 +318,36 @@
                 stimuli:
 
                 for (var st = 0 ; st < stimuliCount ; st++) {
+                   console.log('.. at stimuli #'+st+'...')
                      var has_score = null
                      var currentStimulus = currentStep.stimuli[st];
-                     //console.log(currentStimulus)
+                     console.log(currentStimulus)
+                    
+
+
+                     if(results._results.gameId == 'parakeets'){
+                       console.log('pairing special case..')
+                    //   saved_values.push(currentStimulus.value)
+
+                       if(results.hasWon && currentStimulus.value !==""){
+                         
+
+                          var fake_apparition = {
+                            isClicked : true,
+                            isCorrect : true,
+                            elapsedTime : 100
+
+
+                          }
+                          currentStimulus.apparitions.push(fake_apparition)
+                          
+                          //this._addRecordOnNotion(currentStimulus,scoreObject, gameGroup )
+
+                        ///
+                       }
+                     }
+
+
                      if (!currentStimulus.apparitions) {
                         // console.warn("LanguageModule : stimulus has no apparitions :");
                         // console.log(stimulus);
@@ -347,15 +379,15 @@
                           perfect_step = false
                         }
 
-                         if (!apparition.exitTime) { // the stimuli that had not the opportunity to complete their appearance (game end happened) have no exit time
-                           //  continue;
+                         if (!apparition.elapsedTime) { // the stimuli that had not the opportunity to complete their appearance (game end happened) have no exit time
+                            continue;
                          }
 
                           //var elapsed = apparition.exitTime - apparition.apparitionTime;
                           // var elapsed = apparition.exitTime - apparition.apparitionTime;
                           
                           var sc = 0
-                          if(apparition.isCorrect === true &&  apparition.isClicked === true ){
+                          if(apparition.isClosed === true &&  (apparition.isCorrect === true || apparition.isCorrect==1) &&  (apparition.isClicked === true  || apparition.isClicked ==1  ) ){
                             sc = 1
                           }
                           var scoreObject = {
@@ -364,15 +396,18 @@
                               score       :  sc
                           };
 
-                           if (scoreObject.score === 0) {
-                            console.log("flawwless set to false");
+                        
+
+                        if (scoreObject.score === 0) {
+                            console.log("flawless set to false");
 
                             flawlessGame = false;
-                            console.log(currentStimulus)
-                            console.log("value : " + currentStimulus.value + ", isCR : " + apparition.isCorrect + ", clicked : " + apparition._isClicked);
+                            // console.log(currentStimulus)
+                            // console.log("value : " + currentStimulus.value + ", isCR : " + apparition.isCorrect + ", clicked : " + apparition._isClicked);
                         }
                           
-                        saved_values.push(currentStimulus.value)
+                        var debug_save = {value:currentStimulus.value , score:scoreObject.score }
+                        saved_values.push(debug_save)
                         this._addRecordOnNotion(currentStimulus,scoreObject, gameGroup )
 
 
@@ -422,7 +457,7 @@
         }
         
         if (results.hasWon) {
-                      console.log('flawless case 1B')
+            console.log('player WON case')
 
             currentProgressionNode.isCompleted = true;
 
@@ -452,9 +487,10 @@
         console.log('saved_values')
 
         console.log(saved_values)
+        saved_values = _.uniq(saved_values)
         _.each(saved_values, function(v){
-
-          console.log(score[v])
+          console.log('.value :'+v.value)
+          console.log(score[v.value][gameGroup])
 
         })
 
@@ -483,11 +519,11 @@
           var r = stimuli.path[1] 
           //console.log(score)
           if(score && score[stimuli.value] &&  score[stimuli.value][p] && score[stimuli.value][p][r]){
-               console.log('score[value][p][r]')
-               console.log(p)
-               console.log(r)
+              // console.log('score[value][p][r]')
+              // console.log(p)
+              // console.log(r)
 
-               console.log(score[stimuli.value][p][r])
+            //   console.log(score[stimuli.value][p][r])
                score[stimuli.value][p][r].push(record)
                var tscore = score[stimuli.value][p][r]
 
@@ -504,14 +540,14 @@
 
             var side_     = stimuli.path.side
             var sign_     = stimuli.path.sign
-            var xnumber_  = stimuli.path.xnumber
+            var xnumber_  = stimuli.path.xnumber_name
             var number_   = stimuli.path.number 
             var group_    = 'sum'
 
 
             console.log(xnumber_)
             console.log(number_)
-            console.log(stimuli.path)
+          //  console.log(stimuli.path)
 
             if(sign_ == '+'){
               sign_ = 'addition'
@@ -531,11 +567,13 @@
             if(score && score[number_] && score[number_][group_] && score[number_][group_][sign_] && score[number_][group_][sign_][side_] && score[number_][group_][sign_][side_][xnumber_] ){
 
                // console.log(score[number_][[group_]][sign_][side_][xnumber_])
-
+                console.log('has value here')
                 score[number_][group_][sign_][side_][xnumber_].push(record)
                 var tscore = score[number_][group_][sign_][side_][xnumber_]
                 var taverage  = this.getAverageScorefromRecords(tscore)
                 score[number_][group_][sign_][side_][xnumber_] = taverage
+
+                console.log(taverage)
 
             }
 
@@ -618,9 +656,13 @@
     MathsModule.prototype.getAverageScorefromRecords = function getAverageScorefromRecords(records) {
           var  windowSize   = 10;
           var responseCount = Math.min(windowSize, records.length);
+          console.log('records.length '+records.length)
+
           var index         = records.length - responseCount;
           var latestResults = records.slice(index); // shallow copy
-       //   console.log(latestResults)
+          //   console.log(latestResults)
+       //    console.log('index :'+index)
+       //     console.log('latestResults :'+latestResults.length)
           return latestResults;
     }
 
