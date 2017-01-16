@@ -103,7 +103,7 @@
 
     GameManager.prototype.save = function save () {
         this._eventSystem.emit(Events.APPLICATION.SET_SAVE, this._currentUserProfile.data);
-        ftpAutoSaver.add(this._currentUserProfile.data.userId, this._currentUserProfile.data);
+        ftpAutoSaver.add(this._currentUserProfile.data);
     };
 
 
@@ -191,9 +191,8 @@
     };
 
     GameManager.prototype._onSaveReady = function _onSaveReady (userData) {
-        
         this._initRemediation(userData);
-        this._initFTPAutoSave(userData.userId);
+        this._initFTPAutoSave(this._currentUserProfile.data.userId);
     };
     
     GameManager.prototype._initRemediation = function _initRemediation (userData) {

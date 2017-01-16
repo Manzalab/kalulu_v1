@@ -29,8 +29,8 @@
         "saveFileSuffix"    : "save",
         "saveExt"         : "txt",
 
-        "address"       : "192.168.0.1",
-        "username"      : "anonymous",
-        "password"      : ""
+        "address"       : "ftp.manzaphp.eu",
+        "username"      : "manzaphpkv",
+        "password"      : "vMazu7b7"
     }
 }

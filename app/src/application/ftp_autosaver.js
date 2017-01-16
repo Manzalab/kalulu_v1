@@ -5,6 +5,9 @@
 define([], function () {
 
     'use strict';
+    var _isEnabled;
+    var _LAST_SAVE_DATE    = 'KALULU_FTP_LAST_SAVE_DATE';
+    var _LAST_SAVE_CONTENT = 'KALULU_FTP_LAST_SAVE_CONTENT';
 
     var _opInterval = null;
     var _timeInterval;
@@ -50,14 +53,27 @@ define([], function () {
      */
     function init (uuid, saveFolderName, saveFileName, saveExt, ftpData) {
 
+        if (typeof window.cordova === 'undefined') {
+            _isEnabled = false;
+            return;
+        }
+
+        _isEnabled = true;
+
         _initFtpData(ftpData);
         _setUuid(uuid);
         _getSavesFolder(saveFolderName, _setSaveDirEntry);
         _setSaveFileName(saveFileName);
         _setSaveExt(saveExt);
+
+        if (window.localStorage.getItem(_LAST_SAVE_DATE) === null) {
+            window.localStorage.setItem(_LAST_SAVE_DATE, _getDateString(new Date()));
+        }
     }
 
     function startFTPConnecting (interval) {
+
+        if (!_isEnabled) return;
 
         _timeInterval = interval;
 
@@ -67,11 +83,15 @@ define([], function () {
 
     function stopFTPConnecting () {
 
+        if (!_isEnabled) return;
+
         _isTryingToSend = false;
         _clearSaveInterval();
     }
 
     function add (saveObject) {
+
+        if (!_isEnabled) return;
 
         console.info('SAVE PROCESS...', saveObject);
 
@@ -79,19 +99,52 @@ define([], function () {
             return;
         }
 
-        var content  = JSON.stringify(saveObject);
-        content = '"' + _getDateString(new Date()) + '":' + content;
+        var date = _getDateString(new Date());
+        var content = JSON.stringify(saveObject);
 
-        var fileName = _getLocalFileName();
+        var lastDate = window.localStorage.getItem(_LAST_SAVE_DATE);
 
-        _write(fileName, content, true, function (r) {
-            console.info('SAVE PROCESS DONE', r);
+        if (date === lastDate || lastDate === null) {
+
+            // Save frequency
+            window.localStorage.setItem(_LAST_SAVE_CONTENT, content);
+            return;
+
+        } else {
+
+            var contentToSend = window.localStorage.getItem(_LAST_SAVE_CONTENT);
+            var datePassed    = lastDate;
+
+            // new daily content
+            window.localStorage.setItem(_LAST_SAVE_DATE, date);
+            window.localStorage.setItem(_LAST_SAVE_CONTENT, content);
 
 
-            if (_isTryingToSend && _opInterval === null) {
-                _startSaveInterval(_timeInterval);
-            }
-        });
+            if (contentToSend === null) return;
+
+            // Check if it is the same save than the last one
+            /*if (window.localStorage.getItem("KALULU_FTP_LAST_SAVE") !== content) {
+                window.localStorage.setItem("KALULU_FTP_LAST_SAVE", content);
+                window.localStorage.setItem("KALULU_FTP_LAST_SAVE_KEY", datePassed);
+            } else {
+                content = window.localStorage.getItem("KALULU_FTP_LAST_SAVE_KEY");
+                if (!content) content = 'error: the localStorage data is missing';
+            }*/
+
+            contentToSend = '"' + datePassed + '":' + contentToSend;
+
+            var fileName = _getLocalFileName();
+
+            _write(fileName, contentToSend, true, function (r) {
+                console.info('SAVE PROCESS DONE', r);
+
+
+                if (_isTryingToSend && _opInterval === null) {
+                    _startSaveInterval(_timeInterval);
+                }
+            });
+
+        }
 
     }
 
@@ -152,11 +205,11 @@ define([], function () {
         var year   = ('0000' + date.getUTCFullYear()).substr(-4, 4);
         var month  = ('00' + (date.getUTCMonth()+1)).substr(-2, 2);
         var day    = ('00' + date.getUTCDate()).substr(-2, 2);
-        var hour   = ('00' + date.getUTCHours()).substr(-2, 2);
-        var minute = ('00' + date.getUTCMinutes()).substr(-2, 2);
-        var second = ('00' + date.getUTCSeconds()).substr(-2, 2);
-        var ms     = ('000' + date.getUTCMilliseconds()).substr(-3, 3);
-        return year + month + day + '_' + hour + minute + second + ms;
+        //var hour   = ('00' + date.getUTCHours()).substr(-2, 2);
+        //var minute = ('00' + date.getUTCMinutes()).substr(-2, 2);
+        //var second = ('00' + date.getUTCSeconds()).substr(-2, 2);
+        //var ms     = ('000' + date.getUTCMilliseconds()).substr(-3, 3);
+        return year + month + day;// + second + ms;
     }
 
     function _getSavesFolder (saveFolderName, callback) {
@@ -167,7 +220,7 @@ define([], function () {
     function _createDirectory(newFolderName, callback) {
 
         //window.requestFileSystem(window.PERSISTENT, 0, function (fs) {
-        window.resolveLocalFileSystemURL(cordova.file.externalDataDirectory, function (rootDirEntry) {
+        window.resolveLocalFileSystemURL(window.cordova.file.externalDataDirectory, function (rootDirEntry) {
             //var rootDirEntry = fs.root;
             rootDirEntry.getDirectory(newFolderName, { create: true }, callback, console.error);
         }, console.error);
