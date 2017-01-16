@@ -90,7 +90,7 @@
 
         this.background = new Background(params.getGlobalParams().gameTimer, this.game);
 
-        this.categories = this.game.pedagogicData.data.categories;
+        this.categories = this.game.pedagogicData.categories;
     };
 
 
