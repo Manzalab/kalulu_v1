@@ -271,6 +271,16 @@
             this.game.eventManager.emit('startUi');
         }
     };
-    
+
+    Kalulu.prototype.destroy = function destroy() {
+        this.sounds.intro.onStop.removeAll();
+        this.sounds.help.onStop.removeAll();
+        this.sounds.gameOverWin.onStop.removeAll();
+        this.sounds.gameOverLose.onStop.removeAll();
+        this.sounds.on.onStop.removeAll();
+        this.sounds.off.onStop.removeAll();
+    };
+
+
     module.exports = Kalulu;
 })();
