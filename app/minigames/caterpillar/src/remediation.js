@@ -113,21 +113,22 @@
         }, this);
 
         this.game.eventManager.on('exitGame', function () {
+            if (this.game.gameConfig.debugPanel) this.clearDebugPanel();
+            this.game.rafiki.close();
             this.game.eventManager.removeAllListeners();
             this.game.eventManager = null;
-            this.game.rafiki.close();
             this.game.destroy();
-            if (this.game.gameConfig.debugPanel) {
-                this.clearDebugPanel();
-            }
+            console.info("Phaser Game has been destroyed");
+            this.game = null;
         }, this);
 
         this.game.eventManager.on('replay', function () {
             if (this.game.gameConfig.debugPanel) {
                 this.clearDebugPanel();
             }
+            
             this.game.eventManager.removeAllListeners();
-            this.game.eventManager = null;
+            this.game.eventManager = undefined;            
             this.game.state.start('Setup');
         }, this);
     };
@@ -142,7 +143,7 @@
         // Setting up the recording of the game for Rafiki
         this.game.record = new this.game.rafiki.MinigameDstRecord();
 
-        this.results = this.game.pedagogicData.data; // for convenience we reference also the pedagogicData object under the name 'results' because we will add response data directly on it.
+        this.results = this.game.pedagogicData; // for convenience we reference also the pedagogicData object under the name 'results' because we will add response data directly on it.
         this.consecutiveMistakes = 0;
         this.consecutiveSuccess = 0;
         this.triesRemaining = params.getGlobalParams().roundsCount;
@@ -543,12 +544,12 @@
         j = 0;
         // console.log(value);
         // console.log(lBerry);
-        while (this.results.rounds[this.roundIndex].steps[this.stepIndex].stimuli[j].value != value) { //finds the value in the results to add one apparition
+        while (this.results.data.rounds[this.roundIndex].steps[this.stepIndex].stimuli[j].value != value) { //finds the value in the results to add one apparition
             j++;
         }
         apparition = new this.game.rafiki.StimulusApparition(isTargetValue);
 
-        this.results.rounds[this.roundIndex].steps[this.stepIndex].stimuli[j].apparitions.push(apparition);
+        this.results.data.rounds[this.roundIndex].steps[this.stepIndex].stimuli[j].apparitions.push(apparition);
         lBerry.apparition = apparition;
         this.apparitionsCount++;
         this.framesToWaitBeforeNextSpawn = localParams.respawnTime * 60;
@@ -753,8 +754,7 @@
             }
         }
 
-        this.won = true;
-        this.game.eventManager.emit("exitGame");
+        this.gameOverWin();
     };
 
     Remediation.prototype.AutoLose = function LoseGame() {
@@ -811,7 +811,7 @@
         }
 
         this.won = false;
-        this.game.eventManager.emit('exitGame');
+        this.gameOverLose();
     };
 
     Remediation.prototype.skipKalulu = function skipKalulu() {

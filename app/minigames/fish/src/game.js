@@ -41,8 +41,10 @@
 
     Game.prototype = {
         preload: function(){
-            this.game.load.atlasJSONHash('buoyRed', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/Animation_Bateau/buoyred_' + this.game.rafiki.discipline + '.png', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/Animation_Bateau/buoyred_' + this.game.rafiki.discipline + '.json');
-            this.game.load.atlasJSONHash('buoyGreen', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/Animation_Bateau/buoygreen_' + this.game.rafiki.discipline + '.png', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/Animation_Bateau/buoygreen_' + this.game.rafiki.discipline + '.json');
+            var redName = 'minigames/' + this.game.gameConfig.gameId + '/assets/images/Animation_Bateau/buoyred_' + this.game.rafiki.discipline;
+            console.log(redName);
+            this.game.load.atlasJSONHash('buoyRed', redName + '.png', redName + '.json');
+            this.game.load.atlasJSONHash('buoyGreen', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/Animation_Bateau/buoygreen_' + this.game.rafiki.discipline + '_' + KALULU_LANGUAGE + '.png', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/Animation_Bateau/buoygreen_' + this.game.rafiki.discipline + '_' + KALULU_LANGUAGE + '.json');
         },
 
         /**

@@ -77,7 +77,7 @@
 		this.animCanSetClickable = true;
         this.paused = false;
 
-    };
+    }
 
     Parakeet.prototype = Object.create(Phaser.Group.prototype);
     Parakeet.prototype.constructor = Parakeet;

@@ -128,19 +128,32 @@ function SkillVariante(el, params){
 		if(this.tries > 1){
 		 	this.is_completed = false
 		 	this.forced_pick = true
+		 	var sum = 0;
+				for (var i = 0 ; i < this.record.length; i++) {
+					sum += this.record[i].score;
+					// console.log(this.record[i])
+				}
+				this.average = sum/this.record.length
+
+
 
 		}
 		else{
 			if(this.record.length > 0){
 
 				var sum = 0;
+				// console.log( this.record.length)
 				for (var i = 0 ; i < this.record.length; i++) {
 					sum += this.record[i].score;
 					// console.log(this.record[i])
 				}
 				this.average = sum/this.record.length
-				if(this.average > 0.8){
-					this.is_completed = true
+				if(this.average >= 0.8){
+					// console.log('average for value '+this.value+' '+this.average)
+					if(this.record.length >= 10){
+						this.is_completed = true
+					}
+					
 				}
 				else{
 					/// this.is_completed = false
@@ -150,8 +163,8 @@ function SkillVariante(el, params){
 		}
 
 	/// BLUR
-	this.score = {}
-	this.record = {}
+	//this.score = {}
+	//	this.record = {}
 		
 	
 	if(this.is_completed == true){
@@ -160,6 +173,10 @@ function SkillVariante(el, params){
 	else{
 		this.round      =   this.toRound(params)
 		if(this.round && this.round.round){
+			
+			this.round.round.average = this.average
+			this.round.round.average_size = this.record.length > 0 ? this.record.length : 0
+				
 			//console.log(this.round )
 			this.hasround   =   true;
 		}
