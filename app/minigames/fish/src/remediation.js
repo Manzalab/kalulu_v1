@@ -231,10 +231,11 @@
             this.game.eventManager.removeAllListeners();
             this.game.eventManager = null;
             this.game.rafiki.close();
-            this.game.destroy();
             if (this.game.gameConfig.debugPanel) {
                 this.clearDebugPanel();
             }
+            this.game.destroy();
+
         }, this);
     };
 
@@ -263,7 +264,7 @@
             this.stimuli.push(stimuli);
         }
 
-    }
+    };
 
     /**
     **/
@@ -374,6 +375,7 @@
             }, this);
         }
         else {
+            var globalParams = this.game.params.getGlobalParams();
             if (this.score / (this.game.pedagogicData.data.rounds[0].steps.length - this.triesRemaining) >= globalParams.minimumWinRatio) {
                 this.gameOverWin();
             }
