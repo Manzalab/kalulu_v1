@@ -19,13 +19,6 @@
 	 * @param game {Phaser.Game} game instance
 	**/
     function Game(game) {
-        /**
-	     * In charge of all the game events
-         * WARNING : NEEDED FOR UI AND KALULU
-         * Go to init events in kalulu and ui scripts to see the differents events in place
-	     * @type {EventEmitter}
-	    **/
-        this.eventManager = null;
 
         /**
          * User interface 
@@ -66,9 +59,8 @@
             this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
             this.game.eventManager = new EventEmitter();
-
             this.remediation = new Remediation(this.game);
-            this.ui = new Ui(0, this.game, false, false, false, false);
+            this.ui = new Ui(0, this.game, false, false, false, false,false,false);
             this.kalulu = new Kalulu(this.game);
 
             this.game.eventManager.emit('startGame');

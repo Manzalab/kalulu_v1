@@ -106,10 +106,11 @@ define([
     };
 
     GameLauncher.prototype.quit = function quit () {
+        
         this.game.eventManager.off("exitGame", this.quit, this);
         this.clearDebugPanel();
-        this.game.rafiki.close();
-        this.game.destroy();
+        this.rafiki.close();
+        this.destroy();
     };
 
     GameLauncher.prototype.destroy = function destroy () {
@@ -147,7 +148,7 @@ define([
             console.info("LookAndLearn Cleaning debug Panel");
             this.game.debugPanel.removeFolder(this.game.debugFolderNames.functions);
         }
-        else {
+        else if (this.game.gameConfig.debugPanel) {
             console.info("LookAndLearn Destroying debug Panel");
             this.game.debugPanel.destroy();
         }

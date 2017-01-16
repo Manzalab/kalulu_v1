@@ -31,6 +31,7 @@
         loadSpecificAssets: function () {
 
             //Game specific Graphics
+            this.load.image('popup', 'minigames/common/assets/images/ui/popup.png');
             this.load.image('sky', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/decors/CIEL_Background.png');
             this.load.image('ground', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/decors/Ground.png');
             this.load.image('tree', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/decors/Palmier2.png');
@@ -57,9 +58,9 @@
             this.game.load.audio('sendWrong', 'minigames/' + this.game.gameConfig.gameId + '/assets/audio/monkey/ELAN_GAME_MONKEY_SendCoco_Wrong.ogg');
 
             //Kalulu Game Specific audio
-            this.game.load.audio('kaluluIntro', 'minigames/' + this.game.gameConfig.gameId + '/assets/audio/kalulu/kalulu_Intro_' + this.game.gameConfig.gameId.capitalise() + '_' + this.game.rafiki.discipline + '.ogg');
-            this.game.load.audio('kaluluHelp', 'minigames/' + this.game.gameConfig.gameId + '/assets/audio/kalulu/kalulu_Help_' + this.game.gameConfig.gameId.capitalise() + '_' + this.game.rafiki.discipline + '.ogg');
-            this.game.load.audio('kaluluGameOverWin', 'minigames/' + this.game.gameConfig.gameId + '/assets/audio/kalulu/kalulu_End_' + this.game.gameConfig.gameId.capitalise() + '_' + this.game.rafiki.discipline + '.ogg');
+            this.game.load.audio('kaluluIntro', 'minigames/' + this.game.gameConfig.gameId + '/assets/audio/kalulu/kalulu_intro_' + this.game.gameConfig.gameId + '_' + this.game.rafiki.discipline + '.ogg');
+            this.game.load.audio('kaluluHelp', 'minigames/' + this.game.gameConfig.gameId + '/assets/audio/kalulu/kalulu_help_' + this.game.gameConfig.gameId + '_' + this.game.rafiki.discipline + '.ogg');
+            this.game.load.audio('kaluluGameOverWin', 'minigames/' + this.game.gameConfig.gameId + '/assets/audio/kalulu/kalulu_end_' + this.game.gameConfig.gameId + '_' + this.game.rafiki.discipline + '.ogg');
         },
 
         /**

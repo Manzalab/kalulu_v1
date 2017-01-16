@@ -17,12 +17,14 @@
      * @param lives {int} number of lives to display
 	 * @param game {Phaser.Game} game instance
 	**/
-    function Ui(lives, game, centralConch, replay, conch, kalulu) {
-
+    function Ui(lives, game, centralConch, replay, conch, kalulu, pause, island) {
+        console.log("[UI] constructor called");
         kalulu = (typeof kalulu !== 'undefined') ? kalulu : true;
         centralConch = (typeof centralConch !== 'undefined') ? centralConch : true;
         replay = (typeof replay !== 'undefined') ? replay : true;
         conch = (typeof conch !== 'undefined') ? conch : true;
+        pause = (typeof pause !== 'undefined') ? pause : true;
+        island = (typeof island !== 'undefined') ? island : true;
 
         Phaser.Group.call(this, game);
 
@@ -31,15 +33,16 @@
         this.features.conch = conch;
         this.features.replay = replay;
         this.features.kalulu = kalulu;
+        this.features.pause = pause;
+        this.features.island = island;
 
         /**
          * game.eventManager
          * @type {EventEmitter}
          **/
-        this.eventManager = game.eventManager;
-        var blackBitmap = new Phaser.BitmapData(this.game, 'pause', 10, 10);
-        blackBitmap.fill(0, 0, 0, 0.4);
-        this.blackOverlay = this.create(0, 0, blackBitmap);
+        this.blackBitmap = new Phaser.BitmapData(this.game, 'pause', 10, 10);
+        this.blackBitmap.fill(0, 0, 0, 0.4);
+        this.blackOverlay = this.create(0, 0, this.blackBitmap);
         this.blackOverlay.width = game.width;
         this.blackOverlay.height = game.height;
         this.blackOverlay.visible = true;
@@ -248,60 +251,64 @@
      **/
     Ui.prototype.initEvents = function initEvents() {
 
-        this.eventManager.on('startUi', function () { // emitted by the class Kalulu. It is emitted at game start, right after Kalulu finishes its intro speech.
+        this.game.eventManager.on('startUi', function () { // emitted by the class Kalulu. It is emitted at game start, right after Kalulu finishes its intro speech.
             this.blackOverlay.visible = true;
-            this.parent.game.world.bringToTop(this.blackOverlay);
+            this.parent.game.world.bringToTop(this);
             if (this.features.centralConch) this.centralConchButton.visible = true;
             else {
-                this.eventManager.emit('unPause');
+                this.game.eventManager.emit('unPause');
             }
             this.kaluluButton.visible = true;
         }, this);
 
-        this.eventManager.on('help', function () { // emitted when the players clicks the kalulu button
+        this.game.eventManager.on('help', function () { // emitted when the players clicks the kalulu button
             this.kaluluButton.visible = false;
         }, this);
 
-        this.eventManager.on('startGame', function () { // emitted at the very start of the game
+        this.game.eventManager.on('startGame', function () { // emitted at the very start of the game
             this.kaluluButton.visible = false;
         }, this);
 
-        this.eventManager.on('offUi', function () { // emitted from various places, when we need to disable the UI
+        this.game.eventManager.on('offUi', function () { // emitted from various places, when we need to disable the UI
+            //this.parent.game.world.bringToTop(this);
             this.parent.game.world.bringToTop(this);
-            this.parent.game.world.bringToTop(this.blackOverlay);
             this.blackOverlay.visible = true;
             this.disableUiMenu();
         }, this);
 
-        this.eventManager.on('success', function () {
+        this.game.eventManager.on('success', function () {
             this.success();
         }, this);
 
-        this.eventManager.on('fail', function () {
+        this.game.eventManager.on('fail', function () {
             this.fail();
         }, this);
 
-        this.eventManager.on('GameOverWin', function () {
+        this.game.eventManager.on('GameOverWin', function () {
             this.kaluluButton.visible = false;
         }, this);
 
-        this.eventManager.on('GameOverLose', function () {
+        this.game.eventManager.on('GameOverLose', function () {
             this.kaluluButton.visible = false;
         }, this);
 
-        this.eventManager.on('GameOverWinScreen', function () {
+        this.game.eventManager.on('GameOverWinScreen', function () {
             this.displayGameOverWinScreen();
         }, this);
 
-        this.eventManager.on('GameOverLoseScreen', function () {
+        this.game.eventManager.on('GameOverLoseScreen', function () {
             this.displayGameOverLoseScreen();
         }, this);
 
-        this.eventManager.on('pause', function () {
+        this.game.eventManager.on('pause', function () {
             this.disableUiMenu();
         }, this);
 
-        this.eventManager.on('unPause', function () {
+        this.game.eventManager.on('disableUi', function () {
+            this.disableUiMenu();
+        }, this);
+
+        this.game.eventManager.on('unPause', function () {
             this.blackOverlay.visible = false;
             this.enableUiMenu();
             this.kaluluButton.visible = true;
@@ -337,7 +344,7 @@
         this.blackOverlay.visible = true;
         this.parent.game.world.bringToTop(this);
         this.quitPopup.visible = !this.quitPopup.visible;
-        this.eventManager.emit('pause');
+        this.game.eventManager.emit('pause');
     };
 
     /**
@@ -353,7 +360,7 @@
 
         this.sounds.validateQuit.onStop.addOnce(function () {
             this.sounds.validateQuit.onStop.removeAll();
-            this.eventManager.emit('exitGame');
+            this.game.eventManager.emit('exitGame');
         }, this);
     };
 
@@ -366,7 +373,7 @@
 
         this.sounds.cancelQuit.play();
         this.quitPopup.visible = !this.quitPopup.visible;
-        this.eventManager.emit('unPause');
+        this.game.eventManager.emit('unPause');
     };
 
     /**
@@ -413,6 +420,22 @@
             this.kaluluButton.inputEnabled = false;
             this.kaluluButton.frameName = 'KaluluButton0004.png';
         }
+        if (this.features.pause) {
+            this.pauseButton.inputEnabled = true;
+            this.pauseButton.frameName = 'PauseButton0001.png';
+        }
+        else {
+            this.pauseButton.inputEnabled = false;
+            this.pauseButton.frameName = 'PauseButton0004.png';
+        }
+        if (this.features.island) {
+            this.quitButton.inputEnabled = true;
+            this.quitButton.frameName = 'GardenScreenButton0001.png';
+        }
+        else {
+            this.quitButton.inputEnabled = false;
+            this.quitButton.frameName = 'GardenScreenButton0004.png';
+        }
     };
 
     /**
@@ -422,7 +445,7 @@
      **/
     Ui.prototype.onClickOnConchButton = function onClickOnConchButton() {
 
-        this.eventManager.emit('playCorrectSound');
+        this.game.eventManager.emit('playCorrectSound');
     };
 
     /**
@@ -435,7 +458,7 @@
         this.blackOverlay.visible = true;
         this.parent.game.world.bringToTop(this);
         this.pausePopup.visible = !this.pausePopup.visible;
-        this.eventManager.emit('pause');
+        this.game.eventManager.emit('pause');
     };
 
     /**
@@ -446,7 +469,7 @@
     Ui.prototype.onClickOnPlayButton = function onClickOnPlayButton() {
         this.sounds.cancelQuit.play();
         this.pausePopup.visible = !this.pausePopup.visible;
-        this.eventManager.emit('unPause');
+        this.game.eventManager.emit('unPause');
     }
 
     /**
@@ -458,7 +481,7 @@
     Ui.prototype.onClickOnCentralConchButton = function onClickOnCentralConchButton() {
         if (this.features.centralConch) {
             this.time = 0;
-            this.eventManager.emit('playCorrectSoundNoUnPause');
+            this.game.eventManager.emit('playCorrectSoundNoUnPause');
             this.moveCentralConch = true;
             this.centralConchButton.inputEnabled = false;
         }
@@ -472,7 +495,7 @@
      **/
     Ui.prototype.onClickOnKaluluButton = function onClickOnKaluluButton() {
         this.blackOverlay.visible = true;
-        this.eventManager.emit('help');
+        this.game.eventManager.emit('help');
     };
 
     /**
@@ -483,13 +506,9 @@
      * @private
      **/
     Ui.prototype.onClickOnGameOverScreenReplayButton = function onClickOnGameOverScreenReplayButton() {
-        this.eventManager.emit('replay'); //listened to by 
-        // this.lives = 0;
-        // this.enableUiMenu();
-        // this.gameOverScreen.visible = false;
-        // this.reset();
-        // this.parent.game.world.bringToTop(this);
-        // this.eventManager.emit('startGame');
+        if (this.game.eventManager)
+            this.game.eventManager.emit('replay'); //listened to by
+        console.log("input on replay bouton");
     };
 
     /**
@@ -558,10 +577,14 @@
                 else {
                     this.moveCentralConch = false;
                     this.centralConchButton.visible = false;
-                    this.eventManager.emit('unPause');
+                    this.game.eventManager.emit('unPause');
                 }
             }
     };
+
+    Ui.prototype.destroy = function destroy() {
+        this.blackBitmap.destroy();
+    }
 
     module.exports = Ui;
 })();

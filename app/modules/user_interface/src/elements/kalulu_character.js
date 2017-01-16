@@ -44,6 +44,8 @@
         this.isTalking = false;
         this._kaluluSpeech = null;
         this._nextSpeechs = [];
+
+        this._repeatSpeech;
     }
 
     KaluluCharacter.prototype = Object.create(StateGraphic.prototype);
@@ -87,7 +89,7 @@
         this._anim.animationSpeed = 0.2;
     }
 
-    KaluluCharacter.prototype.startTalk = function startTalk(talkName, nextTalks, shouldStay)
+    KaluluCharacter.prototype.startTalk = function startTalk(talkName, nextTalks, shouldStay, shouldNotAppear)
     {
         if (Config.skipKalulu) return;
         this.isTalking = true;
@@ -114,13 +116,18 @@
                 }
             }
         SoundManager.getSound("kaluluOn").play();
-        this._setState(this.APPEARANCE_STATE);
-        this._anim.onComplete = this.talk.bind(this);
-        this._anim.animationSpeed = 0.25;
+        if (shouldNotAppear)    this.talk();
+        else 
+        {
+            this._setState(this.APPEARANCE_STATE);
+            this._anim.onComplete = this.talk.bind(this);
+            this._anim.animationSpeed = 0.25;
+        }
 
         if (this._nextSpeechs.length===0)   this._kaluluSpeech.once( "end", this.disappear.bind(this));
         else   this._kaluluSpeech.once( "end", this.keepTalking.bind(this));
 
+        if (this._isStaying && !this._repeatSpeech) this._repeatSpeech = setInterval(function(){ this.startTalk(talkName,this._nextSpeechs,true,true);}.bind(this),10000);
     }
 
     KaluluCharacter.prototype.talk = function talk()
@@ -203,8 +210,13 @@
         if (this.parent) this.parent.removeChild(this);
         if (this._kaluluSpeech) this._kaluluSpeech.stop();
         this.isTalking = false;
-        if (!this.kaluluButton.visible) this.kaluluButton.visible = true;
+        if (this.kaluluButton && !this.kaluluButton.visible) this.kaluluButton.visible = true;
         if (this._nextSpeechTimeout)  clearTimeout(this._nextSpeechTimeout);
+    }
+
+    KaluluCharacter.prototype.clearRepeat = function clearRepeat()
+    {
+        if (this._repeatSpeech) clearInterval(this._repeatSpeech);
     }
 
     module.exports = new KaluluCharacter();

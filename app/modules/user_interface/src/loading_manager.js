@@ -77,7 +77,9 @@
         lLoader.addImageFile("user_interface/brain_screen/brain_screen_0.json");
         lLoader.addImageFile("user_interface/brain_screen/brain_screen_1.json");
         lLoader.addImageFile("user_interface/toy_chest/burrow_screen.json");
-        lLoader.addImageFile("user_interface/toy_chest/burrow_activity_screen.json");
+        lLoader.addImageFile("user_interface/toy_chest/burrow_activity_screen_0.json");
+        lLoader.addImageFile("user_interface/toy_chest/burrow_activity_screen_1.json");
+        lLoader.addImageFile("user_interface/toy_chest/burrow_activity_screen_2.json");
         lLoader.addImageFile("user_interface/toy_chest/video_player.json");
         lLoader.addImageFile("user_interface/toy_chest/story.json");
 
@@ -87,6 +89,15 @@
         lLoader.addImageFile("user_interface/background/background_0.json");
         lLoader.addImageFile("user_interface/background/background_1.json");
         lLoader.addImageFile("user_interface/background/background_2.json");
+
+        lLoader.addImageFile("user_interface/background/burrow_background_0.json");
+        lLoader.addImageFile("user_interface/background/burrow_background_1.json");
+        lLoader.addImageFile("user_interface/background/burrow_background_2.json");
+
+        lLoader.addImageFile("user_interface/background/menu_background_0.json");
+        lLoader.addImageFile("user_interface/background/menu_background_1.json");
+        lLoader.addImageFile("user_interface/background/menu_background_2.json");
+        lLoader.addImageFile("user_interface/background/menu_background_3.json");
 
         lLoader.addImageFile("user_interface/kalulu_anims/Kalulu_idle.json");
         lLoader.addImageFile("user_interface/kalulu_anims/Kalulu_pop.json");
@@ -133,7 +144,9 @@
         factory.addTextures(loader.getContent(Config.imagesPath, "user_interface/brain_screen/brain_screen_0.json"));
         factory.addTextures(loader.getContent(Config.imagesPath, "user_interface/brain_screen/brain_screen_1.json"));
         factory.addTextures(loader.getContent(Config.imagesPath, "user_interface/toy_chest/burrow_screen.json"));
-        factory.addTextures(loader.getContent(Config.imagesPath, "user_interface/toy_chest/burrow_activity_screen.json"));
+        factory.addTextures(loader.getContent(Config.imagesPath, "user_interface/toy_chest/burrow_activity_screen_0.json"));
+        factory.addTextures(loader.getContent(Config.imagesPath, "user_interface/toy_chest/burrow_activity_screen_1.json"));
+        factory.addTextures(loader.getContent(Config.imagesPath, "user_interface/toy_chest/burrow_activity_screen_2.json"));
         factory.addTextures(loader.getContent(Config.imagesPath, "user_interface/toy_chest/video_player.json"));
         factory.addTextures(loader.getContent(Config.imagesPath, "user_interface/toy_chest/story.json"));
 
@@ -143,6 +156,15 @@
         factory.addTextures(loader.getContent(Config.imagesPath, "user_interface/background/background_0.json"));
         factory.addTextures(loader.getContent(Config.imagesPath, "user_interface/background/background_1.json"));
         factory.addTextures(loader.getContent(Config.imagesPath, "user_interface/background/background_2.json"));
+
+        factory.addTextures(loader.getContent(Config.imagesPath, "user_interface/background/burrow_background_0.json"));
+        factory.addTextures(loader.getContent(Config.imagesPath, "user_interface/background/burrow_background_1.json"));
+        factory.addTextures(loader.getContent(Config.imagesPath, "user_interface/background/burrow_background_2.json"));
+
+        factory.addTextures(loader.getContent(Config.imagesPath, "user_interface/background/menu_background_0.json"));
+        factory.addTextures(loader.getContent(Config.imagesPath, "user_interface/background/menu_background_1.json"));
+        factory.addTextures(loader.getContent(Config.imagesPath, "user_interface/background/menu_background_2.json"));
+        factory.addTextures(loader.getContent(Config.imagesPath, "user_interface/background/menu_background_3.json"));
 
         // for (var k = 0 ; k < 3 ; k++) {
         //     factory.addTextures(loader.getContent(Config.imagesPath, "kalulu_character_" + k + ".json"));

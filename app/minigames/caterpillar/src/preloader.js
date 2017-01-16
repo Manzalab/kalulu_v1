@@ -31,6 +31,7 @@
         loadSpecificAssets: function () {
 
             //Game specific Graphics
+            this.load.image('popup', 'minigames/common/assets/images/ui/popup.png');
             this.load.image('leaf', 'minigames/caterpillar/assets/images/Decors/Feuille.png');
             this.load.image('background', 'minigames/caterpillar/assets/images/Decors/Background.png');
             this.load.image('line', 'minigames/caterpillar/assets/images/Decors/Branche_boucle.png');
@@ -49,9 +50,9 @@
 
 
             //Kalulu Game Specific audio
-            this.game.load.audio('kaluluIntro', 'minigames/caterpillar/assets/audio/kalulu/kalulu_Intro_Caterpillar_' + this.game.rafiki.discipline + '.ogg');
-            this.game.load.audio('kaluluHelp', 'minigames/caterpillar/assets/audio/kalulu/kalulu_Help_Caterpillar_' + this.game.rafiki.discipline + '.ogg');
-            this.game.load.audio('kaluluGameOverWin', 'minigames/caterpillar/assets/audio/kalulu/kalulu_End_Caterpillar_' + this.game.rafiki.discipline + '.ogg');
+            this.game.load.audio('kaluluIntro', 'minigames/caterpillar/assets/audio/kalulu/kalulu_intro_caterpillar_' + this.game.rafiki.discipline + '.ogg');
+            this.game.load.audio('kaluluHelp', 'minigames/caterpillar/assets/audio/kalulu/kalulu_help_caterpillar_' + this.game.rafiki.discipline + '.ogg');
+            this.game.load.audio('kaluluGameOverWin', 'minigames/caterpillar/assets/audio/kalulu/kalulu_end_caterpillar_' + this.game.rafiki.discipline + '.ogg');
         },
 
         /**

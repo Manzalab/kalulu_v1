@@ -14,7 +14,8 @@
                 incorrectResponseCountTriggeringFirstRemediation    : 1,
                 incorrectResponseCountTriggeringSecondRemediation   : 2,
                 lives                                               : 3,     // at the time when lives reach 0 the game ends, i.e. at the third incorrect response for 3 lives
-                capitalLettersShare                                 : 0.4
+                capitalLettersShare                                 : 0.4,
+                popupTimeOnScreen                                   : 3
             },
             globalRemediation : {   // the global remediation settings are invariable inside a game but can evolve depending on globalLevel from one game to the next
                 gameType                        : "composition", // "identification", "composition", "pairing", or "other"
@@ -45,7 +46,8 @@
                     gameTimerVisible                : false,
                     stepDistracterCount             : 3, //
                     totalTriesCount                 : 5,
-                    turtlesOnScreen                 : 2 //
+                    turtlesOnScreen                 : 2, 
+                    roundsCount                     : 5
                 },
                 localRemediation : {
                     minimumCorrectStimuliOnScreen   : {min : 1, max : 1}, //
@@ -60,7 +62,8 @@
                     gameTimerVisible                : false,
                     stepDistracterCount             : 4,
                     totalTriesCount                 : 5,
-                    turtlesOnScreen                 : 3
+                    turtlesOnScreen                 : 3,
+                    roundsCount                     : 5
                 },
                 localRemediation : {
                     minimumCorrectStimuliOnScreen   : {min : 1, max : 1},
@@ -75,7 +78,8 @@
                     gameTimerVisible                : false,
                     stepDistracterCount             : 5,
                     totalTriesCount                 : 6,
-                    turtlesOnScreen                 : 4
+                    turtlesOnScreen                 : 4, 
+                    roundsCount                     : 6
                 },
                 localRemediation : {
                     minimumCorrectStimuliOnScreen   : {min : 1, max : 1},
@@ -90,7 +94,8 @@
                     gameTimerVisible                : false,
                     stepDistracterCount             : 7,
                     totalTriesCount                 : 6,
-                    turtlesOnScreen                 : 5
+                    turtlesOnScreen                 : 5, 
+                    roundsCount                     : 6
                 },
                 localRemediation : {
                     minimumCorrectStimuliOnScreen   : {min : 1, max : 1},
@@ -105,7 +110,8 @@
                     gameTimerVisible                : false,
                     stepDistracterCount             : 9,
                     totalTriesCount                 : 7,
-                    turtlesOnScreen                 : 5
+                    turtlesOnScreen                 : 5, 
+                    roundsCount                     : 7
                 },
                 localRemediation : {
                     minimumCorrectStimuliOnScreen   : {min : 1, max : 1},

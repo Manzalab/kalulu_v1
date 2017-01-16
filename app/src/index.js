@@ -39,8 +39,15 @@ function patchDat () {
         if (!folder) {
           return;
         }
-        folder.close();
+
         this.__ul.removeChild(folder.domElement.parentNode);
+        folder.__controllers = null;
+        folder.__ul = null;
+        folder.domElement.parentNode.removeChild(folder.domElement);
+        folder.domElement = null;
+
+        folder = null;
+        this.__folders[name] = null;
         delete this.__folders[name];
         
         // console.log(name + ' : ' + this.__folders[name]);

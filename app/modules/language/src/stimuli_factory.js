@@ -59,7 +59,7 @@ define([], function () {
 
     StimuliFactory.prototype.getInversedSyllable = function getInversedSyllable (word, skills, isCapitalised, isCorrectResponse) {
         
-        if (word.syllableCount > 1 || (word.syllabicStructure !== "CV." && word.syllabicStructure !== "VC.")) {
+        if (word.syllableCount > 1 || (word.syllabicStructure !== "CV" && word.syllabicStructure !== "VC")) {
             console.log(word);
             throw new Error("Impossible to reverse anything else than a 2-graphemes-Syllable");
         } 
@@ -76,7 +76,7 @@ define([], function () {
             soundPath           : [],
             correctResponse     : isCorrectResponse,
             skills              : skills,
-            syllabicStructure   : word.syllabicStructure === "CV." ? "VC." : "CV.",
+            syllabicStructure   : word.syllabicStructure === "CV" ? "VC" : "CV",
             notionId            : ""
         };
     };

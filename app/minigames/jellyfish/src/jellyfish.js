@@ -31,8 +31,12 @@
         this.paused = false;
         this.spawned = true;
         this.hasExitedScreen = false;
-        this.eventManager = game.eventManager;
 
+        this.highlight = game.add.sprite(0, 10, 'fx', 'FX_02');
+        this.highlight.anchor.setTo(0.5, 0);        
+        this.highlight.visible = false;
+        this.add(this.highlight);
+        
         var rand = Math.floor(Math.random() * 2 + 1);// Used only to chose between the two jellyfish graph
 
         this.jellyfishSprite = game.add.sprite(0, 0, 'jellyfish' + rand, 'Meduse_Idle_0000');
@@ -47,6 +51,9 @@
         this.currentFrame = 0; // Indicates on which frame the animations is; used only for the speedFunction
         this.smooth = 0; // Since currentFrame is an int and increments slowly, we need this float to have a smoother speedFunction
         this.add(this.jellyfishSprite);
+
+        this.highlight.width = this.jellyfishSprite.width / 1.5;
+        this.highlight.scale.y = this.highlight.scale.x;
 
         /**
          * TextSprite
@@ -66,7 +73,7 @@
             this.add(this.text);
         }
         else {
-            this.picture = this.game.add.sprite(0, 20+this.jellyfishSprite.height / (4 + rand) - (rand - 2) * 10, 'maths', value.value);
+            this.picture = this.game.add.sprite(0, 20+this.jellyfishSprite.height / (4 + rand) - (rand - 2) * 10, 'maths', value.text.toString());
             this.picture.height = this.jellyfishSprite.width / 6;
             this.picture.scale.x = this.picture.scale.y;
             this.picture.anchor.setTo(0.5, 0);
@@ -85,9 +92,9 @@
                     this.clickable = false;
                     this.paused = true;
                     this.jellyfishSprite.animations.play('hit');
-                    this.eventManager.emit('pause');
+                    this.game.eventManager.emit('pause');
                     this.jellyfishSprite.animations.currentAnim.onComplete.addOnce(function () {
-                        this.eventManager.emit('clicked', this); //listened by Remediation
+                        this.game.eventManager.emit('clicked', this); //listened by Remediation
                     }, this);
                 }
         }, this);
@@ -125,11 +132,11 @@
      * @private
      **/
     Jellyfish.prototype.initEvents = function () {
-        this.eventManager.on('pause', function () {
+        this.game.eventManager.on('pause', function () {
             this.paused = true;
         }, this);
 
-        this.eventManager.on('unPause', function () {
+        this.game.eventManager.on('unPause', function () {
             this.paused = false;
         }, this);
     };

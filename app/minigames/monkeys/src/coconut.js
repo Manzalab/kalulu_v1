@@ -12,8 +12,7 @@
     function Coconut(x, y, game) {
         Phaser.Group.call(this, game);
 
-        this.eventManager = game.eventManager;
-
+        
         this.origin = {};
 
         this.x = x;
@@ -28,8 +27,19 @@
         this.scale.x = SCALE;
         this.scale.y = SCALE;
 
+        this.highlight = game.add.sprite(0, 20, 'fx', 'FX_02');
+        this.highlight.anchor.setTo(0.5, 0.5);
+        this.highlight.scale.x = 0.3;
+        this.highlight.scale.y = 0.3;
+        this.highlight.visible = false;
+        this.highlight.scale.tween = this.game.add.tween(this.highlight.scale);
+        this.highlight.scale.tween.to({ x: 0.6, y:0.6 }, 750, Phaser.Easing.Default, true, 0, -1, true);
+        this.add(this.highlight);
+
         this.sprite = game.add.sprite(0, 0, 'coconut','coconut');
         this.sprite.anchor.setTo(0.5, 1);
+
+        this.highlight.y -= this.sprite.height / 2;
 
         this.add(this.sprite);
 
@@ -69,21 +79,23 @@
     Coconut.constructor = Coconut;
 
     Coconut.prototype.initEvents = function () {
-        this.eventManager.on('pause', function () {
+        this.game.eventManager.on('pause', function () {
             this.clickable = false;
         }, this);
 
-        this.eventManager.on('unPause', function () {
+        this.game.eventManager.on('unPause', function () {
             this.clickable = true;
         }, this);
     };
 
     Coconut.prototype.setText = function (value) {
-        this.text.text = value;
-        this.sound = this.parent.game.add.audio(value);
+        if (typeof value === 'undefined') value = "";
+        this.text.text = value.toString();
+        this.sound = this.parent.game.add.audio(value.toString());
     };
 
-    Coconut.prototype.flyTo = function (newX, newY,time) {
+    Coconut.prototype.flyTo = function (newX, newY, time) {
+        this.highlight = false;
         this.tween.stop();
         this.time = time;
         this.newX = newX;
@@ -111,7 +123,7 @@
         var context = this;
 
         setTimeout(function () {
-            context.eventManager.emit('finishedBreaking', this);
+            context.game.eventManager.emit('finishedBreaking', this);
         }, this.particles.children[2].lifespan);
     };
 
@@ -123,7 +135,7 @@
             this.tween = this.game.add.tween(this);
             this.tween.to({ y: this.y + 10 }, 450, Phaser.Easing.Default, true, 0, -1, true);
             this.tween.start();
-            this.eventManager.emit('finishedMoving', this);
+            this.game.eventManager.emit('finishedMoving', this);
         }, this);
 
         this.parent.game.world.bringToTop(this);
@@ -136,7 +148,7 @@
             this.x = this.slopeX * this.t + this.oldX;
 
             if (this.t > this.time) {
-                this.eventManager.emit('finishedFlying', this);
+                this.game.eventManager.emit('finishedFlying', this);
                 this.flying = false;
             }
 

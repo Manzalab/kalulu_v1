@@ -31,16 +31,22 @@ var Decimal = function(number,  stimuli_type, numbers_available, count,  numbers
 	var dec 	= parseInt(n[0])
 	var unit 	= parseInt(n[1])
 	var that 	= this
+
+	var dec_d   = new Distractor(dec, numbers_available, count, true)
+	console.log(numbers_available)
+	console.log(count)
+
+	console.log(dec_d)
 	var out 	= { 
 					'pre_round' : [ 
 						{
 							'name': 'decimal',
-							'value': dec*10, 
+							'value': (dec*10).toString(), 
 							'realValue' :this.number,
 							'distractors': new Distractor(dec, numbers_available, count, true)
 						},
 						{ 	'name': 'unit',
-							'value': unit,
+							'value': unit.toString(),
 							'realValue' :unit,
 							'distractors': new Distractor(unit, numbers_available, count)
 						}, 
@@ -49,25 +55,39 @@ var Decimal = function(number,  stimuli_type, numbers_available, count,  numbers
 
 	if(out.pre_round){
 		 
-		var steps = []
+		/// var steps = []
 		var round = {"steps": []}
-		var step = {"type": that.stimuli_type, "stimuli": [] }
+		// var step_decimal = {"type": that.stimuli_type, "stimuli": [] }
+		// var step_unit 	 = {"type": that.stimuli_type, "stimuli": [] }
+		var step	 = {"type": that.stimuli_type, "stimuli": [] }
 
 		// [dec, unit] 
-		_.each(out.pre_round, function(r){
-				
-			var st =  that.moduleutils.addStimuli(true , r.value, 'number',that.numbers_data)
-			st.unitOrDecimal = r.name;
-			st.path = that.stimuli_type
-			
+
+		// var dec_array = ['decimal', 'unit'];
+
+		steps_ = [];
+
+
+		_.each(out.pre_round, function(r,ri){
+
+			var st = {};
+			st.stimuli = []
+
+			// var true_ = { value: 'true'}
+
+			var true_ =  that.moduleutils.addStimuli(true , r.value, 'number',that.numbers_data)
 			if(r.value  !==null && r.name == 'unit' ){
-				st.realValue = r.value
+				true_.realValue = r.value
 			}
 			if(r.value !==null && r.name == 'decimal' ){
-				st.realValue = r.realValue
+				true_.realValue = r.realValue
 			}
-			
-			step.stimuli.push(st)
+
+
+
+
+			st.stimuli.push(true_)
+
 
 			_.each(r.distractors, function(d){
 				//console.log(d.value)
@@ -77,27 +97,40 @@ var Decimal = function(number,  stimuli_type, numbers_available, count,  numbers
 				else{
 					d.value = '';
 				}
-				var st =  that.moduleutils.addStimuli(false , d.value, 'number',that.numbers_data)
+				var ff =  that.moduleutils.addStimuli(false , d.value, 'number',that.numbers_data)
 				st.unitOrDecimal = r.name;
 
 					if(d.value  !==null && r.name == 'unit' ){
-						st.realValue = d.value
+						ff.realValue = d.value
 					}
 					if(d.value !==null && r.name == 'decimal' ){
-						st.realValue = that.number
+						ff.realValue = that.number.toString()
 					}
 				//st.realValue = that.number
-				st.path = that.stimuli_type
-				step.stimuli.push(st)	
+				ff.path    = that.stimuli_type
+				st.stimuli.push(ff)
+ 			
 			})
+
+			steps_.push(st)
 		})
-		round.steps.push(step)
+		 round.steps = steps_
+
+
+
+		// round.steps.push(step)
 		round.targetSequence = {
 				gameType        : that.stimuli_type, 
-				targetNumber 	: that.number
+				targetNumber 	: that.number.toString()
+		}
+		round.target = {
+				gameType        : that.stimuli_type, 
+				targetNumber 	: that.number.toString(),
+				// soundPath: "assets/sounds/maths/number_54.ogg",
+               //  correctResponse: true
 		}
 
-		if(round.targetSequence.targetNumber !=='null'){
+		if(round.target.targetNumber !=='null'){
 			out.round = round
 		}
 		

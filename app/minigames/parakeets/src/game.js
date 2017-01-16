@@ -13,6 +13,7 @@
     'use strict';
 
     var Game = function (game) {
+        
         /**
          * backgroundTree
          * @private
@@ -27,11 +28,6 @@
         **/
         this.backgroundSky = null;
 
-        /**
-         * In charge of all the game events
-         * @type {EventEmitter}
-        **/
-        this.eventManager = null;
 
         /**
          * User interface 
@@ -56,7 +52,7 @@
 
         preload: function preloadGame() {
             console.info("[Game State] Preloading new game");
-            this.game.discipline = this.game.pedagogicData.discipline;
+            
             var data = this.game.pedagogicData.data;
             var roundsCount = data.rounds.length;
             var stimuliCount, stimulus;
@@ -78,6 +74,7 @@
                 }
             }
             if (this.game.discipline == "maths") this.game.load.atlasJSONHash('maths', 'minigames/common/assets/images/maths/maths.png', 'minigames/common/assets/images/maths/maths.json');
+
 
 
         },
@@ -102,7 +99,7 @@
             this.game.eventManager = new EventEmitter();
             this.remediation = new Remediation(this.game);
             this.game.world.bringToTop(this.backgroundTree);
-            this.ui = new Ui(this.game.params.getGlobalParams().parakeetPairs, this.game, false, false, false);
+            this.ui = new Ui(this.game.params.getGlobalParams().pairsCount, this.game, false, false, false, true, false);
             this.kalulu = new Kalulu(this.game);
             this.game.kalulu = this.kalulu;
 

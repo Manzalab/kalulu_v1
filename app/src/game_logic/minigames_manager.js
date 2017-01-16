@@ -68,6 +68,8 @@ define([
         this._currentProgressionNode = progressionNode;
         this._debugPanel = debugPanel;
 
+        console.clear();
+
         var functionName = 'start' + progressionNode.activityType.capitalise();
         this[functionName]();
     };
@@ -194,7 +196,6 @@ define([
      * @private
     */
     MinigamesManager.prototype._closeMiniGame = function _closeMiniGame () {
-        
         this._currentMinigame = null;
         this._gameManager.onCloseActivity(this._currentProgressionNode);
         Timer.stop();

@@ -16,7 +16,6 @@
         this.background = null;
         this.remediation = null;
         this.ui = null;
-        this.eventManager = null;
         this.kalulu = null;
     }
 
@@ -27,7 +26,7 @@
             // load audiofiles for the current data
 
             var data = this.game.pedagogicData.data;
-            this.game.discipline = this.game.pedagogicData.discipline;
+            
             var roundsCount = data.rounds.length;
             var stepsCount, stimuliCount, stimulus;
 
@@ -69,7 +68,7 @@
                 centralConch = false;
             }
 
-            this.ui = new Ui(this.game.params.getGlobalParams().totalTriesCount, this.game, centralConch, true, conch);
+            this.ui = new Ui(this.game.params.getGlobalParams().roundsCount, this.game, centralConch, true, conch);
             this.kalulu = new Kalulu(this.game);
 
             this.game.eventManager.emit('startGame');

@@ -12,8 +12,7 @@
         Phaser.Group.call(this, game);
 
         this.game = game;
-        this.eventManager = game.eventManager;
-
+        
         // Initialisation
 
         this.fx = new Fx(game);
@@ -91,20 +90,21 @@
         this.falseResponses = [];
         this.falseResponsesCurrentPool = [];
         this.correctResponse = {};
+        
 
         var length = roundData.steps[0].stimuli.length;
-        var stimulus;
+        var stimulus,type;
 
         for (var i = 0; i < length; i++) {
             stimulus = roundData.steps[0].stimuli[i];
+            type = roundData.steps[0].type;
             if (stimulus.correctResponse === true) {
                 this.sounds.correctRoundAnswer = this.game.add.audio(stimulus.value.toString().toLowerCase());
                 console.log("adding target sound");
                 console.log(this.sounds.correctRoundAnswer);
                 this.correctResponse.value = stimulus.value;
-                if (this.game.discipline == "maths") {
-                    this.correctResponse.alternativeValue = stimulus.alternative;
-                    this.correctResponse.alternativePicture = stimulus.alternativePicture;
+                if (this.game.discipline == "maths" && type === 'audioToNonSymbolic') {
+                    this.correctResponse.alternativePicture = true;
                 }
             }
 
@@ -112,9 +112,8 @@
                 var falseReponse = {};
 
                 falseReponse.value = stimulus.value;
-                if (this.game.discipline == "maths") {
-                    falseReponse.alternativeValue = stimulus.alternative;
-                    falseReponse.alternativePicture = stimulus.alternativePicture;
+                if (this.game.discipline == "maths" && type === 'audioToNonSymbolic') {
+                    falseReponse.alternativePicture = true;
                 }
 
                 this.falseResponses.push(falseReponse);
@@ -126,51 +125,47 @@
     };
 
     Remediation.prototype.initEvents = function () {
-        this.eventManager.on('clicked', this.onClickOnCrab, this);
+        this.game.eventManager.on('clicked', this.onClickOnCrab, this);
 
-        this.eventManager.on('playCorrectSound', function () {
-            this.eventManager.emit('unPause');
+        this.game.eventManager.on('playCorrectSound', function () {
+            this.game.eventManager.emit('unPause');
             if (this.timerCorrectResponse <= 0) {
                 this.sounds.correctRoundAnswer.play();
                 this.timerCorrectResponse = Math.floor((this.sounds.correctRoundAnswer.totalDuration + 0.5) * 60);
             }
         }, this);
 
-        this.eventManager.on('playCorrectSoundNoUnPause', function () {
+        this.game.eventManager.on('playCorrectSoundNoUnPause', function () {
             if (this.timerCorrectResponse <= 0) {
                 this.sounds.correctRoundAnswer.play();
                 this.timerCorrectResponse = Math.floor((this.sounds.correctRoundAnswer.totalDuration + 0.5) * 60);
             }
         }, this);
 
-        this.eventManager.on('pause', function () {
+        this.game.eventManager.on('pause', function () {
             this.paused = true;
         }, this);
 
-        this.eventManager.on('unPause', function () {
+
+        this.game.eventManager.on('unPause', function () {
             this.paused = false;
         }, this);
 
-        this.eventManager.on('help', function () {
-            this.highlightNextSpawn = true;
-            for (var i = 0; i < this.crabs.length; i++) {
-                if (this.crabs[i].isCorrectResponse) {
-                    this.crabs[i].highlight.visible = true;
-                }
-            }
+        this.game.eventManager.on('help', function () {
+            this.timeWithoutClick = 0;
         }, this);
 
-        
-
-        this.eventManager.on('exitGame', function () {
-            this.eventManager.removeAllListeners();
-            this.eventManager = null;
-            this.game.rafiki.close();
+        this.game.eventManager.on('exitGame', function () {
             if (this.game.gameConfig.debugPanel) this.clearDebugPanel();
+            this.game.rafiki.close();
+            this.game.eventManager.removeAllListeners();
+            this.game.eventManager = null;
             this.game.destroy();
+            console.info("Phaser Game has been destroyed");
+            this.game = null;
         }, this);
 
-        this.eventManager.on('replay', this.onClickOnReplay, this);
+        this.game.eventManager.on('replay', this.onClickOnReplay, this);
     };
 
     Remediation.prototype.initCrabs = function (game) {
@@ -213,12 +208,6 @@
         }
     };
 
-    Remediation.prototype.deleteCrabs = function () {
-        var length = this.crabs.length;
-        for (var i = 0 ; i < length ; i++) {
-            this.crabs.pop().destroy();
-        }
-    };
     Remediation.prototype.onClickOnCrab = function (crab) {
         this.timeWithoutClick = 0;
         this.triesRemaining--;
@@ -228,14 +217,14 @@
         this.game.world.bringToTop(this.fx);
 
         if (crab.isCorrectResponse) {
-            this.eventManager.emit('success', crab);
+            this.game.eventManager.emit('success', crab);
             this.fx.hit(crab.crabSprite.world.x, crab.crabSprite.world.y, true);
             this.sounds.right.play();
             this.success();
             crab.success = true;
         }
         else {
-            this.eventManager.emit('fail', crab);
+            this.game.eventManager.emit('fail', crab);
             this.fx.hit(crab.crabSprite.world.x, crab.crabSprite.world.y, false);
             this.sounds.wrong.play();
             this.fail();
@@ -244,7 +233,6 @@
     };
 
     Remediation.prototype.success = function () {
-
         this.currentRound++;
         this.consecutiveSuccess++;
         this.consecutiveMistakes = 0;
@@ -262,7 +250,7 @@
 
             setTimeout(function () {
                 this.initRound(this.currentRound);
-                this.eventManager.emit('playCorrectSound');
+                this.game.eventManager.emit('playCorrectSound');
             }.bind(this), 500);
         }
         else {
@@ -271,6 +259,7 @@
     };
 
     Remediation.prototype.fail = function () {
+        var params = this.game.params.getGeneralParams();
 
         this.lives--;
         console.log("Lives remaining : " + this.lives);
@@ -279,14 +268,20 @@
 
         if (this.lives > 0) {
             if (this.triesRemaining > 0) {
-                if (this.consecutiveMistakes % 2 === 0) {
-                    this.eventManager.emit('help');                    
+                if (this.consecutiveMistakes === params.incorrectResponseCountTriggeringSecondRemediation) {
+                    this.game.eventManager.emit('help');
+                    this.highlightNextSpawn = true;
+                    for (var i = 0; i < this.crabs.length; i++) {
+                        if (this.crabs[i].isCorrectResponse) {
+                            this.crabs[i].highlight.visible = true;
+                        }
+                    }
                     if (this.game.gameConfig.debugPanel) this.cleanLocalPanel();
                     this.game.params.decreaseLocalDifficulty();
                     if (this.game.gameConfig.debugPanel) this.setLocalPanel();
                 }
                 else {
-                    this.eventManager.emit('playCorrectSound');
+                    this.game.eventManager.emit('playCorrectSound');
                 }
             }
             else {
@@ -303,6 +298,10 @@
         this.framesToWaitBeforeNextSpawn--;
 
         var localParams = this.game.params.getLocalParams();
+        this.crabEnabled = 0;
+        for (var i = 0 ; i < this.crabs.length; i++) {
+            if (this.crabs[i].enabled) this.crabEnabled++;
+        }
         var crabsToSpawn = localParams.maxCrabsOnScreen - this.crabEnabled;
 
         if (crabsToSpawn > 0 && this.framesToWaitBeforeNextSpawn <= 0) {
@@ -330,11 +329,8 @@
         if (isTargetValue) {
             value.value = this.correctResponse.value;
             value.text = this.correctResponse.value;
-            if (this.game.discipline == "maths") {
-                if (Math.random() <= localParams.mathsAlternativePercentage) {
-                    value.text = this.correctResponse.alternativeValue;
-                    if (Math.random() <= localParams.mathsAlternativePicturePercentage) value.alternativePicture = this.correctResponse.alternativePicture;
-                }
+            if (this.game.discipline == "maths" && this.correctResponse.alternativePicture) {
+                    value.alternativePicture = true;
             }
         }
         else {
@@ -346,15 +342,10 @@
             var falseResponse = this.falseResponsesCurrentPool.splice(Math.floor(Math.random() * this.falseResponsesCurrentPool.length), 1)[0];
             value.value = falseResponse.value; // Picks a random value in all the false response values
             value.text = falseResponse.value;
-            if (this.game.discipline == "maths") {
-                if (Math.random() <= localParams.mathsAlternativePercentage) {
-                    value.text = falseResponse.alternativeValue;
-                    if (Math.random() <= localParams.mathsAlternativePicturePercentage) value.alternativePicture = falseResponse.alternativePicture;
-                }
+            if (this.game.discipline == "maths" && falseResponse.alternativePicture) {
+                value.alternativePicture = true;
             }
         }
-
-
         var disabledCrabs = this.getDisabledCrabs();
         randomCrab = disabledCrabs[Math.floor(Math.random() * this.getDisabledCrabs().length)];
         randomCrab.enabled = true;
@@ -366,7 +357,6 @@
         }
 
         j = 0;
-        console.log(this.results);
         while (this.results.data.rounds[this.currentRound].steps[0].stimuli[j].value != value.value) { //finds the value in the results to add one apparition
             j++;
         }
@@ -426,7 +416,7 @@
 
             if (this.timeWithoutClick > 60 * 20) {
                 this.timeWithoutClick = 0;
-                this.eventManager.emit('help');
+                this.game.eventManager.emit('help');
             }
 
         }
@@ -436,11 +426,11 @@
     Remediation.prototype.gameOverWon = function gameOverWon() {
         this.game.won = true;
         this.sounds.winGame.play();
-        this.eventManager.emit('offUi');// listened by ui to disble UI Buttons and add a black overlay
+        this.game.eventManager.emit('offUi');// listened by ui to disble UI Buttons and add a black overlay
 
         this.sounds.winGame.onStop.add(function () {
             this.sounds.winGame.onStop.removeAll();
-            this.eventManager.emit('GameOverWin'); // listened by UI to disable kaluluButton and by Kalulu to start final Speech
+            this.game.eventManager.emit('GameOverWin'); // listened by UI to disable kaluluButton and by Kalulu to start final Speech
             this.saveGameRecord();
         }, this);
     };
@@ -448,11 +438,11 @@
     Remediation.prototype.gameOverLose = function gameOverLose() {
         this.game.won = false;
         this.sounds.loseGame.play();
-        this.eventManager.emit('offUi');// listened by ui to disble UI Buttons and add a black overlay
+        this.game.eventManager.emit('offUi');// listened by ui to disble UI Buttons and add a black overlay
 
         this.sounds.loseGame.onStop.add(function () {
             this.sounds.loseGame.onStop.removeAll();
-            this.eventManager.emit('GameOverLose'); // listened by UI to disable kaluluButton and by Kalulu to start final Speech
+            this.game.eventManager.emit('GameOverLose'); // listened by UI to disable kaluluButton and by Kalulu to start final Speech
             this.saveGameRecord();
         }, this);
     };
@@ -465,9 +455,10 @@
     Remediation.prototype.onClickOnReplay = function onClickOnReplay() {
 
         if (this.game.gameConfig.debugPanel) {
-            document.getElementsByClassName("dg main a")[0].remove();
-            this.debug = null;
+            this.clearDebugPanel();
         }
+        this.game.eventManager.removeAllListeners();
+        this.game.eventManager = null;
         this.game.state.start('Setup');
     };
 
@@ -522,6 +513,7 @@
         this._debugFunctions.add(this, "AutoWin");
         this._debugFunctions.add(this, "AutoLose");
         this._debugFunctions.add(this, "skipKalulu");
+        this._debugFunctions.open();
     };
 
     Remediation.prototype.clearDebugPanel = function clearDebugPanel() {
@@ -617,7 +609,7 @@
 
     Remediation.prototype.skipKalulu = function skipKalulu() {
 
-        this.eventManager.emit("skipKalulu");
+        this.game.eventManager.emit("skipKalulu");
     };
 
     module.exports = Remediation;

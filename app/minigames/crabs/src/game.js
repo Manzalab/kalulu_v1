@@ -27,12 +27,6 @@
         this.background = null;
         
         /**
-         * In charge of all the game events
-         * @type {EventEmitter}
-        **/
-        this.eventManager = null;
-        
-        /**
          * User interface 
          * @type {Ui}
         **/
@@ -54,7 +48,7 @@
     Game.prototype = {
         preload : function preloadGame () {
             console.info("[Game State] Preloading new game");
-            this.game.discipline = this.game.pedagogicData.discipline;
+            
             var data = this.game.pedagogicData.data;
             var roundsCount = data.rounds.length;
             var stimuliCount, stimulus;
@@ -109,6 +103,10 @@
             this.game.eventManager.emit('startGame');
 
             this.game.time.advancedTiming = true; //Needed for rendering debug fps
+        },
+
+        bringToTop: function (element){
+            this.game.world.bringToTop(element);
         },
         
         /** 

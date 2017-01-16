@@ -23,7 +23,7 @@ module.exports = components.mergeConfigs(
 
         resolve : {
             root : path.resolve(__dirname, '../app'),
-            modulesDirectories : ['node_modules', 'app/modules', 'app/libs', 'app/minigames', 'app/src']
+            modulesDirectories : ['node_modules', 'app/assets', 'app/modules', 'app/libs', 'app/minigames', 'app/src']
         },
         module: {
             loaders: [
@@ -36,6 +36,7 @@ module.exports = components.mergeConfigs(
             new webpack.DefinePlugin({
               KALULU_VERSION  : JSON.stringify(process.env.npm_package_version),
               KALULU_LANGUAGE : JSON.stringify(process.env.kaluluLanguage),
+              KALULU_ENV      : process.env.productionBuild
             }),
             new webpack.ProvidePlugin({
               Phaser  : ('phaser-bundle')

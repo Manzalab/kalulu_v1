@@ -29,7 +29,7 @@
 },
 "LookAndLearnButton0003.png":
 {
-	"frame": {"x":852,"y":407,"w":400,"h":400},
+	"frame": {"x":1256,"y":3,"w":400,"h":400},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":400,"h":400},
@@ -47,7 +47,7 @@
 },
 "MinigameButtonAnts_completed0001.png":
 {
-	"frame": {"x":852,"y":811,"w":210,"h":210},
+	"frame": {"x":852,"y":407,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -56,7 +56,7 @@
 },
 "MinigameButtonAnts_completed0002.png":
 {
-	"frame": {"x":852,"y":811,"w":210,"h":210},
+	"frame": {"x":852,"y":407,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -65,7 +65,7 @@
 },
 "MinigameButtonAnts_completed0003.png":
 {
-	"frame": {"x":3,"y":852,"w":210,"h":210},
+	"frame": {"x":1066,"y":407,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -74,7 +74,7 @@
 },
 "MinigameButtonAnts_inprogress0001.png":
 {
-	"frame": {"x":852,"y":811,"w":210,"h":210},
+	"frame": {"x":1280,"y":407,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -83,7 +83,7 @@
 },
 "MinigameButtonAnts_inprogress0002.png":
 {
-	"frame": {"x":852,"y":811,"w":210,"h":210},
+	"frame": {"x":1280,"y":407,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -92,7 +92,7 @@
 },
 "MinigameButtonAnts_inprogress0003.png":
 {
-	"frame": {"x":3,"y":852,"w":210,"h":210},
+	"frame": {"x":1494,"y":407,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -101,7 +101,7 @@
 },
 "MinigameButtonAnts_locked0001.png":
 {
-	"frame": {"x":217,"y":852,"w":210,"h":210},
+	"frame": {"x":852,"y":621,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -110,7 +110,7 @@
 },
 "MinigameButtonAnts_locked0002.png":
 {
-	"frame": {"x":217,"y":852,"w":210,"h":210},
+	"frame": {"x":852,"y":621,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -119,7 +119,7 @@
 },
 "MinigameButtonAnts_locked0003.png":
 {
-	"frame": {"x":217,"y":852,"w":210,"h":210},
+	"frame": {"x":852,"y":621,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -128,7 +128,7 @@
 },
 "MinigameButtonAnts_locked0004.png":
 {
-	"frame": {"x":217,"y":852,"w":210,"h":210},
+	"frame": {"x":852,"y":621,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -137,7 +137,7 @@
 },
 "MinigameButtonAnts_open0001.png":
 {
-	"frame": {"x":852,"y":811,"w":210,"h":210},
+	"frame": {"x":1066,"y":621,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -146,7 +146,7 @@
 },
 "MinigameButtonAnts_open0002.png":
 {
-	"frame": {"x":852,"y":811,"w":210,"h":210},
+	"frame": {"x":1066,"y":621,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -155,7 +155,7 @@
 },
 "MinigameButtonAnts_open0003.png":
 {
-	"frame": {"x":3,"y":852,"w":210,"h":210},
+	"frame": {"x":1280,"y":621,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -164,7 +164,7 @@
 },
 "MinigameButtonCaterpillar_completed0001.png":
 {
-	"frame": {"x":431,"y":852,"w":210,"h":210},
+	"frame": {"x":1494,"y":621,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -173,7 +173,7 @@
 },
 "MinigameButtonCaterpillar_completed0002.png":
 {
-	"frame": {"x":431,"y":852,"w":210,"h":210},
+	"frame": {"x":1494,"y":621,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -182,7 +182,7 @@
 },
 "MinigameButtonCaterpillar_completed0003.png":
 {
-	"frame": {"x":645,"y":1025,"w":210,"h":210},
+	"frame": {"x":852,"y":835,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -191,7 +191,7 @@
 },
 "MinigameButtonCaterpillar_inprogress0001.png":
 {
-	"frame": {"x":431,"y":852,"w":210,"h":210},
+	"frame": {"x":1066,"y":835,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -200,7 +200,7 @@
 },
 "MinigameButtonCaterpillar_inprogress0002.png":
 {
-	"frame": {"x":431,"y":852,"w":210,"h":210},
+	"frame": {"x":1066,"y":835,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -209,7 +209,7 @@
 },
 "MinigameButtonCaterpillar_inprogress0003.png":
 {
-	"frame": {"x":645,"y":1025,"w":210,"h":210},
+	"frame": {"x":1280,"y":835,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -218,7 +218,7 @@
 },
 "MinigameButtonCaterpillar_locked0001.png":
 {
-	"frame": {"x":859,"y":1025,"w":210,"h":210},
+	"frame": {"x":1494,"y":835,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -227,7 +227,7 @@
 },
 "MinigameButtonCaterpillar_locked0002.png":
 {
-	"frame": {"x":859,"y":1025,"w":210,"h":210},
+	"frame": {"x":1494,"y":835,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -236,7 +236,7 @@
 },
 "MinigameButtonCaterpillar_locked0003.png":
 {
-	"frame": {"x":859,"y":1025,"w":210,"h":210},
+	"frame": {"x":1494,"y":835,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -245,7 +245,7 @@
 },
 "MinigameButtonCaterpillar_locked0004.png":
 {
-	"frame": {"x":859,"y":1025,"w":210,"h":210},
+	"frame": {"x":1494,"y":835,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -254,7 +254,7 @@
 },
 "MinigameButtonCaterpillar_open0001.png":
 {
-	"frame": {"x":431,"y":852,"w":210,"h":210},
+	"frame": {"x":1066,"y":835,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -263,7 +263,7 @@
 },
 "MinigameButtonCaterpillar_open0002.png":
 {
-	"frame": {"x":431,"y":852,"w":210,"h":210},
+	"frame": {"x":1066,"y":835,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -272,7 +272,7 @@
 },
 "MinigameButtonCaterpillar_open0003.png":
 {
-	"frame": {"x":645,"y":1025,"w":210,"h":210},
+	"frame": {"x":1280,"y":835,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -281,7 +281,7 @@
 },
 "MinigameButtonCrabs_completed0001.png":
 {
-	"frame": {"x":3,"y":1066,"w":210,"h":210},
+	"frame": {"x":3,"y":852,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -290,7 +290,7 @@
 },
 "MinigameButtonCrabs_completed0002.png":
 {
-	"frame": {"x":3,"y":1066,"w":210,"h":210},
+	"frame": {"x":3,"y":852,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -299,7 +299,7 @@
 },
 "MinigameButtonCrabs_completed0003.png":
 {
-	"frame": {"x":217,"y":1066,"w":210,"h":210},
+	"frame": {"x":217,"y":852,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -308,7 +308,7 @@
 },
 "MinigameButtonCrabs_inprogress0001.png":
 {
-	"frame": {"x":3,"y":1066,"w":210,"h":210},
+	"frame": {"x":431,"y":852,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -317,7 +317,7 @@
 },
 "MinigameButtonCrabs_inprogress0002.png":
 {
-	"frame": {"x":3,"y":1066,"w":210,"h":210},
+	"frame": {"x":431,"y":852,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -326,7 +326,7 @@
 },
 "MinigameButtonCrabs_inprogress0003.png":
 {
-	"frame": {"x":217,"y":1066,"w":210,"h":210},
+	"frame": {"x":3,"y":1066,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -335,7 +335,7 @@
 },
 "MinigameButtonCrabs_locked0001.png":
 {
-	"frame": {"x":431,"y":1066,"w":210,"h":210},
+	"frame": {"x":3,"y":1280,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -344,7 +344,7 @@
 },
 "MinigameButtonCrabs_locked0002.png":
 {
-	"frame": {"x":431,"y":1066,"w":210,"h":210},
+	"frame": {"x":3,"y":1280,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -353,7 +353,7 @@
 },
 "MinigameButtonCrabs_locked0003.png":
 {
-	"frame": {"x":431,"y":1066,"w":210,"h":210},
+	"frame": {"x":3,"y":1280,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -362,7 +362,7 @@
 },
 "MinigameButtonCrabs_locked0004.png":
 {
-	"frame": {"x":431,"y":1066,"w":210,"h":210},
+	"frame": {"x":3,"y":1280,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -371,7 +371,7 @@
 },
 "MinigameButtonCrabs_open0001.png":
 {
-	"frame": {"x":3,"y":1066,"w":210,"h":210},
+	"frame": {"x":431,"y":852,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -380,7 +380,7 @@
 },
 "MinigameButtonCrabs_open0002.png":
 {
-	"frame": {"x":3,"y":1066,"w":210,"h":210},
+	"frame": {"x":431,"y":852,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -389,7 +389,7 @@
 },
 "MinigameButtonCrabs_open0003.png":
 {
-	"frame": {"x":217,"y":1066,"w":210,"h":210},
+	"frame": {"x":3,"y":1066,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -398,7 +398,7 @@
 },
 "MinigameButtonFrog_completed0001.png":
 {
-	"frame": {"x":645,"y":1239,"w":210,"h":210},
+	"frame": {"x":3,"y":1494,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -407,7 +407,7 @@
 },
 "MinigameButtonFrog_completed0002.png":
 {
-	"frame": {"x":645,"y":1239,"w":210,"h":210},
+	"frame": {"x":3,"y":1494,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -416,7 +416,7 @@
 },
 "MinigameButtonFrog_completed0003.png":
 {
-	"frame": {"x":859,"y":1239,"w":210,"h":210},
+	"frame": {"x":3,"y":1708,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -425,7 +425,7 @@
 },
 "MinigameButtonFrog_inprogress0001.png":
 {
-	"frame": {"x":645,"y":1239,"w":210,"h":210},
+	"frame": {"x":217,"y":1066,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -434,7 +434,7 @@
 },
 "MinigameButtonFrog_inprogress0002.png":
 {
-	"frame": {"x":645,"y":1239,"w":210,"h":210},
+	"frame": {"x":217,"y":1066,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -443,7 +443,7 @@
 },
 "MinigameButtonFrog_inprogress0003.png":
 {
-	"frame": {"x":859,"y":1239,"w":210,"h":210},
+	"frame": {"x":217,"y":1280,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -452,7 +452,7 @@
 },
 "MinigameButtonFrog_locked0001.png":
 {
-	"frame": {"x":3,"y":1280,"w":210,"h":210},
+	"frame": {"x":217,"y":1494,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -461,7 +461,7 @@
 },
 "MinigameButtonFrog_locked0002.png":
 {
-	"frame": {"x":3,"y":1280,"w":210,"h":210},
+	"frame": {"x":217,"y":1494,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -470,7 +470,7 @@
 },
 "MinigameButtonFrog_locked0003.png":
 {
-	"frame": {"x":3,"y":1280,"w":210,"h":210},
+	"frame": {"x":217,"y":1494,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -479,7 +479,7 @@
 },
 "MinigameButtonFrog_locked0004.png":
 {
-	"frame": {"x":3,"y":1280,"w":210,"h":210},
+	"frame": {"x":217,"y":1494,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -488,7 +488,7 @@
 },
 "MinigameButtonFrog_open0001.png":
 {
-	"frame": {"x":645,"y":1239,"w":210,"h":210},
+	"frame": {"x":217,"y":1066,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -497,7 +497,7 @@
 },
 "MinigameButtonFrog_open0002.png":
 {
-	"frame": {"x":645,"y":1239,"w":210,"h":210},
+	"frame": {"x":217,"y":1066,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -506,7 +506,7 @@
 },
 "MinigameButtonFrog_open0003.png":
 {
-	"frame": {"x":859,"y":1239,"w":210,"h":210},
+	"frame": {"x":217,"y":1280,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -515,7 +515,7 @@
 },
 "MinigameButtonJellyfish_completed0001.png":
 {
-	"frame": {"x":217,"y":1280,"w":210,"h":210},
+	"frame": {"x":217,"y":1708,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -524,7 +524,7 @@
 },
 "MinigameButtonJellyfish_completed0002.png":
 {
-	"frame": {"x":217,"y":1280,"w":210,"h":210},
+	"frame": {"x":217,"y":1708,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -533,7 +533,7 @@
 },
 "MinigameButtonJellyfish_completed0003.png":
 {
-	"frame": {"x":431,"y":1280,"w":210,"h":210},
+	"frame": {"x":431,"y":1066,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -542,7 +542,7 @@
 },
 "MinigameButtonJellyfish_inprogress0001.png":
 {
-	"frame": {"x":217,"y":1280,"w":210,"h":210},
+	"frame": {"x":431,"y":1280,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -551,7 +551,7 @@
 },
 "MinigameButtonJellyfish_inprogress0002.png":
 {
-	"frame": {"x":217,"y":1280,"w":210,"h":210},
+	"frame": {"x":431,"y":1280,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -560,7 +560,7 @@
 },
 "MinigameButtonJellyfish_inprogress0003.png":
 {
-	"frame": {"x":431,"y":1280,"w":210,"h":210},
+	"frame": {"x":431,"y":1494,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -569,7 +569,7 @@
 },
 "MinigameButtonJellyfish_locked0001.png":
 {
-	"frame": {"x":645,"y":1453,"w":210,"h":210},
+	"frame": {"x":431,"y":1708,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -578,7 +578,7 @@
 },
 "MinigameButtonJellyfish_locked0002.png":
 {
-	"frame": {"x":645,"y":1453,"w":210,"h":210},
+	"frame": {"x":431,"y":1708,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -587,7 +587,7 @@
 },
 "MinigameButtonJellyfish_locked0003.png":
 {
-	"frame": {"x":645,"y":1453,"w":210,"h":210},
+	"frame": {"x":431,"y":1708,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -596,7 +596,7 @@
 },
 "MinigameButtonJellyfish_locked0004.png":
 {
-	"frame": {"x":645,"y":1453,"w":210,"h":210},
+	"frame": {"x":431,"y":1708,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -605,7 +605,7 @@
 },
 "MinigameButtonJellyfish_open0001.png":
 {
-	"frame": {"x":217,"y":1280,"w":210,"h":210},
+	"frame": {"x":431,"y":1280,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -614,7 +614,7 @@
 },
 "MinigameButtonJellyfish_open0002.png":
 {
-	"frame": {"x":217,"y":1280,"w":210,"h":210},
+	"frame": {"x":431,"y":1280,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -623,7 +623,7 @@
 },
 "MinigameButtonJellyfish_open0003.png":
 {
-	"frame": {"x":431,"y":1280,"w":210,"h":210},
+	"frame": {"x":431,"y":1494,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -632,7 +632,7 @@
 },
 "MinigameButtonMonkeys_completed0001.png":
 {
-	"frame": {"x":859,"y":1453,"w":210,"h":210},
+	"frame": {"x":645,"y":1049,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -641,7 +641,7 @@
 },
 "MinigameButtonMonkeys_completed0002.png":
 {
-	"frame": {"x":859,"y":1453,"w":210,"h":210},
+	"frame": {"x":645,"y":1049,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -650,7 +650,7 @@
 },
 "MinigameButtonMonkeys_completed0003.png":
 {
-	"frame": {"x":3,"y":1494,"w":210,"h":210},
+	"frame": {"x":645,"y":1263,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -659,7 +659,7 @@
 },
 "MinigameButtonMonkeys_inprogress0001.png":
 {
-	"frame": {"x":859,"y":1453,"w":210,"h":210},
+	"frame": {"x":645,"y":1477,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -668,7 +668,7 @@
 },
 "MinigameButtonMonkeys_inprogress0002.png":
 {
-	"frame": {"x":859,"y":1453,"w":210,"h":210},
+	"frame": {"x":645,"y":1477,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -677,7 +677,7 @@
 },
 "MinigameButtonMonkeys_inprogress0003.png":
 {
-	"frame": {"x":3,"y":1494,"w":210,"h":210},
+	"frame": {"x":645,"y":1691,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -686,7 +686,7 @@
 },
 "MinigameButtonMonkeys_locked0001.png":
 {
-	"frame": {"x":217,"y":1494,"w":210,"h":210},
+	"frame": {"x":859,"y":1049,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -695,7 +695,7 @@
 },
 "MinigameButtonMonkeys_locked0002.png":
 {
-	"frame": {"x":217,"y":1494,"w":210,"h":210},
+	"frame": {"x":859,"y":1049,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -704,7 +704,7 @@
 },
 "MinigameButtonMonkeys_locked0003.png":
 {
-	"frame": {"x":217,"y":1494,"w":210,"h":210},
+	"frame": {"x":859,"y":1049,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -713,7 +713,7 @@
 },
 "MinigameButtonMonkeys_locked0004.png":
 {
-	"frame": {"x":217,"y":1494,"w":210,"h":210},
+	"frame": {"x":859,"y":1049,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -722,7 +722,7 @@
 },
 "MinigameButtonMonkeys_open0001.png":
 {
-	"frame": {"x":859,"y":1453,"w":210,"h":210},
+	"frame": {"x":645,"y":1477,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -731,7 +731,7 @@
 },
 "MinigameButtonMonkeys_open0002.png":
 {
-	"frame": {"x":859,"y":1453,"w":210,"h":210},
+	"frame": {"x":645,"y":1477,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -740,34 +740,34 @@
 },
 "MinigameButtonMonkeys_open0003.png":
 {
-	"frame": {"x":3,"y":1494,"w":210,"h":210},
+	"frame": {"x":645,"y":1691,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
 	"sourceSize": {"w":210,"h":210},
 	"pivot": {"x":0.5,"y":0.5}
 },
-"MinigameButtonParakeets_compeleted0001.png":
+"MinigameButtonParakeets_completed0001.png":
 {
-	"frame": {"x":431,"y":1494,"w":210,"h":210},
+	"frame": {"x":1073,"y":1049,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
 	"sourceSize": {"w":210,"h":210},
 	"pivot": {"x":0.5,"y":0.5}
 },
-"MinigameButtonParakeets_compeleted0002.png":
+"MinigameButtonParakeets_completed0002.png":
 {
-	"frame": {"x":431,"y":1494,"w":210,"h":210},
+	"frame": {"x":1073,"y":1049,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
 	"sourceSize": {"w":210,"h":210},
 	"pivot": {"x":0.5,"y":0.5}
 },
-"MinigameButtonParakeets_compeleted0003.png":
+"MinigameButtonParakeets_completed0003.png":
 {
-	"frame": {"x":645,"y":1667,"w":210,"h":210},
+	"frame": {"x":1287,"y":1049,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -776,7 +776,7 @@
 },
 "MinigameButtonParakeets_inprogress0001.png":
 {
-	"frame": {"x":431,"y":1494,"w":210,"h":210},
+	"frame": {"x":859,"y":1263,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -785,7 +785,7 @@
 },
 "MinigameButtonParakeets_inprogress0002.png":
 {
-	"frame": {"x":431,"y":1494,"w":210,"h":210},
+	"frame": {"x":859,"y":1263,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -794,7 +794,7 @@
 },
 "MinigameButtonParakeets_inprogress0003.png":
 {
-	"frame": {"x":645,"y":1667,"w":210,"h":210},
+	"frame": {"x":859,"y":1477,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -803,7 +803,7 @@
 },
 "MinigameButtonParakeets_locked0001.png":
 {
-	"frame": {"x":859,"y":1667,"w":210,"h":210},
+	"frame": {"x":859,"y":1691,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -812,7 +812,7 @@
 },
 "MinigameButtonParakeets_locked0002.png":
 {
-	"frame": {"x":859,"y":1667,"w":210,"h":210},
+	"frame": {"x":859,"y":1691,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -821,7 +821,7 @@
 },
 "MinigameButtonParakeets_locked0003.png":
 {
-	"frame": {"x":859,"y":1667,"w":210,"h":210},
+	"frame": {"x":859,"y":1691,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -830,7 +830,7 @@
 },
 "MinigameButtonParakeets_locked0004.png":
 {
-	"frame": {"x":859,"y":1667,"w":210,"h":210},
+	"frame": {"x":859,"y":1691,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -839,7 +839,7 @@
 },
 "MinigameButtonParakeets_open0001.png":
 {
-	"frame": {"x":431,"y":1494,"w":210,"h":210},
+	"frame": {"x":859,"y":1263,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -848,7 +848,7 @@
 },
 "MinigameButtonParakeets_open0002.png":
 {
-	"frame": {"x":431,"y":1494,"w":210,"h":210},
+	"frame": {"x":859,"y":1263,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -857,7 +857,7 @@
 },
 "MinigameButtonParakeets_open0003.png":
 {
-	"frame": {"x":645,"y":1667,"w":210,"h":210},
+	"frame": {"x":859,"y":1477,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -866,7 +866,7 @@
 },
 "MinigameButtonTurtles_completed0001.png":
 {
-	"frame": {"x":3,"y":1708,"w":210,"h":210},
+	"frame": {"x":1073,"y":1263,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -875,7 +875,7 @@
 },
 "MinigameButtonTurtles_completed0002.png":
 {
-	"frame": {"x":3,"y":1708,"w":210,"h":210},
+	"frame": {"x":1073,"y":1263,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -884,7 +884,7 @@
 },
 "MinigameButtonTurtles_completed0003.png":
 {
-	"frame": {"x":217,"y":1708,"w":210,"h":210},
+	"frame": {"x":1287,"y":1263,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -893,7 +893,7 @@
 },
 "MinigameButtonTurtles_inprogress0001.png":
 {
-	"frame": {"x":3,"y":1708,"w":210,"h":210},
+	"frame": {"x":1073,"y":1477,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -902,7 +902,7 @@
 },
 "MinigameButtonTurtles_inprogress0002.png":
 {
-	"frame": {"x":3,"y":1708,"w":210,"h":210},
+	"frame": {"x":1073,"y":1477,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -911,7 +911,7 @@
 },
 "MinigameButtonTurtles_inprogress0003.png":
 {
-	"frame": {"x":217,"y":1708,"w":210,"h":210},
+	"frame": {"x":1073,"y":1691,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -920,7 +920,7 @@
 },
 "MinigameButtonTurtles_locked0001.png":
 {
-	"frame": {"x":431,"y":1708,"w":210,"h":210},
+	"frame": {"x":1287,"y":1477,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -929,7 +929,7 @@
 },
 "MinigameButtonTurtles_locked0002.png":
 {
-	"frame": {"x":431,"y":1708,"w":210,"h":210},
+	"frame": {"x":1287,"y":1477,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -938,7 +938,7 @@
 },
 "MinigameButtonTurtles_locked0003.png":
 {
-	"frame": {"x":431,"y":1708,"w":210,"h":210},
+	"frame": {"x":1287,"y":1477,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -947,7 +947,7 @@
 },
 "MinigameButtonTurtles_locked0004.png":
 {
-	"frame": {"x":431,"y":1708,"w":210,"h":210},
+	"frame": {"x":1287,"y":1477,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -956,7 +956,7 @@
 },
 "MinigameButtonTurtles_open0001.png":
 {
-	"frame": {"x":3,"y":1708,"w":210,"h":210},
+	"frame": {"x":1073,"y":1477,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -965,7 +965,7 @@
 },
 "MinigameButtonTurtles_open0002.png":
 {
-	"frame": {"x":3,"y":1708,"w":210,"h":210},
+	"frame": {"x":1073,"y":1477,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -974,7 +974,7 @@
 },
 "MinigameButtonTurtles_open0003.png":
 {
-	"frame": {"x":217,"y":1708,"w":210,"h":210},
+	"frame": {"x":1073,"y":1691,"w":210,"h":210},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":210},
@@ -986,8 +986,8 @@
 	"version": "1.0",
 	"image": "lesson_screen_0.png",
 	"format": "RGBA8888",
-	"size": {"w":1255,"h":1921},
+	"size": {"w":1707,"h":1921},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:558ccaef82ac5a759dad9252196b9324:5df3baeec7ac3ce8fb8363cb5ffa405b:41d282fe3f268a1069f11c1920df19e0$"
+	"smartupdate": "$TexturePacker:SmartUpdate:56c5559dd29699f3803c7923f5c8b6ca:0e12629a90d08a7c88000f82674618d3:41d282fe3f268a1069f11c1920df19e0$"
 }
 }

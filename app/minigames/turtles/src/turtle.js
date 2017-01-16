@@ -41,8 +41,7 @@
         this.clickable = true;
         this.paused = false;
         this.spawned = true;
-        this.eventManager = game.eventManager;
-
+        
         this.turtleSprite = game.add.sprite(0, 0, 'turtle', 'Tortue_nage01_0000');
         this.turtleSprite.anchor.setTo(0.5, 0.5);
         this.turtleSprite.scale.x = scale;
@@ -55,9 +54,22 @@
         this.turtleSprite.animations.add('victory', Phaser.Animation.generateFrameNames('Tortue_victory_', 0, 5, '', 4), 8, false, false);
         this.turtleSprite.animations.add('hit', Phaser.Animation.generateFrameNames('Tortue_plonge_', 0, 5, '', 4), 8, false, false);
         this.turtleSprite.animations.add('emerge', Phaser.Animation.generateFrameNames('Tortue_plonge_', 5, 0, '', 4), 8, false, false);
+		
+		this.events = this.turtleSprite.events;
+		
+		this.events.onInputDown.add(function () {
+			// if (!this.sounds.isPlaying)
+				this.sound.play();
+        }, this);
+		
+		this.highlight = game.add.sprite(0.5, 0.5, 'fx', 'FX_02');
+        this.highlight.anchor.setTo(0.5, 0.5);
+        this.highlight.scale.x = 0.7;
+        this.highlight.scale.y = 0.7;
+        this.highlight.visible = false;
+        this.add(this.highlight);
 
-
-        this.add(this.turtleSprite)
+        this.add(this.turtleSprite);
 
         game.physics.enable(this.turtleSprite, Phaser.Physics.ARCADE);
         this.turtleSprite.body.setSize(this.turtleSprite.height / 2, this.turtleSprite.width / 2, this.turtleSprite.height / 4, this.turtleSprite.width / 4);
@@ -83,6 +95,7 @@
 
         this.initEvents();
         this.initSounds(game);
+		
     };
 
     Turtle.prototype = Object.create(Phaser.Group.prototype);
@@ -93,7 +106,7 @@
      * @private
      **/
     Turtle.prototype.initSounds = function (game) {
-        //    this.sounds = {};
+           this.sounds = {};
         //    this.sounds.rdm = [];
 
         //    for (var i = 0; i < 3; i++) {
@@ -120,7 +133,7 @@
         this.x = xOffset * Math.cos(toRadians(angle)) + this.gameRef.width / 2;
         this.y = -yOffset * Math.sin(toRadians(angle)) + this.gameRef.height / 2;
 
-        this.updateAngle(angle);
+        this.updateAngle(angle+35);
 
         if (text != "") this.sound = this.gameRef.add.audio(text);
         this.turtleSprite.animations.play('emerge');
@@ -171,11 +184,11 @@
      * @private
      **/
     Turtle.prototype.initEvents = function () {
-        this.eventManager.on('pause', function () {
+        this.game.eventManager.on('pause', function () {
             this.paused = true;
         }, this);
 
-        this.eventManager.on('unPause', function () {
+        this.game.eventManager.on('unPause', function () {
             if (this.spawned)
                 this.paused = false;
         }, this);
@@ -201,7 +214,7 @@
         this.turtleSprite.animations.play('hit');
         this.warning.toggle(false);
         this.turtleSprite.animations.currentAnim.onComplete.add(function () {
-            this.eventManager.emit('destroyTurtle', this);
+            this.game.eventManager.emit('destroyTurtle', this);
             this.visible = false;
         }, this);
     }
@@ -212,6 +225,11 @@
      * @private
      **/
     Turtle.prototype.update = function () {
+		
+		 if (this.highlight.visible) {
+            this.highlight.rotation += 0.01;
+        }
+		
         if (!this.paused) {
             if (!this.turning) {
                 if (this.turtleSprite.animations.currentAnim.isFinished || !this.turtleSprite.animations.currentAnim.isPlaying) {
@@ -242,17 +260,17 @@
 
             if (this.x < -this.turtleSprite.width / 2) {
                 if ((this.vAngle <= 45 && this.vAngle >= 0) || (this.vAngle >= 315 && this.vAngle <= 360)) {
-                    this.eventManager.emit('destroyTurtle', this);
+                    this.game.eventManager.emit('destroyTurtle', this);
                 }
             }
             else if (this.x > this.gameRef.width + this.turtleSprite.width / 2 && this.vAngle <= 225 && this.vAngle >= 135) {
-                this.eventManager.emit('destroyTurtle', this);
+                this.game.eventManager.emit('destroyTurtle', this);
             }
             else if (this.y < -this.turtleSprite.height / 2 && this.vAngle <= 315 && this.vAngle >= 225) {
-                this.eventManager.emit('destroyTurtle', this);
+                this.game.eventManager.emit('destroyTurtle', this);
             }
             else if (this.y > this.gameRef.height + this.turtleSprite.height / 2 && this.vAngle <= 135 && this.vAngle >= 45) {
-                this.eventManager.emit('destroyTurtle', this);
+                this.game.eventManager.emit('destroyTurtle', this);
             }
 
         }

@@ -94,8 +94,13 @@ define([
             this.state.start('Phase1Video');
         }
         else if (discipline === 'maths') {
+            if(this.game.gameConfig.pedagogicData.data.notions[0].value === 0) {
+                console.log('0, skipping phase 1');
+                this.state.start('Phase2Image');
+                return;
+            }
             console.info("Preload Complete, Starting Phase1Maths...");
-            this.state.start('Phase1Maths');            
+            this.state.start('Phase1Maths');
         }
     };
     

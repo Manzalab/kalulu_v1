@@ -3,13 +3,15 @@
     'dat.gui',
     './turtle',
     './island',
-    './collisionHandler'
+    './collisionHandler',
+    'common/src/popup'
 ], function (
     Fx,
     Dat,
     Turtle,
     Island,
-    CollisionHandler
+    CollisionHandler,
+    Popup
 ) {
 
     'use strict';
@@ -24,7 +26,6 @@
     function Remediation(game) {
         Phaser.Group.call(this, game);
 
-        this.eventManager = game.eventManager;
 
         this.game = game;
         this.won = false;
@@ -32,12 +33,15 @@
         this.consecutiveMistakes = 0;
         this.consecutiveSuccess = 0;
         this.lives = 0;
+        this.highlightGoodResponses = false;
         /**
          * respawn timer
          * @type {int} 
          * @private
          **/
         this.framesToWaitBeforeNextSpawn = 0;
+
+        this.timeWithoutClick = 0;
 
         /**
          * framesToWaitBeforeNextSpawn timer for the correct response sound
@@ -48,6 +52,8 @@
 
         this.roundIndex = 0;
         this.stepIndex = 0;
+
+        this.popup = new Popup(game);
 
         this.initGame();
 
@@ -66,38 +72,14 @@
         this.island = new Island(game, this.correctResponses.length, picture);
 
         this.collisionHandler = new CollisionHandler(this.turtles, this.island, game);
-        
+
 
         this.initEvents();
 
         if (this.game.gameConfig.debugPanel) {
-
-            this.debug = new Dat.GUI(/*{ autoPlace: false }*/);
-
-            var globalLevel = this.game.params.globalLevel;
-
-            var infoPanel = this.debug.addFolder("Level Info");
-
-            var generalParamsPanel = this.debug.addFolder("General Parameters");
-            var globalParamsPanel = this.debug.addFolder("Global Parameters");
-            this._localParamsPanel = this.debug.addFolder("Local Parameters");
-
-            var debugPanel = this.debug.addFolder("Debug Functions");
-
-            infoPanel.add(this.game.params, "_currentGlobalLevel").listen();
-            infoPanel.add(this.game.params, "_currentLocalRemediationStage").listen();
-
-            generalParamsPanel.add(this.game.params._settingsByLevel[globalLevel].generalParameters, "incorrectResponseCountTriggeringFirstRemediation").min(1).max(5).step(1).listen();
-            generalParamsPanel.add(this.game.params._settingsByLevel[globalLevel].generalParameters, "incorrectResponseCountTriggeringSecondRemediation").min(1).max(5).step(1).listen();
-            generalParamsPanel.add(this.game.params._settingsByLevel[globalLevel].generalParameters, "lives").min(1).max(5).step(1).listen();
-
-            globalParamsPanel.add(this.game.params._settingsByLevel[globalLevel].globalRemediation, "turtlesOnScreen").min(1).max(5).step(1).listen();
-
-            this.setLocalPanel();
-
-            debugPanel.add(this, "AutoWin");
-            debugPanel.add(this, "AutoLose");
+            this.setupDebugPanel();
         }
+
     }
 
     Remediation.prototype = Object.create(Phaser.Group.prototype);
@@ -137,8 +119,11 @@
         this.falseResponses = [];
         this.correctResponses = [];
         this.falseStepResponsesCurrentPool = [];
-        this.correctWord = roundData.word || roundData.target;
-        this.sounds.correctRoundAnswer = this.game.add.audio((roundData.word || roundData.target).value);
+        if (roundData.target != null)
+            this.correctWord = roundData.target.value;
+        else
+            this.correctWord = roundData.word.value;
+        this.sounds.correctRoundAnswer = this.game.add.audio(this.correctWord);
         var stepsLength = roundData.steps.length;
 
         var stimuliLength, stimulus;
@@ -150,6 +135,7 @@
             stimuliLength = roundData.steps[i].stimuli.length;
             for (var j = 0; j < stimuliLength; j++) {
                 stimulus = roundData.steps[i].stimuli[j];
+                console.log(stimulus)
                 if (stimulus.correctResponse === true) {
                     correctStepResponses.value = stimulus.value;
                     correctStepResponses.sound = this.game.add.audio(stimulus.value);
@@ -164,7 +150,7 @@
             this.falseResponses.push(falseStepResponses);
             this.correctResponses.push(correctStepResponses);
         }
-
+        this.popup.setText(this.correctWord);
     };
 
     /**
@@ -185,64 +171,68 @@
      **/
     Remediation.prototype.initEvents = function () {
 
-        this.eventManager.on('destroyTurtle', function (turtle) {
+        this.game.input.onDown.add(function () {
+            this.timeWithoutClick = 0;
+        }, this);
+
+        this.game.eventManager.on('destroyTurtle', function (turtle) {
             this.collisionHandler.destroyDistances(turtle);
             for (var i = 0 ; i < this.turtles.length; i++) {
                 if (this.turtles[i] === turtle) {
                     if (!this.turtles[i].apparition.isClicked) this.turtles[i].apparition.close(false, 0);
                     this.turtles[i].warning.destroy();
-                    this.turtles.splice(i, 1)[0].destroy();                   
+                    this.turtles.splice(i, 1)[0].destroy();
                 }
             }
         }, this);
 
-        this.eventManager.on('playCorrectSound', function () {
-            this.eventManager.emit('unPause');
+        this.game.eventManager.on('playCorrectSound', function () {
+            this.game.eventManager.emit('unPause');
             if (this.framesToWaitBeforeNewSound <= 0) {
                 this.sounds.correctRoundAnswer.play();
                 this.framesToWaitBeforeNewSound = Math.floor((this.sounds.correctRoundAnswer.totalDuration + 0.5) * 60);
             }
         }, this);
 
-        this.eventManager.on('playCorrectSoundNoUnPause', function () {
+        this.game.eventManager.on('playCorrectSoundNoUnPause', function () {
             if (this.framesToWaitBeforeNewSound <= 0) {
                 this.sounds.correctRoundAnswer.play();
                 this.framesToWaitBeforeNewSound = Math.floor((this.sounds.correctRoundAnswer.totalDuration + 0.5) * 60);
             }
         }, this);
 
-        this.eventManager.on("pause", function () {
+        this.game.eventManager.on("pause", function () {
             this.paused = true;
         }, this);
 
-        this.eventManager.on('unPause', function () {
+        this.game.eventManager.on('unPause', function () {
             this.paused = false;
         }, this);
 
-        this.eventManager.on('collisionTurtle', function (turtle1, turtle2) {
+        this.game.eventManager.on('collisionTurtle', function (turtle1, turtle2) {
             this.collisionTurtle(turtle1, turtle2);
         }, this);
 
-        this.eventManager.on('collisionIsland', function (turtle, island) {
+        this.game.eventManager.on('collisionIsland', function (turtle, island) {
             this.collisionIsland(turtle, island);
         }, this);
 
-        this.eventManager.on('exitGame', function () {
-            this.eventManager.removeAllListeners();
-            this.eventManager = null;
+        this.game.eventManager.on('exitGame', function () {
+            if (this.game.gameConfig.debugPanel) {
+                this.clearDebugPanel();
+            }
+            this.game.eventManager.removeAllListeners();
+            this.game.eventManager = null;
             this.game.rafiki.close();
             this.game.destroy();
-            if (this.debug) {
-                this.debug.destroy();
-                this.debug = null;
-            }
         }, this);
 
-        this.eventManager.on('replay', function () {
+        this.game.eventManager.on('replay', function () {
             if (this.game.gameConfig.debugPanel) {
-                document.getElementsByClassName("dg main a")[0].remove();
-                this.debug = null;
+                this.clearDebugPanel();
             }
+            this.game.eventManager.removeAllListeners();
+            this.game.eventManager = null;
             this.game.state.start('Setup');
         }, this);
     };
@@ -252,8 +242,8 @@
         turtle2.apparition.close(true, 0);
 
         this.sounds.wrong.play();
-        this.fx.hit((turtle1.x + turtle2.x)/2, (turtle1.y + turtle2.y)/2, false);
-        //this.eventManager.emit("pause");
+        this.fx.hit((turtle1.x + turtle2.x) / 2, (turtle1.y + turtle2.y) / 2, false);
+        //this.game.eventManager.emit("pause");
         //this.fail();
     };
 
@@ -263,22 +253,23 @@
 
         if (value !== "") turtle1.sound.play();
 
-        
+
 
         if (value == this.correctResponses[this.stepIndex].value) {
             this.sounds.right.play();
             this.resetTurtles();
-            this.eventManager.emit("pause");
+            this.game.eventManager.emit("pause");
             this.fx.hit(turtle1.x, turtle1.y, true);
             this.success();
+            this.highlightGoodResponses = false;
         }
         else {
             this.sounds.wrong.play();
-            this.eventManager.emit("pause");
+            this.game.eventManager.emit("pause");
             this.fx.hit(turtle1.x, turtle1.y, false);
             this.fail();
         }
-    };   
+    };
 
     /**
      * Triggers on success events
@@ -295,7 +286,7 @@
             else {
                 var tempValue = this.correctResponses[i].value
                 if (tempValue > 10)
-                    tempValue /= 10;                
+                    tempValue /= 10;
                 temp += tempValue + " ";
             }
         }
@@ -306,13 +297,13 @@
         this.island.setText(temp);
 
         if (this.stepIndex < this.correctResponses.length) {
-            this.eventManager.emit('unPause');
+            this.game.eventManager.emit('unPause');
         }
         else {
             this.stepIndex = 0;
             this.roundIndex++;
             this.triesRemaining--;
-            this.eventManager.emit('success');
+            this.game.eventManager.emit('success');
             if (this.triesRemaining > 0) {
                 var context = this;
                 setTimeout(function () {
@@ -320,13 +311,17 @@
                     if (context.game.gameConfig.debugPanel) context.cleanLocalPanel();
                     context.game.params.increaseLocalDifficulty();
                     if (context.game.gameConfig.debugPanel) context.setLocalPanel();
+                    context.game.eventManager.emit('offUi');
+                    context.popup.show(true);
+
                     setTimeout(function () {
+                        context.popup.show(false);
                         context.initRound(context.roundIndex);
                         context.island.reset(context.correctResponses.length);
                         if (context.game.discipline == 'maths') context.island.picture.setValue(context.correctWord.value);
-                        context.eventManager.emit('playCorrectSound');
-                    }, 3 * 1000);
-                }, 1000);              
+                        context.game.eventManager.emit('playCorrectSound');
+                    }, context.game.params.getGeneralParams().popupTimeOnScreen * 1000);
+                }, 1000);
             }
             else {
                 this.gameOverWin();
@@ -349,18 +344,38 @@
         this.lives--;
         this.triesRemaining--;
         this.consecutiveMistakes++;
-        this.eventManager.emit('fail');
+        this.game.eventManager.emit('fail');
 
         if (this.lives > 0 && this.triesRemaining > 0) {
-            if (this.consecutiveMistakes == this.game.params.getGeneralParams().incorrectResponseCountTriggeringSecondRemediation) {
+            if (this.consecutiveMistakes == this.game.params.getGeneralParams().incorrectResponseCountTriggeringFirstRemediation) {
+                var context = this;
+                this.sounds.wrong.play();
+                this.sounds.wrong.onStop.add(function () {
+                    this.sounds.wrong.onStop.removeAll();
+                    this.sounds.correctRoundAnswer.play();
+                }, context);
+                this.game.eventManager.emit('offUi');
+                this.popup.show(true);
+                setTimeout(function () {
+                    context.popup.show(false);
+                    context.game.eventManager.emit('unPause');
+                }, this.game.params.getGeneralParams().popupTimeOnScreen * 1000)
+            }
+
+            else if (this.consecutiveMistakes == this.game.params.getGeneralParams().incorrectResponseCountTriggeringSecondRemediation) {
                 this.consecutiveMistakes = 0;
-                this.eventManager.emit('help');
-                if (this.game.gameConfig.debugPanel) this.cleanLocalPanel();
+                this.game.eventManager.emit('help');
+                this.highlightGoodResponses = true;
+                this.HighlightAllGoodResponses();
+                if (this.game.gameConfig.debugPanel)
+                    this.cleanLocalPanel();
                 this.game.params.decreaseLocalDifficulty();
-                if (this.game.gameConfig.debugPanel) this.setLocalPanel();
+                if (this.game.gameConfig.debugPanel)
+                    this.setLocalPanel();
             }
             else {
-                this.eventManager.emit('playCorrectSound');
+                this.game.eventManager.emit('unPause');
+                //this.game.eventManager.emit('playCorrectSound');
             }
         }
         else if (this.triesRemaining === 0 && this.lives > 0) {
@@ -391,6 +406,13 @@
 
         }
     };
+    Remediation.prototype.HighlightAllGoodResponses = function () {
+        for (var i = 0 ; i < this.turtles.length; i++) {
+            if (this.turtles[i].text.text == this.correctResponses[this.stepIndex].value)
+                this.turtles[i].highlight.visible = true;
+        }
+    }
+
 
     Remediation.prototype.spawnTurtle = function () {
         var localParams = this.game.params.getLocalParams();
@@ -425,7 +447,7 @@
         this.collisionHandler.createNewDistances(lTurtle);
         lTurtle.init(value);
         this.turtles.push(lTurtle);
-        
+
 
         j = 0;
         while (this.results.rounds[this.roundIndex].steps[this.stepIndex].stimuli[j].value != value) { //finds the value in the results to add one apparition
@@ -440,18 +462,21 @@
 
 
         this.framesToWaitBeforeNextSpawn = localParams.respawnTime * 60;
-        this.eventManager.emit('newTurtle');
+        this.game.eventManager.emit('newTurtle');
+
+        if (this.highlightGoodResponses)
+            this.HighlightAllGoodResponses();
     };
 
     Remediation.prototype.gameOverWin = function gameOverWin() {
 
         this.game.won = true;
         this.sounds.winGame.play();
-        this.eventManager.emit('offUi');// listened by ui
+        this.game.eventManager.emit('offUi');// listened by ui
 
         this.sounds.winGame.onStop.add(function () {
             this.sounds.winGame.onStop.removeAll();
-            this.eventManager.emit('GameOverWin');//listened by Ui (toucan = kalulu)
+            this.game.eventManager.emit('GameOverWin');//listened by Ui (toucan = kalulu)
             this.saveGameRecord();
         }, this);
     };
@@ -460,11 +485,11 @@
 
         this.game.won = false;
         this.sounds.loseGame.play();
-        this.eventManager.emit('offUi');// listened by ui
+        this.game.eventManager.emit('offUi');// listened by ui
 
         this.sounds.loseGame.onStop.add(function () {
             this.sounds.loseGame.onStop.removeAll();
-            this.eventManager.emit('GameOverLose');// listened by ui
+            this.game.eventManager.emit('GameOverLose');// listened by ui
             this.saveGameRecord();
         }, this);
     };
@@ -509,6 +534,57 @@
             if (this.framesToWaitBeforeNewSound === 0) this.correctResponses[this.stepIndex].sound.play();
         }
 
+        this.timeWithoutClick++;
+
+        if (this.timeWithoutClick > 60 * 20) {
+            this.timeWithoutClick = 0;
+            this.game.eventManager.emit('help');
+        }
+
+    };
+
+    Remediation.prototype.setupDebugPanel = function setupDebugPanel() {
+        if (this.game.debugPanel) {
+            this.debugPanel = this.game.debugPanel;
+            this.rafikiDebugPanel = true;
+        }
+        else {
+            this.debugPanel = new Dat.GUI();
+            this.rafikiDebugPanel = false;
+        }
+
+        var globalLevel = this.game.params.globalLevel;
+
+        this.debugFolderNames = {
+            info: "Level Info",
+            general: "General Parameters",
+            global: "Global Parameters",
+            local: "Local Parameters",
+            functions: "Debug Functions",
+        };
+
+
+        this._debugInfo = this.debugPanel.addFolder(this.debugFolderNames.info);
+        this._debugGeneralParams = this.debugPanel.addFolder(this.debugFolderNames.general);
+        this._debugGlobalParams = this.debugPanel.addFolder(this.debugFolderNames.global);
+        this._debugLocalParams = this.debugPanel.addFolder(this.debugFolderNames.local);
+        this._debugFunctions = this.debugPanel.addFolder(this.debugFolderNames.functions);
+
+
+        this._debugInfo.add(this.game.params, "_currentGlobalLevel").listen();
+        this._debugInfo.add(this.game.params, "_currentLocalRemediationStage").listen();
+
+        this._debugGeneralParams.add(this.game.params._settingsByLevel[globalLevel].generalParameters, "incorrectResponseCountTriggeringFirstRemediation").min(1).max(5).step(1).listen();
+        this._debugGeneralParams.add(this.game.params._settingsByLevel[globalLevel].generalParameters, "incorrectResponseCountTriggeringSecondRemediation").min(1).max(5).step(1).listen();
+        this._debugGeneralParams.add(this.game.params._settingsByLevel[globalLevel].generalParameters, "lives").min(1).max(5).step(1).listen();
+
+        this._debugGlobalParams.add(this.game.params._settingsByLevel[globalLevel].globalRemediation, "turtlesOnScreen").min(1).max(5).step(1).listen();
+
+        this.setLocalPanel();
+
+        this._debugFunctions.add(this, "AutoWin");
+        this._debugFunctions.add(this, "AutoLose");
+        this._debugFunctions.add(this, "skipKalulu");
     };
 
     Remediation.prototype.setLocalPanel = function setLocalPanel() {
@@ -516,18 +592,33 @@
         var globalLevel = this.game.params.globalLevel;
         var localStage = this.game.params.localRemediationStage;
 
-        this._localParamsPanel.items = {};
-        this._localParamsPanel.items.param1 = this._localParamsPanel.add(this.game.params._settingsByLevel[globalLevel].localRemediation[localStage], "minimumCorrectStimuliOnScreen").min(0).max(20).step(1).listen();
-        this._localParamsPanel.items.param2 = this._localParamsPanel.add(this.game.params._settingsByLevel[globalLevel].localRemediation[localStage], "correctResponsePercentage").min(0).max(1).step(0.1).listen();
-        this._localParamsPanel.items.param3 = this._localParamsPanel.add(this.game.params._settingsByLevel[globalLevel].localRemediation[localStage], "respawnTime").min(1).max(5).step(0.1).listen();
-        this._localParamsPanel.items.param4 = this._localParamsPanel.add(this.game.params._settingsByLevel[globalLevel].localRemediation[localStage], "speed").min(1).max(20).step(0.5).listen();
+        this._debugGlobalParams.items = {};
+        this._debugGlobalParams.items.param1 = this._debugGlobalParams.add(this.game.params._settingsByLevel[globalLevel].localRemediation[localStage], "minimumCorrectStimuliOnScreen").min(0).max(20).step(1).listen();
+        this._debugGlobalParams.items.param2 = this._debugGlobalParams.add(this.game.params._settingsByLevel[globalLevel].localRemediation[localStage], "correctResponsePercentage").min(0).max(1).step(0.1).listen();
+        this._debugGlobalParams.items.param3 = this._debugGlobalParams.add(this.game.params._settingsByLevel[globalLevel].localRemediation[localStage], "respawnTime").min(1).max(5).step(0.1).listen();
+        this._debugGlobalParams.items.param4 = this._debugGlobalParams.add(this.game.params._settingsByLevel[globalLevel].localRemediation[localStage], "speed").min(1).max(20).step(0.5).listen();
+
+
+    };
+
+    Remediation.prototype.clearDebugPanel = function clearDebugPanel() {
+        if (this.rafikiDebugPanel) {
+            this.debugPanel.removeFolder(this.debugFolderNames.info);
+            this.debugPanel.removeFolder(this.debugFolderNames.general);
+            this.debugPanel.removeFolder(this.debugFolderNames.global);
+            this.debugPanel.removeFolder(this.debugFolderNames.local);
+            this.debugPanel.removeFolder(this.debugFolderNames.functions);
+        }
+        else {
+            this.debugPanel.destroy();
+        }
     };
 
     Remediation.prototype.cleanLocalPanel = function cleanLocalPanel() {
 
-        for (var element in this._localParamsPanel.items) {
-            if (!this._localParamsPanel.items.hasOwnProperty(element)) continue;
-            this._localParamsPanel.remove(this._localParamsPanel.items[element]);
+        for (var element in this._debugLocalParams.items) {
+            if (!this._debugLocalParams.items.hasOwnProperty(element)) continue;
+            this._debugLocalParams.remove(this._debugLocalParams.items[element]);
         }
     };
 
@@ -576,7 +667,7 @@
         }
 
         this.won = true;
-        this.eventManager.emit("exitGame");
+        this.game.eventManager.emit("exitGame");
     };
 
     Remediation.prototype.AutoLose = function LoseGame() {
@@ -624,7 +715,12 @@
         }
 
         this.won = false;
-        this.eventManager.emit('exitGame');
+        this.game.eventManager.emit('exitGame');
+    };
+
+    Remediation.prototype.skipKalulu = function skipKalulu() {
+
+        this.game.eventManager.emit("skipKalulu");
     };
 
     return Remediation;

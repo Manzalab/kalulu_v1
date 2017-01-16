@@ -107,11 +107,11 @@ define([], function(){
                 return this._userProfile[this._discipline.type].plan[this.id].isUnlocked;
             },
             set : function (isUnlocked) {
-                if (isUnlocked) console.log("Unlocking " + this.id);
+                // if (isUnlocked) console.log("Unlocking " + this.id);
                 this._userProfile[this._discipline.type].plan[this._id].isUnlocked = isUnlocked;
                 if (isUnlocked && this._children && this.children.length > 0) {
-                    console.log("Trying to unlock " + this._children[0].id);
-                    console.log(this._children[0].isUnlocked);
+                    // console.log("Trying to unlock " + this._children[0].id);
+                    // console.log(this._children[0].isUnlocked);
                     this._children[0].isUnlocked = isUnlocked;
                 }
                 this._userProfile.save();
@@ -154,6 +154,7 @@ define([], function(){
             set : function (isCompleted) {
 
                 var lIDSplit = this._id.split("_")[1];
+                var lID = lIDSplit;
                 if(lIDSplit) lIDSplit = lIDSplit.substring(0, lIDSplit.length-1);
                 
                 if(!this._userProfile[this._discipline.type].plan[this._id].isCompleted && isCompleted && lIDSplit == "minigame") this._userProfile.fertilizer += 1;
@@ -162,6 +163,10 @@ define([], function(){
                 if(isCompleted) {
                     if (this.parent) this.parent.checkCompletion();
                     this.unlockNextNode();
+                    if(lID == "lookandlearn") {
+                        this.nextNode().unlockNextNode();
+                        this.nextNode().nextNode().unlockNextNode();
+                    }
                 } 
                 this._userProfile.save();
             }
@@ -297,7 +302,11 @@ define([], function(){
     ProgressionNode.prototype.unlockNextNode = function unlockNextNode () {
 
         var lNextNode = this.nextNode();
-        if (lNextNode) lNextNode.isUnlocked = true;
+
+        if (lNextNode) {
+            lNextNode.isUnlocked = true;
+            console.log(lNextNode);
+        }
     };
 
     /**

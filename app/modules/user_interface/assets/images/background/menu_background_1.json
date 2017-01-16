@@ -1,0 +1,21 @@
+{"frames": {
+
+"NightGardenBg0002.png":
+{
+	"frame": {"x":3,"y":3,"w":2430,"h":1536},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":2430,"h":1536},
+	"sourceSize": {"w":2430,"h":1536},
+	"pivot": {"x":0.5,"y":0.5}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "menu_background_1.png",
+	"format": "RGBA8888",
+	"size": {"w":2436,"h":1542},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:273d7ba168623f549093ce6b102d24cf:46c2f08794229bfbf2e63e29056cd115:7eba7909d4845d8bbd232bd210e83114$"
+}
+}

@@ -107,52 +107,64 @@
     };
 
 
+
     GameManager.prototype.onCloseActivity = function onCloseActivity (progressionNode) {
         
-        if(progressionNode) {
+        console.log(progressionNode);
+        console.log("next node : " + progressionNode.nextNode().constructor.name);
+        console.log("next node's parent : " + progressionNode.nextNode().parent.constructor.name);
+        console.log(Reward);
+        var gardenData;
+        if (progressionNode) {
             this.setState(GameStates.MENUS);
-            console.log("next node : " + progressionNode.nextNode().constructor.name);
-            console.log("next node's parent : " + progressionNode.nextNode().parent.constructor.name);
-            var nextScreenName = progressionNode.nextNode().parent.constructor.name;
-            var nextNode = progressionNode.nextNode().parent;
-            if (nextScreenName === "Lesson") {
-                this._eventSystem.emit(Events.GAME.BACK_FROM_ACTIVITY, nextNode);
+            if (progressionNode.constructor.name === 'Lecture') {
+                console.log("Lesson Not Yet Complete : back to intial lesson screen");
+                this._eventSystem.emit(Events.GAME.BACK_FROM_ACTIVITY, progressionNode.parent);
             }
-            else if (nextScreenName === "Chapter") {
-                console.log('here');
-                var pedagogicData = {
-                    currentChapter : nextNode.chapterNumber,
-                    data : this._rafiki.getChaptersData(),
-                };
-                this._eventSystem.emit(Events.GAME.BACK_FROM_ACTIVITY, pedagogicData, this._rafiki.getChaptersProgression(), this._currentUserProfile);
-                if (Reward.levelRewards[progressionNode.discipline.type.toLowerCase()][progressionNode.lessonNumber]) 
-                {
-                    // Reward.levelRewards[progressionNode.discipline.type.toLowerCase()][progressionNode.lessonNumber]
-                    // envoyer ce nom dans l'interface manager avec un event pour push le nom du reward dans ToyChestActivityScreen._unlockedActivities
-                    this.emit(Events.GAME.UNLOCK_REWARD_TOYCHEST, Reward.levelRewards[progressionNode.discipline.type.toLowerCase()][progressionNode.lessonNumber]);
-                }
-            }
-            else if (nextScreenName === "Plan") {
-                console.log('Back from Assessment');
-                if (progressionNode.isCompleted) {
-
+            else if (progressionNode.constructor.name === 'Exercise') {
+                if (!progressionNode.parent.isCompleted) {
+                    console.log("Lesson Not Yet Complete : back to intial lesson screen");
+                    this._eventSystem.emit(Events.GAME.BACK_FROM_ACTIVITY, progressionNode.parent);
                 }
                 else {
+                    console.log("Lesson Complete : back to parent garden");
+                    gardenData = {
+                        currentChapter : progressionNode.parent.parent.chapterNumber,
+                        data : this._rafiki.getChaptersData(),
+                    };
                     
+                    this._eventSystem.emit(Events.GAME.BACK_FROM_ACTIVITY, gardenData, this._rafiki.getChaptersProgression(), this._currentUserProfile);
+                    if (Reward.levelRewards[progressionNode.discipline.type.toLowerCase()][progressionNode.lessonNumber]) {
+                        // Reward.levelRewards[progressionNode.discipline.type.toLowerCase()][progressionNode.lessonNumber]
+                        // envoyer ce nom dans l'interface manager avec un event pour push le nom du reward dans ToyChestActivityScreen._unlockedActivities
+                        console.log("Unlocking Toy Chest Reward");
+                        this.emit(Events.GAME.UNLOCK_REWARD_TOYCHEST, Reward.levelRewards[progressionNode.discipline.type.toLowerCase()][progressionNode.lessonNumber]);
+                    }
                 }
             }
-
-            this.save();
+            else if (progressionNode.constructor.name === 'Assessment') {
+                if (!progressionNode.isCompleted) {
+                    // back to parent garden
+                    gardenData = {
+                        currentChapter : progressionNode.parent.chapterNumber,
+                        data : this._rafiki.getChaptersData(),
+                    };
+                    console.log("Assessment Not Complete, back to garden Screen");
+                    this._eventSystem.emit(Events.GAME.BACK_FROM_ACTIVITY, gardenData, this._rafiki.getChaptersProgression(), this._currentUserProfile);
+                }
+                else {
+                    // back to Brain
+                    console.log("Assessment Complete, back to Brain Screen");
+                    this._eventSystem.emit(Events.GAME.BACK_FROM_ACTIVITY, 'brainScreen', this._rafiki.getChaptersProgression(), this._currentUserProfile);
+                }
+            }
         }
         else {
+        console.log("Bonus Game Closed : back to toy chest");
            this._eventSystem.emit(Events.GAME.BACK_FROM_ACTIVITY);
         }
 
         console.info("Minigame should have closed itself now");
-    };
-
-    GameManager.prototype.destroy = function destroy () {
-
     };
 
 

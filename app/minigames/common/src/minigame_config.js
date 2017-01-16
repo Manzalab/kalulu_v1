@@ -30,8 +30,8 @@
     // ###########################################################################
 
     MinigameConfig.prototype.request = function requestMinigameConfig (path, callback) {
-        
-        if (path.split('.').pop() !== 'json') path = path + '/config.json';
+        var prefix = KALULU_ENV ? 'production.' : '' ;
+        if (path.split('.').pop() !== 'json') path = path + '/' + prefix + 'config.json';
         console.info("[MinigameConfig] Requesting config file at " + path);
 
         this._onRequestSuccess = callback;
@@ -79,12 +79,12 @@
     MinigameConfig.prototype._onRequestSuccess = function onConfigRequestSuccess () {
         
         console.info('MinigameConfig was properly initialised !');
-    }
+    };
 
     MinigameConfig.prototype._onRequestFailure = function onConfigRequestFailure () {
         
         console.error('There was a problem with the MinigameConfig request.');
-    }
+    };
 
     module.exports = MinigameConfig;
 })();

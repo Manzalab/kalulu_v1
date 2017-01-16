@@ -2,12 +2,14 @@
     './tree',
     'common/src/fx',
     './board',
-    'dat.gui'
+    'dat.gui',
+    'common/src/popup'
 ], function (
     Tree,
     Fx,
     Board,
-    Dat
+    Dat,
+    Popup
 ) {
     'use strict';
 
@@ -21,8 +23,7 @@
     function Remediation(game) {
         Phaser.Group.call(this, game);
 
-        this.eventManager = game.eventManager;
-
+        
         var data = this.game.pedagogicData;
         this.discipline = data.discipline;
 
@@ -39,6 +40,8 @@
         this.stepIndex = 0;
         this.timeWithoutClick = 0;
 
+        this.popup = new Popup(game);
+
         this.initGame();
 
         if (this.game.gameConfig.globalVars) window.cocolision.cocolision = this.cocolision;
@@ -46,35 +49,9 @@
 
         if (this.game.gameConfig.debugPanel) {
 
-            this.debug = new Dat.GUI(/*{ autoPlace: false }*/);
-
-            var globalLevel = this.game.params.globalLevel;
-
-            var infoPanel = this.debug.addFolder("Level Info");
-
-            var generalParamsPanel = this.debug.addFolder("General Parameters");
-            var globalParamsPanel = this.debug.addFolder("Global Parameters");
-            this._localParamsPanel = this.debug.addFolder("Local Parameters");
-
-            var debugPanel = this.debug.addFolder("Debug Functions");
-
-            infoPanel.add(this.game.params, "_currentGlobalLevel").listen();
-            infoPanel.add(this.game.params, "_currentLocalRemediationStage").listen();
-
-
-            generalParamsPanel.add(this.game.params._settingsByLevel[globalLevel].generalParameters, "incorrectResponseCountTriggeringFirstRemediation").min(1).max(5).step(1).listen();
-            generalParamsPanel.add(this.game.params._settingsByLevel[globalLevel].generalParameters, "incorrectResponseCountTriggeringSecondRemediation").min(1).max(5).step(1).listen();
-            generalParamsPanel.add(this.game.params._settingsByLevel[globalLevel].generalParameters, "lives").min(1).max(5).step(1).listen();
-            generalParamsPanel.add(this.game.params._settingsByLevel[globalLevel].generalParameters, "capitalLettersShare").min(0).max(1).step(0.05).listen();
-
-            globalParamsPanel.add(this.game.params._settingsByLevel[globalLevel].globalRemediation, "monkeyOnScreen").min(1).max(4).step(1).listen();
-
-            this.setLocalPanel();
-
-            debugPanel.add(this, "AutoWin");
-            debugPanel.add(this, "AutoLose");
-            debugPanel.add(this, "skipKalulu");
+            this.setupDebugPanel();
         }
+
         this.initSounds(game);
         this.initEvents();
 
@@ -84,8 +61,7 @@
         this.board = new Board(550, game.height - 50, game);
 
         this.initRound(this.roundIndex);
-        console.log(this.sequence)
-        if (this.game.discipline == 'maths') this.board.setTextMaths(this.sequence.sequence, this.sequence.numberIndex);
+        if (this.game.discipline == 'maths') this.sequence.numberIndex = this.board.setTextMaths(this.sequence.sequence);
         this.setTexts();
         this.fx = new Fx(game);
     };
@@ -109,14 +85,18 @@
      * Initalize game events
      **/
     Remediation.prototype.initEvents = function () {
-        this.eventManager.on('pause', function () {
+        this.game.eventManager.on('pause', function () {
         }, this);
 
-        this.eventManager.on('unPause', function () {
+        this.game.eventManager.on('help', function () {
+            this.timeWithoutClick = 0;
         }, this);
 
-        this.eventManager.on('playCorrectSound', function () {
-            this.eventManager.emit('unPause');
+        this.game.eventManager.on('unPause', function () {
+        }, this);    
+
+        this.game.eventManager.on('playCorrectSound', function () {
+            this.game.eventManager.emit('unPause');
             if (this.game.discipline != "maths")
                 if (this.framesToWaitBeforeNewSound <= 0) {
                     this.sounds.correctRoundAnswer.play();
@@ -124,16 +104,16 @@
                 }
         }, this);
 
-        this.eventManager.on('playCorrectSoundNoUnPause', function () {
+        this.game.eventManager.on('playCorrectSoundNoUnPause', function () {
             if (this.framesToWaitBeforeNewSound <= 0) {
                 this.sounds.correctRoundAnswer.play();
                 this.framesToWaitBeforeNewSound = Math.floor((this.sounds.correctRoundAnswer.totalDuration + 0.5) * 60);
             }
         }, this);
 
-        this.eventManager.on('swipe', function (object) {
+        this.game.eventManager.on('swipe', function (object) {
             this.timeWithoutClick = 0;
-            this.eventManager.emit('pause');
+            this.game.eventManager.emit('pause');
             object.apparition.close(true, 0);
             object.flyTo(this.trees.kingTree.monkey.x, this.trees.kingTree.monkey.y - 40, 1.4);
             object.clickable = false;
@@ -159,22 +139,26 @@
 
         }, this);
 
-        this.eventManager.on('exitGame', function () {
-            this.eventManager.removeAllListeners();
-            this.eventManager = null;
+        this.game.eventManager.on('exitGame', function () {
+            if (this.game.gameConfig.debugPanel) this.clearDebugPanel();
+            console.info("clearDebugPanel ok");
             this.game.rafiki.close();
+            console.info("rafiki closed");
+            this.game.eventManager.removeAllListeners();
+            console.info("removeAllListeners ok");
+            this.game.eventManager = null;
+            console.info("eventManager null");
             this.game.destroy();
-            if (this.debug) {
-                this.debug.destroy();
-                this.debug = null;
-            }
+            console.info("Phaser Game has been destroyed");
+            this.game = null;
         }, this);
 
-        this.eventManager.on('replay', function () {
+        this.game.eventManager.on('replay', function () {
             if (this.game.gameConfig.debugPanel) {
-                document.getElementsByClassName("dg main a")[0].remove();
-                this.debug = null;
+                this.clearDebugPanel();
             }
+            this.game.eventManager.removeAllListeners();
+            this.game.eventManager = undefined;            
             this.game.state.start('Setup');
         }, this);
     };
@@ -203,7 +187,7 @@
      * Initialise parameters for the required round with data contained in this.pedagogicData
      **/
     Remediation.prototype.initRound = function initRound(roundIndex) {
-
+         console.log(this.game.pedagogicData.data.rounds);
         var roundData = this.game.pedagogicData.data.rounds[roundIndex];
 
         this.apparitionsCount = 0;
@@ -214,6 +198,7 @@
         this.correctResponses = [];
         this.falseStepResponsesCurrentPool = [];
         if (this.game.discipline != "maths") {
+            console.log(roundData);
             this.correctWord = roundData.word;
             this.sounds.correctRoundAnswer = this.game.add.audio(roundData.word.value);
         }
@@ -244,6 +229,8 @@
             this.falseResponses.push(falseStepResponses);
             this.correctResponses.push(correctStepResponses);
         }
+        if (this.game.discipline != 'maths') this.popup.setText(this.correctWord.value);
+        else this.popup.setTextMaths(this.sequence.truesequence);
     };
 
     Remediation.prototype.setTexts = function () {
@@ -305,17 +292,19 @@
         var j = 0;
         if (value != "") object.sound.play();
 
-        if (value == this.correctResponses[this.stepIndex].value) {
+        if (value.toString() == this.correctResponses[this.stepIndex].value.toString()) {
             this.trees.kingTree.monkey.monkeySprite.animations.play('right');
             this.trees.kingTree.monkey.sounds.sendRight.play();
             object.tween.stop();
             if (this.game.discipline != 'maths') object.moveTo(this.board.x + this.stepIndex * (this.board.text.fontSize - 40), this.game.height - 100, 0.7);
             else object.moveTo(this.board.x - (Math.floor(this.board.text.text.length / 2) - this.sequence.numberIndex) * (this.board.text.fontSize - 40), this.game.height - 100, 0.7);
-            this.eventManager.once('finishedMoving', function () {
+            this.game.eventManager.once('finishedMoving', function () {
                 object.break();
                 if (this.game.discipline != 'maths') this.board.text.text += this.correctResponses[this.stepIndex].value;
-                else this.board.setTextMaths(this.sequence.sequence);
-                this.eventManager.once('finishedBreaking', function () {
+                else {
+                    this.board.setTextMaths(this.sequence.sequence, this.correctResponses[this.stepIndex].value);
+                    }
+                this.game.eventManager.once('finishedBreaking', function () {
                     this.sounds.right.play();
                     this.success();
                 }, this);
@@ -327,7 +316,7 @@
             this.trees.kingTree.monkey.sounds.sendWrong.play();
             object.active = false;
             object.flyTo(object.origin.x, object.origin.y, 1);
-            this.eventManager.once('finishedFlying', function () {
+            this.game.eventManager.once('finishedFlying', function () {
                 object.monkeyRef.sounds.receiveHead.play();
                 object.monkeyRef.monkeySprite.animations.play('impact');
                 object.monkeyRef.monkeySprite.animations.currentAnim.onComplete.addOnce(function () {
@@ -349,13 +338,15 @@
 
         if (this.stepIndex < this.correctResponses.length) {
             this.getNewCoconuts();
-            this.eventManager.emit('unPause');
+            this.game.eventManager.emit('unPause');
         }
         else {
             this.stepIndex = 0;
             this.roundIndex++;
             this.triesRemaining--;
-            this.eventManager.emit('success');
+            this.game.eventManager.emit('success');
+            this.game.eventManager.emit('offUi');
+            this.popup.show(true);
             if (this.triesRemaining > 0) {
                 if (this.game.discipline === 'language') this.sounds.correctRoundAnswer.play();
                 if (this.game.gameConfig.debugPanel) this.cleanLocalPanel();
@@ -365,10 +356,11 @@
                     context.initRound(context.roundIndex);
                     context.board.text.text = "";
                     if (context.game.discipline == 'maths') {
-                        context.board.setTextMaths(context.sequence.sequence, context.sequence.numberIndex);
+                        context.sequence.numberIndex = context.board.setTextMaths(context.sequence.sequence);
                     }
+                    context.popup.show(false);
                     context.getNewCoconuts();
-                    context.eventManager.emit('playCorrectSound');
+                    context.game.eventManager.emit('playCorrectSound');
                 }, 3 * 1000);
             }
             else {
@@ -384,7 +376,7 @@
         this.triesRemaining--;
         this.consecutiveMistakes++;
         this.consecutiveSuccess = 0;
-        this.eventManager.emit('fail');
+        this.game.eventManager.emit('fail');
 
         console.log(this.lives)
         console.log(this.triesRemaining)
@@ -394,16 +386,26 @@
 
                 var context = this;
                 setTimeout(function () {
-                    context.eventManager.emit('playCorrectSound');//listened here; check initEvents
-                }, 1000);
+                    context.game.eventManager.emit('playCorrectSoundNoUnPause');//listened here; check initEvents
+                    context.game.eventManager.emit('offUi');
+                    context.popup.show(true);
+                    setTimeout(function () {
+                        context.popup.show(false);
+                        context.game.eventManager.emit('unPause');
+                    }, params.popupTimeOnScreen * 1000)
+                }, 200);
 
                 if (this.game.gameConfig.debugPanel) this.cleanLocalPanel();
                 this.game.params.decreaseLocalDifficulty();
                 if (this.game.gameConfig.debugPanel) this.setLocalPanel();
             }
             else if (this.consecutiveMistakes === params.incorrectResponseCountTriggeringSecondRemediation) {
-
-                this.eventManager.emit('help'); // listened by Kalulu to start the help speech; pauses the game in kalulu
+                for (var i = 0; i < this.trees.normalTree.monkey.length; i++) {
+                    if (this.correctResponses[this.stepIndex].value.toString() == this.trees.normalTree.monkey[i].coconut.sprite.text.text.toString()) {
+                        this.trees.normalTree.monkey[i].coconut.sprite.highlight.visible = true;
+                    }
+                }
+                this.game.eventManager.emit('help'); // listened by Kalulu to start the help speech; pauses the game in kalulu
                 if (this.game.gameConfig.debugPanel) this.cleanLocalPanel();
                 this.game.params.decreaseLocalDifficulty();
                 if (this.game.gameConfig.debugPanel) this.setLocalPanel();
@@ -444,7 +446,7 @@
 
             if (this.timeWithoutClick > 60 * 20) {
                 this.timeWithoutClick = 0;
-                this.eventManager.emit('help');
+                this.game.eventManager.emit('help');
             }
         }
     };
@@ -453,11 +455,11 @@
 
         this.game.won = true;
         this.sounds.winGame.play();
-        this.eventManager.emit('offUi');// listened by ui
+        this.game.eventManager.emit('offUi');// listened by ui
 
         this.sounds.winGame.onStop.add(function () {
             this.sounds.winGame.onStop.removeAll();
-            this.eventManager.emit('GameOverWin');//listened by Ui (toucan = kalulu)
+            this.game.eventManager.emit('GameOverWin');//listened by Ui
             this.saveGameRecord();
         }, this);
     };
@@ -466,11 +468,11 @@
 
         this.game.won = false;
         this.sounds.loseGame.play();
-        this.eventManager.emit('offUi');// listened by ui
+        this.game.eventManager.emit('offUi');// listened by ui
 
         this.sounds.loseGame.onStop.add(function () {
             this.sounds.loseGame.onStop.removeAll();
-            this.eventManager.emit('GameOverLose');// listened by ui
+            this.game.eventManager.emit('GameOverLose');// listened by ui
             this.saveGameRecord();
         }, this);
     };
@@ -481,6 +483,62 @@
     };
 
     // DEBUG
+
+
+    Remediation.prototype.setupDebugPanel = function setupDebugPanel() {
+            this.debugPanel = this.game.debugPanel || new Dat.GUI();
+
+            var globalLevel = this.game.params.globalLevel;
+
+            this.debugFolderNames = {
+                info      : "Level Info",
+                general   : "General Parameters",
+                global    : "Global Parameters",
+                local     : "Local Parameters",
+                functions : "Debug Functions",
+            };
+
+            var infoPanel = this.debugPanel.addFolder(this.debugFolderNames.info);
+
+            var generalParamsPanel = this.debugPanel.addFolder(this.debugFolderNames.general);
+            var globalParamsPanel = this.debugPanel.addFolder(this.debugFolderNames.global);
+            this._localParamsPanel = this.debugPanel.addFolder(this.debugFolderNames.local);
+
+            this.debugFunctions = this.debugPanel.addFolder(this.debugFolderNames.functions);
+
+            infoPanel.add(this.game.params, "_currentGlobalLevel").listen();
+            infoPanel.add(this.game.params, "_currentLocalRemediationStage").listen();
+
+
+            generalParamsPanel.add(this.game.params._settingsByLevel[globalLevel].generalParameters, "incorrectResponseCountTriggeringFirstRemediation").min(1).max(5).step(1).listen();
+            generalParamsPanel.add(this.game.params._settingsByLevel[globalLevel].generalParameters, "incorrectResponseCountTriggeringSecondRemediation").min(1).max(5).step(1).listen();
+            generalParamsPanel.add(this.game.params._settingsByLevel[globalLevel].generalParameters, "lives").min(1).max(5).step(1).listen();
+            generalParamsPanel.add(this.game.params._settingsByLevel[globalLevel].generalParameters, "capitalLettersShare").min(0).max(1).step(0.05).listen();
+
+            globalParamsPanel.add(this.game.params._settingsByLevel[globalLevel].globalRemediation, "monkeyOnScreen").min(1).max(4).step(1).listen();
+
+            this.setLocalPanel();
+
+            this.debugFunctions.add(this, "AutoWin");
+            this.debugFunctions.add(this, "AutoLose");
+            this.debugFunctions.add(this, "skipKalulu");
+            this.debugFunctions.open();
+    };
+
+    Remediation.prototype.clearDebugPanel = function clearDebugPanel() {
+        console.log("Monkeys clearing its debugPanel");
+        if(this.game.debugPanel) {
+            for (var folderName in this.debugFolderNames) {
+                this.debugPanel.removeFolder(this.debugFolderNames[folderName]);
+            }
+        }
+        else {
+            this.debugPanel.destroy();
+        }
+    };
+
+
+
     Remediation.prototype.cleanLocalPanel = function cleanLocalPanel() {
 
         for (var element in this._localParamsPanel.items) {
@@ -544,7 +602,7 @@
         }
 
         this.won = true;
-        this.eventManager.emit("exitGame");
+        this.gameOverWin();
     };
 
     Remediation.prototype.AutoLose = function LoseGame() {
@@ -592,12 +650,12 @@
         }
 
         this.won = false;
-        this.eventManager.emit('exitGame');
+        this.gameOverLose();
     };
 
     Remediation.prototype.skipKalulu = function skipKalulu() {
 
-        this.eventManager.emit("skipKalulu");
+        this.game.eventManager.emit("skipKalulu");
     };
 
     return Remediation;

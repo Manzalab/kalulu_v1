@@ -36,7 +36,6 @@ var Sum = function(number, xnumber, side, sign, numbers_data, numbers_available,
 		if(an <= 10){
 			filter_number_value.push(an)
 		}
-		
 	})
 	this.filter_number_value = filter_number_value
 	if(sign=='addition'){
@@ -52,44 +51,42 @@ var Sum = function(number, xnumber, side, sign, numbers_data, numbers_available,
 	var step			= {"type": 'target__'+this.number+'__sum__'+this.side+'__'+this.sign+'__'+this.xnumber_name, "stimuli": [] }
 	
 
-	var la, lb, lc;
-
-    li = this.number //la+lb
-    var parts = this.picksum(this.number, this.xnumber_value, this.side, this.sign)
+	var parts = this.picksum(this.number, this.xnumber_value, this.side, this.sign)
 		
     if(parts.exception == true){
     	return null
     }
-	//console.log(parts)
-	//return 
-	la = parts.first
-    lb = parts.second
-    lc = parts.third
 
-    var lx = ''
+
     if(this.side =='left'){
- 		lx = lb
+ 		
+ 		var resolve_masq = parts.first+''+this.sign+'X='+parts.third
+ 		var	masq  = parts.second
+
+
     }
     else{
-		lx = lc
+		
+		var resolve_masq = parts.first+''+this.sign+''+parts.second+'=X'
+		var	masq  = parts.third
+
     }
-    var resolve_true = la+''+this.sign+''+lb+'='+lc
 
-
-  
     this.lpath = {'xnumber_value':this.xnumber_value, 'xnumber_name':this.xnumber_name, 'number': this.number, 'side': this.side, 'sign': this.sign}
 	
-	var st =  moduleutils.addStimuli(true , this.number, 'sum', numbers_data, this.lpath)
+	var st =  moduleutils.addStimuli(true , masq, 'sum', numbers_data, this.lpath)
 	
-	st.value = this.number
+	st.value = masq
 
 	step.stimuli.push(st)
-
-	var distractors = new Distractor(this.number, this.filter_number_value, count, false )
+	//console.log('sum dis. arround '+masq)
+	var distractors = new Distractor(masq, this.filter_number_value, count, false )
+	//console.log(distractors)
 
     var that = this
 	if(distractors){
 		_.each(distractors, function(d){
+			console.log(d.value)
 			var st =  moduleutils.addStimuli(false , d.value, 'sum',numbers_data,that.lpath )
 			// to fix again.
 
@@ -100,13 +97,18 @@ var Sum = function(number, xnumber, side, sign, numbers_data, numbers_available,
 
 
 	round.steps.push(step)
+
 	round.targetSequence = {
 		gameType       : 'sum',
-		sequence 	   : resolve_true,
-		targetNumber   : this.number,
-		numberIndex    : lx,
-		targetSequence : resolve_true
+		sequence 	   : resolve_masq,
+		targetNumber   : masq,
+		targetSequence : resolve_masq,
+		parts 		   : parts,
+		side		   : this.side,
+		sign		   : this.sign
 	}
+
+	
 	
   	this.round = round
 	return this 
@@ -146,14 +148,13 @@ Sum.prototype.picksum = function (number, xnumber, side, sign) {
 		
 		//var second =  xnumber
 		if(sign == '+'){
+			
 			var second =  number-xnumber
 		}
 		else{
-			var second =  number+xnumber
-		}
-
-		if(second < 0 ){
-		//	console.log('neg sum exception')
+			var second =  xnumber-number
+			// var t =  number-xnumber
+			
 		}
 
 		var parts = {

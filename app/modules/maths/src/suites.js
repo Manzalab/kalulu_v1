@@ -26,7 +26,7 @@ var Suite = function(n,size,step,from,direction, distractors_count, numbers_data
 	// setting "from" parameters
 
 	if(from == 'zero'){
-		var size = 20
+		var size = 10
 
 	}
 	if(from == 'multiple'){
@@ -58,7 +58,7 @@ var Suite = function(n,size,step,from,direction, distractors_count, numbers_data
 	var available_last_index = -1;
 
 
-	for (var s =0; s < 20; s++) {
+	for (var s =0; s < 10; s++) {
 		// var n_previous = n-((s-1)*step)
 		var v = n-(s*step)
 		if(direction =='backward'){
@@ -162,8 +162,8 @@ var Suite = function(n,size,step,from,direction, distractors_count, numbers_data
 
 	if(from !== 'zero'){
 		
-		// three passes random to reduce suite "tail" (lenght)
-		for(var t=0; t<3; t++){
+		// three passes random to reduce suite "tail" (length)
+		for(var t=0; t<2; t++){
 
 			// var max = Math.floor(parseInt(available_last_index))/3
 		   	var length_delta = -(4-(optimist_suite.length))

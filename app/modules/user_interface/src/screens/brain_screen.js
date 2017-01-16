@@ -6,11 +6,13 @@
  * It must be reworked if Discipline Modules are modified.
 **/
 define([
+    '../elements/anim_background',
     '../utils/ui/screen',
     '../utils/sound/sound_manager',
     '../elements/kalulu_character',
     'victor'
 ], function (
+    AnimBackground,
     Screen,
     SoundManager,
     Kalulu,
@@ -28,7 +30,12 @@ define([
         this.build();
         
         // Reference auto-built parts :
-        this._background = this.getChildByName("mcBrainScreenBg");
+        this._backgroundContainer = this.getChildByName("mcBrainScreenBg");
+        this._background = new AnimBackground("NightGardenBg", 2);
+
+        this._backgroundContainer.addChild(this._background);
+        this._background.position.set(0,0);
+
         this._gardenButtons = this.getChildByName("mcButtonsContainer");
         this._childHead = this._gardenButtons.getChildByName("mcChildHead");
         this._hud = {
@@ -127,12 +134,16 @@ define([
         this._kalulu.y = -this._kalulu.height/3 - 50;
 
         this._hud.bottomLeft.addChild(this._kalulu);
-        
-        if (this._interfaceManager.isTutorialCompleted)    this._kalulu.startTalk("kalulu_info_brainscreen_01");
-        else if (this._interfaceManager.isToyChestLocked)  this._kalulu.startTalk("kalulu_info_brainscreen_02");
-        else if (this._unlockedChapter>8)                  this._kalulu.startTalk("kalulu_info_brainscreen_04");
-        else                                               this._kalulu.startTalk("kalulu_info_brainscreen_03");
-    };
+
+        var speechName = "";
+        if (this._unlockedChapter>8)                            speechName = "kalulu_info_brainscreen_04";
+        else if (this._interfaceManager.firstTimeOnBrainScreen) speechName = "kalulu_tuto_brainscreen";
+        else if (this._interfaceManager.isTutorialCompleted)    speechName = "kalulu_info_brainscreen_02";
+        else if (!this._interfaceManager.isToyChestLocked)      speechName = "kalulu_info_brainscreen_03";
+        else                                                    speechName = "kalulu_info_brainscreen_01";
+
+        this._kalulu.startTalk(speechName);
+    };  
 
     BrainScreen.prototype.removeOnClickOnGargenButton = function removeOnClickOnGargenButton (){
         var length = this._arrayGardenButtons.length;
@@ -196,7 +207,7 @@ define([
         createjs.Tween.get(this._blurFilter).to({blur : this._exitTweenSettings.blur}, this._exitTweenSettings.duration * this._exitTweenSettings.time, createjs.Ease.linear());
 
         if (Config.tuning) this._gui.destroy();
-        this._interfaceManager.requestGardenScreen(selectedGarden.id, (this._exitTweenSettings.duration/3)*1000);
+        this._interfaceManager.requestGardenScreen(selectedGarden.id, (this._exitTweenSettings.duration/6)*1000);
     };
 
     BrainScreen.prototype._onClickOnBackButton = function _onClickOnBackButton (pEventData) {

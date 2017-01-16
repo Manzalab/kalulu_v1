@@ -17,8 +17,7 @@
         this.clickable = true;
         this.paused = false;
         this.coconut = {};
-        this.eventManager = game.eventManager;
-
+        
         this.king = king;
 
         if (!this.king) {
@@ -111,11 +110,11 @@
 
     Monkey.prototype.initEvents = function () {
 
-        this.eventManager.on('pause', function () {
+        this.game.eventManager.on('pause', function () {
             this.paused = true;
         }, this);
 
-        this.eventManager.on('unPause', function () {
+        this.game.eventManager.on('unPause', function () {
             this.paused = false;
         }, this);
     }

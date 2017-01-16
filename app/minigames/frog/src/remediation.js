@@ -1,11 +1,13 @@
 ﻿define([
     './frog',
     './column',
-    'common/src/fx'
+    'common/src/fx',
+    'common/src/popup'
 ], function (
     Frog,
     Column,
-    Fx
+    Fx,
+    Popup
 ) {
 
     'use strict';
@@ -22,13 +24,13 @@
     function Remediation(game) {
         Phaser.Group.call(this, game);
 
-        this.eventManager = game.eventManager;
 
         this.game = game;
         this.paused = false;
         this.won = false;
 
         this.lives = 0;
+        this.timeWithoutClick = 0;
         this.consecutiveMistakes = 0;
         this.consecutiveSuccess = 0;
         this.framesToWaitBeforeNewSound = 0;
@@ -38,38 +40,13 @@
         this.initGame();
 
 
-        if (this.game.gameConfig.globalVars) window.frogger.frogger = this.frogger;
+        if (Config.globalVars) window.frogger.frogger = this.frogger;
 
         if (this.game.gameConfig.debugPanel) {
-
-            this.debug = new Dat.GUI(/*{ autoPlace: false }*/);
-
-            var globalLevel = this.game.params.globalLevel;
-
-            var infoPanel = this.debug.addFolder("Level Info");
-
-            var generalParamsPanel = this.debug.addFolder("General Parameters");
-            var globalParamsPanel = this.debug.addFolder("Global Parameters");
-            this._localParamsPanel = this.debug.addFolder("Local Parameters");
-
-            var debugPanel = this.debug.addFolder("Debug Functions");
-
-            infoPanel.add(this.game.params, "_currentGlobalLevel").listen();
-            infoPanel.add(this.game.params, "_currentLocalRemediationStage").listen();
-
-            
-            generalParamsPanel.add(this.game.params._settingsByLevel[globalLevel].generalParameters, "incorrectResponseCountTriggeringFirstRemediation").min(1).max(5).step(1).listen();
-            generalParamsPanel.add(this.game.params._settingsByLevel[globalLevel].generalParameters, "incorrectResponseCountTriggeringSecondRemediation").min(1).max(5).step(1).listen();
-            generalParamsPanel.add(this.game.params._settingsByLevel[globalLevel].generalParameters, "lives").min(1).max(5).step(1).listen();
-            generalParamsPanel.add(this.game.params._settingsByLevel[globalLevel].generalParameters, "capitalLettersShare").min(0).max(1).step(0.05).listen();
-
-            globalParamsPanel.add(this.game.params._settingsByLevel[globalLevel].globalRemediation, "lillypadsPerColumn").min(1).max(5).step(1).listen();
-
-            this.setLocalPanel();
-
-            debugPanel.add(this, "AutoWin");
-            debugPanel.add(this, "AutoLose");
+            this.setupDebugPanel();
         }
+
+        this.popup = new Popup(game);
 
         this.initSounds(game);
         this.initEvents();
@@ -88,8 +65,8 @@
         this.initColumns(game);
         this.columns[0].enabled = true;
         this.columns[0].setVisibleText(true);
-        this.fx = new Fx(game);
-    };
+        this.fx = new Fx(game);       
+    }
 
     Remediation.prototype = Object.create(Phaser.Group.prototype);
     Remediation.prototype.constructor = Remediation;
@@ -124,14 +101,14 @@
         this.sounds.wrong = game.add.audio('wrong');
         this.sounds.winGame = game.add.audio('winGame');
         this.sounds.loseGame = game.add.audio('loseGame');
-    }
+    };
 
     /**
      * Initialise parameters for the required round with data contained in this.pedagogicData
      **/
     Remediation.prototype.initRound = function initRound(roundIndex) {
 
-        var roundData = this.game.pedagogicData.rounds[roundIndex];
+        var roundData = this.game.pedagogicData.data.rounds[roundIndex];
 
         this.apparitionsCount = 0;
         this.framesToWaitBeforeNextSpawn = 0;
@@ -140,9 +117,14 @@
         this.falseResponses = [];
         this.correctResponses = [];
         this.falseStepResponsesCurrentPool = [];
-        this.correctWord = roundData.word;
-        this.sounds.correctRoundAnswer = this.game.add.audio(roundData.word.value);
-        var stepsLength = roundData.step.length;
+        if (this.game.discipline != "maths") {
+            this.correctWord = roundData.word;
+            this.sounds.correctRoundAnswer = this.game.add.audio(roundData.word.value);
+        }
+        else {
+            this.correctWord = roundData.targetSequence.value;
+        }
+        var stepsLength = roundData.steps.length;
 
         var stimuliLength, stimulus;
         var falseStepResponses, correctStepResponses;
@@ -150,9 +132,9 @@
         for (var i = 0; i < stepsLength; i++) {
             falseStepResponses = [];
             correctStepResponses = {};
-            stimuliLength = roundData.step[i].stimuli.length;
+            stimuliLength = roundData.steps[i].stimuli.length;
             for (var j = 0; j < stimuliLength; j++) {
-                stimulus = roundData.step[i].stimuli[j];
+                stimulus = roundData.steps[i].stimuli[j];
                 if (stimulus.correctResponse === true) {
                     correctStepResponses.value = stimulus.value;
                 }
@@ -166,6 +148,12 @@
             this.falseResponses.push(falseStepResponses);
             this.correctResponses.push(correctStepResponses);
         }
+
+        if (this.game.discipline != "maths")
+            this.popup.setText(this.correctWord.value);
+
+        else
+            this.popup.setTextMaths(this.correctWord);
     };
 
     /**
@@ -247,9 +235,10 @@
      * Initalize game events
      **/
     Remediation.prototype.initEvents = function () {
-        this.eventManager.on('clicked', function (lillypad) {
+        this.game.eventManager.on('clicked', function (lillypad) {
+            this.timeWithoutClick = 0;
             lillypad.apparition.close(true, 0);
-            if (lillypad.text.text == this.correctResponses[this.stepIndex].value) {
+            if (lillypad.text.text.toString() == this.correctResponses[this.stepIndex].value.toString()) {
                 this.sounds.right.play();
                 this.fx.hit(lillypad.x, lillypad.y, true);
                 this.sounds.right.onStop.add(function () {
@@ -259,8 +248,9 @@
             }
             else {
                 this.sounds.wrong.play();
-                this.eventManager.emit('fail');
+                this.game.eventManager.emit('fail');
                 this.fx.hit(lillypad.x, lillypad.y, false);
+                lillypad.fadeOut();
                 this.sounds.wrong.onStop.add(function () {
                     this.sounds.wrong.onStop.removeAll();
                     this.fail();
@@ -268,60 +258,65 @@
             }
         }, this);
 
-        this.eventManager.on('pause', function () {
+        this.game.eventManager.on('help', function () {
+            this.timeWithoutClick = 0;
+        }, this);
+
+        this.game.eventManager.on('pause', function () {
             this.paused = true;
         }, this);
 
-        this.eventManager.on('unPause', function () {
+        this.game.eventManager.on('unPause', function () {
             this.paused = false;
         }, this);
 
-        this.eventManager.on('apparition', function (lillypad) {
+        this.game.eventManager.on('apparition', function (lillypad) {
             var value = lillypad.text.text;
             var j = 0;
-            while (this.results.rounds[this.roundIndex].step[this.stepIndex].stimuli[j].value != value) { //finds the value in the results to add one apparition
+            while (this.results.data.rounds[this.roundIndex].steps[this.stepIndex].stimuli[j].value != value) { //finds the value in the results to add one apparition
                 j++;
             }
-            var apparition = new this.game.rafiki.StimulusApparition(this.results.rounds[this.roundIndex].step[this.stepIndex].stimuli[j].correctResponse);
+            var apparition = new this.game.rafiki.StimulusApparition(this.results.data.rounds[this.roundIndex].steps[this.stepIndex].stimuli[j].correctResponse);
 
-            this.results.rounds[this.roundIndex].step[this.stepIndex].stimuli[j].apparitions.push(apparition);
+            this.results.data.rounds[this.roundIndex].steps[this.stepIndex].stimuli[j].apparitions.push(apparition);
             lillypad.apparition = apparition;
         }, this);
 
-        this.eventManager.on('playCorrectSound', function () {
-            this.eventManager.emit('unPause');
-            if (this.framesToWaitBeforeNewSound <= 0) {
+        this.game.eventManager.on('playCorrectSound', function () {
+            this.game.eventManager.emit('unPause');
+            if (this.framesToWaitBeforeNewSound <= 0 && this.game.discipline != "maths") {
                 this.sounds.correctRoundAnswer.play();
                 this.framesToWaitBeforeNewSound = Math.floor((this.sounds.correctRoundAnswer.totalDuration + 0.5) * 60);
             }
         }, this);
 
-        this.eventManager.on('playCorrectSoundNoUnPause', function () {
-            if (this.framesToWaitBeforeNewSound <= 0) {
+        this.game.eventManager.on('playCorrectSoundNoUnPause', function () {
+            if (this.framesToWaitBeforeNewSound <= 0 && this.game.discipline != "maths") {
                 this.sounds.correctRoundAnswer.play();
                 this.framesToWaitBeforeNewSound = Math.floor((this.sounds.correctRoundAnswer.totalDuration + 0.5) * 60);
             }
         }, this);
 
-        this.eventManager.on('exitGame', function () {
-            this.eventManager.removeAllListeners();
-            this.eventManager = null;
+        this.game.eventManager.on('exitGame', function () {
+            if (this.game.gameConfig.debugPanel) this.clearDebugPanel();
             this.game.rafiki.close();
+            this.game.eventManager.removeAllListeners();
+            this.game.eventManager = null;
             this.game.destroy();
-            if (this.debug) {
-                this.debug.destroy();
-                this.debug = null;
-            }
+            console.info("Phaser Game has been destroyed");
+            this.game = null;
         }, this);
 
-        this.eventManager.on('replay', function () {
+        this.game.eventManager.on('replay', function () {
             if (this.game.gameConfig.debugPanel) {
-                document.getElementsByClassName("dg main a")[0].remove();
-                this.debug = null;
+                this.clearDebugPanel();
             }
+
+            this.game.eventManager.removeAllListeners();
+            this.game.eventManager = undefined;
             this.game.state.start('Setup');
         }, this);
-    }
+    };
 
     /**
      * 
@@ -332,7 +327,7 @@
         var positions = {};
         positions.x = lillypad.x;
         positions.y = lillypad.y;
-        positions.lillypad = lillypad
+        positions.lillypad = lillypad;
         this.frogJumpPositions.push(positions);
 
         this.columns[this.stepIndex].enabled = false;
@@ -341,7 +336,7 @@
         if (this.stepIndex < this.correctResponses.length) {
             this.columns[this.stepIndex].enabled = true;
             this.columns[this.stepIndex].setVisibleText(true);
-            this.eventManager.emit('unPause');
+            this.game.eventManager.emit('unPause');
         }
         else {
             this.successRound();
@@ -360,16 +355,16 @@
 
         if (this.triesRemaining > 0) {
             if (this.consecutiveSuccess % 2 == 0) { // Increment difficulty
-                if (this.game.gameConfig.debugPanel) this.cleanLocalPanel();
+                if (Config.debugPanel) this.cleanLocalPanel();
                 this.game.params.increaseLocalDifficulty();
-                if (this.game.gameConfig.debugPanel) this.setLocalPanel();
+                if (Config.debugPanel) this.setLocalPanel();
             }
 
             this.frogJumpManager("playCorrectSound");
 
         }
         else {
-            this.frogJumpManager("toucanWin", true);
+            this.frogJumpManager("GameOverWin", true);
         }
     }
 
@@ -378,6 +373,7 @@
      * @private
      **/
     Remediation.prototype.frogJumpManager = function (endEvent, win) {
+        var params = this.game.params.getGeneralParams();
         win = win || false
 
         var positions = {};
@@ -397,34 +393,41 @@
             }, (context.frog.time + 0.3) * 1000 * (i));
         }
         setTimeout(function () {
-            context.eventManager.emit('success');
+            context.game.eventManager.emit('success');
             for (var i = 0; i < context.frogJumpPositions.length - 1; i++) {
                 context.frogJumpPositions[i].lillypad.tween = context.game.add.tween(context.frogJumpPositions[i].lillypad);
                 context.frogJumpPositions[i].lillypad.tween.to({ y: context.game.height / 2 }, 500, Phaser.Easing.Default, true, 0, 0, false);
             }
             if (!win) {
 
-                context.sounds.right.play();
-                context.sounds.right.onStop.add(function () {
-                    context.sounds.right.onStop.removeAll();
-                    context.sounds.correctRoundAnswer.play();
+                context.sounds.wrong.play();
+                context.sounds.wrong.onStop.add(function () {
+                    context.sounds.wrong.onStop.removeAll();
+                    if (this.game.discipline != "maths") context.sounds.correctRoundAnswer.play();                 
                 }, context);
+                context.game.eventManager.emit('offUi');
+                context.popup.show(true);
                 setTimeout(function () {
+                    context.popup.show(false);
                     context.transition(endEvent);
-                }, 3000)
+                }, params.popupTimeOnScreen * 1000)
             }
             if (win) {
-                context.sounds.right.play();
-                context.sounds.right.onStop.add(function () {
-                    context.sounds.right.onStop.removeAll();
+                context.sounds.wrong.play();
+                context.sounds.wrong.onStop.add(function () {
+                    context.sounds.wrong.onStop.removeAll();
                     context.sounds.correctRoundAnswer.play();
                 }, context);
+                context.game.eventManager.emit('offUi');
+                context.popup.show(true);
+
                 setTimeout(function () {
+                    context.popup.show(false);
                     context.sounds.winGame.play();
-                    context.eventManager.emit('offUi'); //listened by Ui
+                    context.game.eventManager.emit('offUi'); //listened by Ui
                     context.sounds.winGame.onStop.add(function () {
                         context.sounds.winGame.onStop.removeAll();
-                        context.eventManager.emit(endEvent);//listened by Ui (toucan = kalulubutton)
+                        context.game.eventManager.emit(endEvent);//listened by Ui (toucan = kalulubutton)
                     }, this);
                 }, 3000)
             }
@@ -449,7 +452,7 @@
             context.initColumns(context.game);
             context.columns[0].enabled = true;
             context.columns[0].setVisibleText(true);
-            context.eventManager.emit(endEvent);
+            context.game.eventManager.emit(endEvent);
         }, (context.frog.time - 0.2) * 1000);
 
     }
@@ -470,19 +473,32 @@
 
                 var context = this;
                 setTimeout(function () {
-                    context.eventManager.emit('playCorrectSound');//listened here; check initEvents
+                    context.game.eventManager.emit('playCorrectSoundNoUnPause');//listened here; check initEvents
+                    context.game.eventManager.emit('offUi');                  
+
+                    context.popup.show(true);
+
+                    setTimeout(function () {
+                        context.popup.show(false);
+                        context.game.eventManager.emit('unPause');
+                    }, params.popupTimeOnScreen * 1000);
+
                 }, 1000);
 
-                if (this.game.gameConfig.debugPanel) this.cleanLocalPanel();
+                if (Config.debugPanel) this.cleanLocalPanel();
                 this.game.params.decreaseLocalDifficulty();
-                if (this.game.gameConfig.debugPanel) this.setLocalPanel();
+                if (Config.debugPanel) this.setLocalPanel();
             }
             else if (this.consecutiveMistakes === params.incorrectResponseCountTriggeringSecondRemediation) {
-
-                this.eventManager.emit('help'); // listened by Kalulu to start the help speech; pauses the game in kalulu
-                if (this.game.gameConfig.debugPanel) this.cleanLocalPanel();
+                for (var i = 0; i < this.columns[this.stepIndex].lillypads.length; i++) {
+                    if (this.columns[this.stepIndex].lillypads[i].text.text.toString() == this.correctResponses[this.stepIndex].value.toString()) {
+                        this.columns[this.stepIndex].lillypads[i].highlight.visible = true;
+                    }
+                }
+                this.game.eventManager.emit('help'); // listened by Kalulu to start the help speech; pauses the game in kalulu
+                if (Config.debugPanel) this.cleanLocalPanel();
                 this.game.params.decreaseLocalDifficulty();
-                if (this.game.gameConfig.debugPanel) this.setLocalPanel();
+                if (Config.debugPanel) this.setLocalPanel();
                 this.consecutiveMistakes = 0; // restart the remediation
             }
         }
@@ -502,7 +518,7 @@
         var length = this.columns.length;
         for (var i = 0; i < length; i++) {
             this.columns[0].deleteLillypads();
-            this.columns.splice(0, 1);
+            this.columns.splice(0, 1)[0].destroy();
         }
 
     }
@@ -511,11 +527,11 @@
 
         this.game.won = true;
         this.sounds.winGame.play();
-        this.eventManager.emit('offUi');// listened by ui
+        this.game.eventManager.emit('offUi');// listened by ui
 
         this.sounds.winGame.onStop.add(function () {
             this.sounds.winGame.onStop.removeAll();
-            this.eventManager.emit('GameOverWin');//listened by Ui (toucan = kalulu)
+            this.game.eventManager.emit('GameOverWin');//listened by Ui (toucan = kalulu)
             this.saveGameRecord();
         }, this);
     };
@@ -524,11 +540,11 @@
 
         this.game.won = false;
         this.sounds.loseGame.play();
-        this.eventManager.emit('offUi');// listened by ui
+        this.game.eventManager.emit('offUi');// listened by ui
 
         this.sounds.loseGame.onStop.add(function () {
             this.sounds.loseGame.onStop.removeAll();
-            this.eventManager.emit('GameOverLose');// listened by ui
+            this.game.eventManager.emit('GameOverLose');// listened by ui
             this.saveGameRecord();
         }, this);
     };
@@ -539,11 +555,76 @@
     };
 
     // DEBUG
+
+
+
+    Remediation.prototype.setupDebugPanel = function setupDebugPanel() {
+
+        if (this.game.debugPanel) {
+            this.debugPanel = this.game.debugPanel;
+            this.rafikiDebugPanel = true;
+        }
+        else {
+            this.debugPanel = new Dat.GUI();
+            this.rafikiDebugPanel = false;
+        }
+
+        var globalLevel = this.game.params.globalLevel;
+
+        this.debugFolderNames = {
+            info: "Level Info",
+            general: "General Parameters",
+            global: "Global Parameters",
+            local: "Local Parameters",
+            functions: "Debug Functions",
+        };
+
+        this._debugInfo = this.debugPanel.addFolder(this.debugFolderNames.info);
+        this._debugGeneralParams = this.debugPanel.addFolder(this.debugFolderNames.general);
+        this._debugGlobalParams = this.debugPanel.addFolder(this.debugFolderNames.global);
+        this._debugLocalParams = this.debugPanel.addFolder(this.debugFolderNames.local);
+        this._debugFunctions = this.debugPanel.addFolder(this.debugFolderNames.functions);
+
+        this._debugInfo.add(this.game.params, "_currentGlobalLevel").listen();
+        this._debugInfo.add(this.game.params, "_currentLocalRemediationStage").listen();
+
+        // SPECIFIC
+        this._debugGeneralParams.add(this.game.params._settingsByLevel[globalLevel].generalParameters, "incorrectResponseCountTriggeringFirstRemediation").min(1).max(5).step(1).listen();
+        this._debugGeneralParams.add(this.game.params._settingsByLevel[globalLevel].generalParameters, "incorrectResponseCountTriggeringSecondRemediation").min(1).max(5).step(1).listen();
+        this._debugGeneralParams.add(this.game.params._settingsByLevel[globalLevel].generalParameters, "lives").min(1).max(5).step(1).listen();
+        this._debugGeneralParams.add(this.game.params._settingsByLevel[globalLevel].generalParameters, "capitalLettersShare").min(0).max(1).step(0.05).listen();
+
+        this._debugGlobalParams.add(this.game.params._settingsByLevel[globalLevel].globalRemediation, "lillypadsPerColumn").min(1).max(5).step(1).listen();
+
+        this.setLocalPanel();
+        // END OF SPECIFIC
+
+
+        this._debugFunctions.add(this, "AutoWin");
+        this._debugFunctions.add(this, "AutoLose");
+        this._debugFunctions.add(this, "skipKalulu");
+        this._debugFunctions.open();
+    };
+
+    Remediation.prototype.clearDebugPanel = function clearDebugPanel() {
+        if (this.rafikiDebugPanel) {
+            this.debugPanel.removeFolder(this.debugFolderNames.info);
+            this.debugPanel.removeFolder(this.debugFolderNames.general);
+            this.debugPanel.removeFolder(this.debugFolderNames.global);
+            this.debugPanel.removeFolder(this.debugFolderNames.local);
+            this.debugPanel.removeFolder(this.debugFolderNames.functions);
+        }
+        else {
+            this.debugPanel.destroy();
+        }
+    };
+
+
     Remediation.prototype.cleanLocalPanel = function cleanLocalPanel() {
 
-        for (var element in this._localParamsPanel.items) {
-            if (!this._localParamsPanel.items.hasOwnProperty(element)) continue;
-            this._localParamsPanel.remove(this._localParamsPanel.items[element]);
+        for (var element in this._debugLocalParams.items) {
+            if (!this._debugLocalParams.items.hasOwnProperty(element)) continue;
+            tthis._debugLocalParams.remove(this._debugLocalParams.items[element]);
         }
     };
 
@@ -552,10 +633,10 @@
         var globalLevel = this.game.params.globalLevel;
         var localStage = this.game.params.localRemediationStage;
 
-        this._localParamsPanel.items = {};
-        this._localParamsPanel.items.param1 = this._localParamsPanel.add(this.game.params._settingsByLevel[globalLevel].localRemediation[localStage], "minimumCorrectStimuliOnColumn").min(0).max(20).step(1).listen();
-        this._localParamsPanel.items.param2 = this._localParamsPanel.add(this.game.params._settingsByLevel[globalLevel].localRemediation[localStage], "correctResponsePercentage").min(0).max(1).step(0.1).listen();
-        this._localParamsPanel.items.param4 = this._localParamsPanel.add(this.game.params._settingsByLevel[globalLevel].localRemediation[localStage], "speed").min(1).max(5).step(0.5).listen();
+        this._debugLocalParams.items = {};
+        this._debugLocalParams.items.param1 = this._debugLocalParams.add(this.game.params._settingsByLevel[globalLevel].localRemediation[localStage], "minimumCorrectStimuliOnColumn").min(0).max(20).step(1).listen();
+        this._debugLocalParams.items.param2 = this._debugLocalParams.add(this.game.params._settingsByLevel[globalLevel].localRemediation[localStage], "correctResponsePercentage").min(0).max(1).step(0.1).listen();
+        this._debugLocalParams.items.param4 = this._debugLocalParams.add(this.game.params._settingsByLevel[globalLevel].localRemediation[localStage], "speed").min(1).max(5).step(0.5).listen();
     };
 
     /**
@@ -563,6 +644,16 @@
      **/
     Remediation.prototype.update = function () {
         if (this.framesToWaitBeforeNewSound > 0) this.framesToWaitBeforeNewSound--;
+
+        if (!this.paused) {
+            this.timeWithoutClick++;
+
+            if (this.timeWithoutClick > 60 * 20) {
+                this.timeWithoutClick = 0;
+                this.game.eventManager.emit('help');
+            }
+
+        }
     };
 
     Remediation.prototype.AutoWin = function WinGameAndSave() {
@@ -570,27 +661,27 @@
         var apparitionStats;
         var roundsCount, stepsCount, stimuliCount, currentRound, currentStep, currentStimulus;
 
-        roundsCount = this.results.rounds.length;
+        roundsCount = this.results.data.rounds.length;
 
         for (var i = 0 ; i < roundsCount ; i++) {
 
-            currentRound = this.results.rounds[i];
+            currentRound = this.results.data.rounds[i];
             currentRound.word.stats = {
                 apparitionTime: Date.now() - 10000,
                 exitTime: Date.now(),
                 success: true
             };
 
-            stepsCount = currentRound.step.length;
+            stepsCount = currentRound.steps.length;
 
             for (var j = 0 ; j < stepsCount ; j++) {
 
-                currentStep = this.results.rounds[i].step[j];
+                currentStep = this.results.data.rounds[i].steps[j];
                 stimuliCount = currentStep.stimuli.length;
 
                 for (var k = 0 ; k < stimuliCount ; k++) {
 
-                    currentStimulus = this.results.rounds[i].step[j].stimuli[k];
+                    currentStimulus = this.results.data.rounds[i].steps[j].stimuli[k];
 
                     apparitionStats = {
                         apparitionTime: Date.now() - 3000,
@@ -610,7 +701,7 @@
         }
 
         this.won = true;
-        this.eventManager.emit("exitGame");
+        this.gameOverWin();
     };
 
     Remediation.prototype.AutoLose = function LoseGame() {
@@ -618,27 +709,27 @@
         var apparitionStats;
         var roundsCount, stepsCount, stimuliCount, currentRound, currentStep, currentStimulus;
 
-        roundsCount = this.results.rounds.length;
+        roundsCount = this.results.data.rounds.length;
 
         for (var i = 0 ; i < roundsCount ; i++) {
 
-            currentRound = this.results.rounds[i];
+            currentRound = this.results.data.rounds[i];
             currentRound.word.stats = {
                 apparitionTime: Date.now() - 20000,
                 exitTime: Date.now(),
                 success: false
             };
 
-            stepsCount = currentRound.step.length;
+            stepsCount = currentRound.steps.length;
 
             for (var j = 0 ; j < stepsCount ; j++) {
 
-                currentStep = this.results.rounds[i].step[j];
+                currentStep = this.results.data.rounds[i].steps[j];
                 stimuliCount = currentStep.stimuli.length;
 
                 for (var k = 0 ; k < stimuliCount ; k++) {
 
-                    currentStimulus = this.results.rounds[i].step[j].stimuli[k];
+                    currentStimulus = this.results.data.rounds[i].steps[j].stimuli[k];
 
                     apparitionStats = {
                         apparitionTime: Date.now() - 3000,
@@ -658,7 +749,11 @@
         }
 
         this.won = false;
-        this.eventManager.emit('exitGame');
+        this.gameOverLose();
+    };
+
+    Remediation.prototype.skipKalulu = function skipKalulu() {
+        this.game.eventManager.emit("skipKalulu");
     };
 
     return Remediation;

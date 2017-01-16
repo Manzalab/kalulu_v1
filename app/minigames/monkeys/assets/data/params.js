@@ -14,7 +14,8 @@
                 incorrectResponseCountTriggeringFirstRemediation    : 1,
                 incorrectResponseCountTriggeringSecondRemediation   : 2,
                 lives                                               : 3,     // at the time when lives reach 0 the game ends, i.e. at the third incorrect response for 3 lives
-                capitalLettersShare                                 : 0.4
+                capitalLettersShare                                 : 0.4,
+                popupTimeOnScreen                                   : 3
             },
             globalRemediation : {   // the global remediation settings are invariable inside a game but can evolve depending on globalLevel from one game to the next
                 gameType                        : "composition", // "identification", "composition", "pairing", or "other"
@@ -40,9 +41,9 @@
             { // LEVEL 1
                 globalRemediation : {
                     stepDistracterCount             : 3, //
-                    roundsCount                     : 3, //
+                    roundsCount                     : 5, // must equal totalTriesCount
                     monkeyOnScreen                  : 2,
-                    totalTriesCount                 : 5
+                    totalTriesCount                 : 5 // must equal roundsCount
                 },
                 localRemediation : {
                     minimumCorrectStimuliOnColumn   : {min : 1, max : 1}, //
@@ -52,7 +53,7 @@
             { // LEVEL 2
                 globalRemediation: {
                    stepDistracterCount             : 3, //
-                   roundsCount                     : 3, //
+                   roundsCount                     : 5, //
                    monkeyOnScreen                  : 2,
                    totalTriesCount                 : 5
                 },
@@ -64,7 +65,7 @@
             { // LEVEL 3
                 globalRemediation: {
                    stepDistracterCount             : 3, //
-                   roundsCount                     : 4, //
+                   roundsCount                     : 6, //
                    monkeyOnScreen                  : 3,
                    totalTriesCount                 : 6
                 },
@@ -76,7 +77,7 @@
             { // LEVEL 4
                  globalRemediation: {
                    stepDistracterCount             : 3, //
-                   roundsCount                     : 4, //
+                   roundsCount                     : 6, //
                    monkeyOnScreen                  : 3,
                    totalTriesCount                 : 6
                 },
@@ -88,7 +89,7 @@
             { // LEVEL 5
                 globalRemediation: {
                    stepDistracterCount             : 3, //
-                   roundsCount                     : 5, //
+                   roundsCount                     : 7, //
                    monkeyOnScreen                  : 4,
                    totalTriesCount                 : 7
                 },

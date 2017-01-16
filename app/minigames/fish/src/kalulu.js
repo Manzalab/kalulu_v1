@@ -19,8 +19,7 @@
 	     * @type {EventEmitter}
          * @private
 	    **/
-        this.eventManager = game.eventManager;
-
+        
         /**
          * All kalulu's sounds  
 	     * @type {Phaser.Audio}
@@ -99,17 +98,17 @@
     Kalulu.prototype.createKaluluEvent = function (entryEventName, endEventName, sound, skipCondition) {
         skipCondition = (typeof skipCondition !== 'undefined') ? skipCondition : false;        
 
-        this.eventManager.on(entryEventName, function () {           
-            this.eventManager.emit('help');
-            this.eventManager.emit('offUi');
-            this.eventManager.emit('pause');
+        this.game.eventManager.on(entryEventName, function () {           
+            this.game.eventManager.emit('help');
+            this.game.eventManager.emit('offUi');
+            this.game.eventManager.emit('pause');
             if (this.game.gameConfig.skipKalulu || skipCondition) {              
                 if (Array.isArray(endEventName))
                     for (var i = 0; i < endEventName.length; i++) {
-                        this.eventManager.emit(endEventName[i]);
+                        this.game.eventManager.emit(endEventName[i]);
                     }
                 else
-                    this.eventManager.emit(endEventName);
+                    this.game.eventManager.emit(endEventName);
                 return;
             }
             this.sounds.on.play();
@@ -136,10 +135,10 @@
                         this.kaluluSprite.visible = false;
                         if (Array.isArray(endEventName))
                             for (var i = 0; i < endEventName.length; i++) {
-                                this.eventManager.emit(endEventName[i]);
+                                this.game.eventManager.emit(endEventName[i]);
                             }
                         else
-                            this.eventManager.emit(endEventName);
+                            this.game.eventManager.emit(endEventName);
                     }, this);
                 }, this);
             }, this);

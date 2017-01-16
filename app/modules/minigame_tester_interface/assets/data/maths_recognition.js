@@ -5,7 +5,7 @@ module.exports = {
             {
                 "steps": [
                     {
-                        "type": "audio_symbolic",
+                        "type": "audioToNonSymbolic",
                         "stimuli": [
                             {
                                 "value": 1,
