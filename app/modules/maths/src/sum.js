@@ -86,7 +86,7 @@ var Sum = function(number, xnumber, side, sign, numbers_data, numbers_available,
     var that = this
 	if(distractors){
 		_.each(distractors, function(d){
-			console.log(d.value)
+			// console.log(d.value)
 			var st =  moduleutils.addStimuli(false , d.value, 'sum',numbers_data,that.lpath )
 			// to fix again.
 
