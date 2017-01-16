@@ -116,6 +116,7 @@ define([
     GameLauncher.prototype.destroy = function destroy () {
         
         this.game.destroy();
+        delete this.game.layouts;
         this.game = null;
     };
 

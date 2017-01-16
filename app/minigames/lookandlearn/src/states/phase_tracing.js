@@ -168,7 +168,6 @@ define([
 
     PhaseTracing.prototype.shutdown = function PhaseTracingShutdown () {
         Emitter.listeners = {};
-        delete this.game.layouts;
     };
 
     return PhaseTracing;
