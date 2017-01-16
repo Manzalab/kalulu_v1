@@ -15,7 +15,7 @@
 	**/
     function Buoy(side, category, game) {
         Phaser.Group.call(this, game);
-
+        console.log(this.game.cache);
         this.game = game;
                 this.y = game.height / 2.5;
 
