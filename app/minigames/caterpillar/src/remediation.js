@@ -142,7 +142,7 @@
         // Setting up the recording of the game for Rafiki
         this.game.record = new this.game.rafiki.MinigameDstRecord();
 
-        this.results = this.game.pedagogicData.data; // for convenience we reference also the pedagogicData object under the name 'results' because we will add response data directly on it.
+        this.results = this.game.pedagogicData; // for convenience we reference also the pedagogicData object under the name 'results' because we will add response data directly on it.
         this.consecutiveMistakes = 0;
         this.consecutiveSuccess = 0;
         this.triesRemaining = params.getGlobalParams().roundsCount;
@@ -543,12 +543,12 @@
         j = 0;
         // console.log(value);
         // console.log(lBerry);
-        while (this.results.rounds[this.roundIndex].steps[this.stepIndex].stimuli[j].value != value) { //finds the value in the results to add one apparition
+        while (this.results.data.rounds[this.roundIndex].steps[this.stepIndex].stimuli[j].value != value) { //finds the value in the results to add one apparition
             j++;
         }
         apparition = new this.game.rafiki.StimulusApparition(isTargetValue);
 
-        this.results.rounds[this.roundIndex].steps[this.stepIndex].stimuli[j].apparitions.push(apparition);
+        this.results.data.rounds[this.roundIndex].steps[this.stepIndex].stimuli[j].apparitions.push(apparition);
         lBerry.apparition = apparition;
         this.apparitionsCount++;
         this.framesToWaitBeforeNextSpawn = localParams.respawnTime * 60;
