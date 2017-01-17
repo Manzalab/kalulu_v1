@@ -1116,8 +1116,11 @@
     };
 
     LanguageModule.prototype._addRecordOnNotion = function addRecordOnNotion (notion, record) {
-        console.log(notion);
-        console.log(record);
+        
+        if (!record) {
+            console.warn(' did not record score ' + record + ' on notion ' + notion.id);
+            return;
+        }
         var data = this._userProfile.Language;
         if (notion.constructor.name === "GP") {
             if (!data.gp[notion.id]) {
@@ -1320,7 +1323,7 @@
                     if (currentStimulus.value) { // if it is a blank stimulus we wont save scores on its notion or on underlying notions
                         
                         notion = this.getGPbyId(currentStimulus.id);
-                        
+                        if (!currentStimulus.apparitions) continue;
                         apparitionsCount = currentStimulus.apparitions.length;
                         apparitions:
                         for (a = 0 ; a < apparitionsCount ; a++) {
@@ -1361,7 +1364,7 @@
 
             currentWord = this.getWordbyId(currentWordData.id);
             // console.log("Record added on word " + currentWordData.value + " : elapsedTime was " + (wordScoreObject.elapsedTime/1000) + " seconds with a score of " + wordScoreObject.score + ".");
-            this._addRecordOnNotion(currentWord, scoreObject);
+            this._addRecordOnNotion(currentWord, wordScoreObject);
         }
 
         var finalScore = {
