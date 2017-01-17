@@ -98,8 +98,8 @@
 
         this.buoys = {};
         if (this.game.discipline != "maths") {
-            this.buoys.left = new Buoy(true, this.categories[0], this.game);
-            this.buoys.right = new Buoy(false, this.categories[1], this.game);
+            this.buoys.left = new Buoy(true, this.categories[1], this.game);
+            this.buoys.right = new Buoy(false, this.categories[0], this.game);
         }
         else {
             this.buoys.left = new Buoy(true, "maths", this.game);
