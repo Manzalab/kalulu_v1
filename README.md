@@ -8,6 +8,8 @@ To start with Kalulu:
 
 > npm install
 
+# Testing Kalulu
+
 ### To test the app in debug mode
 
 > npm run testAll
@@ -24,7 +26,7 @@ To start with Kalulu:
 
 - you can try the app in your browser on http://localhost:3000
 
-### In order to build the apk
+# Building the .apk
 
 You must first execute a build command in English or Swahili, then:
 
@@ -37,3 +39,18 @@ You may encouter several error messages requiring to:
 - add the android platform
 - install the android sdk
 - or install java runtime environment, if they are not already installed on your computer
+
+# License and contributions
+
+Kalulu uses [phaser.io](http://phaser.io), released by Photon Storm
+Ltd under the [MIT license](https://opensource.org/licenses/MIT).
+
+Kalulu also uses the cordova `ftp4j` plugin, released
+under [LGPL](http://opensource.org/licenses/LGPL-2.1).
+
+Images, videos and sounds produced by Manzalab are released under
+the
+[Creative Commons by-sa 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).
+
+All the code written by Manzalab is released under the Apache 2.0
+license--see the `LICENSE` file in this repository.
