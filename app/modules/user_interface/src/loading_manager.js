@@ -85,6 +85,8 @@
 
         lLoader.addImageFile("user_interface/plant/plant_0.json");
         lLoader.addImageFile("user_interface/plant/plant_1.json");
+        lLoader.addImageFile("user_interface/plant/plant_2.json");
+        lLoader.addImageFile("user_interface/plant/plant_3.json");
 
         lLoader.addImageFile("user_interface/background/background_0.json");
         lLoader.addImageFile("user_interface/background/background_1.json");
@@ -152,6 +154,8 @@
 
         factory.addTextures(loader.getContent(Config.imagesPath, "user_interface/plant/plant_0.json"));
         factory.addTextures(loader.getContent(Config.imagesPath, "user_interface/plant/plant_1.json"));
+        factory.addTextures(loader.getContent(Config.imagesPath, "user_interface/plant/plant_2.json"));
+        factory.addTextures(loader.getContent(Config.imagesPath, "user_interface/plant/plant_3.json"));
 
         factory.addTextures(loader.getContent(Config.imagesPath, "user_interface/background/background_0.json"));
         factory.addTextures(loader.getContent(Config.imagesPath, "user_interface/background/background_1.json"));
