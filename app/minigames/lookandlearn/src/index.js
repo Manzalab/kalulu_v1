@@ -68,6 +68,7 @@ define([
         **/
         this.game = new Phaser.Game(1920, 1350, Phaser.CANVAS); // TODO : make it dynamic for multiscreen handling
         this.game.gameConfig = this._config;
+
         if (this.game.gameConfig.globalVars) {
             // console.info('Debug with global Variables enabled. Everything can be found in global variable "lookandlearn"');
             window.lookandlearn = {};
@@ -76,6 +77,7 @@ define([
 
 
         this.game.rafiki = this.rafiki;
+        this.game.tutoEnabled = this.rafiki.latestRecord;
         // debug Panel from Kalulu
         this.game.debugPanel = this.rafiki.debugPanel;
 
