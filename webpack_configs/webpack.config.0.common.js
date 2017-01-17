@@ -11,7 +11,7 @@ var PATHS = {
 module.exports = components.mergeConfigs(
     
     {
-        devtool : 'eval-source-map',
+        devtool : process.env.devtool,
         output : {
             path : PATHS.www,
             publicPath : '',
