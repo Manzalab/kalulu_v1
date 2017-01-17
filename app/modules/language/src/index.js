@@ -1279,76 +1279,94 @@
     };
     
 
-    LanguageModule.prototype._processCompositionResults = function _processCompositionResults (currentProgressionNode, record, hasWon) {
+    LanguageModule.prototype._processCompositionResults = function _processCompositionResults (currentProgressionNode, record) {
         
         if (Config.debugLanguageModule) console.log(record);
         var results = record.results;
-        var totalDistractorSyllablesCompleted = 0;
+        var totalWordsCompleted = 0;
 
         var roundsCount, stepsCount, stimuliCount, apparitionsCount; // length of loops to avoid recalculation at each iteration.
-        var currentRound, currentWordData, currentWord, currentStep, currentStimulus, notion, apparition, scoreObject; //temps for loops
+        var currentRound, currentWordData, currentWord, currentStep, currentStimulus, notion, apparition, wordScoreObject, scoreObject; //temps for loops
         var r, s, st, a; // indices for loops (rounds, steps, stimuli, apparitions)
-        
-        roundsCount = record.results.data.rounds.length;
+        var resDebug;
+
+        roundsCount = results.data.rounds.length;
         rounds:
         for (r = 0; r < roundsCount ; r++) {
-            
+            // console.log("PARSING ROUND " + (r+1));
             currentRound = results.data.rounds[r];
             currentWordData = currentRound.word;
-            console.log(currentWordData);
-            scoreObject = {
-                elapsedTime : currentWordData.stats.exitTime ? (currentWordData.stats.exitTime - currentWordData.stats.apparitionTime) : 0,
+            // console.log(currentWordData);
+
+            wordScoreObject = {
+                elapsedTime : 0,
                 score : 0
             };
+            
+            var isWordSuccess = true;
 
-            if (currentWordData.stats.success) {
-                scoreObject.score = 1;
-                totalDistractorSyllablesCompleted++;
-            }
-
-            currentWord = this.getWordbyId(currentWordData.id);
-            this._addRecordOnNotion(currentWord, scoreObject);
-            console.log("Record added on word " + currentWordData.value + " : elapsedTime was " + (scoreObject.elapsedTime/1000) + " seconds with a score of " + scoreObject.score + ".");
             stepsCount = currentRound.steps.length;
             steps:
             for (s = 0 ; s < stepsCount ; s++) {
-                
+                // console.log("PARSING STEP " + (s+1));
                 currentStep = currentRound.steps[s];
-
+                var isStepSucess = false;
                 stimuliCount = currentStep.stimuli.length;
                 stimuli:
                 for (st = 0 ; st < stimuliCount ; st++) {
-
+                    // console.log("PARSING STIMULI " + (st+1));
                     currentStimulus = currentStep.stimuli[st];
 
-                    if (currentStimulus.notionId) { // if it is a blank stimulus we wont save scores on its notion or on underlying notions
+                    if (currentStimulus.value) { // if it is a blank stimulus we wont save scores on its notion or on underlying notions
                         
-                        notion = this.getGPbyId(currentStimulus.notionId);
+                        notion = this.getGPbyId(currentStimulus.id);
                         
                         apparitionsCount = currentStimulus.apparitions.length;
                         apparitions:
                         for (a = 0 ; a < apparitionsCount ; a++) {
-                            
+                            // console.log("PARSING APPARITION " + (a+1));
                             apparition = currentStimulus.apparitions[a];
-                            if (!apparition.exitTime) { // the stimuli that had not the opportunity to complete their appearance (game end happened) have no exit time
+                            // console.log('apparition for stim ' + notion.id);
+                            // console.log(apparition);
+                            if (!apparition.isClosed) {
                                 continue;
                             }
 
                             scoreObject = {
-                                elapsedTime : apparition.exitTime - apparition.apparitionTime, 
-                                score : apparition.correctResponse === apparition.clicked ? 1 : 0
+                                elapsedTime : apparition.elapsedTime, 
+                                score : apparition.isCorrect === apparition.isClicked ? 1 : 0
                             };
+
+                            if (apparition.isCorrect && apparition.isClicked) {
+                                isStepSucess = true;
+                                wordScoreObject.elapsedTime += apparition.elapsedTime;
+                            }
                             this._addRecordOnNotion(notion, scoreObject);
-                            console.log("Record added on GP " + currentStimulus.notionId + " : elapsedTime was " + (scoreObject.elapsedTime/1000) + " seconds with a score of " + scoreObject.score + ".");
+                            // console.log("Record added on GP " + currentStimulus.notionId + " : elapsedTime was " + (scoreObject.elapsedTime/1000) + " seconds with a score of " + scoreObject.score + ".");
                         }
                     }
                 }
+                resDebug = isStepSucess ? "SUCCESS" : "FAIL";
+                // console.log("STEP " + (st+1) + " was a " + resDebug);
+                if(!isStepSucess) isWordSuccess = false;
             }
+
+
+            resDebug = isWordSuccess ? "SUCCESS" : "FAIL";
+            // console.log("ROUND " + (r+1) + " was a " + resDebug);
+            if (isWordSuccess) {
+                wordScoreObject.score = 1;
+                totalWordsCompleted++;
+            }
+
+            currentWord = this.getWordbyId(currentWordData.id);
+            // console.log("Record added on word " + currentWordData.value + " : elapsedTime was " + (wordScoreObject.elapsedTime/1000) + " seconds with a score of " + wordScoreObject.score + ".");
+            this._addRecordOnNotion(currentWord, scoreObject);
         }
 
         var finalScore = {
             elpasedTime : null,
-            score : totalDistractorSyllablesCompleted/roundsCount
+            score : totalWordsCompleted/roundsCount
         };
 
         //lSettings.addRecord(finalScore); // TO DO record minigame result

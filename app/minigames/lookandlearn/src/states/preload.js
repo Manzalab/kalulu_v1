@@ -95,7 +95,9 @@ define([
         }
         else if (discipline === 'maths') {
             var lesson = this.game.gameConfig.pedagogicData.data.notions[0].textValue;
-            if(lesson === 0 || lesson == '3-2-1' || lesson === '+' || lesson === '-' || lesson === '+2' || lesson === '+5' || lesson === '+10') {
+            console.log(this.game.gameConfig.pedagogicData.data.notions[0]);
+            console.log(lesson);
+            if(lesson === "0" || lesson == '3-2-1' || lesson === '+' || lesson === '-' || lesson === '+2' || lesson === '+5' || lesson === '+10') {
                 // console.log('0, skipping phase 1');
                 this.state.start('Phase2Image');
                 return;
