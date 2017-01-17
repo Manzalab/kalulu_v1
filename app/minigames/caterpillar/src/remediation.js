@@ -317,26 +317,28 @@
     Remediation.prototype.gameOverWin = function gameOverWin() {
 
         this.game.won = true;
+        this.saveGameRecord();
         this.sounds.winGame.play();
         this.game.eventManager.emit('offUi');// listened by ui
-
+        
         this.sounds.winGame.onStop.add(function () {
             this.sounds.winGame.onStop.removeAll();
             this.game.eventManager.emit('GameOverWin');//listened by Ui (toucan = kalulu)
-            this.saveGameRecord();
+            
         }, this);
     };
 
     Remediation.prototype.gameOverLose = function gameOverLose() {
 
         this.game.won = false;
+        this.saveGameRecord();
         this.sounds.loseGame.play();
         this.game.eventManager.emit('offUi');// listened by ui
 
         this.sounds.loseGame.onStop.add(function () {
             this.sounds.loseGame.onStop.removeAll();
             this.game.eventManager.emit('GameOverLose');// listened by ui
-            this.saveGameRecord();
+            
         }, this);
     };
 
@@ -704,12 +706,12 @@
 
         var apparitionStats;
         var roundsCount, stepsCount, stimuliCount, currentRound, currentStep, currentStimulus;
-
-        roundsCount = this.results.rounds.length;
+        console.log(this.results);
+        roundsCount = this.results.data.rounds.length;
 
         for (var i = 0 ; i < roundsCount ; i++) {
 
-            currentRound = this.results.rounds[i];
+            currentRound = this.results.data.rounds[i];
             console.log(currentRound);
             if (this.game.pedagogicData.discipline === 'language') {
                 currentRound.word.stats = {
@@ -730,12 +732,12 @@
 
             for (var j = 0 ; j < stepsCount ; j++) {
 
-                currentStep = this.results.rounds[i].steps[j];
+                currentStep = this.results.data.rounds[i].steps[j];
                 stimuliCount = currentStep.stimuli.length;
 
                 for (var k = 0 ; k < stimuliCount ; k++) {
 
-                    currentStimulus = this.results.rounds[i].steps[j].stimuli[k];
+                    currentStimulus = this.results.data.rounds[i].steps[j].stimuli[k];
 
                     apparitionStats = {
                         apparitionTime: Date.now() - 3000,
@@ -762,11 +764,11 @@
         var apparitionStats;
         var roundsCount, stepsCount, stimuliCount, currentRound, currentStep, currentStimulus;
 
-        roundsCount = this.results.rounds.length;
+        roundsCount = this.results.data.rounds.length;
 
         for (var i = 0 ; i < roundsCount ; i++) {
 
-            currentRound = this.results.rounds[i];
+            currentRound = this.results.data.rounds[i];
             if (this.game.pedagogicData.discipline === 'language') {
                 currentRound.word.stats = {
                     apparitionTime: Date.now() - 20000,
@@ -786,12 +788,12 @@
 
             for (var j = 0 ; j < stepsCount ; j++) {
 
-                currentStep = this.results.rounds[i].steps[j];
+                currentStep = this.results.data.rounds[i].steps[j];
                 stimuliCount = currentStep.stimuli.length;
 
                 for (var k = 0 ; k < stimuliCount ; k++) {
 
-                    currentStimulus = this.results.rounds[i].steps[j].stimuli[k];
+                    currentStimulus = this.results.data.rounds[i].steps[j].stimuli[k];
 
                     apparitionStats = {
                         apparitionTime: Date.now() - 3000,
