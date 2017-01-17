@@ -380,6 +380,7 @@
 
     LanguageModule.prototype.processResults = function processResults (currentProgressionNode, minigameRecord) { // TODO : move in a save module
         console.log(currentProgressionNode);
+        console.log(minigameRecord);
         console.log(this._currentActivityParams);
         // var lSettings = this.getSettings(currentProgressionNode.activityType);
         // console.log(lSettings);
@@ -391,6 +392,10 @@
             this._processCompositionResults(currentProgressionNode, minigameRecord);
         }
         else if (this._currentActivityParams.gameType === "pairing") {
+            if (minigameRecord.hasWon) currentProgressionNode.isCompleted = true;
+        }
+
+        else {
             if (minigameRecord.hasWon) currentProgressionNode.isCompleted = true;
         }
     };

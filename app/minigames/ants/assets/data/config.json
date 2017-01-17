@@ -5,6 +5,6 @@
     "skipKaluluIntro" : false, 
     "skipKaluluHelp" : false, 
     "skipKaluluFinal" : false, 
-    "debugPanel" : true,
+    "debugPanel" : false,
     "globalVars" : false
 }
