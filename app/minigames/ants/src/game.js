@@ -128,7 +128,7 @@
          * @private
          **/
         render: function () {
-            this.game.debug.text(this.game.time.fps, 2, 14, "#00ff00");
+            if (this.game.gameConfig.debugPanel) this.game.debug.text(this.game.time.fps, 2, 14, "#00ff00");
         }
     };
 
