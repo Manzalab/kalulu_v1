@@ -538,8 +538,8 @@
             // console.log(this.results.rounds[i].steps[0])
 
             for (var j = 0 ; j < this.results.rounds[i].steps[0].stimuli.length ; j++) {
-                console.log( this.results.rounds[i].steps[0].stimuli[j] )
-
+                console.log( this.results.rounds[i].steps[0].stimuli[j]);
+                this.results.rounds[i].steps[0].stimuli[j].apparitions = [];
                
                 if (this.results.rounds[i].steps[0].stimuli[j].correctResponse) {
 
@@ -571,7 +571,7 @@
         for (var i = 0 ; i < this.results.rounds.length ; i++) {
 
             for (var j = 0 ; j < this.results.rounds[i].steps[0].stimuli.length ; j++) {
-
+                this.results.rounds[i].steps[0].stimuli[j].apparitions = [];
                 if (this.results.rounds[i].steps[0].stimuli[j].correctResponse) {
 
                     for (var k = 0 ; k < this.triesRemaining ; k++) {
