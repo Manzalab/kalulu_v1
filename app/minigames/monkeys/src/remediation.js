@@ -23,7 +23,7 @@
     function Remediation(game) {
         Phaser.Group.call(this, game);
 
-        
+
         var data = this.game.pedagogicData;
         this.discipline = data.discipline;
 
@@ -93,7 +93,7 @@
         }, this);
 
         this.game.eventManager.on('unPause', function () {
-        }, this);    
+        }, this);
 
         this.game.eventManager.on('playCorrectSound', function () {
             this.game.eventManager.emit('unPause');
@@ -105,10 +105,11 @@
         }, this);
 
         this.game.eventManager.on('playCorrectSoundNoUnPause', function () {
-            if (this.framesToWaitBeforeNewSound <= 0) {
-                this.sounds.correctRoundAnswer.play();
-                this.framesToWaitBeforeNewSound = Math.floor((this.sounds.correctRoundAnswer.totalDuration + 0.5) * 60);
-            }
+            if (this.game.discipline != "maths")
+                if (this.framesToWaitBeforeNewSound <= 0) {
+                    this.sounds.correctRoundAnswer.play();
+                    this.framesToWaitBeforeNewSound = Math.floor((this.sounds.correctRoundAnswer.totalDuration + 0.5) * 60);
+                }
         }, this);
 
         this.game.eventManager.on('swipe', function (object) {
@@ -158,7 +159,7 @@
                 this.clearDebugPanel();
             }
             this.game.eventManager.removeAllListeners();
-            this.game.eventManager = undefined;            
+            this.game.eventManager = undefined;
             this.game.state.start('Setup');
         }, this);
     };
@@ -187,7 +188,7 @@
      * Initialise parameters for the required round with data contained in this.pedagogicData
      **/
     Remediation.prototype.initRound = function initRound(roundIndex) {
-         console.log(this.game.pedagogicData.data.rounds);
+        console.log(this.game.pedagogicData.data.rounds);
         var roundData = this.game.pedagogicData.data.rounds[roundIndex];
 
         this.apparitionsCount = 0;
@@ -229,8 +230,20 @@
             this.falseResponses.push(falseStepResponses);
             this.correctResponses.push(correctStepResponses);
         }
-        if (this.game.discipline != 'maths') this.popup.setText(this.correctWord.value);
-        else this.popup.setTextMaths(this.sequence.truesequence);
+        if (this.game.discipline == 'maths'){
+            var temp ="";
+            for (var i = 0 ; i < this.sequence.sequence.length; i++) {
+                if (this.sequence.sequence[i] == 'X') {
+                    temp += this.sequence.targetNumber;
+                }
+                else
+                    temp += this.sequence.sequence[i];
+            }
+            this.popup.setTextMaths(temp);
+        }
+
+        else this.popup.setText(this.correctWord.value);
+         
     };
 
     Remediation.prototype.setTexts = function () {
@@ -303,7 +316,7 @@
                 if (this.game.discipline != 'maths') this.board.text.text += this.correctResponses[this.stepIndex].value;
                 else {
                     this.board.setTextMaths(this.sequence.sequence, this.correctResponses[this.stepIndex].value);
-                    }
+                }
                 this.game.eventManager.once('finishedBreaking', function () {
                     this.sounds.right.play();
                     this.success();
@@ -486,48 +499,48 @@
 
 
     Remediation.prototype.setupDebugPanel = function setupDebugPanel() {
-            this.debugPanel = this.game.debugPanel || new Dat.GUI();
+        this.debugPanel = this.game.debugPanel || new Dat.GUI();
 
-            var globalLevel = this.game.params.globalLevel;
+        var globalLevel = this.game.params.globalLevel;
 
-            this.debugFolderNames = {
-                info      : "Level Info",
-                general   : "General Parameters",
-                global    : "Global Parameters",
-                local     : "Local Parameters",
-                functions : "Debug Functions",
-            };
+        this.debugFolderNames = {
+            info: "Level Info",
+            general: "General Parameters",
+            global: "Global Parameters",
+            local: "Local Parameters",
+            functions: "Debug Functions",
+        };
 
-            var infoPanel = this.debugPanel.addFolder(this.debugFolderNames.info);
+        var infoPanel = this.debugPanel.addFolder(this.debugFolderNames.info);
 
-            var generalParamsPanel = this.debugPanel.addFolder(this.debugFolderNames.general);
-            var globalParamsPanel = this.debugPanel.addFolder(this.debugFolderNames.global);
-            this._localParamsPanel = this.debugPanel.addFolder(this.debugFolderNames.local);
+        var generalParamsPanel = this.debugPanel.addFolder(this.debugFolderNames.general);
+        var globalParamsPanel = this.debugPanel.addFolder(this.debugFolderNames.global);
+        this._localParamsPanel = this.debugPanel.addFolder(this.debugFolderNames.local);
 
-            this.debugFunctions = this.debugPanel.addFolder(this.debugFolderNames.functions);
+        this.debugFunctions = this.debugPanel.addFolder(this.debugFolderNames.functions);
 
-            infoPanel.add(this.game.params, "_currentGlobalLevel").listen();
-            infoPanel.add(this.game.params, "_currentLocalRemediationStage").listen();
+        infoPanel.add(this.game.params, "_currentGlobalLevel").listen();
+        infoPanel.add(this.game.params, "_currentLocalRemediationStage").listen();
 
 
-            generalParamsPanel.add(this.game.params._settingsByLevel[globalLevel].generalParameters, "incorrectResponseCountTriggeringFirstRemediation").min(1).max(5).step(1).listen();
-            generalParamsPanel.add(this.game.params._settingsByLevel[globalLevel].generalParameters, "incorrectResponseCountTriggeringSecondRemediation").min(1).max(5).step(1).listen();
-            generalParamsPanel.add(this.game.params._settingsByLevel[globalLevel].generalParameters, "lives").min(1).max(5).step(1).listen();
-            generalParamsPanel.add(this.game.params._settingsByLevel[globalLevel].generalParameters, "capitalLettersShare").min(0).max(1).step(0.05).listen();
+        generalParamsPanel.add(this.game.params._settingsByLevel[globalLevel].generalParameters, "incorrectResponseCountTriggeringFirstRemediation").min(1).max(5).step(1).listen();
+        generalParamsPanel.add(this.game.params._settingsByLevel[globalLevel].generalParameters, "incorrectResponseCountTriggeringSecondRemediation").min(1).max(5).step(1).listen();
+        generalParamsPanel.add(this.game.params._settingsByLevel[globalLevel].generalParameters, "lives").min(1).max(5).step(1).listen();
+        generalParamsPanel.add(this.game.params._settingsByLevel[globalLevel].generalParameters, "capitalLettersShare").min(0).max(1).step(0.05).listen();
 
-            globalParamsPanel.add(this.game.params._settingsByLevel[globalLevel].globalRemediation, "monkeyOnScreen").min(1).max(4).step(1).listen();
+        globalParamsPanel.add(this.game.params._settingsByLevel[globalLevel].globalRemediation, "monkeyOnScreen").min(1).max(4).step(1).listen();
 
-            this.setLocalPanel();
+        this.setLocalPanel();
 
-            this.debugFunctions.add(this, "AutoWin");
-            this.debugFunctions.add(this, "AutoLose");
-            this.debugFunctions.add(this, "skipKalulu");
-            this.debugFunctions.open();
+        this.debugFunctions.add(this, "AutoWin");
+        this.debugFunctions.add(this, "AutoLose");
+        this.debugFunctions.add(this, "skipKalulu");
+        this.debugFunctions.open();
     };
 
     Remediation.prototype.clearDebugPanel = function clearDebugPanel() {
         console.log("Monkeys clearing its debugPanel");
-        if(this.game.debugPanel) {
+        if (this.game.debugPanel) {
             for (var folderName in this.debugFolderNames) {
                 this.debugPanel.removeFolder(this.debugFolderNames[folderName]);
             }
