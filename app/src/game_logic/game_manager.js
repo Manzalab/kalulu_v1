@@ -134,7 +134,7 @@
                     // Reward.levelRewards[progressionNode.discipline.type.toLowerCase()][progressionNode.lessonNumber]
                     // envoyer ce nom dans l'interface manager avec un event pour push le nom du reward dans ToyChestActivityScreen._unlockedActivities
                     console.log("Unlocking Toy Chest Reward");
-                    this.emit(Events.GAME.UNLOCK_REWARD_TOYCHEST, Reward.levelRewards[progressionNode.discipline.type.toLowerCase()][progressionNode.lessonNumber]);
+                    this._eventSystem.emit(Events.GAME.UNLOCK_REWARD_TOYCHEST, Reward.levelRewards[progressionNode.discipline.type.toLowerCase()][progressionNode.lessonNumber]);
                 }
             }
             else if (progressionNode.constructor.name === 'Assessment') {
