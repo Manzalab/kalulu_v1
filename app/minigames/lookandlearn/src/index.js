@@ -118,6 +118,14 @@ define([
         this.game.destroy();
         delete this.game.layouts;
         this.game = null;
+
+        var count = Phaser.PIXI.CanvasPool.pool.length;
+        for (var i = 0 ; i < count ; i++) {
+            console.log(Phaser.PIXI.CanvasPool.pool[i]);
+            if (Phaser.PIXI.CanvasPool.pool[i].parent) Phaser.PIXI.CanvasPool.pool[i].parent = null;
+        }
+        Phaser.PIXI.game = null;
+        //ctx.clearRect(x, y, largeur, hauteur);
     };
 
     GameLauncher.prototype.setupDebugPanel = function setupDebugPanel() {

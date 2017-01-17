@@ -29,7 +29,8 @@ MinigameConfig.prototype.requestMinigameConfig = function requestMinigameConfig 
     }
 
     this.httpRequest.onreadystatechange = this.onStateChange.bind(this);
-    this.httpRequest.open('GET', 'minigames/lookandlearn/assets/config/config.json');
+    var prefix = KALULU_ENV ? 'production.' : '' ;
+    this.httpRequest.open('GET', 'minigames/lookandlearn/assets/config/' + prefix + 'config.json');
     this.httpRequest.send();
 };
 
