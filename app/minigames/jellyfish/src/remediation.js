@@ -366,15 +366,19 @@
 
         columnNumber = Math.floor(Math.random() * globalParams.columnCount) + 1;
 
-        if (this.game.discipline == "maths" && this.roundType == "audioToNonSymbolic") value.picture = true;
-        else value.picture = false;
+        if (this.game.discipline == "maths" && this.roundType == "audioToNonSymbolic" &&  ((parseInt(value.text, 10) <= 6) && (parseInt(value.text, 10) !== 0))) {
+            value.picture = true;
+        }
+        else {
+            value.picture = false;
+        }
+        
         lJellyfish = new Jellyfish(columnNumber * this.game.width / (globalParams.columnCount + 1), this.game, value, localParams.speed);
         this.jellyfishes.push(lJellyfish);
 
         if (this.highlightNextSpawn && isTargetValue) lJellyfish.highlight.visible = true;
 
         j = 0;
-        console.log(this.results);
         while (this.results.data.rounds[0].steps[0].stimuli[j].value != value.text) { //finds the value in the results to add one apparition
             j++;
         }

@@ -349,6 +349,8 @@
         var disabledCrabs = this.getDisabledCrabs();
         randomCrab = disabledCrabs[Math.floor(Math.random() * this.getDisabledCrabs().length)];
         randomCrab.enabled = true;
+
+        if (this.game.discipline == "maths" && value.alternativePicture && ((parseInt(value.text, 10) > 6) || (parseInt(value.text, 10) === 0))) value.alternativePicture = false;
         randomCrab.setValue(value.text, value.value, value.alternativePicture);
         randomCrab.isCorrectResponse = isTargetValue;
         if (this.highlightNextSpawn && isTargetValue) {
