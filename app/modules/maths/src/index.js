@@ -211,14 +211,16 @@
             else if(currentProgressionNode._activityType[0]=='fish'){
               this._processFishResults(currentProgressionNode, results, hasWon);
             }
+             if (this._currentActivityParams.gameType === "caterpillar") {
+               results._results.gameGroup = 'caterpillar'
+                this._processCountingResults(currentProgressionNode, results, hasWon);
+           }
             else{
                 this._processCountingResults(currentProgressionNode, results, hasWon);
 
             }
 
-           // if (this._currentActivityParams.gameType === "caterpillar") {
-                this._processCountingResults(currentProgressionNode, results, hasWon);
-           // }
+          
 
 
         // var lSettings = this.getSettings(currentProgressionNode.activityType);

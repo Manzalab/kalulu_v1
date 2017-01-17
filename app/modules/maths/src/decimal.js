@@ -25,7 +25,7 @@ var Decimal = function(number,  stimuli_type, numbers_available, count,  numbers
 	 if(this.number < 10 || this.number == null){
 		return this;
 	 }	
- 	console.log(this.number)
+ 	//console.log(this.number)
 
 	var n 		= number.toString()
 	var dec 	= parseInt(n[0])
@@ -33,10 +33,10 @@ var Decimal = function(number,  stimuli_type, numbers_available, count,  numbers
 	var that 	= this
 
 	var dec_d   = new Distractor(dec, numbers_available, count, true)
-	console.log(numbers_available)
-	console.log(count)
+	//console.log(numbers_available)
+	//console.log(count)
 
-	console.log(dec_d)
+//	console.log(dec_d)
 	var out 	= { 
 					'pre_round' : [ 
 						{
