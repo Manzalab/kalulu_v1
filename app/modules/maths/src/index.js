@@ -189,7 +189,7 @@
         return numberList;
     };
 
-     MathsModule.prototype.getDataForSave = function getDataForSave () { // TODO move in a save module
+     MathsModule.prototype.getDataForSave = function getDataForSave () {
 
         // 5 things to save in this module :
         // * the progression in the plan
@@ -201,10 +201,11 @@
         };    
     };
 
-     MathsModule.prototype.processResults = function processResults (currentProgressionNode, results, hasWon) { // TODO : move in a save module
-            
+     MathsModule.prototype.processResults = function processResults (currentProgressionNode, results) {
+            var hasWon = results.hasWon;
             console.log(currentProgressionNode);
-
+            if (!currentProgressionNode.isCompleted) currentProgressionNode.isCompleted = hasWon;
+            
             if(currentProgressionNode._activityType=='ants'){
               this._processAntsResults(currentProgressionNode, results, hasWon);
             }

@@ -526,7 +526,7 @@
         }
         this.nextState = nextState;
         this.assignNextButtonCallback();
-        console.info("ENABLING NEXT");
+        // console.info("ENABLING NEXT");
         this.isNextButtonEnabled = true;
         this.game.eventManager.emit('closeStep', nextState);
         this.game.eventManager.once('nextStep', this.enableUiMenu, this);
@@ -535,18 +535,18 @@
     Ui.prototype.assignNextButtonCallback = function assignNextButtonCallback () {
         if (typeof this.nextState === 'undefined') {
             this.nextButtonCallback = this.nextButtonQuitCallBack;
-            console.info("A click on Next will quit the game now");
+            // console.info("A click on Next will quit the game now");
         }
         else {
             this.nextButtonCallback = this.nextButtonNextStateCallback;
-            console.info("A click on Next will start the next phase");
+            // console.info("A click on Next will start the next phase");
         }
     };
     
     Ui.prototype.nextButtonNoCallBack = function nextButtonNoCallBack () {};
 
     Ui.prototype.nextButtonQuitCallBack = function nextButtonQuitCallBack () {
-        console.log("next button quit callback");
+        // console.log("next button quit callback");
         this.game.eventManager.emit('exitGame');
     };
 
@@ -555,8 +555,8 @@
     };
 
     Ui.prototype.nextButtonNextStateCallback = function nextButtonNextStateCallback () {
-        console.info("Starting " + this.nextState);
-        console.info("DISABLING NEXT");
+        // console.info("Starting " + this.nextState);
+        // console.info("DISABLING NEXT");
         this.isNextButtonEnabled = false;
         this.game.state.start(this.nextState);
     };

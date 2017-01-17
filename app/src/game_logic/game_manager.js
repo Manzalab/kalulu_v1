@@ -9,6 +9,7 @@
     var Timer               = require('./timer');
     var UserProfile         = require('./core/user_profile');
     var Reward              = require('application/dynamic_rewards');
+    var ftpAutoSaver        = require('application/ftp_autosaver');
 
     // ###############################################################################################################################################
     // ###  CONSTRUCTOR  #############################################################################################################################
@@ -102,6 +103,7 @@
 
     GameManager.prototype.save = function save () {
         this._eventSystem.emit(Events.APPLICATION.SET_SAVE, this._currentUserProfile.data);
+        ftpAutoSaver.add(this._currentUserProfile.data);
     };
 
 
@@ -177,7 +179,7 @@
 
         this._minigamesManager = new MinigamesManager(this);
 
-        this._eventSystem.once(Events.APPLICATION.SAVED_DATA_SENT, this._initRemediation, this);
+        this._eventSystem.once(Events.APPLICATION.SAVED_DATA_SENT, this._onSaveReady, this);
         
         this._eventSystem.emit(Events.APPLICATION.GET_SAVE, 'UserData');
 
@@ -187,12 +189,28 @@
             this._eventSystem.on(Events.DEBUG.RESET_SAVE_REQUEST, this._onResetSaveRequest, this);
         }
     };
+
+    GameManager.prototype._onSaveReady = function _onSaveReady (userData) {
+        this._initRemediation(userData);
+        this._initFTPAutoSave(this._currentUserProfile.data.userId);
+    };
     
     GameManager.prototype._initRemediation = function _initRemediation (userData) {
         
         this._currentUserProfile = new UserProfile(this, userData);
         
         this._rafiki = new Rafiki(this, this._currentUserProfile);
+    };
+
+    GameManager.prototype._initFTPAutoSave = function _initFTPAutoSave (uuid) {
+
+        ftpAutoSaver.init(uuid, Config.SAVE_FOLDER_NAME, Config.SAVE_FILE_SUFFIX, Config.SAVE_EXT, {
+            address  : Config.FTP_ADDRESS,
+            username : Config.FTP_USERNAME,
+            password : Config.FTP_PASSWORD
+        });
+
+        ftpAutoSaver.startConnecting(Config.FTP_SAVE_INTERVAL)
     };
 
 

@@ -28,7 +28,7 @@
     **/
     PhaseOneMaths.prototype.preload = function phaseOneMathsPreload () {
         
-        console.log(this.game.gameConfig.pedagogicData);
+        // console.log(this.game.gameConfig.pedagogicData);
         var notion = this.notion = this.game.gameConfig.pedagogicData.data.notions[0];
         
         // 1 image and 1 sound to be played in this phase
@@ -44,7 +44,7 @@
     };
     
     PhaseOneMaths.prototype.create = function phaseOneMathsCreate () {
-        if (this.game.load.hasLoaded) console.info("PhaseOneMaths State has correctly completed loading.");
+        // if (this.game.load.hasLoaded) console.info("PhaseOneMaths State has correctly completed loading.");
 
         // #### Init
         if (!this.game.eventManager) {
@@ -157,7 +157,7 @@
 
     PhaseOneMaths.prototype.onFirstTime = function onFirstTime () {
         this.onFirstTime = false;
-        console.log("First Time playing a Look & Learn !");
+        // console.log("First Time playing a Look & Learn !");
     };
 
     PhaseOneMaths.prototype.startTracingDemoAfterDelay = function startTracingDemoAfterDelay () {
@@ -167,11 +167,11 @@
 
     PhaseOneMaths.prototype.startTracingDemo = function startTracingDemo () {
         this.startTracingDelay = null;
-        console.log("Start Tracing");
+        // console.log("Start Tracing");
         this.tracingOn = true;
         Emitter.on(Events.TRIGGER_LAYOUT, this.onFirstLetterTracingComplete);
         var value = this.game.gameConfig.pedagogicData.data.notions[0].value;
-        console.log('[Phase 1 Maths] About to trace <' + value + '>');
+        // console.log('[Phase 1 Maths] About to trace <' + value + '>');
         this.progression.setModel(value);
     };
 
@@ -188,10 +188,10 @@
         Emitter.off(Events.TRIGGER_LAYOUT, this.onFirstLetterTracingComplete);
 
         if (layoutId === 4) {
-            console.info("Bot Layout just finished first letter");
+            // console.info("Bot Layout just finished first letter");
         }
         else {
-            console.info("Unidentified Layout just finished a letter");
+            // console.info("Unidentified Layout just finished a letter");
         }
 
         this.freezeLetter(this.xMidLetter, this.yLetter);
@@ -202,10 +202,10 @@
         Emitter.off(Events.TRIGGER_LAYOUT, this.onSecondLetterTracingComplete);
 
         if (layoutId === 4) {
-            console.info("Bot Layout just finished 2nd letter");
+            // console.info("Bot Layout just finished 2nd letter");
         }
         else {
-            console.info("Unidentified Layout just finished a letter");
+            // console.info("Unidentified Layout just finished a letter");
         }
 
         this.freezeLetter(this.xRightLetter, this.yLetter);
@@ -235,7 +235,7 @@
     PhaseOneMaths.prototype.endTracing = function PhaseOneMathsEndTracing () {
         
         this.tracingOn = false;
-        console.log('this.tracingOn : ' + this.tracingOn);
+        // console.log('this.tracingOn : ' + this.tracingOn);
         this.imagePhaseStage.remove(this.tracingLayout.group, true);
         this.tracingLayout = null;
         this.game.layouts = [];
@@ -246,7 +246,7 @@
     };
 
     PhaseOneMaths.prototype.onClickOnLetters = function (onClickOnLetters) {
-        console.log("here on click");
+        // console.log("here on click");
         this.lettersFrame.inputEnabled = false;
         this.game.ui.disableUiMenu();
         this.sound = this.game.sound.play('illustrative_sound_'+ this.notion.value);

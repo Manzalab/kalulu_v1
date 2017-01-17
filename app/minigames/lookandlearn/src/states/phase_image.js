@@ -46,7 +46,7 @@ define([
     };
     
     PhaseImage.prototype.create = function phaseImageCreate () {
-        if (this.game.load.hasLoaded) console.info("PhaseImage State has correctly completed loading.");
+        // if (this.game.load.hasLoaded) console.info("PhaseImage State has correctly completed loading.");
 
         // #### Init
         if (!this.game.eventManager) {
@@ -110,11 +110,11 @@ define([
 
         var xValue;
         if (this.notion.traceUppercase) {
-            console.info("We will trace uppercase and lower case");
+            // console.info("We will trace uppercase and lower case");
             xValue = this.xLeftLetter;
         }
         else {
-            console.info("We will trace only lower case");
+            // console.info("We will trace only lower case");
             xValue = this.xMidLetter;
         }
         this.tracingLayout.group.position.set(xValue, this.yLetter);
@@ -156,7 +156,7 @@ define([
 
     PhaseImage.prototype.onFirstTime = function onFirstTime () {
         this.onFirstTime = false;
-        console.log("First Time playing a Look & Learn !");
+        // console.log("First Time playing a Look & Learn !");
     };
 
     PhaseImage.prototype.startTracingDemoAfterDelay = function startTracingDemoAfterDelay () {
@@ -166,16 +166,16 @@ define([
 
     PhaseImage.prototype.startTracingDemo = function startTracingDemo () {
         this.startTracingDelay = null;
-        console.log("Start Tracing");
+        // console.log("Start Tracing");
         this.tracingOn = true;
         Emitter.on(Events.TRIGGER_LAYOUT, this.onFirstLetterTracingComplete);
         var value;
         if (this.notion.traceUppercase) {
-            console.info("We will trace uppercase first");
+            // console.info("We will trace uppercase first");
             value = this.notion.textValue.toUpperCase();
         }
         else {
-            console.info("We will trace lowercase now");
+            // console.info("We will trace lowercase now");
             value = this.notion.textValue.toLowerCase();
         }
 
@@ -195,10 +195,10 @@ define([
         Emitter.off(Events.TRIGGER_LAYOUT, this.onFirstLetterTracingComplete);
 
         if (layoutId === 4) {
-            console.info("Bot Layout just finished first letter");
+            // console.info("Bot Layout just finished first letter");
         }
         else {
-            console.info("Unidentified Layout just finished a letter");
+            // console.info("Unidentified Layout just finished a letter");
         }
 
         
@@ -212,7 +212,7 @@ define([
             
             this.freezeLetter(this.xLeftLetter, this.yLetter);
 
-            console.info("We will trace lowercase now");
+            // console.info("We will trace lowercase now");
 
             this.tracingLayout.group.x = this.xRightLetter;
 
@@ -230,10 +230,10 @@ define([
         Emitter.off(Events.TRIGGER_LAYOUT, this.onSecondLetterTracingComplete);
 
         if (layoutId === 4) {
-            console.info("Bot Layout just finished 2nd letter");
+            // console.info("Bot Layout just finished 2nd letter");
         }
         else {
-            console.info("Unidentified Layout just finished a letter");
+            // console.info("Unidentified Layout just finished a letter");
         }
 
         this.freezeLetter(this.xRightLetter, this.yLetter);
@@ -273,7 +273,7 @@ define([
     };
 
     PhaseImage.prototype.onClickOnLetters = function (onClickOnLetters) {
-        console.log("here on click");
+        // console.log("here on click");
         this.game.ui.disableUiMenu();
         this.sound = this.game.sound.play('illustrative_sound_'+ this.notion.value);
         this.sound.onStop.addOnce(this.enableNextStep, this);

@@ -77,29 +77,30 @@ define([
     **/
     PreloadState.prototype.create = function preloadStateCreate () {
         
-        if (this.game.load.hasLoaded) console.info("Preload State has correctly completed loading.");
+        //if (this.game.load.hasLoaded) console.info("Preload State has correctly completed loading.");
         
         this.game.gameConfig.layouts      = this.game.cache.getJSON('layouts');
         this.game.gameConfig.progression  = this.game.cache.getJSON('progression');
         this.game.gameConfig.game         = this.game.cache.getJSON('game');
         this.game.gameConfig.audio        = this.game.cache.getJSON('audio');
         this.game.gameConfig.letters      = this.game.cache.getJSON('letters-descriptor');
-        console.log('before');
+        // console.log('before');
         this.game.add.audio(this.game.gameConfig.pedagogicData.sound);
-        console.log('after');
-
+        // console.log('after');
+        console.log(this.game.rafiki);
         var discipline = this.game.gameConfig.pedagogicData.discipline;
         if (discipline === 'language') {
-            console.info("Preload Complete, Starting Phase1Video...");
+            // console.info("Preload Complete, Starting Phase1Video...");
             this.state.start('Phase1Video');
         }
         else if (discipline === 'maths') {
-            if(this.game.gameConfig.pedagogicData.data.notions[0].value === 0) {
-                console.log('0, skipping phase 1');
+            var lesson = this.game.gameConfig.pedagogicData.data.notions[0].value;
+            if(lesson === 0) {
+                // console.log('0, skipping phase 1');
                 this.state.start('Phase2Image');
                 return;
             }
-            console.info("Preload Complete, Starting Phase1Maths...");
+            // console.info("Preload Complete, Starting Phase1Maths...");
             this.state.start('Phase1Maths');
         }
     };

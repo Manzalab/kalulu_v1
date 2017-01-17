@@ -68,6 +68,8 @@ define([
          * @memberof Kalulu.GameLogic.Core.UserProfile#
         **/
         data : { get: function () { return this._data; } },
+
+        userId : { get: function () { return this._data.userId; } },
         
 
         /**
@@ -169,6 +171,7 @@ define([
     UserProfile.prototype._createSave = function _createSave () {
         console.info("New User Save Created");
         this._data = {
+            userId : this._getUuid(),
             pedagogicData : {
                 language : null,
                 maths : null
@@ -201,6 +204,12 @@ define([
         this.getPlantsStatus();
     };
 
+    UserProfile.prototype._getUuid = function _getUuid () {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx-xxxx'.replace(/[xy]/g, function(c) {
+            var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+            return v.toString(16);
+        }) + '-' + new Date().getTime();
+    };
 
     UserProfile.prototype.save = function save () {
         this._gameManager.save();

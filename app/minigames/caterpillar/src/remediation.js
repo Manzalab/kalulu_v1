@@ -113,21 +113,22 @@
         }, this);
 
         this.game.eventManager.on('exitGame', function () {
+            if (this.game.gameConfig.debugPanel) this.clearDebugPanel();
+            this.game.rafiki.close();
             this.game.eventManager.removeAllListeners();
             this.game.eventManager = null;
-            this.game.rafiki.close();
             this.game.destroy();
-            if (this.game.gameConfig.debugPanel) {
-                this.clearDebugPanel();
-            }
+            console.info("Phaser Game has been destroyed");
+            this.game = null;
         }, this);
 
         this.game.eventManager.on('replay', function () {
             if (this.game.gameConfig.debugPanel) {
                 this.clearDebugPanel();
             }
+            
             this.game.eventManager.removeAllListeners();
-            this.game.eventManager = null;
+            this.game.eventManager = undefined;            
             this.game.state.start('Setup');
         }, this);
     };
@@ -142,7 +143,7 @@
         // Setting up the recording of the game for Rafiki
         this.game.record = new this.game.rafiki.MinigameDstRecord();
 
-        this.results = this.game.pedagogicData.data; // for convenience we reference also the pedagogicData object under the name 'results' because we will add response data directly on it.
+        this.results = this.game.pedagogicData; // for convenience we reference also the pedagogicData object under the name 'results' because we will add response data directly on it.
         this.consecutiveMistakes = 0;
         this.consecutiveSuccess = 0;
         this.triesRemaining = params.getGlobalParams().roundsCount;
@@ -316,26 +317,28 @@
     Remediation.prototype.gameOverWin = function gameOverWin() {
 
         this.game.won = true;
+        this.saveGameRecord();
         this.sounds.winGame.play();
         this.game.eventManager.emit('offUi');// listened by ui
-
+        
         this.sounds.winGame.onStop.add(function () {
             this.sounds.winGame.onStop.removeAll();
             this.game.eventManager.emit('GameOverWin');//listened by Ui (toucan = kalulu)
-            this.saveGameRecord();
+            
         }, this);
     };
 
     Remediation.prototype.gameOverLose = function gameOverLose() {
 
         this.game.won = false;
+        this.saveGameRecord();
         this.sounds.loseGame.play();
         this.game.eventManager.emit('offUi');// listened by ui
 
         this.sounds.loseGame.onStop.add(function () {
             this.sounds.loseGame.onStop.removeAll();
             this.game.eventManager.emit('GameOverLose');// listened by ui
-            this.saveGameRecord();
+            
         }, this);
     };
 
@@ -543,12 +546,12 @@
         j = 0;
         // console.log(value);
         // console.log(lBerry);
-        while (this.results.rounds[this.roundIndex].steps[this.stepIndex].stimuli[j].value != value) { //finds the value in the results to add one apparition
+        while (this.results.data.rounds[this.roundIndex].steps[this.stepIndex].stimuli[j].value != value) { //finds the value in the results to add one apparition
             j++;
         }
         apparition = new this.game.rafiki.StimulusApparition(isTargetValue);
 
-        this.results.rounds[this.roundIndex].steps[this.stepIndex].stimuli[j].apparitions.push(apparition);
+        this.results.data.rounds[this.roundIndex].steps[this.stepIndex].stimuli[j].apparitions.push(apparition);
         lBerry.apparition = apparition;
         this.apparitionsCount++;
         this.framesToWaitBeforeNextSpawn = localParams.respawnTime * 60;
@@ -703,12 +706,12 @@
 
         var apparitionStats;
         var roundsCount, stepsCount, stimuliCount, currentRound, currentStep, currentStimulus;
-
-        roundsCount = this.results.rounds.length;
+        console.log(this.results);
+        roundsCount = this.results.data.rounds.length;
 
         for (var i = 0 ; i < roundsCount ; i++) {
 
-            currentRound = this.results.rounds[i];
+            currentRound = this.results.data.rounds[i];
             console.log(currentRound);
             if (this.game.pedagogicData.discipline === 'language') {
                 currentRound.word.stats = {
@@ -729,12 +732,12 @@
 
             for (var j = 0 ; j < stepsCount ; j++) {
 
-                currentStep = this.results.rounds[i].steps[j];
+                currentStep = this.results.data.rounds[i].steps[j];
                 stimuliCount = currentStep.stimuli.length;
 
                 for (var k = 0 ; k < stimuliCount ; k++) {
 
-                    currentStimulus = this.results.rounds[i].steps[j].stimuli[k];
+                    currentStimulus = this.results.data.rounds[i].steps[j].stimuli[k];
 
                     apparitionStats = {
                         apparitionTime: Date.now() - 3000,
@@ -753,8 +756,7 @@
             }
         }
 
-        this.won = true;
-        this.game.eventManager.emit("exitGame");
+        this.gameOverWin();
     };
 
     Remediation.prototype.AutoLose = function LoseGame() {
@@ -762,11 +764,11 @@
         var apparitionStats;
         var roundsCount, stepsCount, stimuliCount, currentRound, currentStep, currentStimulus;
 
-        roundsCount = this.results.rounds.length;
+        roundsCount = this.results.data.rounds.length;
 
         for (var i = 0 ; i < roundsCount ; i++) {
 
-            currentRound = this.results.rounds[i];
+            currentRound = this.results.data.rounds[i];
             if (this.game.pedagogicData.discipline === 'language') {
                 currentRound.word.stats = {
                     apparitionTime: Date.now() - 20000,
@@ -786,12 +788,12 @@
 
             for (var j = 0 ; j < stepsCount ; j++) {
 
-                currentStep = this.results.rounds[i].steps[j];
+                currentStep = this.results.data.rounds[i].steps[j];
                 stimuliCount = currentStep.stimuli.length;
 
                 for (var k = 0 ; k < stimuliCount ; k++) {
 
-                    currentStimulus = this.results.rounds[i].steps[j].stimuli[k];
+                    currentStimulus = this.results.data.rounds[i].steps[j].stimuli[k];
 
                     apparitionStats = {
                         apparitionTime: Date.now() - 3000,
@@ -811,7 +813,7 @@
         }
 
         this.won = false;
-        this.game.eventManager.emit('exitGame');
+        this.gameOverLose();
     };
 
     Remediation.prototype.skipKalulu = function skipKalulu() {

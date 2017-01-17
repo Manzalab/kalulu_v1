@@ -22,5 +22,15 @@
         "pdfPath"    : "assets/pdf/",
         "txtPath"    : "assets/data/",
         "fontsPath"  : "assets/fonts/"
+    },
+    "ftpParameters" : {
+        "ftpSaveInterval" : 60000,
+        "saveFolderName"  : "KALULU_DATA",
+        "saveFileSuffix"    : "save",
+        "saveExt"         : "txt",
+
+        "address"       : "192.168.0.1",
+        "username"      : "anonymous",
+        "password"      : ""
     }
 }
