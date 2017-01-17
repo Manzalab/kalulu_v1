@@ -77,7 +77,7 @@ define([
 
 
         this.game.rafiki = this.rafiki;
-        this.game.tutoEnabled = this.rafiki.latestRecord;
+        this.game.tutoEnabled = true;
         // debug Panel from Kalulu
         this.game.debugPanel = this.rafiki.debugPanel;
 
