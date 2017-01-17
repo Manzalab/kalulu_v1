@@ -25,8 +25,11 @@
 - you can try the app in your browser on localhost:3000
 
 ### In order to build the apk :
-You must first execute a build command in english or swahili, then :
+You must first execute a build command in English or Swahili, then :
 > cordova run android
 The apk will be pushed on the connected device (if any) and be written at *platform/android/build/output/apk*
 
-You may encouter several error messages requiring to add the android platform, install the android sdk or install java runtime environment, if they are not already installed on your computer
+You may encouter several error messages requiring to :
+- add the android platform,
+- install the android sdk,
+- or install java runtime environment, if they are not already installed on your computer
