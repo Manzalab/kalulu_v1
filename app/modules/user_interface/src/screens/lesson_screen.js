@@ -108,12 +108,26 @@ define([
         this._kalulu.x = this._kalulu.width/2;
         this._kalulu.y = -this._kalulu.height/3-50;
         this._hud.bottomLeft.addChild(this._kalulu);
-        /*if (this._node.children[1].isCompleted&&this._node.children[2].isCompleted&&this._node.children[3].isCompleted) this._kalulu.startTalk("kalulu_tuto_lessonscreen");
-        else*/ if ((this._node.children[1].isCompleted&&this._node.children[2].isCompleted)||
-                 (this._node.children[2].isCompleted&&this._node.children[3].isCompleted)||
-                 (this._node.children[3].isCompleted&&this._node.children[1].isCompleted))  this._kalulu.startTalk("kalulu_tuto_twogameplayed");
-        else if (this._node.children[1].isCompleted||this._node.children[2].isCompleted||this._node.children[3].isCompleted)    this._kalulu.startTalk("kalulu_tuto_onegameplayed");
-        else this._kalulu.startTalk("kalulu_tuto_lessonscreen");
+        var completedCount = 0;
+        for (var i = 1 ; i <= 3 ; i++) {
+            if (this._node.children[i].isCompleted) completedCount++;
+        }
+        var speechName = '';
+        switch (completedCount) {
+            case 0:
+                speechName = 'kalulu_tuto_lessonscreen';
+                break;
+            case 1:
+                speechName = 'kalulu_tuto_onegameplayed';
+                break;
+            case 2:
+                speechName = 'kalulu_tuto_twogameplayed';
+                break;
+            case 3:
+                speechName = 'kalulu_tuto_lessonscreen';
+                break;
+        }
+        this._kalulu.startTalk(speechName);
     };
 
     LessonScreen.prototype.stringifyTargetNotions = function stringifyTargetNotions (lessonNode) {

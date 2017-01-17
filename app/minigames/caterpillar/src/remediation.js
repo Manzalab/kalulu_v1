@@ -715,16 +715,18 @@
             console.log(currentRound);
             if (this.game.pedagogicData.discipline === 'language') {
                 currentRound.word.stats = {
-                    apparitionTime: Date.now() - 10000,
-                    exitTime: Date.now(),
-                    success: true
+                    isCorrect : true,
+                    isClicked : true,
+                    isClosed : true,
+                    elapsedTime : 10000
                 };
             }
             else if (this.game.pedagogicData.discipline === 'maths') {
                 currentRound.targetSequence.stats = {
-                    apparitionTime: Date.now() - 10000,
-                    exitTime: Date.now(),
-                    success: true
+                    isCorrect : true,
+                    isClicked : true,
+                    isClosed : true,
+                    elapsedTime : 10000
                 };
             }
 
@@ -740,15 +742,15 @@
                     currentStimulus = this.results.data.rounds[i].steps[j].stimuli[k];
 
                     apparitionStats = {
-                        apparitionTime: Date.now() - 3000,
-                        exitTime: Date.now(),
-                        correctResponse: false,
-                        clicked: false
+                        isCorrect : false,
+                        isClicked : false,
+                        isClosed : true,
+                        elapsedTime : 2000
                     };
 
                     if (currentStimulus.correctResponse) {
-                        apparitionStats.correctResponse = true;
-                        apparitionStats.clicked = true;
+                        apparitionStats.isCorrect = true;
+                        apparitionStats.isClicked = true;
                     }
 
                     currentStimulus.apparitions = [apparitionStats];
@@ -771,16 +773,18 @@
             currentRound = this.results.data.rounds[i];
             if (this.game.pedagogicData.discipline === 'language') {
                 currentRound.word.stats = {
-                    apparitionTime: Date.now() - 20000,
-                    exitTime: Date.now(),
-                    success: false
+                    isCorrect : true,
+                    isClicked : false,
+                    isClosed : true,
+                    elapsedTime : 10000
                 };
             }
             else if (this.game.pedagogicData.discipline === 'maths') {
                 currentRound.targetSequence.stats = {
-                    apparitionTime: Date.now() - 20000,
-                    exitTime: Date.now(),
-                    success: false
+                    isCorrect : true,
+                    isClicked : false,
+                    isClosed : true,
+                    elapsedTime : 10000
                 };
             }
 
@@ -796,15 +800,15 @@
                     currentStimulus = this.results.data.rounds[i].steps[j].stimuli[k];
 
                     apparitionStats = {
-                        apparitionTime: Date.now() - 3000,
-                        exitTime: Date.now(),
-                        correctResponse: false,
-                        clicked: true
+                        isCorrect : false,
+                        isClicked : true,
+                        isClosed : true,
+                        elapsedTime : 2000
                     };
 
                     if (currentStimulus.correctResponse) {
-                        apparitionStats.correctResponse = true;
-                        apparitionStats.clicked = false;
+                        apparitionStats.isCorrect = true;
+                        apparitionStats.isClicked = false;
                     }
 
                     currentStimulus.apparitions = [apparitionStats];

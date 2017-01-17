@@ -1101,6 +1101,10 @@
         console.log("found " + selectedNotions.length + " elements vs. " + nbStimuliToProvide + " expected : ");
         console.log(selectedNotions);
 
+        while (selectedNotions.length > nbStimuliToProvide) {
+            selectedNotions.splice(Math.floor(Math.random()*selectedNotions.length), 1);
+        }
+
         var length = selectedNotions.length;
         for (var i = 0 ; i < length ; i++) {
             lGameInitData.data.rounds[0].steps[0].stimuli.push(StimuliFactory.fromGP(selectedNotions[i], [], false, true));
