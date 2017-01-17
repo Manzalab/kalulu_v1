@@ -117,29 +117,24 @@
         var gardenData;
         if (progressionNode) {
             this.setState(GameStates.MENUS);
-            if (progressionNode.constructor.name === 'Lecture') {
+            if (progressionNode.constructor.name === 'Exercise' && !progressionNode.parent.isCompleted) {
+
                 console.log("Lesson Not Yet Complete : back to intial lesson screen");
                 this._eventSystem.emit(Events.GAME.BACK_FROM_ACTIVITY, progressionNode.parent);
             }
-            else if (progressionNode.constructor.name === 'Exercise') {
-                if (!progressionNode.parent.isCompleted) {
-                    console.log("Lesson Not Yet Complete : back to intial lesson screen");
-                    this._eventSystem.emit(Events.GAME.BACK_FROM_ACTIVITY, progressionNode.parent);
-                }
-                else {
-                    console.log("Lesson Complete : back to parent garden");
-                    gardenData = {
-                        currentChapter : progressionNode.parent.parent.chapterNumber,
-                        data : this._rafiki.getChaptersData(),
-                    };
-                    
-                    this._eventSystem.emit(Events.GAME.BACK_FROM_ACTIVITY, gardenData, this._rafiki.getChaptersProgression(), this._currentUserProfile);
-                    if (Reward.levelRewards[progressionNode.discipline.type.toLowerCase()][progressionNode.lessonNumber]) {
-                        // Reward.levelRewards[progressionNode.discipline.type.toLowerCase()][progressionNode.lessonNumber]
-                        // envoyer ce nom dans l'interface manager avec un event pour push le nom du reward dans ToyChestActivityScreen._unlockedActivities
-                        console.log("Unlocking Toy Chest Reward");
-                        this.emit(Events.GAME.UNLOCK_REWARD_TOYCHEST, Reward.levelRewards[progressionNode.discipline.type.toLowerCase()][progressionNode.lessonNumber]);
-                    }
+            else if (progressionNode.constructor.name === 'Exercise' || progressionNode.constructor.name === 'Lecture') {
+                console.log("Lesson Complete : back to parent garden");
+                gardenData = {
+                    currentChapter : progressionNode.parent.parent.chapterNumber,
+                    data : this._rafiki.getChaptersData(),
+                };
+                
+                this._eventSystem.emit(Events.GAME.BACK_FROM_ACTIVITY, gardenData, this._rafiki.getChaptersProgression(), this._currentUserProfile);
+                if (Reward.levelRewards[progressionNode.discipline.type.toLowerCase()][progressionNode.lessonNumber]) {
+                    // Reward.levelRewards[progressionNode.discipline.type.toLowerCase()][progressionNode.lessonNumber]
+                    // envoyer ce nom dans l'interface manager avec un event pour push le nom du reward dans ToyChestActivityScreen._unlockedActivities
+                    console.log("Unlocking Toy Chest Reward");
+                    this.emit(Events.GAME.UNLOCK_REWARD_TOYCHEST, Reward.levelRewards[progressionNode.discipline.type.toLowerCase()][progressionNode.lessonNumber]);
                 }
             }
             else if (progressionNode.constructor.name === 'Assessment') {
