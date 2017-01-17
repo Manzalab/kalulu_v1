@@ -9,6 +9,7 @@
 
 - then, to test the app in debug mode :
 > npm run testAll
+or
 > npm run testAllSwahili
 
 - you can try the app in your browser on localhost:3000
@@ -16,6 +17,7 @@
 
 - to test the app in production mode :
 > npm run buildProdEnglish
+or
 > npm run buildProdSwahili
 
 - you can try the app in your browser on localhost:3000
