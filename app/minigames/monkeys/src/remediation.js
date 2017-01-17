@@ -142,15 +142,15 @@
 
         this.game.eventManager.on('exitGame', function () {
             if (this.game.gameConfig.debugPanel) this.clearDebugPanel();
-            console.info("clearDebugPanel ok");
+            //##console.info("clearDebugPanel ok");
             this.game.rafiki.close();
-            console.info("rafiki closed");
+            //##console.info("rafiki closed");
             this.game.eventManager.removeAllListeners();
-            console.info("removeAllListeners ok");
+            //##console.info("removeAllListeners ok");
             this.game.eventManager = null;
-            console.info("eventManager null");
+            //##console.info("eventManager null");
             this.game.destroy();
-            console.info("Phaser Game has been destroyed");
+            //##console.info("Phaser Game has been destroyed");
             this.game = null;
         }, this);
 
@@ -188,7 +188,7 @@
      * Initialise parameters for the required round with data contained in this.pedagogicData
      **/
     Remediation.prototype.initRound = function initRound(roundIndex) {
-        console.log(this.game.pedagogicData.data.rounds);
+        //##console.log(this.game.pedagogicData.data.rounds);
         var roundData = this.game.pedagogicData.data.rounds[roundIndex];
 
         this.apparitionsCount = 0;
@@ -199,7 +199,7 @@
         this.correctResponses = [];
         this.falseStepResponsesCurrentPool = [];
         if (this.game.discipline != "maths") {
-            console.log(roundData);
+            //##console.log(roundData);
             this.correctWord = roundData.word;
             this.sounds.correctRoundAnswer = this.game.add.audio(roundData.word.value);
         }
@@ -391,8 +391,8 @@
         this.consecutiveSuccess = 0;
         this.game.eventManager.emit('fail');
 
-        console.log(this.lives)
-        console.log(this.triesRemaining)
+        //##console.log(this.lives)
+        //##console.log(this.triesRemaining)
 
         if (this.lives > 0 && this.triesRemaining > 0) {
             if (this.consecutiveMistakes === params.incorrectResponseCountTriggeringFirstRemediation) { //Triggers kalulu's help + lowers difficulty
@@ -429,7 +429,7 @@
             this.gameOverWin();
         }
         else {
-            console.log("?")
+            //##console.log("?")
             this.gameOverLose();
         }
     };
@@ -539,7 +539,7 @@
     };
 
     Remediation.prototype.clearDebugPanel = function clearDebugPanel() {
-        console.log("Monkeys clearing its debugPanel");
+        //##console.log("Monkeys clearing its debugPanel");
         if (this.game.debugPanel) {
             for (var folderName in this.debugFolderNames) {
                 this.debugPanel.removeFolder(this.debugFolderNames[folderName]);

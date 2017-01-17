@@ -47,7 +47,7 @@
     
     Game.prototype = {
         preload : function preloadGame () {
-            console.info("[Game State] Preloading new game");
+            //##console.info("[Game State] Preloading new game");
             
             var data = this.game.pedagogicData.data;
             var roundsCount = data.rounds.length;
@@ -80,7 +80,7 @@
          * - remediation
          **/
         create: function () {
-            console.info("[Game State] Creating new game");
+            //##console.info("[Game State] Creating new game");
             if (this.game.gameConfig.globalVars) {
                 window.jellyfishes = {};
                 window.jellyfishes.game = this.game;

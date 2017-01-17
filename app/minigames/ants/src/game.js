@@ -57,13 +57,13 @@
 
     Game.prototype = {
         preload: function preloadGame() {
-            console.info("[Game State] Preloading new game");
+            //##console.info("[Game State] Preloading new game");
 
             // load audiofiles for the current data
 
             var data = this.game.pedagogicData.data;
             
-            console.log(this.game.discipline)
+            //##console.log(this.game.discipline)
             if (this.game.discipline == "maths") {
                 this.game.load.atlasJSONHash('maths', 'minigames/common/assets/images/maths/maths.png', 'minigames/common/assets/images/maths/maths.json');
                 var roundsCount = data.rounds.length;
@@ -93,7 +93,7 @@
          * - remediation
          **/
         create: function () {
-            console.info("[Game State] Creating new game");
+            //##console.info("[Game State] Creating new game");
             if (this.game.gameConfig.globalVars) {
                 window.jellyfishes = {};
                 window.jellyfishes.game = this.game;

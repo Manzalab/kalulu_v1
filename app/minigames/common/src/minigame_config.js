@@ -32,7 +32,7 @@
     MinigameConfig.prototype.request = function requestMinigameConfig (path, callback) {
         var prefix = KALULU_ENV ? 'production.' : '' ;
         if (path.split('.').pop() !== 'json') path = path + '/' + prefix + 'config.json';
-        console.info("[MinigameConfig] Requesting config file at " + path);
+        //##console.info("[MinigameConfig] Requesting config file at " + path);
 
         this._onRequestSuccess = callback;
         this.httpRequest = new XMLHttpRequest();
@@ -65,7 +65,7 @@
 
     MinigameConfig.prototype._init = function initConfig (config) {
         
-        console.log(config);
+        //##console.log(config);
         this.gameId          = config.gameId;
         this.discipline      = config.discipline;
         this.skipKalulu      = config.skipKalulu;
@@ -78,12 +78,12 @@
 
     MinigameConfig.prototype._onRequestSuccess = function onConfigRequestSuccess () {
         
-        console.info('MinigameConfig was properly initialised !');
+        //##console.info('MinigameConfig was properly initialised !');
     };
 
     MinigameConfig.prototype._onRequestFailure = function onConfigRequestFailure () {
         
-        console.error('There was a problem with the MinigameConfig request.');
+        //##console.error('There was a problem with the MinigameConfig request.');
     };
 
     module.exports = MinigameConfig;

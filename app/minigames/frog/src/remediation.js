@@ -303,7 +303,7 @@
             this.game.eventManager.removeAllListeners();
             this.game.eventManager = null;
             this.game.destroy();
-            console.info("Phaser Game has been destroyed");
+            //##console.info("Phaser Game has been destroyed");
             this.game = null;
         }, this);
 

@@ -42,7 +42,7 @@
     Game.prototype = {
         preload: function(){
             var redName = 'minigames/' + this.game.gameConfig.gameId + '/assets/images/Animation_Bateau/buoyred_' + this.game.rafiki.discipline;
-            console.log(redName);
+            //##console.log(redName);
             this.game.load.atlasJSONHash('buoyRed', redName + '.png', redName + '.json');
             var greenName = 'minigames/' + this.game.gameConfig.gameId + '/assets/images/Animation_Bateau/buoygreen_' + this.game.rafiki.discipline;
             

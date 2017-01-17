@@ -146,7 +146,7 @@
         else if (this.startTracingDelay) this.startTracingDelay--;
 
         if (this.tracingOn) {
-            console.log('this.tracingOn : ' + this.tracingOn);
+            //##console.log('this.tracingOn : ' + this.tracingOn);
             this.tracingLayout.update();
         }
 

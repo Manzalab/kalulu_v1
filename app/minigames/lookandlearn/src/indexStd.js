@@ -34,13 +34,13 @@ function App(params, endFunction){
     },
     'b': {
       nbOfTimes: 2
-    },
+    }
   };
 
   configurator(
     start,
     params || fake,
-    endFunction || function(){console.log("NO END FUNCTION SET")}
+    endFunction || function(){/*console.log("NO END FUNCTION SET")*/}
   );
 };
 

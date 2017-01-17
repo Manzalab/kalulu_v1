@@ -74,7 +74,7 @@
         this.results = this.game.pedagogicData.data; // for convenience we reference also the pedagogicData object under the name 'results' because we will add response data directly on it.
         
         if (!this.game.rafiki.latestRecord) {
-            console.log("Fish Tuto Enabled");
+            //##console.log("Fish Tuto Enabled");
             this.tutorial1 = true;
             this.tutorial2 = true;
         }
@@ -189,7 +189,7 @@
                 }
             }
             else {
-                console.log(this.buoys.right.stimuli.apparitions);
+                //##console.log(this.buoys.right.stimuli.apparitions);
                 if (this.direction == "right") {
                     // console.log(this);
                     if (!this.tutorial1 && !this.tutorial2) {
@@ -205,7 +205,7 @@
 
                 }
                 else {
-                    console.log(this);
+                    //##console.log(this);
                     if (!this.tutorial1 && !this.tutorial2) {
                         this.buoys.left.stimuli.apparitions[this.buoys.left.stimuli.apparitions.length - 1].close(true, 0);
                         this.buoys.right.stimuli.apparitions[this.buoys.right.stimuli.apparitions.length - 1].close(false, 0);

@@ -135,7 +135,7 @@
             stimuliLength = roundData.steps[i].stimuli.length;
             for (var j = 0; j < stimuliLength; j++) {
                 stimulus = roundData.steps[i].stimuli[j];
-                console.log(stimulus)
+                //##console.log(stimulus)
                 if (stimulus.correctResponse === true) {
                     correctStepResponses.value = stimulus.value;
                     correctStepResponses.sound = this.game.add.audio(stimulus.value);

@@ -133,7 +133,7 @@
             this.game.eventManager.removeAllListeners();
             this.game.eventManager = null;
             this.game.destroy();
-            console.info("Phaser Game has been destroyed");
+            //##console.info("Phaser Game has been destroyed");
             this.game = null;
         }, this);
 
@@ -320,7 +320,7 @@
         // console.log(str);
         // console.info("frames before new " + this.framesToWaitBeforeNextSpawn);
         if (jellyfishesCountToAdd === 0) {
-            console.log("engough jellies on screen");
+            //##console.log("engough jellies on screen");
             return;
         }
         else if (jellyfishesCountToAdd > 0 && this.framesToWaitBeforeNextSpawn <= 0) {

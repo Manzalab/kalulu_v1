@@ -30,7 +30,7 @@
         options.isPhonemeButtonEnabled = (typeof options.isPhonemeButtonEnabled !== 'undefined') ? options.isPhonemeButtonEnabled : true;
 
         this.features = options;
-        console.info("DISABLING NEXT");
+        //##console.info("DISABLING NEXT");
         this.isNextButtonEnabled = false;
 
         /**
@@ -462,9 +462,9 @@
         this.disableUiMenu();
         this.kaluluButton.visible = false;
         this.gameOverScreen.visible = true;
-        console.log("displaying game over screen");
+        //##console.log("displaying game over screen");
         if (this.features.isReplayEnabled) {
-            console.log("should display replay");
+            //##console.log("should display replay");
             this.gameOverScreen.children[1].visible = true;
         }
     };

@@ -197,12 +197,12 @@
 
 
     Kalulu.prototype.onGameOverWin = function onGameOverWin () {
-        console.log("Kalulu is about to speak for a Final Win");
+        //##console.log("Kalulu is about to speak for a Final Win");
         this.gameOver(true);
     };
 
     Kalulu.prototype.onGameOverLose = function onGameOverLose () {
-        console.log("Kalulu is about to speak for a Final Lose");
+        //##console.log("Kalulu is about to speak for a Final Lose");
         this.gameOver(false);
     };
 
@@ -246,11 +246,11 @@
                 this.kaluluSprite.animations.currentAnim.onComplete.addOnce(function () {
                     this.kaluluSprite.visible = false;
                     if (isWin) {
-                        console.log("Kalulu finished to speak, about to request GameOver WinScreen");
+                        //##console.log("Kalulu finished to speak, about to request GameOver WinScreen");
                         this.game.eventManager.emit('GameOverWinScreen'); // listened by UI to display GameOver Screen
                     } 
                     else {
-                        console.log("Kalulu finished to speak, about to request GameOver LoseScreen");
+                        //##console.log("Kalulu finished to speak, about to request GameOver LoseScreen");
                         this.game.eventManager.emit('GameOverLoseScreen'); // listened by UI to display GameOver Screen
                     }
                 }, this);

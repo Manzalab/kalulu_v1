@@ -15,7 +15,7 @@
 	**/
     function Buoy(side, category, game) {
         Phaser.Group.call(this, game);
-        console.log(this.game.cache);
+        //##console.log(this.game.cache);
         this.game = game;
                 this.y = game.height / 2.5;
 
@@ -44,7 +44,7 @@
         this.events = this.buoy.events;
 
         this.events.onInputDown.add(function () {
-            console.log('?')
+            //##console.log('?')
             if (this.clickable && !this.paused) {
                 this.clickable = false;
                 this.game.eventManager.emit('click', this);

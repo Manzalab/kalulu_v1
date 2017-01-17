@@ -25,13 +25,13 @@
         this.timeWithoutClick = 0;
         this.highlightedParakeet = null;
 
-        console.log("before init");
+        //##console.log("before init");
         this.initGame();
-        console.log("after init");
+        //##console.log("after init");
         this.branches = [];
 
         this.nest = new Nest(game.height - 100, false, game);
-        console.log("after nest");
+        //##console.log("after nest");
         this.wrongAnswerSprite = game.add.sprite(0, 0, 'wrong');
         this.wrongAnswerSprite.visible = false;
         this.wrongAnswerSprite.anchor.setTo(0.5, 0.5);
@@ -41,9 +41,9 @@
         this.wrongAnswerSprite.scale.tween.to({ x: 1.5, y: 1.5 }, 750, Phaser.Easing.Default, false, 0, 0, true);
         this.wrongAnswerSprite.tween = this.game.add.tween(this.wrongAnswerSprite);
         this.wrongAnswerSprite.tween.to({ alpha: 0 }, 750, Phaser.Easing.Exponential.In, false, 0, 0, false);
-        console.log("before newgame");
+        //##console.log("before newgame");
         this.newGame(game);
-        console.log("after newgame");
+        //##console.log("after newgame");
         this.initEvents(game);
         this.initSounds(game);
 
@@ -90,15 +90,15 @@
         var globalParams = this.game.params.getGlobalParams();
         var localParams = this.game.params.getLocalParams();
  
-        console.log(globalParams);
+        //##console.log(globalParams);
 
         var arrayStimuli = [];
-        console.log(this.game.pedagogicData.data.rounds)
+        //##console.log(this.game.pedagogicData.data.rounds)
         var roundData = this.game.pedagogicData.data.rounds[0].steps[0];
         var roundType = roundData.type;
-        console.log(roundData);
+        //##console.log(roundData);
         var pairsCount = globalParams.pairsCount;
-        console.log(this.game.discipline);
+        //##console.log(this.game.discipline);
         if (this.game.discipline != "maths")
             for (var i = 0; i < pairsCount; i++) {
                 var lowerCase = {};
@@ -115,7 +115,7 @@
         else {
           
             for (var i = 0; i < pairsCount; i++) {
-                console.log(roundData.stimuli);
+                //##console.log(roundData.stimuli);
                 var stimuli = roundData.stimuli[i];
 
                 for (var j = 0; j < 2; j++) {
@@ -187,7 +187,7 @@
             this.game.eventManager.removeAllListeners();
             this.game.eventManager = null;
             this.game.destroy();
-            console.info("Phaser Game has been destroyed");
+            //##console.info("Phaser Game has been destroyed");
             this.game = null;
         }, this);
      
@@ -476,7 +476,7 @@
     // DEBUG
     
     Remediation.prototype.setupDebugPanel = function setupDebugPanel () {
-        console.log(this.game);
+        //##console.log(this.game);
         this.debugPanel = this.game.debugPanel || new Dat.GUI(/*{ autoPlace: false }*/);
        
         var globalLevel = this.game.params.globalLevel;
@@ -517,7 +517,7 @@
 
 
     Remediation.prototype.clearDebugPanel = function clearDebugPanel () {
-        console.log("Parakeets clearing its debugPanel");
+        //##console.log("Parakeets clearing its debugPanel");
         if(this.game.debugPanel) {
             for (var folderName in this.debugFolderNames) {
                 this.debugPanel.removeFolder(this.debugFolderNames[folderName]);

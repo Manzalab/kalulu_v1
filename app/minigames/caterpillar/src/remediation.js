@@ -118,7 +118,7 @@
             this.game.eventManager.removeAllListeners();
             this.game.eventManager = null;
             this.game.destroy();
-            console.info("Phaser Game has been destroyed");
+            //##console.info("Phaser Game has been destroyed");
             this.game = null;
         }, this);
 
@@ -616,7 +616,7 @@
     // DEBUG
 
     Remediation.prototype.setupDebugPanel = function setupDebugPanel() {
-        console.log("Crabs Setupping debug Panel");
+        //##console.log("Crabs Setupping debug Panel");
         if (this.game.debugPanel) {
             this.debugPanel = this.game.debugPanel;
             this.rafikiDebugPanel = true;
@@ -706,13 +706,13 @@
 
         var apparitionStats;
         var roundsCount, stepsCount, stimuliCount, currentRound, currentStep, currentStimulus;
-        console.log(this.results);
+        //##console.log(this.results);
         roundsCount = this.results.data.rounds.length;
 
         for (var i = 0 ; i < roundsCount ; i++) {
 
             currentRound = this.results.data.rounds[i];
-            console.log(currentRound);
+            //##console.log(currentRound);
             if (this.game.pedagogicData.discipline === 'language') {
                 currentRound.word.stats = {
                     isCorrect : true,

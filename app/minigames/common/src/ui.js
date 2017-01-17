@@ -18,7 +18,7 @@
 	 * @param game {Phaser.Game} game instance
 	**/
     function Ui(lives, game, centralConch, replay, conch, kalulu, pause, island) {
-        console.log("[UI] constructor called");
+        //##console.log("[UI] constructor called");
         kalulu = (typeof kalulu !== 'undefined') ? kalulu : true;
         centralConch = (typeof centralConch !== 'undefined') ? centralConch : true;
         replay = (typeof replay !== 'undefined') ? replay : true;
@@ -508,7 +508,7 @@
     Ui.prototype.onClickOnGameOverScreenReplayButton = function onClickOnGameOverScreenReplayButton() {
         if (this.game.eventManager)
             this.game.eventManager.emit('replay'); //listened to by
-        console.log("input on replay bouton");
+        //##console.log("input on replay bouton");
     };
 
     /**
@@ -532,9 +532,9 @@
         this.disableUiMenu();
         this.kaluluButton.visible = false;
         this.gameOverScreen.visible = true;
-        console.log("displaying game over screen");
+        //##console.log("displaying game over screen");
         if (this.features.replay) {
-            console.log("should display replay");
+            //##console.log("should display replay");
             this.gameOverScreen.children[1].visible = true;
         }
     };

@@ -56,15 +56,15 @@
     Game.prototype = {
 
         preload: function preloadGame() {
-            console.info("[Game State] Preloading new game");
-            console.log(this.game.pedagogicData);
+            //##console.info("[Game State] Preloading new game");
+            //##console.log(this.game.pedagogicData);
             // load audiofiles for the current data
             var data = this.game.pedagogicData.data;
             
-            console.log( data.rounds.length);
+            //##console.log( data.rounds.length);
             var roundsCount = data.rounds.length;
             var stepsCount, stimuliCount, stimulus;
-            console.log(this.game.discipline)
+            //##console.log(this.game.discipline)
             for (var i = 0; i < roundsCount; i++) {
                 if (this.game.discipline != "maths") this.game.load.audio(data.rounds[i].word.value, data.rounds[i].word.soundPath);
                 stepsCount = data.rounds[i].steps.length;
@@ -81,7 +81,7 @@
         },
 
         create: function () {
-            console.info("[Game State] Creating new game");
+            //##console.info("[Game State] Creating new game");
             if (this.game.gameConfig.globalVars) {
                 window.cocolision = {};
                 window.cocolision.game = this.game;
@@ -101,7 +101,7 @@
             this.ground.width = this.game.width;
 
             this.remediation = new Remediation(this.game);
-            console.log(this.game.params.getGlobalParams());
+            //##console.log(this.game.params.getGlobalParams());
 
             var centralConch = true;
             var conch = true;

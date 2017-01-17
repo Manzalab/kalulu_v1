@@ -56,7 +56,7 @@
     Game.prototype = {
 
         preload: function preloadGame() {
-            console.info("[Game State] Preloading new game");
+            //##console.info("[Game State] Preloading new game");
 
             // load audiofiles for the current data
 
@@ -89,7 +89,7 @@
          **/
         create: function () {
 
-            console.info("[Game State] Creating new game");
+            //##console.info("[Game State] Creating new game");
             if (Config.globalVars) {
                 window.frogger = {};
                 window.frogger.game = this.game;

@@ -24,7 +24,7 @@ define([
 	 * @class
 	**/
     function PhaseVideo (game) {
-        console.log(game);
+        //##console.log(game);
         this.game = game;
         // console.log(this.game);
         Phaser.State.call(this);
@@ -52,7 +52,9 @@ define([
     };
     
     PhaseVideo.prototype.create = function phaseVideoCreate () {
-        if (this.game.load.hasLoaded) console.info("PhaseVideo State has correctly completed loading.");
+        //##if (this.game.load.hasLoaded) {
+        //##    console.info("PhaseVideo State has correctly completed loading.");
+        //##}
 
         // #### Init
         if (!this.game.eventManager) {

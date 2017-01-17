@@ -35,7 +35,7 @@ define([
         this.game.load.json('audio'             , 'minigames/lookandlearn/assets/config/audio.json');            
         this.game.load.json('config'            , 'minigames/lookandlearn/assets/config/config.json');            
         this.game.load.json('letters-descriptor', 'minigames/lookandlearn/assets/config/letters-descriptor.json');
-        console.log(this.game.gameConfig);
+        //##console.log(this.game.gameConfig);
         this.game.load.audio(this.game.gameConfig.pedagogicData.sound, this.game.gameConfig.pedagogicData.sound);
     };
 
@@ -87,7 +87,7 @@ define([
         // console.log('before');
         this.game.add.audio(this.game.gameConfig.pedagogicData.sound);
         // console.log('after');
-        console.log(this.game.rafiki);
+        //console.log(this.game.rafiki);
         var discipline = this.game.gameConfig.pedagogicData.discipline;
         if (discipline === 'language') {
             // console.info("Preload Complete, Starting Phase1Video...");
@@ -95,8 +95,8 @@ define([
         }
         else if (discipline === 'maths') {
             var lesson = this.game.gameConfig.pedagogicData.data.notions[0].textValue;
-            console.log(this.game.gameConfig.pedagogicData.data.notions[0]);
-            console.log(lesson);
+            //##console.log(this.game.gameConfig.pedagogicData.data.notions[0]);
+            //##console.log(lesson);
             if(lesson === "0" || lesson == '3-2-1' || lesson === '+' || lesson === '-' || lesson === '+2' || lesson === '+5' || lesson === '+10') {
                 // console.log('0, skipping phase 1');
                 this.state.start('Phase2Image');
