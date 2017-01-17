@@ -78,15 +78,15 @@ BotCanvasLayout.prototype.update = function BotCanvasLayoutUpdate(){
 };
 
 BotCanvasLayout.prototype.clear = function BotCanvasLayoutClear(){
-    console.log(this);
+    // console.log(this);
     this.triggered = false;
 
     this.painter.reset();
     this.painter.clear();
 
-    console.log("clearing bot canvas : " + this.name);
-    console.log("triggered : " + this.triggered);
-    console.log("painter finished : " + this.painter.finished);
+    // console.log("clearing bot canvas : " + this.name);
+    // console.log("triggered : " + this.triggered);
+    // console.log("painter finished : " + this.painter.finished);
 };
 
 BotCanvasLayout.prototype.checkTouch = function BotCanvasLayoutCheckTouch(){

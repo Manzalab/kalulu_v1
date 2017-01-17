@@ -49,11 +49,11 @@ define([
         if (typeof this._config.requestMinigameConfig === 'function') {
             
             this._config.requestMinigameConfig(this.init.bind(this));
-            console.log("[Minigame] Requested this.game.gameConfig");
+            // console.log("[Minigame] Requested this.game.gameConfig");
         }
         else {
             
-            console.error('issue with config');
+            // console.error('issue with config');
         }
 
     }   
@@ -69,7 +69,7 @@ define([
         this.game = new Phaser.Game(1920, 1350, Phaser.CANVAS); // TODO : make it dynamic for multiscreen handling
         this.game.gameConfig = this._config;
         if (this.game.gameConfig.globalVars) {
-            console.info('Debug with global Variables enabled. Everything can be found in global variable "lookandlearn"');
+            // console.info('Debug with global Variables enabled. Everything can be found in global variable "lookandlearn"');
             window.lookandlearn = {};
             window.lookandlearn.game = this.game;
         }
@@ -93,7 +93,7 @@ define([
         this.game.state.add('Phase1Maths', Phase1Maths);
         
         //Starts the 'Boot' State
-        console.info("Look&Learn App Created, Starting Boot...");
+        // console.info("Look&Learn App Created, Starting Boot...");
 
 
         if (!this.game.eventManager) {
@@ -121,7 +121,7 @@ define([
 
         var count = Phaser.PIXI.CanvasPool.pool.length;
         for (var i = 0 ; i < count ; i++) {
-            console.log(Phaser.PIXI.CanvasPool.pool[i]);
+            // console.log(Phaser.PIXI.CanvasPool.pool[i]);
             if (Phaser.PIXI.CanvasPool.pool[i].parent) Phaser.PIXI.CanvasPool.pool[i].parent = null;
         }
         Phaser.PIXI.game = null;
@@ -130,7 +130,7 @@ define([
 
     GameLauncher.prototype.setupDebugPanel = function setupDebugPanel() {
         
-        console.info("LookAndLearn Setupping debug Panel");
+        //console.info("LookAndLearn Setupping debug Panel");
         var debugPanel = null;
         if (this.game.debugPanel) {
             debugPanel = this.game.debugPanel;
@@ -154,11 +154,11 @@ define([
 
     GameLauncher.prototype.clearDebugPanel = function clearDebugPanel() {
         if (this.game.gameConfig.rafikiDebugPanel) {
-            console.info("LookAndLearn Cleaning debug Panel");
+            // console.info("LookAndLearn Cleaning debug Panel");
             this.game.debugPanel.removeFolder(this.game.debugFolderNames.functions);
         }
         else if (this.game.gameConfig.debugPanel) {
-            console.info("LookAndLearn Destroying debug Panel");
+            // console.info("LookAndLearn Destroying debug Panel");
             this.game.debugPanel.destroy();
         }
     };

@@ -27,10 +27,10 @@
 	    **/
         create: function () {
 
-            if (this.game.load.hasLoaded) console.info("Boot State has correctly completed loading.");
+            // if (this.game.load.hasLoaded) console.info("Boot State has correctly completed loading.");
             this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL; // Scaling the game for developping purposes; Feel free to remove it if you feel the need
             this.game.stage.backgroundColor = 'rgb(255, 255, 255)';
-            console.info("Boot Complete, Starting Preload...");
+            // console.info("Boot Complete, Starting Preload...");
             this.state.start('Preloader');
         }
     };

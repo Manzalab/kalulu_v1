@@ -141,8 +141,8 @@
 
     Kalulu.prototype.playIntroSequence = function playIntroSequence () {
 
-        if (this.game.gameConfig.skipKalulu || this.game.gameConfig.skipKaluluIntro) {
-            console.info("[Kalulu] Skipping Intro Speech due to debug configuration");
+        if (!this.game.tutoEnabled || this.game.gameConfig.skipKalulu || this.game.gameConfig.skipKaluluIntro) {
+            // console.info("[Kalulu] Skipping Intro Speech due to debug configuration");
             this.game.eventManager.emit('pause');
             this.game.eventManager.emit('startUi');
             this.game.eventManager.emit('introSequenceComplete');
@@ -187,7 +187,7 @@
     Kalulu.prototype.playHelpSequence = function playHelpSequence () { // emitted on click on kalulu button in the main game UI
         
         if (this.game.gameConfig.skipKalulu || this.game.gameConfig.skipKaluluHelp) {
-            console.info("[Kalulu] Skipping Help Speech due to debug configuration");
+            // console.info("[Kalulu] Skipping Help Speech due to debug configuration");
             this.game.eventManager.emit('pause');
             this.game.eventManager.emit('offUi');
             this.game.eventManager.emit('unPause');
@@ -230,12 +230,12 @@
     };
 
     Kalulu.prototype.onGameOverWin = function onGameOverWin () {
-        console.log("Kalulu is about to speak for a Final Win");
+        // console.log("Kalulu is about to speak for a Final Win");
         this.gameOver(true);
     };
 
     Kalulu.prototype.onGameOverLose = function onGameOverLose () {
-        console.log("Kalulu is about to speak for a Final Lose");
+        // console.log("Kalulu is about to speak for a Final Lose");
         this.gameOver(false);
     };
 
@@ -282,11 +282,11 @@
                 this.kaluluSprite.animations.currentAnim.onComplete.addOnce(function () {
                     this.kaluluSprite.visible = false;
                     if (isWin) {
-                        console.log("Kalulu finished to speak, about to request GameOver WinScreen");
+                        // console.log("Kalulu finished to speak, about to request GameOver WinScreen");
                         this.game.eventManager.emit('GameOverWinScreen'); // listened by UI to display GameOver Screen
                     } 
                     else {
-                        console.log("Kalulu finished to speak, about to request GameOver LoseScreen");
+                        // console.log("Kalulu finished to speak, about to request GameOver LoseScreen");
                         this.game.eventManager.emit('GameOverLoseScreen'); // listened by UI to display GameOver Screen
                     }
                 }, this);
@@ -296,7 +296,7 @@
 
     Kalulu.prototype.onCloseStep = function onCloseStep (nextState) {
         
-        console.log(nextState);
+        // console.log(nextState);
         this.isClosingStep = true;
 
         if (this.game.gameConfig.skipKalulu || this.game.gameConfig.skipKaluluFinal) {
@@ -332,7 +332,7 @@
                 
                 this.kaluluSprite.animations.currentAnim.onComplete.addOnce(function () {
                     this.kaluluSprite.visible = false;
-                    console.log("Kalulu finished to speak, about to request nextStep");
+                    // console.log("Kalulu finished to speak, about to request nextStep");
                     this.game.eventManager.emit('unPause');
                     this.game.eventManager.emit('nextStep'); // listened by UI to display GameOver Screen
                 }, this);

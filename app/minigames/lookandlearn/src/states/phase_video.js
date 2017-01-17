@@ -107,7 +107,7 @@ define([
         //this.videoPhaseStage.add(this.lowercase.group);
         var tracerScaleRatio = this.scaleRatio = 0.8;
         this.tracingLayout.group.scale.set(tracerScaleRatio, tracerScaleRatio);
-        console.log(this.tracingLayout.group);
+        // console.log(this.tracingLayout.group);
         //this.lowercase.group.scale.set(0.5, 0.5);
 
         this.xLeftLetter    = 550;
@@ -117,11 +117,11 @@ define([
 
         var xValue;
         if (this.notion.traceUppercase) {
-            console.info("We will trace uppercase and lower case");
+            // console.info("We will trace uppercase and lower case");
             xValue = this.xLeftLetter;
         }
         else {
-            console.info("We will trace only lower case");
+            // console.info("We will trace only lower case");
             xValue = this.xMidLetter;
         }
         this.tracingLayout.group.position.set(xValue, this.yLetter);
@@ -163,27 +163,27 @@ define([
 
     PhaseVideo.prototype.onFirstTime = function onFirstTime () {
         this.onFirstTime = false;
-        console.log("First Time playing a Look & Learn !");
+        // console.log("First Time playing a Look & Learn !");
     };
 
     PhaseVideo.prototype.startTracingDemoAfterDelay = function startTracingDemoAfterDelay () {
-        console.log('introSequenceComplete');
+        // console.log('introSequenceComplete');
         this.startTracingDelay = Math.round(this.secondsOfDelay * 60);
         this.startEaseInOfLettersFrame();
     };
 
     PhaseVideo.prototype.startTracingDemo = function startTracingDemo () {
         this.startTracingDelay = null;
-        console.log("Start Tracing");
+        // console.log("Start Tracing");
         this.tracingOn = true;
         Emitter.on(Events.TRIGGER_LAYOUT, this.onFirstLetterTracingComplete);
         var value;
         if (this.notion.traceUppercase) {
-            console.info("We will trace uppercase first");
+            // console.info("We will trace uppercase first");
             value = this.notion.value.toUpperCase();
         }
         else {
-            console.info("We will trace lowercase now");
+            // console.info("We will trace lowercase now");
             value = this.notion.value.toLowerCase();
         }
 
@@ -203,10 +203,10 @@ define([
         Emitter.off(Events.TRIGGER_LAYOUT, this.onFirstLetterTracingComplete);
 
         if (layoutId === 4) {
-            console.info("Bot Layout just finished first letter");
+            // console.info("Bot Layout just finished first letter");
         }
         else {
-            console.info("Unidentified Layout just finished a letter");
+            // console.info("Unidentified Layout just finished a letter");
         }
 
         
@@ -220,7 +220,7 @@ define([
             
             this.freezeLetter(this.xLeftLetter, this.yLetter);
 
-            console.info("We will trace lowercase now");
+            // console.info("We will trace lowercase now");
 
             this.tracingLayout.group.x = this.xRightLetter;
 
@@ -238,10 +238,10 @@ define([
         Emitter.off(Events.TRIGGER_LAYOUT, this.onSecondLetterTracingComplete);
 
         if (layoutId === 4) {
-            console.info("Bot Layout just finished 2nd letter");
+            // console.info("Bot Layout just finished 2nd letter");
         }
         else {
-            console.info("Unidentified Layout just finished a letter");
+            // console.info("Unidentified Layout just finished a letter");
         }
 
         this.freezeLetter(this.xRightLetter, this.yLetter);
@@ -271,7 +271,7 @@ define([
     PhaseVideo.prototype.endTracing = function PhaseVideoEndTracing () {
         
         this.tracingOn = false;
-        console.log('Tracing is OFF');
+        // console.log('Tracing is OFF');
         this.videoPhaseStage.remove(this.tracingLayout.group, true);
         this.tracingLayout = null;
         this.game.layouts = [];
@@ -282,7 +282,7 @@ define([
     };
 
     PhaseVideo.prototype.onClickOnLetters = function (onClickOnLetters) {
-        console.log("here on click");
+        // console.log("here on click");
         this.game.ui.disableUiMenu();
         this.loadAndPlayVideo(this.videoTexture1, function () {
 

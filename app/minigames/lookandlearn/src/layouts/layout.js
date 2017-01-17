@@ -5,7 +5,7 @@ function Layout(game, settings, group){
   this.game = game;
 
   this.settings = settings;
-  console.log(settings);
+  // console.log(settings);
   this.group = group || new Phaser.Group(game, null, 'LayoutGroup_' + settings.name);
   
   this.bitmap = new Phaser.BitmapData(this.game, 'bitmapForImage_' + settings.name, settings.w, settings.h);
@@ -24,10 +24,10 @@ function Layout(game, settings, group){
 
   if (settings.enabled) {
     this.enable();
-    console.log("enable");
+    // console.log("enable");
   } else {
     this.disable();
-    console.log("disable");
+    // console.log("disable");
   }
 }
 

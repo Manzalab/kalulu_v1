@@ -2,7 +2,7 @@ var Phaser = require('phaser-bundle');
 
 function gameCreator(preload, create, loop, config, endFunction){
 	
-    console.log('Creating Game object...');
+    // console.log('Creating Game object...');
 
     var game = new Phaser.Game(1920, 1080, Phaser.AUTO, 'LettersTracing', {
     	preload: function(game){
@@ -14,11 +14,11 @@ function gameCreator(preload, create, loop, config, endFunction){
     	render: loop 
     });
 
-    console.log('End creating Game Object');
+    // console.log('End creating Game Object');
 
     game.gameConfig = config;
     game.end = endFunction;
-    console.log(config);
+    // console.log(config);
     Emitter.emit(Events.GAME_LAUNCHED);
 
     return game;

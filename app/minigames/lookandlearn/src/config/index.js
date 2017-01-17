@@ -19,12 +19,12 @@ function MinigameConfig () {
 
 MinigameConfig.prototype.requestMinigameConfig = function requestMinigameConfig (callback) {
     
-    console.info("[Minigame Look And Learn] Requesting config file");
+    // console.info("[Minigame Look And Learn] Requesting config file");
     staticCallback = callback;
     this.httpRequest = new XMLHttpRequest();
 
     if (!this.httpRequest) {
-      alert('Giving up =( Cannot create an XMLHTTP instance');
+      // alert('Giving up =( Cannot create an XMLHTTP instance');
       return false;
     }
 
@@ -37,16 +37,16 @@ MinigameConfig.prototype.requestMinigameConfig = function requestMinigameConfig 
 MinigameConfig.prototype.onStateChange = function onStateChange () {
     if (this.httpRequest.readyState === XMLHttpRequest.DONE) {
       if (this.httpRequest.status === 200) {
-        console.info(this.httpRequest);
+        //console.info(this.httpRequest);
         this.init(JSON.parse(this.httpRequest.responseText));
       } else {
-        console.error('There was a problem with the request.');
+        //console.error('There was a problem with the request.');
       }
     }
 };
 
 MinigameConfig.prototype.init = function init (config) {
-    console.log(config);
+    // console.log(config);
     this.gameId          = config.gameId;
     this.skipKalulu      = config.skipKalulu;
     this.skipKaluluIntro = config.skipKaluluIntro;

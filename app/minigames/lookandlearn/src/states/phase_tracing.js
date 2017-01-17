@@ -44,7 +44,7 @@ define([
     };
     
     PhaseTracing.prototype.create = function phaseTracingCreate () {
-        if (this.game.load.hasLoaded) console.info("PhaseTracing State has correctly completed loading.");
+        // if (this.game.load.hasLoaded) console.info("PhaseTracing State has correctly completed loading.");
 
         // #### Init
         if (!this.game.eventManager) {
@@ -141,7 +141,7 @@ define([
 
     PhaseTracing.prototype.onFirstTime = function onFirstTime () {
         this.onFirstTime = false;
-        console.log("First Time playing a Look & Learn !");
+        // console.log("First Time playing a Look & Learn !");
     };
 
     PhaseTracing.prototype.startTracingDemoAfterDelay = function startTracingDemoAfterDelay () {
@@ -150,13 +150,13 @@ define([
 
     PhaseTracing.prototype.startTracingDemo = function startTracingDemo () {
         this.startTracingDelay = null;
-        console.log("Start Tracing");
+        // console.log("Start Tracing");
         this.tracingOn = true;
         this.progression.setSeries(this.prepareSeries());
     };
 
     PhaseTracing.prototype.endTracing = function PhaseTracingEndTracing () {
-        console.info("tracingPhase end of Trace");
+        // console.info("tracingPhase end of Trace");
         this.tracingOn = false;
         this.game.rafiki.save();
         this.game.ui.enableNext();
