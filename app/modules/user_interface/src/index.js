@@ -13,7 +13,7 @@
     var RenderingManager        = require ('./rendering_manager');
     var ScreensManager          = require ('./screens_manager');
     var LoadingManager          = require ('./loading_manager');
-    var Reward                  = require ('assets/data/'+KALULU_LANGUAGE+'/dynamic_rewards');
+    var Reward                  = require ('assets/data/' + KALULU_LANGUAGE + '/dynamic_rewards');
     
     var GraphicLoader           = require ('./screens/graphic_loader');
     var TitleCard               = require ('./screens/title_card');
