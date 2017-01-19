@@ -52,7 +52,25 @@ define([
         
         // Setup Buttons
         this._lookAndLearnButton.setup(this._node.children[0], this._onClickOnActivity.bind(this), true);
-        this._lookAndLearnButton.setText(this.stringifyTargetNotions(this._node));
+        
+        var notionString = this.stringifyTargetNotions(this._node);
+        // var centralText;
+        // switch (notionString) {
+        //     case 'count backwards':
+
+        //     break;
+        //     default:
+        //         centralText = notion;
+        //     break;
+        // }
+        
+        this._lookAndLearnButton._upStyle       = { font : "140px Arial", fill : "#FFFFFF", align : "center" };
+        this._lookAndLearnButton._overStyle     = { font : "160px Arial", fill : "#FFFFFF", align : "center" };
+        this._lookAndLearnButton._downStyle     = { font : "160px Arial", fill : "#FFFFFF", align : "center" };
+        this._lookAndLearnButton._disabledStyle = { font : "140px Arial", fill : "#777777", align : "center" };
+
+        this._lookAndLearnButton.setText(notionString);
+        this._lookAndLearnButton._setModeNormal();
         this._topMinigameButton.setup(this._node.children[1], this._onClickOnActivity.bind(this), true);
         this._rightMinigameButton.setup(this._node.children[2], this._onClickOnActivity.bind(this), true);
         this._leftMinigameButton.setup(this._node.children[3], this._onClickOnActivity.bind(this), true);
@@ -90,12 +108,26 @@ define([
         this._kalulu.x = this._kalulu.width/2;
         this._kalulu.y = -this._kalulu.height/3-50;
         this._hud.bottomLeft.addChild(this._kalulu);
-        /*if (this._node.children[1].isCompleted&&this._node.children[2].isCompleted&&this._node.children[3].isCompleted) this._kalulu.startTalk("kalulu_tuto_lessonscreen");
-        else*/ if ((this._node.children[1].isCompleted&&this._node.children[2].isCompleted)||
-                 (this._node.children[2].isCompleted&&this._node.children[3].isCompleted)||
-                 (this._node.children[3].isCompleted&&this._node.children[1].isCompleted))  this._kalulu.startTalk("kalulu_tuto_twogameplayed");
-        else if (this._node.children[1].isCompleted||this._node.children[2].isCompleted||this._node.children[3].isCompleted)    this._kalulu.startTalk("kalulu_tuto_onegameplayed");
-        else this._kalulu.startTalk("kalulu_tuto_lessonscreen");
+        var completedCount = 0;
+        for (var i = 1 ; i <= 3 ; i++) {
+            if (this._node.children[i].isCompleted) completedCount++;
+        }
+        var speechName = '';
+        switch (completedCount) {
+            case 0:
+                speechName = 'kalulu_tuto_lessonscreen';
+                break;
+            case 1:
+                speechName = 'kalulu_tuto_onegameplayed';
+                break;
+            case 2:
+                speechName = 'kalulu_tuto_twogameplayed';
+                break;
+            case 3:
+                speechName = 'kalulu_tuto_lessonscreen';
+                break;
+        }
+        this._kalulu.startTalk(speechName);
     };
 
     LessonScreen.prototype.stringifyTargetNotions = function stringifyTargetNotions (lessonNode) {

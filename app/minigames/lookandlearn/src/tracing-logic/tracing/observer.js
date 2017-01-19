@@ -238,7 +238,7 @@ Observer.prototype.validate = function ObserverValidate(){
     this.localGoodpoints.push({x: this.step[this.step.length - 1].x, y: this.step[this.step.length - 1].y});
     Emitter.emit(Events.STEP_VALIDATED, this.localGoodpoints);
     this.localGoodpoints.length = 0;
-    console.log(this.localGoodpoints);
+    //##console.log(this.localGoodpoints);
   }else{
     Emitter.emit(Events.WAYPOINT_VALIDATED, this.step, this.checkPoint);
   }

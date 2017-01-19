@@ -2,12 +2,14 @@
     './tree',
     'common/src/fx',
     './board',
-    'dat.gui'
+    'dat.gui',
+    'common/src/popup'
 ], function (
     Tree,
     Fx,
     Board,
-    Dat
+    Dat,
+    Popup
 ) {
     'use strict';
 
@@ -21,7 +23,7 @@
     function Remediation(game) {
         Phaser.Group.call(this, game);
 
-        
+
         var data = this.game.pedagogicData;
         this.discipline = data.discipline;
 
@@ -37,6 +39,8 @@
         this.roundIndex = 0;
         this.stepIndex = 0;
         this.timeWithoutClick = 0;
+
+        this.popup = new Popup(game);
 
         this.initGame();
 
@@ -57,7 +61,6 @@
         this.board = new Board(550, game.height - 50, game);
 
         this.initRound(this.roundIndex);
-        console.log(this.sequence)
         if (this.game.discipline == 'maths') this.sequence.numberIndex = this.board.setTextMaths(this.sequence.sequence);
         this.setTexts();
         this.fx = new Fx(game);
@@ -90,7 +93,7 @@
         }, this);
 
         this.game.eventManager.on('unPause', function () {
-        }, this);    
+        }, this);
 
         this.game.eventManager.on('playCorrectSound', function () {
             this.game.eventManager.emit('unPause');
@@ -102,10 +105,11 @@
         }, this);
 
         this.game.eventManager.on('playCorrectSoundNoUnPause', function () {
-            if (this.framesToWaitBeforeNewSound <= 0) {
-                this.sounds.correctRoundAnswer.play();
-                this.framesToWaitBeforeNewSound = Math.floor((this.sounds.correctRoundAnswer.totalDuration + 0.5) * 60);
-            }
+            if (this.game.discipline != "maths")
+                if (this.framesToWaitBeforeNewSound <= 0) {
+                    this.sounds.correctRoundAnswer.play();
+                    this.framesToWaitBeforeNewSound = Math.floor((this.sounds.correctRoundAnswer.totalDuration + 0.5) * 60);
+                }
         }, this);
 
         this.game.eventManager.on('swipe', function (object) {
@@ -138,15 +142,15 @@
 
         this.game.eventManager.on('exitGame', function () {
             if (this.game.gameConfig.debugPanel) this.clearDebugPanel();
-            console.info("clearDebugPanel ok");
+            //##console.info("clearDebugPanel ok");
             this.game.rafiki.close();
-            console.info("rafiki closed");
+            //##console.info("rafiki closed");
             this.game.eventManager.removeAllListeners();
-            console.info("removeAllListeners ok");
+            //##console.info("removeAllListeners ok");
             this.game.eventManager = null;
-            console.info("eventManager null");
+            //##console.info("eventManager null");
             this.game.destroy();
-            console.info("Phaser Game has been destroyed");
+            //##console.info("Phaser Game has been destroyed");
             this.game = null;
         }, this);
 
@@ -155,7 +159,7 @@
                 this.clearDebugPanel();
             }
             this.game.eventManager.removeAllListeners();
-            this.game.eventManager = undefined;            
+            this.game.eventManager = undefined;
             this.game.state.start('Setup');
         }, this);
     };
@@ -184,7 +188,7 @@
      * Initialise parameters for the required round with data contained in this.pedagogicData
      **/
     Remediation.prototype.initRound = function initRound(roundIndex) {
-         console.log(this.game.pedagogicData.data.rounds);
+        //##console.log(this.game.pedagogicData.data.rounds);
         var roundData = this.game.pedagogicData.data.rounds[roundIndex];
 
         this.apparitionsCount = 0;
@@ -195,7 +199,7 @@
         this.correctResponses = [];
         this.falseStepResponsesCurrentPool = [];
         if (this.game.discipline != "maths") {
-            console.log(roundData);
+            //##console.log(roundData);
             this.correctWord = roundData.word;
             this.sounds.correctRoundAnswer = this.game.add.audio(roundData.word.value);
         }
@@ -226,6 +230,20 @@
             this.falseResponses.push(falseStepResponses);
             this.correctResponses.push(correctStepResponses);
         }
+        if (this.game.discipline == 'maths'){
+            var temp ="";
+            for (var i = 0 ; i < this.sequence.sequence.length; i++) {
+                if (this.sequence.sequence[i] == 'X') {
+                    temp += this.sequence.targetNumber;
+                }
+                else
+                    temp += this.sequence.sequence[i];
+            }
+            this.popup.setTextMaths(temp);
+        }
+
+        else this.popup.setText(this.correctWord.value);
+         
     };
 
     Remediation.prototype.setTexts = function () {
@@ -298,7 +316,7 @@
                 if (this.game.discipline != 'maths') this.board.text.text += this.correctResponses[this.stepIndex].value;
                 else {
                     this.board.setTextMaths(this.sequence.sequence, this.correctResponses[this.stepIndex].value);
-                    }
+                }
                 this.game.eventManager.once('finishedBreaking', function () {
                     this.sounds.right.play();
                     this.success();
@@ -340,6 +358,8 @@
             this.roundIndex++;
             this.triesRemaining--;
             this.game.eventManager.emit('success');
+            this.game.eventManager.emit('offUi');
+            this.popup.show(true);
             if (this.triesRemaining > 0) {
                 if (this.game.discipline === 'language') this.sounds.correctRoundAnswer.play();
                 if (this.game.gameConfig.debugPanel) this.cleanLocalPanel();
@@ -351,6 +371,7 @@
                     if (context.game.discipline == 'maths') {
                         context.sequence.numberIndex = context.board.setTextMaths(context.sequence.sequence);
                     }
+                    context.popup.show(false);
                     context.getNewCoconuts();
                     context.game.eventManager.emit('playCorrectSound');
                 }, 3 * 1000);
@@ -370,16 +391,22 @@
         this.consecutiveSuccess = 0;
         this.game.eventManager.emit('fail');
 
-        console.log(this.lives)
-        console.log(this.triesRemaining)
+        //##console.log(this.lives)
+        //##console.log(this.triesRemaining)
 
         if (this.lives > 0 && this.triesRemaining > 0) {
             if (this.consecutiveMistakes === params.incorrectResponseCountTriggeringFirstRemediation) { //Triggers kalulu's help + lowers difficulty
 
                 var context = this;
                 setTimeout(function () {
-                    context.game.eventManager.emit('playCorrectSound');//listened here; check initEvents
-                }, 1000);
+                    context.game.eventManager.emit('playCorrectSoundNoUnPause');//listened here; check initEvents
+                    context.game.eventManager.emit('offUi');
+                    context.popup.show(true);
+                    setTimeout(function () {
+                        context.popup.show(false);
+                        context.game.eventManager.emit('unPause');
+                    }, params.popupTimeOnScreen * 1000)
+                }, 200);
 
                 if (this.game.gameConfig.debugPanel) this.cleanLocalPanel();
                 this.game.params.decreaseLocalDifficulty();
@@ -402,7 +429,7 @@
             this.gameOverWin();
         }
         else {
-            console.log("?")
+            //##console.log("?")
             this.gameOverLose();
         }
     };
@@ -472,48 +499,48 @@
 
 
     Remediation.prototype.setupDebugPanel = function setupDebugPanel() {
-            this.debugPanel = this.game.debugPanel || new Dat.GUI();
+        this.debugPanel = this.game.debugPanel || new Dat.GUI();
 
-            var globalLevel = this.game.params.globalLevel;
+        var globalLevel = this.game.params.globalLevel;
 
-            this.debugFolderNames = {
-                info      : "Level Info",
-                general   : "General Parameters",
-                global    : "Global Parameters",
-                local     : "Local Parameters",
-                functions : "Debug Functions",
-            };
+        this.debugFolderNames = {
+            info: "Level Info",
+            general: "General Parameters",
+            global: "Global Parameters",
+            local: "Local Parameters",
+            functions: "Debug Functions",
+        };
 
-            var infoPanel = this.debugPanel.addFolder(this.debugFolderNames.info);
+        var infoPanel = this.debugPanel.addFolder(this.debugFolderNames.info);
 
-            var generalParamsPanel = this.debugPanel.addFolder(this.debugFolderNames.general);
-            var globalParamsPanel = this.debugPanel.addFolder(this.debugFolderNames.global);
-            this._localParamsPanel = this.debugPanel.addFolder(this.debugFolderNames.local);
+        var generalParamsPanel = this.debugPanel.addFolder(this.debugFolderNames.general);
+        var globalParamsPanel = this.debugPanel.addFolder(this.debugFolderNames.global);
+        this._localParamsPanel = this.debugPanel.addFolder(this.debugFolderNames.local);
 
-            this.debugFunctions = this.debugPanel.addFolder(this.debugFolderNames.functions);
+        this.debugFunctions = this.debugPanel.addFolder(this.debugFolderNames.functions);
 
-            infoPanel.add(this.game.params, "_currentGlobalLevel").listen();
-            infoPanel.add(this.game.params, "_currentLocalRemediationStage").listen();
+        infoPanel.add(this.game.params, "_currentGlobalLevel").listen();
+        infoPanel.add(this.game.params, "_currentLocalRemediationStage").listen();
 
 
-            generalParamsPanel.add(this.game.params._settingsByLevel[globalLevel].generalParameters, "incorrectResponseCountTriggeringFirstRemediation").min(1).max(5).step(1).listen();
-            generalParamsPanel.add(this.game.params._settingsByLevel[globalLevel].generalParameters, "incorrectResponseCountTriggeringSecondRemediation").min(1).max(5).step(1).listen();
-            generalParamsPanel.add(this.game.params._settingsByLevel[globalLevel].generalParameters, "lives").min(1).max(5).step(1).listen();
-            generalParamsPanel.add(this.game.params._settingsByLevel[globalLevel].generalParameters, "capitalLettersShare").min(0).max(1).step(0.05).listen();
+        generalParamsPanel.add(this.game.params._settingsByLevel[globalLevel].generalParameters, "incorrectResponseCountTriggeringFirstRemediation").min(1).max(5).step(1).listen();
+        generalParamsPanel.add(this.game.params._settingsByLevel[globalLevel].generalParameters, "incorrectResponseCountTriggeringSecondRemediation").min(1).max(5).step(1).listen();
+        generalParamsPanel.add(this.game.params._settingsByLevel[globalLevel].generalParameters, "lives").min(1).max(5).step(1).listen();
+        generalParamsPanel.add(this.game.params._settingsByLevel[globalLevel].generalParameters, "capitalLettersShare").min(0).max(1).step(0.05).listen();
 
-            globalParamsPanel.add(this.game.params._settingsByLevel[globalLevel].globalRemediation, "monkeyOnScreen").min(1).max(4).step(1).listen();
+        globalParamsPanel.add(this.game.params._settingsByLevel[globalLevel].globalRemediation, "monkeyOnScreen").min(1).max(4).step(1).listen();
 
-            this.setLocalPanel();
+        this.setLocalPanel();
 
-            this.debugFunctions.add(this, "AutoWin");
-            this.debugFunctions.add(this, "AutoLose");
-            this.debugFunctions.add(this, "skipKalulu");
-            this.debugFunctions.open();
+        this.debugFunctions.add(this, "AutoWin");
+        this.debugFunctions.add(this, "AutoLose");
+        this.debugFunctions.add(this, "skipKalulu");
+        this.debugFunctions.open();
     };
 
     Remediation.prototype.clearDebugPanel = function clearDebugPanel() {
-        console.log("Monkeys clearing its debugPanel");
-        if(this.game.debugPanel) {
+        //##console.log("Monkeys clearing its debugPanel");
+        if (this.game.debugPanel) {
             for (var folderName in this.debugFolderNames) {
                 this.debugPanel.removeFolder(this.debugFolderNames[folderName]);
             }

@@ -14,7 +14,7 @@
         Phaser.Group.call(this, game);
 
         this.game = game;
-        
+
         this.x = x;
         this.y = y;
         this.feather = new Feather(game);
@@ -74,10 +74,10 @@
         this.time = 1.7;
         this.flying = false;
         this.clickable = false;
-		this.animCanSetClickable = true;
+        this.animCanSetClickable = true;
         this.paused = false;
 
-    };
+    }
 
     Parakeet.prototype = Object.create(Phaser.Group.prototype);
     Parakeet.prototype.constructor = Parakeet;
@@ -85,15 +85,17 @@
     Parakeet.prototype.initEvents = function () {
         this.game.eventManager.on('unClickable', function () {
             this.clickable = false;
-			this.animCanSetClickable = false;
+            this.animCanSetClickable = false;
         }, this);
 
         this.game.eventManager.on('clickable', function () {
-            if (!this.front)
-				this.animCanSetClickable = true;
-                this.parakeetSprite.animations.currentAnim.onComplete.addOnce(function () {
-                    this.clickable = this.animCanSetClickable;
-                }, this);
+            if (!this.front) {
+                this.animCanSetClickable = true;
+                if (typeof this.parakeetSprite.animations.currentAnim !== 'undefined')
+                    this.parakeetSprite.animations.currentAnim.onComplete.addOnce(function () {
+                        this.clickable = this.animCanSetClickable;
+                    }, this);
+            }
         }, this);
 
         this.game.eventManager.on('pause', function () {
@@ -101,10 +103,9 @@
         }, this);
 
         this.game.eventManager.on('unPause', function () {
-            if (!this.front)
-			{
-				this.clickable = true;
-			}
+            if (!this.front) {
+                this.clickable = true;
+            }
         }, this);
 
         this.game.eventManager.on('clicked', function () {
@@ -140,9 +141,9 @@
             this.add(this.picture);
         }
     };
-	Parakeet.prototype.isVisible = function ()	{
-		return this.front;
-	};
+    Parakeet.prototype.isVisible = function () {
+        return this.front;
+    };
 
     Parakeet.prototype.pause = function (bool) {
         this.paused = bool;

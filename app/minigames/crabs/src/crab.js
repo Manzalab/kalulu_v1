@@ -214,6 +214,7 @@
                 this.clickable = false;
 
                 if (this.crab.y > 0) {
+					this.apparition.close(false, 1000);
                     this.spawned = false;
                     this.displayed = false;
                     this.enabled = false;
@@ -257,6 +258,7 @@
         this.crab.y += CRAB_DIAMETER / (this.durationDisappearance * 60);
 
         if (this.crab.y >= 0) {
+			this.apparition.close(false, 1000);
             this.reset = false;
             this.resetProperties();
         }

@@ -2,59 +2,65 @@
 
 "Balise_rouge_idle_0000":
 {
-	"frame": {"x":1,"y":1,"w":97,"h":222},
+	"frame": {"x":108,"y":3,"w":97,"h":220},
 	"rotated": false,
 	"trimmed": true,
-	"spriteSourceSize": {"x":8,"y":6,"w":97,"h":222},
-	"sourceSize": {"w":128,"h":256}
+	"spriteSourceSize": {"x":1,"y":1,"w":97,"h":220},
+	"sourceSize": {"w":102,"h":221},
+	"pivot": {"x":0.5,"y":0.5}
 },
 "Balise_rouge_idle_0001":
 {
-	"frame": {"x":100,"y":1,"w":96,"h":226},
+	"frame": {"x":197,"y":227,"w":93,"h":220},
 	"rotated": false,
 	"trimmed": true,
-	"spriteSourceSize": {"x":10,"y":5,"w":96,"h":226},
-	"sourceSize": {"w":128,"h":256}
+	"spriteSourceSize": {"x":1,"y":1,"w":93,"h":220},
+	"sourceSize": {"w":98,"h":221},
+	"pivot": {"x":0.5,"y":0.5}
 },
 "Balise_rouge_idle_0002":
 {
-	"frame": {"x":198,"y":1,"w":94,"h":230},
+	"frame": {"x":209,"y":3,"w":91,"h":220},
 	"rotated": false,
 	"trimmed": true,
-	"spriteSourceSize": {"x":15,"y":5,"w":94,"h":230},
-	"sourceSize": {"w":128,"h":256}
+	"spriteSourceSize": {"x":2,"y":1,"w":91,"h":220},
+	"sourceSize": {"w":93,"h":221},
+	"pivot": {"x":0.5,"y":0.5}
 },
 "Balise_rouge_idle_0003":
 {
-	"frame": {"x":1,"y":225,"w":93,"h":232},
+	"frame": {"x":3,"y":3,"w":101,"h":238},
 	"rotated": false,
 	"trimmed": true,
-	"spriteSourceSize": {"x":18,"y":5,"w":93,"h":232},
-	"sourceSize": {"w":128,"h":256}
+	"spriteSourceSize": {"x":1,"y":0,"w":101,"h":238},
+	"sourceSize": {"w":102,"h":239},
+	"pivot": {"x":0.5,"y":0.5}
 },
 "Balise_rouge_idle_0004":
 {
-	"frame": {"x":96,"y":229,"w":94,"h":230},
+	"frame": {"x":3,"y":245,"w":98,"h":238},
 	"rotated": false,
 	"trimmed": true,
-	"spriteSourceSize": {"x":15,"y":5,"w":94,"h":230},
-	"sourceSize": {"w":128,"h":256}
+	"spriteSourceSize": {"x":0,"y":0,"w":98,"h":238},
+	"sourceSize": {"w":98,"h":239},
+	"pivot": {"x":0.5,"y":0.5}
 },
 "Balise_rouge_idle_0005":
 {
-	"frame": {"x":192,"y":233,"w":96,"h":226},
+	"frame": {"x":105,"y":245,"w":88,"h":237},
 	"rotated": false,
 	"trimmed": true,
-	"spriteSourceSize": {"x":10,"y":5,"w":96,"h":226},
-	"sourceSize": {"w":128,"h":256}
+	"spriteSourceSize": {"x":0,"y":0,"w":88,"h":237},
+	"sourceSize": {"w":93,"h":239},
+	"pivot": {"x":0.5,"y":0.5}
 }},
 "meta": {
 	"app": "http://www.codeandweb.com/texturepacker",
 	"version": "1.0",
-	"image": "buoyRed",
+	"image": "buoyred_language",
 	"format": "RGBA8888",
-	"size": {"w":293,"h":460},
+	"size": {"w":512,"h":512},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:34a5b56dc270f089ed291e6f290156ff:0389e7bff31fa1e04b40e70884b5d7af:e645104d1cdeeabdd911d506410b672d$"
+	"smartupdate": "$TexturePacker:SmartUpdate:be730864033e33b7e78a6d5feecc91ef:a8647645ee07aeb3454d03a2a36e643f:31f59a99a8e2acd0fa264dfa09c50468$"
 }
 }

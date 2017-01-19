@@ -1,4 +1,4 @@
-(function () {
+document.addEventListener('deviceready', function () {
     'use strict';
 
     require.ensure([], function () {
@@ -25,7 +25,8 @@
         var app = new Application();
         app.initAndStart();
     });
-})();
+
+}, false);
 
 
 function patchDat () {

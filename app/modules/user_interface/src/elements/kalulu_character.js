@@ -92,6 +92,9 @@
     KaluluCharacter.prototype.startTalk = function startTalk(talkName, nextTalks, shouldStay, shouldNotAppear)
     {
         if (Config.skipKalulu) return;
+
+        this.stopSound()
+
         this.isTalking = true;
         this.alpha = 1;
         this._isStaying = typeof shouldStay==='undefined'?false:true;
@@ -196,12 +199,12 @@
         SoundManager.getSound("kaluluOff").play();
         this._setState(this.DISAPPEARANCE_STATE);
         this._anim.animationSpeed = 0.25;
-        setTimeout(function(){this._fade = true;}.bind(this),500);
+        setTimeout((function(){this._fade = true;}).bind(this),500);
     }
 
     KaluluCharacter.prototype.stopSound = function stopSound()
     {
-        if (this._kaluluSpeech!==undefined) this._kaluluSpeech.stop();
+        if (this._kaluluSpeech) this._kaluluSpeech.stop();
         this.isTalking = false;
     }
 

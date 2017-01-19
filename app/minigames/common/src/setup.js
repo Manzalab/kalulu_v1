@@ -12,13 +12,13 @@
 
             params.initLocalRemediationStage();
             var difficultyParams = rafiki.getDifficultyLevel();
-            console.log(difficultyParams);
+            //##console.log(difficultyParams);
             params.globalLevel = difficultyParams.globalLevel; // The player's level is stored within Kalulu Player Profile.
             params.localRemediationStage = difficultyParams.localStage; // The player's level is stored within Kalulu Player Profile.
 
             this.game.pedagogicData = rafiki.getPedagogicData(params.getGlobalParams()); // The global parameters contains the pedagogic data parameters.
             this.game.discipline = this.game.pedagogicData.discipline;
-            console.info("[Setup State] New Data gathered from Rafiki");
+            //##console.info("[Setup State] New Data gathered from Rafiki");
             this.state.start('Game');
         }
     };

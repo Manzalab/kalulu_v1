@@ -51,7 +51,7 @@
     Game.prototype = {
 
         preload: function preloadGame() {
-            console.info("[Game State] Preloading new game");
+            //##console.info("[Game State] Preloading new game");
             
             var data = this.game.pedagogicData.data;
             var roundsCount = data.rounds.length;
@@ -67,7 +67,7 @@
 
                         stimulus = data.rounds[i].steps[j].stimuli[k];
                         if (stimulus.value !== "") {
-                            console.log(stimulus.value, stimulus.soundPath);
+                            //##console.log(stimulus.value, stimulus.soundPath);
                             this.game.load.audio(stimulus.value, stimulus.soundPath);
                         }
                     }
@@ -80,7 +80,7 @@
         },
 
         create: function () {
-            console.info("[Game State] Creating new game");
+            //##console.info("[Game State] Creating new game");
             if (this.game.gameConfig.globalVars) {
                 window.memory = {};
                 window.memory.game = this.game;
@@ -114,7 +114,7 @@
         },
 
         render: function () {
-            this.game.debug.text(this.game.time.fps, 2, 14, "#00ff00");
+            if (this.game.gameConfig.debugPanel) this.game.debug.text(this.game.time.fps, 2, 14, "#00ff00");
         }
 
     };

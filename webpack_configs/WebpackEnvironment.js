@@ -62,8 +62,10 @@ function onComplete (error, stats) {
         console.error('uncool');
     }
 
-    fs.writeFileSync('./stats.json', JSON.stringify(stats.toJson()));
-    console.log(stats.toString());
+    if (stats) {
+        fs.writeFileSync('./stats.json', JSON.stringify(stats.toJson()));
+        console.log(stats.toString());
+    }
     console.log('\n##### [WEBPACK BUILD COMPLETE] Go to localhost:3000 ####\n\n');
     serve();
 }

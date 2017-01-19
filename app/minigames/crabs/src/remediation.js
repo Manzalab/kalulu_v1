@@ -19,8 +19,8 @@
         this.initSounds(game);
 
         this.initGame();
-        console.log("game"+this.game)
-        console.log("Current Round"+this.currentRound)
+        //##console.log("game"+this.game)
+        //##console.log("Current Round"+this.currentRound)
         this.initRound(this.currentRound);
         this.initEvents();
 
@@ -74,13 +74,13 @@
         this.won = false;
 
         this.crabs = [];
-        console.log("Lives remaining : " + this.lives);
+        //##console.log("Lives remaining : " + this.lives);
     };
 
     Remediation.prototype.initRound = function initRound(roundIndex) {
-        console.log(this.game.pedagogicData);
+        //##console.log(this.game.pedagogicData);
         var roundData = this.game.pedagogicData.data.rounds[roundIndex];
-        console.log(roundData);
+        //##console.log(roundData);
         this.apparitionsCount = 0;
         this.framesToWaitBeforeNextSpawn = 0;
         this.framesToWaitBeforeNewSound = 0;
@@ -100,8 +100,8 @@
             type = roundData.steps[0].type;
             if (stimulus.correctResponse === true) {
                 this.sounds.correctRoundAnswer = this.game.add.audio(stimulus.value.toString().toLowerCase());
-                console.log("adding target sound");
-                console.log(this.sounds.correctRoundAnswer);
+                //##console.log("adding target sound");
+                //##console.log(this.sounds.correctRoundAnswer);
                 this.correctResponse.value = stimulus.value;
                 if (this.game.discipline == "maths" && type === 'audioToNonSymbolic') {
                     this.correctResponse.alternativePicture = true;
@@ -121,7 +121,7 @@
 
             stimulus.apparitions = [];
         }
-        console.log("Lives remaining : " + this.lives);
+        //##console.log("Lives remaining : " + this.lives);
     };
 
     Remediation.prototype.initEvents = function () {
@@ -146,9 +146,14 @@
             this.paused = true;
         }, this);
 
+
         this.game.eventManager.on('unPause', function () {
             this.paused = false;
-        }, this);       
+        }, this);
+
+        this.game.eventManager.on('help', function () {
+            this.timeWithoutClick = 0;
+        }, this);
 
         this.game.eventManager.on('exitGame', function () {
             if (this.game.gameConfig.debugPanel) this.clearDebugPanel();
@@ -156,7 +161,7 @@
             this.game.eventManager.removeAllListeners();
             this.game.eventManager = null;
             this.game.destroy();
-            console.info("Phaser Game has been destroyed");
+            //##console.info("Phaser Game has been destroyed");
             this.game = null;
         }, this);
 
@@ -184,7 +189,7 @@
                 holesCountByRow = [2, 3, 4];
                 break;
             default:
-                console.error('Required Holes Count is not valid. Please select a value from the following : [3, 5, 7, 9]');
+                //##console.error('Required Holes Count is not valid. Please select a value from the following : [3, 5, 7, 9]');
                 break;
         }
 
@@ -206,7 +211,7 @@
     Remediation.prototype.onClickOnCrab = function (crab) {
         this.timeWithoutClick = 0;
         this.triesRemaining--;
-        console.log("tries remaining :" + this.triesRemaining);
+        //##console.log("tries remaining :" + this.triesRemaining);
         crab.apparition.close(true, 1000); // @TODO : ADD CUSTOM TIMER FOR ELAPSED TIME
         this.paused = true;
         this.game.world.bringToTop(this.fx);
@@ -231,9 +236,9 @@
         this.currentRound++;
         this.consecutiveSuccess++;
         this.consecutiveMistakes = 0;
-        console.log("new current round :" + (this.currentRound + 1) + " of " + this.totalRounds);
-        console.log("consecutiveSuccess :" + this.consecutiveSuccess);
-        console.log("consecutiveMistakes :" + this.consecutiveMistakes);
+        //##console.log("new current round :" + (this.currentRound + 1) + " of " + this.totalRounds);
+        //##console.log("consecutiveSuccess :" + this.consecutiveSuccess);
+        //##console.log("consecutiveMistakes :" + this.consecutiveMistakes);
 
         if (this.triesRemaining > 0) {
             if (this.consecutiveSuccess % 2 === 0) {
@@ -257,7 +262,7 @@
         var params = this.game.params.getGeneralParams();
 
         this.lives--;
-        console.log("Lives remaining : " + this.lives);
+        //##console.log("Lives remaining : " + this.lives);
         this.consecutiveMistakes++;
         this.consecutiveSuccess = 0;
 
@@ -344,6 +349,8 @@
         var disabledCrabs = this.getDisabledCrabs();
         randomCrab = disabledCrabs[Math.floor(Math.random() * this.getDisabledCrabs().length)];
         randomCrab.enabled = true;
+
+        if (this.game.discipline == "maths" && value.alternativePicture && ((parseInt(value.text, 10) > 6) || (parseInt(value.text, 10) === 0))) value.alternativePicture = false;
         randomCrab.setValue(value.text, value.value, value.alternativePicture);
         randomCrab.isCorrectResponse = isTargetValue;
         if (this.highlightNextSpawn && isTargetValue) {
@@ -461,7 +468,7 @@
     // DEBUG
 
     Remediation.prototype.setupDebugPanel = function setupDebugPanel() {
-        console.log("Crabs Setupping debug Panel");
+        //##console.log("Crabs Setupping debug Panel");
         if (this.game.debugPanel) {
             this.debugPanel = this.game.debugPanel;
             this.rafikiDebugPanel = true;

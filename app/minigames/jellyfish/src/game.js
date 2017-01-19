@@ -48,7 +48,7 @@
     
     Game.prototype = {
         preload : function preloadGame () {
-            console.info("[Game State] Preloading new game");
+            //##console.info("[Game State] Preloading new game");
             
             var data = this.game.pedagogicData.data;
             var roundsCount = data.rounds.length;
@@ -82,7 +82,7 @@
          * - remediation
          **/
         create: function () {
-            console.info("[Game State] Creating new game");
+            //##console.info("[Game State] Creating new game");
             if (this.game.gameConfig.globalVars) {
                 window.jellyfishes = {};
                 window.jellyfishes.game = this.game;
@@ -113,7 +113,7 @@
          * @private
          **/
         render: function () {
-            this.game.debug.text(this.game.time.fps, 2, 14, "#00ff00");
+            if (this.game.gameConfig.debugPanel) this.game.debug.text(this.game.time.fps, 2, 14, "#00ff00");
         }
     };
     

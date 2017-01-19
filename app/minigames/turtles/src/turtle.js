@@ -54,9 +54,22 @@
         this.turtleSprite.animations.add('victory', Phaser.Animation.generateFrameNames('Tortue_victory_', 0, 5, '', 4), 8, false, false);
         this.turtleSprite.animations.add('hit', Phaser.Animation.generateFrameNames('Tortue_plonge_', 0, 5, '', 4), 8, false, false);
         this.turtleSprite.animations.add('emerge', Phaser.Animation.generateFrameNames('Tortue_plonge_', 5, 0, '', 4), 8, false, false);
+		
+		this.events = this.turtleSprite.events;
+		
+		this.events.onInputDown.add(function () {
+			// if (!this.sounds.isPlaying)
+				this.sound.play();
+        }, this);
+		
+		this.highlight = game.add.sprite(0.5, 0.5, 'fx', 'FX_02');
+        this.highlight.anchor.setTo(0.5, 0.5);
+        this.highlight.scale.x = 0.7;
+        this.highlight.scale.y = 0.7;
+        this.highlight.visible = false;
+        this.add(this.highlight);
 
-
-        this.add(this.turtleSprite)
+        this.add(this.turtleSprite);
 
         game.physics.enable(this.turtleSprite, Phaser.Physics.ARCADE);
         this.turtleSprite.body.setSize(this.turtleSprite.height / 2, this.turtleSprite.width / 2, this.turtleSprite.height / 4, this.turtleSprite.width / 4);
@@ -82,6 +95,7 @@
 
         this.initEvents();
         this.initSounds(game);
+		
     };
 
     Turtle.prototype = Object.create(Phaser.Group.prototype);
@@ -92,7 +106,7 @@
      * @private
      **/
     Turtle.prototype.initSounds = function (game) {
-        //    this.sounds = {};
+           this.sounds = {};
         //    this.sounds.rdm = [];
 
         //    for (var i = 0; i < 3; i++) {
@@ -119,7 +133,7 @@
         this.x = xOffset * Math.cos(toRadians(angle)) + this.gameRef.width / 2;
         this.y = -yOffset * Math.sin(toRadians(angle)) + this.gameRef.height / 2;
 
-        this.updateAngle(angle);
+        this.updateAngle(angle+35);
 
         if (text != "") this.sound = this.gameRef.add.audio(text);
         this.turtleSprite.animations.play('emerge');
@@ -211,6 +225,11 @@
      * @private
      **/
     Turtle.prototype.update = function () {
+		
+		 if (this.highlight.visible) {
+            this.highlight.rotation += 0.01;
+        }
+		
         if (!this.paused) {
             if (!this.turning) {
                 if (this.turtleSprite.animations.currentAnim.isFinished || !this.turtleSprite.animations.currentAnim.isPlaying) {

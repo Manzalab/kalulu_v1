@@ -47,7 +47,7 @@
 
     Game.prototype = {
         preload: function preloadGame() {
-            console.info("[Game State] Preloading new game");
+            //##console.info("[Game State] Preloading new game");
 
             // load audiofiles for the current data
 
@@ -84,7 +84,7 @@
          * - remediation
          **/
         create: function () {
-            console.info("[Game State] Creating new game");
+            //##console.info("[Game State] Creating new game");
             if (this.game.gameConfig.globalVars) {
                 window.turtle = {};
                 window.turtle.game = this.game;
@@ -99,7 +99,7 @@
             this.background.height = this.game.height;
 
             this.remediation = new Remediation(this.game);
-            console.log(this.game.params.getGlobalParams())
+            //##console.log(this.game.params.getGlobalParams())
             var centralConch = true, conch = true;
             if (this.game.discipline == 'maths') {
                 centralConch = false;
@@ -122,7 +122,7 @@
          * @private
          **/
         render: function () {
-            this.game.debug.text(this.game.time.fps, 2, 14, "#00ff00");
+            if (this.game.gameConfig.debugPanel) this.game.debug.text(this.game.time.fps, 2, 14, "#00ff00");
         }
     };
 

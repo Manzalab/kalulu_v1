@@ -125,7 +125,7 @@
             var lNum = k + (6 * this._currActivitiesPage);
             // lButton._txt.text = this._lockedActivities[k].replace("_"," ");
             lButton.name = this._lockedActivities[lNum];
-            lButton.locked = !this._unlockedActivities.includes(this._lockedActivities[lNum]);
+            lButton.locked = this._activityType === 'MiniGame' ? true : false ;//!this._unlockedActivities.includes(this._lockedActivities[lNum]);
 
             if (lNum >= this._activitiesCount)
             {

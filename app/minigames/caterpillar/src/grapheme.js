@@ -11,6 +11,13 @@
         this.x = x;
         this.y = y;
 
+        this.highlight = game.add.sprite(0, 0, 'fx', 'FX_02');
+        this.highlight.anchor.setTo(0, 0.5);
+        this.highlight.scale.x = 0.5;
+        this.highlight.scale.y = 0.5;
+        this.highlight.visible = false;
+        this.add(this.highlight);
+
         this.berry = game.add.sprite(0, 0, 'berry', 'Baie_Idle_0000');
         this.berry.y -= this.berry.height / 4;
         this.berry.anchor.setTo(0, 0.5);
@@ -24,6 +31,7 @@
 
         this.add(this.berry);
 
+        this.highlight.y -= this.berry.height / 4;
 
         this.text = game.add.text(this.berry.width / 2, -this.berry.height / 4, "- phaser -\nrocking with\ngoogle web fonts");
         this.text.font = "Arial";

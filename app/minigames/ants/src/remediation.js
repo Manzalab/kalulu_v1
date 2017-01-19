@@ -138,26 +138,27 @@
             this.paused = false;
         }, this);
 
+        this.game.eventManager.on('help', function () {
+            this.timeWithoutClick = 0;
+        }, this);
+
         this.game.eventManager.on('exitGame', function () {
+            if (this.game.gameConfig.debugPanel) this.clearDebugPanel();
+            this.game.rafiki.close();
             this.game.eventManager.removeAllListeners();
             this.game.eventManager = null;
-            this.game.rafiki.close();
             this.game.destroy();
-            if (this.game.gameConfig.debugPanel) {
-                this.clearDebugPanel();
-            }
-        }, this);
-		
-		 this.game.eventManager.on('help', function () {
-            this.timeWithoutClick = 0;
+            //##console.info("Phaser Game has been destroyed");
+            this.game = null;
         }, this);
 
         this.game.eventManager.on('replay', function () {
             if (this.game.gameConfig.debugPanel) {
                 this.clearDebugPanel();
             }
+            
             this.game.eventManager.removeAllListeners();
-            this.game.eventManager = null;
+            this.game.eventManager = undefined;            
             this.game.state.start('Setup');
         }, this);
 
@@ -190,7 +191,7 @@
      * Initialise parameters for the required round with data contained in this.pedagogicData
      **/
     Remediation.prototype.initRound = function initRound(roundIndex) {
-        var roundData = this.game.pedagogicData.data.rounds[roundIndex].steps[0]; console.log(roundData);
+        var roundData = this.game.pedagogicData.data.rounds[roundIndex].steps[0]; //##console.log(roundData);
         var localParams = this.game.params.getLocalParams(); // get the latest localParams (localParams can change anytime during the game following player's inputs)
 
         var yOffset = (this.game.height - 200) / (localParams.sentencesCount + 1);
@@ -537,8 +538,8 @@
             // console.log(this.results.rounds[i].steps[0])
 
             for (var j = 0 ; j < this.results.rounds[i].steps[0].stimuli.length ; j++) {
-                console.log( this.results.rounds[i].steps[0].stimuli[j] )
-
+                //##console.log( this.results.rounds[i].steps[0].stimuli[j]);
+                this.results.rounds[i].steps[0].stimuli[j].apparitions = [];
                
                 if (this.results.rounds[i].steps[0].stimuli[j].correctResponse) {
 
@@ -570,7 +571,7 @@
         for (var i = 0 ; i < this.results.rounds.length ; i++) {
 
             for (var j = 0 ; j < this.results.rounds[i].steps[0].stimuli.length ; j++) {
-
+                this.results.rounds[i].steps[0].stimuli[j].apparitions = [];
                 if (this.results.rounds[i].steps[0].stimuli[j].correctResponse) {
 
                     for (var k = 0 ; k < this.triesRemaining ; k++) {

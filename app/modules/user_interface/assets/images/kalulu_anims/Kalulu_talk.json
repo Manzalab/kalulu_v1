@@ -2,7 +2,7 @@
 
 "Kalulu_Talk1_0000.png":
 {
-	"frame": {"x":1,"y":1,"w":513,"h":677},
+	"frame": {"x":1554,"y":2071,"w":513,"h":677},
 	"rotated": true,
 	"trimmed": true,
 	"spriteSourceSize": {"x":42,"y":335,"w":513,"h":677},
@@ -11,8 +11,8 @@
 },
 "Kalulu_Talk1_0001.png":
 {
-	"frame": {"x":680,"y":1,"w":513,"h":678},
-	"rotated": true,
+	"frame": {"x":3430,"y":2061,"w":513,"h":678},
+	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":42,"y":334,"w":513,"h":678},
 	"sourceSize": {"w":600,"h":1200},
@@ -20,8 +20,8 @@
 },
 "Kalulu_Talk1_0002.png":
 {
-	"frame": {"x":1360,"y":1,"w":513,"h":680},
-	"rotated": true,
+	"frame": {"x":1037,"y":2063,"w":513,"h":680},
+	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":42,"y":332,"w":513,"h":680},
 	"sourceSize": {"w":600,"h":1200},
@@ -29,7 +29,7 @@
 },
 "Kalulu_Talk1_0003.png":
 {
-	"frame": {"x":2042,"y":1,"w":513,"h":683},
+	"frame": {"x":1384,"y":520,"w":513,"h":683},
 	"rotated": true,
 	"trimmed": true,
 	"spriteSourceSize": {"x":42,"y":329,"w":513,"h":683},
@@ -38,8 +38,8 @@
 },
 "Kalulu_Talk1_0004.png":
 {
-	"frame": {"x":2727,"y":1,"w":513,"h":685},
-	"rotated": true,
+	"frame": {"x":3457,"y":3,"w":513,"h":685},
+	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":42,"y":327,"w":513,"h":685},
 	"sourceSize": {"w":600,"h":1200},
@@ -47,7 +47,7 @@
 },
 "Kalulu_Talk1_0005.png":
 {
-	"frame": {"x":1,"y":516,"w":513,"h":687},
+	"frame": {"x":695,"y":3,"w":513,"h":687},
 	"rotated": true,
 	"trimmed": true,
 	"spriteSourceSize": {"x":42,"y":325,"w":513,"h":687},
@@ -56,7 +56,7 @@
 },
 "Kalulu_Talk1_0006.png":
 {
-	"frame": {"x":690,"y":516,"w":513,"h":688},
+	"frame": {"x":3,"y":3486,"w":513,"h":688},
 	"rotated": true,
 	"trimmed": true,
 	"spriteSourceSize": {"x":42,"y":324,"w":513,"h":688},
@@ -65,7 +65,7 @@
 },
 "Kalulu_Talk1_0007.png":
 {
-	"frame": {"x":1380,"y":516,"w":513,"h":687},
+	"frame": {"x":1386,"y":3,"w":513,"h":687},
 	"rotated": true,
 	"trimmed": true,
 	"spriteSourceSize": {"x":42,"y":325,"w":513,"h":687},
@@ -74,7 +74,7 @@
 },
 "Kalulu_Talk1_0008.png":
 {
-	"frame": {"x":2069,"y":516,"w":513,"h":685},
+	"frame": {"x":695,"y":520,"w":513,"h":685},
 	"rotated": true,
 	"trimmed": true,
 	"spriteSourceSize": {"x":42,"y":327,"w":513,"h":685},
@@ -83,7 +83,7 @@
 },
 "Kalulu_Talk1_0009.png":
 {
-	"frame": {"x":2756,"y":516,"w":513,"h":683},
+	"frame": {"x":2071,"y":520,"w":513,"h":683},
 	"rotated": true,
 	"trimmed": true,
 	"spriteSourceSize": {"x":42,"y":329,"w":513,"h":683},
@@ -92,8 +92,8 @@
 },
 "Kalulu_Talk1_0010.png":
 {
-	"frame": {"x":1,"y":1031,"w":513,"h":680},
-	"rotated": true,
+	"frame": {"x":1037,"y":2747,"w":513,"h":680},
+	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":42,"y":332,"w":513,"h":680},
 	"sourceSize": {"w":600,"h":1200},
@@ -101,8 +101,8 @@
 },
 "Kalulu_Talk1_0011.png":
 {
-	"frame": {"x":3414,"y":1,"w":513,"h":678},
-	"rotated": true,
+	"frame": {"x":1554,"y":2743,"w":513,"h":678},
+	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":42,"y":334,"w":513,"h":678},
 	"sourceSize": {"w":600,"h":1200},
@@ -110,8 +110,8 @@
 },
 "Kalulu_Talk2_0000.png":
 {
-	"frame": {"x":3441,"y":516,"w":513,"h":677},
-	"rotated": false,
+	"frame": {"x":2064,"y":3425,"w":513,"h":677},
+	"rotated": true,
 	"trimmed": true,
 	"spriteSourceSize": {"x":42,"y":335,"w":513,"h":677},
 	"sourceSize": {"w":600,"h":1200},
@@ -119,7 +119,7 @@
 },
 "Kalulu_Talk2_0001.png":
 {
-	"frame": {"x":683,"y":1031,"w":513,"h":679},
+	"frame": {"x":2748,"y":1037,"w":513,"h":679},
 	"rotated": true,
 	"trimmed": true,
 	"spriteSourceSize": {"x":42,"y":333,"w":513,"h":679},
@@ -128,7 +128,7 @@
 },
 "Kalulu_Talk2_0002.png":
 {
-	"frame": {"x":1364,"y":1031,"w":513,"h":682},
+	"frame": {"x":2758,"y":520,"w":513,"h":682},
 	"rotated": true,
 	"trimmed": true,
 	"spriteSourceSize": {"x":42,"y":330,"w":513,"h":682},
@@ -137,7 +137,7 @@
 },
 "Kalulu_Talk2_0003.png":
 {
-	"frame": {"x":2048,"y":1031,"w":513,"h":686},
+	"frame": {"x":2077,"y":3,"w":513,"h":686},
 	"rotated": true,
 	"trimmed": true,
 	"spriteSourceSize": {"x":42,"y":326,"w":513,"h":686},
@@ -146,8 +146,8 @@
 },
 "Kalulu_Talk2_0004.png":
 {
-	"frame": {"x":2736,"y":1031,"w":513,"h":690},
-	"rotated": true,
+	"frame": {"x":3,"y":2098,"w":513,"h":690},
+	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":42,"y":322,"w":513,"h":690},
 	"sourceSize": {"w":600,"h":1200},
@@ -155,8 +155,8 @@
 },
 "Kalulu_Talk2_0005.png":
 {
-	"frame": {"x":1,"y":1546,"w":513,"h":694},
-	"rotated": true,
+	"frame": {"x":3,"y":702,"w":513,"h":694},
+	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":42,"y":318,"w":513,"h":694},
 	"sourceSize": {"w":600,"h":1200},
@@ -164,8 +164,8 @@
 },
 "Kalulu_Talk2_0006.png":
 {
-	"frame": {"x":697,"y":1546,"w":513,"h":695},
-	"rotated": true,
+	"frame": {"x":3,"y":3,"w":513,"h":695},
+	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":42,"y":317,"w":513,"h":695},
 	"sourceSize": {"w":600,"h":1200},
@@ -173,8 +173,8 @@
 },
 "Kalulu_Talk2_0007.png":
 {
-	"frame": {"x":1394,"y":1546,"w":513,"h":694},
-	"rotated": true,
+	"frame": {"x":3,"y":1400,"w":513,"h":694},
+	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":42,"y":318,"w":513,"h":694},
 	"sourceSize": {"w":600,"h":1200},
@@ -182,8 +182,8 @@
 },
 "Kalulu_Talk2_0008.png":
 {
-	"frame": {"x":2090,"y":1546,"w":513,"h":690},
-	"rotated": true,
+	"frame": {"x":3,"y":2792,"w":513,"h":690},
+	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":42,"y":322,"w":513,"h":690},
 	"sourceSize": {"w":600,"h":1200},
@@ -191,7 +191,7 @@
 },
 "Kalulu_Talk2_0009.png":
 {
-	"frame": {"x":3297,"y":1874,"w":513,"h":686},
+	"frame": {"x":2767,"y":3,"w":513,"h":686},
 	"rotated": true,
 	"trimmed": true,
 	"spriteSourceSize": {"x":42,"y":326,"w":513,"h":686},
@@ -200,8 +200,8 @@
 },
 "Kalulu_Talk2_0010.png":
 {
-	"frame": {"x":1,"y":2061,"w":513,"h":682},
-	"rotated": true,
+	"frame": {"x":3444,"y":692,"w":513,"h":682},
+	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":42,"y":330,"w":513,"h":682},
 	"sourceSize": {"w":600,"h":1200},
@@ -209,8 +209,8 @@
 },
 "Kalulu_Talk2_0011.png":
 {
-	"frame": {"x":685,"y":2061,"w":513,"h":679},
-	"rotated": true,
+	"frame": {"x":3431,"y":1378,"w":513,"h":679},
+	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":42,"y":333,"w":513,"h":679},
 	"sourceSize": {"w":600,"h":1200},
@@ -218,7 +218,7 @@
 },
 "Kalulu_Talk3_0000.png":
 {
-	"frame": {"x":3428,"y":1195,"w":513,"h":677},
+	"frame": {"x":2071,"y":2743,"w":513,"h":677},
 	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":42,"y":335,"w":513,"h":677},
@@ -227,7 +227,7 @@
 },
 "Kalulu_Talk3_0001.png":
 {
-	"frame": {"x":2782,"y":1546,"w":513,"h":677},
+	"frame": {"x":2588,"y":2743,"w":513,"h":677},
 	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":42,"y":335,"w":513,"h":677},
@@ -236,7 +236,7 @@
 },
 "Kalulu_Talk3_0002.png":
 {
-	"frame": {"x":1366,"y":2061,"w":513,"h":679},
+	"frame": {"x":2064,"y":1554,"w":513,"h":679},
 	"rotated": true,
 	"trimmed": true,
 	"spriteSourceSize": {"x":42,"y":333,"w":513,"h":679},
@@ -245,7 +245,7 @@
 },
 "Kalulu_Talk3_0003.png":
 {
-	"frame": {"x":2047,"y":2061,"w":513,"h":680},
+	"frame": {"x":1380,"y":3431,"w":513,"h":680},
 	"rotated": true,
 	"trimmed": true,
 	"spriteSourceSize": {"x":42,"y":332,"w":513,"h":680},
@@ -254,7 +254,7 @@
 },
 "Kalulu_Talk3_0004.png":
 {
-	"frame": {"x":2729,"y":2389,"w":513,"h":681},
+	"frame": {"x":695,"y":3436,"w":513,"h":681},
 	"rotated": true,
 	"trimmed": true,
 	"spriteSourceSize": {"x":42,"y":331,"w":513,"h":681},
@@ -263,8 +263,8 @@
 },
 "Kalulu_Talk3_0005.png":
 {
-	"frame": {"x":1,"y":2576,"w":513,"h":682},
-	"rotated": true,
+	"frame": {"x":520,"y":1378,"w":513,"h":682},
+	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":42,"y":330,"w":513,"h":682},
 	"sourceSize": {"w":600,"h":1200},
@@ -272,8 +272,8 @@
 },
 "Kalulu_Talk3_0006.png":
 {
-	"frame": {"x":685,"y":2576,"w":513,"h":682},
-	"rotated": true,
+	"frame": {"x":520,"y":2064,"w":513,"h":682},
+	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":42,"y":330,"w":513,"h":682},
 	"sourceSize": {"w":600,"h":1200},
@@ -281,8 +281,8 @@
 },
 "Kalulu_Talk3_0007.png":
 {
-	"frame": {"x":1369,"y":2576,"w":513,"h":682},
-	"rotated": true,
+	"frame": {"x":520,"y":2750,"w":513,"h":682},
+	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":42,"y":330,"w":513,"h":682},
 	"sourceSize": {"w":600,"h":1200},
@@ -290,8 +290,8 @@
 },
 "Kalulu_Talk3_0008.png":
 {
-	"frame": {"x":2568,"y":2904,"w":513,"h":681},
-	"rotated": true,
+	"frame": {"x":1037,"y":1378,"w":513,"h":681},
+	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":42,"y":331,"w":513,"h":681},
 	"sourceSize": {"w":600,"h":1200},
@@ -299,7 +299,7 @@
 },
 "Kalulu_Talk3_0009.png":
 {
-	"frame": {"x":3412,"y":2389,"w":513,"h":680},
+	"frame": {"x":2064,"y":1037,"w":513,"h":680},
 	"rotated": true,
 	"trimmed": true,
 	"spriteSourceSize": {"x":42,"y":332,"w":513,"h":680},
@@ -308,7 +308,7 @@
 },
 "Kalulu_Talk3_0010.png":
 {
-	"frame": {"x":3251,"y":2904,"w":513,"h":679},
+	"frame": {"x":2747,"y":1554,"w":513,"h":679},
 	"rotated": true,
 	"trimmed": true,
 	"spriteSourceSize": {"x":42,"y":333,"w":513,"h":679},
@@ -317,8 +317,8 @@
 },
 "Kalulu_Talk3_0011.png":
 {
-	"frame": {"x":2053,"y":2576,"w":513,"h":677},
-	"rotated": false,
+	"frame": {"x":2235,"y":2071,"w":513,"h":677},
+	"rotated": true,
 	"trimmed": true,
 	"spriteSourceSize": {"x":42,"y":335,"w":513,"h":677},
 	"sourceSize": {"w":600,"h":1200},
@@ -329,8 +329,8 @@
 	"version": "1.0",
 	"image": "Kalulu_talk.png",
 	"format": "RGBA8888",
-	"size": {"w":4093,"h":3418},
+	"size": {"w":4096,"h":4096},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:9dc5b422511c305cac97fb42eb03a36c:168da333dca66d232d683195a3a662ca:53f23985204113c925b1172a54ba4fc7$"
+	"smartupdate": "$TexturePacker:SmartUpdate:0249f21d618821a5cf46c6e7f4bcf9c3:1d603395fc0552c67f6bcd5e7965dbec:53f23985204113c925b1172a54ba4fc7$"
 }
 }

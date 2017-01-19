@@ -15,7 +15,7 @@
 	**/
     function Buoy(side, category, game) {
         Phaser.Group.call(this, game);
-
+        //##console.log(this.game.cache);
         this.game = game;
                 this.y = game.height / 2.5;
 
@@ -33,12 +33,26 @@
             this.buoy.anchor.setTo(0.5, 0.5);
             this.buoy.animations.add('idle', Phaser.Animation.generateFrameNames('Balise_verte_idle_', 0, 5, '', 4), 6, true, true);
         }
+        this.buoy.scale.x = 2;
+        this.buoy.scale.y = 2;
+
 
         this.buoy.animations.play('idle');
         this.add(this.buoy)
 
+        this.buoy.inputEnabled = true;
+        this.events = this.buoy.events;
+
+        this.events.onInputDown.add(function () {
+            //##console.log('?')
+            if (this.clickable && !this.paused) {
+                this.clickable = false;
+                this.game.eventManager.emit('click', this);
+            }
+        }, this);
+
         if (category == "maths") {
-            this.text = game.add.text(0, -this.buoy.height/2, "- phaser -\nrocking with\ngoogle web fonts");
+            this.text = game.add.text(0, -this.buoy.height/2 - 30, "- phaser -\nrocking with\ngoogle web fonts");
             this.text.font = "Arial";
             this.text.text = "";
             this.text.fill = "black";
@@ -62,12 +76,17 @@
     Buoy.prototype.initEvents = function () {
         this.game.eventManager.on('pause', function () {
             this.paused = true;
+            this.clickable = false;
         }, this);
 
         this.game.eventManager.on('unPause', function () {
             this.paused = false;
+            this.clickable = true;
         }, this);
 
+        this.game.eventManager.on('swipe', function () {
+            this.clickable = false;
+        }, this);
     }
 
     /**

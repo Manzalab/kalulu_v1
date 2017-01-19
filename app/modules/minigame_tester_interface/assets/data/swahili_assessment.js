@@ -1,7 +1,7 @@
 module.exports = {
     "discipline": "language",
+    "categories": ['notWord', 'word'],
     "data": {
-        "categories": ['notWord', 'word'],
         "rounds": [{
             "steps":[
                 {

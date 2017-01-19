@@ -119,12 +119,12 @@
     
     MinigameParameters.prototype.increaseLocalDifficulty = function increaseLocalDifficulty () {
         if (++this._currentLocalRemediationStage > 5) this._currentLocalRemediationStage = 5;
-        console.info("Current Local Remediation Stage : " + this._currentLocalRemediationStage + " of global level " + this._currentGlobalLevel);
+        //##console.info("Current Local Remediation Stage : " + this._currentLocalRemediationStage + " of global level " + this._currentGlobalLevel);
     };
 
     MinigameParameters.prototype.decreaseLocalDifficulty = function decreaseLocalDifficulty () {
         if (--this._currentLocalRemediationStage < 1) this._currentLocalRemediationStage = 1;
-        console.info("Current Local Remediation Stage : " + this._currentLocalRemediationStage + " of global level " + this._currentGlobalLevel);
+        //##console.info("Current Local Remediation Stage : " + this._currentLocalRemediationStage + " of global level " + this._currentGlobalLevel);
     };    
 
     MinigameParameters.prototype.initLocalRemediationStage = function initLocalRemediationStage () {

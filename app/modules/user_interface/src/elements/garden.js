@@ -361,7 +361,13 @@ define([
     };
     
     Garden.prototype._onClickOnLessonDot = function _onClickOnLessonDot (pEventData) {
-        this.parent.parent._interfaceManager.requestLessonScreen(pEventData.target.data);
+        var lesson = pEventData.target.data;
+        if (!lesson.children[0].isCompleted) {
+            this.parent.parent._interfaceManager.requestMinigame(lesson.children[0]);
+        }
+        else {
+            this.parent.parent._interfaceManager.requestLessonScreen(lesson);
+        }
     };
 
     Garden.prototype._onClickOnAssessmentDot = function _onClickOnAssessmentDot (pEventData) {

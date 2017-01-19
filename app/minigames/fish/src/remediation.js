@@ -22,6 +22,7 @@
 	 * @param game {Phaser.Game} game instance
 	**/
     function Remediation(game) {
+
         Phaser.Group.call(this, game);
 
         this.game = game;
@@ -31,23 +32,7 @@
          * @type {int}
          * @private
          **/
-        this.paused = false;
-
-
-
-
-        /**
-         * GAME DESIGN & DEBUG TOOL
-         * @private
-        **/
-        //if (this.game.kaluluInterface.debug) {
-
-        //    this.debug = new Dat.GUI();
-        //    var debugPanel = this.debug.addFolder("Debug");
-
-        //    debugPanel.add(this, "WinGameAndSave");
-        //    debugPanel.add(this, "LoseGame");
-        //}       
+        this.paused = false; 
 
 
 
@@ -55,50 +40,21 @@
 
         this.initGame();
         this.initBuoys();
+
         if (this.game.discipline != "maths") this.fish = new Fish(game, true);
         else this.fish = new Fish(game, false);
+        
         this.initRound();
         this.initEvents();
+        
         this.fx = new Fx(game);
         this.newStep();
     }
 
     Remediation.prototype = Object.create(Phaser.Group.prototype);
     Remediation.prototype.constructor = Remediation;
+    
 
-    /**
-     * Init a new game with remediation parameters from Rafiki.
-    **/
-    Remediation.prototype.initGame = function initGame() {
-
-        var params = this.game.params;
-
-        // Setting up the recording of the game for Rafiki
-        this.game.record = new this.game.rafiki.MinigameDstRecord();
-
-        this.results = this.game.pedagogicData.data; // for convenience we reference also the pedagogicData object under the name 'results' because we will add response data directly on it.
-        this.tutorial1 = true;
-        this.tutorial2 = true;
-        this.roundIndex = 0;
-        this.stepIndex = 0;
-        this.score = 0;
-        this.consecutiveMistakes = 0;
-        this.won = false;
-        this.timerFinished = false;
-
-        this.triesRemaining = params.getGlobalParams().totalTriesCount;
-
-        this.background = new Background(params.getGlobalParams().gameTimer, this.game);
-
-        this.categories = this.game.pedagogicData.data.categories;
-
-        this.stimuli = this.game.pedagogicData.data.stimuli;
-    };
-
-    /**
-     * Initialize game sounds
-     * @private
-     **/
     Remediation.prototype.initSounds = function (game) {
         this.sounds = {};
 
@@ -108,15 +64,67 @@
         this.sounds.loseGame = game.add.audio('loseGame');
     };
 
-    /** 
-     * Initalize game events
-     **/
+    Remediation.prototype.initGame = function initGame() {
+
+        var params = this.game.params;
+
+        // Setting up the recording of the game for Rafiki
+        this.game.record = new this.game.rafiki.MinigameDstRecord();
+
+        this.results = this.game.pedagogicData.data; // for convenience we reference also the pedagogicData object under the name 'results' because we will add response data directly on it.
+        
+        if (!this.game.rafiki.latestRecord) {
+            //##console.log("Fish Tuto Enabled");
+            this.tutorial1 = true;
+            this.tutorial2 = true;
+        }
+
+        this.roundIndex = 0;
+        this.stepIndex = 0;
+        this.score = 0;
+        this.consecutiveMistakes = 0;
+        this.won = false;
+        this.timerFinished = false;
+
+        this.triesRemaining = this.game.pedagogicData.data.rounds[0].steps.length;
+
+        this.background = new Background(params.getGlobalParams().gameTimer, this.game);
+
+        this.categories = this.game.pedagogicData.categories;
+    };
+
+
+    Remediation.prototype.initBuoys = function () {
+
+        this.buoys = {};
+        if (this.game.discipline != "maths") {
+            this.buoys.left = new Buoy(true, this.categories[1], this.game);
+            this.buoys.right = new Buoy(false, this.categories[0], this.game);
+        }
+        else {
+            this.buoys.left = new Buoy(true, "maths", this.game);
+            this.buoys.right = new Buoy(false, "maths", this.game);
+        }
+    };
+
+    Remediation.prototype.initRound = function () {
+        var roundData = this.game.pedagogicData.data.rounds[this.roundIndex];
+        this.stimuli = [];
+
+        var stepCount = roundData.steps.length;
+        for (var i = 0; i < stepCount ; i++) {
+            var stimuli = roundData.steps[i].stimuli;
+            this.stimuli.push(stimuli);
+        }
+    };
+
+
     Remediation.prototype.initEvents = function () {
         var globalParams = this.game.params.getGlobalParams();
 
         this.game.eventManager.on('timerFinished', function () {
             this.timerFinished = true;
-            if (this.score >= globalParams.minimumSortedWords && this.score / (globalParams.totalTriesCount - this.triesRemaining) >= globalParams.minimumWinRatio) {
+            if (this.score >= globalParams.minimumSortedWords && this.score / (this.game.pedagogicData.data.rounds[0].steps.length - this.triesRemaining) >= globalParams.minimumWinRatio) {
                 this.gameOverWin();
             }
             else {
@@ -138,9 +146,27 @@
             }
         }, this);
 
+        this.game.eventManager.on('click', function (buoy) {
+            this.fish.clickable = false;
+            this.game.eventManager.emit('pause');
+            if (this.background.enabled) this.background.addTime(this.fish.time);
+            if (buoy == this.buoys.left) {
+                this.fish.flyTo(this.buoys.left.x, this.buoys.left.y);
+
+                this.direction = "left";
+            }
+            else {
+                this.fish.flyTo(this.buoys.right.x, this.buoys.right.y);
+                this.direction = "right";
+            }
+        }, this);
+
         this.game.eventManager.on('finishedFlying', function () {
             if (this.game.discipline != "maths") {
-                if(!this.tutorial1 && !this.tutorial2) this.stimuli[this.stepIndex][0].apparitions[this.stimuli[this.stepIndex][0].apparitions.length - 1].close(true, 0);
+                if(!this.tutorial1 && !this.tutorial2) {
+                    var apparitions = this.stimuli[this.stepIndex][0].apparitions;
+                    apparitions[apparitions.length - 1].close(true, 0);
+                }
 
                 if (this.direction == "right") {
                     if (!this.tutorial1 && !this.tutorial2) this.stimuli[this.stepIndex][0].apparitions[this.stimuli[this.stepIndex][0].apparitions.length - 1].clickedCategory = this.buoys.right.category;
@@ -150,7 +176,6 @@
                     else {
                         this.fail();
                     }
-
                 }
                 else {
                     if (!this.tutorial1 && !this.tutorial2) this.stimuli[this.stepIndex][0].apparitions[this.stimuli[this.stepIndex][0].apparitions.length - 1].clickedCategory = this.buoys.left.category;
@@ -164,9 +189,9 @@
                 }
             }
             else {
-                console.log(this.buoys.right.stimuli.apparitions)
+                //##console.log(this.buoys.right.stimuli.apparitions);
                 if (this.direction == "right") {
-                    console.log(this)
+                    // console.log(this);
                     if (!this.tutorial1 && !this.tutorial2) {
                         this.buoys.right.stimuli.apparitions[this.buoys.right.stimuli.apparitions.length - 1].close(true, 0);
                         this.buoys.left.stimuli.apparitions[this.buoys.left.stimuli.apparitions.length - 1].close(false, 0);
@@ -180,7 +205,7 @@
 
                 }
                 else {
-                    console.log(this)
+                    //##console.log(this);
                     if (!this.tutorial1 && !this.tutorial2) {
                         this.buoys.left.stimuli.apparitions[this.buoys.left.stimuli.apparitions.length - 1].close(true, 0);
                         this.buoys.right.stimuli.apparitions[this.buoys.right.stimuli.apparitions.length - 1].close(false, 0);
@@ -217,50 +242,25 @@
             this.game.eventManager = null;
             this.game.rafiki.close();
             this.game.destroy();
-            if (this.game.gameConfig.debugPanel) {
-                this.clearDebugPanel();
-            }
         }, this);
     };
 
-    /**
-    **/
-    Remediation.prototype.initBuoys = function () {
 
-        this.buoys = {};
-        if (this.game.discipline != "maths") {
-            this.buoys.left = new Buoy(true, this.categories[0], this.game);
-            this.buoys.right = new Buoy(false, this.categories[1], this.game);
-        }
-        else {
-            this.buoys.left = new Buoy(true, "maths", this.game);
-            this.buoys.right = new Buoy(false, "maths", this.game);
-        }
-    };
-
-    Remediation.prototype.initRound = function () {
-        var roundData = this.game.pedagogicData.data.rounds[this.roundIndex];
-        this.stimuli = [];
-
-        var stepCount = roundData.steps.length;
-        for (var i = 0; i < stepCount ; i++) {
-            var stimuli = roundData.steps[i].stimuli;
-            this.stimuli.push(stimuli);
-        }
-
-    }
-
-    /**
-    **/
     Remediation.prototype.newStep = function () {
-        this.stepIndex = Math.floor(Math.random() * (this.stimuli.length));
+        // console.log("### NEW STEP");
+        if (!this.tutorial1 && !this.tutorial2) {
+            // console.log("new step out of tuto");
+            // console.log(this.stimuli);
+            this.stepIndex = Math.floor(Math.random() * (this.stimuli.length));
 
-        if (!this.tutorial1 && !this.tutorial2)
             for (var i = 0 ; i < this.stimuli[this.stepIndex].length; i++) {
                 var apparition = new this.game.rafiki.StimulusApparition(this.stimuli[this.stepIndex][i].correctResponse);
                 this.stimuli[this.stepIndex][i].apparitions = [];
                 this.stimuli[this.stepIndex][i].apparitions.push(apparition);
             }
+        }
+        else if (this.tutorial1 && this.tutorial2) this.stepIndex = 0;
+        else this.stepIndex = 1;
 
         if (this.game.discipline != "maths") this.fish.reset(this.stimuli[this.stepIndex][0].value);
         else {
@@ -296,22 +296,24 @@
                 
                 if (this.tutorial1) {
                     this.tutorial1 = false;
+                    // console.log("Tuto 1 went to false after success");
                     this.game.eventManager.emit('firstTryWin');
                 }
                 else if (this.tutorial2) {
                     this.tutorial2 = false;
+                    // console.log("Tuto 2 went to false after success");
                     this.game.eventManager.emit('secondTryWin');
                 }
                 else if (!this.timerFinished)
                     this.game.eventManager.emit('unPause');
-
+                // console.log("About to Call New Step after success");
                 this.newStep();
             }, this);
 
         }
         else {
             var globalParams = this.game.params.getGlobalParams();
-            if (this.score / (globalParams.totalTriesCount - this.triesRemaining) >= globalParams.minimumWinRatio) {
+            if (this.score / (this.game.pedagogicData.data.rounds[0].steps.length - this.triesRemaining) >= globalParams.minimumWinRatio) {
                 this.gameOverWin();
             }
             else {
@@ -339,22 +341,26 @@
             }
             this.sounds.wrong.play();
             this.sounds.wrong.onStop.add(function () {
-                this.newStep();
+                
                 this.sounds.wrong.onStop.removeAll();
                 if (this.tutorial1) {
+                    // console.log("Tuto 1 went to false after fail");
                     this.tutorial1 = false;
                     this.game.eventManager.emit('firstTryLoose');
                 }
                 else if (this.tutorial2) {
+                    // console.log("Tuto 2 went to false after fail");
                     this.tutorial2 = false;
                     this.game.eventManager.emit('secondTryLoose');
                 }
                 else if(!this.timerFinished)
                     this.game.eventManager.emit('unPause');
+                this.newStep();
             }, this);
         }
         else {
-            if (this.score / (globalParams.totalTriesCount - this.triesRemaining) >= globalParams.minimumWinRatio) {
+            var globalParams = this.game.params.getGlobalParams();
+            if (this.score / (this.game.pedagogicData.data.rounds[0].steps.length - this.triesRemaining) >= globalParams.minimumWinRatio) {
                 this.gameOverWin();
             }
             else {
@@ -403,6 +409,14 @@
         }, this);
     };
 
+    Remediation.prototype.saveGameRecord = function saveGameRecord() {
+        this.game.record.close(this.game.won, this.results, this.game.params.localRemediationStage);
+        this.game.rafiki.save(this.game.record);
+    };
+
+
+
+
     /**
     * Debug function to force perfect win data and exit the game
     * @private
@@ -425,10 +439,6 @@
         this.game.eventManager.emit("exitGame");
     };
 
-    Remediation.prototype.saveGameRecord = function saveGameRecord() {
-        this.game.record.close(this.game.won, this.results, this.game.params.localRemediationStage);
-        this.game.rafiki.save(this.game.record);
-    };
 
     /**
     * Debug function to force loseGame and pop up the loose UI
@@ -440,5 +450,6 @@
 
         this.game.eventManager.emit("endGameLoose");
     };
+
     return Remediation;
 });

@@ -33,6 +33,7 @@
         this.jellyfishesSpawned = 0;
         this.targetJellyfishesSpawned = 0;
         this.distracterJellyfishesSpawned = 0;
+        this.highlightNextSpawn = false;
         
         this.paused = false;
         this.won = false;
@@ -132,7 +133,7 @@
             this.game.eventManager.removeAllListeners();
             this.game.eventManager = null;
             this.game.destroy();
-            console.info("Phaser Game has been destroyed");
+            //##console.info("Phaser Game has been destroyed");
             this.game = null;
         }, this);
 
@@ -264,7 +265,15 @@
                 if (this.game.gameConfig.debugPanel) this.setLocalPanel();
             }
             else if (this.consecutiveMistakes === params.incorrectResponseCountTriggeringSecondRemediation) {
-                
+                this.highlightNextSpawn = true;
+                for (var i = 0; i < this.jellyfishes.length; i++) {
+                    if (this.jellyfishes[i].apparition.isCorrect) {
+                        this.jellyfishes[i].highlight.visible = true;
+                        this.highlightNextSpawn = false;
+                    }
+                }
+
+
                 this.game.eventManager.emit('help'); // listened by Kalulu to start the help speech; pauses the game in kalulu
                 if (this.game.gameConfig.debugPanel) this.cleanLocalPanel();
                 this.game.params.decreaseLocalDifficulty();
@@ -311,7 +320,7 @@
         // console.log(str);
         // console.info("frames before new " + this.framesToWaitBeforeNextSpawn);
         if (jellyfishesCountToAdd === 0) {
-            console.log("engough jellies on screen");
+            //##console.log("engough jellies on screen");
             return;
         }
         else if (jellyfishesCountToAdd > 0 && this.framesToWaitBeforeNextSpawn <= 0) {
@@ -357,13 +366,19 @@
 
         columnNumber = Math.floor(Math.random() * globalParams.columnCount) + 1;
 
-        if (this.game.discipline == "maths" && this.roundType == "audioToNonSymbolic") value.picture = true;
-        else value.picture = false;
+        if (this.game.discipline == "maths" && this.roundType == "audioToNonSymbolic" &&  ((parseInt(value.text, 10) <= 6) && (parseInt(value.text, 10) !== 0))) {
+            value.picture = true;
+        }
+        else {
+            value.picture = false;
+        }
+        
         lJellyfish = new Jellyfish(columnNumber * this.game.width / (globalParams.columnCount + 1), this.game, value, localParams.speed);
         this.jellyfishes.push(lJellyfish);
 
+        if (this.highlightNextSpawn && isTargetValue) lJellyfish.highlight.visible = true;
+
         j = 0;
-        console.log(this.results);
         while (this.results.data.rounds[0].steps[0].stimuli[j].value != value.text) { //finds the value in the results to add one apparition
             j++;
         }

@@ -2,12 +2,14 @@
     './line',
     './caterpillar',
     'common/src/fx',
-    'dat.gui'
+    'dat.gui',
+    'common/src/popup'
 ], function (
     Line,
     Caterpillar,
     Fx,
-    Dat
+    Dat,
+    Popup
 ) {
     'use strict';
 
@@ -15,9 +17,9 @@
 
         Phaser.Group.call(this, game);
 
-        
+
         var data = this.game.pedagogicData;
-        this.discipline = data.discipline;       
+        this.discipline = data.discipline;
 
         this.game = game;
         this.paused = true;
@@ -33,6 +35,10 @@
         this.distracterBerriesSpawned = 0;
         this.roundIndex = 0;
         this.stepIndex = 0;
+        this.correctStepResponseApparitionsCount = 0;
+        this.highlightNextSpawn = false;
+
+        this.popup = new Popup(game);
 
         this.initGame();
 
@@ -107,21 +113,22 @@
         }, this);
 
         this.game.eventManager.on('exitGame', function () {
+            if (this.game.gameConfig.debugPanel) this.clearDebugPanel();
+            this.game.rafiki.close();
             this.game.eventManager.removeAllListeners();
             this.game.eventManager = null;
-            this.game.rafiki.close();
             this.game.destroy();
-            if (this.game.gameConfig.debugPanel) {
-                this.clearDebugPanel();
-            }
+            //##console.info("Phaser Game has been destroyed");
+            this.game = null;
         }, this);
 
         this.game.eventManager.on('replay', function () {
             if (this.game.gameConfig.debugPanel) {
                 this.clearDebugPanel();
             }
+            
             this.game.eventManager.removeAllListeners();
-            this.game.eventManager = null;
+            this.game.eventManager = undefined;            
             this.game.state.start('Setup');
         }, this);
     };
@@ -136,7 +143,7 @@
         // Setting up the recording of the game for Rafiki
         this.game.record = new this.game.rafiki.MinigameDstRecord();
 
-        this.results = this.game.pedagogicData.data; // for convenience we reference also the pedagogicData object under the name 'results' because we will add response data directly on it.
+        this.results = this.game.pedagogicData; // for convenience we reference also the pedagogicData object under the name 'results' because we will add response data directly on it.
         this.consecutiveMistakes = 0;
         this.consecutiveSuccess = 0;
         this.triesRemaining = params.getGlobalParams().roundsCount;
@@ -162,6 +169,11 @@
         if (this.discipline != "maths") {
             this.correctWord = roundData.word;
             this.sounds.correctRoundAnswer = this.game.add.audio(roundData.word.value);
+            this.popup.setText(this.correctWord.value);
+        }
+        else {
+            this.correctWord = roundData.targetSequence.value;
+            this.popup.setTextMaths(this.correctWord);
         }
         var stepsLength = roundData.steps.length;
 
@@ -187,6 +199,7 @@
             this.falseResponses.push(falseStepResponses);
             this.correctResponses.push(correctStepResponses);
         }
+
     };
 
 
@@ -212,7 +225,7 @@
         }
     };
 
-    Remediation.prototype.eat = function (obj1, obj2) {        
+    Remediation.prototype.eat = function (obj1, obj2) {
         this.caterpillar.head.eat();
         this.caterpillar.head.head.animations.currentAnim.onComplete.addOnce(function () {
             this.collisionHandler(obj1, obj2);
@@ -258,7 +271,7 @@
         }
     };
 
-    Remediation.prototype.success = function success () {
+    Remediation.prototype.success = function success() {
         this.consecutiveMistakes = 0;
         this.caterpillar.addBody(this.correctResponses[this.stepIndex].value);
         this.stepIndex++;
@@ -266,11 +279,13 @@
         this.apparitionsCount = 0;
         this.caterpillar.clickable = true;
 
+        this.game.eventManager.emit('offUi');
+
         if (this.stepIndex < this.correctResponses.length) {
             this.game.eventManager.emit('unPause');
         }
         else {
-
+            this.popup.show(true);
             this.stepIndex = 0;
             this.roundIndex++;
             this.triesRemaining--;
@@ -278,12 +293,13 @@
 
             if (this.triesRemaining > 0) {
 
-                if (this.discipline != "maths") this.sounds.correctRoundAnswer.play();              
+                if (this.discipline != "maths") this.sounds.correctRoundAnswer.play();
                 if (this.game.gameConfig.debugPanel) this.cleanLocalPanel();
                 this.game.params.increaseLocalDifficulty();
-                if (this.game.gameConfig.debugPanel) this.setLocalPanel(); 
+                if (this.game.gameConfig.debugPanel) this.setLocalPanel();
                 var context = this;
                 setTimeout(function () {
+                    context.popup.show(false);
                     context.initRound(context.roundIndex);
                     context.destroyGraph();
                     context.caterpillar.reset(context.lines[1].y);
@@ -301,26 +317,28 @@
     Remediation.prototype.gameOverWin = function gameOverWin() {
 
         this.game.won = true;
+        this.saveGameRecord();
         this.sounds.winGame.play();
         this.game.eventManager.emit('offUi');// listened by ui
-
+        
         this.sounds.winGame.onStop.add(function () {
             this.sounds.winGame.onStop.removeAll();
             this.game.eventManager.emit('GameOverWin');//listened by Ui (toucan = kalulu)
-            this.saveGameRecord();
+            
         }, this);
     };
 
     Remediation.prototype.gameOverLose = function gameOverLose() {
 
         this.game.won = false;
+        this.saveGameRecord();
         this.sounds.loseGame.play();
         this.game.eventManager.emit('offUi');// listened by ui
 
         this.sounds.loseGame.onStop.add(function () {
             this.sounds.loseGame.onStop.removeAll();
             this.game.eventManager.emit('GameOverLose');// listened by ui
-            this.saveGameRecord();
+            
         }, this);
     };
 
@@ -367,7 +385,30 @@
         this.caterpillar.clickable = true;
 
         if (this.lives > 0 && this.triesRemaining > 0) {
-            if (this.consecutiveMistakes == this.game.params.getGeneralParams().incorrectResponseCountTriggeringSecondRemediation) {
+            if (this.consecutiveMistakes == this.game.params.getGeneralParams().incorrectResponseCountTriggeringFirstRemediation) {
+                var context = this;
+                context.game.eventManager.emit('playCorrectSoundNoUnPause');//listened here; check initEvents
+                context.game.eventManager.emit('offUi');
+
+                context.popup.show(true);
+
+                setTimeout(function () {
+                    context.popup.show(false);
+                    context.game.eventManager.emit('unPause');
+                }, context.game.params.getGeneralParams().popupTimeOnScreen * 1000);
+
+            }
+            else if (this.consecutiveMistakes == this.game.params.getGeneralParams().incorrectResponseCountTriggeringSecondRemediation) {
+                this.highlightNextSpawn = true;
+                for (var i = 0; i < this.lines.length; i++) {
+                    for (var j = 0; j < this.lines[i].graph.length; j++) {
+                        if (this.lines[i].graph[j].text.text.toString() == this.correctResponses[this.stepIndex].value.toString()) {
+                            this.lines[i].graph[j].highlight.visible = true;
+                            this.highlightNextSpawn = false;
+                        }
+                    }
+                }
+
                 this.consecutiveMistakes = 0;
                 this.game.eventManager.emit('help');
                 if (this.game.gameConfig.debugPanel) this.cleanLocalPanel();
@@ -375,7 +416,7 @@
                 if (this.game.gameConfig.debugPanel) this.setLocalPanel();
             }
             else {
-                this.game.eventManager.emit('playCorrectSound');             
+                this.game.eventManager.emit('playCorrectSound');
             }
         }
         else if (this.triesRemaining === 0 && this.lives > 0) {
@@ -500,16 +541,17 @@
 
         lineNumber = Math.floor(Math.random() * globalParams.lineCount);
         lBerry = this.lines[lineNumber].spawnGraph(value);
+        if (isTargetValue && this.highlightNextSpawn) lBerry.highlight.visible = true;
 
         j = 0;
         // console.log(value);
         // console.log(lBerry);
-        while (this.results.rounds[this.roundIndex].steps[this.stepIndex].stimuli[j].value != value) { //finds the value in the results to add one apparition
+        while (this.results.data.rounds[this.roundIndex].steps[this.stepIndex].stimuli[j].value != value) { //finds the value in the results to add one apparition
             j++;
         }
         apparition = new this.game.rafiki.StimulusApparition(isTargetValue);
 
-        this.results.rounds[this.roundIndex].steps[this.stepIndex].stimuli[j].apparitions.push(apparition);
+        this.results.data.rounds[this.roundIndex].steps[this.stepIndex].stimuli[j].apparitions.push(apparition);
         lBerry.apparition = apparition;
         this.apparitionsCount++;
         this.framesToWaitBeforeNextSpawn = localParams.respawnTime * 60;
@@ -522,6 +564,13 @@
 
         }
         this.game.world.bringToTop(this.caterpillar.head);
+
+        if (isTargetValue) this.correctStepResponseApparitionsCount++;
+        if (this.correctStepResponseApparitionsCount == 3 && this.game.discipline != "maths") {
+            this.correctStepResponseApparitionsCount = 0;
+
+            if (this.framesToWaitBeforeNewSound === 0 ) this.game.eventManager.emit('playCorrectSoundNoUnPause');
+        }
     };
 
     Remediation.prototype.update = function () {
@@ -567,7 +616,7 @@
     // DEBUG
 
     Remediation.prototype.setupDebugPanel = function setupDebugPanel() {
-        console.log("Crabs Setupping debug Panel");
+        //##console.log("Crabs Setupping debug Panel");
         if (this.game.debugPanel) {
             this.debugPanel = this.game.debugPanel;
             this.rafikiDebugPanel = true;
@@ -578,10 +627,10 @@
         }
 
         var globalLevel = this.game.params.globalLevel;
-        
+
         var generalParams = this.game.params.getGeneralParams();
         var globalParams = this.game.params.getGlobalParams();
-        
+
 
 
         this.debugFolderNames = {
@@ -657,25 +706,27 @@
 
         var apparitionStats;
         var roundsCount, stepsCount, stimuliCount, currentRound, currentStep, currentStimulus;
-
-        roundsCount = this.results.rounds.length;
+        //##console.log(this.results);
+        roundsCount = this.results.data.rounds.length;
 
         for (var i = 0 ; i < roundsCount ; i++) {
 
-            currentRound = this.results.rounds[i];
-            console.log(currentRound);
+            currentRound = this.results.data.rounds[i];
+            //##console.log(currentRound);
             if (this.game.pedagogicData.discipline === 'language') {
                 currentRound.word.stats = {
-                    apparitionTime: Date.now() - 10000,
-                    exitTime: Date.now(),
-                    success: true
+                    isCorrect : true,
+                    isClicked : true,
+                    isClosed : true,
+                    elapsedTime : 10000
                 };
             }
             else if (this.game.pedagogicData.discipline === 'maths') {
                 currentRound.targetSequence.stats = {
-                    apparitionTime: Date.now() - 10000,
-                    exitTime: Date.now(),
-                    success: true
+                    isCorrect : true,
+                    isClicked : true,
+                    isClosed : true,
+                    elapsedTime : 10000
                 };
             }
 
@@ -683,23 +734,23 @@
 
             for (var j = 0 ; j < stepsCount ; j++) {
 
-                currentStep = this.results.rounds[i].steps[j];
+                currentStep = this.results.data.rounds[i].steps[j];
                 stimuliCount = currentStep.stimuli.length;
 
                 for (var k = 0 ; k < stimuliCount ; k++) {
 
-                    currentStimulus = this.results.rounds[i].steps[j].stimuli[k];
+                    currentStimulus = this.results.data.rounds[i].steps[j].stimuli[k];
 
                     apparitionStats = {
-                        apparitionTime: Date.now() - 3000,
-                        exitTime: Date.now(),
-                        correctResponse: false,
-                        clicked: false
+                        isCorrect : false,
+                        isClicked : false,
+                        isClosed : true,
+                        elapsedTime : 2000
                     };
 
                     if (currentStimulus.correctResponse) {
-                        apparitionStats.correctResponse = true;
-                        apparitionStats.clicked = true;
+                        apparitionStats.isCorrect = true;
+                        apparitionStats.isClicked = true;
                     }
 
                     currentStimulus.apparitions = [apparitionStats];
@@ -707,8 +758,7 @@
             }
         }
 
-        this.won = true;
-        this.game.eventManager.emit("exitGame");
+        this.gameOverWin();
     };
 
     Remediation.prototype.AutoLose = function LoseGame() {
@@ -716,23 +766,25 @@
         var apparitionStats;
         var roundsCount, stepsCount, stimuliCount, currentRound, currentStep, currentStimulus;
 
-        roundsCount = this.results.rounds.length;
+        roundsCount = this.results.data.rounds.length;
 
         for (var i = 0 ; i < roundsCount ; i++) {
 
-            currentRound = this.results.rounds[i];
+            currentRound = this.results.data.rounds[i];
             if (this.game.pedagogicData.discipline === 'language') {
                 currentRound.word.stats = {
-                    apparitionTime: Date.now() - 20000,
-                    exitTime: Date.now(),
-                    success: false
+                    isCorrect : true,
+                    isClicked : false,
+                    isClosed : true,
+                    elapsedTime : 10000
                 };
             }
             else if (this.game.pedagogicData.discipline === 'maths') {
                 currentRound.targetSequence.stats = {
-                    apparitionTime: Date.now() - 20000,
-                    exitTime: Date.now(),
-                    success: false
+                    isCorrect : true,
+                    isClicked : false,
+                    isClosed : true,
+                    elapsedTime : 10000
                 };
             }
 
@@ -740,23 +792,23 @@
 
             for (var j = 0 ; j < stepsCount ; j++) {
 
-                currentStep = this.results.rounds[i].steps[j];
+                currentStep = this.results.data.rounds[i].steps[j];
                 stimuliCount = currentStep.stimuli.length;
 
                 for (var k = 0 ; k < stimuliCount ; k++) {
 
-                    currentStimulus = this.results.rounds[i].steps[j].stimuli[k];
+                    currentStimulus = this.results.data.rounds[i].steps[j].stimuli[k];
 
                     apparitionStats = {
-                        apparitionTime: Date.now() - 3000,
-                        exitTime: Date.now(),
-                        correctResponse: false,
-                        clicked: true
+                        isCorrect : false,
+                        isClicked : true,
+                        isClosed : true,
+                        elapsedTime : 2000
                     };
 
                     if (currentStimulus.correctResponse) {
-                        apparitionStats.correctResponse = true;
-                        apparitionStats.clicked = false;
+                        apparitionStats.isCorrect = true;
+                        apparitionStats.isClicked = false;
                     }
 
                     currentStimulus.apparitions = [apparitionStats];
@@ -765,7 +817,7 @@
         }
 
         this.won = false;
-        this.game.eventManager.emit('exitGame');
+        this.gameOverLose();
     };
 
     Remediation.prototype.skipKalulu = function skipKalulu() {

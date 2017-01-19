@@ -21,7 +21,7 @@
 
     Game.prototype = {
         preload: function preloadGame() {
-            console.info("[Game State] Preloading new game");
+            //##console.info("[Game State] Preloading new game");
 
             // load audiofiles for the current data
 
@@ -46,7 +46,7 @@
         },
 
         create: function () {
-            console.info("[Game State] Creating new game");
+            //##console.info("[Game State] Creating new game");
             if (this.game.gameConfig.globalVars) {
                 window.caterpillar = {};
                 window.caterpillar.game = this.game;
@@ -83,7 +83,7 @@
         },
 
         render: function () {
-            this.game.debug.text(this.game.time.fps, 2, 14, "#00ff00");
+            if (this.game.gameConfig.debugPanel) this.game.debug.text(this.game.time.fps, 2, 14, "#00ff00");
         }
     };
 

@@ -20,7 +20,7 @@
         preload: function () {
             this.preloadBar = this.add.sprite(this.game.world.centerX - 490, this.game.height / 2, 'preloaderBar');
             this.load.setPreloadSprite(this.preloadBar);
-            console.log(this.game);
+            //##console.log(this.game);
             //this.loadDatasetAudio();
             this.loadSpecificAssets();
             this.loadSharedAssets();

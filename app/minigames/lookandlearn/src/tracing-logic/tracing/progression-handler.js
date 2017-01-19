@@ -50,7 +50,7 @@ ProgressionHandler.prototype.load = function ProgressionHandlerLoad(callback){
 
 ProgressionHandler.prototype.setSeries = function ProgressionHandlerSetSeries (series) {
   this.parameters = series;
-  console.log(series);
+  // console.log(series);
   this.series = Object.keys(series);
   for(var i = 0; i< this.series.length; i++){
     this.alreadyDoneSeries[this.series[i]] = 0;

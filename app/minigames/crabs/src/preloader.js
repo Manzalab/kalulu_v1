@@ -34,7 +34,7 @@
          **/
         loadSpecificAssets: function () {
             if (!this.game.gameConfig.gameId) {
-                console.error("Game Id equals " + this.game.gameConfig.gameId + ". No loading will be possible");
+                //##console.error("Game Id equals " + this.game.gameConfig.gameId + ". No loading will be possible");
             }
             //Game specific Graphics
             this.load.image('background', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/background.png');
@@ -43,7 +43,7 @@
             this.game.load.atlasJSONHash('crab', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/crab/crab.png', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/crab/crab.json');
 
             //Game specific UI Graphics
-            console.log('minigames/' + this.game.gameConfig.gameId + '/assets/images/ui/ScoreSuccess_TapeCrabe.png');
+            //##console.log('minigames/' + this.game.gameConfig.gameId + '/assets/images/ui/ScoreSuccess_TapeCrabe.png');
             this.load.image('uiScoreWrong', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/ui/ScoreWrong_TapeCrabe.png');
             this.load.image('uiScoreRight', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/ui/ScoreSuccess_TapeCrabe.png');
             this.load.image('uiScoreEmpty', 'minigames/' + this.game.gameConfig.gameId + '/assets/images/ui/ScoreEmpty_TapeCrabe.png');
@@ -112,7 +112,7 @@
 		 **/
 		onFileError: function (fileKey, file) {
 			this.loadError = true;
-			console.log("onFileError called. Will restart preload");
+			//##console.log("onFileError called. Will restart preload");
 		},
 
         /**

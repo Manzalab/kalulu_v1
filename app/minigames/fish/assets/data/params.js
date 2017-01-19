@@ -15,7 +15,7 @@ define([], function () {
                 caterpillarSpeed: 10
             },
             globalRemediation: {   // the global remediation settings are invariable inside a game but can evolve depending on globalLevel from one game to the next
-                gameType: "composition", // "identification", "composition", "pairing", or "other"
+                gameType: "assessment", // "identification", "composition", "pairing", or "other"
                 gameTimer: Infinity,     // should the game end after a certain amount of seconds ?
                 gameTimerVisible: false,        // is this Timer visible ?
                 roundTimer: Infinity,     // should each round end after a certain amount of seconds ?
@@ -25,7 +25,6 @@ define([], function () {
                 roundTargetClass: "Word",   // the class of a round Target
                 stepTargetClass: "GP",   // the class of a step Target (if same than round --> identification, if component -> composition)
                 stepsToPlay: "All",        // should all the steps be played or are some given ? e.g. [1, 0, 0, 1] 
-                gameTimer: 0,
                 minimumSortedWords: 0,
                 minimumWinRatio: 0
             },
@@ -38,8 +37,7 @@ define([], function () {
                 globalRemediation: {
                     gameTimer: 180,
                     minimumSortedWords: 10,
-                    minimumWinRatio: 0.5,
-                    totalTriesCount:20
+                    minimumWinRatio: 0.5
                 },
                 localRemediation: {
 
@@ -50,8 +48,7 @@ define([], function () {
                 globalRemediation: {
                     gameTimer: 180,
                     minimumSortedWords: 10,
-                    minimumWinRatio: 0.5,
-                    totalTriesCount: 20
+                    minimumWinRatio: 0.5
                 },
                 localRemediation: {
                    
@@ -61,8 +58,7 @@ define([], function () {
                 globalRemediation: {
                     gameTimer: 180,
                     minimumSortedWords: 10,
-                    minimumWinRatio: 0.5,
-                    totalTriesCount: 20
+                    minimumWinRatio: 0.5
                 },
                 localRemediation: {
                    
@@ -72,8 +68,7 @@ define([], function () {
                 globalRemediation: {
                     gameTimer: 180,
                     minimumSortedWords: 10,
-                    minimumWinRatio: 0.5,
-                    totalTriesCount: 20
+                    minimumWinRatio: 0.5
                 },
                 localRemediation: {
                    
@@ -83,8 +78,7 @@ define([], function () {
                 globalRemediation: {
                     gameTimer: 180,
                     minimumSortedWords: 10,
-                    minimumWinRatio: 0.5,
-                    totalTriesCount: 20
+                    minimumWinRatio: 0.5
                 },
                 localRemediation: {
                     

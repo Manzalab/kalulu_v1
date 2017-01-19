@@ -41,6 +41,7 @@
         this.game.gameConfig = this._config;
         this.game.params = new MinigameParameters(params);
         this.game.rafiki = this._rafiki;
+
         // debug Panel from Kalulu
         this.game.debugPanel = this._rafiki.debugPanel;
 

@@ -135,6 +135,18 @@ exports.copyCommonAssets = function (language) {
     };
 };
 
+exports.copyCordova = function () {
+
+    return {
+        plugins: [
+            // Enable multi-pass compilation for enhanced performance in larger projects. Good default.
+            new CopyWebpackPlugin([
+                { from: 'app/src/cordova.js', to: '' }
+            ])
+        ]
+    };
+};
+
 
 exports.copyAssetsForMinigames = function (minigameFolderNames, language) {
     // console.log('copy logic for language : ' + language);

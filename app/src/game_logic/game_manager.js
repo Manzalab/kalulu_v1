@@ -9,6 +9,7 @@
     var Timer               = require('./timer');
     var UserProfile         = require('./core/user_profile');
     var Reward              = require('application/dynamic_rewards');
+    var ftpAutoSaver        = require('application/ftp_autosaver');
 
     // ###############################################################################################################################################
     // ###  CONSTRUCTOR  #############################################################################################################################
@@ -102,6 +103,7 @@
 
     GameManager.prototype.save = function save () {
         this._eventSystem.emit(Events.APPLICATION.SET_SAVE, this._currentUserProfile.data);
+        ftpAutoSaver.add(this._currentUserProfile.data);
     };
 
 
@@ -115,29 +117,24 @@
         var gardenData;
         if (progressionNode) {
             this.setState(GameStates.MENUS);
-            if (progressionNode.constructor.name === 'Lecture') {
+            if (progressionNode.constructor.name === 'Exercise' && !progressionNode.parent.isCompleted) {
+
                 console.log("Lesson Not Yet Complete : back to intial lesson screen");
                 this._eventSystem.emit(Events.GAME.BACK_FROM_ACTIVITY, progressionNode.parent);
             }
-            else if (progressionNode.constructor.name === 'Exercise') {
-                if (!progressionNode.parent.isCompleted) {
-                    console.log("Lesson Not Yet Complete : back to intial lesson screen");
-                    this._eventSystem.emit(Events.GAME.BACK_FROM_ACTIVITY, progressionNode.parent);
-                }
-                else {
-                    console.log("Lesson Complete : back to parent garden");
-                    gardenData = {
-                        currentChapter : progressionNode.parent.parent.chapterNumber,
-                        data : this._rafiki.getChaptersData(),
-                    };
-                    
-                    this._eventSystem.emit(Events.GAME.BACK_FROM_ACTIVITY, gardenData, this._rafiki.getChaptersProgression(), this._currentUserProfile);
-                    if (Reward.levelRewards[progressionNode.discipline.type.toLowerCase()][progressionNode.lessonNumber]) {
-                        // Reward.levelRewards[progressionNode.discipline.type.toLowerCase()][progressionNode.lessonNumber]
-                        // envoyer ce nom dans l'interface manager avec un event pour push le nom du reward dans ToyChestActivityScreen._unlockedActivities
-                        console.log("Unlocking Toy Chest Reward");
-                        this.emit(Events.GAME.UNLOCK_REWARD_TOYCHEST, Reward.levelRewards[progressionNode.discipline.type.toLowerCase()][progressionNode.lessonNumber]);
-                    }
+            else if (progressionNode.constructor.name === 'Exercise' || progressionNode.constructor.name === 'Lecture') {
+                console.log("Lesson Complete : back to parent garden");
+                gardenData = {
+                    currentChapter : progressionNode.parent.parent.chapterNumber,
+                    data : this._rafiki.getChaptersData(),
+                };
+                
+                this._eventSystem.emit(Events.GAME.BACK_FROM_ACTIVITY, gardenData, this._rafiki.getChaptersProgression(), this._currentUserProfile);
+                if (Reward.levelRewards[progressionNode.discipline.type.toLowerCase()][progressionNode.lessonNumber]) {
+                    // Reward.levelRewards[progressionNode.discipline.type.toLowerCase()][progressionNode.lessonNumber]
+                    // envoyer ce nom dans l'interface manager avec un event pour push le nom du reward dans ToyChestActivityScreen._unlockedActivities
+                    console.log("Unlocking Toy Chest Reward");
+                    this._eventSystem.emit(Events.GAME.UNLOCK_REWARD_TOYCHEST, Reward.levelRewards[progressionNode.discipline.type.toLowerCase()][progressionNode.lessonNumber]);
                 }
             }
             else if (progressionNode.constructor.name === 'Assessment') {
@@ -177,7 +174,7 @@
 
         this._minigamesManager = new MinigamesManager(this);
 
-        this._eventSystem.once(Events.APPLICATION.SAVED_DATA_SENT, this._initRemediation, this);
+        this._eventSystem.once(Events.APPLICATION.SAVED_DATA_SENT, this._onSaveReady, this);
         
         this._eventSystem.emit(Events.APPLICATION.GET_SAVE, 'UserData');
 
@@ -187,12 +184,28 @@
             this._eventSystem.on(Events.DEBUG.RESET_SAVE_REQUEST, this._onResetSaveRequest, this);
         }
     };
+
+    GameManager.prototype._onSaveReady = function _onSaveReady (userData) {
+        this._initRemediation(userData);
+        this._initFTPAutoSave(this._currentUserProfile.data.userId);
+    };
     
     GameManager.prototype._initRemediation = function _initRemediation (userData) {
         
         this._currentUserProfile = new UserProfile(this, userData);
         
         this._rafiki = new Rafiki(this, this._currentUserProfile);
+    };
+
+    GameManager.prototype._initFTPAutoSave = function _initFTPAutoSave (uuid) {
+
+        ftpAutoSaver.init(uuid, Config.SAVE_FOLDER_NAME, Config.SAVE_FILE_SUFFIX, Config.SAVE_EXT, {
+            address  : Config.FTP_ADDRESS,
+            username : Config.FTP_USERNAME,
+            password : Config.FTP_PASSWORD
+        });
+
+        ftpAutoSaver.startConnecting(Config.FTP_SAVE_INTERVAL)
     };
 
 
